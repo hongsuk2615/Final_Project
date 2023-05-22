@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,7 @@
     <title>Document</title>
 <style>
     *{
-        border: 1px solid blue !important;
+       /*  border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -56,10 +58,7 @@
 
         </div>
         <div id="body">
-            <div id="body-left">
-                
-
-            </div>
+            <jsp:include page="common/boardBodyLeft.jsp"/>
             <div id="body-right">
 
 
