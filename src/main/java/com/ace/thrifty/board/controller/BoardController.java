@@ -11,9 +11,15 @@ public class BoardController {
 		return "boardTemplate";
 	}
 
-	@RequestMapping("/home/ptj")
+	@RequestMapping("/home/ptjList")
 	public String ptj() {
-		return "part_time_job/PTJ";
+		return "part_time_job/PTJList";
+	}
+	
+	@RequestMapping("/home/ptjMain")
+	public String ptjMain() {
+		return "part_time_job/PTJMain";
+	}
 	
 	@RequestMapping("/usedProduct")
 	public String usedProduct() {

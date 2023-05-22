@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../resources/css/part_time_job/part_time_job_main.css" rel="stylesheet">
+    <link href="../resources/css/part_time_job/part_time_job_list.css" rel="stylesheet">
 <style>
     *{
         border: 1px solid blue !important;
@@ -53,9 +53,7 @@
 <body>
     <div id="wrapper">
         <div id="header">
-            
-            
-            
+            <jsp:include page="../common/header.jsp" />
         </div>
         <div id="body">
             <div id="body-left">
@@ -65,7 +63,12 @@
                 <div id="ptj-header">
                     <h1>최신 알바 게시글</h1>
                 </div>
-                <div id="ptj-body1">
+                <div style="width:100%; height:0px;">
+                	<p>메인 > 심부름/알바 > 알바</p>
+                </div>
+                <hr style="width: 100%;  margin-top: 60px;">
+                <div id="ptj-allBody" style="height: 1000px;">
+                	<div id="ptj-body1">
                     <div style="width: 200px; height: 170px;">
                         <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;"/>
                         <p style="text-align: center;">메롱</p>
@@ -107,8 +110,9 @@
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>
+                </div>
                 <div id="paging">
-                    <p style="text-align: center;">%lt; 1 2 3 4 %gt;</p>
+                    <p style="text-align: center;">< 1 2 3 4 ></p>
                 </div>
             </div>
         </div>
