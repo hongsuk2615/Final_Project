@@ -52,6 +52,10 @@
                     <div class="main_category">소모임</div>
                     <div></div>
                 </div>
+                <div>
+                    <div class="main_category">자유게시판</div>
+                    <div></div>
+                </div>
             </div>
         </div>
     </div>
