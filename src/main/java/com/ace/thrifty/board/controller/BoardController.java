@@ -10,4 +10,9 @@ public class BoardController {
 	public String home() {
 		return "boardTemplate";
 	}
+	
+	@RequestMapping("/usedProduct")
+	public String usedProduct() {
+		return "usedProduct/usedProduct";
+	}
 }
