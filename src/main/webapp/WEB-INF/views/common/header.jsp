@@ -6,76 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/css/common/header.css">
     <title>Document</title>
-    <style>
-        *{
-            /* border: 1px solid white !important; */
-        }
-        #header{
-            height: 150px;
-            background-color: rgb(0, 60, 120);
-        }
-
-        #header_1_1{
-            display: flex;
-            align-items: center;
-        }
-
-        #header_1{
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 300px;
-        }
-
-        #main_logo{
-            height: 70px;
-            width: 70px;
-        }
-
-        #header_1_2{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 300px;
-            color: white;
-            font-weight: 900;
-        }
-
-        #header_search{
-            height: 20px;
-            width: 20px;
-        }
-        
-        #header_2{
-            width: 1000px;
-            padding-left: 350px;
-        }
-        
-        #header_2_1{
-            display: flex;
-            justify-content: space-between;
-            padding-top: 20px;
-            padding-bottom: 10px;
-            color: white;
-            font-size: larger;
-            font-weight: 900;
-        
-        }
-        /* 
-        #header_2_1>div{ 
-            height: 30px;
-            border-bottom: 3px solid white;
-        } */
-
-        .main_category{
-            height: 30px;
-        }
-
-        .main_underline{
-            border-radius: 5px;
-            border-top: 3px solid white;
-        }
-    </style>
 </head>
 <body>
     <div id="header">
