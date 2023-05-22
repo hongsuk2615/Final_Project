@@ -10,4 +10,9 @@ public class BoardController {
 	public String home() {
 		return "boardTemplate";
 	}
+
+	@RequestMapping("/home/ptj")
+	public String ptj() {
+		return "part_time_job/PTJ";
+	}
 }

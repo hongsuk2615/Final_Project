@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="/Final_Project/src/main/webapp/resources/css/part_time_job/part_time_job_main.css" rel="stylesheet">
+    <link href="../resources/css/part_time_job/part_time_job_main.css" rel="stylesheet">
 <style>
     *{
         border: 1px solid blue !important;
@@ -51,13 +53,13 @@
 <body>
     <div id="wrapper">
         <div id="header">
-
-
-
+            
+            
+            
         </div>
         <div id="body">
             <div id="body-left">
-                <!-- 업종으로 할것. -->
+                <jsp:include page="../common/boardBodyLeft.jsp"/>
             </div>
             <div id="body-right">
                 <div id="ptj-header">
@@ -65,48 +67,48 @@
                 </div>
                 <div id="ptj-body1">
                     <div style="width: 200px; height: 170px;">
-                        <img src="/Final_Project/src/main/webapp/resources/images/대지_1-100.jpg" style="height: 170px; width: 200px;">
+                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;"/>
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/Final_Project/src/main/webapp/resources/images/대지_1-100.jpg" style="height: 170px; width: 200px;">
+                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/Final_Project/src/main/webapp/resources/images/대지_1-100.jpg" style="height: 170px; width: 200px;">
+                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>
                 <div id="ptj-body2">
                     <div style="width: 200px; height: 170px;">
-                        <img src="/Final_Project/src/main/webapp/resources/images/대지_1-100.jpg" style="height: 170px; width: 200px;">
+                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/Final_Project/src/main/webapp/resources/images/대지_1-100.jpg" style="height: 170px; width: 200px;">
+                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/Final_Project/src/main/webapp/resources/images/대지_1-100.jpg" style="height: 170px; width: 200px;">
+                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>
                 <div id="ptj-body3">
                     <div style="width: 200px; height: 170px;">
-                        <img src="/Final_Project/src/main/webapp/resources/images/대지_1-100.jpg" style="height: 170px; width: 200px;">
+                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/Final_Project/src/main/webapp/resources/images/대지_1-100.jpg" style="height: 170px; width: 200px;">
+                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/Final_Project/src/main/webapp/resources/images/대지_1-100.jpg" style="height: 170px; width: 200px;">
+                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>
                 <div id="paging">
-                    <p style="text-align: center;">< 1 2 3 4 ></p>
+                    <p style="text-align: center;">%lt; 1 2 3 4 %gt;</p>
                 </div>
             </div>
         </div>
