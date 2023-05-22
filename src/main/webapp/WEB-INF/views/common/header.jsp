@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,13 +81,13 @@
     <div id="header">
         <div id="header_1">
             <div id="header_1_1">
-                <img src="../../../resources/images/main/icon/logo1.1.png" alt="" id="main_logo">
+                <img src="resources/images/main/icon/logo1.1.png" alt="" id="main_logo">
             </div>
             <div id="header_1_2">
                 <div>로그인</div>
                 <div>회원가입</div>
                 <div>내정보</div>
-                <div><img src="../../../resources/images/main/icon/search-3.png" alt="" id="header_search"></div>
+                <div><img src="resources/images/main/icon/search-3.png" alt="" id="header_search"></div>
             </div>
         </div>
         <div id="header_2">
