@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,7 @@
     <title>Document</title>
 <style>
     *{
-        border: 1px solid blue !important;
+       /*  border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -31,9 +33,12 @@
         width: 20%;
         min-width: 350px;
         min-height: 900px;
+        background-color: rgb(0, 60, 120);
+        margin-right: 10px;
     }
     #body-right{
         display: inline-block;
+        margin-left: 10px;
         width: 50%;
         min-width: 700px;
         min-height: 900px;
@@ -53,10 +58,7 @@
 
         </div>
         <div id="body">
-            <div id="body-left">
-
-
-            </div>
+            <jsp:include page="common/boardBodyLeft.jsp"/>
             <div id="body-right">
 
 
