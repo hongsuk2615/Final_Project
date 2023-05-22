@@ -14,5 +14,9 @@ public class BoardController {
 	@RequestMapping("/home/ptj")
 	public String ptj() {
 		return "part_time_job/PTJ";
+	
+	@RequestMapping("/usedProduct")
+	public String usedProduct() {
+		return "usedProduct/usedProduct";
 	}
 }
