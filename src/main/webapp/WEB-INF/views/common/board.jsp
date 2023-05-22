@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../resources/css/common/body-left.css">
     <title>Document</title>
+
 <style>
     *{
         border: 1px solid blue !important;
@@ -57,7 +59,18 @@
         </div>
         <div id="body">
             <div id="body-left">
-                
+                <div id="upper-category">
+                    <div>
+                        <img src="../../../resources/images/shopping-cart.png">중고거래
+                    </div>
+                </div>
+                <div id="sub-category">
+
+                </div>
+                <div id="filter">
+
+
+                </div>
 
             </div>
             <div id="body-right">
