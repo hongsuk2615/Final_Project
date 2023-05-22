@@ -10,4 +10,9 @@ public class co_purchaseController {
 	public String usedProduct() {
 		return "co_purchase/purchaseMain";
 	}
+	
+	@RequestMapping("/detail.co")
+	public String selectDetail() {
+		return "co_purchase/purchaseDetail";
+	}
 }
