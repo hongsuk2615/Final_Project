@@ -52,11 +52,7 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="header">
-
-
-
-        </div>
+        <jsp:include page="common/header.jsp"/>
         <div id="body">
             <jsp:include page="common/boardBodyLeft.jsp"/>
             <div id="body-right">
