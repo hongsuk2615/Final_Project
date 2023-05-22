@@ -63,12 +63,12 @@
 
                         <li>거래방법</li>
                         <li>
-                            <input type="radio" name="tradeMethod" id="direct">
-                            <label for="direct">직거래</label>
-                            <input type="radio" name="tradeMethod" id="parcel">
-                            <label for="parcel">택배</label>
-                            <input type="radio" name="tradeMethod" id="both">
-                            <label for="both">둘다</label>
+                            <input type="radio" name="filterTradeMethod" id="filter-direct">
+                            <label for="filter-direct">직거래</label>
+                            <input type="radio" name="filterTradeMethod" id="filter-parcel">
+                            <label for="filter-parcel">택배</label>
+                            <input type="radio" name="filterTradeMethod" id="filter-both">
+                            <label for="filter-both">둘다</label>
 
                         </li>
                     </ul>

@@ -1,0 +1,117 @@
+#body-right{
+    display: inline-block;
+    margin-left: 30px;
+    width: 50%;
+    min-width: 730px;
+    min-height: 900px;
+}
+
+#body-right-header{
+    height: 150px;
+    border-bottom: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+#body-right-title{
+    font-size: 30px;
+    width: 100%;
+}
+#body-right-filter{
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#order-list> div{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    color: lightgray;
+}
+#order-list{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    height: 400;
+}
+#search{
+    height: 40px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+#search>img{
+    margin: 10px;
+}
+#search>input{
+    border: 1px solid transparent;
+    height: 100%;
+    border-left: 1px solid gray;
+    width: 210px;
+}
+
+#body-right-list{
+    margin-top: 20px;
+    background-color: rgb(244, 244, 244);
+    height: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.item{
+    height: 320px;
+    width: 180px;
+}
+.item-img{
+    height: 220px;
+    background-color: rgb(52, 152, 219);
+}
+
+.item-info{
+    height: 100px;
+    background-color: white;
+}
+
+#body-right-footer{
+    margin-top: 10px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#paging-btns{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#paging-btns>div{
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    background-color: rgb(244, 244, 244);
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+#write{
+   width : 100%;
+   display: flex;
+   justify-content: flex-end;
+}
+#write>div{
+    width: 60px;
+    height: 20px;
+    background-color: rgb(52, 152, 219);
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+}
