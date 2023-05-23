@@ -67,13 +67,15 @@
                 var target = $("#header"); // position: fixed를 적용할 대상 요소
 
                 if (scrollPosition > 10) { // 스크롤 위치가 100 이상이면
-                    target.css({
-                        position: "fixed"
-                    });
+                    target.addClass('fixed');
+                    // target.css({
+                    //     position: "fixed"
+                    // });
                 } else { // 스크롤 위치가 100 미만이면
-                    target.css({
-                        position: "static"
-                    });
+                    target.removeClass('fixed');
+                    // target.css({
+                    //     position: "static"
+                    // });
                 }
             });
 

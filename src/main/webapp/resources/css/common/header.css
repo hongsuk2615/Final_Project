@@ -71,3 +71,7 @@
     border-radius: 5px;
     border-top: 3px solid white;
 }
+
+.fixed{
+    position: fixed;
+}
