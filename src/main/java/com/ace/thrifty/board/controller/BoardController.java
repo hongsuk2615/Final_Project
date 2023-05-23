@@ -21,6 +21,11 @@ public class BoardController {
 		return "part_time_job/PTJMain";
 	}
 	
+	@RequestMapping("/home/ptjDetail")
+	public String ptjDetail() {
+		return "part_time_job/PTJDetail";
+	}
+	
 	@RequestMapping("/usedProduct")
 	public String usedProduct() {
 		return "usedProduct/usedProduct";

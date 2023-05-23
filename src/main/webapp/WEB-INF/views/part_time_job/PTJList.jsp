@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../resources/css/part_time_job/part_time_job_list.css" rel="stylesheet">
+    <link href="/thrifty/resources/css/part_time_job/part_time_job_list.css" rel="stylesheet">
 <style>
     *{
         border: 1px solid blue !important;
@@ -70,43 +70,43 @@
                 <div id="ptj-allBody" style="height: 1000px;">
                 	<div id="ptj-body1">
                     <div style="width: 200px; height: 170px;">
-                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;"/>
+                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;"/>
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>
                 <div id="ptj-body2">
                     <div style="width: 200px; height: 170px;">
-                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>
                 <div id="ptj-body3">
                     <div style="width: 200px; height: 170px;">
-                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="../resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>
