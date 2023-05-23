@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/thrifty/resources/css/usedProduct/usedProduct.css">
     <title>Document</title>
 <style>
     *{
-       /*  border: 1px solid blue !important; */
+        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -17,6 +18,7 @@
     }
     #wrapper{
         min-width: 1180px;
+        padding-bottom: 70px;
     }
 
     #header{
@@ -36,13 +38,7 @@
         background-color: rgb(0, 60, 120);
         margin-right: 10px;
     }
-    #body-right{
-        display: inline-block;
-        margin-left: 10px;
-        width: 50%;
-        min-width: 700px;
-        min-height: 900px;
-    }
+    
 
     #footer{
         
@@ -56,7 +52,105 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
-				
+                <div id="body-right-header">
+                    <div id="body-right-title">[중고거래 카테고리명]</div>
+
+                    <div id="body-right-filter">
+                        <div id="order-list">
+                            <div>최신순</div>
+                            <div>추천순</div>
+                            <div>조회순</div>
+                            <div>가격순</div>
+                        </div>
+                        <div id="search">
+                            <img src="/thrifty/resources/images/main/icon/search-1.png" width="25px" height="25px">
+                            <input type="search">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div id="body-right-list">
+                    <div class="item">
+                        <div class="item-img">
+
+                        </div>
+                        <div class="item-info">
+
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item-img">
+
+                        </div>
+                        <div class="item-info">
+
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item-img">
+
+                        </div>
+                        <div class="item-info">
+
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item-img">
+
+                        </div>
+                        <div class="item-info">
+
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item-img">
+
+                        </div>
+                        <div class="item-info">
+
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item-img">
+
+                        </div>
+                        <div class="item-info">
+
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item-img">
+
+                        </div>
+                        <div class="item-info">
+
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item-img">
+
+                        </div>
+                        <div class="item-info">
+
+                        </div>     
+                    </div>
+
+                </div>
+                <div id="body-right-footer">
+                    <div id="write">
+                        <div>글작성</div>
+                    </div>
+                    <div id="paging-btns">
+                        <div>&lt;</div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>&gt;</div>
+                    </div>
+                    
+                </div>
 
             </div>
         </div>

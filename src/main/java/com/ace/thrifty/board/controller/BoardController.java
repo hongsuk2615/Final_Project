@@ -30,4 +30,14 @@ public class BoardController {
 	public String usedProduct() {
 		return "usedProduct/usedProduct";
 	}
+	
+	@RequestMapping("/usedProductDetail")
+	public String usedProductDetail() {
+		return "usedProduct/usedProductDetail";
+	}
+	
+	@RequestMapping("/usedProductEnroll")
+	public String usedProductEnroll() {
+		return "usedProduct/usedProductEnroll";
+	}
 }
