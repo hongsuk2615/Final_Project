@@ -49,68 +49,132 @@
         #footer{
             
         }
-
-        #cat_title{
-            display: flex;
-            justify-content: space-between;
-            padding-top: 30px;
-            padding-bottom: 50px;
-        }
-
+    
         #cat_title_1{
+            padding-top: 30px;
+            padding-bottom: 30px;
             font-weight: 500;
             font-size: 3em;
         }
 
-        #title{
-            width: 100%;
-            height: 35px;
+        #detail_header{
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgb(160, 160, 160);
+        }
+        #detail_header_1{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        #fileUpload{
-            display: flex;
-            border: 1px solid #999999;
-            border-radius: 5px;
+        #detail_header_1_title{
+            font-size: 30px;
+        }
+
+        #profile{
+            padding-top: 20px;
+            padding-bottom: 10px;
+            justify-content: space-between;
+        }
+        
+        #profile_1{
+            align-items: center;
+        }
+
+        #profile_img{
+            width: 40px;
+            height: 40px;
+        }
+
+        #nickname{
+            padding-left: 10px;
+            font-weight: 900;
+        }
+
+        #recruit_2{
+            margin-left: 5px;
+            width: 20px;
+            height: 20px;
+            color: white;
+            background-color: rgb(19, 137, 255);
+            border-radius: 100px;
+            text-align: center;
+            font-weight: 900;
+        }
+
+        .header_text{
+            font-size: 12px;
+            color: rgb(160, 160, 160);
+        }
+
+        #views{
+            margin-left: 14px;
+            margin-right: 5px;
+        }
+
+        #end_date{
+            margin-right: 5px;
+            font-size: 15px;
+        }
+
+        #body_description{
             margin-top: 20px;
         }
-
-        #fileUpload_1{
-            border-right: 1px solid #999999;
-            line-height: 62px;
-            padding-left: 10px;
-            padding-right: 10px;
-            margin: 5px 10px 5px 0;
+        #body_description_1{
+            width: 500px;
+            height: 300px;
+            padding-right: 20px;
+            border-right: 1px solid rgb(160, 160, 160);
         }
 
-        .upload-name {
-            display: inline-block;
-            width: 770px;
-            height: 30px;
-            margin: 4px 0 8px 0;
-            vertical-align: middle;
-            border: 1px solid #dddddd;
+        #body_img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #body_description_2{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding-left: 20px;
+            width: 360px;
+        }
+
+        .body_text{
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        .body_text+.body_text{
+            padding-top: 10px;
+        }
+
+        #chatting{
+            align-self: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 10px;
+            background-color: rgb(19, 137, 255);
             border-radius: 5px;
-            color: #6d6d6d;
         }
-        .filebox>label {
-            display: inline-block;
-            color: #fff;
-            vertical-align: middle;
-            background-color: rgb(20, 120, 220);
-            border-radius: 5px;
-            font-size: 15px;
-            cursor: pointer;
-            height: 20px;
-            margin: 8px 0 4px 0;
+
+        #body_text{
+            margin-top: 30px;
+            font-size: 20px;
         }
-        .filebox>input[type="file"] {
-            position: absolute;
-            width: 0;
-            height: 0;
-            padding: 0;
-            overflow: hidden;
-            border: 0;
+
+        .flex{
+            display: flex;
         }
+        .justify{
+            justify-content: space-between;
+        }
+        .align{
+            align-items: center;
+        }
+
     </style>
 </head>
 <body>
@@ -119,33 +183,58 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
-                <div id="cat_title">
-                    <div id="cat_title_1">글쓰기</div>
-                    <input type="submit" value="등록">
-                    
-                </div>
-                <form action="">
-                    <div>
-                        <input type="text" id="title" name="title" placeholder="제목을 입력해주세요.">
-                    </div>
-                    <div id="fileUpload">
-                        <div id="fileUpload_1">첨부파일</div>
-                        <div class="filebox">
-                            <label for="file">&nbsp;사진 등록&nbsp;</label> 
-                            <input type="file" id="file"><br>
-                            <input class="upload-name" value="선택된 파일" placeholder="선택된 파일">
+                <div id="cat_title_1">게시글 상세</div>
+                <div id="detail_header">
+                    <div id="detail_header_1">
+                        <div id="detail_header_1_title">넷플릭스 패밀리 2명 구합니다</div> <!-- 글 제목 -->
+                        <div class="flex">
+                            <img src="resources/images/main/icon/alarm.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;">
+                            <div>신고</div>
                         </div>
                     </div>
-                    <div>
-                        <textarea placeholder="내용을 입력해주세요.">
-                            
-                        </textarea>
+                    <div id="profile" class="flex">
+                        <div id="profile_1" class="flex">
+                            <div id="profile_img">
+                                <img src="resources/hong.png" alt="" style="width: 40px; height: 40px; border-radius: 100px;">
+                            </div> <!-- 프로필 -->
+                            <div id="nickname">김김홍홍석석</div>
+                        </div>
+                        <div class="flex">
+                            <div id="recruit_1">모집 인원</div>
+                            <div id="recruit_2">2</div>
+                        </div>
                     </div>
-
-                </form>
-
-				
-                
+                    <div class="flex justify align">
+                        <div class="flex">
+                            <div class="header_text">2023.05.23. 22:10</div> <!-- 작성일 -->
+                            <div class="flex">
+                                <div id="views" class="header_text">조회</div>
+                                <div class="header_text">24</div>
+                            </div>
+                        </div>
+                        <div class="flex align">
+                            <div id="end_date">마감</div>
+                            <div class="header_text">2023.06.24</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="detail_body">
+                    <div id="body_description" class="flex">
+                        <div id="body_description_1">
+                            <img src="resources/NETFLIX.png" id="body_img" alt="">
+                        </div>
+                        <div id="body_description_2">
+                            <div>
+                                <div class="body_text">넷플릭스 구독권</div>
+                                <div class="body_text">10,000원</div>
+                            </div>
+                            <div id="chatting">문의 쪽지</div>
+                        </div>
+                    </div>
+                    <div id="body_text">
+                        김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -156,11 +245,5 @@
 
         </div>
     </div>
-<script>
-    $("#file").on('change',function(){
-        var fileName = $("#file").val();
-        $(".upload-name").val(fileName);
-    });
-</script>
 </body>
 </html>
