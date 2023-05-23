@@ -18,6 +18,7 @@
     }
     #wrapper{
         min-width: 1180px;
+        padding-bottom: 70px;
     }
 
     #header{
@@ -37,13 +38,7 @@
         background-color: rgb(0, 60, 120);
         margin-right: 10px;
     }
-    #body-right{
-        display: inline-block;
-        margin-left: 10px;
-        width: 50%;
-        min-width: 700px;
-        min-height: 900px;
-    }
+    
 
     #footer{
         
@@ -57,86 +52,77 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
-                <table>
-                    <tr>
-                        <th colspan="5">
-                            <img src="resources/images/main/icon/exchange-1.png" width="35" height="35">
-                            <h1>중고거래 글쓰기</h1>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>글제목</th>
-                        <td colspan="4">
-                            <input type="text" name="title" placeholder="제목을 입력하세요">
-                        </td>
-                    </tr>
-                    <tr id="categoryAndLocation">
-                        <th>카테고리</th>
-                        <td>
-                            <select name="" id="">
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                            </select>
-                        </td>
-                        <th>지역</th>
-                        <td>
-                            <select name="" id="">
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                            </select>
-                    </td>
-                        <td></td>
-                    </tr>
-                    <tr id="trade-method">
-                        <th>거래방법</th>
-                        <td>
-                            <input type="radio" name="tradeMethod" id="direct">
-                            <label for="direct">직거래</label>
-                        </td>
-                        <td>
-                            <input type="radio" name="tradeMethod" id="parcel">
-                            <label for="parcel">택배</label>
-                        </td>
-                        <td>
-                            <input type="radio" name="tradeMethod" id="both">
-                            <label for="both">둘다</label>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>가격</th>
-                        <td colspan="3">
-                            <input type="text" placeholder="가격을 입력하세요">
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr id="images">
-                        <th>이미지<br>(최대4장)</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr id="content">
-                        <th>내용</th>
-                        <td colspan="4">
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                        </td>
-                    </tr>
-                </table>
-                <div id="btns">
-                    <div id="cancel-btn">취소</div>
-                    <div id="complete-btn">작성완료</div>
+                <div id="body-right-header">
+                    <div id="body-right-category">[중고거래 카테고리명]</div>
+                    <div class="flex-spacebetween">
+                        <div id="body-right-title">
+                            글제목입니다
+                        </div>
+                        <div id="body-right-date-count">
+                            작성일 : 2023-05-18 
+                            조회수 : 99
+                        </div>
+                    </div>            
+                </div>
+                <div id="body-right-body">
+                    <div id="item-info">
+                        <div id="item-imgs">
+                            <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
+                            thumbs-swiper=".mySwiper2" space-between="10" navigation="true">
+                            <swiper-slide>
+                              <img class="main-img" src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                            </swiper-slide>
+                            <swiper-slide>
+                              <img class="main-img" src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                            </swiper-slide>
+                            <swiper-slide>
+                              <img class="main-img" src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                            </swiper-slide>
+                            <swiper-slide>
+                              <img class="main-img" src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                            </swiper-slide>
+                          </swiper-container>
+                        
+                          <swiper-container class="mySwiper2" space-between="15" slides-per-view="4" free-mode="true"
+                            watch-slides-progress="true">
+                            <swiper-slide>
+                              <img class="sub-img" src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                            </swiper-slide>
+                            <swiper-slide>
+                              <img class="sub-img" src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                            </swiper-slide>
+                            <swiper-slide>
+                              <img class="sub-img" src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                            </swiper-slide>
+                            <swiper-slide>
+                              <img class="sub-img" src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                            </swiper-slide>
+                          </swiper-container>
+                        </div>
+                        <div id="item-details">
+                            <div id="item-name"> 상품명 : </div>
+                            <div>판매가격</div>
+                            <div id="item-price">
+                                10000원
+                            </div>
+                            <div>거래수단</div>
+                            <div id="item-tradeMethod">택배/직거래</div>
+                            <div>지역</div>
+                            <div id="item-location">서울시</div>
+                            <div>판매자</div>
+                            <div id="item-seller">
+                                <img src="" width="60" height="60" alt="프로필사진">
+                                <div>닉네임</div>
+                            </div>
+                            <div id="item-btns">
+                                <div id="inquiry-btn">구매문의</div>
+                                <div id="wish-btn">찜</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="body-right-content">
+                        내용부분  
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,6 +134,10 @@
 
         </div>
     </div>
+
+    <!--swiper cdn  -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+
     
 </body>
 </html>
