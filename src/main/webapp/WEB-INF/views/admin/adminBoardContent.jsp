@@ -39,13 +39,25 @@
 												<span>전체</span>
 											</button>
 											<button class="btn btn-primary active" type="button">
-												<span>활성</span>
+												<span>쉐어하우스</span>
 											</button>
 											<button class="btn btn-primary" type="button">
-												<span>정지</span>
+												<span>카풀</span>
 											</button>
 											<button class="btn btn-primary" type="button">
-												<span>탈퇴</span>
+												<span>중고거래</span>
+											</button>
+											<button class="btn btn-primary" type="button">
+												<span>대타서비스</span>
+											</button>
+											<button class="btn btn-primary" type="button">
+												<span>공동구매</span>
+											</button>
+											<button class="btn btn-primary" type="button">
+												<span>소모임</span>
+											</button>
+											<button class="btn btn-primary" type="button">
+												<span>자유게시판</span>
 											</button>
 										</div>
 									</div>
@@ -67,11 +79,11 @@
 										<table class="table table-striped">
 											<thead>
 												<tr>
-													<th rowspan="1" colspan="1">계정</th>
-													<th rowspan="1" colspan="1" >닉네임</th>
-													<th rowspan="1" colspan="1" >이름</th>
-													<th rowspan="1" colspan="1" >최근 로그인</th>
-													<th rowspan="1" colspan="1" >가입일</th>
+													<th rowspan="1" colspan="1">닉네임</th>
+													<th rowspan="1" colspan="1" >카테고리</th>
+													<th rowspan="1" colspan="1" >제목</th>
+													<th rowspan="1" colspan="1" >생성일</th>
+													<th rowspan="1" colspan="1" >조회수</th>
 													<th rowspan="1" colspan="1" >상태</th>
 													<th rowspan="1" colspan="1" >관리</th>
 												</tr>

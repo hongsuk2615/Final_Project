@@ -23,16 +23,16 @@
 				<jsp:include page="adminMemberContent.jsp" />
 			</c:when>
 			<c:when test="${sidebar eq '.sidebar-report'}">
-				<jsp:include page="adminHomeContent.jsp" />
+				<jsp:include page="adminReportContent.jsp" />
 			</c:when>
 			<c:when test="${sidebar eq '.sidebar-board'}">
-				<jsp:include page="adminHomeContent.jsp" />
+				<jsp:include page="adminBoardContent.jsp" />
 			</c:when>
 			<c:when test="${sidebar eq '.sidebar-notice'}">
-				<jsp:include page="adminHomeContent.jsp" />
+				<jsp:include page="adminNoticeContent.jsp" />
 			</c:when>
 			<c:when test="${sidebar eq '.sidebar-faq'}">
-				<jsp:include page="adminHomeContent.jsp" />
+				<jsp:include page="adminFaqContent.jsp" />
 			</c:when>
 		</c:choose>
 		<jsp:include page="adminControllSidebar.jsp" />
