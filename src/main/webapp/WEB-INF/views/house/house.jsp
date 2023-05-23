@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쉐어하우스</title>
+    <meta charset="utf-8">
+    <title>다른 이미지로 마커 생성하기</title>
     
     <style>
 .wrap {
@@ -20,23 +18,122 @@
 }
 
 #left{
+    margin-left: 20px;
     width: 50%;
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 10px;  
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(149, 156, 159); /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background: rgb(224, 224, 224);  /*스크롤바 뒷 배경 색상*/
+    border-radius: 10px;
 }
 
 #housewrap{
     display: flex;
     width: 95%;
-    border: 1px solid black;
+    height: 750px;
     flex-wrap: wrap;
+    overflow:scroll;
+    overflow-x: hidden
 }
 
 .house {
-    width: 30%;
-    border: 1px solid red;
+    width: 32%;
+    /* border: 1px solid red; */
+    cursor: pointer;
+    margin-right: 7px;
 }
+
+.house img {
+    width: 100%;
+}
+
+.house:hover img{
+    transform:scale(1.1);
+    transition: 0.5s ease-out;
+}
+
+.house:not(:hover) img{
+    transition: 0.5s ease-out;
+}
+
 
 .house p {
     margin: 8px 0px;
+    overflow: hidden;
+}
+.house> * {
+    overflow-y: hidden;
+}
+
+#hSearch {
+    width: 100%;
+    font-size: 40px;
+    border: 0px;
+}
+
+#hSearch:focus {
+    outline: none;
+}
+
+#searchDiv{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#searchbtn{
+    border: 0px;
+    background: none;
+    background-image: "h1.jpg";
+    width: 10%;
+}
+
+#searchbtn img{
+   width: 100%;
+}
+
+#filterbtn{
+    width: 70%;
+}
+
+#left-top{
+    width: 100%;
+    display:flex;
+    margin-bottom: 10px;
+}
+
+#left-top div:nth-child(2){
+   width: 10%;
+}
+
+#map {
+    height: 700px;
+    overflow: hidden;
+}
+.house div:nth-child(1){
+    width: 100%;
+    height: 10vw;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration{
+    display:none;
 }
 
     </style>
@@ -48,36 +145,79 @@
 
    
     <div id="left">
-        <div><input type="search" name="hSearch"><button>검색</button></div>
-        <div id="housewrap">
+        <div id="left-top">
+            <div id="searchDiv">
+                <input type="search" id="hSearch" name="hSearch">
+                <button id="searchbtn">
+                    <img src="g1.jpg">
+                </button>
+            </div>
+            <div>
+                <img id="filterbtn" src="f1.jpg">
+            </div>
+        </div>
+        <div class="scrollbar" id="housewrap">
+
             <div class="house">
-                <p>쉐어하우스 대표사진</p>
-                <p>쉐어하우스 제목</p>
-                <p>쉐어하우스 종류</p>
+                <div><img src="e.jpg"></div>
+                <h3>쉐어하우스 제목</h3>
                 <p>쉐어하우스 가격</p>
                 <p>쉐어하우스 입주가능날짜</p>
-            </div>
+            </div>  
             <div class="house">
-                <p>쉐어하우스 대표사진</p>
-                <p>쉐어하우스 제목</p>
-                <p>쉐어하우스 종류</p>
+                <div><img src="e.jpg"></div>
+                <h3>쉐어하우스 제목</h3>
                 <p>쉐어하우스 가격</p>
                 <p>쉐어하우스 입주가능날짜</p>
-            </div>
+            </div>   
             <div class="house">
-                <p>쉐어하우스 대표사진</p>
-                <p>쉐어하우스 제목</p>
-                <p>쉐어하우스 종류</p>
+                <div><img src="e.jpg"></div>
+                <h3>쉐어하우스 제목</h3>
                 <p>쉐어하우스 가격</p>
                 <p>쉐어하우스 입주가능날짜</p>
-            </div>
+            </div>   
             <div class="house">
-                <p>쉐어하우스 대표사진</p>
-                <p>쉐어하우스 제목</p>
-                <p>쉐어하우스 종류</p>
+                <div><img src="e.jpg"></div>
+                <h3>쉐어하우스 제목</h3>
                 <p>쉐어하우스 가격</p>
                 <p>쉐어하우스 입주가능날짜</p>
-            </div>
+            </div>   
+            <div class="house">
+                <div><img src="e.jpg"></div>
+                <h3>쉐어하우스 제목</h3>
+                <p>쉐어하우스 가격</p>
+                <p>쉐어하우스 입주가능날짜</p>
+            </div>   
+            <div class="house">
+                <div><img src="e.jpg"></div>
+                <h3>쉐어하우스 제목</h3>
+                <p>쉐어하우스 가격</p>
+                <p>쉐어하우스 입주가능날짜</p>
+            </div>   
+            <div class="house">
+                <div><img src="e.jpg"></div>
+                <h3>쉐어하우스 제목</h3>
+                <p>쉐어하우스 가격</p>
+                <p>쉐어하우스 입주가능날짜</p>
+            </div>   
+            <div class="house">
+                <div><img src="e.jpg"></div>
+                <h3>쉐어하우스 제목</h3>
+                <p>쉐어하우스 가격</p>
+                <p>쉐어하우스 입주가능날짜</p>
+            </div>   
+            <div class="house">
+                <div><img src="e.jpg"></div>
+                <h3>쉐어하우스 제목</h3>
+                <p>쉐어하우스 가격</p>
+                <p>쉐어하우스 입주가능날짜</p>
+            </div>   
+            <div class="house">
+                <div><img src="e.jpg"></div>
+                <h3>쉐어하우스 제목</h3>
+                <p>쉐어하우스 가격</p>
+                <p>쉐어하우스 입주가능날짜</p>
+            </div>   
             
 
         </div>
@@ -87,13 +227,6 @@
     </div>
 <div id="map"></div>
 </div>
-
-<div>
-    footer
-</div>
-
-
-
 
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7affe0955f76b728f0cbe6173319ad3"></script>
@@ -120,21 +253,6 @@ var marker = new kakao.maps.Marker({
     image: markerImage // 마커이미지 설정 
 });
 
-// 마커가 지도 위에 표시되도록 설정합니다
-marker.setMap(map); 
-
-kakao.maps.event.addListener(map, 'dragend', function() {        
-    
-    // 지도 중심좌표를 얻어옵니다 
-    var latlng = map.getCenter(); 
-    
-    var message = '변경된 지도 중심좌표는 ' + latlng.getLat() + ' 이고, ';
-    message += '경도는 ' + latlng.getLng() + ' 입니다';
-    
-    var resultDiv = document.getElementById('result');  
-    resultDiv.innerHTML = message;
-    
-});
 </script>
 </body>
 </html>
