@@ -11,6 +11,7 @@
     justify-content: space-between;
     width: 100%;
 }
+
 #body-right-category{
     font-size: 30px;
     
@@ -21,6 +22,7 @@
     padding: 20px 10px 5px 10px;
     text-align: center;
 }
+
 #body-right-title{
     font-size : 23px;
     font-weight: bold;
@@ -43,11 +45,13 @@
     border-top: 2px solid gray;
     border-bottom: 2px solid gray;
 }
+
 #body-right-content{
     min-height: 350px;
     padding: 10px;
     border-radius: 5px;
 }
+
 #item-imgs{
     width: 450px;
     height: 500px;
@@ -64,6 +68,7 @@
     height: 90px;
     border-radius: 5px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 #item-details{
@@ -71,12 +76,15 @@
     height: 500px;
     margin-left: 40px;
 }
+
 #item-details div{
     margin-bottom: 20px;
 }
+
 #item-name{
     font-size: 35px;
 }
+
 #item-price{
     font-size: 30px;
     color: red;
@@ -95,17 +103,20 @@
 
 #item-btns>div{
     margin : 0px 5px;
-    width: 75px;
-    height: 30px;
-    padding: 3px;
+    width : 75px;
+    height : 30px;
+    padding : 3px;
     border-radius: 4px;
     color : white;
     text-align: center;
     font-size: 15px;
+    cursor: pointer;
 }
+
 #inquiry-btn{
     background-color: #fdc467;
 }
+
 #wish-btn{
     background-color: rgb(52, 152, 219);
 }
