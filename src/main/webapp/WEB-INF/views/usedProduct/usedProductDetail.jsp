@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/usedProduct/usedProductDetail.css">
+    <link rel="stylesheet" href="/thrifty/resources/css/usedProduct/usedProductDetail.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 <style>
     *{
@@ -133,10 +134,46 @@
 
 
         </div>
+        <script>
+            document.getElementById('wish-btn').addEventListener('click', function(){
+                Swal.fire({
+                            position: 'top-center',
+                            icon: 'success',
+                            title: '찜완료',
+                            showConfirmButton: false,
+                            timer: 1500
+                         })
+            })
+
+            document.getElementById('inquiry-btn').addEventListener('click', async function(){
+                const { value: text } = await Swal.fire({
+                                                            input: 'textarea',
+                                                            inputLabel: '000에게 메세지 보내기',
+                                                            inputPlaceholder: '보낼메세지를 작성하세요',
+                                                            inputAttributes: {
+                                                                'aria-label': 'Type your message here'
+                                                            },
+                                                            inputValidator: (value) => {
+                                                                if (!value) {
+                                                                return '빈메세지는 전송하지 않습니다.';
+                                                                }else{
+                                                                    alert("메세지 전송");
+                                                                }
+                                                            },
+                                                            showCancelButton: true
+                                                        });
+                                                        document.getElementsByClassName('swal2-confirm')[0].addEventListener('click',function(){
+                
+            })
+            })
+
+            
+        </script>
     </div>
 
     <!--swiper cdn  -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+    
 
     
 </body>

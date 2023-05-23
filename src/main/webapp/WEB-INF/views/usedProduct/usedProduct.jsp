@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/usedProduct/usedProduct.css">
+    <link rel="stylesheet" href="/thrifty/resources/css/usedProduct/usedProduct.css">
     <title>Document</title>
 <style>
     *{
@@ -63,7 +63,7 @@
                             <div>가격순</div>
                         </div>
                         <div id="search">
-                            <img src="resources/images/main/icon/search-1.png" width="25px" height="25px">
+                            <img src="/thrifty/resources/images/main/icon/search-1.png" width="25px" height="25px">
                             <input type="search">
                         </div>
                     </div>

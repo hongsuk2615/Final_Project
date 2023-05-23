@@ -6,20 +6,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/common/header.css">
+    <link rel="stylesheet" href="/thrifty/resources/css/common/header.css">
     <title>Document</title>
 </head>
 <body>
     <div id="header">
         <div id="header_1">
             <div id="header_1_1">
-                <img src="resources/images/main/icon/logo1.1.png" alt="" id="main_logo">
+                <img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="" id="main_logo">
             </div>
             <div id="header_1_2">
                 <div>로그인</div>
                 <div>회원가입</div>
                 <div>내정보</div>
-                <div><img src="resources/images/main/icon/search-3.png" alt="" id="header_search"></div>
+                <div><img src="/thrifty/resources/images/main/icon/search-3.png" alt="" id="header_search"></div>
             </div>
         </div>
         <div id="header_2">

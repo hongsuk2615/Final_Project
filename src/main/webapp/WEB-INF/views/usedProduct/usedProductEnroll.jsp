@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/usedProduct/usedProductEnroll.css">
+    <link rel="stylesheet" href="/thrifty/resources/css/usedProduct/usedProductEnroll.css">
     <title>Document</title>
 <style>
     *{
@@ -60,7 +60,7 @@
                 <table>
                     <tr>
                         <th colspan="5">
-                            <img src="resources/images/main/icon/exchange-1.png" width="35" height="35">
+                            <img src="/thrifty/resources/images/main/icon/exchange-1.png" width="35" height="35">
                             <h1>중고거래 글쓰기</h1>
                         </th>
                     </tr>
