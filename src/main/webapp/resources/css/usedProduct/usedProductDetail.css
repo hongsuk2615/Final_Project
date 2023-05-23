@@ -1,73 +1,130 @@
-
-#body-right> table{
-    width: 100%;
-    margin: 10px;
-   
-}
-
-#body-right th, #body-right td{
-    width: 155px;
-    height: 63px;
-}
-
-#body-right th{
-    padding: 20px;
-}
-#body-right h1{
+#body-right{
     display: inline-block;
-    text-align: left;
-    margin: 0px 10px;
+    margin-left: 30px;
+    width: 50%;
+    min-width: 730px;
+    min-height: 900px;
 }
-#body-right input[type='text'], #body-right select, #body-right textarea{
+
+.flex-spacebetween{
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    height: 80%;
-    border: 1px solid gray;
-    border-radius: 8px;
-    resize: none;
-    padding: 0px 20px;
-    margin: 20px 0px;
 }
-#categoryAndLocation select{
+
+#body-right-category{
+    font-size: 30px;
+    
+}
+
+#body-right-title, #body-right-date-count{
+    display: inline-block;
+    padding: 20px 10px 5px 10px;
     text-align: center;
 }
-#trade-method>td{
-    padding: 20px;
+
+#body-right-title{
+    font-size : 23px;
+    font-weight: bold;
 }
-#images>td{
-    height: 200px;
-    background-color: grey;
+
+#body-right-date-count{
+    font-size : 15px;
+}
+
+#body-right-body{
+    min-height: 900px;
+}
+
+#item-info{
+    display: flex;
+    align-items: center;
+    margin: 7px 0px;
+    padding : 10px;
+    height: 550px;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+#body-right-content{
+    min-height: 350px;
+    padding: 10px;
     border-radius: 5px;
 }
-#content>td{
-    height: 380px;
-    padding-top : 20px;
 
-}
-#content textarea{
-    padding: 10px;
-    height: 100%;
+#item-imgs{
+    width: 450px;
+    height: 500px;
 }
 
-#btns{
-    margin: 10px 0px;
+.main-img{
+    width: 450px;
+    height: 400px;
+    border-radius: 5px;
+}
+
+.sub-img{
+    width: 100px;
+    height: 90px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#item-details{
+    width: 480px;
+    height: 500px;
+    margin-left: 40px;
+}
+
+#item-details div{
+    margin-bottom: 20px;
+}
+
+#item-name{
+    font-size: 35px;
+}
+
+#item-price{
+    font-size: 30px;
+    color: red;
+}
+
+#item-seller{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#item-btns{
     display: flex;
     justify-content: right;
 }
 
-#btns>div{
-    display: inline-block;
-    margin-left: 20px;
-    width: 70px;
-    height: 28px;
-    color: white;
+#item-btns>div{
+    margin : 0px 5px;
+    width : 75px;
+    height : 30px;
+    padding : 3px;
     border-radius: 4px;
+    color : white;
     text-align: center;
-    padding: 3px;
+    font-size: 15px;
+    cursor: pointer;
 }
 
-#cancel-btn{
-    background-color: rgb(94, 94, 94);
+#inquiry-btn{
+    background-color: #fdc467;
 }
-#complete-btn{
+
+#wish-btn{
     background-color: rgb(52, 152, 219);
 }
+
+#body-right-content{
+    background-color: lightgray;
+}
+
+
+
+

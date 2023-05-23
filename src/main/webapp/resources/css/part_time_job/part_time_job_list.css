@@ -1,0 +1,28 @@
+#body-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#ptj-header {
+    margin-left: 4%;
+}
+
+#ptj-body1 ,
+#ptj-body2 ,
+#ptj-body3 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#paging {
+    display: flex;
+    flex-direction: column;
+}
+
+#ptj-allBody{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin-bottom: 100px;
+}
