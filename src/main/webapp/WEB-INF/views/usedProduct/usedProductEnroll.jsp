@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/css/usedProduct/usedProductEnroll.css">
     <title>Document</title>
 <style>
     *{
-        border: 1px solid blue !important;
+        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -56,8 +57,87 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
-				
-
+                <table>
+                    <tr>
+                        <th colspan="5">
+                            <img src="resources/images/main/icon/exchange-1.png" width="35" height="35">
+                            <h1>중고거래 글쓰기</h1>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>글제목</th>
+                        <td colspan="4">
+                            <input type="text" name="title" placeholder="제목을 입력하세요">
+                        </td>
+                    </tr>
+                    <tr id="categoryAndLocation">
+                        <th>카테고리</th>
+                        <td>
+                            <select name="" id="">
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                            </select>
+                        </td>
+                        <th>지역</th>
+                        <td>
+                            <select name="" id="">
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                                <option value="">예시</option>
+                            </select>
+                    </td>
+                        <td></td>
+                    </tr>
+                    <tr id="trade-method">
+                        <th>거래방법</th>
+                        <td>
+                            <input type="radio" name="tradeMethod" id="direct">
+                            <label for="direct">직거래</label>
+                        </td>
+                        <td>
+                            <input type="radio" name="tradeMethod" id="parcel">
+                            <label for="parcel">택배</label>
+                        </td>
+                        <td>
+                            <input type="radio" name="tradeMethod" id="both">
+                            <label for="both">둘다</label>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>가격</th>
+                        <td colspan="3">
+                            <input type="text" placeholder="가격을 입력하세요">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr id="images">
+                        <th>이미지<br>(최대4장)</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr id="content">
+                        <th>내용</th>
+                        <td colspan="4">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <div id="btns">
+                    <div id="cancel-btn">취소</div>
+                    <div id="complete-btn">작성완료</div>
+                </div>
             </div>
         </div>
 
