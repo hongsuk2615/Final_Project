@@ -8,37 +8,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Starter</title>
-  <jsp:include page="adminHead.jsp" />
+  <jsp:include page="./includes/adminHead.jsp" />
 
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
-		<jsp:include page="adminHeader.jsp" />
-		<jsp:include page="adminSidebar.jsp" />
+		<jsp:include page="./includes/adminHeader.jsp" />
+		<jsp:include page="./includes/adminSidebar.jsp" />
 		<c:choose>
 			<c:when test="${sidebar eq 'home'}">
-				<jsp:include page="adminHomeContent.jsp" />
+				<jsp:include page="./includes/contents/adminHomeContent.jsp" />
 			</c:when>
 			<c:when test="${sidebar eq '.sidebar-member'}">
-				<jsp:include page="adminMemberContent.jsp" />
+				<jsp:include page="./includes/contents/adminMemberContent.jsp" />
 			</c:when>
 			<c:when test="${sidebar eq '.sidebar-report'}">
-				<jsp:include page="adminReportContent.jsp" />
+				<jsp:include page="./includes/contents/adminReportContent.jsp" />
 			</c:when>
 			<c:when test="${sidebar eq '.sidebar-board'}">
-				<jsp:include page="adminBoardContent.jsp" />
+				<jsp:include page="./includes/contents/adminBoardContent.jsp" />
 			</c:when>
 			<c:when test="${sidebar eq '.sidebar-notice'}">
-				<jsp:include page="adminNoticeContent.jsp" />
+				<jsp:include page="./includes/contents/adminNoticeContent.jsp" />
 			</c:when>
 			<c:when test="${sidebar eq '.sidebar-faq'}">
-				<jsp:include page="adminFaqContent.jsp" />
+				<jsp:include page="./includes/contents/adminFaqContent.jsp" />
 			</c:when>
 		</c:choose>
-		<jsp:include page="adminControllSidebar.jsp" />
-		<jsp:include page="adminFooter.jsp" />
+		<jsp:include page="./includes/adminControllSidebar.jsp" />
+		<jsp:include page="./includes/adminFooter.jsp" />
 	</div>
-	<jsp:include page="adminJs.jsp" />
+	<jsp:include page="./includes/adminJs.jsp" />
 	<script>
 		<c:if test="${sidebar ne 'home' }">
 			$("${sidebar}").children("a").addClass("active");
