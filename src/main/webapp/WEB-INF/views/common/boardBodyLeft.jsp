@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/common/body-left.css">
+    <link rel="stylesheet" href="/thrifty/resources/css/common/body-left.css">
     <title>Document</title>
 </head>
 <body>
@@ -14,8 +14,8 @@
             <div id="body-left">
                 <div id="upper-category">
                     <div>
-                        <img src="resources/images/shopping-cart.png" alt="상위 카테고리 이미지">
-                        <div id="upper-category-name">상위 카테고리명</div>
+                        <img src="/thrifty/resources/images/shopping-cart.png" alt="상위 카테고리 이미지">
+                        <div id="upper-category-name">상위 카테고리</div>
                     </div>
                 </div>
                 <div id="sub-category" >
@@ -63,12 +63,12 @@
 
                         <li>거래방법</li>
                         <li>
-                            <input type="radio" name="tradeMethod" id="direct">
-                            <label for="direct">직거래</label>
-                            <input type="radio" name="tradeMethod" id="parcel">
-                            <label for="parcel">택배</label>
-                            <input type="radio" name="tradeMethod" id="both">
-                            <label for="both">둘다</label>
+                            <input type="radio" name="filterTradeMethod" id="filter-direct">
+                            <label for="filter-direct">직거래</label>
+                            <input type="radio" name="filterTradeMethod" id="filter-parcel">
+                            <label for="filter-parcel">택배</label>
+                            <input type="radio" name="filterTradeMethod" id="filter-both">
+                            <label for="filter-both">둘다</label>
 
                         </li>
                     </ul>

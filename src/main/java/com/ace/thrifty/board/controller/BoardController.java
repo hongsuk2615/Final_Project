@@ -10,9 +10,34 @@ public class BoardController {
 	public String home() {
 		return "boardTemplate";
 	}
+
+	@RequestMapping("/home/ptjList")
+	public String ptj() {
+		return "part_time_job/PTJList";
+	}
+	
+	@RequestMapping("/home/ptjMain")
+	public String ptjMain() {
+		return "part_time_job/PTJMain";
+	}
+	
+	@RequestMapping("/home/ptjDetail")
+	public String ptjDetail() {
+		return "part_time_job/PTJDetail";
+	}
 	
 	@RequestMapping("/usedProduct")
 	public String usedProduct() {
 		return "usedProduct/usedProduct";
+	}
+	
+	@RequestMapping("/usedProductDetail")
+	public String usedProductDetail() {
+		return "usedProduct/usedProductDetail";
+	}
+	
+	@RequestMapping("/usedProductEnroll")
+	public String usedProductEnroll() {
+		return "usedProduct/usedProductEnroll";
 	}
 }
