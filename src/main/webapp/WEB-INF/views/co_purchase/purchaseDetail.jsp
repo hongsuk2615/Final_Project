@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <style>
         *{
             /* border: 1px solid blue !important; */
@@ -29,19 +28,11 @@
             justify-content: center;
         }
 
-        #body-left{
-            display: inline-block;
-            width: 20%;
-            min-width: 350px;
-            min-height: 900px;
-            background-color: rgb(0, 60, 120);
-            margin-right: 10px;
-        }
         #body-right{
             display: inline-block;
             margin-left: 10px;
             padding-left: 30px;
-            width: 50%;
+            width: 55%;
             min-width: 700px;
             min-height: 900px;
         }
