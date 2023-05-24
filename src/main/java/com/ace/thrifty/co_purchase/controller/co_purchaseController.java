@@ -11,6 +11,11 @@ public class co_purchaseController {
 		return "co_purchase/purchaseMain";
 	}
 	
+	@RequestMapping("/enroll.co")
+	public String selectEnroll() {
+		return "co_purchase/purchaseEnrollForm";
+	}
+	
 	@RequestMapping("/detail.co")
 	public String selectDetail() {
 		return "co_purchase/purchaseDetail";
