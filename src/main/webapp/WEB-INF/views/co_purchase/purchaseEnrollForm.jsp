@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="resources/css/co_purchase/enrollForm.css">
+    <link rel="stylesheet" href="resources/css/co_purchase/purchaseEnrollForm.css">
     <script type="text/javascript" src="resources/js/co_purchase/enrollForm.js"></script>
     <style>
         *{
@@ -26,18 +26,9 @@
             height: 140px;
         }
         #body{
-            padding: 40px;
+            padding: 40px 0px;
             display: flex;
             justify-content: center;
-        }
-
-        #body-left{
-            display: inline-block;
-            width: 20%;
-            min-width: 350px;
-            min-height: 900px;
-            background-color: rgb(0, 60, 120);
-            margin-right: 10px;
         }
         #body-right{
             display: inline-block;

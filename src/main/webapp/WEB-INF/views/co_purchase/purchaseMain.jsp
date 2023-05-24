@@ -33,7 +33,7 @@
         display: inline-block;
         margin-left: 10px;
         padding-left: 30px;
-        width: 55%;
+        width: 50%;
         min-width: 700px;
         min-height: 900px;
     }
