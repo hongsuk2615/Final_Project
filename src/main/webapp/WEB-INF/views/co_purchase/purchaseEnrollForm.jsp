@@ -59,12 +59,12 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
-                <div id="cat_title">
-                    <div id="cat_title_1">글쓰기</div>
-                    <input type="submit" id="submit_button" value="등록">
-                    
-                </div>
                 <form action="">
+                    <div id="cat_title">
+                        <div id="cat_title_1">글쓰기</div>
+                        <input type="submit" id="submit_button" value="등록">
+                        
+                    </div>
                     <div class="write_case">
                         <div class="write_case_head">제목</div>
                         <input type="text" id="title" class="" name="title">
@@ -88,7 +88,6 @@
                     <div>
                         <textarea name="content" placeholder="내용을 입력해주세요."></textarea>
                     </div>
-
                 </form>
 
 				
