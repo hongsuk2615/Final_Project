@@ -4,8 +4,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
 	    <a href="${pageContext.request.contextPath}/admin/home" class="brand-link">
-	      <img src="/thrifty/resources/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-	      <span class="brand-text font-weight-light">AdminLTE 3</span>
+	      <img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="AdminLTE Logo" class="brand-image">
+	      <span class="brand-text font-weight-light">알뜰살뜰</span>
 	    </a>
 
     <!-- Sidebar -->
@@ -63,12 +63,15 @@
           <li class="nav-item sidebar-faq">
             <a href="${pageContext.request.contextPath}/admin/faq" class="nav-link">
               <i class="nav-icon fas fa-question-circle"></i>
-              <p>
-                FAQ
-              </p>
+              <p>FAQ</p>
             </a>
           </li>
-          
+<!--           <li class="nav-item sidebar-exit"> -->
+<%--             <a href="${pageContext.request.contextPath}/admin/faq" class="nav-link"> --%>
+<!--               <i class="nav-icon fas fa-question-circle"></i> -->
+<!--               <p>나가기</p> -->
+<!--             </a> -->
+<!--           </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
