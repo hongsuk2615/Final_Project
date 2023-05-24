@@ -10,18 +10,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Starter</title>
-  <jsp:include page="adminHead.jsp" />
+  <jsp:include page="./includes/adminHead.jsp" />
 
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
-		<jsp:include page="adminHeader.jsp" />
-		<jsp:include page="adminSidebar.jsp" />
+		<jsp:include page="./includes/adminHeader.jsp" />
+		<jsp:include page="./includes/adminSidebar.jsp" />
 		<jsp:include page="adminHomeContent.jsp" />
-		<jsp:include page="adminControllSidebar.jsp" />
-		<jsp:include page="adminFooter.jsp" />
+		<jsp:include page="./includes/adminControllSidebar.jsp" />
+		<jsp:include page="./includes/adminFooter.jsp" />
 	</div>
-	<jsp:include page="adminJs.jsp" />
+	<jsp:include page="./includes/adminJs.jsp" />
 <!-- ./wrapper -->
 
 
