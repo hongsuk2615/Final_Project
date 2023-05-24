@@ -28,6 +28,7 @@
 #main_logo{
     height: 70px;
     width: 70px;
+    cursor: pointer;
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -38,6 +39,10 @@
     justify-content: space-between;
     width: 300px;
     font-weight: 900;
+}
+
+#header_1_2>div{
+    cursor: pointer;
 }
 
 #header_search{
@@ -69,6 +74,7 @@
 
 .main_category{
     height: 30px;
+    cursor: pointer;
 }
 
 .main_underline{
