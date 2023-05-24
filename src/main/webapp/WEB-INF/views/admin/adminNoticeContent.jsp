@@ -35,7 +35,18 @@
 								<li class="nav-item"><a class="nav-link"data-toggle="pill" href="#custom-tabs-one-settings">공동구매</a></li>
 								<li class="nav-item"><a class="nav-link"data-toggle="pill" href="#custom-tabs-one-settings">소모임</a></li>
 								<li class="nav-item"><a class="nav-link"data-toggle="pill" href="#custom-tabs-one-settings">자유게시판</a></li>
+								<li class="nav-item">
+									<div class="input-group input-group-sm" style="width: 150px;">
+										<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+										<div class="input-group-append">
+											<button type="submit" class="btn btn-default">
+												<i class="fas fa-search"></i>
+											</button>
+										</div>
+									</div>
+								</li>
 							</ul>
+							
 						</div>
 						<div class="card-body">
 														<div id="example1_wrapper"
