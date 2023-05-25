@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <style>
-       /* *{
+         /* *{
         border: 1px solid blue !important;
         box-sizing: border-box;
-    }    */
+    }       */
     body{
         margin: 0;
     }
@@ -31,18 +31,14 @@
         justify-content: center;
     }
 
-    #body-left{
-        display: inline-block;
-        width: 20%;
-        min-width: 350px;
-        min-height: 900px;
-    }
+ 
     #body-right{
         display: inline-block;
         width: 50%;
         min-width: 700px;
         min-height: 900px;
         background-color: #f5f5f5f5;
+        border: solid 2px ;
     }
 
     #footer{
@@ -57,8 +53,9 @@
     }
 
     #body-right-body{
+        margin: 50px 0px 0px 0px;
         width: 100%;
-        height: 70%;
+        height: 80%;
         padding: 2%;
         
     }
@@ -101,16 +98,20 @@
     }
 
     .square{
+        padding: 20px 0px 0px 0px;
         width: 200px;
         height: 200px;
+        
         
     }
    
 
-    .body-right-title-h2{
+    .body-right-title-h4{
         margin: 10px 0px 30px 0px;
         border-radius: 4rem;
         background-color: #ffffff;
+        border: solid 2px;
+        text-align: center;
     }
   
     .body-right-body-content{
@@ -131,6 +132,7 @@
         margin: 30px 0px 0px 0px;
         width: 100%;
         border-radius: 4rem;
+        
     }
 
     .body-right-body-contentarea{
@@ -146,6 +148,7 @@
         padding: 10px;
         border-radius: 4rem;
         background-color: #ffffff;
+        border: solid 2px ;
     }
     
     
@@ -173,10 +176,10 @@
                 <div id="body-right-header">
                   <div id="body-right-header-left">
                     
-                        <h2 class="body-right-title-h2">소모임 그룹 게시판 상세보기 </h2>
+                        <h4 class="body-right-title-h4">소모임 그룹 게시판 상세보기 </h2>
                     
                     
-                        <h2 class="body-right-title-h2">런닝크루 구한다 ㅋ</h2>
+                        <h4 class="body-right-title-h4">런닝크루 구한다 ㅋ</h2>
                     
                    
                         <div class="input-group">
@@ -196,7 +199,7 @@
                         </div>
                         <div class="body-right-header-right-qr">
                             <div class="square">
-                            <img src="resources/images/myPage/qr.png" width="100%" height="100%">
+                            <img src="resources/images/myPage/opentalkroom.png" width="100%" height="100%">
                             </div>
                         </div>
                         
@@ -208,7 +211,22 @@
                 <div id="body-right-body">
                     
                  <div class="body-right-body-content">
-                    <textarea class="body-right-body-contentarea">아무나 모집</textarea>
+                    <textarea class="body-right-body-contentarea">
+런닝 동호회
+
+어쩌꾸 저쩌구 FC  모집중 
+
+모집인원 5명 
+
+오픈카카오톡 들어오셔서 양식 작성 및 제출 요망
+
+이름 :
+나이 :
+거주지 :
+참여율 :
+포부 : 
+
+                    </textarea>
                  </div>
                  <div class="body-right-body-list"> 
                     <button type="button" class="btn btn-success" id="listgo">목록으로</button>

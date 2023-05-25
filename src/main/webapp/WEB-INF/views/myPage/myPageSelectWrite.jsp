@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <style>
-       /* *{
+        /* *{
         border: 1px solid blue !important;
         box-sizing: border-box;
-    }    */
+    }     */
     body{
         margin: 0;
     }
@@ -88,11 +88,10 @@
     .body-right-butt{
         float: left;
         width: 25%;
-        height: 100%;
-        
-        
-       
+        height: 100%;   
     }
+
+    
 
     #body-right-body-table{
         width: 100%;
@@ -149,16 +148,18 @@
               
                 <div id="body-right-header">
                     <div class="body-right-pic">
-                      <img src="resources/images/myPage/partners.png" width="100%" height="100%">
+                        
+                      <img src="resources/images/myPage/selectwrite2.png" width="100%" height="100%">
+                        
                     </div>
                     <div class="body-right-title">
                       <div class="bdoy-right-title-content">
-                      <h2>소모임 게시판</h2>
+                      <h2>내가 쓴 글</h2>
                       </div>
                     </div>
                     <div class="body-right-butt">
                       <div class="body-right-butt-content">
-                      <button type="button" class="btn btn-primary">글쓰기</button>
+                        
                       </div>
                     </div>
                 </div>
@@ -168,70 +169,70 @@
                  
                     <table id="body-right-body-table" class="table table-hover">
                       <tr class="table_title">
-                        <th>지역</th>
-                        <th>그룹장 닉네임</th>
+                        <th>카테고리</th>
                         <th>제목</th>
-                        <th>모집인원 </th>
+                        <th>작성자</th>
+                        <th>작성 날짜</th>
                       </tr>
                       <tr>
-                        <td>강남구</td>
-                        <td>nemo0824</td>
-                        <td>아무나구함 오라사람와라 </td>
-                        <td>5</td>
+                        <td>카풀</td>
+                        <td>차같이 탈사람구함</td>
+                        <td>임재원 </td>
+                        <td>2023/5/24</td>
                       </tr>
                       <tr>
-                        <td>강남구</td>
-                        <td>nemo0824</td>
-                        <td>아무나구함 오라사람와라 </td>
-                        <td>5</td>
+                        <td>쉐어하우스</td>
+                        <td>같이 살사라 구함</td>
+                        <td>임재원 </td>
+                        <td>2023/5/23</td>
                       </tr>
                       <tr>
-                        <td>강남구</td>
-                        <td>nemo0824</td>
-                        <td>아무나구함 오라사람와라 </td>
-                        <td>5</td>
+                        <td>중고장터</td>
+                        <td>내꺼 살사람구함</td>
+                        <td>임재원 </td>
+                        <td>2023/5/22</td>
                       </tr>
                       <tr>
-                        <td>강남구</td>
-                        <td>nemo0824</td>
-                        <td>아무나구함 오라사람와라 </td>
-                        <td>5</td>
+                        <td>중고장터</td>
+                        <td>내꺼 살사람구함</td>
+                        <td>임재원 </td>
+                        <td>2023/5/22</td>
                       </tr>
                       <tr>
-                        <td>강남구</td>
-                        <td>nemo0824</td>
-                        <td>아무나구함 오라사람와라 </td>
-                        <td>5</td>
+                        <td>중고장터</td>
+                        <td>내꺼 살사람구함</td>
+                        <td>임재원 </td>
+                        <td>2023/5/22</td>
                       </tr>
                       <tr>
-                        <td>강남구</td>
-                        <td>nemo0824</td>
-                        <td>아무나구함 오라사람와라 </td>
-                        <td>5</td>
+                        <td>중고장터</td>
+                        <td>내꺼 살사람구함</td>
+                        <td>임재원 </td>
+                        <td>2023/5/22</td>
                       </tr>
                       <tr>
-                        <td>강남구</td>
-                        <td>nemo0824</td>
-                        <td>아무나구함 오라사람와라 </td>
-                        <td>5</td>
+                        <td>중고장터</td>
+                        <td>내꺼 살사람구함</td>
+                        <td>임재원 </td>
+                        <td>2023/5/22</td>
                       </tr>
                       <tr>
-                        <td>강남구</td>
-                        <td>nemo0824</td>
-                        <td>아무나구함 오라사람와라 </td>
-                        <td>5</td>
+                        <td>중고장터</td>
+                        <td>내꺼 살사람구함</td>
+                        <td>임재원 </td>
+                        <td>2023/5/22</td>
                       </tr>
                       <tr>
-                        <td>강남구</td>
-                        <td>nemo0824</td>
-                        <td>아무나구함 오라사람와라 </td>
-                        <td>5</td>
+                        <td>중고장터</td>
+                        <td>내꺼 살사람구함</td>
+                        <td>임재원 </td>
+                        <td>2023/5/22</td>
                       </tr>
                       <tr>
-                        <td>강남구</td>
-                        <td>nemo0824</td>
-                        <td>아무나구함 오라사람와라 </td>
-                        <td>5</td>
+                        <td>중고장터</td>
+                        <td>내꺼 살사람구함</td>
+                        <td>임재원 </td>
+                        <td>2023/5/22</td>
                       </tr>
 
 

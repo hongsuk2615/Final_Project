@@ -11,10 +11,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <style>
-         /* *{
+         *{
         border: 1px solid blue !important;
         box-sizing: border-box;
-    }       */
+    }       
     body{
         margin: 0;
     }
@@ -32,12 +32,8 @@
         justify-content: center;
     }
 
-    #body-left{
-        display: inline-block;
-        width: 20%;
-        min-width: 350px;
-        min-height: 900px;
-    }
+   
+
     #body-right{
         display: inline-block;
         width: 50%;
@@ -171,7 +167,7 @@
         </div>
         <div id="body">
             <div id="body-left">
-                <jsp:include page="../myPage/boardBodyLeftremix.jsp"/>
+                <jsp:include page="../common/boardBodyLeft.jsp"/>
 		
             </div>
 
@@ -199,7 +195,7 @@
                         <h2> 회원정보</h2>
                         </div>
                     <div class="personinfoborder">
-                        <table  border="1" width="600" height="200">
+                        <table border="1" width="600" height="200">
                             <tr>
                                 <td width="100" class="tablecolor">회원 이름</td>
                                 <td width="300">임재원</td>
