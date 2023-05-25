@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="/thrifty/resources/css/part_time_job/part_time_job_detail.css" rel="stylesheet">
+    <link href="/thrifty/resources/css/part_time_job/part_time_job_enrollform.css" rel="stylesheet">
 <style>
     *{
         border: 1px solid blue !important;
@@ -64,48 +64,34 @@
             </div>
             <div id="body-right">
                 <div id="enroll-category">
-                    <div style="width: 50%;">
-                        <h1>카테고리명</h1>
-                    </div>
-                    <div style="width: 55%;" id="enroll-update">
-                        <button>수정하기</button>
-                        <button>삭제하기</button>
-                        <button>구인완료</button>
-                    </div>
+                    <h1>카테고리명</h1>
                 </div>
                 <hr>
                 <div id="enroll">
                     <form>
                         <div id="enroll-header">
-                            <div style="display: flex;">
-                                <div>
-                                    <h2>제목 : &nbsp;응애애애애애</h2>
-                                </div>
-                            </div>
-                            <br>
-                            <div>
-                                <h3 id="enroll-content">내용 :  </h3><p>응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애</p>
-                            </div>
+                            <h2>제목 : &nbsp;<input name="enrollTitle" id="enroll-title" required placeholder="제목을 적어주세요."></h2><br>
+                            <h3 id="enroll-content">내용 :  &nbsp;<textarea name="enrollContent" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required placeholder="날짜와 내용을 적어주세요."></textarea></h3>
                             <!-- <div id="좌표"></div> -->
                         </div>
                         <hr>
                         <div id="enroll-body">
-                            <h3>연락처 : &nbsp;010 - 1234 - 5678</h3><br>
-                            아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
+                            <h3>연락처 : &nbsp;<input type="text" name="enrollContact" id="enroll-contact" required placeholder="연락처나 카카오톡ID 를 적어주세요."></h3><br>
                             <hr>
-                            <h3>급여 : </h3><p><b style="color: red; font-size: 30px;">100,000</b> 원</p>
+                            <h3>급여 : </h3><input type="number" id="enroll-price" required>&nbsp;원
                             <hr>
                             <h3>시간 : </h3>
-                            시작 시간 : 09:00 &nbsp;&nbsp;
-                            마감 시간 : 18:00
+                            시작 시간 : <input type="time" name="enrollStartDate" class="enroll-date" value="09:00" required>&nbsp;&nbsp;
+                            마감 시간 : <input type="time" name="enrollEndDate" class="enroll-date" value="18:00" required>
                             <hr>
                             <div id="enroll-map">
+                                <div>지역 : <input type="text" name="" id="keyword" placeholder="지점 또는 관련 키워드를 검색 해 주세요!"></div><br>
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
-                                <div id="map" style="width:100%; height:350px; border-radius: 5px;"></div>
+                                <div id="map" style="width:100%; height:350px;"></div>
                             </div>
                         </div>
                         <div id="enroll-footer">
-                            <button id="enroll-btn">뒤로가기</button>
+                            <button id="enroll-btn">게시글 등록하기</button>
                         </div>
                     </form>
                 </div>

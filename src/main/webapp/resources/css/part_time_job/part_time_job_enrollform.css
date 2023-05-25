@@ -166,21 +166,3 @@
     color: white;
     border-radius: 9px;
 }
-
-#enroll-update{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-#enroll-update button {
-    height: 40px;
-    width: 100px;
-    background-color: rgb(0, 60, 120);
-    border-radius: 10px;
-    color: white;
-}
-
-#enroll-category {
-    display: flex;
-}
