@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/thrifty/resources/css/common/main.css">
+
 <style>
     *{
         /* border: 1px solid blue !important; */
@@ -29,35 +31,6 @@
         margin: auto;
     }
 
-    #footer{
-        
-    }
-
-    #main_event{
-        display: flex;
-        justify-content: center;
-    }
-
-    #main_event_img{
-        width: 95%;
-    }
-    
-    #main_menu{
-        padding-top: 50px;
-        display: grid;
-        margin: auto;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-column-gap: 50px;
-        grid-row-gap: 50px;
-        place-items: center;
-        text-align: center;
-    }
-
-    .main_menu_icon{
-        width: 120px;
-        height: 120px;
-    }
-
 </style>
 </head>
 <body>
@@ -65,45 +38,62 @@
         <jsp:include page="../common/header.jsp"/>
         <div id="body">
             <div id="main_event">
-                <img src="resources/images/main/mainspot_2305.png" id="main_event_img" alt="">
+                <a href="">
+                    <img src="/thrifty/resources/images/main/mainspot_2305.png" id="main_event_img" alt="">
+                </a>
             </div>
             <div id="main_menu">
                 <div>
-                    <img src="resources/images/main/icon/promotion.png" class="main_menu_icon" alt="">
-                    <div>공지사항</div>
+                    <a href="">
+                        <img src="/thrifty/resources/images/main/icon/promotion.png" class="main_menu_icon" alt="">
+                        <div>공지사항</div>
+                    </a>
                 </div>
                 <div>
-                    <img src="resources/images/main/icon/board.png" class="main_menu_icon" alt="">
-                    <div>자유 게시판</div>
+                    <a href="">
+                        <img src="/thrifty/resources/images/main/icon/board.png" class="main_menu_icon" alt="">
+                        <div>자유 게시판</div>
+                    </a>
                 </div>
                 <div>
-                    <img src="resources/images/main/icon/room-mate.png" class="main_menu_icon" alt="">
-                    <div>쉐어 하우스</div>
+                    <a href="">
+                        <img src="/thrifty/resources/images/main/icon/room-mate.png" class="main_menu_icon" alt="">
+                        <div>쉐어 하우스</div> 
+                    </a>
                 </div>
                 <div>
-                    <img src="resources/images/main/icon/car-sharing.png" class="main_menu_icon" alt="">
-                    <div>카풀</div>
+                    <a href="">
+                        <img src="/thrifty/resources/images/main/icon/car-sharing.png" class="main_menu_icon" alt="">
+                        <div>카풀</div>
+                    </a>
                 </div>
                 <div>
-                    <img src="resources/images/main/icon/second-hand.png" class="main_menu_icon" alt="">
-                    <div>중고 거래</div>
+                    <a href="">
+                        <img src="/thrifty/resources/images/main/icon/second-hand.png" class="main_menu_icon" alt="">
+                        <div>중고 거래</div>
+                    </a>
                 </div>
                 <div>
-                    <img src="resources/images/main/icon/exchange.png" class="main_menu_icon" alt="">
-                    <div>심부름 / 알바</div>
+                    <a href="">
+                        <img src="/thrifty/resources/images/main/icon/exchange.png" class="main_menu_icon" alt="">
+                        <div>심부름 / 알바</div>
+                    </a>
                 </div>
                 <div>
-                    <img src="resources/images/main/icon/supply-chain.png" class="main_menu_icon" alt="">
-                    <div>공동 구매</div>
+                    <a href="">
+                        <img src="/thrifty/resources/images/main/icon/supply-chain.png" class="main_menu_icon" alt="">
+                        <div>공동 구매</div>
+                    </a>
                 </div>
                 <div>
-                    <img src="resources/images/main/icon/pet-love.png" class="main_menu_icon" alt="">
-                    <div>소모임</div>
+                    <a href="">
+                        <img src="/thrifty/resources/images/main/icon/pet-love.png" class="main_menu_icon" alt="">
+                        <div>소모임</div>
+                    </a>
                 </div>
             </div>
         </div>
-        <div id="footer">
-        </div>
+        <jsp:include page="../common/footer.jsp"/>
     </div>
     
 </body>
