@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <style>
        /* *{
         border: 1px solid blue !important;
@@ -120,10 +120,12 @@
 
     
     #sub-category11{
-		width: 100%;
+		    width: 100%;
         height: 100%;
         display: flex;
-        justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+        
     }
     .scrollbarcontent{
         list-style-type: none;
@@ -139,9 +141,12 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     border: 1px solid black;
+    padding: 50px;
+    width: 100%;
 }
  .card{
-     min-width: 350px;
+     min-width: 200px;
+     height: 280px;
     scroll-snap-align: center;
     border: 1px solid black;
     background-color: #f5f5f5f5;
@@ -169,6 +174,9 @@
 }    
 
 
+#accordionExample{
+  width: 100%;
+}
 
 
 </style>
@@ -192,7 +200,7 @@
               
                 <div id="body-right-header">
                     <div class="body-right-pic">
-                      <img src="resources/images/myPage/partners.png" width="100%" height="100%">
+                      <img src="resources/images/myPage/heart.png" width="100%" height="100%">
                     </div>
                     <div class="body-right-title">
                       <div class="bdoy-right-title-content">
@@ -209,76 +217,183 @@
                 
                 <div id="body-right-body">
                   
-
+                    
+                  
                     <div id="sub-category11" >
-                        <div class="card-list">
 
-                            <div class="card">
-                                <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                <div class="container">
-                                  <h4><b>임재원</b></h4>
-                                  <p>중고물품 삽니다 </p>
+                      <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Accordion Item #1
+                            </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                              
+                              <div class="card-list">
+
+                                <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>임재원</b></h4>
+                                      <p>중고물품 삽니다 </p>
+                                    </div>
+                                  </div> 
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>김홍석</b></h4>
+                                      <p>전역합니다  </p>
+                                    </div>
+                                  </div>
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>장서영</b></h4>
+                                      <p>아 담배피고싶다  😎 </p>
+                                    </div>
+                                  </div>
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>김홍석</b></h4>
+                                      <p>전역합니다  </p>
+                                    </div>
+                                  </div>
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>김홍석</b></h4>
+                                      <p>전역합니다  </p>
+                                    </div>
+                                  </div>
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>김홍석</b></h4>
+                                      <p>전역합니다  </p>
+                                    </div>
+                                  </div>
+                                  
+
                                 </div>
-                              </div> 
-                              <div class="card">
-                                <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                <div class="container">
-                                  <h4><b>임재원</b></h4>
-                                  <p>중고물품 삽니다 </p>
-                                </div>
-                              </div> 
-                              <div class="card">
-                                <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                <div class="container">
-                                  <h4><b>임재원</b></h4>
-                                  <p>중고물품 삽니다 </p>
-                                </div>
-                              </div> 
-                              <div class="card">
-                                <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                <div class="container">
-                                  <h4><b>임재원</b></h4>
-                                  <p>중고물품 삽니다 </p>
-                                </div>
-                              </div> 
-                              <div class="card">
-                                <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                <div class="container">
-                                  <h4><b>임재원</b></h4>
-                                  <p>중고물품 삽니다 </p>
-                                </div>
-                              </div> 
-                              <div class="card">
-                                <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                <div class="container">
-                                  <h4><b>임재원</b></h4>
-                                  <p>중고물품 삽니다 </p>
-                                </div>
-                              </div> 
-                              <div class="card">
-                                <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                <div class="container">
-                                  <h4><b>임재원</b></h4>
-                                  <p>중고물품 삽니다 </p>
-                                </div>
-                              </div> 
-                              <div class="card">
-                                <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                <div class="container">
-                                  <h4><b>임재원</b></h4>
-                                  <p>중고물품 삽니다 </p>
-                                </div>
-                              </div> 
-                    
-                              <div class="card">
-                                <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                <div class="container">
-                                  <h4><b>임재원</b></h4>
-                                  <p>중고물품 삽니다 </p>
-                                </div>
-                              </div> 
-                    
+
+
+
+                            </div>
+                          </div>
                         </div>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Accordion Item #2
+                            </button>
+                          </h2>
+                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            
+                              <div class="card-list">
+
+                                <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>임재원</b></h4>
+                                      <p>중고물품 삽니다 </p>
+                                    </div>
+                                  </div> 
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>김홍석</b></h4>
+                                      <p>전역합니다  </p>
+                                    </div>
+                                  </div>
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>김홍석</b></h4>
+                                      <p>전역합니다  </p>
+                                    </div>
+                                  </div>
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>김홍석</b></h4>
+                                      <p>전역합니다  </p>
+                                    </div>
+                                  </div>
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>김홍석</b></h4>
+                                      <p>전역합니다  </p>
+                                    </div>
+                                  </div>
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>김홍석</b></h4>
+                                      <p>전역합니다  </p>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Accordion Item #3
+                            </button>
+                          </h2>
+                          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                             
+                              <div class="card-list">
+
+                                <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>임재원</b></h4>
+                                      <p>중고물품 삽니다 </p>
+                                    </div>
+                                  </div> 
+                                  <div class="card">
+                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
+                                    <div class="container">
+                                      <h4><b>김홍석</b></h4>
+                                      <p>전역합니다  </p>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                              
+                              
+                                
+                    
+                    
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+
+
+
+
+                        
                     </div>
                  
                   
