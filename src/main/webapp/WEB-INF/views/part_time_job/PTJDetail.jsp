@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="/thrifty/resources/css/part_time_job/part_time_job_detail.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     *{
         border: 1px solid blue !important;
@@ -91,6 +92,10 @@
                         <hr>
                         <div id="enroll-body">
                             <h3>연락처 : &nbsp;010 - 1234 - 5678</h3><br>
+                            <div id="item-btns">
+                                <div id="inquiry-btn">구매문의</div>
+                                <div id="wish-btn">찜</div>
+                            </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
                             <hr>
                             <h3>급여 : </h3><p><b style="color: red; font-size: 30px;">100,000</b> 원</p>
@@ -110,15 +115,36 @@
                     </form>
                 </div>
             </div>
-            <!-- <div id="map" style="width:100%;height:350px;"></div> -->
+            <div id="map" style="width:100%;height:350px;"></div>
         </div>
         <div id="footer">
         
         </div>
     </div>
-
+<script type="text/javascript" src="/thrifty/resources/js/common/btn_event.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
-<script type="text/javascript" src="/thrifty/resources/js/kakaoAPI/map_search.js"></script>
+<script>
+    function mapDetail(y, x) {
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(y, x), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 마커가 표시될 위치입니다 
+    var markerPosition  = new kakao.maps.LatLng(y, x); 
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+    }
+</script>
 
 </body>
 </html>
