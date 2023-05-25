@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="resources/css/co_purchase/purchaseDetail.css">
     <style>
         *{
             /* border: 1px solid blue !important; */
@@ -23,7 +24,7 @@
             height: 140px;
         }
         #body{
-            padding: 40px;
+            padding: 40px 0;
             display: flex;
             justify-content: center;
         }
@@ -32,138 +33,13 @@
             display: inline-block;
             margin-left: 10px;
             padding-left: 30px;
-            width: 55%;
+            width: 50%;
             min-width: 700px;
             min-height: 900px;
         }
 
         #footer{
             
-        }
-    
-        #cat_title_1{
-            padding-top: 30px;
-            padding-bottom: 30px;
-            font-weight: 500;
-            font-size: 3em;
-        }
-
-        #detail_header{
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgb(160, 160, 160);
-        }
-        #detail_header_1{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        #detail_header_1_title{
-            font-size: 30px;
-        }
-
-        #profile{
-            padding-top: 20px;
-            padding-bottom: 10px;
-            justify-content: space-between;
-        }
-        
-        #profile_1{
-            align-items: center;
-        }
-
-        #profile_img{
-            width: 40px;
-            height: 40px;
-        }
-
-        #nickname{
-            padding-left: 10px;
-            font-weight: 900;
-        }
-
-        #recruit_2{
-            margin-left: 5px;
-            width: 20px;
-            height: 20px;
-            color: white;
-            background-color: rgb(19, 137, 255);
-            border-radius: 100px;
-            text-align: center;
-            font-weight: 900;
-        }
-
-        .header_text{
-            font-size: 12px;
-            color: rgb(160, 160, 160);
-        }
-
-        #views{
-            margin-left: 14px;
-            margin-right: 5px;
-        }
-
-        #end_date{
-            margin-right: 5px;
-            font-size: 15px;
-        }
-
-        #body_description{
-            margin-top: 20px;
-        }
-        #body_description_1{
-            width: 500px;
-            height: 300px;
-            padding-right: 20px;
-            border-right: 1px solid rgb(160, 160, 160);
-        }
-
-        #body_img{
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        #body_description_2{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            padding-left: 20px;
-            width: 360px;
-        }
-
-        .body_text{
-            font-size: 25px;
-            font-weight: 600;
-        }
-
-        .body_text+.body_text{
-            padding-top: 10px;
-        }
-
-        #chatting{
-            align-self: center;
-            color: white;
-            font-size: 20px;
-            font-weight: 600;
-            padding: 10px;
-            background-color: rgb(19, 137, 255);
-            border-radius: 5px;
-        }
-
-        #body_text{
-            margin-top: 30px;
-            font-size: 20px;
-        }
-
-        .flex{
-            display: flex;
-        }
-        .justify{
-            justify-content: space-between;
-        }
-        .align{
-            align-items: center;
         }
 
     </style>
@@ -215,11 +91,17 @@
                             <img src="resources/NETFLIX.png" id="body_img" alt="">
                         </div>
                         <div id="body_description_2">
-                            <div>
-                                <div class="body_text">넷플릭스 구독권</div>
-                                <div class="body_text">10,000원</div>
+                            <div id="body_description_content">
+                                <div id="body_description_title">
+                                    <div class="body_text">넷플릭스 구독권</div>
+                                    <div class="body_text">10,000원</div>
+                                </div>
+                                <div id="body_description_chatting">문의 쪽지</div>
+                                <div id="body_description_link" class="flex">
+                                    <div id="link">관련 링크 :&nbsp;</div>
+                                    <a href="">https://www.netflix.com/kr/</a>
+                                </div>
                             </div>
-                            <div id="chatting">문의 쪽지</div>
                         </div>
                     </div>
                     <div id="body_text">
