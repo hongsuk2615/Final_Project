@@ -82,5 +82,46 @@
       data: lineChartData,
       options: lineChartOptions
     });
+    
+    
+	//-------------
+    //- DONUT CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+    var donutData        = {
+      labels: [
+          '쉐어하우스',
+          '카풀',
+          '중고거래',
+          '심부름/알바',
+          '공동구매',
+          '소모임',
+          '자유게시판',
+      ],
+      datasets: [
+        {
+          data: [700,500,400,600,300,100,60],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#000000'],
+        }
+      ]
+    }
+    var donutOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+    	  position: 'right',
+      }
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(donutChartCanvas, {
+      type: 'doughnut',
+      data: donutData,
+      options: donutOptions
+    });
 });
+	 
+	 
+
   </script>

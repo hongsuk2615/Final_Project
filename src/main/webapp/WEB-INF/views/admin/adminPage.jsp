@@ -39,6 +39,10 @@
 		<jsp:include page="./includes/adminFooter.jsp" />
 	</div>
 	<jsp:include page="./includes/adminJs.jsp" />
+		<c:if test="${sidebar eq 'home' }">
+<%-- 			<jsp:include page="./includes/adminHomeJs.jsp" /> --%>
+		</c:if>
+	
 	<script>
 		<c:if test="${sidebar ne 'home' }">
 			$("${sidebar}").children("a").addClass("active");
