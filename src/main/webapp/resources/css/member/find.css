@@ -1,0 +1,74 @@
+#find-content{
+    width: 100%;
+    height: 400px;
+    background-color: rgb(0, 60, 120);
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 50px;
+    align-items: center;
+    color: white;
+}
+
+#find-content>div{
+    display: flex;
+}
+#find-title{
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+#find-title>div{
+    margin-left: 20px;
+}
+#find-form{
+    height: 100%;
+}
+#find-form>form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#find-form>form>div>div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+#find-form input{
+    width: 240px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 20px 0px 20px 10px;
+    text-align: center;
+}
+
+
+#find-form>form #btns{
+    justify-content: right;
+}
+
+#btns > button {
+    width: 100px;
+    height: 30px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    margin: 10px 0px 10px 10px;
+    background-color: rgb(52, 152, 219);
+    color: white;
+}
+#loginMenu-btn{
+    width: 100%;
+    height: 60px;
+    border-radius: 0px 0px 5px 5px;
+    border: 1px solid transparent;
+    background-color: rgb(94, 94, 94);
+    color: white;
+}
