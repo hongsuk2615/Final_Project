@@ -1,0 +1,41 @@
+table {
+    width: 100%;
+    border-top: 1px solid rgb(185, 185, 185);
+    border-collapse: collapse;
+}
+
+thead{
+    background-color: #dddddd;
+}
+
+th, td {
+    border-bottom: 1px solid rgb(238, 238, 238);
+    padding: 10px;
+}
+
+tr>td{
+    text-align: center;
+}
+
+#list_head{
+    height: 40px;
+}
+
+#cat_title{
+    padding-top: 30px;
+    padding-bottom: 50px;
+    font-weight: 500;
+    font-size: 3em;
+}
+
+#pagingbar{
+    text-align: center;
+    padding-top: 30px;
+    font-size: 0.5cm;   
+}
+
+#searchWrite{
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}

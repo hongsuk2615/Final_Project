@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/thrifty/resources/css/co_purchase/purchaseMain.css">
+
 <style>
     *{
         /* border: 1px solid blue !important; */
@@ -42,42 +44,6 @@
         
     }
 
-    table {
-        width: 100%;
-        border-top: 1px solid black;
-        border-collapse: collapse;
-    }
-    th, td {
-        border-bottom: 1px solid black;
-        padding: 10px;
-    }
-    
-    tr>td{
-        text-align: center;
-    }
-
-    #list_head{
-        height: 40px;
-    }
-
-    #cat_title{
-        padding-top: 30px;
-        padding-bottom: 50px;
-        font-weight: 500;
-        font-size: 3em;
-    }
-
-    #pagingbar{
-        text-align: center;
-        padding-top: 30px;
-        font-size: 0.5cm;   
-    }
-
-    #searchWrite{
-        padding-top: 20px;
-        display: flex;
-        justify-content: space-between;
-    }
 </style>
 </head>
 <body>
@@ -181,13 +147,22 @@
                             <td>2</td>
                             <td>06-01</td>
                         </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>05-22</td>
+                            <td>김홋숙</td>
+                            <td>옥수수공구</td>
+                            <td>20,000</td>
+                            <td>2</td>
+                            <td>06-01</td>
+                        </tr>
                     </tbody>
                 </table>
                 <div id="pagingbar"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
                 <div id="searchWrite">
                     <div></div>
                     <div>
-                        <select name="search" id="">
+                        <select name="search" id="search_filter">
                             <option value="title">제목</option>
                             <option value="title">작성자</option>
                             <option value="title">내용</option>
@@ -201,13 +176,7 @@
                 </div>
             </div>
         </div>
-
-        <div id="footer">
-
-
-
-
-        </div>
+        <jsp:include page="../common/footer.jsp"/>
     </div>
     
 </body>
