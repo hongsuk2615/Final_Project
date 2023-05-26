@@ -15,7 +15,7 @@ a{
     height: 140px;
     box-shadow: 0px 1px 5px 0px gray;
     position: fixed;
-    z-index: 999999999999999999999999999999999999999999999999;
+    z-index: 10;
 }
 
 #header_1_1{
@@ -126,4 +126,8 @@ a{
 
 .search_img_white{
     background-image: url("/thrifty/resources/images/main/icon/search-3.png");
+}
+.swal2-popup{
+    width: 560px;
+    background-color: transparent;
 }
