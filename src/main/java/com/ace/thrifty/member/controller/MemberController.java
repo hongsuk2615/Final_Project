@@ -12,4 +12,19 @@ public class MemberController {
 	public String login() {
 		return "member/login";
 	}
+	
+	@GetMapping("/enroll")
+	public String enroll() {
+		return "member/enrollForm";
+	}
+	
+	@GetMapping("/findId")
+	public String findId() {
+		return "member/findId";
+	}
+	
+	@GetMapping("/findPwd")
+	public String findPwd() {
+		return "member/findPwd";
+	}
 }
