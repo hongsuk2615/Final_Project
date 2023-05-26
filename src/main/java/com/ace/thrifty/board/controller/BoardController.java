@@ -36,11 +36,6 @@ public class BoardController {
 		return "part_time_job/PTJUpdateForm";
 	}
 	
-	@RequestMapping("/home/carPool")
-	public String carPool() {
-		return "car_pool/carPool";
-	}
-	
 	@RequestMapping("/usedProduct")
 	public String usedProduct() {
 		return "usedProduct/usedProduct";
