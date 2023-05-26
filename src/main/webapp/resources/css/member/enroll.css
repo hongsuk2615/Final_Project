@@ -1,0 +1,130 @@
+#content{
+    width: 500px;
+    height: 100%;
+    background-color: rgb(0, 60, 120);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px 50px;
+    align-items: center;
+}
+
+#content>div{
+    display: flex;
+}
+
+#title{
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: white;
+}
+
+#title>div{
+    margin-left: 20px;
+}
+
+#enroll-form>form{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(224, 224, 224);
+    padding: 20px;
+    border-radius: 5px;
+    max-height: 480px;
+    margin-bottom: 20px;
+    overflow-y: scroll;
+}
+
+
+#enroll-form button{
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#enroll-form th,#enroll-form td{
+    padding: 0px 10px;
+}
+
+#enroll-form table button{
+    background-color: rgb(94, 94, 94);
+    width: 70px;
+    height: 30px;
+    color: white;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.title{
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.input{
+    width: 250px;
+}
+
+.input>input{
+    width: 100%;
+    height: 30px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+}
+
+.input>input[type='radio']{
+    width: initial;
+    height: initial;
+}
+
+.validate{
+    padding-top: 0px;
+    height: 20px;
+    font-size: 10px;
+}
+
+
+#term{
+    overflow-y: scroll;
+    background-color: white;
+    border-radius: 5px;
+    height: 300px;
+    font-size: 12px;
+    margin: 10px 0px;
+}
+
+.justify-center{
+    display: flex;
+    justify-content: center;
+}
+.justify-center > button{
+    width: 80px;
+    height: 25px;
+    color: white;
+    margin: 20px 5px 0px 5px;
+    text-align: center;
+}
+#cancel-btn{
+    background-color: rgb(94, 94, 94);
+}
+
+#enroll-btn{
+    background-color: rgb(52, 152, 219);
+}
+#term-checkbox{
+    display: inline-block;
+}
+#term-checkbox+label{
+    display: inline-block;
+    font-size: 10px;
+}
+
+.justify-end{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+

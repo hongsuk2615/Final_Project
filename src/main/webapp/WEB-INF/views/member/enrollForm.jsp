@@ -1,181 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
-    pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script type="text/javascript" src="/thrifty/resources/js/common/header.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="/thrifty/resources/css/common/header.css">
-    <link rel="stylesheet" href="/thrifty/resources/css/member/login.css">
-    <link rel="stylesheet" href="/thrifty/resources/css/member/find.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/enroll.css">
     <title>Document</title>
+<style>
+    *{
+        /* border: 1px solid blue !important; */
+        box-sizing: border-box;
+    }
+    body{
+        
+        margin: 0;
+        overflow-x: hidden;
+    }
+    #wrapper{
+        min-width: 1180px;
+        height: 100%;
+    }
+
+    #body{
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    #footer{
+        
+    }
+
+</style>
 </head>
 <body>
-    <div id="header" class="background_basic">
-        <div id="header_1">
-            <div id="header_1_1">
-                <div id="main_logo" class="header_img_white"></div>
-            </div>
-            <div id="header_1_2">
-                <div href="" class="content_white change_content" onclick="login();">로그인</div>
-                <div href="" class="content_white change_content" onclick="enroll();">회원가입</div>
-                <a href="" class="content_white change_content">내정보</a>
-                <div id="header_search" class="search_img_white"></div>
-            </div>
-        </div>
-        <div id="header_2">
-            <div id="header_2_1">
-                <div>
-                    <a class="main_category content_white change_content">공지사항</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">쉐어하우스</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">카풀</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">중고거래</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">심부름/알바</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">공동구매</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">소모임</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">자유게시판</a>
-                    <div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        function login(){
-            Swal.fire({html:`<div id="login-content">
-                    <div id="title">
-                        <img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="로고이미지" width="60" height="60">
-                        <div>알뜰살뜰 로그인</div>
-                    </div>
-                    <div id="login-form">
-                        <form action="/login" method="post">
-                            <div>
-                                <img src="/thrifty/resources/images/login/help.png" alt="로그인 이미지" width="40" height="40">
-                                <input type="text" name="userId" placeholder="아이디">
-                            </div>
-                            <div>
-                                <img src="/thrifty/resources/images/login/unlock.png" alt="비밀번호 이미지" width="40" height="40">
-                                <input type="password" name="userPwd" placeholder="비밀번호">
-                            </div>
-                            <button>로그인</button>
-                        </form>
-                    </div>
-                    <div id="login-others-btns">
-                        <div onclick="enroll();">회원가입</div>
-                        <div onclick="findId();">아이디/비밀번호 찾기</div>
-                    </div>
-                    <div id="sns-login">
-                        <fieldset>
-                            <legend>또는</legend>    
-                        </fieldset>
-                        <div id="kakao-login-btn">
-                            <img src="/thrifty/resources/images/login/kakao/kakao_login_large_wide.png" alt="카카오 로그인 이미지" width="310" height="60">
-                        </div>
-                    </div>
-               </div>
-            </div>`,
-            showConfirmButton: false});
-        }
-
-        function findId(){
-            Swal.fire({
-                html : `<div id="find-content">
-                <div id="find-title">
-                    <div><img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="로고이미지" width="60" height="60"></div>
-                    <div>아이디 찾기</div>
-                </div>
-                <div id="find-form">
-                    <form action="/login" method="post">
-                        <div>
-                            <div>
-                                <div>이름</div>
-                                <input type="text" name="userName" placeholder="이름">
-                            </div>
-                            <div>
-                                <div>이메일</div>
-                                <input type="email" name="email" placeholder="이메일">
-                            </div>
-                            <div id="btns">
-                                <button id="findId-btn">확인</button>
-                                <button type="button" id="findPwd-btn" onclick="findPwd();">비밀번호 찾기</button>
-                            </div>
-                        </div>
-                        
-                    </form>
-                </div>
-            </div>
-            <button id="loginMenu-btn" onclick="login();">로그인 창으로</button>
-        </div> `,
-                showConfirmButton: false
-            });
-        }
-
-        function findPwd(){
-            Swal.fire({
-                html : `<div id="find-content">
-                <div id="find-title">
-                    <div><img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="로고이미지" width="60" height="60"></div>
-                    <div>비밀번호 찾기</div>
-                </div>
-                <div id="find-form">
-                    <form action="/login" method="post">
-                        <div>
-                            <div>
-                                <div>아이디</div>
-                                <input type="text" name="userId" placeholder="아이디">
-                            </div>
-                            <div>
-                                <div>이메일</div>
-                                <input type="email" name="email" placeholder="이메일">
-                            </div>
-                            <div id="btns">
-                                <button id="findPwd-btn">확인</button>
-                            </div>
-                        </div>
-                        
-                    </form>
-                </div>
-            </div>
-            <button id="loginMenu-btn" onclick="login();">로그인 창으로</button>
-        </div>  `,
-                showConfirmButton: false
-            });
-        }
-
-        function enroll(){
-            Swal.fire({
-                html : `<div id="content">
+    <div id="wrapper">
+        <div id="body">
+           <div id="content">
                 <div id="title">
                     <img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="로고이미지" width="60" height="60">
                     <div>알뜰살뜰 회원가입</div>
                 </div>
                 <div id="enroll-form">
-                    <form action="/enroll" class="scrollbar" method="post">
+                    <form action="/enroll" method="post">
                         <table >
                             <tr>
                                 <th class="title" colspan="2">아이디</th>
@@ -298,17 +169,13 @@
                             <label for="term-checkbox">약관에 동의합니다</label>
                         </div>
                         <div class="justify-center" >
-                            <button type="button"  id ="cancel-btn" onclick="login();">취소</button>
+                            <button type="reset"  id ="cancel-btn">취소</button>
                             <button type="submit" id="enroll-btn">회원가입</button>
                         </div>
                     </form>
                 </div>
-           </div>`,
-                showConfirmButton: false
-            });
-
-        }
-    </script>
-    
+           </div>
+        </div>  
+    </div>
 </body>
 </html>
