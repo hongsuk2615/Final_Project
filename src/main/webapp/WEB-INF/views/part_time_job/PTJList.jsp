@@ -57,7 +57,7 @@
         </div>
         <div id="body">
             <div id="body-left">
-                <jsp:include page="../common/boardBodyLeft.jsp"/>
+                <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             </div>
             <div id="body-right">
                 <div id="ptj-header">

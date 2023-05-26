@@ -26,6 +26,21 @@ public class BoardController {
 		return "part_time_job/PTJDetail";
 	}
 	
+	@RequestMapping("/home/ptjEnrollForm")
+	public String ptjEnrollForm() {
+		return "part_time_job/PTJEnrollForm";
+	}
+	
+	@RequestMapping("/home/ptjUpdateForm")
+	public String ptjUpdateForm() {
+		return "part_time_job/PTJUpdateForm";
+	}
+	
+	@RequestMapping("/home/carPool")
+	public String carPool() {
+		return "car_pool/carPool";
+	}
+	
 	@RequestMapping("/usedProduct")
 	public String usedProduct() {
 		return "usedProduct/usedProduct";
