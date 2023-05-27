@@ -15,11 +15,11 @@
 
 #upper-category{
     height: 150px;
-    border-bottom: 3px solid gray;
-    font-size: 40px;
+    border-bottom: 2px solid gray;
+    font-size: 28px;
     color: white;
     display: flex;
-    width: 330px;
+    width: 270px;
     margin: 0px 10px;
     justify-content: center;
     align-items: center;
@@ -28,12 +28,12 @@
 
 #body-left{
     display: inline-block;
-    width: 20%;
-    min-width: 350px;
+    width: 15%;
+    min-width: 290px;
     min-height: 900px;
     background-color: rgb(0, 60, 120);
     margin-right: 10px;
-    
+    box-shadow: 1px 1px 5px 0px;
 }
 
 #upper-category>div{
@@ -41,21 +41,21 @@
 }
 
 #upper-category img{
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
 }
 #upper-category-name{
-    font-size: 35px;
+    font-size: 28px;
 }
 
 #sub-category{
     height: 500px;
-    width: 330px;
+    width: 270px;
     margin: 0px 10px;
     color: white;
     display: inline-block;
-    border-bottom: 3px solid gray;
+    border-bottom: 2px solid gray;
 }
 
 #sub-category ul{
@@ -70,7 +70,7 @@
 
 #filter{
     height: 300px;
-    width: 330px;
+    width: 270px;
     margin: 0px 10px;
     color: white;
 }
