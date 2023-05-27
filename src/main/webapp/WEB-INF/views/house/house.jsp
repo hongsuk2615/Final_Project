@@ -9,7 +9,6 @@
     <style>
 .wrap {
     display: flex;
-    
 }
 
 #map{
