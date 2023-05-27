@@ -10,11 +10,12 @@
     <title>Document</title>
 </head>
 <body>
+    
 
             <div id="body-left">
                 <div id="upper-category">
                     <div>
-                        <img src="resources/images/shopping-cart.png" alt="상위 카테고리 이미지">
+                        <img src="resources/images/myPage/mymain.png" alt="상위 카테고리 이미지">
                         <div id="upper-category-name">마이페이지</div>
                     </div>
                 </div>
@@ -48,29 +49,12 @@
                 </div>
                 <div id="filter">
                     <ul class="scrollbar">
-                        <li>가격</li>
-                        <li><input type="number" name="minPrice"> ~ <input type="number" name="maxPrice"> </li>
-                        <li>지역</li>
-                        <li>
-                            <select name="location" id="">
-                                <option value="">지역</option>
-                                <option value="">음</option>
-                                <option value="">음</option>
-                                <option value="">음</option>
-                                <option value="">음</option>
-                            </select>
-                        </li>
+                        <div>
+                            <h3>일꾼 구함</h3>
+                            <p> 일꾼구한다 </p>
 
-                        <li>거래방법</li>
-                        <li>
-                            <input type="radio" name="tradeMethod" id="direct">
-                            <label for="direct">직거래</label>
-                            <input type="radio" name="tradeMethod" id="parcel">
-                            <label for="parcel">택배</label>
-                            <input type="radio" name="tradeMethod" id="both">
-                            <label for="both">둘다</label>
 
-                        </li>
+                        </div>
                     </ul>
 
                 </div>

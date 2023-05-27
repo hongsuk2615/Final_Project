@@ -11,10 +11,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <style>
-         *{
+         /* *{
         border: 1px solid blue !important;
         box-sizing: border-box;
-    }       
+    }        */
     body{
         margin: 0;
     }
@@ -167,7 +167,7 @@
         </div>
         <div id="body">
             <div id="body-left">
-                <jsp:include page="../common/boardBodyLeft.jsp"/>
+                <jsp:include page="../myPage/boardBodyLeftremix.jsp"/>
 		
             </div>
 
@@ -176,9 +176,11 @@
             <div id="body-right">
               
                 <div id="body-right-header">
+                    
                     <div class="profile-pic">
                         <img src="resources/images/myPage/defaultProfile.png" width="100%" height="100%" style="object-fit: cover;">
                     </div>
+
                     <div class="profile-title">
                         <h4>임재원</h4> <span>님 환영합니다</span>
 
