@@ -1,0 +1,33 @@
+#main_event a{
+    display: flex;
+    justify-content: center;
+}
+
+#main_event_img{
+    width: 95%;
+}
+
+#main_menu{
+    padding-top: 50px;
+    display: grid;
+    margin: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    place-items: center;
+    text-align: center;
+}
+
+.main_menu_icon{
+    width: 120px;
+    height: 120px;
+}
+
+#main_menu a div{
+    color: black;
+    font-size: 18px;
+    color: rgba(0,0,0,0.56);
+    text-align: center;
+    padding-top: 10px;
+    font-weight: 900;
+}

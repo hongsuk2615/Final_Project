@@ -75,7 +75,7 @@
                     <swiper-slide><img src="/thrifty/resources/images/ptj2.png"></swiper-slide>
                     <swiper-slide><img src="/thrifty/resources/images/ptj2.png"></swiper-slide>
                     <swiper-slide><img src="/thrifty/resources/images/ptj2.png"></swiper-slide>
-                  </swiper-container>
+                </swiper-container>
             </div>
             <div id="body1">
 				<div id="simburum">
@@ -100,7 +100,7 @@
                 </div>
                 <div>
                     <h4 style="color: #B2B1B0;">카테고리 > 심부름</h4>
-                   	<h3>0명 모집중</h3>
+                    <h3>0명 모집중</h3>
                     <p style="max-width:250px;">왜 이렇게 저를 힘들게 하십니까!!!</p>
                 </div>
                 <div>

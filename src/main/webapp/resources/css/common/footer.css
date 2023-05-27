@@ -1,0 +1,75 @@
+ul, ol, li{
+    list-style: none;
+}
+
+#footer li a{
+    text-decoration: none;
+    color: rgba(0,0,0,0.38);
+
+}
+
+footer{
+    overflow: hidden;
+    clear: both;
+    position: relative;
+    margin-top: 120px;
+    padding: 40px 31px 40px 31px !important;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    background: rgb(245,245,245);
+    font-size: 13px;
+    line-height: 20px;
+    color: rgba(0,0,0,0.38);
+}
+
+#footer{
+    width: 1024px;
+    margin: 0 auto;
+}
+
+#footer_link{
+    overflow: hidden;
+    padding-left: 0px;
+}
+
+#footer_link li{
+    float: left;
+    margin-bottom: 5px;
+    line-height: normal;
+}
+
+#footer_link li span{
+    display: inline-block;
+    position: relative;
+    top: -2px;
+    width: 24px;
+    font-size: 11px;
+    text-align: center;
+}
+
+footer p{
+    padding: 37px 0 24px 0;
+}
+
+footer p b{
+    display: inline-block;
+    margin-right: 10px;
+}
+
+footer p span{
+    display: inline-block;
+}
+
+address{
+    display: inline-block;
+    line-height: 22px;
+    font-style: normal;
+    font-weight: normal;
+}
+footer address span{
+    display: block;
+    padding-bottom: 7px;
+}
+.order{
+    display: block;
+    padding: 6px 0;
+}
