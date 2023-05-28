@@ -66,27 +66,27 @@
         <div id="body">
             <div id="body-search">
                 <swiper-container class="mySwiper" navigation="true" style="border-radius: 30px; --swiper-navigation-color: white;">
-                    <swiper-slide><img src="/thrifty/resources/images/ptj.jpg"></swiper-slide>
-                    <swiper-slide><img src="/thrifty/resources/images/ptj.jpg"></swiper-slide>
-                    <swiper-slide><img src="/thrifty/resources/images/ptj.jpg"></swiper-slide>
-                    <swiper-slide><img src="/thrifty/resources/images/ptj.jpg"></swiper-slide>
-                    <swiper-slide><img src="/thrifty/resources/images/ptj.jpg"></swiper-slide>
-                    <swiper-slide><img src="/thrifty/resources/images/ptj.jpg"></swiper-slide>
-                    <swiper-slide><img src="/thrifty/resources/images/ptj2.png"></swiper-slide>
-                    <swiper-slide><img src="/thrifty/resources/images/ptj2.png"></swiper-slide>
-                    <swiper-slide><img src="/thrifty/resources/images/ptj2.png"></swiper-slide>
+                    <swiper-slide><img src="/thrifty/resources/images/ptj/ptj.jpg"></swiper-slide>
+                    <swiper-slide><img src="/thrifty/resources/images/ptj/ptj.jpg"></swiper-slide>
+                    <swiper-slide><img src="/thrifty/resources/images/ptj/ptj.jpg"></swiper-slide>
+                    <swiper-slide><img src="/thrifty/resources/images/ptj/ptj.jpg"></swiper-slide>
+                    <swiper-slide><img src="/thrifty/resources/images/ptj/ptj.jpg"></swiper-slide>
+                    <swiper-slide><img src="/thrifty/resources/images/ptj/ptj.jpg"></swiper-slide>
+                    <swiper-slide><img src="/thrifty/resources/images/prj/ptj2.png"></swiper-slide>
+                    <swiper-slide><img src="/thrifty/resources/images/ptj/ptj2.png"></swiper-slide>
+                    <swiper-slide><img src="/thrifty/resources/images/ptj/ptj2.png"></swiper-slide>
                 </swiper-container>
             </div>
             <div id="body1">
 				<div id="simburum">
                     <button style="width: 300px; height: 200px;">
-                        <img src="/thrifty/resources/images/house.png" style="width: 64px; height: 64px;"><br>
+                        <img src="/thrifty/resources/images/ptj/house.png" style="width: 64px; height: 64px;"><br>
                         <p style="color: white;">심부름 서비스</p>
                     </button>
 				</div>
 				<div id="alba">
 					<button style="width: 300px; height: 200px;">
-                        <img src="/thrifty/resources/images/part-time.png">
+                        <img src="/thrifty/resources/images/ptj/part-time.png">
                         <p style="color: white;">알바 구하기</p>
                     </button>
 				</div>
@@ -119,22 +119,22 @@
             <h2 style="margin-left: 250px;">최신 심부름 / 알바 게시글</h2>
             <div id="alba-board">
                 <div>
-                    <img src="/thrifty/resources/images/alba1.png">
+                    <img src="/thrifty/resources/images/ptj/alba1.png">
                     <p><b>3명 모집중</b></p>
                     <p>알바생 구해요~ 역삼역 근처</p>
                 </div>
                 <div>
-                    <img src="/thrifty/resources/images/alba1.png">
+                    <img src="/thrifty/resources/images/ptj/alba1.png">
                     <p><b>3명 모집중</b></p>
                     <p>알바생 구해요~ 역삼역 근처</p>
                 </div>
                 <div>
-                    <img src="/thrifty/resources/images/alba1.png">
+                    <img src="/thrifty/resources/images/ptj/alba1.png">
                     <p><b>3명 모집중</b></p>
                     <p>알바생 구해요~ 역삼역 근처</p>
                 </div>
                 <div>
-                    <img src="/thrifty/resources/images/alba1.png">
+                    <img src="/thrifty/resources/images/ptj/alba1.png">
                     <p><b>3명 모집중</b></p>
                     <p>알바생 구해요~ 역삼역 근처</p>
                 </div>

@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
+    <!-- <form> -->
         <div id="map" style="width:100%;height:350px;"></div>
         <input type="text" name="" id="keyword">
         <input type="hidden" name="locationCoordinate" id="locationCoordinate">
@@ -19,7 +19,7 @@
         <button onclick="drowPath(document.getElementById('origin').value, document.getElementById('destination').value)">경로길그리기</button>
         <input type="hidden" name="origin" id="origin">
         <input type="hidden" name="destination" id="destination">
-    </form>
+    <!-- </form> -->
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 <script>

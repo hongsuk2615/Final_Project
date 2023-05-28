@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     *{
-        border: 1px solid blue !important;
+        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -26,10 +26,10 @@
     }
 
     #body{
-    	padding: 40px;
-    	display: flex;
-    	justify-content: center;
-    	flex-direction: row;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
     }
     
     #body-left{
@@ -114,8 +114,8 @@
                         </div>
                     </form>
                 </div>
+                <!-- <div id="map" style="width:100%;height:350px;"></div> -->
             </div>
-            <div id="map" style="width:100%;height:350px;"></div>
         </div>
         <div id="footer">
         
@@ -132,6 +132,7 @@
     };
 
     var map = new kakao.maps.Map(mapContainer, mapOption);
+    var coordinate;
 
     // 마커가 표시될 위치입니다 
     var markerPosition  = new kakao.maps.LatLng(y, x); 
