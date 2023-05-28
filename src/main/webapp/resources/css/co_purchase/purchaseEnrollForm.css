@@ -67,7 +67,7 @@
 }
 
 #fileUpload_2{
-    width: 300px;
+    width: 315px;
 }
 
 .upload-name {
@@ -79,6 +79,10 @@
     border: 1px solid #dddddd;
     border-radius: 5px;
     color: #6d6d6d;
+}
+
+.upload-name:focus{
+    outline: none;
 }
 
 .filebox>label {
@@ -121,4 +125,8 @@ textarea{
     padding-left: 10px;
     border-radius: 5px;
     resize: none;
+}
+
+textarea:focus{
+    outline: none;
 }

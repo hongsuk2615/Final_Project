@@ -7,16 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/thrifty/resources/css/usedProduct/usedProductDetail.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Document</title>
 <style>
     *{
         /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
+    
     body{
         margin: 0;
     }
+
     #wrapper{
         min-width: 1180px;
         padding-bottom: 70px;

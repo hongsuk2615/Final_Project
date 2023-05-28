@@ -15,7 +15,7 @@ a{
     height: 140px;
     box-shadow: 0px 1px 5px 0px gray;
     position: fixed;
-    z-index: 999999999999999999999999999999999999999999999999;
+    z-index: 10;
 }
 
 #header_1_1{
@@ -69,11 +69,6 @@ a{
     font-size: larger;
     font-weight: 900;
 }
-/* 
-#header_2_1>div{ 
-    height: 30px;
-    border-bottom: 3px solid white;
-} */
 
 .main_category{
     height: 30px;
@@ -83,7 +78,6 @@ a{
 .main_underline{
     border-radius: 5px;
     margin-top: 3px;
-    /* border-top: 3px solid white; */
 }
 
 .underline_basic{
@@ -111,11 +105,11 @@ a{
 }
     
 .header_img_basic{
-    background-image: url("../../../resources/images/main/icon/logo2.1.png");
+    background-image: url("/thrifty/resources/images/main/icon/logo2.1.png");
 }
 
 .header_img_white{
-    background-image: url("../../../resources/images/main/icon/logo1.1.png");
+    background-image: url("/thrifty/resources/images/main/icon/logo1.1.png");
 }
 
 .content_basic{
@@ -127,9 +121,13 @@ a{
 }
 
 .search_img_basic{
-    background-image: url("../../../resources/images/main/icon/search-1.png");
+    background-image: url("/thrifty/resources/images/main/icon/search-1.png");
 }
 
 .search_img_white{
-    background-image: url("../../../resources/images/main/icon/search-3.png");
+    background-image: url("/thrifty/resources/images/main/icon/search-3.png");
+}
+.swal2-popup{
+    width: 560px;
+    background-color: transparent;
 }
