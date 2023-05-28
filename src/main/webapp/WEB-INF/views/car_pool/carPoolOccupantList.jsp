@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="/thrifty/resources/css/part_time_job/part_time_job_list.css" rel="stylesheet">
+    <link href="/thrifty/resources/css/car_pool/car_pool_list.css" rel="stylesheet">
 <style>
     *{
         /* border: 1px solid blue !important; */
@@ -57,56 +57,56 @@
         </div>
         <div id="body">
             <div id="body-left">
-                <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
+                <jsp:include page="../common/boardBodyLeftCarPool.jsp"/>
             </div>
             <div id="body-right">
                 <div id="ptj-header">
-                    <h1>태워주세요!</h1>
+                    <h1>타세요~~</h1>
                 </div>
                 <div style="width:100%; height:0px;">
-                	<p>메인 > 카풀 > 태워주세요</p>
+                	<p>메인 > 카풀 > 타세요</p>
                 </div>
                 <hr style="width: 100%;  margin-top: 60px;">
                 <div id="ptj-allBody" style="height: 1000px;">
                 	<div id="ptj-body1">
-                    <div style="width: 200px; height: 170px; border: 1px gray;">
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 200px; border: 1px solid gray;"/>
+                    <div style="width: 200px; height: 170px; border: 1px gray;" >
+                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;"/>
                         <p style="text-align: center;">사당 ~ 역삼 8시 구해요 ㅠ</p>
                     </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;">
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 200px;">
-                        <p style="text-align: center;">메롱</p>
+                    <div style="width: 200px; height: 170px; border: 1px gray;" >
+                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
+                        <p style="text-align: center;">역삼 ~ 강남 태워드려요~</p>
                     </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;">
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 200px;">
-                        <p style="text-align: center;">메롱</p>
+                    <div style="width: 200px; height: 170px; border: 1px gray;" >
+                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
+                        <p style="text-align: center;">커피만 사주시면 ㅋ</p>
                     </div>
                 </div>
                 <div id="ptj-body2">
-                    <div style="width: 200px; height: 170px; border: 1px gray;">
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 200px;">
+                    <div style="width: 200px; height: 170px; border: 1px gray;" >
+                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;">
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 200px;">
+                    <div style="width: 200px; height: 170px; border: 1px gray;" >
+                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;">
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 200px;">
+                    <div style="width: 200px; height: 170px; border: 1px gray;" >
+                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>
                 <div id="ptj-body3">
-                    <div style="width: 200px; height: 170px; border: 1px gray;">
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 200px;">
+                    <div style="width: 200px; height: 170px; border: 1px gray;" >
+                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;">
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 200px;">
+                    <div style="width: 200px; height: 170px; border: 1px gray;" >
+                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;">
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 200px;">
+                    <div style="width: 200px; height: 170px; border: 1px gray;" >
+                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>

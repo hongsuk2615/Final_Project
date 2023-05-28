@@ -16,9 +16,19 @@ public class carPoolController {
 		return "car_pool/carPool";
 	}
 	
-	@RequestMapping("/home/carPoolList")
-	public String carPoolList() {
-		return "car_pool/carPoolList";
+	@RequestMapping("/home/carPoolDriveList")
+	public String carPoolDriveList() {
+		return "car_pool/carPoolDriveList";
+	}
+	
+	@RequestMapping("/home/carPoolOccupantList")
+	public String carPoolOccupantList() {
+		return "car_pool/carPoolOccupantList";
+	}
+	
+	@RequestMapping("/home/carPoolDetail")
+	public String carPoolDetail() {
+		return "car_pool/carPoolDetail";
 	}
 	
 }

@@ -15,7 +15,7 @@
                 <div id="upper-category">
                     <div>
                         <img src="/thrifty/resources/images/shopping-cart.png" alt="상위 카테고리 이미지">
-                        <div id="upper-category-name">상위 카테고리명</div>
+                        <div id="upper-category-name">상위 카테고리</div>
                     </div>
                 </div>
                 <div id="sub-category" >
@@ -59,6 +59,17 @@
                                 <option value="">음</option>
                                 <option value="">음</option>
                             </select>
+                        </li>
+
+                        <li>거래방법</li>
+                        <li>
+                            <input type="radio" name="filterTradeMethod" id="filter-direct">
+                            <label for="filter-direct">직거래</label>
+                            <input type="radio" name="filterTradeMethod" id="filter-parcel">
+                            <label for="filter-parcel">택배</label>
+                            <input type="radio" name="filterTradeMethod" id="filter-both">
+                            <label for="filter-both">둘다</label>
+
                         </li>
                     </ul>
 

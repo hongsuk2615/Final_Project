@@ -4,10 +4,6 @@
     justify-content: space-between;
 }
 
-#ptj-header {
-    margin-left: 4%;
-}
-
 #ptj-body1 ,
 #ptj-body2 ,
 #ptj-body3 {
@@ -25,4 +21,14 @@
 	flex-direction: column;
 	justify-content: space-around;
 	margin-bottom: 100px;
+}
+
+img {
+    border-radius: 10px;
+}
+
+img:hover {
+    transition: all 0.15s linear;
+    transform: translateY(-10px);
+    cursor: pointer;
 }
