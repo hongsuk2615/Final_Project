@@ -11,42 +11,48 @@
   <jsp:include page="./includes/adminHead.jsp" />
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
-		<jsp:include page="./includes/adminHeader.jsp" />
+		<jsp:include page="./includes/adminNavigation.jsp" />
 		<jsp:include page="./includes/adminSidebar.jsp" />
 		<c:choose>
-			<c:when test="${sidebar eq 'home'}">
+			<c:when test="${contents eq 'home'}">
 				<jsp:include page="./includes/contents/adminHomeContent.jsp" />
 			</c:when>
-			<c:when test="${sidebar eq '.sidebar-member'}">
+			<c:when test="${contents eq '.sidebar-member'}">
 				<jsp:include page="./includes/contents/adminMemberContent.jsp" />
 			</c:when>
-			<c:when test="${sidebar eq '.sidebar-report'}">
+			<c:when test="${contents eq '.sidebar-report'}">
 				<jsp:include page="./includes/contents/adminReportContent.jsp" />
 			</c:when>
-			<c:when test="${sidebar eq '.sidebar-board'}">
+			<c:when test="${contents eq '.sidebar-board'}">
 				<jsp:include page="./includes/contents/adminBoardContent.jsp" />
 			</c:when>
-			<c:when test="${sidebar eq '.sidebar-notice'}">
+			<c:when test="${contents eq '.sidebar-notice'}">
 				<jsp:include page="./includes/contents/adminNoticeContent.jsp" />
 			</c:when>
-			<c:when test="${sidebar eq '.sidebar-faq'}">
+			<c:when test="${contents eq '.sidebar-faq'}">
 				<jsp:include page="./includes/contents/adminFaqContent.jsp" />
+			</c:when>
+			<c:when test="${contents eq '.btn-write'}">
+				<jsp:include page="./includes/contents/adminEditorContents.jsp" />
 			</c:when>
 		</c:choose>
 		<jsp:include page="./includes/adminControllSidebar.jsp" />
 		<jsp:include page="./includes/adminFooter.jsp" />
 	</div>
-	<jsp:include page="./includes/adminJs.jsp" />
-		<c:if test="${sidebar eq 'home' }">
-<%-- 			<jsp:include page="./includes/adminHomeJs.jsp" /> --%>
-		</c:if>
-	
+	<jsp:include page="./includes/adminRequiredJs.jsp" />
 	<script>
-		<c:if test="${sidebar ne 'home' }">
-			$("${sidebar}").children("a").addClass("active");
+		<c:if test="${contents ne 'home' }">
+			$("${contents}").children("a").addClass("active");
 		</c:if>
 	</script>
+		<c:if test="${contents eq 'home' }">
+			<jsp:include page="./includes/adminHomeJs.jsp" />
+		</c:if>
+		<c:if test="${contents eq '.btn-write' }">
+			<jsp:include page="./includes/adminEnrollFormJs.jsp" />
+		</c:if>
+	
 </body>
 </html>

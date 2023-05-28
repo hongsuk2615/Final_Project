@@ -1,27 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src="/thrifty/resources/js/admin/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/thrifty/resources/js/admin/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/thrifty/resources/js/admin/adminlte.min.js"></script>
-<script src="/thrifty/resources/js/admin/Chart.min.js"></script>
-<script>
-	 $(function () {
-// 		    /* ChartJS
-// 		     * -------
-// 		     * Here we will create a few charts using ChartJS
-// 		     */
-
-// 		    //--------------
-// 		    //- AREA CHART -
-// 		    //--------------
-
-// 		    // Get context with jQuery - using jQuery's .get() method.
-// 		    var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-
+ $(function () {
 		    var areaChartData = {
 		      labels  : ['5/18', '05/19', '05/20', '05/21', '05/22', '05/23', '05/24', '05/25'],
 		      datasets: [
@@ -88,7 +65,7 @@
     //- DONUT CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
-    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+	var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
       labels: [
           '쉐어하우스',
@@ -101,7 +78,7 @@
       ],
       datasets: [
         {
-          data: [700,500,400,600,300,100,60],
+          data: [700,500,400,600,300,800,60],
           backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#000000'],
         }
       ]
@@ -110,7 +87,7 @@
       maintainAspectRatio : false,
       responsive : true,
       legend: {
-    	  position: 'right',
+    	  position: 'right'
       }
     }
     //Create pie or douhnut chart
@@ -121,7 +98,3 @@
       options: donutOptions
     });
 });
-	 
-	 
-
-  </script>

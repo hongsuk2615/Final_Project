@@ -23,6 +23,41 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-3 col-6">
+				<div class="small-box bg-info">
+					<div class="inner">
+						<h5 class="infoBox-title">현재 이용자 수</h5>
+						<h3 class="infoBox-value">25</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-6">
+				<div class="small-box bg-primary">
+					<div class="inner">
+						<h5 class="infoBox-title">전체 회원 수</h5>
+						<h3 class="infoBox-value">100</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-6">
+				<div class="small-box bg-warning">
+					<div class="inner">
+						<h5 class="infoBox-title">정지 회원 수</h5>
+						<h3 class="infoBox-value">10</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-6">
+				<div class="small-box bg-danger">
+					<div class="inner">
+						<h5 class="infoBox-title">탈퇴 회원 수</h5>
+						<h3 class="infoBox-value">5</h3>
+					</div>
+				</div>
+			</div>
+
+		</div>
         <div class="row">
         	<div class="col-md-6">
 		      <div class="card card-info">
@@ -45,7 +80,7 @@
 			  </div>
 			</div>
 			<div class="col-md-6">
-				<div class="card card-danger">
+				<div class="card card-success">
 	              <div class="card-header">
 	                <h3 class="card-title">이용자 활동 현황</h3>
 	                <div class="card-tools">
