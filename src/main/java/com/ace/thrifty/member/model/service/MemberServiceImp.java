@@ -1,4 +1,4 @@
-package com.ace.thrifty.member.controller;
+package com.ace.thrifty.member.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,5 +18,17 @@ public class MemberServiceImp implements MemberService{
 		
 		return memberDao.selectMember();
 	}
+
+	@Override
+	public int insertMember(Member m) {
+		return memberDao.insertMember(m);
+	}
+
+	@Override
+	public Member loginMember(Member m) {
+		return memberDao.loginMember(m);
+	}
+	
+	
 
 }
