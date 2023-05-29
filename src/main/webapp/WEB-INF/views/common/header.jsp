@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/thrifty/resources/css/member/find.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/enroll.css">
     <title>Document</title>
-    <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
+    <meta name ="google-signin-client_id" content="">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
@@ -357,7 +357,7 @@
                 // people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
                 url: 'https://people.googleapis.com/v1/people/me'
                 // key에 자신의 API 키를 넣습니다.
-                , data: {personFields:'birthdays', key:'AIzaSyAQfPav4n4Lhh7iAHQLy_9GJGWOJ573vaQ', 'access_token': access_token}
+                , data: {personFields:'birthdays', key:'', 'access_token': access_token}
                 , method:'GET'
             })
             .done(function(e){
