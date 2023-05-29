@@ -273,13 +273,8 @@
 
         <div>dd</div>
     </div>
-    <div id="service">제공서비스
-
-        <div>dd</div>
-    </div>
-    <div id="location">위치.편의시설
+    <div id="location">위치
         <div>map</div>
-        <div>dd</div>
     </div>
     <div id="procedure">입주절차
         <div id="procedure1">
