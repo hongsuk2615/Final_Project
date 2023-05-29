@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <style>
@@ -195,7 +196,8 @@
                             <button type="button" class="btn btn-warning" >수정하기</button>
                         </div>
                         <div class="body-right-header-right-deletebutt">
-                            <button type="button" class="btn btn-danger">삭제하기</button>
+                            <button type="button" class="btn btn-danger" id="delete_button">삭제하기</button>
+                   
                         </div>
                         <div class="body-right-header-right-qr">
                             <div class="square">
@@ -247,5 +249,28 @@
         </div>
     </div>
     
+    
+    <script>
+	document.getElementById('delete_button').addEventListener('click', function(){
+    Swal.fire({
+  title: '정말 삭제하시겠습니까?',
+  text: "ㅋ",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: '삭제'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }
+})
+	})
+    
+    </script>
 </body>
 </html>

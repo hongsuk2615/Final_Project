@@ -10,6 +10,8 @@
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <style>
         /* *{
@@ -232,7 +234,7 @@ input:focus { outline: none; }
 
 
 
-            <div id="body-right">
+            <div id="body-right" data-aos="flip-left">
               
                 <div id="body-right-header">
                     <div class="profile-pic">
@@ -344,7 +346,7 @@ input:focus { outline: none; }
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: '수정하'
+  confirmButtonText: '수정'
 }).then((result) => {
   if (result.isConfirmed) {
     Swal.fire(
@@ -357,6 +359,11 @@ input:focus { outline: none; }
 	})
     
     </script>
+
+
+<script>
+    AOS.init();
+  </script>
 </body>
 
 </html>

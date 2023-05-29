@@ -172,5 +172,70 @@
 
     </div>
     
+
+
+    <script>
+      function 삼육구게임(){
+        if(num%3==0){
+          console.log('박수')
+        }else{
+          console.log('통과')
+        }
+       
+
+      }
+
+      function 삼육구게임2(){
+        if(num%3==0){
+          console.log('박수')
+        }else if(num%9 ==0){
+          console.log('박수두번')
+        }else{
+          console.log('통과')
+        }
+      }
+
+      function 합격했냐(){
+        if(num>40){
+
+        }
+      }
+
+      let 나이 = 28; 
+      const 출신지역 = '과천';
+
+      var 예급액 = 60000;
+      var 미래예윽ㅁ액 = 0;
+
+      console.log(미래에금액)
+
+      if(예금액>50000){
+        예금액 * 0.2 *2
+      }else{
+        예금액 * 0.15 *2
+      }
+
+     var answer = 제출답안;
+     
+
+     1.카운트로 제출할때마다 하나씩 올라가야함
+     2. 1번에 맞출시 ->성공
+     3. 3번째에 맞추거나 못맞추면 -> 멍청이
+     
+      document.querySelector('#send-answer').addEventListener('click', function(){
+        var count = 0;
+        count += 1;
+
+        var 제출답안 = document.querySelector('#answer').value;
+        if(제출답안 = '1335'){
+          alert('성공')
+        }else if(count>=3 && answer != '1335'){
+          alert('멍청아')
+        }
+
+      })
+       
+      
+    </script>
 </body>
 </html>
