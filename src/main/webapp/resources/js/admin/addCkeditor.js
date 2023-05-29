@@ -4,17 +4,18 @@
                 // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
                 toolbar: {
                     items: [
-                        'heading', '|', 'findAndReplace', 'selectAll', '|',
+                        'heading', '|',
                         'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
                         'bulletedList', 'numberedList', 'todoList', '|',
                         'outdent', 'indent', '|',
-                        'undo', 'redo',
+                        'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', '|',
+                        'horizontalLine', 'pageBreak',
                         '-',
+                        'undo', 'redo', '|',
                         'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
                         'alignment', '|',
-                        'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', '|',
-                        'specialCharacters', 'horizontalLine', 'pageBreak', '|',
-                        'textPartLanguage', '|'
+                        'specialCharacters', 
+                        '|'
                     ],
                     shouldNotGroupWhenFull: true
                 },
@@ -40,7 +41,7 @@
                     ]
                 },
                 // https://ckeditor.com/docs/ckeditor5/latest/features/editor-placeholder.html#using-the-editor-configuration
-                placeholder: 'Welcome to CKEditor 5!',
+                placeholder: '내용을 입력해주세요.',
                 // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-family-feature
                 fontFamily: {
                     options: [

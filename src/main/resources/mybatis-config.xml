@@ -15,6 +15,7 @@
 	<mappers>
 		<mapper resource="/mappers/board-mapper.xml"/>
 		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/admin-mapper.xml"/>
 
 	</mappers>
 
