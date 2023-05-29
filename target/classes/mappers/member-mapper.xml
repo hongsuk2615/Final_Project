@@ -17,7 +17,7 @@
 	<select id="selectMember" resultMap="memberResultSet">
 		SELECT *
 		  FROM MEMBER
-		 WHERE USER_NO = 1;
+		 WHERE USER_NO = 1
 	</select>
 	
 	<insert id="insertMember" parameterType="member">
@@ -31,6 +31,24 @@
 		  FROM MEMBER
 		 WHERE USER_ID = #{userId}
 		   AND USER_PWD = #{userPwd}
-		   AND STATUS = 'Y';
+		   AND STATUS = 'Y'
+	</select>
+	
+	<select id="selectById" parameterType="string" resultMap="memberResultSet">
+		SELECT *
+		  FROM MEMBER
+		 WHERE USER_ID = #{userId}
+	</select>
+	
+	<select id="selectByEmail" parameterType="string" resultMap="memberResultSet">
+		SELECT *
+		  FROM MEMBER
+		 WHERE EMAIL = #{email}
+	</select>
+	
+	<select id="selectByNickName" parameterType="string" resultMap="memberResultSet">
+		SELECT *
+		  FROM MEMBER
+		 WHERE NICK_NAME = #{nickName}
 	</select>
 </mapper>
