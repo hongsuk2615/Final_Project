@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="/thrifty/resources/css/part_time_job/part_time_job_enrollform.css" rel="stylesheet">
+    <link href="/thrifty/resources/css/car_pool/car_pool_enrollform.css" rel="stylesheet">
 <style>
     *{
         /* border: 1px solid blue !important; */
@@ -68,7 +68,7 @@
                 </div>
                 <hr>
                 <div id="enroll">
-                    <form>
+                    <!-- <form> -->
                         <div id="enroll-header">
                             <h2>제목 : &nbsp;<input name="enrollTitle" id="enroll-title" required placeholder="제목을 적어주세요."></h2><br>
                             <h3 id="enroll-content">내용 :  &nbsp;<textarea name="enrollContent" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required placeholder="날짜와 내용을 적어주세요."></textarea></h3>
@@ -93,8 +93,8 @@
                             <h3>급여 : </h3><input type="number" id="enroll-price" required>&nbsp;원
                             <hr>
                             <h3>시간 : </h3>
-                            시작 시간 : <input type="time" name="enrollStartDate" class="enroll-date" value="09:00" required>&nbsp;&nbsp;
-                            마감 시간 : <input type="time" name="enrollEndDate" class="enroll-date" value="18:00" required>
+                            출발 시간 : <input type="time" name="enrollStartDate" class="enroll-date" value="09:00" required>&nbsp;&nbsp;
+                            도착 시간 : <input type="time" name="enrollEndDate" class="enroll-date" value="18:00" required>
                             <hr>
 
                             <div style="display: flex; align-items: center; " id="location-list">
@@ -138,15 +138,33 @@
                             <hr>
 
                             <div id="enroll-map">
-                                <div>지역 : <input type="text" name="" id="keyword" placeholder="지점 또는 관련 키워드를 검색 해 주세요!"></div><br>
-                                <input type="hidden" name="locationCoordinate" id="locationCoordinate">
-                                <div id="map" style="width:100%; height:350px;"></div>
+                                <div>
+                                    <h3>경로길 그리기</h3>
+                                </div>
+                                <div id="map" style="width:100%;height:350px;"></div>
+                                <div style="display: flex;">
+                                    <input type="hidden" name="locationCoordinate" id="locationCoordinate">
+                                    <div>
+                                        <input type="text" name="" id="start-keyword" placeholder="출발지를 검색 해 주세요!">
+                                        <button id="start-btn" onclick="setOrigin();">해당 마커 출발지로 설정하기</button>
+                                    </div>
+                                    <div>
+                                        <input type="text" name="" id="arrival-keyword" placeholder="도착지를 검색 해 주세요!">
+                                        <button id="arrival-btn" onclick="setDestination();">해당 마커 도착지로 설정하기</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button onclick="drowPath(document.getElementById('origin').value, document.getElementById('destination').value)">경로길그리기</button>
+                                    <input type="hidden" name="origin" id="origin">
+                                    <input type="hidden" name="destination" id="destination">
+                                    <button onclick="removeMarkers();">다시 그리기</button>
+                                </div>
                             </div>
                         </div>
                         <div id="enroll-footer">
                             <button id="enroll-btn">게시글 등록하기</button>
                         </div>
-                    </form>
+                    <!-- </form> -->
                 </div>
             </div>
             <!-- <div id="map" style="width:100%;height:350px;"></div> -->
@@ -157,7 +175,21 @@
     </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
-<script type="text/javascript" src="/thrifty/resources/js/kakaoAPI/map_search.js"></script>
+<script type="text/javascript" src="/thrifty/resources/js/kakaoAPI/map_drawing.js"></script>
+<script>
+    $(function(){
+
+        $("#arrival-btn").click(function(){
+            $("#arrival-keyword").prop("disabled" , true);
+        })
+
+        $("#start-btn").click(function(){
+            $("#start-keyword").prop("disabled" , true);
+        })
+    })
+
+</script>
+
 
 </body>
 </html>

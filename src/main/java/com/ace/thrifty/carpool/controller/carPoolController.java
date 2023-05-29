@@ -31,4 +31,9 @@ public class carPoolController {
 		return "car_pool/carPoolDetail";
 	}
 	
+	@RequestMapping("/home/carPoolEnrollForm")
+	public String carPoolEnrollForm() {
+		return "car_pool/carPoolEnrollForm";
+	}
+	
 }

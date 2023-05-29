@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="/thrifty/resources/css/part_time_job/car_poll_detail.css" rel="stylesheet">
+    <link href="/thrifty/resources/css/car_pool/car_pool_detail.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     *{
@@ -66,7 +66,7 @@
             <div id="body-right">
                 <div id="enroll-category">
                     <div style="width: 50%;">
-                        <h1>카테고리명</h1>
+                        <h1>카테고리명(태워주세요 , 타세요)</h1>
                     </div>
                     <div style="width: 55%;" id="enroll-update">
                         <button>수정하기</button>
@@ -91,18 +91,21 @@
                         </div>
                         <hr>
                         <div id="enroll-body">
-                            <h3>연락처 : &nbsp;010 - 1234 - 5678</h3><br>
+                            <h3>연락처 : &nbsp;010 - 1234 - 5678</h3>
+                            <hr>
                             <div id="item-btns">
                                 <div id="inquiry-btn">구매문의</div>
                                 <div id="wish-btn">찜</div>
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
                             <hr>
-                            <h3>급여 : </h3><p><b style="color: red; font-size: 30px;">100,000</b> 원</p>
+                            <h3>모집 인원 : 2명</h3>
+                            <hr>
+                            <h3>카풀비 : </h3><p><b style="color: red; font-size: 30px;">2000</b> 원</p>
                             <hr>
                             <h3>시간 : </h3>
-                            시작 시간 : 09:00 &nbsp;&nbsp;
-                            마감 시간 : 18:00
+                            출발 시간 : 08:00 &nbsp;&nbsp;
+                            도착 시간 : 09:00
                             <hr>
                             <div id="enroll-map">
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">

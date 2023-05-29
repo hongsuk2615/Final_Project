@@ -28,7 +28,7 @@
     border-radius: 10px;
 }
 
-#body-right > * {
+#body-right > div {
     margin-left: 10px;
 }
 
@@ -165,4 +165,8 @@
     background-color: rgb(0, 60, 120);
     color: white;
     border-radius: 9px;
+}
+
+select {
+    height: 30px;
 }
