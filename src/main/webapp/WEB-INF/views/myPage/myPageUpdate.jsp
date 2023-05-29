@@ -7,8 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <style>
         /* *{
@@ -231,7 +234,7 @@ input:focus { outline: none; }
 
 
 
-            <div id="body-right">
+            <div id="body-right" data-aos="flip-left">
               
                 <div id="body-right-header">
                     <div class="profile-pic">
@@ -334,8 +337,33 @@ input:focus { outline: none; }
         </div>
     </div>
     
-	
+	<script>
+	document.getElementById('button_modify').addEventListener('click', function(){
+    Swal.fire({
+  title: '정말 수정하시겠습니까?',
+  text: "ㅋ",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: '수정'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }
+})
+	})
     
+    </script>
+
+
+<script>
+    AOS.init();
+  </script>
 </body>
 
 </html>
