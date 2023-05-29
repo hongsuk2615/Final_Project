@@ -4,9 +4,7 @@
                 // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
                 toolbar: {
                     items: [
-                        'exportPDF','exportWord', '|',
-                        'findAndReplace', 'selectAll', '|',
-                        'heading', '|',
+                        'heading', '|', 'findAndReplace', 'selectAll', '|',
                         'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
                         'bulletedList', 'numberedList', 'todoList', '|',
                         'outdent', 'indent', '|',
@@ -14,10 +12,9 @@
                         '-',
                         'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
                         'alignment', '|',
-                        'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                        'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', '|',
                         'specialCharacters', 'horizontalLine', 'pageBreak', '|',
-                        'textPartLanguage', '|',
-                        'sourceEditing'
+                        'textPartLanguage', '|'
                     ],
                     shouldNotGroupWhenFull: true
                 },
