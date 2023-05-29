@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/thrifty/resources/css/member/find.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/enroll.css">
     <title>Document</title>
+    <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
 </head>
 <body>
     <div id="header" class="background_basic">
