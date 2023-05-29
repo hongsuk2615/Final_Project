@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	
+	<typeAliases>
+		<typeAlias type="com.ace.thrifty.member.model.vo.Member" alias="member"/>
+		<typeAlias type="com.ace.thrifty.board.model.vo.Board" alias="board"/>
+	</typeAliases>
+	
+	<!-- 
+		environments, datasource에 기술했던 db연결정보는 별도로 기술할 예정(root-context.xml에 작성)
+		-> root-context.xml(db등록은 서버연동과 동시에 이루어져야하기때문에 서버연결과 동시에 읽혀지는
+		root-context.xml에 기술하는 것임)
+	 -->
+	<mappers>
+		<mapper resource="/mappers/board-mapper.xml"/>
+		<mapper resource="/mappers/member-mapper.xml"/>
+
+	</mappers>
+
+</configuration>

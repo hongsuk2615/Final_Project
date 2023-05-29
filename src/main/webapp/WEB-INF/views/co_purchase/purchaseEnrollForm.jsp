@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="resources/css/co_purchase/purchaseEnrollForm.css">
-    <script type="text/javascript" src="resources/js/co_purchase/enrollForm.js"></script>
+    <link rel="stylesheet" href="/thrifty/resources/css/co_purchase/purchaseEnrollForm.css">
+    <script type="text/javascript" src="/thrifty/resources/js/co_purchase/enrollForm.js"></script>
     <style>
         *{
             /* border: 1px solid blue !important; */
@@ -66,7 +66,7 @@
                             <div class="filebox">
                                 <label for="file">&nbsp;사진 등록&nbsp;</label> 
                                 <input type="file" id="file"><br>
-                                <input class="upload-name" value="선택된 파일" placeholder="선택된 파일" name="uploadFile">
+                                <input class="upload-name" value="선택된 파일" placeholder="선택된 파일" name="uploadFile" readonly>
                             </div>
                         </div>
                         <div class="write_case">
@@ -85,13 +85,7 @@
                 
             </div>
         </div>
-
-        <div id="footer">
-
-
-
-
-        </div>
+        <jsp:include page="../common/footer.jsp"/>
     </div>
 </body>
 </html>

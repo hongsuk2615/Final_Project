@@ -4,5 +4,47 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	
+	<!-- jasypt -->
+	<bean id="encryptorConfig" class="org.jasypt.encryption.pbe.config.EnvironmentPBEConfig">
+		<property name="algorithm" value="PBEWithMD5AndDES" />
+	    <property name="password" value="thriftyDB" /> 
+	</bean>
+	<bean class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg ref="encryptor" />
+		<property name="locations">
+			<list>
+				<value>classpath:/application.properties</value>
+			</list>
+		</property>
+	</bean>	
+	
+	<bean id="encryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">  
+		<property name="config" ref="encryptorConfig" />  
+	</bean>  
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+            <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="url" value="${jdbc.url}"/>
+<!--             <property name="username" value="thrifty"/> -->
+<!--             <property name="password" value="thrifty"/> -->
+            <property name="username" value="${jdbc.username}"/>
+            <property name="password" value="${jdbc.password}"/>
+            <property name="removeAbandoned" value="true"/>
+            <property name="initialSize" value="20"/>
+            <property name="maxActive" value="30"/>
+            <property name="validationQuery" value="select 1"/>
+            <property name="testWhileIdle" value="true"/>
+            <property name="timeBetweenEvictionRunsMillis" value="7200000"/>
+        </bean>
+        
+        
+        <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	        <property name="dataSource" ref="dataSource"/>
+	        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    	</bean>
+ 
+	    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	        <constructor-arg index="0" ref="sqlSessionFactory"/>
+	    </bean>
 </beans>

@@ -153,6 +153,14 @@
 		    <version>${org.springframework-version}</version>
 		</dependency>
 		
+		<!-- mysql 연동 -->
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.27</version>
+		</dependency>
+		
 		<!--  3) mybatis 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
@@ -300,7 +308,14 @@
 		    <artifactId>aspectjweaver</artifactId>
 		    <version>${org.aspectj-version}</version>
 		</dependency>
-		
+
+		<!-- 암호화 -->
+		<!-- https://mvnrepository.com/artifact/org.jasypt/jasypt-spring4 -->
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt-spring31</artifactId>
+			<version>1.9.2</version>
+		</dependency>
 		
 					   
 	</dependencies>
