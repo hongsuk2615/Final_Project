@@ -175,14 +175,14 @@
                     <div>알뜰살뜰 회원가입</div>
                 </div>
                 <div id="enroll-form">
-                    <form action="/enroll" class="scrollbar" method="post">
+                    <form action="" class="scrollbar" method="post">
                         <table >
                             <tr>
                                 <th class="title" colspan="2">아이디</th>
                             </tr>
                             <tr>
                                 <td class="input">
-                                    <input type="text" name="userId">
+                                    <input type="text" id="userId" name="userId">
                                 </td>
                                 <td>
                                     <button type="button">중복확인</button>
@@ -196,7 +196,7 @@
                             </tr>
                             <tr>
                                 <td class="input">
-                                    <input type="password" name="userPwd">
+                                    <input type="password" id="userPwd" name="userPwd">
                                 </td>
                                 <td></td>
                             </tr>
@@ -220,7 +220,7 @@
                             </tr>
                             <tr>
                                 <td class="input">
-                                    <input type="email" name="email">
+                                    <input type="email" id="email" name="email">
                                 </td>
                                 <td>
                                     <button type="button">중복확인</button>
@@ -234,7 +234,7 @@
                             </tr>
                             <tr>
                                 <td class="input">
-                                    <input type="text" name="nickName">
+                                    <input type="text" id="nickName" name="nickName">
                                 </td>
                                 <td>
                                     <button type="button">중복확인</button>
@@ -248,7 +248,7 @@
                             </tr>
                             <tr>
                                 <td class="input">
-                                    <input type="text" name="userName" id="">
+                                    <input type="text" name="userName" id="userName">
                                 </td>
                                 <td></td>
                             </tr>      
@@ -260,7 +260,7 @@
                             </tr>
                             <tr>
                                 <td class="input">
-                                    <input type="text" name="phone">
+                                    <input type="text" id="phone" name="phone">
                                 </td>
                                 <td></td>
                             </tr>
@@ -272,9 +272,9 @@
                             </tr>
                             <tr>
                                 <td class="input">
-                                    <input type="radio" name="gender" id="gender-m">
+                                    <input type="radio" name="gender" id="gender-m" value="M">
                                     <label for="gender-m">남</label>
-                                    <input type="radio" name="gender" id="gender-f">
+                                    <input type="radio" name="gender" id="gender-f" value="F">
                                     <label for="gender-f">여</label>
                                 </td>
                                 <td></td>
@@ -299,7 +299,7 @@
                         </div>
                         <div class="justify-center" >
                             <button type="button"  id ="cancel-btn" onclick="login();">취소</button>
-                            <button type="submit" id="enroll-btn">회원가입</button>
+                            <button type="button" onclick="insertMember();" id="enroll-btn">회원가입</button>
                         </div>
                     </form>
                 </div>
@@ -307,6 +307,24 @@
                 showConfirmButton: false
             });
 
+        }
+
+        function insertMember(){
+            $.ajax({
+                url : "/thrifty/member/enroll",
+                method : "POST",
+                data : {userId : $("input[name='userId']")[0].value,
+                        userPwd : $("input[name='userPwd']")[0].value,
+                        email : $("input[name='email']")[0].value,
+                        nickName : $("input[name='nickName']")[0].value,
+                        userName : $("input[name='userName']")[0].value,
+                        phone : $("input[name='phone']")[0].value,
+                        gender : $("input[name='gender']:checked")[0].value
+                        },
+                success : function(result){
+                    alert("성공");
+                }
+            })
         }
     </script>
     

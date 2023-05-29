@@ -15,4 +15,12 @@ public class MemberDao {
 	public Member selectMember() {
 		return sqlSession.selectOne("memberMapper.selectMember");
 	}
+	
+	public int insertMember(Member m) {
+		return sqlSession.insert("memberMapper.insertMember", m);
+	}
+	
+	public Member loginMember(Member m) {
+		return sqlSession.selectOne("memberMapper.loginMember", m);
+	}
 }
