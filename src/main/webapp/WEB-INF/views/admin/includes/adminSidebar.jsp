@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
 	    <a href="${pageContext.request.contextPath}/admin/home" class="brand-link">
 	      <img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="AdminLTE Logo" class="brand-image">
@@ -66,15 +66,21 @@
               <p>FAQ</p>
             </a>
           </li>
-<!--           <li class="nav-item sidebar-exit"> -->
-<%--             <a href="${pageContext.request.contextPath}/admin/faq" class="nav-link"> --%>
-<!--               <i class="nav-icon fas fa-question-circle"></i> -->
-<!--               <p>나가기</p> -->
-<!--             </a> -->
-<!--           </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
+    <!-- fixed button-->
+    <div class="sidebar sidebar-custom">
+    	<div class="nav nav-sidebar nav-pills">
+		    <div class="nav-item">
+		    	<a href="#"class="nav-link">
+		    		<i class="nav-icon fas fa-sign-out-alt"></i>
+		    		<p>나가기</p>
+		    	</a>
+		    </div>
+	    </div>
+    </div>
+    <!-- /.fixed button-->
   </aside>
