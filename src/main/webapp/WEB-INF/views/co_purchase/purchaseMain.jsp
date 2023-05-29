@@ -54,130 +54,209 @@
             <div id="body-right">
                 <div id="cat_title">공동구매</div>
 				<table>
-                    <thead>
-                        <tr id="list_head">
-                            <th style="width: 8%;">조회</th>
-                            <th style="width: 10%;">작성일</th>
-                            <th style="width: 10%;">작성자</th>
-                            <th style="width: 42%;">모집 내용</th>
-                            <th style="width: 10%;">가격</th>
-                            <th style="width: 10%;">인원</th>
-                            <th style="width: 10%;">기간</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="list_body">
-                            <td>24</td>
-                            <td>05-22</td>
-                            <td>김홋숙</td>
-                            <td>옥수수공구</td>
-                            <td>20,000</td>
-                            <td>2</td>
-                            <td>06-01</td>
+                    <tbody>        
+                        <tr>
+                            <td class="flex">
+                                <div class="detail_img">
+                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
+                                </div>
+                                <div class="detail">
+                                    <div class="detail_top">
+                                        <div class="detail_top_recruiting">
+                                            모집중
+                                        </div>
+                                    </div>
+                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
+                                    <div class="detail_bottom flex">
+                                        <div class="flex align">
+                                            <div>가격</div>
+                                            <div class="detail_bottom_price">20,000</div>
+                                        </div>
+                                        <div class="detail_bottom_2 flex align">
+                                            <div>
+                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                            </div>
+                                            <div class="detail_bottom_nickname">김김훙훙숙숙</div>
+                                            <span>|</span>
+                                            <div>24</div>
+                                            <span>|</span>
+                                            <div>06:24</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
-                            <td>24</td>
-                            <td>05-22</td>
-                            <td>김홋숙</td>
-                            <td>옥수수공구</td>
-                            <td>20,000</td>
-                            <td>2</td>
-                            <td>06-01</td>
+                            <td class="flex">
+                                <div class="detail_img">
+                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
+                                </div>
+                                <div class="detail">
+                                    <div class="detail_top">
+                                        <div class="detail_top_recruiting">
+                                            모집중
+                                        </div>
+                                    </div>
+                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
+                                    <div class="detail_bottom flex">
+                                        <div class="flex align">
+                                            <div>가격</div>
+                                            <div class="detail_bottom_price">20,000</div>
+                                        </div>
+                                        <div class="detail_bottom_2 flex align">
+                                            <div>
+                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                            </div>
+                                            <div class="detail_bottom_nickname">김김훙훙숙숙</div>
+                                            <span>|</span>
+                                            <div>24</div>
+                                            <span>|</span>
+                                            <div>06:24</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
-                            <td>24</td>
-                            <td>05-22</td>
-                            <td>김홋숙</td>
-                            <td>옥수수공구</td>
-                            <td>20,000</td>
-                            <td>2</td>
-                            <td>06-01</td>
+                            <td class="flex">
+                                <div class="detail_img">
+                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
+                                </div>
+                                <div class="detail">
+                                    <div class="detail_top">
+                                        <div class="detail_top_recruiting">
+                                            모집중
+                                        </div>
+                                    </div>
+                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
+                                    <div class="detail_bottom flex">
+                                        <div class="flex align">
+                                            <div>가격</div>
+                                            <div class="detail_bottom_price">20,000</div>
+                                        </div>
+                                        <div class="detail_bottom_2 flex align">
+                                            <div>
+                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                            </div>
+                                            <div class="detail_bottom_nickname">김김훙훙숙숙</div>
+                                            <span>|</span>
+                                            <div>24</div>
+                                            <span>|</span>
+                                            <div>06:24</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
-                            <td>24</td>
-                            <td>05-22</td>
-                            <td>김홋숙</td>
-                            <td>옥수수공구</td>
-                            <td>20,000</td>
-                            <td>2</td>
-                            <td>06-01</td>
+                            <td class="flex">
+                                <div class="detail_img">
+                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
+                                </div>
+                                <div class="detail">
+                                    <div class="detail_top">
+                                        <div class="detail_top_recruiting">
+                                            모집중
+                                        </div>
+                                    </div>
+                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
+                                    <div class="detail_bottom flex">
+                                        <div class="flex align">
+                                            <div>가격</div>
+                                            <div class="detail_bottom_price">20,000</div>
+                                        </div>
+                                        <div class="detail_bottom_2 flex align">
+                                            <div>
+                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                            </div>
+                                            <div class="detail_bottom_nickname">김김훙훙숙숙</div>
+                                            <span>|</span>
+                                            <div>24</div>
+                                            <span>|</span>
+                                            <div>06:24</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
-                            <td>24</td>
-                            <td>05-22</td>
-                            <td>김홋숙</td>
-                            <td>옥수수공구</td>
-                            <td>20,000</td>
-                            <td>2</td>
-                            <td>06-01</td>
-                        </tr>
-                        <tr>
-                            <td>24</td>
-                            <td>05-22</td>
-                            <td>김홋숙</td>
-                            <td>옥수수공구</td>
-                            <td>20,000</td>
-                            <td>2</td>
-                            <td>06-01</td>
-                        </tr>
-                        <tr>
-                            <td>24</td>
-                            <td>05-22</td>
-                            <td>김홋숙</td>
-                            <td>옥수수공구</td>
-                            <td>20,000</td>
-                            <td>2</td>
-                            <td>06-01</td>
-                        </tr>
-                        <tr>
-                            <td>24</td>
-                            <td>05-22</td>
-                            <td>김홋숙</td>
-                            <td>옥수수공구</td>
-                            <td>20,000</td>
-                            <td>2</td>
-                            <td>06-01</td>
-                        </tr>
-                        <tr>
-                            <td>24</td>
-                            <td>05-22</td>
-                            <td>김홋숙</td>
-                            <td>옥수수공구</td>
-                            <td>20,000</td>
-                            <td>2</td>
-                            <td>06-01</td>
-                        </tr>
-                        <tr>
-                            <td>24</td>
-                            <td>05-22</td>
-                            <td>김홋숙</td>
-                            <td>옥수수공구</td>
-                            <td>20,000</td>
-                            <td>2</td>
-                            <td>06-01</td>
+                            <td class="flex">
+                                <div class="detail_img">
+                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
+                                </div>
+                                <div class="detail">
+                                    <div class="detail_top">
+                                        <div class="detail_top_close">
+                                            마감
+                                        </div>
+                                    </div>
+                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
+                                    <div class="detail_bottom flex">
+                                        <div class="flex align">
+                                            <div>가격</div>
+                                            <div class="detail_bottom_price">20,000</div>
+                                        </div>
+                                        <div class="detail_bottom_2 flex align">
+                                            <div>
+                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                            </div>
+                                            <div class="detail_bottom_nickname">김김훙훙숙숙</div>
+                                            <span>|</span>
+                                            <div>24</div>
+                                            <span>|</span>
+                                            <div>06:24</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 <div id="pagingbar"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
                 <div id="searchWrite">
                     <div></div>
-                    <div>
-                        <select name="search" id="search_filter">
-                            <option value="title">제목</option>
-                            <option value="title">작성자</option>
-                            <option value="title">내용</option>
-                        </select>
-                        <input type="text" style="width: 300px;">
-                        <input type="submit" value="검색">
+                    <div id="search_content">
+                        <div class="selectBox2 ">
+                            <button class="label">제목</button>
+                            <ul class="optionList">
+                              <li class="optionItem">제목</li>
+                              <li class="optionItem">작성자</li>
+                              <li class="optionItem">내용</li>
+                            </ul>
+                        </div>
+                        <input type="text" id="search_box">
+                        <input type="submit" value="검색" id="search_submit">
                     </div>
                     <div>
-                        <input type="submit" value="글쓰기">
+                        <input type="submit" value="글쓰기" id="write_content">
                     </div>
                 </div>
             </div>
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
-    
+    <script>
+        /* 일반함수 */
+        const label = document.querySelector('.label');
+        const options = document.querySelectorAll('.optionItem');
+        // 클릭한 옵션의 텍스트를 라벨 안에 넣음
+        const handleSelect = function(item) {
+            label.innerHTML = item.textContent;
+            label.parentNode.classList.remove('active');
+        }
+        // 옵션 클릭시 클릭한 옵션을 넘김
+        options.forEach(function(option){
+            option.addEventListener('click', function(){handleSelect(option)})
+        })
+        // 라벨을 클릭시 옵션 목록이 열림/닫힘
+        label.addEventListener('click', function(){
+            if(label.parentNode.classList.contains('active')) {
+                label.parentNode.classList.remove('active');
+            } else {
+                label.parentNode.classList.add('active');
+            }
+        });
+
+    </script>
 </body>
 </html>

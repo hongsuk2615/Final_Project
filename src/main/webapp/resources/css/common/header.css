@@ -129,5 +129,5 @@ a{
 }
 .swal2-popup{
     width: 560px;
-    background-color: transparent;
+    /* background-color: transparent; */
 }
