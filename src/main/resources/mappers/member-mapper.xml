@@ -9,6 +9,7 @@
 		<result column="USER_ID" property="userId"/>
 		<result column="USER_PWD" property="userPwd"/>
 		<result column="PHONE" property="phone"/>
+		<result column="EMAIL" property="email"/>
 		<result column="PWD_UPDATE_DATE" property="pwdUpdateDate"/>
 		<result column="IS_BANNED" property="isBanned"/>
 		<result column="REPORT_COUNT" property="reportCount"/>	
@@ -21,8 +22,8 @@
 	</select>
 	
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER(USER_NAME, NICK_NAME, GENDER, USER_ID, USER_PWD, PHONE)
-		     VALUES(#{userName}, #{nickName}, #{gender}, #{userId}, #{userPwd}, #{phone})
+		INSERT INTO MEMBER(USER_NAME, NICK_NAME, GENDER, USER_ID, USER_PWD, PHONE, EMAIL)
+		     VALUES(#{userName}, #{nickName}, #{gender}, #{userId}, #{userPwd}, #{phone}, #{email})
 	</insert>
 	
 	
