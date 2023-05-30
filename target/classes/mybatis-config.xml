@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
-	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/>
-		
-		<setting name="logImpl" value="LOG4J"/>
-		<!-- 
-			마이바티스의 쿼리문, 파라미터값, 실행결과를 로그를 통해 확인하기 위한 설정정보
-			(실제 운영환경에서는 빼야함)
-			VALUE값에는 로그출력 구현객체로 LOG4J라는 클래스를 지정함
-		 -->
-	</settings>
 	
 	<typeAliases>
-		
+		<typeAlias type="com.ace.thrifty.member.model.vo.Member" alias="member"/>
+		<typeAlias type="com.ace.thrifty.board.model.vo.Board" alias="board"/>
 	</typeAliases>
 	
 	<!-- 
@@ -23,6 +14,8 @@
 	 -->
 	<mappers>
 		<mapper resource="/mappers/board-mapper.xml"/>
+		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/admin-mapper.xml"/>
 
 	</mappers>
 
