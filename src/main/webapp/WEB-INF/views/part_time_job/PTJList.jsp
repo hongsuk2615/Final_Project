@@ -10,7 +10,7 @@
     <link href="/thrifty/resources/css/part_time_job/part_time_job_list.css" rel="stylesheet">
 <style>
     *{
-        border: 1px solid blue !important;
+        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -53,7 +53,7 @@
 <body>
     <div id="wrapper">
         <div id="header">
-            <jsp:include page="../common/header.jsp" />
+            <jsp:include page="../common/header.jsp"/>
         </div>
         <div id="body">
             <div id="body-left">
@@ -70,43 +70,43 @@
                 <div id="ptj-allBody" style="height: 1000px;">
                 	<div id="ptj-body1">
                     <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;"/>
+                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;"/>
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>
                 <div id="ptj-body2">
                     <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>
                 <div id="ptj-body3">
                     <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                     <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/alba.jpg" style="height: 170px; width: 200px;">
+                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
                         <p style="text-align: center;">메롱</p>
                     </div>
                 </div>

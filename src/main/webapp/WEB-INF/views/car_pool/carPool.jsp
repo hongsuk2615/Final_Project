@@ -10,14 +10,16 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="map" style="width:100%;height:350px;"></div>
-    <input type="text" name="" id="keyword">
-    <input type="hidden" name="locationCoordinate" id="locationCoordinate">
-    <button onclick="setOrigin();">해당 마커 출발지로 설정하기</button>
-    <button onclick="setDestination();">해당 마커 도착지로 설정하기</button>
-    <button onclick="drowPath(document.getElementById('origin').value, document.getElementById('destination').value)">경로길그리기</button>
-    <input type="hidden" name="origin" id="origin">
-    <input type="hidden" name="destination" id="destination">
+    <!-- <form> -->
+        <div id="map" style="width:100%;height:350px;"></div>
+        <input type="text" name="" id="keyword">
+        <input type="hidden" name="locationCoordinate" id="locationCoordinate">
+        <button onclick="setOrigin();">해당 마커 출발지로 설정하기</button>
+        <button onclick="setDestination();">해당 마커 도착지로 설정하기</button>
+        <button onclick="drowPath(document.getElementById('origin').value, document.getElementById('destination').value)">경로길그리기</button>
+        <input type="hidden" name="origin" id="origin">
+        <input type="hidden" name="destination" id="destination">
+    <!-- </form> -->
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 <script>
@@ -111,7 +113,7 @@ function setDestination(){
 <script>
     function drowPath(origin, destination){
     $.ajax({
-        url : "https://apis-navi.kakaomobility.com/v1/directions?origin="+origin + "&destination=" + destination + "&waypoints=&priority=RECOMMEND&car_fuel=GASOLINE&car_hipass=false&alternatives=false&road_details=false",
+        url : "https://apis-navi.kakaomobility.com/v1/directions?origin="+ origin + "&destination=" + destination + "&waypoints=&priority=RECOMMEND&car_fuel=GASOLINE&car_hipass=false&alternatives=false&road_details=false",
         method : "GET",
         headers: {Authorization : "KakaoAK a0a349702051ef8d9fc1b66062f09c70"},    
         success : function(arg){
@@ -140,7 +142,7 @@ function setDestination(){
                     let polyline = new kakao.maps.Polyline({
                         //path: arrays.map( arg=> arg.position), // 선을 구성하는 좌표배열 입니다
                         path : detailRoads,
-                        strokeWeight: 5, // 선의 두께 입니다
+                        strokeWeight: 4, // 선의 두께 입니다
                         strokeColor: 'red', // 선의 색깔입니다
                         strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
                         strokeStyle: 'solid' // 선의 스타일입니다

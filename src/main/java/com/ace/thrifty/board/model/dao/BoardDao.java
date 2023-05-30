@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.UpperCategory;
+import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 
 @Repository
 public class BoardDao {
@@ -19,6 +20,11 @@ public class BoardDao {
 		return sqlSession.selectOne("boardMapper.selectBoard");
 	}
 	
+	
+	public int insertBoard(Board b, SmallGroup sg) {
+		return sqlSession.insert("boardMapper.insertBoard", b, sg);
+	}
+
 	public List<UpperCategory >selectBoardCategoryList() {
 		return sqlSession.selectList("boardMapper.selectCategoryList");
 	}

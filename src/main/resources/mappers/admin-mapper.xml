@@ -22,4 +22,6 @@
 		  AND AUTHORITY = 0
 		  AND STATUS = 'Y'
 	</select>
+	
+	<select id="memberList"></select>
 </mapper>

@@ -26,6 +26,28 @@
 		 WHERE BOARD_NO = 1;
 	</select>
 	
+	<select id="selectBoardListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE BOARD_
+	</select>
+	
+	<insert id="insertBoard">
+		INSERT INTO BOARD
+		(
+		CATEGORY_S_NO,
+		TITLE,
+		CONTENT,
+		USER_NO
+		
+		)
+		VALUES(
+		2,
+		#{title},
+		#{content},
+		#{userNo}
+		)
+	</insert>
 	<select id="selectCategoryList" resultMap="upperCategoryResultSet">
 		SELECT *
 		  FROM UPPER_CATEGORY;

@@ -1,0 +1,220 @@
+#body-search button {
+    width: 60px;
+    height: 40px;
+    text-align: center;
+}
+
+#body-search{
+    width: 20%;
+    min-width: 900px;
+    min-height: 200px;
+    background-color: rgb(0, 60, 120);
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 30px;
+}
+
+#body{
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+#body-right{
+    /* background-color: lightgray; */
+    border: solid 2px lightgray;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+
+#body-right > div {
+    margin-left: 10px;
+}
+
+#detail-title {
+    display: flex;
+}
+
+#detail-title-img {
+    display: flex;
+}
+
+#detail-title-img img{
+    width: 250px;
+    height: 250px;
+}
+
+/* input {
+    width: 500px;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 8px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    } */
+#enroll-title:hover ,
+#enroll-textarea:hover , 
+#enroll-contact:hover ,
+#enroll-price:hover ,
+.enroll-date:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+#enroll-textarea {
+    font-size: 15px;
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245);
+    border: 0;
+    padding-left: 10px;
+    width: 500px;
+    height: 35px;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+#enroll-header {
+    display: flex;
+    flex-direction: column;
+}
+
+#enroll-content{
+    display: flex;
+}
+
+#enroll-title {
+    width: 500px;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(245, 245, 245);
+    margin-bottom: 10px;
+}
+
+#enroll-contact {
+    width: 500px;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(245, 245, 245);
+    margin-bottom: 10px;
+}
+
+#enroll-price {
+    width: 200px;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+    text-align:right;
+    background-color: rgb(245, 245, 245);
+    margin-bottom: 10px;
+}
+
+#carpool-member {
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+    text-align:right;
+    background-color: rgb(245, 245, 245);
+    margin-bottom: 10px;
+}
+
+.enroll-date {
+    width: 200px;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(245, 245, 245);
+}
+
+#enroll-map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#start-keyword , #arrival-keyword {
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+    border: 1;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+    /* color: rgb(255, 255, 255); */
+}
+
+
+#enroll-footer{
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carpool-enroll-btn {
+    width: 300px;
+    height: 60px;
+    background: rgb(0, 60, 120);
+    color: white;
+    border-radius: 9px;
+    border: 0;
+    font-size: large;
+    box-shadow: 5px 5px 5px gray;
+}
+
+select {
+    height: 30px;
+}
+
+#map-search {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 5px;
+    height: 100px;
+}
+
+#change-val:hover,
+#carpool-enroll-btn:hover {
+    cursor: pointer;
+}
+
+#start-btn ,
+#arrival-btn,
+#drawpath ,
+#redraw {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 2.5px solid rgb(0, 60, 120);
+    /* border-color: rgb(0, 60, 120); */
+    background-color: white;
+    color: rgb(0, 60, 120);
+}
+
+.draw-btn {
+    margin-top: 20px;
+}

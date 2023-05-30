@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     *{
-        border: 1px solid blue !important;
+        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -26,10 +26,10 @@
     }
 
     #body{
-    	padding: 40px;
-    	display: flex;
-    	justify-content: center;
-    	flex-direction: row;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
     }
     
     #body-left{
@@ -66,19 +66,22 @@
             <div id="body-right">
                 <div id="enroll-category">
                     <div style="width: 50%;">
-                        <h1>카테고리명</h1>
+                        <h1>상위 카테고리명</h1>
                     </div>
                     <div style="width: 55%;" id="enroll-update">
-                        <button>수정하기</button>
-                        <button>삭제하기</button>
-                        <button>구인완료</button>
+                        <button style="border: 0;">수정하기</button>
+                        <button style="border: 0;">삭제하기</button>
+                        <button style="border: 0;">구인완료</button>
                     </div>
                 </div>
                 <hr>
                 <div id="enroll">
                     <form>
                         <div id="enroll-header">
-                            <div style="display: flex;">
+                            <div style="display: flex; flex-direction: column;">
+                                <div>
+                                    <h2>대표 이미지(requierd 아님)</h2>
+                                </div>
                                 <div>
                                     <h2>제목 : &nbsp;응애애애애애</h2>
                                 </div>
@@ -91,9 +94,12 @@
                         </div>
                         <hr>
                         <div id="enroll-body">
-                            <h3>연락처 : &nbsp;010 - 1234 - 5678</h3><br>
+                            <h3>연락처 : &nbsp;010 - 1234 - 5678</h3>
+                            <hr>
+                            <h3>알바 카테고리 : 서빙/홀 서비스</h3>
+                            <hr>
                             <div id="item-btns">
-                                <div id="inquiry-btn">구매문의</div>
+                                <div id="inquiry-btn">쪽지</div>
                                 <div id="wish-btn">찜</div>
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
@@ -104,18 +110,20 @@
                             시작 시간 : 09:00 &nbsp;&nbsp;
                             마감 시간 : 18:00
                             <hr>
+                            <h3>시 / 군 / 구 : 서울시</h3>
+                            <hr>
                             <div id="enroll-map">
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
                                 <div id="map" style="width:100%; height:350px; border-radius: 5px;"></div>
                             </div>
                         </div>
                         <div id="enroll-footer">
-                            <button id="enroll-btn">뒤로가기</button>
+                            <button id="enroll-btn" style="border: 0;">뒤로가기</button>
                         </div>
                     </form>
                 </div>
+                <!-- div id="map" style="width:100%;height:350px;"></div> -->
             </div>
-            <div id="map" style="width:100%;height:350px;"></div>
         </div>
         <div id="footer">
         
@@ -132,6 +140,7 @@
     };
 
     var map = new kakao.maps.Map(mapContainer, mapOption);
+    var coordinate;
 
     // 마커가 표시될 위치입니다 
     var markerPosition  = new kakao.maps.LatLng(y, x); 
