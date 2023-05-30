@@ -15,4 +15,10 @@ public class BoardDao {
 	public Board selectBoard() {
 		return sqlSession.selectOne("boardMapper.selectBoard");
 	}
+	
+	
+	public int insertBoard(Board b) {
+		return sqlSession.insert("boardMapper.insertBoard", b);
+	}
+
 }
