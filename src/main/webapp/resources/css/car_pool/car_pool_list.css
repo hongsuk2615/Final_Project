@@ -32,3 +32,17 @@ img:hover {
     transform: translateY(-10px);
     cursor: pointer;
 }
+
+#write-btn {
+    height: 40px;
+    width: 100px;
+    background-color: rgb(0, 60, 120);
+    border-radius: 10px;
+    color: white;
+    border: 0;
+    box-shadow: 5px 5px 5px gray;
+}
+
+#write-btn:hover {
+    cursor: pointer;
+}

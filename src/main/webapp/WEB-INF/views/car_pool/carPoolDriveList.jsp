@@ -63,10 +63,13 @@
                 <div id="ptj-header">
                     <h1>태워주세요!</h1>
                 </div>
-                <div style="width:100%; height:0px;">
+                <div style="width:100%; display: flex; align-items: center; justify-content: space-between;">
                 	<p>메인 > 카풀 > 태워주세요</p>
+                    <div>
+                        <button id="write-btn">글 작성하기</button>
+                    </div>
                 </div>
-                <hr style="width: 100%;  margin-top: 60px;">
+                <hr style="width: 100%;">
                 <div id="ptj-allBody" style="height: 1000px;">
                 	<div id="ptj-body1">
                     <div style="width: 200px; height: 170px; border: 1px gray;" >

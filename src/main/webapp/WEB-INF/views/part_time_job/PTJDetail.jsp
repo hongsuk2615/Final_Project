@@ -78,7 +78,10 @@
                 <div id="enroll">
                     <form>
                         <div id="enroll-header">
-                            <div style="display: flex;">
+                            <div style="display: flex; flex-direction: column;">
+                                <div>
+                                    <h2>대표 이미지(requierd 아님)</h2>
+                                </div>
                                 <div>
                                     <h2>제목 : &nbsp;응애애애애애</h2>
                                 </div>

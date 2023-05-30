@@ -94,7 +94,7 @@
                             <h3>연락처 : &nbsp;010 - 1234 - 5678</h3>
                             <hr>
                             <div id="item-btns">
-                                <div id="inquiry-btn">구매문의</div>
+                                <div id="inquiry-btn">쪽지 보내기</div>
                                 <div id="wish-btn">찜</div>
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>

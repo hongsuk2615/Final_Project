@@ -76,21 +76,17 @@
                         </div>
                         <hr>
                         <div id="enroll-body">
-                            <h3>연락처 : &nbsp;<input type="text" name="enrollContact" id="enroll-contact" required placeholder="연락처나 카카오톡ID 를 적어주세요."></h3><br>
+                            <h3>연락처 : &nbsp;<input type="text" name="enrollContact" id="enroll-contact" required placeholder="연락처나 카카오톡ID 를 적어주세요."></h3>
+                            <h3>성별 : <input type="radio" name="gender">남 <input type="radio" name="gender">여</h3>
+                            <h3>모집인원 : <input type="number" id="carpool-member" required> 명</h3>
                             <hr>
-                            <h3>알바 카테고리 : 
-                                <select>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                </select>
+                            <h3>카테고리 : 
+                                <input type="radio" name="driving" id="get-in-car" required>타세요
+                                <input type="file" name="car-img" id="car-img" style="display: none;">
+                                <input type="radio" name="driving" id="i-want-car">태워주세요
                             </h3>
                             <hr>
-                            <h3>급여 : </h3><input type="number" id="enroll-price" required>&nbsp;원
+                            <h3>카풀비 : </h3><input type="number" id="enroll-price" required>&nbsp;원
                             <hr>
                             <h3>시간 : </h3>
                             출발 시간 : <input type="time" name="enrollStartDate" class="enroll-date" value="09:00" required>&nbsp;&nbsp;
@@ -142,27 +138,30 @@
                                     <h3>경로길 그리기</h3>
                                 </div>
                                 <div id="map" style="width:100%;height:350px;"></div>
-                                <div style="display: flex;">
+                                <div id="map-search">
                                     <input type="hidden" name="locationCoordinate" id="locationCoordinate">
-                                    <div>
-                                        <input type="text" name="" id="start-keyword" placeholder="출발지를 검색 해 주세요!">
+                                    <div style="display: flex; flex-direction: column;">
+                                        <input type="text" name="" id="start-keyword" placeholder="출발지를 검색 해 주세요!"><br>
                                         <button id="start-btn" onclick="setOrigin();">해당 마커 출발지로 설정하기</button>
                                     </div>
-                                    <div>
-                                        <input type="text" name="" id="arrival-keyword" placeholder="도착지를 검색 해 주세요!">
+                                    <div style="margin-top: 5px; ">
+                                        <img src="/thrifty/resources/images/carpool/exchange.png" id="change-val">
+                                    </div>
+                                    <div style="display: flex; flex-direction: column;">
+                                        <input type="text" name="" id="arrival-keyword" placeholder="도착지를 검색 해 주세요!"><br>
                                         <button id="arrival-btn" onclick="setDestination();">해당 마커 도착지로 설정하기</button>
                                     </div>
                                 </div>
-                                <div>
-                                    <button onclick="drowPath(document.getElementById('origin').value, document.getElementById('destination').value)">경로길그리기</button>
+                                <div style="display: flex; flex-direction: column;" id="carpool-enroll-footer">
+                                    <button id="drawpath" class="draw-btn" onclick="drowPath(document.getElementById('origin').value, document.getElementById('destination').value)">경로길그리기</button>
                                     <input type="hidden" name="origin" id="origin">
                                     <input type="hidden" name="destination" id="destination">
-                                    <button onclick="removeMarkers();">다시 그리기</button>
+                                    <button onclick="removeLine();" class="draw-btn" id="redraw">다시 그리기</button>
                                 </div>
                             </div>
                         </div>
                         <div id="enroll-footer">
-                            <button id="enroll-btn">게시글 등록하기</button>
+                            <button id="carpool-enroll-btn">게시글 등록하기</button>
                         </div>
                     <!-- </form> -->
                 </div>
@@ -181,12 +180,38 @@
 
         $("#arrival-btn").click(function(){
             $("#arrival-keyword").prop("disabled" , true);
+            $("#arrival-keyword").css("background" , "lightgray");
         })
 
         $("#start-btn").click(function(){
             $("#start-keyword").prop("disabled" , true);
+            $("#start-keyword").css("background" , "lightgray");
+        })
+
+        $("#change-val").click(function(){
+            let temp = $("#start-keyword").val();
+            $("#start-keyword").val($("#arrival-keyword").val());
+            $("#arrival-keyword").val(temp);
+        })
+
+        $("#redraw").click(function(){
+            $("#arrival-keyword").prop("disabled" , false);
+            $("#start-keyword").prop("disabled" , false);
+            $("#arrival-keyword").css("background" , "white");
+            $("#start-keyword").css("background" , "white");
+        })
+
+        $("#get-in-car").click(function(){
+            alert("차 번호판이 보이는 사진을 올려주세요.");
+            $("#car-img").css("display" , "");
+        })
+
+        $("#i-want-car").click(function(){
+            $("#car-img").css("display" , "none");
         })
     })
+
+
 
 </script>
 

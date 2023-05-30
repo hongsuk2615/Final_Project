@@ -51,7 +51,7 @@ function removeMarkers() {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
     }
-    markers = [];    
+    markers = [];
 }
 
 function setCenter(La, Ma) {            
@@ -150,4 +150,12 @@ function drowPath(origin, destination){
 
         }
     })
+}
+
+let polyline = new kakao.maps.Polyline();
+
+
+function removeLine() {
+    document.getElementById('map').innerHTML='';
+    map = new kakao.maps.Map(mapContainer, mapOption); 
 }
