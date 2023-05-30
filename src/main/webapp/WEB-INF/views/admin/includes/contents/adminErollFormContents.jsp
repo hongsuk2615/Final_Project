@@ -24,16 +24,39 @@
                     <div class="col-12">
                         <div class="card card-outline card-info">
                             <div class="card-header">
-                                <h3>제목?</h3>
+                            	<div class="row justify-content-between  align-items-end">
+                            		<div class="col-md-10">
+		                                <div class="input-group">
+										  <div class="input-group-prepend">
+										    <span class="input-group-text font-weight-bold" id="inputGroup-sizing-default">제목</span>
+										  </div>
+										  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+										</div>
+									</div>
+									<div class="col-md-2 text-right">
+										<select class="form-select" aria-label="Default select example">
+										  <option value="1">쉐어하우스</option>
+										  <option value="2">카풀</option>
+										  <option value="3">중고거래</option>
+<!-- 										  <option value="3">대타서비스</option> -->
+										  <option value="3">공동구매</option>
+										  <option value="6">소모임</option>
+										</select>
+									</div>
+								</div>
                             </div>
                             <div class="card-body">
                                 <div id="container">
                                     <div id="editor"></div>
                                 </div>
+   								<div class="row justify-content-end mb-2">
+									<div class="col-sm-12 col-md-6 text-right">
+										<a href="${pageContext.request.contextPath}/admin/enrollForm/notice" class="btn btn-primary">등록</a>
+									</div>
+								</div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 

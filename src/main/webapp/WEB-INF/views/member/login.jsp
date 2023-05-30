@@ -43,7 +43,7 @@
                     <div>알뜰살뜰 로그인</div>
                 </div>
                 <div id="login-form">
-                    <form action="/login" method="post">
+                    <form action="/admin/login" method="post">
                         <div>
                             <img src="/thrifty/resources/images/login/help.png" alt="로그인 이미지" width="40" height="40">
                             <input type="text" name="userId" placeholder="아이디">

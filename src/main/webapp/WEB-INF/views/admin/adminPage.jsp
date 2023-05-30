@@ -9,6 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Starter</title>
   <jsp:include page="./includes/adminHead.jsp" />
+  <c:if test="${contents eq '.btn-write'}">
+  	<jsp:include page="./includes/ckeditorStyle.jsp" />
+  </c:if>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -35,7 +38,7 @@
 				<jsp:include page="./includes/contents/adminFaqContent.jsp" />
 			</c:when>
 			<c:when test="${contents eq '.btn-write'}">
-				<jsp:include page="./includes/contents/adminEditorContents.jsp" />
+				<jsp:include page="./includes/contents/adminErollFormContents.jsp" />
 			</c:when>
 		</c:choose>
 		<jsp:include page="./includes/adminControllSidebar.jsp" />
