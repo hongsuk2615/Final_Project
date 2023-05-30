@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/thrifty/resources/css/member/find.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/enroll.css">
     <title>Document</title>
+    <meta name ="google-signin-client_id" content="">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
     <div id="header" class="background_basic">
@@ -72,6 +74,12 @@
                 </div>
             </div>
         </div>
+        
+        <ul>
+            <li id="GgCustomLogin">
+            </li>
+        </ul>
+
     </div>
     <script src="/thrifty/resources/js/member/modal.js"></script>
     <script src="/thrifty/resources/js/member/login-enroll.js"> </script>
