@@ -61,8 +61,8 @@ public class AdminController {
 	@GetMapping(value = { "", "/home" } )
 	public String adminHome(Model model, HttpSession session) {
 		
-		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		System.out.println(loginAdmin);
+		Member loginAdmin = (Member) session.getAttribute("loginAdmin");
+		
 		if(loginAdmin != null) {
 			model.addAttribute("contents", "home");
 			
@@ -75,15 +75,13 @@ public class AdminController {
 	@GetMapping("/member")
 	public String adminMember(Model model, HttpSession session, HttpServletRequest request) {
 		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		System.out.println(request.getServletContext()); 
+
 		if(loginAdmin != null) {
 			
 			List<Member> memberList = adminService.memberList();
 			
 			model.addAttribute("contents", ".sidebar-member");
 			model.addAttribute("memberList", memberList);
-			
-			
 			
 			return "admin/adminPage";
 		}else {
