@@ -1,0 +1,140 @@
+#car-pool-header {
+    width: 950px;
+    height: 400px;
+    display: flex;
+    border-radius: 20px;
+}
+
+#bg {
+    width: 950px;
+    height: 400px;
+    background-color: black;
+    border-radius: 80px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/thrifty/resources/images/carpool/carpool.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 40px;
+    
+}
+
+#car-pool-search-input {
+    width: 500px;
+    height: 30px;
+    border-radius: 10px;
+    border: 0;
+    padding-left: 10px;
+}
+
+#car-pool-service {
+    font-weight: 600;
+    font-size: xx-large;
+}
+
+#car-pool-title {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#car-pool-search {
+    display: flex;
+    align-items: center;
+}
+
+#car-pool-search img {
+    width: 30px;
+    height: 30px;
+}
+
+#car-pool-body {
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+#location-btn {
+    width: 900px;
+    height: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30px;
+}
+
+#location-btn button {
+    background-color: rgb(0, 60, 120);
+    width: 80px;
+    height: 40px;
+    color: white;
+    border-radius: 10px;
+}
+
+#coment {
+    display: flex;
+    align-items: center;
+    font-size: x-large;
+    background-color: rgb(201, 201, 201); 
+    color: white; height: 100px;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+#location-btn {
+    display: none;
+}
+
+#car-pool-location-header {
+    display: flex;
+}
+
+#location-search-btn {
+    background: none;
+    border: 0;
+}
+
+#location-search-btn:hover {
+    cursor: pointer;
+}
+
+#drive button:hover , #occupant button:hover {
+    transition: all 0.15s linear;
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+
+#drive button , #occupant button {
+    background-color: rgb(0, 60, 120);
+    border-radius: 10px;
+}
+
+#car-pool-type {
+    display: flex;
+    justify-content: space-evenly;
+    height: 300px;
+    padding: 50px;
+}
+
+#car-pool-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background: #f0f4fe;
+    height: 2500px;
+    padding: 300px;
+}
+
+#car-pool-footer1, #car-pool-footer3 {
+    display: flex;   
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#car-pool-footer2 {
+    display: flex;
+    align-items: center;
+}
+
