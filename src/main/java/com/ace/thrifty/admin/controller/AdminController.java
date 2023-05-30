@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,9 +73,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/member")
-	public String adminMember(Model model, HttpSession session) {
+	public String adminMember(Model model, HttpSession session, HttpServletRequest request) {
 		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		
+		System.out.println(request.getServletPath()); 
 		if(loginAdmin != null) {
 			
 			List<Member> memberList = adminService.memberList();
