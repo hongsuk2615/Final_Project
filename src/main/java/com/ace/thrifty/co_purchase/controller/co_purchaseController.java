@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/co_purchase")
 public class co_purchaseController {
 
-	@GetMapping("/main")
+	@GetMapping(value = {"", "/main"})
 	public String usedProduct() {
 		return "co_purchase/purchaseMain";
 	}
