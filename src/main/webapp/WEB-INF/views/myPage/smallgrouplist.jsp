@@ -158,7 +158,7 @@
                     </div>
                     <div class="body-right-butt">
                       <div class="body-right-butt-content">
-                      <button type="button" class="btn btn-primary">글쓰기</button>
+                      <a class="btn btn-primary" href="${pageContext.request.contextPath}/smallGroup/boardEnrollForm">글쓰기</a>
                       </div>
                     </div>
                 </div>
