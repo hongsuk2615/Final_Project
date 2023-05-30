@@ -114,10 +114,10 @@ function enroll(){
                     </tr>
                     <tr>
                         <td class="input">
-                            <input type="text" id="userId" name="userId" onkeyup="regCheckId(this);">
+                            <input type="text" id="userId" name="userId" onkeyup="regCheckId();">
                         </td>
                         <td>
-                            <button type="button" onclick="validateId();">중복확인</button>
+                            <button type="button" onclick="validateId('on');">중복확인</button>
                         </td>
                     </tr>
                     <tr>
@@ -128,7 +128,7 @@ function enroll(){
                     </tr>
                     <tr>
                         <td class="input">
-                            <input type="password" id="userPwd" name="userPwd" onkeyup="regCheckPwd(this);">
+                            <input type="password" id="userPwd" name="userPwd" onkeyup="regCheckPwd();">
                         </td>
                         <td></td>
                     </tr>
@@ -140,7 +140,7 @@ function enroll(){
                     </tr>
                     <tr>
                         <td class="input">
-                            <input type="password" onkeyup="checkPwd(this);">
+                            <input type="password" id="checkPwd" onkeyup="checkPassword();">
                         </td>
                         <td></td>
                     </tr>
@@ -152,10 +152,10 @@ function enroll(){
                     </tr>
                     <tr>
                         <td class="input">
-                            <input type="email" id="email" name="email" onkeyup="regCheckEmail(this);">
+                            <input type="email" id="email" name="email" onkeyup="regCheckEmail();">
                         </td>
                         <td>
-                            <button type="button" onclick="validateEmail()">중복확인</button>
+                            <button type="button" onclick="validateEmail('on')">중복확인</button>
                         </td>
                     </tr>
                     <tr>
@@ -166,10 +166,10 @@ function enroll(){
                     </tr>
                     <tr>
                         <td class="input">
-                            <input type="text" id="nickName" name="nickName">
+                            <input type="text" id="nickName" name="nickName" onkeyup="regCheckNickName();">
                         </td>
                         <td>
-                            <button type="button" onclick="validateNickName()" >중복확인</button>
+                            <button type="button" onclick="validateNickName('on')" >중복확인</button>
                         </td>
                     </tr>
                     <tr>
@@ -180,7 +180,7 @@ function enroll(){
                     </tr>
                     <tr>
                         <td class="input">
-                            <input type="text" name="userName" id="userName" onkeyup="regCheckName(this);">
+                            <input type="text" name="userName" id="userName" onkeyup="regCheckName();">
                         </td>
                         <td></td>
                     </tr>      
@@ -192,7 +192,7 @@ function enroll(){
                     </tr>
                     <tr>
                         <td class="input">
-                            <input type="text" id="phone" name="phone" onkeyup="regCheckPhone(this);">
+                            <input type="text" id="phone" name="phone" onkeyup="regCheckPhone();">
                         </td>
                         <td></td>
                     </tr>
@@ -231,7 +231,7 @@ function enroll(){
                 </div>
                 <div class="justify-center" >
                     <button type="button"  id ="cancel-btn" onclick="login();">취소</button>
-                    <button type="button" onclick="insertMember();" id="enroll-btn">회원가입</button>
+                    <button type="button" onclick="validateEnroll();" id="enroll-btn">회원가입</button>
                 </div>
             </form>
         </div>

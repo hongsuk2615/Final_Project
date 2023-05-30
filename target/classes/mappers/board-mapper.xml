@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper">
+
 	<resultMap type="board" id="boardResultSet">
 		<id column="BOARD_NO" property="boardNo"/>
 		<result column="CATEGORY_S_NO"  property="categorySNo"/>
@@ -11,7 +12,12 @@
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
+	</resultMap>
 	
+	<resultMap type="upperCategory" id="upperCategoryResultSet">
+		<id column="CATEGORY_U_NO" property="categoryUNo"/>
+		<result column="CATEGORY_U_NAME" property="categoryUName"/>
+		<result column="CATEGORY_PATH" property="categoryPath"/>
 	</resultMap>
 	
 	<select id="selectBoard" resultMap="boardResultSet">
@@ -19,4 +25,10 @@
 		  FROM BOARD
 		 WHERE BOARD_NO = 1;
 	</select>
+	
+	<select id="selectCategoryList" resultMap="upperCategoryResultSet">
+		SELECT *
+		  FROM UPPER_CATEGORY;
+	</select>
+	
 </mapper>
