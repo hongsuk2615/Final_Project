@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="co_purchaseMapper">
+	<resultMap type="board" id="boardResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="CATEGORY_S_NO"  property="categorySNo"/>
+		<result column="CONTENT"  property="content"/>
+		<result column="CREATE_DATE"  property="createDate"/>
+		<result column="READ_COUNT"  property="readCount"/>
+		<result column="REPORT_COUNT"  property="reportCount"/>
+		<result column="TITLE"  property="title"/>
+		<result column="USER_NO"  property="userNo"/>
+		<result column="WISH_COUNT"  property="wishCount"/>
+	</resultMap>
+	
+	<insert id="insertBoard" parameterType="board">
+		<selectKey keyProperty="boardNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_BNO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO BOARD(BOARD_NO, CATEGORY_S_NO, USER_NO, TITLE, CONTENT)
+					VALUES (#{boardNo}, #{categorySNo}, #{userNo}, #{title}, #{content})
+	</insert>
+</mapper>

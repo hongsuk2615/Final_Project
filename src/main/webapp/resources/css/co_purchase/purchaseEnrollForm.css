@@ -22,11 +22,11 @@
     cursor: pointer;
 }
 
-#title{
+#enroll_title{
     width: 700px;
     border: none;
 }
-#title:focus{
+#enroll_title:focus{
     outline: none;
 }
 

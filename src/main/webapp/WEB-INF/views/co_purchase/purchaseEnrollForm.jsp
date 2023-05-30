@@ -50,7 +50,7 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
-                <form action="">
+                <form action="insert" method="post">
                     <div id="cat_title">
                         <div id="cat_title_1">글쓰기</div>
                         <input type="submit" id="submit_button" value="등록">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="write_case">
                         <div class="write_case_head">제목</div>
-                        <input type="text" id="title" class="" name="title">
+                        <input type="text" id="enroll_title" class="" name="title">
                     </div>
                     <div id="fileUpload">
                         <div id="fileUpload_0" class="write_case">
