@@ -75,7 +75,7 @@ public class AdminController {
 	@GetMapping("/member")
 	public String adminMember(Model model, HttpSession session, HttpServletRequest request) {
 		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		System.out.println(request.getServletPath()); 
+		System.out.println(request.getServletContext()); 
 		if(loginAdmin != null) {
 			
 			List<Member> memberList = adminService.memberList();
