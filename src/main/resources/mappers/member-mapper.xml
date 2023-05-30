@@ -11,7 +11,9 @@
 		<result column="PHONE" property="phone"/>
 		<result column="PWD_UPDATE_DATE" property="pwdUpdateDate"/>
 		<result column="IS_BANNED" property="isBanned"/>
-		<result column="REPORT_COUNT" property="reportCount"/>	
+		<result column="REPORT_COUNT" property="reportCount"/>
+		<result column="CURRENT_LOGIN" property="currentLogin"/>
+		<result column="JOIN_DATE" property="joinDate"/>
 	</resultMap>
 	
 	<select id="selectMember" resultMap="memberResultSet">

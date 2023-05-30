@@ -21,4 +21,6 @@ public class Member {
 	private Date pwdUpdateDate;
 	private String isBanned;
 	private int reportCount;
+	private String currentLogin;
+	private Date joinDate;
 }
