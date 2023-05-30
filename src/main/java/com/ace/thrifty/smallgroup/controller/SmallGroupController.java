@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ace.thrifty.board.model.service.BoardService;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 
 
 @Controller
-@RequestMapping("/smallgroup")
+@RequestMapping("/smallGroup")
 public class SmallGroupController {
 	
 	@Autowired
@@ -37,12 +38,13 @@ public class SmallGroupController {
 	@PostMapping("/insert")
 	public String insertBoard(
 			Model model,
+			SmallGroup sg,
 			Board b, HttpSession session) {
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		b.setUserNo(userNo);
 		
 		
-		boardService.insertBoard(b);
+		boardService.insertBoard(b, sg);
 		return "myPage/smallgrouplist";
 	}
 			

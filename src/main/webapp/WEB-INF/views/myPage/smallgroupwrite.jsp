@@ -114,6 +114,23 @@
         border: solid 2px;
         text-align: center;
     }
+    
+    .body-right-title-h2{
+    	margin: 10px 20px 20px 0px;
+        border-radius: 4rem;
+        background-color: #ffffff;
+        border: solid 2px;
+        text-align: center;
+    }
+    
+    .body-right-title-h3{
+    	margin: 10px 10px 20px 20px;
+        border-radius: 4rem;
+        background-color: #ffffff;
+        border: solid 2px;
+        text-align: center;
+    }
+    
   
     .body-right-body-content{
         width:100%;
@@ -161,6 +178,7 @@
 </style>
 </head>
 <body>
+	<form>
     <div id="wrapper">
         <div id="header">
 			<jsp:include page="../common/header.jsp"/>
@@ -177,14 +195,15 @@
 
 
             <div id="body-right">
-              <form action= '<c:url value='/smallgroup/insert'/>' method="post">
+            
                 <div id="body-right-header">
                   <div id="body-right-header-left">
                     
-                        <h4 class="body-right-title-h4">소모임 그룹 게시판 상세보기 </h2>
+                        
+                    	<input type="text" placeholder="지역" class="body-right-title-h2" name="smallLocation">
+                    	<input type="text" placeholder="모집인원" class="body-right-title-h3" name="recruitNo">
                     
-                    
-                        <input type="text" class="body-right-title-h4" id="writetitle" name="title"></text>
+                        <input type="text" placeholder="제목	"class="body-right-title-h4" id="writetitle" name="title">
                     
                    
                         <div class="input-group">
@@ -241,7 +260,7 @@
              
                 
                 
-               </form>
+              
             </div>
         </div>
 
@@ -252,7 +271,7 @@
 
         </div>
     </div>
-    
+    </form>
     
    
 </body>
