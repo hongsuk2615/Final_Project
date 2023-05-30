@@ -30,10 +30,18 @@ public class BoardServiceImp implements BoardService{
 	
 	@Override
 	public int insertBoard(Board b, SmallGroup sg) {
-		int result = boardDao.insertBoard(b, sg);
-		return result;
+		int result1 = 0;
+		int result2 = 0;
 		
+		result1 = boardDao.insertBoard(b); 
 		
+		if(result1 > 0) {
+			sg.setBoardNo(b.getBoardNo());
+			
+			result2 = boardDao.insertSmallGroup(sg);
+		}
+
+		return result1*result2;
 	
 	}
 	

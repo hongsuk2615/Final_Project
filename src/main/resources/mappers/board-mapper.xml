@@ -23,7 +23,7 @@
 	<select id="selectBoard" resultMap="boardResultSet">
 		SELECT *
 		  FROM BOARD
-		 WHERE BOARD_NO = 1;
+		 WHERE BOARD_NO = 1
 	</select>
 	
 	<select id="selectBoardListCount" resultType="_int">
@@ -47,10 +47,18 @@
 		#{content},
 		#{userNo}
 		)
+		<selectKey resultType="int" keyProperty="boardNo" keyColumn="BOARD_NO" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
+	
+	<insert id="insertSmallGroup">
+		INSERT INTO SMALL_GROUP VALUES(#{boardNo}, #{smallLocation}, #{recruitNo}) 
+	</insert>
+	
 	<select id="selectCategoryList" resultMap="upperCategoryResultSet">
 		SELECT *
-		  FROM UPPER_CATEGORY;
+		  FROM UPPER_CATEGORY
 	</select>
 	
 </mapper>

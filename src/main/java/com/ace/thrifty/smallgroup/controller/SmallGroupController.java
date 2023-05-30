@@ -40,11 +40,16 @@ public class SmallGroupController {
 			Model model,
 			SmallGroup sg,
 			Board b, HttpSession session) {
-		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo(); 
 		b.setUserNo(userNo);
 		
+		int result = boardService.insertBoard(b, sg); 
 		
-		boardService.insertBoard(b, sg);
+		if(result>0) {
+			model.addAttribute("alertmsg", "작성성공");
+		}
+		
 		return "myPage/smallgrouplist";
 	}
 			
