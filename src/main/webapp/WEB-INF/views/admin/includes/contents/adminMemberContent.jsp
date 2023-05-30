@@ -60,11 +60,12 @@
 										<table class="table table-striped">
 											<thead>
 												<tr>
+													<th rowspan="1" colspan="1">번호</th>
+													<th rowspan="1" colspan="1">유저ID</th>
 													<th rowspan="1" colspan="1">닉네임</th>
-													<th rowspan="1" colspan="1">카테고리</th>
-													<th rowspan="1" colspan="1">제목</th>
-													<th rowspan="1" colspan="1">생성일</th>
-													<th rowspan="1" colspan="1">조회수</th>
+													<th rowspan="1" colspan="1">현재 로그인</th>
+													<th rowspan="1" colspan="1">가입일</th>
+													<th rowspan="1" colspan="1">신고횟수</th>
 													<th rowspan="1" colspan="1">상태</th>
 													<th rowspan="1" colspan="1">관리</th>
 												</tr>

@@ -1,4 +1,6 @@
-package com.ace.thrifty.admin.dao;
+package com.ace.thrifty.admin.model.dao;
+
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +20,9 @@ public class AdminDao {
 	
 	public Member loginAdmin(Member m) {
 		return sqlSession.selectOne("adminMapper.loginAdmin", m);
+	}
+	
+	public List<Member> memberList() {
+		return sqlSession.selectList("adminMapper.memberList");
 	}
 }
