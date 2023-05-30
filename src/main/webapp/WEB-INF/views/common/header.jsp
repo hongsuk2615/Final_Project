@@ -15,14 +15,16 @@
     <link rel="stylesheet" href="/thrifty/resources/css/member/find.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/enroll.css">
     <title>Document</title>
-    <meta name ="google-signin-client_id" content="">
+    <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
     <div id="header" class="background_basic">
         <div id="header_1">
             <div id="header_1_1">
-                <div id="main_logo" class="header_img_white"></div>
+                <a href="/thrifty/">
+                    <div id="main_logo" class="header_img_white"></div>
+                </a>
             </div>
             <div id="header_1_2">
             <c:choose>
@@ -90,6 +92,8 @@
     <script src="/thrifty/resources/js/member/modal.js"></script>
     <script src="/thrifty/resources/js/member/login-enroll.js"> </script>
     <script src="/thrifty/resources/js/member/validate.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    <script src="/thrifty/resources/js/googleAPI/googleLogin.js"></script>
     
 </body>
 </html>
