@@ -8,4 +8,10 @@ public interface MemberService {
 	public int insertMember(Member m);
 	
 	public Member loginMember(Member m);
+	
+	public Member selectById(String userId);
+	
+	public Member selectByEmail(String email);
+	
+	public Member selectByNickName(String nickName);
 }

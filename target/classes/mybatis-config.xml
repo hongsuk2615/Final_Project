@@ -8,6 +8,7 @@
 		<typeAlias type="com.ace.thrifty.house.model.vo.House" alias="house"/>
 		<typeAlias type="com.ace.thrifty.house.model.vo.Room" alias="room"/>
 		<typeAlias type="com.ace.thrifty.house.model.vo.RoomImg" alias="roomImg"/>
+		<typeAlias type="com.ace.thrifty.board.model.vo.UpperCategory" alias="upperCategory"/>
 	</typeAliases>
 	
 	<!-- 
@@ -19,6 +20,7 @@
 		<mapper resource="/mappers/board-mapper.xml"/>
 		<mapper resource="/mappers/member-mapper.xml"/>
 		<mapper resource="/mappers/house-mapper.xml"/>
+		<mapper resource="/mappers/admin-mapper.xml"/>
 
 	</mappers>
 

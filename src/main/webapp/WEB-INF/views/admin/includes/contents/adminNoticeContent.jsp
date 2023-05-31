@@ -37,22 +37,25 @@
 								<li class="nav-item"><a class="nav-link" data-toggle="pill" href="#custom-tabs-one-settings">자유게시판</a></li>
 								<li class="nav-item" style="margin-left: auto;">
 									<div class="card-tools">
-									<div class="input-group input-group-sm" style="width: 180px;">
-									<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-									<div class="input-group-append">
-									<button type="submit" class="btn btn-default">
-									<i class="fas fa-search"></i>
-									</button>
-									</div>
-									</div>
+										<div class="input-group input-group-sm" style="width: 180px;">
+											<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+											<div class="input-group-append">
+												<button type="submit" class="btn btn-default">
+													<i class="fas fa-search"></i>
+												</button>
+											</div>
+										</div>
 									</div>
 								</li>
 							</ul>
-							
 						</div>
 						<div class="card-body">
-														<div id="example1_wrapper"
-								class="dataTables_wrapper dt-bootstrap4">
+							<div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+								<div class="row justify-content-end mb-2">
+									<div class="col-sm-12 col-md-6 text-right">
+										<a href="${pageContext.request.contextPath}/admin/enrollForm/notice" class="btn btn-secondary">글 작성</a>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-sm-12">
 										<table class="table table-striped">

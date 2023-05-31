@@ -1,3 +1,9 @@
+/*   *{
+        border: 1px solid blue !important;
+        box-sizing: border-box;
+    }        
+ */
+
 .scrollbar::-webkit-scrollbar {
     width: 10px;  
 }
