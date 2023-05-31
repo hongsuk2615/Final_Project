@@ -1,7 +1,9 @@
 package com.ace.thrifty.ptj.model.service;
 
+import com.ace.thrifty.ptj.model.vo.Ptj;
+
 public interface PtjService {
 
-//	public void
+	public Ptj selectPtjDetail(int boardNo);
 	
 }

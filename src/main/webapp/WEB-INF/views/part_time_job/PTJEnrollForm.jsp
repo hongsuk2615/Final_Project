@@ -68,7 +68,7 @@
                 </div>
                 <hr>
                 <div id="enroll">
-                    <form>
+                    <form id="ptj-enroll-form" action="${contextPath}/ptj/insert">
                         <div id="enroll-header">
                             <h3>대표 이미지 <input type="file"></h3>
                             <h2>제목 : &nbsp;<input name="enrollTitle" id="enroll-title" required placeholder="제목을 적어주세요."></h2><br>
@@ -91,6 +91,7 @@
                                 </select>
                             </h3>
                             <hr>
+                            <input type="hidden" name="boardNo" value="${empty p.boardNo ? 0 : p.boardNo}" />
                             <h3>급여 : </h3><input type="number" id="enroll-price" required>&nbsp;원
                             <hr>
                             <h3>시간 : </h3>

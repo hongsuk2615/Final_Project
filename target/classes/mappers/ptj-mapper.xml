@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ptjMapper">
+
+<resultMap type="ptj" id="ptjDetailResultSet">
+	<result column="BOARD_NO" property="boardNo" />
+	<result column="LOCATION_NO" property="locationNo" />
+	<result column="PRICE" property="price" />
+	<result column="START_TIME" property="startTime" />
+	<result column="END_TIME" property="endTime" />
+	<result column="IS_END" property="isEnd" />
+	<result column="USER_NO" property="userNo" />
+	<!-- <result column="NICK_NAME" property="nickName" /> -->
+	<result column="CATEGORY_S_NO" property="categorySNo" />
+	<result column="TITLE" property="title" />
+	<result column="CONTENT" property="content" />
+	<result column="WISH_COUNT" property="wishCount"/>
+	<result column="LOCATION_NAME" property="locationName" />
+</resultMap>  
+
+<select id="selectPtjDetail" resultMap="ptjDetailResultSet">
+	SELECT
+		P.BOARD_NO,
+		P.LOCATION_NO,
+		P.PRICE,
+		P.START_TIME,
+		P.END_TIME,
+		P.IS_END,
+		B.CATEGORY_S_NO,
+		B.TITLE,
+		B.CONTENT,
+		B.WISH_COUNT,
+		L.LOCATION_NAME
+	FROM thrifty.PART_TIME_JOB P
+	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
+	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
+	WHERE P.BOARD_NO = #{boardNo}
+</select>
+  
+  
+</mapper>
