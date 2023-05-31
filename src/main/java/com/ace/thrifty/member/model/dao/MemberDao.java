@@ -23,4 +23,16 @@ public class MemberDao {
 	public Member loginMember(Member m) {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
+	
+	public Member selectById(String userId) {
+		return sqlSession.selectOne("memberMapper.selectById", userId);
+	}
+	
+	public Member selectByEmail(String email) {
+		return sqlSession.selectOne("memberMapper.selectByEmail", email);
+	}
+	
+	public Member selectByNickName(String nickName) {
+		return sqlSession.selectOne("memberMapper.selectByNickName", nickName);
+	}
 }

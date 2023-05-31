@@ -85,3 +85,17 @@
 #sns-login>div{
     margin: 10px;
 }
+
+#google_login{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    font-weight: 500;
+    padding-right: 20px;
+}
+
+#google_login img{
+    padding: 10px;
+}

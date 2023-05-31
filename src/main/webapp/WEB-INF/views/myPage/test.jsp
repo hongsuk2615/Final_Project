@@ -201,7 +201,8 @@
                     </div>
                     <div class="body-right-butt">
                       <div class="body-right-butt-content">
-                      <button type="button" class="btn btn-primary">글쓰기</button>
+                      <button onclick=light_mode()>낮</button>
+                      <button onclick=dark_mode()>밤</button>
                       </div>
                     </div>
                 </div>
@@ -308,6 +309,16 @@
 
         </div>
     </div>
+    <script>
+      function dark_mode() {
+          document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
+          document.querySelector("body").style.color="white";
+      }
+      function light_mode() {
+          document.querySelector("body").style.backgroundColor="white"; 
+          document.querySelector("body").style.color="black";
+      }
+</script>
     
 </body>
 </html>

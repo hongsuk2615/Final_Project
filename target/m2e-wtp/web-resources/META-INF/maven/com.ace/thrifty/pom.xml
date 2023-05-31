@@ -308,7 +308,14 @@
 		    <artifactId>aspectjweaver</artifactId>
 		    <version>${org.aspectj-version}</version>
 		</dependency>
-		
+
+		<!-- 암호화 -->
+		<!-- https://mvnrepository.com/artifact/org.jasypt/jasypt-spring4 -->
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt-spring31</artifactId>
+			<version>1.9.2</version>
+		</dependency>
 		
 					   
 	</dependencies>
