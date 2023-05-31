@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%System.out.println(request.getServletPath());
+System.out.println(request.getRequestURI());
+System.out.println(request.getRequestURL().toString().replace(request.getRequestURI(),""));
+	
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

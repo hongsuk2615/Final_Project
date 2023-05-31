@@ -40,9 +40,9 @@
         </div>
         <div id="header_2">
             <div id="header_2_1">
-            	<c:forEach var="category" items="${boardCategoryList}">
+            	<c:forEach var="upperCategory" items="${upperCategoryList}">
             		<div>
-                    <a class="main_category content_white change_content" href="/thrifty/${category.categoryPath}">${category.categoryUName}</a>
+                    <a class="main_category content_white change_content" href="/thrifty/${upperCategory.categoryPath}">${upperCategory.categoryUName}</a>
                     <div></div>
                 </div>
             	</c:forEach>

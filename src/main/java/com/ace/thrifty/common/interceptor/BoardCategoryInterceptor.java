@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.ace.thrifty.board.model.service.BoardService;
+import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
 
 
@@ -27,10 +28,15 @@ public class BoardCategoryInterceptor extends HandlerInterceptorAdapter{
 		//application scope객체 얻어오기
 		ServletContext application = request.getServletContext();
 		
-		if(application.getAttribute("boardCategoryList") == null) {
-			ArrayList<UpperCategory> list = (ArrayList<UpperCategory>) boardService.selectBoardCategoryList();
-			application.setAttribute("boardCategoryList", list);
+		if(application.getAttribute("upperCategoryList") == null) {
+			ArrayList<UpperCategory> upperList = (ArrayList<UpperCategory>) boardService.selectUpperCategoryList();
+			application.setAttribute("upperCategoryList", upperList);
 			
+		}
+		
+		if(application.getAttribute("subCategoryList") == null) {
+			ArrayList<SubCategory> subList = (ArrayList<SubCategory>) boardService.selectSubCategoryList();
+			application.setAttribute("subCategoryList", subList);
 		}
 		return true;
 	}
