@@ -5,6 +5,9 @@
 	<typeAliases>
 		<typeAlias type="com.ace.thrifty.member.model.vo.Member" alias="member"/>
 		<typeAlias type="com.ace.thrifty.board.model.vo.Board" alias="board"/>
+		<typeAlias type="com.ace.thrifty.house.model.vo.House" alias="house"/>
+		<typeAlias type="com.ace.thrifty.house.model.vo.Room" alias="room"/>
+		<typeAlias type="com.ace.thrifty.house.model.vo.RoomImg" alias="roomImg"/>
 	</typeAliases>
 	
 	<!-- 
@@ -15,6 +18,7 @@
 	<mappers>
 		<mapper resource="/mappers/board-mapper.xml"/>
 		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/house-mapper.xml"/>
 
 	</mappers>
 

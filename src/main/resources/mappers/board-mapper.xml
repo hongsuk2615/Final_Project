@@ -17,6 +17,12 @@
 	<select id="selectBoard" resultMap="boardResultSet">
 		SELECT *
 		  FROM BOARD
-		 WHERE BOARD_NO = 1;
+		 WHERE BOARD_NO = 1
 	</select>
+	
+	<insert id="insertBoard" useGeneratedKeys="true" parameterType="board" keyProperty="boardNo">
+		INSERT INTO BOARD (BOARD_NO, CATEGORY_S_NO, CONTENT, CREATE_DATE, READ_COUNT, REPORT_COUNT , TITLE, USER_NO, WISH_COUNT)
+		VALUES ( default, #{categorySNo}, #{content}, #{createDate}, #{readCount}, #{reportCount}, #{title}, #{userNo}, #{wishCount})
+	
+	</insert>
 </mapper>

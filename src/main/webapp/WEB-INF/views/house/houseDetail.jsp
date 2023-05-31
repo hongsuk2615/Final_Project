@@ -12,7 +12,11 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <style>
 
-        #title{
+		.wrap{
+		 padding-top: 155px;
+		}
+        
+        #sharetitle{
             text-align: center;
         }
 
@@ -210,23 +214,21 @@
         .wrap>div{
             margin: 10px 0px;
         }
-
+        body{
+			padding: 0;
+			margin: 0;
+		}
     </style>
 </head>
 <body>
 
-    <div>
-        header
-    </div>
+    <jsp:include page="../common/header.jsp"></jsp:include>
     <div class="wrap">
-    <div id="title"><h1>house이름^_^</h1></div>
+    <div id="sharetitle"><h1>house이름^_^</h1></div>
     <div class="img-bx">
         <div>
             <img src="f1.jpg">
         </div>
-
-        <div><img src="g1.jpg"></div>
-        <div><img src="h1.jpg"></div>
 
     </div>
 

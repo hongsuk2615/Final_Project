@@ -9,6 +9,7 @@
     <style>
 .wrap {
     display: flex;
+    padding-top: 155px;
 }
 
 #map{
@@ -35,9 +36,15 @@
     border-radius: 10px;
 }
 
+body{
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
 #housewrap{
     display: flex;
-    width: 95%;
+    width: 98%;
     height: 750px;
     flex-wrap: wrap;
     overflow:scroll;
@@ -118,8 +125,9 @@
 }
 
 #map {
-    height: 700px;
-    overflow: hidden;
+     height: 100vh;
+    
+    
 }
 .house div:nth-child(1){
     width: 100%;
@@ -135,12 +143,42 @@ input::-webkit-search-results-decoration{
     display:none;
 }
 
+#enrolldiv{
+	position: fixed;
+	right: 30px;
+	bottom : 30px;
+	z-index: 10;
+}
+
+#enrolldiv button{
+	cursor: pointer;
+	border-radius: 2.25em;
+	font-size: 18px;
+	background: white;
+	border: 2px solid blue;
+	height: 50px;
+	width: 230px;
+	color: blue;
+	font-weight: bold;
+	box-shadow: 0px 1px 5px 0px gray;
+}
+
+#enrolldiv button:hover{
+	background: blue;
+	color: white;
+}
+
+#enrolldiv a{
+	color: inherit;
+  text-decoration: none;
+}
+
     </style>
 </head>
 <body>
-    <div>header</div>
+   	<jsp:include page="../common/header.jsp"></jsp:include>
     <div class="wrap">
-
+ 	
 
    
     <div id="left">
@@ -225,33 +263,72 @@ input::-webkit-search-results-decoration{
         
     </div>
 <div id="map"></div>
+
+<div id="enrolldiv">
+		<button><a href="/thrifty/sharehouse/enrollForm">쉐어하우스 등록하기</a></button>
+</div>
 </div>
 
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7affe0955f76b728f0cbe6173319ad3"></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
-        level: 4 // 지도의 확대 레벨
-    };
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5381ed5b2d19ab0d65e938e3cce6e687"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
 
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
-// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-    markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
+		// 마커를 표시할 위치와 title 객체 배열입니다 
+		var positions = [ {
+			title : '카카오',
+			latlng : new kakao.maps.LatLng(33.450705, 126.570677)
+		}, {
+			title : '생태연못',
+			latlng : new kakao.maps.LatLng(33.450936, 126.569477)
+		}, {
+			title : '텃밭',
+			latlng : new kakao.maps.LatLng(33.450879, 126.569940)
+		}, {
+			title : '근린공원',
+			latlng : new kakao.maps.LatLng(33.451393, 126.570738)
+		} ];
 
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-    position: markerPosition, 
-    image: markerImage // 마커이미지 설정 
-});
+		// 마커 이미지의 이미지 주소입니다
+		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
-</script>
+		for (var i = 0; i < positions.length; i++) {
+
+			// 마커 이미지의 이미지 크기 입니다
+			var imageSize = new kakao.maps.Size(24, 35);
+
+			// 마커 이미지를 생성합니다    
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+			// 마커를 생성합니다
+			var marker = new kakao.maps.Marker({
+				map : map, // 마커를 표시할 지도
+				position : positions[i].latlng, // 마커를 표시할 위치
+				image : markerImage
+			// 마커 이미지 
+			});
+		}
+	</script>
+	
+	<script>
+	function selectLocation(){
+		$.ajax({
+			url : 'thrifty/sharehouse/selectLocation',
+			dataType : 'json',
+			success: function(result){ // result = [{제목 = 3838, 383899}, {제목 = 3838, 383899} ]
+
+				
+			
+			}
+			} 
+		})
+	</script>
 </body>
 </html>

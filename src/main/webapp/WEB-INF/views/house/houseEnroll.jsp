@@ -9,8 +9,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Document</title>
     <style>
+    
+    	body{
+    		margin: 0;
+    		padding: 0;
+    	}
         .wrap{
             margin: 0px 10vw;
+            padding-top: 155px;
+            padding-bottom: 30px;
         }
 
         #ask{
@@ -18,14 +25,14 @@
             justify-content: center;
             text-align: center;
         }
-        #content>div{
+        #homecontent>div{
             width: 100%;
         }
-        #title{
+        #sharetitle{
             text-align: center;
         }
 
-        #content{
+        #homecontent{
             border: 1px solid #999;
             border-radius: 5px;
             margin: 0px 280px;
@@ -101,26 +108,24 @@
     </style>
 </head>
 <body>
-    <div>
-        header
-    </div>
+     <jsp:include page="../common/header.jsp"></jsp:include>
     <div class="wrap">
-        <div id="content">
-    <div id="title">
+        <div id="homecontent">
+    <div id="sharetitle">
         <h2>임대관리 폼</h2>
     </div>
     <div id="ask">
         <div>
-        <form>
+        <form method="post" action="/thrifty/sharehouse/enroll" enctype="multipart/form-data">
 
-            <input type="text" placeholder="이름" name="name" id="name" disabled> <br><br>
+            <input type="text" placeholder="이름" name="userName" id="userName" disabled> <br><br>
             <input  type="tel" placeholder="연락처" name="phone" id="phone" disabled> <br><br>
             <button type="button" onclick="addRoom()">방 추가하기</button>
             * 첫번째 사진이 대표사진으로 설정됩니다. <br><br>
             <div id="roomAdd">
             <div id="roomImgsection">
-            <input type="text" placeholder="방 이름" name="name" id="name">
-            <input type="file" style="border: none;" multiple accept="image/gif, image/jpeg, image/png">
+            <input type="text" placeholder="방 이름" name="title" id="title0">
+            <input type="file" style="border: none;" name="roomImg0" multiple accept="image/gif, image/jpeg, image/png">
             <button type="button" id="closebtn">X</button>
             </div>
             </div>
@@ -138,40 +143,40 @@
                         <th>관리비</th>
                         <th>계약종료일</th>
                     </tr>
-                    <tr>
+                    <tr id="tb0">
                         <td>
-                            <input type="text" name="division">
-                        </td>
-                        <td>
-                            <input type="text" name="division">
-                        </td>
-                        <td>
-                            <input type="text" name="gender">
-                        </td>
-                        <td>
-                            <input type="text" name="type">
-                        </td>
-                        <td>
-                            <input type="text" name="area">
-                        </td>
-                        <td>
-                            <input type="text" name="deposit">
-                        </td>
-                        <td>
-                            <input type="text" name="rent">
-                        </td>
-                        <td>
-                            <input type="text" name="cost">
-                        </td>
-                        <td>
-                            <input type="text" name="contrat">
+                            <input value="1"type="text" name="recruitsNum">
+                        </td>      
+                        <td>       
+                            <input value="1"type="text" name="division">
+                        </td>      
+                        <td>      
+                            <input value="1"type="text" name="gender">
+                        </td>     
+                        <td>       
+                            <input value="1"type="text" name="type">
+                        </td>    
+                        <td>      
+                            <input value="1"type="text" name="area">
+                        </td>     
+                        <td>    
+                            <input value="1"type="text" name="deposit">
+                        </td>    
+                        <td>     
+                            <input value="1"type="text" name="rent">
+                        </td>    
+                        <td>     
+                            <input value="1"type="text" name="cost">
+                        </td>      
+                        <td>      
+                            <input value="1"type="text" name="contrat">
                         </td>
                     </tr>
                 </table>
             </div>
             <br>
             
-            <input type="text"  placeholder="위치" name="location" id="location">
+            <input type="text"  placeholder="위치" name="houseAddress" id="houseAddress">
             <button type="button" onclick="insertDaumPostcodeBtn();">주소검색</button>
             <br>
 
@@ -181,7 +186,7 @@
                 <input type="checkbox" name="injung" id="injung"  style="width: 10px;">
             <label  for="injung">개인정보수집에 동의합니다.</label> <br><br>
 
-                <button id="apply" type="button">신청하기</button><br>
+                <button id="apply">신청하기</button><br>
         </form>
     </div>
     </div>
@@ -200,18 +205,18 @@
             count++;
             
             let a = `
-            <div id="roomImgsection${count}" > 
-            <input type="text" placeholder="방 이름" name="name" id="name">
-            <input type="file" style="border: none;" multiple accept="image/gif, image/jpeg, image/png">
-            <button type="button" id="closebtn${count}" count='${count}'>X</button>
+            <div id="roomImgsection\${count}" > 
+            <input type="text" placeholder="방 이름" name="title" id="title\${count}">
+            <input type="file" style="border: none;" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png">
+            <button type="button" id="closebtn\${count}"count='\${count}'>X</button>
             </div>
             `
            $('#roomAdd').append(a);
 
            let b =`
-           <tr id="tb${count}">
+           <tr id="tb\${count}">
                 <td>
-                    <input type="text" name="division">
+                    <input type="text" name="recruitsNum">
                 </td>
                 <td>
                     <input type="text" name="division">
