@@ -12,12 +12,36 @@
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
+		<association property="smallGroup" resultMap="smallGroupResultSet"/>
+		<association property="member" resultMap="memberResultSet"/>
 	</resultMap>
 	
 	<resultMap type="upperCategory" id="upperCategoryResultSet">
 		<id column="CATEGORY_U_NO" property="categoryUNo"/>
 		<result column="CATEGORY_U_NAME" property="categoryUName"/>
 		<result column="CATEGORY_PATH" property="categoryPath"/>
+	</resultMap>
+	
+	<resultMap type="member" id="memberResultSet">
+		<id column="USER_NO" property="userNo"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="NICK_NAME" property="nickName"/>
+		<result column="GENDER" property="gender"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="PHONE" property="phone"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PWD_UPDATE_DATE" property="pwdUpdateDate"/>
+		<result column="IS_BANNED" property="isBanned"/>
+		<result column="REPORT_COUNT" property="reportCount"/>
+		<result column="CURRENT_LOGIN" property="currentLogin"/>
+		<result column="JOIN_DATE" property="joinDate"/>
+	</resultMap>
+	
+	<resultMap type="smallGroup" id="smallGroupResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="SMALL_LOCATION" property="smallLocation"/>
+		<result column="RECRUIT_NO" property="recruitNo"/>
 	</resultMap>
 	
 	<select id="selectBoard" resultMap="boardResultSet">
@@ -53,9 +77,18 @@
 		INSERT INTO SMALL_GROUP VALUES(#{boardNo}, #{smallLocation}, #{recruitNo}) 
 	</insert>
 	
+	<select id="selectSmallGroupDetail" parameterType="int" resultMap="boardResultSet">
+		SELECT B.BOARD_NO, B.CATEGORY_S_NO, B.TITLE, B.CONTENT, M.USER_NAME, SG.SMALL_LOCATION, SG.RECRUIT_NO
+		FROM BOARD B
+		JOIN SMALL_GROUP SG ON B.BOARD_NO = SG.BOARD_NO
+		JOIN MEMBER M ON B.USER_NO = M.USER_NO
+		WHERE B.BOARD_NO = #{boardNo}
+	</select>
+	
 	<select id="selectCategoryList" resultMap="upperCategoryResultSet">
 		SELECT *
 		  FROM UPPER_CATEGORY
 	</select>
+	
 	
 </mapper>

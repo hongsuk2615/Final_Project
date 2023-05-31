@@ -13,7 +13,7 @@ public interface BoardService {
 	
 	public int insertBoard(Board b, SmallGroup sg);
 	
-	
+	public Board selectSmallGroupDetail(int boardNo);
 	
 	public List<UpperCategory> selectBoardCategoryList();
 }

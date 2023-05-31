@@ -27,6 +27,11 @@ public class BoardDao {
 	public int insertSmallGroup(SmallGroup sg) {
 		return sqlSession.insert("boardMapper.insertSmallGroup", sg);
 	}
+	
+	public Board selectSmallGroupDetail(int boardNo) {
+		return sqlSession.selectOne("boardMapper.selectSmallGroupDetail", boardNo);
+	}
+	
 
 	public List<UpperCategory> selectBoardCategoryList() {
 		return sqlSession.selectList("boardMapper.selectCategoryList");

@@ -45,6 +45,11 @@ public class BoardServiceImp implements BoardService{
 		return result1*result2;
 	
 	}
+
+	@Override
+	public Board selectSmallGroupDetail(int boardNo) {
+		return boardDao.selectSmallGroupDetail(boardNo);
+	}
 	
 	
 	

@@ -53,7 +53,15 @@ public class SmallGroupController {
 		return "myPage/smallgrouplist";
 	}
 			
+	@GetMapping("/detail/{boardNo}")
+	public String selectSmallGroupDetail(@PathVariable("boardNo") int boardNo) {
 		
+		Board sgBoard = boardService.selectSmallGroupDetail(boardNo);
+		
+		System.out.println(sgBoard);
+		
+		return "smallgroupdetail";
+	}
 
 	
 

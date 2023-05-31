@@ -23,6 +23,7 @@ public class AdminDao {
 	}
 	
 	public List<Member> memberList() {
+		
 		return sqlSession.selectList("adminMapper.memberList");
 	}
 }
