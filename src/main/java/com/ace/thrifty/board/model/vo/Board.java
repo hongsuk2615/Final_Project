@@ -1,6 +1,9 @@
 package com.ace.thrifty.board.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +22,7 @@ public class Board {
 	private String title;
 	private int userNo;
 	private int wishCount;
+	
+	private ArrayList<Image> imgList;
+	private ArrayList<Co_purchase> coPurchaseList;
 }

@@ -1,15 +1,24 @@
 package com.ace.thrifty.co_purchase.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.co_purchase.model.service.Co_purchaseService;
+import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
 
 @Controller
 @RequestMapping("/co_purchase")
@@ -18,8 +27,23 @@ public class co_purchaseController {
 	@Autowired
 	private Co_purchaseService coService;
 
-	@GetMapping(value = {"", "/main"})
-	public String usedProduct() {
+	@GetMapping(value = {"", "/main/{categoryPath}"})
+	public String usedProduct(@PathVariable("categoryPath") String categoryPath, 
+							@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
+							Model model,
+							Board b,
+							@RequestParam Map<String, Object> paramMap,
+							HttpServletRequest req) {
+//		if(categoryPath == null) {
+		System.out.println(req.getServletPath());
+//		}
+		
+		Map<String, Object> map = new HashMap();
+		
+		coService.selectBoardList(currentPage, categoryPath, map);
+		
+		model.addAttribute("map", map);
+		
 		return "co_purchase/purchaseMain";
 	}
 	
@@ -35,8 +59,6 @@ public class co_purchaseController {
 	
 	@PostMapping("/insert")
 	public String insertBoard(
-						// @PathVariable("boardNo") String boardNo,
-						// Image img,
 						Board b
 						) {
 		

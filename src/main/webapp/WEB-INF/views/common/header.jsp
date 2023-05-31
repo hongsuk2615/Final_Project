@@ -44,9 +44,9 @@
             <div id="header_2_1">
             	<c:forEach var="category" items="${boardCategoryList}">
             		<div>
-                    <a class="main_category content_white change_content" href="/thrifty/${category.categoryPath}">${category.categoryUName}</a>
-                    <div></div>
-                </div>
+	                    <a class="main_category content_white change_content" href="/thrifty/${category.categoryPath}">${category.categoryUName}</a>
+	                    <div></div>
+                	</div>
             	</c:forEach>
                 <!-- <div>
                     <a class="main_category content_white change_content">공지사항</a>
