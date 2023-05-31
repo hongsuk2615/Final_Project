@@ -19,6 +19,7 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/javax/servlet/jstl/1.2/jstl-1.2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/junit/junit/4.7/junit-4.7.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/oracle/database/jdbc/ojdbc6/11.2.0.4/ojdbc6-11.2.0.4.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/oracle/database/jdbc/ucp/11.2.0.4/ucp-11.2.0.4.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/oracle/database/security/oraclepki/11.2.0.4/oraclepki-11.2.0.4.jar" enabled="true" runInBatchMode="false"/>
@@ -56,4 +57,41 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/aspectj/aspectjweaver/1.9.4/aspectjweaver-1.9.4.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/jasypt/jasypt-spring31/1.9.2/jasypt-spring31-1.9.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/jasypt/jasypt/1.9.2/jasypt-1.9.2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\annotations-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\catalina-ant.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\catalina-ha.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\catalina-ssi.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\catalina-storeconfig.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\catalina-tribes.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\catalina.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\ecj-4.20.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\el-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\jasper-el.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\jasper.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\jaspic-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\jsp-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\servlet-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\taglibs-standard-compat-1.2.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\taglibs-standard-impl-1.2.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\taglibs-standard-jstlel-1.2.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\taglibs-standard-spec-1.2.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-coyote.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-dbcp.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-i18n-cs.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-i18n-de.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-i18n-es.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-i18n-fr.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-i18n-ja.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-i18n-ko.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-i18n-pt-BR.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-i18n-ru.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-i18n-zh-CN.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-jdbc.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-jni.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-util-scan.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-util.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\tomcat-websocket.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\DEV\apache-tomcat-9.0.71\lib\websocket-api.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="PLUGIN" id="org.eclipse.jst.ws.annotations.core" enabled="true" runInBatchMode="false"/>
 </factorypath>

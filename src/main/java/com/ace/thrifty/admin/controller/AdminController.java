@@ -65,6 +65,7 @@ public class AdminController {
 		
 		if(loginAdmin != null) {
 			model.addAttribute("contents", "home");
+			List<Integer> infoBoxList = adminService.selectInfoBox();
 			
 			return "admin/adminPage";
 		}else {
