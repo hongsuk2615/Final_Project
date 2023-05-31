@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
@@ -22,12 +23,13 @@ import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
 
 @Controller
 @RequestMapping("/co_purchase")
+@SessionAttributes({"loginUser"})
 public class co_purchaseController {
 	
 	@Autowired
 	private Co_purchaseService coService;
 
-	@GetMapping(value = {"", "/main/{categoryPath}"})
+	@GetMapping("")
 	public String usedProduct(@PathVariable("categoryPath") String categoryPath, 
 							@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 							Model model,
