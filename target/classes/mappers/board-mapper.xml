@@ -32,7 +32,7 @@
 		WHERE BOARD_
 	</select>
 	
-	<insert id="insertBoard">
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="boardNo">
 		INSERT INTO BOARD
 		(
 		CATEGORY_S_NO,
@@ -47,9 +47,6 @@
 		#{content},
 		#{userNo}
 		)
-		<selectKey resultType="int" keyProperty="boardNo" keyColumn="BOARD_NO" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
 	</insert>
 	
 	<insert id="insertSmallGroup">

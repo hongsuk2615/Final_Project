@@ -36,13 +36,13 @@ public class SmallGroupController {
 	}
 	
 	@PostMapping("/insert")
-	public String insertBoard(
-			Model model,
-			SmallGroup sg,
-			Board b, HttpSession session) {
+	public String insertBoard( Model model, Board b, SmallGroup sg, HttpSession session) {
 		
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo(); 
 		b.setUserNo(userNo);
+		
+		System.out.println(sg);
+		System.out.println(b);
 		
 		int result = boardService.insertBoard(b, sg); 
 		

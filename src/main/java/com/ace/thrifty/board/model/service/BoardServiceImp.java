@@ -35,6 +35,7 @@ public class BoardServiceImp implements BoardService{
 		
 		result1 = boardDao.insertBoard(b); 
 		
+		System.out.println(b.getBoardNo());
 		if(result1 > 0) {
 			sg.setBoardNo(b.getBoardNo());
 			
