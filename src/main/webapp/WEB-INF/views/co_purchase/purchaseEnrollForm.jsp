@@ -56,9 +56,24 @@
                         <input type="submit" id="submit_button" value="등록">
                         
                     </div>
-                    <div class="write_case">
-                        <div class="write_case_head">제목</div>
-                        <input type="text" id="enroll_title" class="" name="title">
+                    <div id="title_main">
+                        <div id="write_title" class="write_case">
+                            <div class="write_case_head" style="width: 120px;">제목</div>
+                            <input type="text" id="enroll_title" class="" name="title">
+                        </div>
+                        <div class="write_case" style="width: 315px; display: flex; align-items: center;">
+                            <div class="write_case_head">
+                                카테고리
+                            </div>
+                            <div class="selectBox2 ">
+                                <button type="button" class="label">제목</button>  <!-- ajax로 label value값 넘겨서 뜨게해야됨 -->
+                                <ul class="optionList" style="display: none;">
+                                  <li class="optionItem">제목</li>
+                                  <li class="optionItem">작성자</li>
+                                  <li class="optionItem">내용</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div id="fileUpload">
                         <div id="fileUpload_0" class="write_case">
@@ -87,5 +102,6 @@
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
+    <script src="/thrifty/resources/js/co_purchase/main.js"></script>   
 </body>
 </html>

@@ -55,11 +55,8 @@
 		WHERE BOARD_NO = #{ boardNo }
 	</select>
 	
-	<insert id="insertBoard" parameterType="board" useGeneratedKeys="true" keyProperty="boardNo">
-<!-- 		<selectKey keyProperty="boardNo" resultType="_int" order="BEFORE"> -->
-<!-- 			SELECT SEQ_BNO.NEXTVAL FROM DUAL -->
-<!-- 		</selectKey> -->
-		INSERT INTO BOARD(BOARD_NO, CATEGORY_S_NO, USER_NO, TITLE, CONTENT)
-					VALUES (#{boardNo}, #{categorySNo}, #{userNo}, #{title}, #{content})
+	<insert id="insertBoard" parameterType="board">
+		INSERT INTO BOARD(CATEGORY_S_NO, USER_NO, TITLE, CONTENT)
+					VALUES (#{categorySNo}, #{userNo}, #{title}, #{content})
 	</insert>
 </mapper>

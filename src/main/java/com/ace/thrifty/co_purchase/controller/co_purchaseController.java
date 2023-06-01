@@ -29,8 +29,8 @@ public class co_purchaseController {
 	@Autowired
 	private Co_purchaseService coService;
 
-	@GetMapping("")
-	public String usedProduct(@PathVariable("categoryPath") String categoryPath, 
+	@GetMapping(value={"", "/main"})
+	public String usedProduct( 
 							@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 							Model model,
 							Board b,
@@ -42,7 +42,7 @@ public class co_purchaseController {
 		
 		Map<String, Object> map = new HashMap();
 		
-		coService.selectBoardList(currentPage, categoryPath, map);
+		//coService.selectBoardList(currentPage, categoryPath, map);
 		
 		model.addAttribute("map", map);
 		
@@ -66,7 +66,7 @@ public class co_purchaseController {
 		
 		int result = coService.insertBoard(b);
 		System.out.println(b);
-		return "";
+		return "co_purchase";
 	}
 	
 }
