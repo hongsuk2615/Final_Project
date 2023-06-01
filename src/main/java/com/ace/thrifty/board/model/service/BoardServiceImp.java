@@ -39,9 +39,9 @@ public class BoardServiceImp implements BoardService{
 		return boardDao.selectLocationList();
 	}
 
-	@Override
-	public Board selectSmallGroupDetail(int boardNo) {
-		return boardDao.selectSmallGroupDetail(boardNo);
+	@Override	
+	public int insertBoard(Board b) {
+		return boardDao.insertBoard(b);
 	}
 	
 //	@Override
