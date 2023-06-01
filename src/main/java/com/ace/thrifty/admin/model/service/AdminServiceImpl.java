@@ -33,7 +33,7 @@ public class AdminServiceImpl implements AdminService{
 
 
 	@Override
-	public List<Integer> selectInfoBox() {
+	public Map<String, Integer> selectInfoBox() {
 		return adminDao.selectInfoBox();
 	}
 

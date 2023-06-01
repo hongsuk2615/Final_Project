@@ -32,4 +32,13 @@
 		  AND STATUS = 'Y'
 		ORDER BY CURRENT_LOGIN DESC
 	</select>
+	
+	<select id="selectInfoBox" resultType="hashmap">
+		SELECT COUNT(*) as 'all', 
+	       (SELECT COUNT(*) FROM MEMBER WHERE CURRENT_LOGIN = 'Y' AND AUTHORITY = '1') as 'current',
+	       (SELECT COUNT(*) FROM MEMBER WHERE IS_BANNED = 'Y' AND AUTHORITY = '1') as 'ban',
+	       (SELECT COUNT(*) FROM MEMBER WHERE STATUS = 'N' AND AUTHORITY = '1') as 'Withdrawal'
+		FROM MEMBER
+		WHERE AUTHORITY = '1';
+	</select>
 </mapper>

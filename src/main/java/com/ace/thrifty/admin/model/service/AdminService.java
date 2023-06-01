@@ -11,5 +11,5 @@ public interface AdminService {
 	
 	List<Member> memberList();
 	
-	List<Integer> selectInfoBox();
+	Map<String, Integer> selectInfoBox();
 }

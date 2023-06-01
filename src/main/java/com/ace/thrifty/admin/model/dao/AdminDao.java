@@ -27,7 +27,7 @@ public class AdminDao {
 		return sqlSession.selectList("adminMapper.memberList");
 	}
 	
-	public List<Integer> selectInfoBox(){
-		return sqlSession.selectList("adminMapper.selectInfoBox");
+	public Map<String, Integer> selectInfoBox(){
+		return sqlSession.selectOne("adminMapper.selectInfoBox");
 	}
 }

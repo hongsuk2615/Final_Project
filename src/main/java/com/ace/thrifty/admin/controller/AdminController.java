@@ -64,8 +64,9 @@ public class AdminController {
 		Member loginAdmin = (Member) session.getAttribute("loginAdmin");
 		
 		if(loginAdmin != null) {
+			Map<String, Integer> infoBoxMap = adminService.selectInfoBox();
 			model.addAttribute("contents", "home");
-			List<Integer> infoBoxList = adminService.selectInfoBox();
+			model.addAttribute("infoBox", infoBoxMap);
 			
 			return "admin/adminPage";
 		}else {
