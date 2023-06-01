@@ -162,6 +162,10 @@
 
         </div>
     </div>
-    
+    <script type="text/javascript">
+    document.getElementById('write').addEventListener('click',function(){
+    	location.href = "/thrifty/usedProduct/enroll";
+    });
+    </script>
 </body>
 </html>
