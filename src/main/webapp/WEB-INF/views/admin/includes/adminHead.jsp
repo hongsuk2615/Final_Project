@@ -12,6 +12,7 @@
   
   <!-- 커스텀 -->
   <link rel="stylesheet" href="/thrifty/resources/css/admin/customStyle.css">
+  <link rel="stylesheet" href="/thrifty/resources/css/admin/member.css">
   
   <!-- ckeditor5  -->
 <!--   <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script> -->

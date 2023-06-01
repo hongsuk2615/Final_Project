@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Location;
+import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
-import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 
 @Repository
 public class BoardDao {
@@ -21,11 +22,23 @@ public class BoardDao {
 	}
 	
 	
-	public int insertBoard(Board b, SmallGroup sg) {
-		return sqlSession.insert("boardMapper.insertBoard", b, sg);
-	}
+//	public int insertBoard(Board b, SmallGroup sg) {
+//		return sqlSession.insert("boardMapper.insertBoard", b, sg);
+//	}
 
 	public List<UpperCategory >selectBoardCategoryList() {
-		return sqlSession.selectList("boardMapper.selectCategoryList");
+		return sqlSession.selectList("boardMapper.selectCategoryList");		
 	}
+	public List<UpperCategory >selectUpperCategoryList() {
+		return sqlSession.selectList("boardMapper.selectUpperCategoryList");
+	}
+	
+	public List<SubCategory>selectSubCategoryList() {
+		return sqlSession.selectList("boardMapper.selectSubCategoryList");
+	}
+	
+	public List<Location> selectLocationList(){
+		return sqlSession.selectList("boardMapper.selectLocationList");
+	}
+	
 }

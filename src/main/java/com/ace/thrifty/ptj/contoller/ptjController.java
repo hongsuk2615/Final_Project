@@ -22,7 +22,7 @@ public class ptjController {
 			return "part_time_job/PTJMain";
 		}
 		
-		@GetMapping("/list/{boardCode}")
-		public String PtjList(@PathVariable("boardCode"))
+//		@GetMapping("/list/{boardCode}")
+//		public String PtjList(@PathVariable("boardCode"))
 		
 }
