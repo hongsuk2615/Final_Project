@@ -44,4 +44,7 @@ public class BoardDao {
 		return sqlSession.selectList("boardMapper.selectLocationList");
 	}
 	
+	public int insertBoard(Board b) {
+		return sqlSession.insert("boardMapper.insertBoard",b);
+	}
 }
