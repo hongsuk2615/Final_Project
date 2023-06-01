@@ -10,7 +10,7 @@
     <link href="/thrifty/resources/css/part_time_job/part_time_job_enrollform.css" rel="stylesheet">
 <style>
     *{
-        border: 1px solid blue !important;
+        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -70,6 +70,7 @@
                 <div id="enroll">
                     <form>
                         <div id="enroll-header">
+                            <h3>대표 이미지 <input type="file"></h3>
                             <h2>제목 : &nbsp;<input name="enrollTitle" id="enroll-title" required placeholder="제목을 적어주세요."></h2><br>
                             <h3 id="enroll-content">내용 :  &nbsp;<textarea name="enrollContent" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required placeholder="날짜와 내용을 적어주세요."></textarea></h3>
                             <!-- <div id="좌표"></div> -->
@@ -78,12 +79,65 @@
                         <div id="enroll-body">
                             <h3>연락처 : &nbsp;<input type="text" name="enrollContact" id="enroll-contact" required placeholder="연락처나 카카오톡ID 를 적어주세요."></h3><br>
                             <hr>
+                            <h3>알바 카테고리 : 
+                                <select>
+                                    <option>메롱</option>
+                                    <option>메롱</option>
+                                    <option>메롱</option>
+                                    <option>메롱</option>
+                                    <option>메롱</option>
+                                    <option>메롱</option>
+                                    <option>메롱</option>
+                                </select>
+                            </h3>
+                            <hr>
                             <h3>급여 : </h3><input type="number" id="enroll-price" required>&nbsp;원
                             <hr>
                             <h3>시간 : </h3>
                             시작 시간 : <input type="time" name="enrollStartDate" class="enroll-date" value="09:00" required>&nbsp;&nbsp;
                             마감 시간 : <input type="time" name="enrollEndDate" class="enroll-date" value="18:00" required>
                             <hr>
+
+                            <div style="display: flex; align-items: center; " id="location-list">
+                                <h3>시 / 군 / 구 : </h3>
+                                <select style="height:40px; margin-left: 20px;">
+                                    <option>서울시</option>
+                                    <option>김포시</option>
+                                    <option>고양시</option>
+                                    <option>파주시</option>
+                                    <option>양주시</option>
+                                    <option>동두천시</option>
+                                    <option>연천군</option>
+                                    <option>의정부시</option>
+                                    <option>포천시</option>
+                                    <option>가평군</option>
+                                    <option>남양주시</option>
+                                    <option>구리시</option>
+                                    <option>하남시</option>
+                                    <option>양평군</option>
+                                    <option>광주시</option>
+                                    <option>이천시</option>
+                                    <option>여주군</option>
+                                    <option>용인시</option>
+                                    <option>성남시</option>
+                                    <option>의왕시</option>
+                                    <option>과천시</option>
+                                    <option>군포시</option>
+                                    <option>안양시</option>
+                                    <option>안산시</option>
+                                    <option>시흥시</option>
+                                    <option>광명시</option>
+                                    <option>부천시</option>
+                                    <option>수원시</option>
+                                    <option>화성시</option>
+                                    <option>오산시</option>
+                                    <option>평택시</option>
+                                    <option>안성시</option>
+                                </select>
+                            </div>
+
+                            <hr>
+
                             <div id="enroll-map">
                                 <div>지역 : <input type="text" name="" id="keyword" placeholder="지점 또는 관련 키워드를 검색 해 주세요!"></div><br>
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">

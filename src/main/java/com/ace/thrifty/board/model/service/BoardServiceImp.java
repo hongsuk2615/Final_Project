@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Location;
+import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
 import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 
@@ -23,19 +25,25 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public List<UpperCategory> selectBoardCategoryList() {
-		
-		return boardDao.selectBoardCategoryList();
+	public List<UpperCategory> selectUpperCategoryList() {
+		return boardDao.selectUpperCategoryList();
+	}
+
+	@Override
+	public List<SubCategory> selectSubCategoryList() {
+		return boardDao.selectSubCategoryList();
+	}
+
+	@Override
+	public List<Location> selectLocationList() {
+		return boardDao.selectLocationList();
 	}
 	
-	
-	
-	// 이로직은 지켜야함 
-	// sg.로 만 b안쓰고 할수있음
-	// Dao. Mapper. Dao. mapper.
-	
-	
-	
-	
+//	@Override
+//	public int insertBoard(Board b, SmallGroup sg) {
+//		int result = boardDao.insertBoard(b, sg);
+//		return result;
+//
+//	}
 	
 }
