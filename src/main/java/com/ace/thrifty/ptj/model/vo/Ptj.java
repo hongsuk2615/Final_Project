@@ -19,5 +19,7 @@ public class Ptj {
 	private String content;
 	private int wishCount;
 	private String locationName;
+	private String imgPath;
+	private String categorySName;
 	
 }

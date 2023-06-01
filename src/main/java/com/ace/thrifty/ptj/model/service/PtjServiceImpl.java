@@ -27,4 +27,15 @@ public class PtjServiceImpl implements PtjService {
 		
 	}
 	
+	public List<Ptj> selectPtj(String categorySNo) {
+		
+		return ptjDao.selectPtj(categorySNo);
+	}
+	
+	public List<Ptj> selectPtjAll() {
+		
+		return ptjDao.selectPtjAll();
+		
+	}
+	
 }

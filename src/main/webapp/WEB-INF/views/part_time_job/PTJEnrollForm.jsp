@@ -79,18 +79,6 @@
                         <div id="enroll-body">
                             <h3>연락처 : &nbsp;<input type="text" name="enrollContact" id="enroll-contact" required placeholder="연락처나 카카오톡ID 를 적어주세요."></h3><br>
                             <hr>
-                            <h3>알바 카테고리 : 
-                                <select>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                </select>
-                            </h3>
-                            <hr>
                             <input type="hidden" name="boardNo" value="${empty p.boardNo ? 0 : p.boardNo}" />
                             <h3>급여 : </h3><input type="number" id="enroll-price" required>&nbsp;원
                             <hr>

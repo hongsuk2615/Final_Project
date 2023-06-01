@@ -18,5 +18,13 @@ public class PtjDao {
 	public Ptj selectPtjDetail(int boardNo) {
 		return sqlSession.selectOne("ptjMapper.selectPtjDetail" , boardNo);
 	}
+	
+	public List<Ptj> selectPtj(String categorySNo) {
+		return sqlSession.selectList("ptjMapper.selectPtj", categorySNo);
+	}
+	
+	public List<Ptj> selectPtjAll() {
+		return sqlSession.selectList("ptjMapper.selectPtjAll");
+	}
 
 }
