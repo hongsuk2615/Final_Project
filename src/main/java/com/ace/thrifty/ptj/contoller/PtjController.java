@@ -60,17 +60,17 @@ public class PtjController {
 
 		}
 		
-		@GetMapping("/ptj/ptjInsert")
-		public int ptjEnrollForm(
-				Model model,
-				Board b ,
-				@RequestParam(value="enrollTitle" , defaultValue="insert" , required = false) String enrollTitle,
-				@RequestParam(value="enrollTitle" , defaultValue="insert" , required = false) String enrollContent,
-				ModelAndView mv ,
-				HttpSession session , HttpServletRequest req, HttpServletResponse resp
-				) {
-			mv.addObject(b.getTitle() , "enrollTitle");
-		}
+//		@GetMapping("/ptj/ptjInsert")
+//		public int ptjEnrollForm(
+//				Model model,
+//				Board b ,
+//				@RequestParam(value="enrollTitle" , defaultValue="insert" , required = false) String enrollTitle,
+//				@RequestParam(value="enrollTitle" , defaultValue="insert" , required = false) String enrollContent,
+//				ModelAndView mv ,
+//				HttpSession session , HttpServletRequest req, HttpServletResponse resp
+//				) {
+//			mv.addObject(b.getTitle() , "enrollTitle");
+//		}
 		
 		
 }
