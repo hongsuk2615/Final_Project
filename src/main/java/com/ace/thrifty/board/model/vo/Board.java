@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
 
+import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

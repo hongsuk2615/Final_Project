@@ -12,6 +12,8 @@
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
+		<association property="smallGroup" resultMap="smallGroupResultSet"/>
+		<association property="member" resultMap="memberResultSet"/>
 	</resultMap>
 	
 	<resultMap type="upperCategory" id="upperCategoryResultSet">
@@ -34,7 +36,7 @@
 	<select id="selectBoard" resultMap="boardResultSet">
 		SELECT *
 		  FROM BOARD
-		 WHERE BOARD_NO = 1;
+		 WHERE BOARD_NO = 1
 	</select>
 	
 	<select id="selectBoardListCount" resultType="_int">
@@ -43,7 +45,7 @@
 		WHERE BOARD_
 	</select>
 	
-	<insert id="insertBoard">
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="boardNo">
 		INSERT INTO BOARD
 		(
 		CATEGORY_S_NO,

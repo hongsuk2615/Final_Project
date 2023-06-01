@@ -40,4 +40,5 @@ public class BoardDao {
 	public List<Location> selectLocationList(){
 		return sqlSession.selectList("boardMapper.selectLocationList");
 	}
+	
 }
