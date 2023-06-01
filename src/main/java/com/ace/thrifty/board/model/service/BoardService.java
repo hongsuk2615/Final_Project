@@ -11,9 +11,5 @@ public interface BoardService {
 
 	public Board selectBoard();
 	
-	public int insertBoard(Board b, SmallGroup sg);
-	
-	
-	
 	public List<UpperCategory> selectBoardCategoryList();
 }

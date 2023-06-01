@@ -178,7 +178,7 @@
 </style>
 </head>
 <body>
-	<form>
+	<form action="${pageContext.request.contextPath}/smallGroup/insert" method="post">
     <div id="wrapper">
         <div id="header">
 			<jsp:include page="../common/header.jsp"/>
@@ -237,19 +237,12 @@
                     
                  <div class="body-right-body-content">
                     <textarea class="body-right-body-contentarea" name="content">
-런닝 동호회
 
-어쩌꾸 저쩌구 FC  모집중 
 
-모집인원 5명 
 
-오픈카카오톡 들어오셔서 양식 작성 및 제출 요망
 
-이름 :
-나이 :
-거주지 :
-참여율 :
-포부 : 
+
+
 
                     </textarea>
                  </div>

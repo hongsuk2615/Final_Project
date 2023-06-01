@@ -28,14 +28,13 @@ public class BoardServiceImp implements BoardService{
 		return boardDao.selectBoardCategoryList();
 	}
 	
-	@Override
-	public int insertBoard(Board b, SmallGroup sg) {
-		int result = boardDao.insertBoard(b, sg);
-		return result;
-		
-		
 	
-	}
+	
+	// 이로직은 지켜야함 
+	// sg.로 만 b안쓰고 할수있음
+	// Dao. Mapper. Dao. mapper.
+	
+	
 	
 	
 	

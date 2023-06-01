@@ -21,11 +21,17 @@ public class BoardDao {
 	}
 	
 	
-	public int insertBoard(Board b, SmallGroup sg) {
-		return sqlSession.insert("boardMapper.insertBoard", b, sg);
+	public int sgInsertBoard(Board b) {
+		return sqlSession.insert("boardMapper.sgInsertBoard", b);
 	}
-
+	
+	
+		
 	public List<UpperCategory >selectBoardCategoryList() {
 		return sqlSession.selectList("boardMapper.selectCategoryList");
+	}
+	
+	public String smallgrouplist(Board b, SmallGroup sg) {
+		return sqlSession.selectOne("boardMapper.smallgrouplist");
 	}
 }
