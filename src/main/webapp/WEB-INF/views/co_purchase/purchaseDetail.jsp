@@ -48,7 +48,7 @@
     <div id="wrapper">
         <jsp:include page="../common/header.jsp"/>
         <div id="body">
-            <jsp:include page="../common/boardBodyLeft.jsp"/>
+            <jsp:include page="../common/boardBodyLeftCo_purchase.jsp"/>
             <div id="body-right">
                 <div id="cat_title_1">게시글 상세</div>
                 <div id="detail_header">

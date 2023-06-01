@@ -56,7 +56,7 @@
 	</select>
 	
 	<insert id="insertBoard" parameterType="board">
-		INSERT INTO BOARD(CATEGORY_S_NO, USER_NO, TITLE, CONTENT)
-					VALUES (#{categorySNo}, #{userNo}, #{title}, #{content})
+		INSERT INTO BOARD(CATEGORY_S_NO, USER_NO, TITLE, CONTENT, CATEGORY_U_NO)
+					VALUES (#{categorySNo}, #{userNo}, #{title}, #{content}, 6)
 	</insert>
 </mapper>

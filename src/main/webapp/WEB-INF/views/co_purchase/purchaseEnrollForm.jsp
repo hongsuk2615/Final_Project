@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +49,7 @@
     <div id="wrapper">
         <jsp:include page="../common/header.jsp"/>
         <div id="body">
-            <jsp:include page="../common/boardBodyLeft.jsp"/>
+            <jsp:include page="../common/boardBodyLeftCo_purchase.jsp"/>
             <div id="body-right">
                 <form action="insert" method="post">
                     <div id="cat_title">
@@ -66,11 +67,13 @@
                                 카테고리
                             </div>
                             <div class="selectBox2 ">
-                                <button type="button" class="label">제목</button>  <!-- ajax로 label value값 넘겨서 뜨게해야됨 -->
+                                <button type="button" class="label" name="category">카테고리 선택</button>  <!-- ajax로 label value값 넘겨서 뜨게해야됨 -->
                                 <ul class="optionList" style="display: none;">
-                                  <li class="optionItem">제목</li>
-                                  <li class="optionItem">작성자</li>
-                                  <li class="optionItem">내용</li>
+                                    <c:forEach var="subCategory" items="${subCategoryList}">
+                                        <c:if test="${subCategory.categoryUNo eq 6}">
+                                            <li class="optionItem" value="${subCategory.categorySNo}">${subCategory.categorySName}</li>
+                                        </c:if>
+                                    </c:forEach> 
                                 </ul>
                             </div>
                         </div>

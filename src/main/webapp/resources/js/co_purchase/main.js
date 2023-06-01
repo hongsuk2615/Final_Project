@@ -4,6 +4,7 @@ let options = document.querySelectorAll('.optionItem');
 // 클릭한 옵션의 텍스트를 라벨 안에 넣음
 let handleSelect = function (item) {
     label.innerHTML = item.textContent;
+    label.value = item.value;
     label.parentNode.classList.remove('active');
 }
 // 옵션 클릭시 클릭한 옵션을 넘김

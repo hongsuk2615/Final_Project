@@ -30,7 +30,8 @@
     display: inline-block;
     width: 15%;
     min-width: 290px;
-    min-height: 900px;
+    height: 750px;
+    min-height: 750px;
     background-color: rgb(0, 60, 120);
     margin-right: 10px;
     box-shadow: 1px 1px 5px 0px;
@@ -51,17 +52,17 @@
 }
 
 #sub-category{
-    height: 500px;
+    height: 400px;
     width: 270px;
     margin: 0px 10px;
     color: white;
     display: inline-block;
-    border-bottom: 2px solid gray;
 }
 
 #sub-category ul{
     height: 470px;
-    overflow-y: scroll;
+/*     overflow-y: scroll; */
+	margin-top: 50px;
 }
 
 #sub-category li{
