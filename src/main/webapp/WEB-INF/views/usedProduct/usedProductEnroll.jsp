@@ -59,6 +59,7 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
+                <form action="/thrifty/usedProduct/enroll" method="post">
                 <table>
                     <tr>
                         <th colspan="5">
@@ -96,15 +97,15 @@
                     <tr id="trade-method">
                         <th>거래방법</th>
                         <td>
-                            <input type="radio" name="tradeMethod" id="direct">
+                            <input type="radio" name="tradeMethod" id="direct" value="D">
                             <label for="direct">직거래</label>
                         </td>
                         <td>
-                            <input type="radio" name="tradeMethod" id="parcel">
+                            <input type="radio" name="tradeMethod" id="parcel" value="P">
                             <label for="parcel">택배</label>
                         </td>
                         <td>
-                            <input type="radio" name="tradeMethod" id="both">
+                            <input type="radio" name="tradeMethod" id="both" value="B">
                             <label for="both">둘다</label>
                         </td>
                         <td></td>
@@ -132,8 +133,9 @@
                 </table>
                 <div id="btns">
                     <div id="cancel-btn">취소</div>
-                    <div id="complete-btn">작성완료</div>
+                    <button id="complete-btn">작성완료</button>
                 </div>
+                </form>
             </div>
         </div>
 
