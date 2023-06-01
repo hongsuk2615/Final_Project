@@ -6,6 +6,8 @@
 		<typeAlias type="com.ace.thrifty.member.model.vo.Member" alias="member"/>
 		<typeAlias type="com.ace.thrifty.board.model.vo.Board" alias="board"/>
 		<typeAlias type="com.ace.thrifty.board.model.vo.UpperCategory" alias="upperCategory"/>
+		<typeAlias type="com.ace.thrifty.board.model.vo.SubCategory" alias="subCategory"/>
+		<typeAlias type="com.ace.thrifty.board.model.vo.Location" alias="location"/>
 	</typeAliases>
 	
 	<!-- 
@@ -17,7 +19,6 @@
 		<mapper resource="/mappers/board-mapper.xml"/>
 		<mapper resource="/mappers/member-mapper.xml"/>
 		<mapper resource="/mappers/admin-mapper.xml"/>
-
 	</mappers>
 
 </configuration>

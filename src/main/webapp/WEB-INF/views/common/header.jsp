@@ -17,6 +17,9 @@
     <title>Document</title>
     <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+    	console.log(${locationList});
+    </script>
 </head>
 <body>
     <div id="header" class="background_basic">
@@ -42,11 +45,11 @@
         </div>
         <div id="header_2">
             <div id="header_2_1">
-            	<c:forEach var="category" items="${boardCategoryList}">
+            	<c:forEach var="upperCategory" items="${upperCategoryList}">
             		<div>
-	                    <a class="main_category content_white change_content" href="/thrifty/${category.categoryPath}">${category.categoryUName}</a>
-	                    <div></div>
-                	</div>
+                        <a class="main_category content_white change_content" href="/thrifty/${upperCategory.categoryPath}">${upperCategory.categoryUName}</a>
+                        <div></div>
+                    </div>
             	</c:forEach>
                 <!-- <div>
                     <a class="main_category content_white change_content">공지사항</a>
@@ -83,7 +86,7 @@
             </div>
         </div>
         
-        <ul>
+        <ul style="list-style-type: none;">
             <li id="GgCustomLogin">
             </li>
         </ul>
