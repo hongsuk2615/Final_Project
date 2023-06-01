@@ -23,6 +23,7 @@ public class UsedProductServiceImp implements UsedProductService{
 		int boardNo = b.getBoardNo();
 		if( boardNo > 0 ) {
 			uP.setBoardNo(boardNo);
+			System.out.println(uP);
 			return usedProductDao.insertUsedProduct(uP);
 		}
 		return 0;
