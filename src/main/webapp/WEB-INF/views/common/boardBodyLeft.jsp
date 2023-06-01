@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%System.out.println(request.getServletPath());
-System.out.println(request.getRequestURI());
-System.out.println(request.getRequestURL().toString().replace(request.getRequestURI(),""));
-	
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,35 +16,16 @@ System.out.println(request.getRequestURL().toString().replace(request.getRequest
                 <div id="upper-category">
                     <div>
                         <img src="/thrifty/resources/images/shopping-cart.png" alt="상위 카테고리 이미지">
-                        <div id="upper-category-name">상위 카테고리</div>
+                        <div id="upper-category-name">중고거래</div>
                     </div>
                 </div>
                 <div id="sub-category" >
                     <ul class="scrollbar">
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
+                    <c:forEach var="subCategory" items="${subCategoryList}">
+                    	<c:if test="${subCategory.categoryUNo eq 4}">
+                        <li>${subCategory.categorySName}</li>
+                        </c:if>
+                    </c:forEach>    
                     </ul>
                 </div>
                 <div id="filter">
@@ -58,11 +35,10 @@ System.out.println(request.getRequestURL().toString().replace(request.getRequest
                         <li>지역</li>
                         <li>
                             <select name="location" id="">
-                                <option value="">지역</option>
-                                <option value="">음</option>
-                                <option value="">음</option>
-                                <option value="">음</option>
-                                <option value="">음</option>
+<%--                             <c:forEach var="location" items="${locationList}">
+                            	<option value="${locationNo}">${location.locationName}</option>
+                            </c:forEach> --%>
+                                
                             </select>
                         </li>
 

@@ -17,6 +17,9 @@
     <title>Document</title>
     <meta name ="google-signin-client_id" content="">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+    	console.log(${locationList});
+    </script>
 </head>
 <body>
     <div id="header" class="background_basic">
@@ -81,7 +84,7 @@
             </div>
         </div>
         
-        <ul>
+        <ul style="list-style-type: none;">
             <li id="GgCustomLogin">
             </li>
         </ul>

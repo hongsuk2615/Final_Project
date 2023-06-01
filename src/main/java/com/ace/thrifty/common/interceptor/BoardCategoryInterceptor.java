@@ -11,8 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.ace.thrifty.board.model.service.BoardService;
+import com.ace.thrifty.board.model.vo.Location;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
+import com.google.gson.Gson;
 
 
 public class BoardCategoryInterceptor extends HandlerInterceptorAdapter{
@@ -34,10 +36,19 @@ public class BoardCategoryInterceptor extends HandlerInterceptorAdapter{
 			
 		}
 		
-		if(application.getAttribute("subCategoryList") == null) {
-			ArrayList<SubCategory> subList = (ArrayList<SubCategory>) boardService.selectSubCategoryList();
-			application.setAttribute("subCategoryList", subList);
+		if(application.getAttribute("locationList") == null) {
+			ArrayList<Location> locationList = (ArrayList<Location>) boardService.selectLocationList();
+			
+			application.setAttribute("locationList", locationList);
 		}
+		
+		
+		if(application.getAttribute("subCategoryList") == null) {
+		ArrayList<SubCategory> subList = (ArrayList<SubCategory>) boardService.selectSubCategoryList();
+			request.setAttribute("subCategoryList", subList);
+		}
+		
+		
 		return true;
 	}
 	

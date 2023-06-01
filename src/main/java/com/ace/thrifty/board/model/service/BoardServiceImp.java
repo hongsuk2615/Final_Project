@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Location;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
 import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
@@ -31,6 +32,11 @@ public class BoardServiceImp implements BoardService{
 	@Override
 	public List<SubCategory> selectSubCategoryList() {
 		return boardDao.selectSubCategoryList();
+	}
+
+	@Override
+	public List<Location> selectLocationList() {
+		return boardDao.selectLocationList();
 	}
 	
 //	@Override

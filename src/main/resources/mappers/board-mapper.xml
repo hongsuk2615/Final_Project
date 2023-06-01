@@ -26,6 +26,11 @@
 		<result column="CATEGORY_S_NAME" property="categorySName"/>
 	</resultMap>
 	
+	<resultMap type="location" id="locationResultSet">
+		<id column="LOCATION_NO" property="locationNo"/>
+		<result column="LOCATION_NAME" property="locationName"/>
+	</resultMap>
+	
 	<select id="selectBoard" resultMap="boardResultSet">
 		SELECT *
 		  FROM BOARD
@@ -61,7 +66,12 @@
 	
 	<select id="selectSubCategoryList" resultMap="subCategoryResultSet">
 		SELECT *
-		  FROM SUB_CATEGORY;
+		  FROM SUB_CATEGORY
+	</select>
+	
+	<select id="selectLocationList" resultMap="locationResultSet">
+		SELECT *
+		  FROM LOCATION;
 	</select>
 	
 </mapper>
