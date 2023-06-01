@@ -2,6 +2,9 @@ package com.ace.thrifty.board.model.vo;
 
 import java.sql.Date;
 
+import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,4 +23,7 @@ public class Board {
 	private String title;
 	private int userNo;
 	private int wishCount;
+	
+	private Member member;
+	private SmallGroup smallGroup;
 }

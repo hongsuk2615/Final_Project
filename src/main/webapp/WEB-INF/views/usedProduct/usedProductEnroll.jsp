@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,26 +75,20 @@
                     <tr id="categoryAndLocation">
                         <th>카테고리</th>
                         <td>
-                            <select name="" id="">
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
+                            <select name="categorySNo" id="">
+                            	<c:forEach var="subCategory" items="${subCategoryList}">
+	                            	<c:if test="${subCategory.categoryUNo eq 4 }">
+		                                <option value="${subCategory.categorySNo}">${subCategory.categorySName}</option>                            	
+	                            	</c:if>
+                             	</c:forEach>
                             </select>
                         </td>
                         <th>지역</th>
                         <td>
-                            <select name="" id="">
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
-                                <option value="">예시</option>
+                            <select name="location" id="">
+                            	<c:forEach var="location" items="${locationList}">
+                                <option value="${location.locationNo}">${location.locationName}</option>
+                                </c:forEach>
                             </select>
                     </td>
                         <td></td>
@@ -116,7 +112,7 @@
                     <tr>
                         <th>가격</th>
                         <td colspan="3">
-                            <input type="text" placeholder="가격을 입력하세요">
+                            <input type="text" name="price" placeholder="가격을 입력하세요">
                         </td>
                         <td></td>
                     </tr>
@@ -127,10 +123,10 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr id="content">
+                    <tr id="boardContent">
                         <th>내용</th>
                         <td colspan="4">
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                            <textarea name="content" id="" cols="30" rows="10"></textarea>
                         </td>
                     </tr>
                 </table>
