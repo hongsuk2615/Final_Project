@@ -32,7 +32,7 @@
 		<result column="ROOM_NO" property="roomNo"/>
 		<result column="ORIGIN_NAME"  property="originName"/>
 		<result column="CHANGE_NAME"  property="changeName"/>
-		<result column="IMG_LEVEL"  property="imgLevel"/>
+		<result column="FILE_LEVEL"  property="imgLevel"/>
 		<result column="STATUS"  property="status"/>
 	</resultMap>
 	
@@ -61,17 +61,16 @@
 		, #{rent}, #{cost}, #{contrat})
 	</insert>
 	
-	<insert id="insertRoomImg" parameterType="list">
-	INSERT INTO ROOM_IMG
-	SELECT SEQ_ROOM_IMG_NO.NEXTVAL AS IMG_NO, C.* FROM 
+	<insert id="insertRoomImg" parameterType="java.util.ArrayList">
+	INSERT INTO ROOM_IMAGE ( ORIGIN_NAME, CHANGE_NAME, ROOM_NO, FILE_LEVEL)
+	SELECT C.* FROM 
 	(
 		<foreach collection="list" item="roomImgList" separator="UNION ALL">
 			SELECT 
 				#{roomImgList.originName} as ORIGIN_NAME,
 				#{roomImgList.changeName} as CHANGE_NAME,
 				#{roomImgList.roomNo} as ROOM_NO,
-				#{roomImgList.roomImgNo} as ROOM_IMG_NO
-				#{roomImgList.imgLevel} as IMG_LEVEL
+				#{roomImgList.imgLevel} as FILE_LEVEL
 			FROM DUAL
 		</foreach>
 	) C

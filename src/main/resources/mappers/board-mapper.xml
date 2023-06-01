@@ -78,6 +78,9 @@
 	</select>
 	
 	<insert id="insertBoard" parameterType="board" useGeneratedKeys="true" keyProperty="boardNo">
+	<if test="categorySNo == 0">
+		<bind name="categorySNo" value="null"/>
+	</if>
 		INSERT INTO BOARD(CATEGORY_S_NO, CATEGORY_U_NO, TITLE, CONTENT,USER_NO)
 		            VALUES(#{categorySNo}, #{categoryUNo}, #{title}, #{content}, #{userNo})
 	</insert> 

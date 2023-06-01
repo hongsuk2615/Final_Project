@@ -77,11 +77,11 @@ public class HouseController {
 			@RequestParam(value="contrat", required=false) List<Integer> contrat
 			) throws Exception {
 		b.setUserNo((((Member)s.getAttribute("loginUser")).getUserNo()));
+		System.out.println(h);
 		b.setCategoryUNo(2);
 		System.out.println(h);
 		List<Room> rooms = new ArrayList();
 		Map<String, List<MultipartFile>> roomImgs = new LinkedHashMap();
-		//Map<String, MultipartFile> map = mtfRequest.getFileMap();
 		for(int i = 0; i< division.size(); i++) {
 			Room room = Room.builder()
 					.division(division.get(i))

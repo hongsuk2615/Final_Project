@@ -177,11 +177,12 @@
             </div>
             <br>
             
-            <input type="text"  placeholder="위치" name="houseAddress" id="houseAddress">
+            <input type="text"  placeholder="위치" name="houseAddress" id="houseAddress" onchange="getLocation()">
+            <input type="hidden" name="houseCoordinate" id="houseCoordinate">
             <button type="button" onclick="insertDaumPostcodeBtn();">주소검색</button>
             <br>
 
-            <textarea type="text" placeholder="지점소개" name="information" id="information">지점소개
+            <textarea type="text" placeholder="지점소개" name="information" id="information" >지점소개
                 </textarea> <br>
   
                 <input type="checkbox" name="injung" id="injung"  style="width: 10px;">
@@ -193,6 +194,8 @@
     </div>
     </div>
 </div>
+<div id="map"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5381ed5b2d19ab0d65e938e3cce6e687&libraries=services"></script>
     <script>
 
         // hNo 1
@@ -294,6 +297,36 @@
                 }
             }).open();
 }
+   </script>
+        <script>
+        function getLocation(){
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };  
+
+        // 지도를 생성합니다    
+        var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(document.getElementById("houseAddress").value, function(result, status) {
+
+            // 정상적으로 검색이 완료됐으면 
+             if (status === kakao.maps.services.Status.OK) {
+
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        		var message = result[0].y + ', ';
+        		message += result[0].x ;
+        		console.log(message);
+        		$("#houseCoordinate").val(message);
+            } 
+        });    
+        }
+        
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>

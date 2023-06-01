@@ -32,9 +32,10 @@ public class HouseServiceImpl implements HouseService{
 	public int insertHouse(Board b, House h, List<Room> rooms, Map<String, List<MultipartFile>> roomImgs, String webPath, String serverFolderPath) throws Exception {
 		
 		System.out.println("b" + b);
-		int boardNo = boardDao.insertBoard(b);
+		boardDao.insertBoard(b);
+		int boardNo =b.getBoardNo();
 		h.setBoardNo(boardNo);
-		int result = houseDao.insertHouse(h);
+		
 		System.out.println("서비스");
 		List<List<MultipartFile>> roomImgsV = new ArrayList();
 		List<RoomImg> roomImgList = new ArrayList();
@@ -47,7 +48,8 @@ public class HouseServiceImpl implements HouseService{
 		}
 		for (int i = 0; i < rooms.size(); i++) {
 			rooms.get(i).setBoardNo(boardNo);
-			int roomNo = houseDao.insertRoom(rooms.get(i));
+			houseDao.insertRoom(rooms.get(i));
+			int roomNo = rooms.get(i).getRoomNo();
 			for(int j = 0; j < roomImgsV.get(i).size(); j++) {
 				MultipartFile file = roomImgsV.get(i).get(j);
 				String changeName = Utils.saveFile(file, serverFolderPath);
@@ -62,7 +64,9 @@ public class HouseServiceImpl implements HouseService{
 				System.out.println(roomImgList);
 			}
 		}
-		
+		String thumbnail = webPath + roomImgList.get(0).getChangeName();
+		h.setThumbnail(thumbnail);
+		int result = houseDao.insertHouse(h);
 		int result1 = houseDao.insertRoomImg(roomImgList);
 
 		return boardNo;
