@@ -38,6 +38,11 @@ public class BoardServiceImp implements BoardService{
 	public List<Location> selectLocationList() {
 		return boardDao.selectLocationList();
 	}
+
+	@Override
+	public Board selectSmallGroupDetail(int boardNo) {
+		return boardDao.selectSmallGroupDetail(boardNo);
+	}
 	
 //	@Override
 //	public int insertBoard(Board b, SmallGroup sg) {

@@ -1,0 +1,24 @@
+.out-circle{
+	position: relative;
+	border: solid 2px black;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+}
+.in-circle{
+	position: absolute;
+    height: 9px;
+    width: 9px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background-color: #0DFF92;
+    transform: translate(-50%, -50%);
+    animation: blink-effect 1s step-end infinite;
+}
+
+@keyframes blink-effect{
+	50% {
+		opacity: 0;
+	}
+}
