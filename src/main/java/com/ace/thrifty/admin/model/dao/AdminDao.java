@@ -30,4 +30,8 @@ public class AdminDao {
 	public Map<String, Integer> selectInfoBox(){
 		return sqlSession.selectOne("adminMapper.selectInfoBox");
 	}
+	
+	public List<Member> memberListAjax(String tab){
+		return sqlSession.selectList("adminMapper.memberListAjax", tab);
+	}
 }

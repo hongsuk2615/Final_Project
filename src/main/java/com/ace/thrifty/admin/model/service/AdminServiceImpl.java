@@ -37,4 +37,10 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.selectInfoBox();
 	}
 
+
+	@Override
+	public List<Member> memberListAjax(String tab) {
+		return adminDao.memberListAjax(tab);
+	}
+
 }

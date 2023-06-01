@@ -12,4 +12,6 @@ public interface AdminService {
 	List<Member> memberList();
 	
 	Map<String, Integer> selectInfoBox();
+	
+	List<Member> memberListAjax(String tab);
 }

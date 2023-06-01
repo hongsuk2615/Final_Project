@@ -44,7 +44,7 @@
 				<div class="small-box bg-warning">
 					<div class="inner">
 						<h5 class="infoBox-title">정지 회원 수</h5>
-						<h3 class="infoBox-value">${infoBox.ban}</h3>
+						<h3 class="infoBox-value">${infoBox.suspend}</h3>
 					</div>
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 				<div class="small-box bg-danger">
 					<div class="inner">
 						<h5 class="infoBox-title">탈퇴 회원 수</h5>
-						<h3 class="infoBox-value">${infoBox.Withdrawal}</h3>
+						<h3 class="infoBox-value">${infoBox.ban}</h3>
 					</div>
 				</div>
 			</div>
