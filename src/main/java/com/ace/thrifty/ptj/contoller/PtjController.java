@@ -1,5 +1,7 @@
 package com.ace.thrifty.ptj.contoller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.ptj.model.service.PtjService;
 import com.ace.thrifty.ptj.model.vo.Ptj;
+import com.google.gson.Gson;
 
 @Controller
 public class PtjController {
@@ -34,10 +37,14 @@ public class PtjController {
 			return "part_time_job/PTJMain";
 		}
 		
-		@GetMapping("/ptj/ptjList")
-		public String ptjList() {
-			return "part_time_job/PTJList";
-		}
+//		@GetMapping("/ptj/ptjList")
+//		public String ptjLocationList(
+//				) {
+//			ArrayList<Ptj> list = ptjService.selectPtjLocationList();
+//			
+//			return "common/boardBodyLeftPTJ";
+//			
+//		}
 		
 //		@GetMapping("/ptj/ptjDetail/{boardNo}")
 //		public String ptjDetail(@PathVariable("boardNo") int boardNo ,
@@ -50,7 +57,7 @@ public class PtjController {
 					Model model,
 					@PathVariable("boardNo") int boardNo
 					) {
-			System.out.println(boardNo);
+//			System.out.println(boardNo);
 			
 			Ptj p = ptjService.selectPtjDetail(boardNo);
 			
@@ -60,10 +67,9 @@ public class PtjController {
 
 		}
 		
-//		@GetMapping("/ptj/ptjInsert")
+//		@GetMapping("/ptj/ptjEnrollForm")
 //		public int ptjEnrollForm(
 //				Model model,
-//				Board b ,
 //				@RequestParam(value="enrollTitle" , defaultValue="insert" , required = false) String enrollTitle,
 //				@RequestParam(value="enrollTitle" , defaultValue="insert" , required = false) String enrollContent,
 //				ModelAndView mv ,

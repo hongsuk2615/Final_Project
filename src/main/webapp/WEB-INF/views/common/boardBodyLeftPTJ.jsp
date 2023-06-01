@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,32 +20,11 @@
                     </div>
                 </div>
                 <div id="sub-category" >
-                    <ul class="scrollbar">
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                        <li>하위 카테고리</li>
-                    </ul>
+                	<ul class="scrollbar">
+		                <c:forEach var="location" items="${ptjLocation }">
+		                	<li>${ptjLocation.locationName }</li>
+		                </c:forEach>                	
+                	</ul>
                 </div>
                 <div id="filter">
                     <ul class="scrollbar">
