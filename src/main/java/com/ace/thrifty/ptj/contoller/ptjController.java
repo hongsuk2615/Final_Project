@@ -17,11 +17,11 @@ public class ptjController {
 		
 //		private static final Logger logger = LoggerFactory.getLogger(PtjController.class);
 	
-//		@RequestMapping("/ptj")
-//		public String ptjMain() {
-//			return "part_time_job/PTJMain";
-//		}
-//		
+		@RequestMapping("/ptj")
+		public String ptjMain() {
+			return "part_time_job/PTJMain";
+		}
+		
 //		@GetMapping("/list/{boardCode}")
 //		public String PtjList(@PathVariable("boardCode"))
 		

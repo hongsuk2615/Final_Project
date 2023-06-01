@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Location;
+import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
 import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 
@@ -23,27 +25,18 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public List<UpperCategory> selectBoardCategoryList() {
-		
-		return boardDao.selectBoardCategoryList();
+	public List<UpperCategory> selectUpperCategoryList() {
+		return boardDao.selectUpperCategoryList();
 	}
-	
-	@Override
-	public int insertBoard(Board b, SmallGroup sg) {
-		int result1 = 0;
-		int result2 = 0;
-		
-		result1 = boardDao.insertBoard(b); 
-		
-		System.out.println(b.getBoardNo());
-		if(result1 > 0) {
-			sg.setBoardNo(b.getBoardNo());
-			
-			result2 = boardDao.insertSmallGroup(sg);
-		}
 
-		return result1*result2;
-	
+	@Override
+	public List<SubCategory> selectSubCategoryList() {
+		return boardDao.selectSubCategoryList();
+	}
+
+	@Override
+	public List<Location> selectLocationList() {
+		return boardDao.selectLocationList();
 	}
 
 	@Override
@@ -51,6 +44,11 @@ public class BoardServiceImp implements BoardService{
 		return boardDao.selectSmallGroupDetail(boardNo);
 	}
 	
-	
+//	@Override
+//	public int insertBoard(Board b, SmallGroup sg) {
+//		int result = boardDao.insertBoard(b, sg);
+//		return result;
+//
+//	}
 	
 }

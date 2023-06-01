@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Location;
+import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
-import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 
 @Repository
 public class BoardDao {
@@ -20,21 +21,24 @@ public class BoardDao {
 		return sqlSession.selectOne("boardMapper.selectBoard");
 	}
 	
-	public int insertBoard(Board b) {
-		return sqlSession.insert("boardMapper.insertBoard", b);
-	}
 	
-	public int insertSmallGroup(SmallGroup sg) {
-		return sqlSession.insert("boardMapper.insertSmallGroup", sg);
-	}
-	
-	public Board selectSmallGroupDetail(int boardNo) {
-		return sqlSession.selectOne("boardMapper.selectSmallGroupDetail", boardNo);
-	}
-	
+//	public int insertBoard(Board b, SmallGroup sg) {
+//		return sqlSession.insert("boardMapper.insertBoard", b, sg);
+//	}
 
-	public List<UpperCategory> selectBoardCategoryList() {
-		return sqlSession.selectList("boardMapper.selectCategoryList");
+	public List<UpperCategory >selectBoardCategoryList() {
+		return sqlSession.selectList("boardMapper.selectCategoryList");		
+	}
+	public List<UpperCategory >selectUpperCategoryList() {
+		return sqlSession.selectList("boardMapper.selectUpperCategoryList");
+	}
+	
+	public List<SubCategory>selectSubCategoryList() {
+		return sqlSession.selectList("boardMapper.selectSubCategoryList");
+	}
+	
+	public List<Location> selectLocationList(){
+		return sqlSession.selectList("boardMapper.selectLocationList");
 	}
 	
 }
