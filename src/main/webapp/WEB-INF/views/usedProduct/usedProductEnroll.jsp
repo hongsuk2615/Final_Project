@@ -59,6 +59,7 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
+                <form action="/thrifty/usedProduct/enroll" method="post">
                 <table>
                     <tr>
                         <th colspan="5">
@@ -85,7 +86,7 @@
                         </td>
                         <th>지역</th>
                         <td>
-                            <select name="location" id="">
+                            <select name="locationNo" id="">
                             	<c:forEach var="location" items="${locationList}">
                                 <option value="${location.locationNo}">${location.locationName}</option>
                                 </c:forEach>
@@ -96,15 +97,15 @@
                     <tr id="trade-method">
                         <th>거래방법</th>
                         <td>
-                            <input type="radio" name="tradeMethod" id="direct">
+                            <input type="radio" name="tradeMethod" id="direct" value="D">
                             <label for="direct">직거래</label>
                         </td>
                         <td>
-                            <input type="radio" name="tradeMethod" id="parcel">
+                            <input type="radio" name="tradeMethod" id="parcel" value="P">
                             <label for="parcel">택배</label>
                         </td>
                         <td>
-                            <input type="radio" name="tradeMethod" id="both">
+                            <input type="radio" name="tradeMethod" id="both" value="B">
                             <label for="both">둘다</label>
                         </td>
                         <td></td>
@@ -117,11 +118,12 @@
                         <td></td>
                     </tr>
                     <tr id="images">
-                        <th>이미지<br>(최대4장)</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <input type="file" name="images" multiple style="opacity : 0;" onchange="imagePreview(this);">
+                        <th>이미지<br>(최대4장)<br><button type="button" onclick="insertImage();">이미지 첨부</button></th>
+                        <td id="image1"></td>
+                        <td id="image2"></td>
+                        <td id="image3"></td>
+                        <td id="image4"></td>
                     </tr>
                     <tr id="boardContent">
                         <th>내용</th>
@@ -132,8 +134,9 @@
                 </table>
                 <div id="btns">
                     <div id="cancel-btn">취소</div>
-                    <div id="complete-btn">작성완료</div>
+                    <button id="complete-btn">작성완료</button>
                 </div>
+                </form>
             </div>
         </div>
 
@@ -143,6 +146,27 @@
 
 
         </div>
+        <script type="text/javascript">
+        	function insertImage(){
+        		document.getElementsByName('images')[0].click();
+        	}
+        	
+        	function imagePreview(e){
+        		if(e.files.length >4){
+        			alert("4개보다 많은 사진첨부 불가능");
+        			console.log(e.files[i]);
+        			return false;
+        		}else{
+	        		for(let i = 0; i < e.files.length; i++){
+	        			let reader = new FileReader();
+	        			console.log(e.files[i]);	
+	        			document.getElementById('image'+i).style.backgroundImage="url()"
+	        		}        			
+        		}
+        		
+        	}
+        	
+        </script>
     </div>
     
 </body>
