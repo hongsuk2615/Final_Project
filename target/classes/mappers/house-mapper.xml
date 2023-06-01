@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="houseMapper">
+	<resultMap type="house" id="houseResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="HOUSE_ADDRESS"  property="houseAddress"/>
+		<result column="HOUSE_COORDINATE"  property="houseCoordinate"/>
+		<result column="INFORMATION"  property="information"/>
+		<result column="THUMBNAIL"  property="thumbnail"/>
+	</resultMap>
+	
+	<resultMap type="room" id="roomResultSet">
+		<id column="ROOM_NO" property="roomNo"/>
+		<result column="BOARD_NO" property="boardNo"/>
+		<result column="RECRUITS_NUM"  property="recruitsNum"/>
+		<result column="RECRUITS_CURR"  property="recruitsCurr"/>
+		<result column="DIVISION"  property="division"/>
+		<result column="GENDER"  property="gender"/>
+		<result column="TYPE"  property="type"/>
+		<result column="AREA"  property="area"/>
+		<result column="DEPOSIT"  property="deposit"/>
+		<result column="RENT"  property="rent"/>
+		<result column="COST"  property="cost"/>
+		<result column="CONTRAT"  property="contrat"/>
+		<collection property="imgList" javaType="java.util.ArrayList" ofType="roomImg"
+		select="selectImgList" column="ROOM_NO" />
+		<collection property="imgList" resultMap="roomImgResultSet" />
+	</resultMap>
+	
+	<resultMap type="roomImg" id="roomImgResultSet">
+		<id column="IMG_NO" property="roomImgNo"/>
+		<result column="ROOM_NO" property="roomNo"/>
+		<result column="ORIGIN_NAME"  property="originName"/>
+		<result column="CHANGE_NAME"  property="changeName"/>
+		<result column="FILE_LEVEL"  property="imgLevel"/>
+		<result column="STATUS"  property="status"/>
+	</resultMap>
+	
+		<resultMap type="board" id="boardResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="CATEGORY_S_NO"  property="categorySNo"/>
+		<result column="CONTENT"  property="content"/>
+		<result column="CREATE_DATE"  property="createDate"/>
+		<result column="READ_COUNT"  property="readCount"/>
+		<result column="REPORT_COUNT"  property="reportCount"/>
+		<result column="TITLE"  property="title"/>
+		<result column="USER_NO"  property="userNo"/>
+		<result column="WISH_COUNT"  property="wishCount"/>
+	
+	</resultMap>
+	
+	<insert id="insertHouse" parameterType="house">
+		INSERT INTO SHARE_HOUSE (BOARD_NO, HOUSE_ADDRESS, HOUSE_COORDINATE, INFORMATION, THUMBNAIL)
+		VALUES (#{boardNo}, #{houseAddress}, #{houseCoordinate}, #{information}, #{thumbnail})
+	</insert>
+	
+	<insert id="insertRoom" useGeneratedKeys="true" parameterType="house" keyProperty="roomNo">
+		INSERT INTO ROOM (ROOM_NO, BOARD_NO, RECRUITS_NUM, RECRUITS_CURR, DIVISION, GENDER, TYPE, AREA, DEPOSIT, RENT, COST, CONTRAT)
+		VALUES ( default , #{boardNo}, #{recruitsNum}, #{recruitsCurr}, #{division}
+		, #{gender}, #{type}, #{area}, #{deposit}
+		, #{rent}, #{cost}, #{contrat})
+	</insert>
+	
+	<insert id="insertRoomImg" parameterType="java.util.ArrayList">
+	INSERT INTO ROOM_IMAGE ( ORIGIN_NAME, CHANGE_NAME, ROOM_NO, FILE_LEVEL)
+	SELECT C.* FROM 
+	(
+		<foreach collection="list" item="roomImgList" separator="UNION ALL">
+			SELECT 
+				#{roomImgList.originName} as ORIGIN_NAME,
+				#{roomImgList.changeName} as CHANGE_NAME,
+				#{roomImgList.roomNo} as ROOM_NO,
+				#{roomImgList.imgLevel} as FILE_LEVEL
+			FROM DUAL
+		</foreach>
+	) C
+</insert>
+
+	<!-- <select id="selectBoard" parameterType="board" resultMap="hashMap">
+		SELECT *
+		FROM BOARD
+		JOIN HOUSE USING (BOARD_NO)
+		WHERE BOARD_NO = #{b.boardNo
+	</select>
+	
+	<select id="selectLocation"  resultMap="board, house"> List<List<Object>> [[obj, obj], [obj, obj], [obj, obj],  ] 
+		SELECT BOARD_NO, TITLE, HOUSE_COORDINATE
+		FROM BOARD
+		JOIN HOUSE USING (BOARD_NO)
+	</select>
+	
+	<select id="selectImgList" resultMap="roomImgResultSet">
+	SELECT *
+	FROM ROOM_IMG
+	WHERE ROOM_NO = #{r.roomNo}
+	ORDER BY IMG_LEVEL
+	</select> -->
+	
+</mapper>

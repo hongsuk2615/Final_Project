@@ -18,7 +18,7 @@
     <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
-    	console.log(${locationList});
+    
     </script>
 </head>
 <body>
