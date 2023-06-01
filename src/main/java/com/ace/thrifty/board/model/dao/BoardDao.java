@@ -21,6 +21,9 @@ public class BoardDao {
 		return sqlSession.selectOne("boardMapper.selectBoard");
 	}
 	
+	public int insertBoard(Board b) {
+		return sqlSession.insert("boardMapper.insertBoard", b);
+	}
 	
 //	public int insertBoard(Board b, SmallGroup sg) {
 //		return sqlSession.insert("boardMapper.insertBoard", b, sg);
