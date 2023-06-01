@@ -118,13 +118,14 @@
         <div>
         <form method="post" action="/thrifty/sharehouse/enroll" enctype="multipart/form-data">
 
-            <input type="text" placeholder="이름" name="userName" id="userName" disabled> <br><br>
-            <input  type="tel" placeholder="연락처" name="phone" id="phone" disabled> <br><br>
+            <input type="text" placeholder="이름" name="userName" id="userName" > <br><br>
+            <input  type="tel" placeholder="연락처" name="phone" id="phone" > <br><br>
+             <input type="text" placeholder="집 이름" name="title"> <br><br>
             <button type="button" onclick="addRoom()">방 추가하기</button>
             * 첫번째 사진이 대표사진으로 설정됩니다. <br><br>
             <div id="roomAdd">
             <div id="roomImgsection">
-            <input type="text" placeholder="방 이름" name="title" id="title0">
+            <input type="text" placeholder="방 이름" name="division" id="division0" onchange="roomName(this.id)">
             <input type="file" style="border: none;" name="roomImg0" multiple accept="image/gif, image/jpeg, image/png">
             <button type="button" id="closebtn">X</button>
             </div>
@@ -145,31 +146,31 @@
                     </tr>
                     <tr id="tb0">
                         <td>
-                            <input value="1"type="text" name="recruitsNum">
-                        </td>      
-                        <td>       
-                            <input value="1"type="text" name="division">
-                        </td>      
-                        <td>      
-                            <input value="1"type="text" name="gender">
-                        </td>     
-                        <td>       
-                            <input value="1"type="text" name="type">
-                        </td>    
-                        <td>      
-                            <input value="1"type="text" name="area">
-                        </td>     
-                        <td>    
-                            <input value="1"type="text" name="deposit">
-                        </td>    
-                        <td>     
-                            <input value="1"type="text" name="rent">
-                        </td>    
-                        <td>     
-                            <input value="1"type="text" name="cost">
-                        </td>      
-                        <td>      
-                            <input value="1"type="text" name="contrat">
+                            <input value="1" type="text" name="recruitsNum">
+                        </td>                
+                        <td onclick="nameAlert(this)">                 
+                            <input value="1" type="text" name="division0" disabled>
+                        </td>                
+                        <td>                 
+                            <input value="1" type="text" name="gender">
+                        </td>                
+                        <td>                 
+                            <input value="1" type="text" name="type">
+                        </td>                
+                        <td>                 
+                            <input value="1" type="text" name="area">
+                        </td>                
+                        <td>                 
+                            <input value="1" type="text" name="deposit">
+                        </td>                
+                        <td>                 
+                            <input value="1" type="text" name="rent">
+                        </td>                
+                        <td>                 
+                            <input value="1" type="text" name="cost">
+                        </td>                
+                        <td>                 
+                            <input value="1" type="text" name="contrat">
                         </td>
                     </tr>
                 </table>
@@ -206,7 +207,7 @@
             
             let a = `
             <div id="roomImgsection\${count}" > 
-            <input type="text" placeholder="방 이름" name="title" id="title\${count}">
+            <input type="text" placeholder="방 이름" name="division" id="division\${count}" onchange="roomName(this.id)"> 
             <input type="file" style="border: none;" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png">
             <button type="button" id="closebtn\${count}"count='\${count}'>X</button>
             </div>
@@ -218,8 +219,8 @@
                 <td>
                     <input type="text" name="recruitsNum">
                 </td>
-                <td>
-                    <input type="text" name="division">
+                <td onclick="nameAlert(this)">
+                    <input type="text" name="division\${count}">
                 </td>
                 <td>
                     <input type="text" name="gender">
@@ -252,10 +253,22 @@
                 $('#roomImgsection'+c).remove();
                 $("#tb"+c).remove();
             })
-
-          
+            
         }
-
+        
+        function roomName(id){
+        	$('input[name='+id+']').val($('#'+id).val());
+        }
+        
+        function nameAlert(e){
+        	if($(e).children(0).val() == ''){
+        		alert("상단의 방 이름을 입력해주세요 ~")
+        	}else{
+        		alert("상단의 방 이름을 수정해주세요 ~")
+        	}
+        }
+        
+        
         function insertDaumPostcodeBtn(){
             new daum.Postcode({
                 oncomplete: function(data){
@@ -276,7 +289,7 @@
                     }
                 
                     // document.getElementById("postcodeInsert").value = data.zonecode;
-                    document.getElementById("location").value = roadAddr + extraRoadAddr;
+                    document.getElementById("houseAddress").value = roadAddr + extraRoadAddr;
                     
                 }
             }).open();

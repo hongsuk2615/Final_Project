@@ -27,8 +27,8 @@
 	</select>
 	
 	<insert id="insertBoard" useGeneratedKeys="true" parameterType="board" keyProperty="boardNo">
-		INSERT INTO BOARD (BOARD_NO, CATEGORY_S_NO, CONTENT, CREATE_DATE, READ_COUNT, REPORT_COUNT , TITLE, USER_NO, WISH_COUNT)
-		VALUES ( default, #{categorySNo}, #{content}, #{createDate}, #{readCount}, #{reportCount}, #{title}, #{userNo}, #{wishCount})
+		INSERT INTO BOARD (BOARD_NO, CATEGORY_S_NO, CATEGORY_U_NO, CONTENT, CREATE_DATE, READ_COUNT, REPORT_COUNT , TITLE, USER_NO, WISH_COUNT)
+		VALUES ( default, #{categorySNo}, #{categoryUNo}, #{content}, default , #{readCount}, #{reportCount}, #{title}, #{userNo}, #{wishCount})
 	
 	</insert>
 	<select id="selectBoardListCount" resultType="_int">
@@ -37,22 +37,6 @@
 		WHERE BOARD_
 	</select>
 	
-	<insert id="insertBoard">
-		INSERT INTO BOARD
-		(
-		CATEGORY_S_NO,
-		TITLE,
-		CONTENT,
-		USER_NO
-		
-		)
-		VALUES(
-		2,
-		#{title},
-		#{content},
-		#{userNo}
-		)
-	</insert>
 	<select id="selectCategoryList" resultMap="upperCategoryResultSet">
 		SELECT *
 		  FROM UPPER_CATEGORY;

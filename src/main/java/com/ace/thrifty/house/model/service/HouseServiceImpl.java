@@ -30,7 +30,8 @@ public class HouseServiceImpl implements HouseService{
 
 	@Override
 	public int insertHouse(Board b, House h, List<Room> rooms, Map<String, List<MultipartFile>> roomImgs, String webPath, String serverFolderPath) throws Exception {
-
+		
+		System.out.println("b" + b);
 		int boardNo = boardDao.insertBoard(b);
 		h.setBoardNo(boardNo);
 		int result = houseDao.insertHouse(h);
@@ -44,25 +45,25 @@ public class HouseServiceImpl implements HouseService{
 			roomImgsV.add(roomImgs.get(key));
 			System.out.println("roomImgsV: "+ roomImgsV);
 		}
-//		for (int i = 0; i < rooms.size(); i++) {
-//			rooms.get(i).setBoardNo(boardNo);
-//			int roomNo = houseDao.insertRoom(rooms.get(i));
-//			for(int j = 0; j < roomImgsV.get(i).size(); j++) {
-//				MultipartFile file = roomImgsV.get(i).get(j);
-//				String changeName = Utils.saveFile(file, serverFolderPath);
-//				RoomImg roomImg = RoomImg
-//						.builder()
-//						.roomNo(roomNo)
-//						.originName(file.getOriginalFilename())
-//						.changeName(changeName)
-//						.imgLevel(j)
-//						.build();
-//				roomImgList.add(roomImg);
-//				System.out.println(roomImgList);
-//			}
-//		}
+		for (int i = 0; i < rooms.size(); i++) {
+			rooms.get(i).setBoardNo(boardNo);
+			int roomNo = houseDao.insertRoom(rooms.get(i));
+			for(int j = 0; j < roomImgsV.get(i).size(); j++) {
+				MultipartFile file = roomImgsV.get(i).get(j);
+				String changeName = Utils.saveFile(file, serverFolderPath);
+				RoomImg roomImg = RoomImg
+						.builder()
+						.roomNo(roomNo)
+						.originName(file.getOriginalFilename())
+						.changeName(changeName)
+						.imgLevel(j)
+						.build();
+				roomImgList.add(roomImg);
+				System.out.println(roomImgList);
+			}
+		}
 		
-		//int result1 = houseDao.insertRoomImg(roomImgList);
+		int result1 = houseDao.insertRoomImg(roomImgList);
 
 		return boardNo;
 	}

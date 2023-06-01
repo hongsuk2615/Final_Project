@@ -18,5 +18,6 @@ public class RoomImg {
 	private String originName;
 	private String changeName;
 	private int imgLevel;
+	private String status;
 
 }

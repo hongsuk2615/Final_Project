@@ -37,7 +37,7 @@ public class HouseController {
 		this.houseService = houseService;
 	}
 	
-	@GetMapping("/") // 헤더의 쉐어하우스 클릭 시 
+	@GetMapping("") // 헤더의 쉐어하우스 클릭 시 
 	public String shareHouse() {
 		return "house/house";
 	}
@@ -76,7 +76,9 @@ public class HouseController {
 			@RequestParam(value="cost", required=false) List<Integer> cost,
 			@RequestParam(value="contrat", required=false) List<Integer> contrat
 			) throws Exception {
-		System.out.println(b);
+		b.setUserNo((((Member)s.getAttribute("loginUser")).getUserNo()));
+		b.setCategoryUNo(2);
+		System.out.println(h);
 		List<Room> rooms = new ArrayList();
 		Map<String, List<MultipartFile>> roomImgs = new LinkedHashMap();
 		//Map<String, MultipartFile> map = mtfRequest.getFileMap();
@@ -105,8 +107,8 @@ public class HouseController {
 		String webPath = "/resources/images/house/";
 		String serverFolderPath = s.getServletContext().getRealPath(webPath);
 		int result = houseService.insertHouse(b, h, rooms, roomImgs, webPath, serverFolderPath);
-		//return houseService.insertHouse(h) == 1 ? "house/houseEnroll" : "house/houseDetail";
-		return "house/house";
+		return result == 1 ? "house/houseEnroll" : "house/houseDetail";
+		//return "house/house";
 	}
 	
 }

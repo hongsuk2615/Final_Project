@@ -28,11 +28,12 @@
 	</resultMap>
 	
 	<resultMap type="roomImg" id="roomImgResultSet">
-		<id column="ROOM_IMG_NO" property="roomImgNo"/>
+		<id column="IMG_NO" property="roomImgNo"/>
 		<result column="ROOM_NO" property="roomNo"/>
 		<result column="ORIGIN_NAME"  property="originName"/>
 		<result column="CHANGE_NAME"  property="changeName"/>
 		<result column="IMG_LEVEL"  property="imgLevel"/>
+		<result column="STATUS"  property="status"/>
 	</resultMap>
 	
 		<resultMap type="board" id="boardResultSet">

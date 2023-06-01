@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class Board {
 	private int boardNo;
 	private int categorySNo;
+	private int categoryUNo;
 	private String content;
 	private Date createDate;
 	private int readCount;

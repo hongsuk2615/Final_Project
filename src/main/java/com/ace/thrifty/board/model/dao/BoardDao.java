@@ -22,9 +22,6 @@ public class BoardDao {
 	
 	public int insertBoard(Board b) {
 		return sqlSession.insert("boardMapper.insertBoard", b);
-	
-	public int insertBoard(Board b, SmallGroup sg) {
-		return sqlSession.insert("boardMapper.insertBoard", b, sg);
 	}
 
 	public List<UpperCategory >selectBoardCategoryList() {
