@@ -6,7 +6,7 @@ import com.ace.thrifty.board.model.vo.Board;
 
 public interface Co_purchaseService {
 	
-	public int insertBoard(Board b);
+	public int insertBoard(Board b, String webPath);
 
 	public void selectBoardList(int currentPage, String categoryPath, Map<String, Object> map);
 

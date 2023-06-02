@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.co_purchase.model.service.Co_purchaseService;
 import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
+import com.ace.thrifty.member.model.vo.Member;
 
 @Controller
 @RequestMapping("/co_purchase")
@@ -61,10 +63,15 @@ public class co_purchaseController {
 	
 	@PostMapping("/insert")
 	public String insertBoard(
+						HttpSession session,
 						Board b
 						) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		b.setCategoryUNo(6);
+		b.setUserNo(loginUser.getUserNo());
+		String webPath = "/resources/upfiles/co_purchase/";
 		
-		int result = coService.insertBoard(b);
+		int result = coService.insertBoard(b, webPath);
 		System.out.println(b);
 		return "co_purchase";
 	}

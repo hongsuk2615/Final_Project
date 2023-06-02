@@ -21,8 +21,8 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 	private Pagination pagination;
 
 	@Override
-	public int insertBoard(Board b) {
-		int result = coDao.insertBoard(b);
+	public int insertBoard(Board b, String webPath) {
+		int result = coDao.insertBoard(b, webPath);
 		return result;
 	}
 	

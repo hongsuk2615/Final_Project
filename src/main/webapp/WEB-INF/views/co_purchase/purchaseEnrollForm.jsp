@@ -10,7 +10,6 @@
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" href="/thrifty/resources/css/co_purchase/purchaseEnrollForm.css">
-    <script type="text/javascript" src="/thrifty/resources/js/co_purchase/enrollForm.js"></script>
     <style>
         *{
             /* border: 1px solid blue !important; */
@@ -22,7 +21,7 @@
         #wrapper{
             min-width: 1180px;
         }
-
+        
         #header{
             height: 140px;
         }
@@ -39,11 +38,11 @@
             min-width: 700px;
             min-height: 900px;
         }
-
+        
         #footer{
             
         }
-    </style>
+        </style>
 </head>
 <body>
     <div id="wrapper">
@@ -55,19 +54,28 @@
                     <div id="cat_title">
                         <div id="cat_title_1">글쓰기</div>
                         <input type="submit" id="submit_button" value="등록">
-                        
                     </div>
                     <div id="title_main">
                         <div id="write_title" class="write_case">
-                            <div class="write_case_head" style="width: 120px;">제목</div>
+                            <div class="write_case_head" style="width: 93px;">제목</div>
                             <input type="text" id="enroll_title" class="" name="title">
                         </div>
-                        <div class="write_case" style="width: 315px; display: flex; align-items: center;">
+                    </div>
+                    <div id="invite_info">
+                        <div class="write_case invite_info_1">
+                            <div class="write_case_head">모집 인원</div>
+                            <input type="text" id="" class="info_content" name="recruitNum" placeholder="숫자만 입력">
+                        </div>
+                        <div class="write_case invite_info_1">
+                            <div class="write_case_head">마감 기한</div>
+                            <input type="date" id="" class="info_content" name="deadLine">
+                        </div>
+                        <div class="write_case invite_info_1" style="width: 315px; display: flex; align-items: center;">
                             <div class="write_case_head">
                                 카테고리
                             </div>
                             <div class="selectBox2 ">
-                                <button type="button" class="label" name="category">카테고리 선택</button>  <!-- ajax로 label value값 넘겨서 뜨게해야됨 -->
+                                <button type="button" class="label" name="category">카테고리 선택</button>
                                 <ul class="optionList" style="display: none;">
                                     <c:forEach var="subCategory" items="${subCategoryList}">
                                         <c:if test="${subCategory.categoryUNo eq 6}">
@@ -98,13 +106,14 @@
                         <textarea name="content" placeholder="내용을 입력해주세요."></textarea>
                     </div>
                 </form>
-
+                
 				
                 
             </div>
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
-    <script src="/thrifty/resources/js/co_purchase/main.js"></script>   
+    <script type="text/javascript" src="/thrifty/resources/js/co_purchase/main.js"></script>   
+    <script type="text/javascript" src="/thrifty/resources/js/co_purchase/enrollForm.js"></script>
 </body>
 </html>

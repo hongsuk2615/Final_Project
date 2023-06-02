@@ -16,7 +16,7 @@ public class Co_purchaseDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public int insertBoard(Board b) {
+	public int insertBoard(Board b, String webPath) {
 		return sqlSession.insert("co_purchaseMapper.insertBoard", b);
 	}
 	
