@@ -85,4 +85,16 @@
 		            VALUES(#{categorySNo}, #{categoryUNo}, #{title}, #{content}, #{userNo})
 	</insert> 
 	
+	<insert id="insertImageList" parameterType="list">
+		INSERT INTO IMAGE (ORIGIN_NAME, CHANGE_NAME, BOARD_NO, FILE_LEVEL)
+		     SELECT C.* 
+		       FROM ( <foreach collection="list" item="image" separator="UNION ALL">
+		       				SELECT #{image.originName} AS ORIGIN_NAME
+		       					 , #{image.changeName} AS CHANGE_NAME
+		       					 , #{image.boardNo} AS BOARD_NO
+		       					 , #{image.fileLevel} AS FILE_LEVEL
+		       				  FROM DUAL
+		       			</foreach> ) C	
+	</insert>
+	
 </mapper>
