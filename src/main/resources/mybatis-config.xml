@@ -25,6 +25,7 @@
 		<mapper resource="/mappers/member-mapper.xml"/>
 		<mapper resource="/mappers/house-mapper.xml"/>
 		<mapper resource="/mappers/admin-mapper.xml"/>
+		<mapper resource="/mappers/co_purchase-mapper.xml"/>
 		<mapper resource="/mappers/usedProduct-mapper.xml"/>
 	</mappers>
 
