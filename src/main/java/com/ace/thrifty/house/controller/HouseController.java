@@ -77,9 +77,7 @@ public class HouseController {
 			@RequestParam(value="contrat", required=false) List<Integer> contrat
 			) throws Exception {
 		b.setUserNo((((Member)s.getAttribute("loginUser")).getUserNo()));
-		System.out.println(h);
 		b.setCategoryUNo(2);
-		System.out.println(h);
 		List<Room> rooms = new ArrayList();
 		Map<String, List<MultipartFile>> roomImgs = new LinkedHashMap();
 		for(int i = 0; i< division.size(); i++) {
@@ -95,20 +93,17 @@ public class HouseController {
 					.contrat(contrat.get(i))
 					.build();
 			rooms.add(room);
-			System.out.println("rooms:"+rooms);
 		}
 		for(int i = 0; i < 10; i++) {
 			if(!mtfRequest.getFiles("roomImg"+i).isEmpty()) {
 			roomImgs.put("roomImg"+i, mtfRequest.getFiles("roomImg"+i));
-			System.out.println("roomImgs:"+roomImgs);
 			}
 		}
 		
 		String webPath = "/resources/images/house/";
 		String serverFolderPath = s.getServletContext().getRealPath(webPath);
 		int result = houseService.insertHouse(b, h, rooms, roomImgs, webPath, serverFolderPath);
-		return result == 1 ? "house/houseEnroll" : "house/houseDetail";
-		//return "house/house";
+		return result > 0 ?  "house/houseDetail" : "house/houseEnroll";
 	}
 	
 }

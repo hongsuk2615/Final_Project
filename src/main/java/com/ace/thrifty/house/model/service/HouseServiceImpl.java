@@ -31,20 +31,16 @@ public class HouseServiceImpl implements HouseService{
 	@Override
 	public int insertHouse(Board b, House h, List<Room> rooms, Map<String, List<MultipartFile>> roomImgs, String webPath, String serverFolderPath) throws Exception {
 		
-		System.out.println("b" + b);
 		boardDao.insertBoard(b);
 		int boardNo =b.getBoardNo();
 		h.setBoardNo(boardNo);
 		
-		System.out.println("서비스");
 		List<List<MultipartFile>> roomImgsV = new ArrayList();
 		List<RoomImg> roomImgList = new ArrayList();
 		Iterator<String> keys = roomImgs.keySet().iterator();
-		System.out.println(keys);
 		while (keys.hasNext()) {
 			String key = keys.next();
 			roomImgsV.add(roomImgs.get(key));
-			System.out.println("roomImgsV: "+ roomImgsV);
 		}
 		for (int i = 0; i < rooms.size(); i++) {
 			rooms.get(i).setBoardNo(boardNo);
@@ -61,7 +57,6 @@ public class HouseServiceImpl implements HouseService{
 						.imgLevel(j)
 						.build();
 				roomImgList.add(roomImg);
-				System.out.println(roomImgList);
 			}
 		}
 		String thumbnail = webPath + roomImgList.get(0).getChangeName();
@@ -69,7 +64,7 @@ public class HouseServiceImpl implements HouseService{
 		int result = houseDao.insertHouse(h);
 		int result1 = houseDao.insertRoomImg(roomImgList);
 
-		return boardNo;
+		return result1;
 	}
 
 	@Override

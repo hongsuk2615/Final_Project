@@ -322,7 +322,7 @@ input::-webkit-search-results-decoration{
 		$.ajax({
 			url : 'thrifty/sharehouse/selectLocation',
 			dataType : 'json',
-			success: function(result){ // result = [{제목 = 3838, 383899}, {제목 = 3838, 383899} ]
+			success: function(result){ 
 
 				
 			

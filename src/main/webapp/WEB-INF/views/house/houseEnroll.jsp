@@ -118,17 +118,12 @@
         <div>
         <form method="post" action="/thrifty/sharehouse/enroll" enctype="multipart/form-data">
 
-            <input type="text" placeholder="이름" name="userName" id="userName" > <br><br>
-            <input  type="tel" placeholder="연락처" name="phone" id="phone" > <br><br>
-             <input type="text" placeholder="집 이름" name="title"> <br><br>
+            <input type="text" placeholder="이름" name="userName" id="userName" required> <br><br>
+            <input  type="tel" placeholder="연락처" name="phone" id="phone" required> <br><br>
+             <input type="text" placeholder="집 이름" name="title" required> <br><br>
             <button type="button" onclick="addRoom()">방 추가하기</button>
             * 첫번째 사진이 대표사진으로 설정됩니다. <br><br>
             <div id="roomAdd">
-            <div id="roomImgsection">
-            <input type="text" placeholder="방 이름" name="division" id="division0" onchange="roomName(this.id)">
-            <input type="file" style="border: none;" name="roomImg0" multiple accept="image/gif, image/jpeg, image/png">
-            <button type="button" id="closebtn">X</button>
-            </div>
             </div>
             <br><br>
             <div>
@@ -144,51 +139,21 @@
                         <th>관리비</th>
                         <th>계약종료일</th>
                     </tr>
-                    <tr id="tb0">
-                        <td>
-                            <input value="1" type="text" name="recruitsNum">
-                        </td>                
-                        <td onclick="nameAlert(this)">                 
-                            <input value="1" type="text" name="division0" disabled>
-                        </td>                
-                        <td>                 
-                            <input value="1" type="text" name="gender">
-                        </td>                
-                        <td>                 
-                            <input value="1" type="text" name="type">
-                        </td>                
-                        <td>                 
-                            <input value="1" type="text" name="area">
-                        </td>                
-                        <td>                 
-                            <input value="1" type="text" name="deposit">
-                        </td>                
-                        <td>                 
-                            <input value="1" type="text" name="rent">
-                        </td>                
-                        <td>                 
-                            <input value="1" type="text" name="cost">
-                        </td>                
-                        <td>                 
-                            <input value="1" type="text" name="contrat">
-                        </td>
-                    </tr>
                 </table>
             </div>
             <br>
             
-            <input type="text"  placeholder="위치" name="houseAddress" id="houseAddress" onchange="getLocation()">
+            <input type="text"  placeholder="위치" name="houseAddress" id="houseAddress" onchange="getLocation()" required>
             <input type="hidden" name="houseCoordinate" id="houseCoordinate">
-            <button type="button" onclick="insertDaumPostcodeBtn();">주소검색</button>
+            <button type="button" onclick="insertDaumPostcodeBtn();" >주소검색</button>
             <br>
 
-            <textarea type="text" placeholder="지점소개" name="information" id="information" >지점소개
-                </textarea> <br>
+            <textarea type="text" placeholder="지점소개" name="information" id="information" required></textarea> <br>
   
                 <input type="checkbox" name="injung" id="injung"  style="width: 10px;">
-            <label  for="injung">개인정보수집에 동의합니다.</label> <br><br>
+            <label for="injung">개인정보수집에 동의합니다.</label> <br><br>
 
-                <button id="apply">신청하기</button><br>
+                <button id="apply" disabled>신청하기</button><br>
         </form>
     </div>
     </div>
@@ -198,20 +163,16 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5381ed5b2d19ab0d65e938e3cce6e687&libraries=services"></script>
     <script>
 
-        // hNo 1
-        // hNo -> rNo 2
-        // rNo -> img1,2,3,4
-
-        let count = 0;
+        let count = -1;
 
         function addRoom(){ // 방 추가
-          
+          	$('#apply').attr("disabled", true);
             count++;
             
             let a = `
             <div id="roomImgsection\${count}" > 
-            <input type="text" placeholder="방 이름" name="division" id="division\${count}" onchange="roomName(this.id)"> 
-            <input type="file" style="border: none;" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png">
+            <input type="text" placeholder="방 이름" name="division" id="division\${count}" onchange="roomName(this.id)" required> 
+            <input type="file" style="border: none;" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png" required>
             <button type="button" id="closebtn\${count}"count='\${count}'>X</button>
             </div>
             `
@@ -220,31 +181,31 @@
            let b =`
            <tr id="tb\${count}">
                 <td>
-                    <input type="text" name="recruitsNum">
+                    <input type="number" name="recruitsNum" required>
                 </td>
                 <td onclick="nameAlert(this)">
-                    <input type="text" name="division\${count}">
+                    <input type="text" name="division\${count}" required>
                 </td>
                 <td>
-                    <input type="text" name="gender">
+                    <input type="text" name="gender" required>
                 </td>
                 <td>
-                    <input type="text" name="type">
+                    <input type="text" name="type" required>
                 </td>
                 <td>
-                    <input type="text" name="area">
+                    <input type="number" name="area" required> 
                 </td>
                 <td>
-                    <input type="text" name="deposit">
+                    <input type="number" name="deposit" required>
                 </td>
                 <td>
-                    <input type="text" name="rent">
+                    <input type="number" name="rent" required>
                 </td>
                 <td>
-                    <input type="text" name="cost">
+                    <input type="number" name="cost" required>
                 </td>
                 <td>
-                    <input type="text" name="contrat">
+                    <input type="number" name="contrat" required>
                 </td>
             </tr>
            `
@@ -253,11 +214,15 @@
 
            document.getElementById("closebtn"+count).addEventListener('click', function(){
                 let c = $(this).attr('count')
+                if($('input[name=contrat]').length == 1){
+                	alert("하나의 방은 존재해야합니다.")
+                }else{
                 $('#roomImgsection'+c).remove();
                 $("#tb"+c).remove();
-            })
-            
-        }
+                }
+            });
+            inputCheck();
+        }addRoom();
         
         function roomName(id){
         	$('input[name='+id+']').val($('#'+id).val());
@@ -271,7 +236,41 @@
         	}
         }
         
-        
+        function inputCheck(){
+        	
+        	document.getElementById('information').addEventListener('change',function(){
+        		 let flag = 1;
+	            	$("input").each(function(index1,item1){
+	            		flag *= (item1.value ==''? 0 :1);
+	            		flag *= ($('#information').val() == ''? 0 :1);
+	            	});
+	            	
+	            	if(flag==1 && $('#injung').is(':checked') && $('#information').val() != ''){
+	            		$('#apply').removeAttr("disabled");
+	            	}else{
+	            		$('#apply').attr("disabled",true);		
+	            	}
+        	})
+        	
+	        $("input").each(function(index,item){
+	            item.addEventListener("change", function(){
+	            	 let flag = 1;
+	            	$("input").each(function(index1,item1){
+	            		flag *= (item1.value ==''? 0 :1);
+	            		flag *= ($('#information').val() == ''? 0 :1);
+	            	});
+	            	
+	            	if(flag==1 && $('#injung').is(':checked') && $('#information').val() != ''){
+	            		$('#apply').removeAttr("disabled");
+	            	}else{
+	            		$('#apply').attr("disabled",true);		
+	            	}
+	            	
+	            });
+	        })
+        }
+        inputCheck();
+        //$('#apply').attr("disabled", false);
         function insertDaumPostcodeBtn(){
             new daum.Postcode({
                 oncomplete: function(data){
