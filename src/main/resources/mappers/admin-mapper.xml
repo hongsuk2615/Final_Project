@@ -32,4 +32,33 @@
 		  AND STATUS = 'Y'
 		ORDER BY CURRENT_LOGIN DESC
 	</select>
+	
+	<select id="selectInfoBox" resultType="hashmap">
+		SELECT COUNT(*) as 'all', 
+	       (SELECT COUNT(*) FROM MEMBER WHERE CURRENT_LOGIN = 'Y' AND AUTHORITY = '1') as 'current',
+	       (SELECT COUNT(*) FROM MEMBER WHERE IS_BANNED = 'Y' AND AUTHORITY = '1') as 'ban',
+	       (SELECT COUNT(*) FROM MEMBER WHERE STATUS = 'N' AND AUTHORITY = '1') as 'suspend'
+		FROM MEMBER
+		WHERE AUTHORITY = '1';
+	</select>
+	
+	<select id="memberListAjax" resultMap="memberResultSet" parameterType="String">
+		SELECT *
+		FROM MEMBER
+		WHERE AUTHORITY = 1
+		<choose>
+			<when test="tab == 'memberActive'">
+				AND STATUS = 'Y'
+				AND IS_BANNED = 'N'
+			</when>
+			<when test="tab == 'memberSuspend'">
+				AND STATUS = 'N'
+				AND IS_BANNED = 'N'
+			</when>
+			<when test="tab == 'memberBanned'">
+				AND IS_BANNED = 'Y'
+			</when>
+		</choose>
+		ORDER BY CURRENT_LOGIN DESC
+	</select>
 </mapper>

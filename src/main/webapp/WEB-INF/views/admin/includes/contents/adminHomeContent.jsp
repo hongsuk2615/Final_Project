@@ -28,7 +28,7 @@
 				<div class="small-box bg-info">
 					<div class="inner">
 						<h5 class="infoBox-title">현재 이용자 수</h5>
-						<h3 class="infoBox-value">25</h3>
+						<h3 class="infoBox-value">${infoBox.current}</h3>
 					</div>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 				<div class="small-box bg-primary">
 					<div class="inner">
 						<h5 class="infoBox-title">전체 회원 수</h5>
-						<h3 class="infoBox-value">100</h3>
+						<h3 class="infoBox-value">${infoBox.all}</h3>
 					</div>
 				</div>
 			</div>
@@ -44,7 +44,7 @@
 				<div class="small-box bg-warning">
 					<div class="inner">
 						<h5 class="infoBox-title">정지 회원 수</h5>
-						<h3 class="infoBox-value">10</h3>
+						<h3 class="infoBox-value">${infoBox.suspend}</h3>
 					</div>
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 				<div class="small-box bg-danger">
 					<div class="inner">
 						<h5 class="infoBox-title">탈퇴 회원 수</h5>
-						<h3 class="infoBox-value">5</h3>
+						<h3 class="infoBox-value">${infoBox.ban}</h3>
 					</div>
 				</div>
 			</div>
