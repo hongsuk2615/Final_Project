@@ -59,7 +59,7 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
-                <form action="/thrifty/usedProduct/enroll" method="post">
+                <form action="/thrifty/usedProduct/enroll" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <th colspan="5">
@@ -120,10 +120,10 @@
                     <tr id="images">
                     <input type="file" name="images" multiple style="opacity : 0;" onchange="imagePreview(this);">
                         <th>이미지<br>(최대4장)<br><button type="button" onclick="insertImage();">이미지 첨부</button></th>
+                        <td id="image0"></td>
                         <td id="image1"></td>
                         <td id="image2"></td>
                         <td id="image3"></td>
-                        <td id="image4"></td>
                     </tr>
                     <tr id="boardContent">
                         <th>내용</th>
@@ -151,17 +151,32 @@
         		document.getElementsByName('images')[0].click();
         	}
         	
-        	function imagePreview(e){
-        		if(e.files.length >4){
+        	function imagePreview(arg){
+        		if(arg.files.length >4){
         			alert("4개보다 많은 사진첨부 불가능");
-        			console.log(e.files[i]);
+        			console.log(arg.files[i]);
         			return false;
         		}else{
-	        		for(let i = 0; i < e.files.length; i++){
+                    console.log(arg.value);
+	        		for(let i = 0; i < arg.files.length; i++){
 	        			let reader = new FileReader();
-	        			console.log(e.files[i]);	
-	        			document.getElementById('image'+i).style.backgroundImage="url()"
-	        		}        			
+	        			
+	        			reader.onload = function(e){
+	        				let url = e.target.result;
+	        				console.log("image"+i+":");
+	        				console.log(url);
+	        				$("#image"+i).css('backgroundImage','url('+url+')');
+	        			}
+	        			
+	        			reader.readAsDataURL(arg.files[i]);
+	        			console.log(reader);
+	        			
+	        				
+	        			// document.getElementById('image'+i).src = e.
+	        		}
+	        		for(let i = arg.files.length; i < 4 ; i++){
+	        			$("#image"+i).css('backgroundImage','none');
+	        		}
         		}
         		
         	}

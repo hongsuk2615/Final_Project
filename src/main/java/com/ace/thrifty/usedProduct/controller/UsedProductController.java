@@ -1,12 +1,17 @@
 package com.ace.thrifty.usedProduct.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.member.model.vo.Member;
@@ -23,7 +28,8 @@ public class UsedProductController {
 	
 	
 	@GetMapping("")
-	public String usedProduct() {
+	public String usedProduct(String scNo, Model model) {
+		 
 		return "usedProduct/usedProduct";
 	}
 	
@@ -38,11 +44,20 @@ public class UsedProductController {
 	}
 	
 	@PostMapping("/enroll")
-	public String insertUsedProduct(HttpSession session, Board b, UsedProduct uP) {
+	public String insertUsedProduct(HttpSession session, 
+									Board b, 
+									UsedProduct uP,
+									@RequestParam(value = "images", required = false ) List<MultipartFile> imgList)  throws Exception {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		b.setCategoryUNo(4);
 		b.setUserNo(loginUser.getUserNo());
-		usedProductService.insertUsedProduct(b,uP);
+		String webPath = "/resources/upfiles/usedProduct/";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		usedProductService.insertUsedProduct(b,	uP, imgList, webPath, serverFolderPath);
+		
+		
+		
+		
 		return "usedProduct/usedProduct";
 	}
 }

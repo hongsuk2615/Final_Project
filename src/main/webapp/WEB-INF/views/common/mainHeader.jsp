@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script type="text/javascript" src="/thrifty/resources/js/common/header.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="/thrifty/resources/css/common/header.css">
+    <link rel="stylesheet" href="/thrifty/resources/css/common/mainHeader.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/login.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/find.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/enroll.css">
@@ -18,11 +18,11 @@
     <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
-    
+    	console.log(${locationList});
     </script>
 </head>
 <body>
-    <div id="header" class="background_basic">
+    <div id="header" class="background_basic" style="height: 90px;">
         <div id="header_1">
             <div id="header_1_1">
                 <a href="/thrifty/">
@@ -43,49 +43,6 @@
 	                <div id="header_search" class="search_img_white"> </div>            	
             </div>
         </div>
-        <div id="header_2">
-            <div id="header_2_1">
-            	<c:forEach var="upperCategory" items="${upperCategoryList}">
-            		<div>
-                        <a class="main_category content_white change_content" href="/thrifty/${upperCategory.categoryPath}">${upperCategory.categoryUName}</a>
-                        <div></div>
-                    </div>
-            	</c:forEach>
-                <!-- <div>
-                    <a class="main_category content_white change_content">공지사항</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">쉐어하우스</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">카풀</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">중고거래</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">심부름/알바</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">공동구매</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">소모임</a>
-                    <div></div>
-                </div>
-                <div>
-                    <a class="main_category content_white change_content">자유게시판</a>
-                    <div></div>
-                </div> -->
-            </div>
-        </div>
-        
         <ul style="list-style-type: none;">
             <li id="GgCustomLogin">
             </li>

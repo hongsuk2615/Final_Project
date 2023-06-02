@@ -48,7 +48,7 @@
     <div id="wrapper">
         <jsp:include page="../common/header.jsp"/>
         <div id="body">
-            <jsp:include page="../common/boardBodyLeft.jsp"/>
+            <jsp:include page="../common/boardBodyLeftCo_purchase.jsp"/>
             <div id="body-right">
                 <div id="cat_title_1">게시글 상세</div>
                 <div id="detail_header">
@@ -99,7 +99,7 @@
                                 <div id="body_description_chatting">문의 쪽지</div>
                                 <div id="body_description_link" class="flex">
                                     <div id="link">관련 링크 :&nbsp;</div>
-                                    <a href="">https://www.netflix.com/kr/</a>
+                                    <a href="https://www.netflix.com/kr/">https://www.netflix.com/kr/</a>
                                 </div>
                             </div>
                         </div>

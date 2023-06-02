@@ -23,7 +23,7 @@
                     <ul class="scrollbar">
                     <c:forEach var="subCategory" items="${subCategoryList}">
                     	<c:if test="${subCategory.categoryUNo eq 4}">
-                        <li>${subCategory.categorySName}</li>
+                        <li onclick="location.href = '${contextPath}/usedProduct?scNo=${subCategory.categorySNo }'">${subCategory.categorySName}</li>
                         </c:if>
                     </c:forEach>    
                     </ul>
@@ -35,10 +35,9 @@
                         <li>지역</li>
                         <li>
                             <select name="location" id="">
-<%--                             <c:forEach var="location" items="${locationList}">
-                            	<option value="${locationNo}">${location.locationName}</option>
-                            </c:forEach> --%>
-                                
+                         		<c:forEach var="location" items="${locationList}">
+                            		<option value="${locationNo}">${location.locationName}</option>
+                            	</c:forEach>   
                             </select>
                         </li>
 

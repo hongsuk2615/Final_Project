@@ -1,3 +1,5 @@
 /.metadata/
 .DS_Store
 src/main/resources/application.properties
+target/
+.settings/
