@@ -22,11 +22,11 @@
     cursor: pointer;
 }
 
-#title{
+#enroll_title{
     width: 700px;
     border: none;
 }
-#title:focus{
+#enroll_title:focus{
     outline: none;
 }
 
@@ -46,7 +46,7 @@
     text-align: center;
 }
 
-#fileUpload{
+#fileUpload, #title_main{
     display: flex;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -57,8 +57,8 @@
     border-radius: 5px;
 }
 
-#fileUpload_0{
-    width: 65%;
+#fileUpload_0, #write_title{
+    width: 64%;
     margin-right: 8px;
 }
 
@@ -70,11 +70,16 @@
     width: 315px;
 }
 
+#fileUpload_2>input{
+    margin: 2px 0px 2px 0px;
+}
+
 .upload-name {
     display: inline-block;
     width: 455px;
     height: 30px;
     margin: 4px 0 8px 0;
+    padding-left: 10px;
     vertical-align: middle;
     border: 1px solid #dddddd;
     border-radius: 5px;
@@ -93,7 +98,8 @@
     border-radius: 5px;
     font-size: 15px;
     cursor: pointer;
-    height: 20px;
+    height: auto;
+    padding: 4px;
     margin: 8px 0 4px 0;
 }
 
@@ -109,7 +115,7 @@
 .write_content{
     width: 100%;
     height: 30px;
-    padding-left: 10px;
+    padding-left: 15px;
     border-radius: 5px;
     border-width: 1px;
     border: none;
@@ -119,10 +125,10 @@
 }
 
 textarea{
-    width: 100%;
+    width: 915px;
     height: 400px;
-    padding-top: 10px;
-    padding-left: 10px;
+    padding-top: 20px;
+    padding-left: 20px;
     border-radius: 5px;
     resize: none;
 }
@@ -130,3 +136,102 @@ textarea{
 textarea:focus{
     outline: none;
 }
+
+
+select{
+    width: 100px;
+    height: 35px;
+    background-size: 20px;
+    padding: 5px 30px 5px 10px;
+    border-radius: 4px;
+    outline: 0 none;
+    background: url("/thrifty/resources/images/main/icon/arrow-down.png") calc(100% - 5px) center no-repeat;
+    background-size: 10px;
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+select option{
+    background-color: black;
+    color: white;
+    height: 100px;
+}
+
+.selectBox2 * { box-sizing: border-box; }
+.selectBox2 {
+  position: relative;
+  width: 210px;
+  height: 35px;
+  border-radius: 4px;
+  /* border: 1px solid #dddddd; */
+  /* background: url("/thrifty/resources/images/main/icon/arrow-down.png") calc(100% - 7px) center no-repeat; */
+  background-size: 10px;
+  background-position: 93px;
+  cursor: pointer;
+}
+
+.selectBox2:after {
+  content: '';
+  display: block; 
+  width: 2px;
+  height: 100%; 
+  position: absolute; 
+  top: 0; 
+  right: 35px;
+  /* background: #dddddd; */
+}
+
+.selectBox2 .label {
+  display: flex;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+  border: 0 none;
+  outline: 0 none;
+  padding-left: 15px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.selectBox2 .optionList {
+  position: absolute; 
+  top: 29.5px;
+  left: 0;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  color: #000000;
+  border: 1px solid #dddddd;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  max-height: 0;
+  transition: .3s ease-in;
+}
+
+.selectBox2.active .optionList {
+  max-height: 500px;
+}
+
+.selectBox2 .optionItem {
+  border-bottom: 1px dashed rgb(218, 218, 218);
+  padding: 5px 15px 5px;
+  transition: .1s;
+  font-size: 14px;
+}
+
+.selectBox2 .optionItem:hover {
+  background: #ffffff;
+}
+
+.selectBox2 .optionItem:last-child {
+  border-bottom: 0 none;
+}
+
+// 스크롤 커스텀
+.selectBox2 .optionList::-webkit-scrollbar {width: 6px;}
+.selectBox2 .optionList::-webkit-scrollbar-track {background: transparent; }
+.selectBox2 .optionList::-webkit-scrollbar-thumb {background: #303030; border-radius: 45px;}
+.selectBox2 .optionList::-webkit-scrollbar-thumb:hover {background: #303030;}

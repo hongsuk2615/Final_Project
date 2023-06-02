@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,17 +49,34 @@
     <div id="wrapper">
         <jsp:include page="../common/header.jsp"/>
         <div id="body">
-            <jsp:include page="../common/boardBodyLeft.jsp"/>
+            <jsp:include page="../common/boardBodyLeftCo_purchase.jsp"/>
             <div id="body-right">
-                <form action="">
+                <form action="insert" method="post">
                     <div id="cat_title">
                         <div id="cat_title_1">글쓰기</div>
                         <input type="submit" id="submit_button" value="등록">
                         
                     </div>
-                    <div class="write_case">
-                        <div class="write_case_head">제목</div>
-                        <input type="text" id="title" class="" name="title">
+                    <div id="title_main">
+                        <div id="write_title" class="write_case">
+                            <div class="write_case_head" style="width: 120px;">제목</div>
+                            <input type="text" id="enroll_title" class="" name="title">
+                        </div>
+                        <div class="write_case" style="width: 315px; display: flex; align-items: center;">
+                            <div class="write_case_head">
+                                카테고리
+                            </div>
+                            <div class="selectBox2 ">
+                                <button type="button" class="label" name="category">카테고리 선택</button>  <!-- ajax로 label value값 넘겨서 뜨게해야됨 -->
+                                <ul class="optionList" style="display: none;">
+                                    <c:forEach var="subCategory" items="${subCategoryList}">
+                                        <c:if test="${subCategory.categoryUNo eq 6}">
+                                            <li class="optionItem" value="${subCategory.categorySNo}">${subCategory.categorySName}</li>
+                                        </c:if>
+                                    </c:forEach> 
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div id="fileUpload">
                         <div id="fileUpload_0" class="write_case">
@@ -87,5 +105,6 @@
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
+    <script src="/thrifty/resources/js/co_purchase/main.js"></script>   
 </body>
 </html>
