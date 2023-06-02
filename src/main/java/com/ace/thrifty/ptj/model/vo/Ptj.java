@@ -21,5 +21,6 @@ public class Ptj {
 	private String locationName;
 	private String imgPath;
 	private String categorySName;
+	private String locationCoordinate;
 	
 }

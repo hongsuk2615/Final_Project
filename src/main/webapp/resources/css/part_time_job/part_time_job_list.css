@@ -22,3 +22,20 @@
 	justify-content: space-around;
 	margin-bottom: 100px;
 }
+
+#write-board {
+	display: flex;
+	justify-content: space-between;
+}
+
+#write-btn{
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 5px 5px 5px gray;
+	background: rgb(0, 60, 120);
+	color: white;
+}
+
+#write-btn:hover {
+	cursor: pointer;
+}

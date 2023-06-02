@@ -3,20 +3,26 @@ package com.ace.thrifty.ptj.contoller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Image;
+import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.ptj.model.service.PtjService;
 import com.ace.thrifty.ptj.model.vo.Ptj;
 
 @Controller
-public class ptjController {
+public class PtjController {
 
 	@Autowired
 	private PtjService ptjService;
@@ -83,6 +89,22 @@ public class ptjController {
 	@RequestMapping("/ptj/ptjEnrollForm")
 	public String ptjEnrollForm() {
 		return "part_time_job/PTJEnrollForm";
+	}
+	
+	@PostMapping("/ptj/ptjList")
+	public String insertPtj(HttpSession session,
+							Board b ,
+							Ptj p ,
+							@RequestParam(value="img" , required = false) MultipartFile image ) throws Exception {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		b.setCategoryUNo(5);
+		b.setUserNo(loginUser.getUserNo());
+		String webPath = "/resources/upfiles/ptj";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		ptjService.insertPtj(b, p, image, webPath, serverFolderPath);
+		
+		return "ptj/PTJList";
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,25 +63,32 @@
             <div id="body-left">
                 <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             </div>
+		<form id="ptj-enroll-form" action="${contextPath}/ptj/ptjList" enctype="multipart/form-data" method="post">
             <div id="body-right">
                 <div id="enroll-category">
-                    <h1>카테고리명</h1>
+                    <h1>카테고리를 정해주세요.
+                    	<select style="margin-left: 10px;" name="categorySName">
+							<c:forEach var="categorySName" items="${subCategoryList }">
+								<c:if test="${categorySName.categoryUNo eq 5 }" >
+									<option>${categorySName.categorySName }</option>
+								</c:if>
+							</c:forEach>
+                    	</select>
+                    </h1>
                 </div>
                 <hr>
                 <div id="enroll">
-                    <form id="ptj-enroll-form" action="${contextPath}/ptj/insert">
                         <div id="enroll-header">
-                            <h3>대표 이미지 <input type="file"></h3>
-                            <h2>제목 : &nbsp;<input name="enrollTitle" id="enroll-title" required placeholder="제목을 적어주세요."></h2><br>
-                            <h3 id="enroll-content">내용 :  &nbsp;<textarea name="enrollContent" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required placeholder="날짜와 내용을 적어주세요."></textarea></h3>
-                            <!-- <div id="좌표"></div> -->
+                            <h3>대표 이미지 <input type="file" name="img"></h3>
+                            <h2>제목 : &nbsp;<input name="title" id="enroll-title" required placeholder="제목을 적어주세요."></h2><br>
+                            <h3 id="enroll-content">내용 :  &nbsp;<textarea name="content" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required placeholder="날짜와 내용을 적어주세요."></textarea></h3>
                         </div>
                         <hr>
                         <div id="enroll-body">
-                            <h3>연락처 : &nbsp;<input type="text" name="enrollContact" id="enroll-contact" required placeholder="연락처나 카카오톡ID 를 적어주세요."></h3><br>
+                            <h3>현재 접속한 아이디의 연락처가 표시 됩니다.</h3><br>
                             <hr>
                             <input type="hidden" name="boardNo" value="${empty p.boardNo ? 0 : p.boardNo}" />
-                            <h3>급여 : </h3><input type="number" id="enroll-price" required>&nbsp;원
+                            <h3>급여 : </h3><input type="number" id="enroll-price" required name="price">&nbsp;원
                             <hr>
                             <h3>시간 : </h3>
                             시작 시간 : <input type="time" name="enrollStartDate" class="enroll-date" value="09:00" required>&nbsp;&nbsp;
@@ -136,16 +144,15 @@
                         <div id="enroll-footer">
                             <button id="enroll-btn">게시글 등록하기</button>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
-            <!-- <div id="map" style="width:100%;height:350px;"></div> -->
+		</form>
         </div>
         <div id="footer">
         
         </div>
     </div>
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 <script type="text/javascript" src="/thrifty/resources/js/kakaoAPI/map_search.js"></script>
 

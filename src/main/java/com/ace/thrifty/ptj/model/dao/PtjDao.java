@@ -26,5 +26,9 @@ public class PtjDao {
 	public List<Ptj> selectPtjAll() {
 		return sqlSession.selectList("ptjMapper.selectPtjAll");
 	}
+	
+	public int insertPtj(Ptj p) {
+		return sqlSession.insert("ptjMapper.insertPtj" , p);
+	}
 
 }

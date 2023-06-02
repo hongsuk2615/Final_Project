@@ -68,10 +68,10 @@
 						</c:if>
 					</c:forEach>
                 </div>
-                <div style="width:100%; height:0px;">
-                	<p>메인 > 심부름/대타 > 대타</p>
+                <div style="width:100%; height:50px;" id="write-board">
+                	<p>메인 > 심부름/대타 > 대타</p><button id="write-btn">게시글 작성하기</button>
                 </div>
-                <hr style="width: 100%;  margin-top: 60px;">
+                <hr style="width: 100%;  margin-top: 15px;">
                 <div id="ptj-allBody" style="height: 1000px;">
                 	<c:forEach var="ptjList" items="${bList }" begin="0" end="8" step="1" >
                			<div style="width: 200px; height: 170px;">
@@ -134,6 +134,10 @@
 
         </div>
     </div>
-    
+    <script>
+    	document.getElementById('write-btn').addEventListener("click",function(){
+	        location.href = "<%= request.getContextPath() %>/ptj/ptjEnrollForm";
+	   	})
+    </script>
 </body>
 </html>
