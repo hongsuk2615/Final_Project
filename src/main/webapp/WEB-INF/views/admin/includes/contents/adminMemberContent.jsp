@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="content-wrapper" style="min-height: 1302.12px;">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
@@ -27,15 +28,19 @@
 				<div class="col-12">
 					<div class="card card-primary card-tabs">
 						<div class="card-header p-0 pt-1">
-							<ul class="nav nav-tabs" id="custom-tabs-one-tab">
-								<li class="nav-item"><a class="nav-link active"
-									data-toggle="pill" href="#custom-tabs-one-home">전체</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="pill"
-									href="#custom-tabs-one-profile">활성</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="pill"
-									href="#custom-tabs-one-messages">정지</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="pill"
-									href="#custom-tabs-one-settings">탈퇴</a></li>
+							<ul class="nav nav-tabs" id="member-tabs">
+								<li class="nav-item">
+									<a class="nav-link active" id="memberAll" data-toggle="pill" href="#">전체</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="memberActive" data-toggle="pill" href="">활성</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="memberSuspend" data-toggle="pill" href="#">정지</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="memberBanned" data-toggle="pill" href="#">탈퇴</a>
+								</li>
 								<li class="nav-item" style="margin-left: auto;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 180px;">
@@ -61,216 +66,45 @@
 											<thead>
 												<tr>
 													<th rowspan="1" colspan="1">번호</th>
+													<th rowspan="1" colspan="1">현재 로그인</th>
 													<th rowspan="1" colspan="1">유저ID</th>
 													<th rowspan="1" colspan="1">닉네임</th>
-													<th rowspan="1" colspan="1">현재 로그인</th>
-													<th rowspan="1" colspan="1">가입일</th>
 													<th rowspan="1" colspan="1">신고횟수</th>
+													<th rowspan="1" colspan="1">가입일</th>
 													<th rowspan="1" colspan="1">상태</th>
 													<th rowspan="1" colspan="1">관리</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr class="odd">
-													<td>Gecko</td>
-													<td>Firefox 1.0</td>
-													<td>Win 98+ / OSX.2+</td>
-													<td>1.7</td>
-													<td>A</td>
-													<td>활성</td>
-													<td>
-														<div class="btn-group">
-															<button class="btn btn-primary btn-sm dropdown-toggle"
-																type="button" data-toggle="dropdown"
-																aria-expanded="false">활성</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">활성</a> <a
-																	class="dropdown-item" href="#">정지</a> <a
-																	class="dropdown-item" href="#">탈퇴</a>
+												<c:forEach var="list" items="${memberList}" varStatus="i">
+													<tr>
+														<td>${i.count}</td>
+														<td>
+															<div class="out-circle">
+																<c:if test="${list.currentLogin eq 'Y'}">
+																		<span class="in-circle"></span>
+																</c:if>
+															</div>	
+														</td>
+														<td>${list.userId}</td>
+														<td>${list.nickName}</td>
+														<td>${list.reportCount}</td>
+														<td>${list.joinDate}</td>
+														<td>${list.status}</td>
+														<td>
+															<div class="btn-group">
+																<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+																	활성
+																</button>
+																<div class="dropdown-menu">
+																	<a class="dropdown-item" href="#">활성</a>
+																	<a class="dropdown-item" href="#">정지</a>
+																	<a class="dropdown-item" href="#">탈퇴</a>
+																</div>
 															</div>
-														</div>
-													</td>
-												</tr>
-												<tr class="even">
-													<td>Gecko</td>
-													<td>Firefox 1.5</td>
-													<td>Win 98+ / OSX.2+</td>
-													<td>1.8</td>
-													<td>A</td>
-													<td>활성</td>
-													<td>
-														<div class="btn-group">
-															<button class="btn btn-primary btn-sm dropdown-toggle"
-																type="button" data-toggle="dropdown"
-																aria-expanded="false">활성</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">활성</a> <a
-																	class="dropdown-item" href="#">정지</a> <a
-																	class="dropdown-item" href="#">탈퇴</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr class="odd">
-													<td>Gecko</td>
-													<td>Firefox 2.0</td>
-													<td>Win 98+ / OSX.2+</td>
-													<td>1.8</td>
-													<td>A</td>
-													<td>활성</td>
-													<td>
-														<div class="btn-group">
-															<button class="btn btn-primary btn-sm dropdown-toggle"
-																type="button" data-toggle="dropdown"
-																aria-expanded="false">활성</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">활성</a> <a
-																	class="dropdown-item" href="#">정지</a> <a
-																	class="dropdown-item" href="#">탈퇴</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr class="even">
-													<td>Gecko</td>
-													<td>Firefox 3.0</td>
-													<td>Win 2k+ / OSX.3+</td>
-													<td>1.9</td>
-													<td>A</td>
-													<td>활성</td>
-													<td>
-														<div class="btn-group">
-															<button class="btn btn-primary btn-sm dropdown-toggle"
-																type="button" data-toggle="dropdown"
-																aria-expanded="false">활성</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">활성</a> <a
-																	class="dropdown-item" href="#">정지</a> <a
-																	class="dropdown-item" href="#">탈퇴</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr class="odd">
-													<td>Gecko</td>
-													<td>Camino 1.0</td>
-													<td>OSX.2+</td>
-													<td>1.8</td>
-													<td>A</td>
-													<td>활성</td>
-													<td>
-														<div class="btn-group">
-															<button class="btn btn-primary btn-sm dropdown-toggle"
-																type="button" data-toggle="dropdown"
-																aria-expanded="false">활성</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">활성</a> <a
-																	class="dropdown-item" href="#">정지</a> <a
-																	class="dropdown-item" href="#">탈퇴</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr class="even">
-													<td>Gecko</td>
-													<td>Camino 1.5</td>
-													<td>OSX.3+</td>
-													<td>1.8</td>
-													<td>A</td>
-													<td>활성</td>
-													<td>
-														<div class="btn-group">
-															<button class="btn btn-primary btn-sm dropdown-toggle"
-																type="button" data-toggle="dropdown"
-																aria-expanded="false">활성</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">활성</a> <a
-																	class="dropdown-item" href="#">정지</a> <a
-																	class="dropdown-item" href="#">탈퇴</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr class="odd">
-													<td>Gecko</td>
-													<td>Netscape 7.2</td>
-													<td>Win 95+ / Mac OS 8.6-9.2</td>
-													<td>1.7</td>
-													<td>A</td>
-													<td>활성</td>
-													<td>
-														<div class="btn-group">
-															<button class="btn btn-primary btn-sm dropdown-toggle"
-																type="button" data-toggle="dropdown"
-																aria-expanded="false">활성</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">활성</a> <a
-																	class="dropdown-item" href="#">정지</a> <a
-																	class="dropdown-item" href="#">탈퇴</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr class="even">
-													<td>Gecko</td>
-													<td>Netscape Browser 8</td>
-													<td>Win 98SE+</td>
-													<td>1.7</td>
-													<td>A</td>
-													<td>활성</td>
-													<td>
-														<div class="btn-group">
-															<button class="btn btn-primary btn-sm dropdown-toggle"
-																type="button" data-toggle="dropdown"
-																aria-expanded="false">활성</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">활성</a> <a
-																	class="dropdown-item" href="#">정지</a> <a
-																	class="dropdown-item" href="#">탈퇴</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr class="odd">
-													<td>Gecko</td>
-													<td>Netscape Navigator 9</td>
-													<td>Win 98+ / OSX.2+</td>
-													<td>1.8</td>
-													<td>A</td>
-													<td>활성</td>
-													<td>
-														<div class="btn-group">
-															<button class="btn btn-primary btn-sm dropdown-toggle"
-																type="button" data-toggle="dropdown"
-																aria-expanded="false">활성</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">활성</a> <a
-																	class="dropdown-item" href="#">정지</a> <a
-																	class="dropdown-item" href="#">탈퇴</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr class="even">
-													<td>Gecko</td>
-													<td>Mozilla 1.0</td>
-													<td>Win 95+ / OSX.1+</td>
-													<td>1</td>
-													<td>A</td>
-													<td>활성</td>
-													<td>
-														<div class="btn-group">
-															<button class="btn btn-primary btn-sm dropdown-toggle"
-																type="button" data-toggle="dropdown"
-																aria-expanded="false">활성</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item" href="#">활성</a> <a
-																	class="dropdown-item" href="#">정지</a> <a
-																	class="dropdown-item" href="#">탈퇴</a>
-															</div>
-														</div>
-													</td>
-												</tr>
+														</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>

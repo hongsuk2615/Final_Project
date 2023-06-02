@@ -1,5 +1,6 @@
 package com.ace.thrifty.board.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.board.model.vo.Location;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
-import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 
 @Service
 public class BoardServiceImp implements BoardService{
@@ -37,6 +38,16 @@ public class BoardServiceImp implements BoardService{
 	@Override
 	public List<Location> selectLocationList() {
 		return boardDao.selectLocationList();
+	}
+
+	@Override	
+	public int insertBoard(Board b) {
+		return boardDao.insertBoard(b);
+	}
+
+	@Override
+	public int insertImageList(ArrayList<Image> imageList) {
+		return boardDao.insertImageList(imageList);
 	}
 	
 //	@Override

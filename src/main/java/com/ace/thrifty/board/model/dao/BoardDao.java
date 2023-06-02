@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.board.model.vo.Location;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
@@ -44,10 +45,14 @@ public class BoardDao {
 		return sqlSession.selectList("boardMapper.selectLocationList");
 	}
 	
-//	public String smallgrouplist(Board b, SmallGroup sg) {
-//		return sqlSession.selectOne("boardMapper.smallgrouplist");
-//	}
+
 	public int sgUpdateBoard(Board b) {
 		return sqlSession.update("boardMapper.sgUpdateBoard", b);
+	public int insertBoard(Board b) {
+		return sqlSession.insert("boardMapper.insertBoard",b);
+	}
+	
+	public int insertImageList(List<Image> imageList) {
+		return sqlSession.insert("boardMapper.insertImageList", imageList);
 	}
 }

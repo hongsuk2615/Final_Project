@@ -1,11 +1,9 @@
 package com.ace.thrifty.admin.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ace.thrifty.admin.model.service.AdminService;
 import com.ace.thrifty.member.model.vo.Member;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/admin")
@@ -47,7 +48,7 @@ public class AdminController {
 			return "redirect:/admin";
 			
 		}else {
-			Map<String, String> errorAlert = new HashMap();
+			Map<String, String> errorAlert = new HashMap<>();
 			errorAlert.put("title", "로그인 실패!");
 			errorAlert.put("content", "다시 한번 시도해주세요.");
 			
@@ -61,10 +62,12 @@ public class AdminController {
 	@GetMapping(value = { "", "/home" } )
 	public String adminHome(Model model, HttpSession session) {
 		
-		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		System.out.println(loginAdmin);
+		Member loginAdmin = (Member) session.getAttribute("loginAdmin");
+		
 		if(loginAdmin != null) {
+			Map<String, Integer> infoBoxMap = adminService.selectInfoBox();
 			model.addAttribute("contents", "home");
+			model.addAttribute("infoBox", infoBoxMap);
 			
 			return "admin/adminPage";
 		}else {
@@ -73,17 +76,16 @@ public class AdminController {
 	}
 	
 	@GetMapping("/member")
-	public String adminMember(Model model, HttpSession session, HttpServletRequest request) {
+	public String adminMember(Model model, HttpSession session, @RequestParam(value="currentPage", required = false, defaultValue = "1") int pageNo) {
+		
 		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		System.out.println(request.getServletContext()); 
+
 		if(loginAdmin != null) {
 			
 			List<Member> memberList = adminService.memberList();
 			
 			model.addAttribute("contents", ".sidebar-member");
 			model.addAttribute("memberList", memberList);
-			
-			
 			
 			return "admin/adminPage";
 		}else {
@@ -93,6 +95,7 @@ public class AdminController {
 	
 	@GetMapping("/report")
 	public String adminReport(Model model, HttpSession session) {
+		
 		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
 		
 		if(loginAdmin != null) {
@@ -105,6 +108,7 @@ public class AdminController {
 	
 	@GetMapping("/board")
 	public String adminBoard(Model model, HttpSession session) {
+		
 		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
 		
 		if(loginAdmin != null) {
@@ -117,6 +121,7 @@ public class AdminController {
 	
 	@GetMapping("/notice")
 	public String adminNotice(Model model, HttpSession session) {
+		
 		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
 		
 		if(loginAdmin != null) {
@@ -129,6 +134,7 @@ public class AdminController {
 	
 	@GetMapping("/faq")
 	public String adminfaq(Model model, HttpSession session) {
+		
 		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
 		
 		if(loginAdmin != null) {
@@ -141,6 +147,7 @@ public class AdminController {
 	
 	@GetMapping("/enrollForm/notice") //나중에 공지사항과 faq가 여기로 오게
 	public String adminenrollForm(Model model, HttpSession session) {
+		
 		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
 		
 		if(loginAdmin != null) {
@@ -150,6 +157,15 @@ public class AdminController {
 		}else {
 			return "redirect:/admin/login";
 		}
+	}
+	
+	@GetMapping("/member/tabs")
+	@ResponseBody
+	public String memberTabs(String tab) {
+		System.out.println(tab);
+		List<Member> list = adminService.memberListAjax(tab);
+		System.out.println(list);
+		return new Gson().toJson(list);
 	}
 	
 	

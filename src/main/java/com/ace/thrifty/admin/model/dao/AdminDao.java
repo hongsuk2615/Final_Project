@@ -1,6 +1,7 @@
 package com.ace.thrifty.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,13 @@ public class AdminDao {
 	
 	public List<Member> memberList() {
 		return sqlSession.selectList("adminMapper.memberList");
+	}
+	
+	public Map<String, Integer> selectInfoBox(){
+		return sqlSession.selectOne("adminMapper.selectInfoBox");
+	}
+	
+	public List<Member> memberListAjax(String tab){
+		return sqlSession.selectList("adminMapper.memberListAjax", tab);
 	}
 }

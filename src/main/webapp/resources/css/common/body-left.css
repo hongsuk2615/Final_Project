@@ -3,12 +3,12 @@
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-    background: rgb(25, 163, 212); /* 스크롤바 색상 */
-    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+    background: rgb(25, 163, 212); /* �뒪�겕濡ㅻ컮 �깋�긽 */
+    border-radius: 10px; /* �뒪�겕濡ㅻ컮 �뫁洹� �뀒�몢由� */
 }
 
 .scrollbar::-webkit-scrollbar-track {
-    background: rgb(224, 224, 224);  /*스크롤바 뒷 배경 색상*/
+    background: rgb(224, 224, 224);  /*�뒪�겕濡ㅻ컮 �뮮 諛곌꼍 �깋�긽*/
     border-radius: 10px;
 }
 
@@ -38,11 +38,12 @@
 
 #upper-category>div{
     display: flex;
+    align-items: center;
 }
 
 #upper-category img{
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     margin-right: 10px;
 }
 #upper-category-name{

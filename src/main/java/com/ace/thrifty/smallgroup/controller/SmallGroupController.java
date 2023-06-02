@@ -50,13 +50,13 @@ public class SmallGroupController {
 		if(result3>0){
 		
 		
-			model.addAttribute("alertMsg", "성공 ");	
+		model.addAttribute("alertMsg", "성공")
 		
-		}
-		 
 		
-		return "myPage/smallgrouplist";
 	}
+	return "myPage/smallgrouplist";
+	}
+	
 	
 	@GetMapping("")
 	public String sgSelectList(
@@ -100,6 +100,7 @@ public class SmallGroupController {
 		
 		if(result3>0) {
 			
+
 			model.addAttribute("alertMsg", "성공 ");	
 		}
 		
@@ -111,7 +112,7 @@ public class SmallGroupController {
 	// 수정 버튼 누르기 
 	
 	}
-		
+
 
 	
 
