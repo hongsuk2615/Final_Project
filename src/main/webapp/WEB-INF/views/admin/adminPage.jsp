@@ -45,17 +45,38 @@
 		<jsp:include page="./includes/adminFooter.jsp" />
 	</div>
 	<jsp:include page="./includes/adminRequiredJs.jsp" />
-	<script>
-		<c:if test="${contents ne 'home' }">
+	<c:choose>
+		<c:when test="${contents eq 'home'}">
+			<!-- 홈 차트 생성 스크립트 -->
+			<script src="/thrifty/resources/js/admin/Chart.min.js"></script>
+			<script src="/thrifty/resources/js/admin/addHomeCharts.js"></script>
+		</c:when>
+		<c:when test="${contents eq '.sidebar-member'}">
+			<script src="/thrifty/resources/js/admin/adminMember.js"></script>
+		</c:when>
+		<c:when test="${contents eq '.sidebar-report'}">
+			
+		</c:when>
+		<c:when test="${contents eq '.sidebar-board'}">
+			
+		</c:when>
+		<c:when test="${contents eq '.sidebar-notice'}">
+			
+		</c:when>
+		<c:when test="${contents eq '.sidebar-faq'}">
+			
+		</c:when>
+		<c:when test="${contents eq '.btn-write'}">
+			<!-- ckeditor CDN -->
+			<script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/super-build/ckeditor.js"></script>
+			<!-- ckeditor 설정 스크립트 -->
+			<script src="/thrifty/resources/js/admin/addCkeditor.js"></script>
+		</c:when>
+	</c:choose>
+	<c:if test="${contents ne 'home' }">
+		<script>
 			$("${contents}").children("a").addClass("active");
-		</c:if>
-	</script>
-		<c:if test="${contents eq 'home' }">
-			<jsp:include page="./includes/adminHomeJs.jsp" />
-		</c:if>
-		<c:if test="${contents eq '.btn-write' }">
-			<jsp:include page="./includes/adminEnrollFormJs.jsp" />
-		</c:if>
-	
+		</script>
+	</c:if>
 </body>
 </html>

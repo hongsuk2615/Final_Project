@@ -28,15 +28,19 @@
 				<div class="col-12">
 					<div class="card card-primary card-tabs">
 						<div class="card-header p-0 pt-1">
-							<ul class="nav nav-tabs" id="custom-tabs-one-tab">
-								<li class="nav-item"><a class="nav-link active"
-									data-toggle="pill" href="#custom-tabs-one-home">전체</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="pill"
-									href="#custom-tabs-one-profile">활성</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="pill"
-									href="#custom-tabs-one-messages">정지</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="pill"
-									href="#custom-tabs-one-settings">탈퇴</a></li>
+							<ul class="nav nav-tabs" id="member-tabs">
+								<li class="nav-item">
+									<a class="nav-link active" id="memberAll" data-toggle="pill" href="#">전체</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="memberActive" data-toggle="pill" href="">활성</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="memberSuspend" data-toggle="pill" href="#">정지</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="memberBanned" data-toggle="pill" href="#">탈퇴</a>
+								</li>
 								<li class="nav-item" style="margin-left: auto;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 180px;">
