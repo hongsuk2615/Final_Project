@@ -12,4 +12,8 @@ public interface SmallGroupService {
 	public int sgInsertBoard(Board b, SmallGroup sg);
 	
 	public  ArrayList<SmallGroup> sgSelectList();
+	
+	public SmallGroup selectsgDetail(int boardNo);
+	
+	public int sgUpdateBoard(Board b, SmallGroup sg);
 }

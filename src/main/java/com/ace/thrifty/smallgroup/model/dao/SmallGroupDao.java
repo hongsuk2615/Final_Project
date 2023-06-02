@@ -23,4 +23,13 @@ public class SmallGroupDao {
 	public ArrayList<SmallGroup> sgSelectList(){
 		return (ArrayList)sqlSession.selectList("smallgroupMapper.sgSelectList");
 	}
+	
+	public SmallGroup selectsgDetail(int boardNo) {
+		return sqlSession.selectOne("smallgroupMapper.selectsgDetail", boardNo);
+	}
+	
+	public int sgUpdateBoard2(SmallGroup sg){
+		return sqlSession.update("smallgroupMapper.sgUpdateBoard2", sg);
+	}
 }
+// controller에서 일단 제목이랑, 내용, boardNo

@@ -69,7 +69,7 @@
 	
 	
 	
-	<select id="selectCategoryList" resultMap="upperCategoryResultSet">
+	<select id="selectCategoryList" resultMap="upperCategoryResultSet"></select>
 	<select id="selectUpperCategoryList" resultMap="upperCategoryResultSet">
 		SELECT *
 		  FROM UPPER_CATEGORY;
@@ -92,5 +92,14 @@
 		SELECT *
 		  FROM LOCATION;
 	</select>
+	<!-- //BOARD 에있는것만 바꾸는거  -->
+	
+	<update id="sgUpdateBoard">
+	UPDATE BOARD 
+	SET TITLE = #{title},
+	   CONTENT = #{content}
+	 WHERE BOARD_NO = #{boardNO}
+	  
+	</update>
 	
 </mapper>

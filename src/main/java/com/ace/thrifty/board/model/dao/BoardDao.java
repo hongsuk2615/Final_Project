@@ -10,6 +10,7 @@ import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Location;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
+import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 
 @Repository
 public class BoardDao {
@@ -43,7 +44,10 @@ public class BoardDao {
 		return sqlSession.selectList("boardMapper.selectLocationList");
 	}
 	
-	public String smallgrouplist(Board b, SmallGroup sg) {
-		return sqlSession.selectOne("boardMapper.smallgrouplist");
+//	public String smallgrouplist(Board b, SmallGroup sg) {
+//		return sqlSession.selectOne("boardMapper.smallgrouplist");
+//	}
+	public int sgUpdateBoard(Board b) {
+		return sqlSession.update("boardMapper.sgUpdateBoard", b);
 	}
 }

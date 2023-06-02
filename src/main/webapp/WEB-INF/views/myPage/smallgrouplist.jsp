@@ -175,7 +175,7 @@
                         <th>생성일</th>
                       </tr>
                       <c:forEach items="${list}" var="b">
-                      <tr>
+                      <tr onclick="movePage(${b.boardNo});"> 
                         <td>${b.smallLocation}</td>
                         <td>${b.member.nickName}</td>
                         <td>${b.board.title} </td>
@@ -211,6 +211,10 @@
 
         </div>
     </div>
-    
+    <script>
+    	function movePage(boardNo){
+    		location.href= '${pageContext.request.contextPath}/smallGroup/detail/'+boardNo;
+    	}
+    </script>
 </body>
 </html>

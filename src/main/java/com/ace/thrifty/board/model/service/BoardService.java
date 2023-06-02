@@ -14,4 +14,5 @@ public interface BoardService {
 	public List<UpperCategory> selectUpperCategoryList();	
 	public List<SubCategory> selectSubCategoryList();
 	public List<Location> selectLocationList();
+	
 }

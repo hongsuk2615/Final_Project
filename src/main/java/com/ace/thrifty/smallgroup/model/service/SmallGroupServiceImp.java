@@ -27,7 +27,7 @@ public class SmallGroupServiceImp implements SmallGroupService{
 		int result2 = 0;
 		
 		result1 = boardDao.sgInsertBoard(b);
-		System.out.println(result1);
+		
 		
 		if(result1>0) {
 			sg.setBoardNo(b.getBoardNo());
@@ -43,10 +43,24 @@ public class SmallGroupServiceImp implements SmallGroupService{
 		return smallGroupDao.sgSelectList();
 	}
 	
-	//컨 - s
-	//service imp - s
-	//service - s
-	// dao - s , b
-	// mapper - s, b
+	@Override
+	public SmallGroup selectsgDetail(int boardNo) {
+		
+		return smallGroupDao.selectsgDetail(boardNo);
+	}
+	
+	@Override
+	public int sgUpdateBoard(Board b, SmallGroup sg) {
+		int result1 = 0;
+		int result2 = 0;
+		
+		result1 = boardDao.sgUpdateBoard(b);
+				
+		if(result1>0) {
+			sg.setBoardNo(b.getBoardNo());
+			result2 = smallGroupDao.sgUpdateBoard2(sg);
+		}
+		return result1*result2;
+	}
 	
 }

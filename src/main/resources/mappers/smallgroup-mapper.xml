@@ -63,4 +63,20 @@
 		WHERE B.CATEGORY_U_NO = 7
 		ORDER BY B.CREATE_DATE DESC
 	</select>
+	
+	<select id="selectsgDetail" resultMap="smallgroupResultSet">
+	SELECT B.BOARD_NO, SG.SMALL_LOCATION, SG.RECRUIT_NO, M.NICK_NAME, B.TITLE, B.CONTENT
+	FROM SMALL_GROUP SG
+	LEFT JOIN BOARD B ON SG.BOARD_NO = B.BOARD_NO
+	LEFT JOIN MEMBER M ON B.USER_NO = M.USER_NO
+	WHERE B.CATEGORY_U_NO = 7 AND B.BOARD_NO= #{boardNo}	
+	
+	</select>
+	
+	<update id="sgUpdateBoard2">
+	UPDATE SMALL_GROUP 
+	SET SMALL_LOCATION = #{smallLocation},
+	   RECRUIT_NO = #{recruitNo}
+	 WHERE BOARD_NO = #{boardNO}
+	</update>
 </mapper>
