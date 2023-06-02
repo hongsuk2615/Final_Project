@@ -12,6 +12,8 @@
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
+		<association property="smallGroup" resultMap="smallGroupResultSet"/>
+		<association property="member" resultMap="memberResultSet"/>
 	</resultMap>
 	
 	<resultMap type="upperCategory" id="upperCategoryResultSet">
@@ -34,8 +36,9 @@
 	<select id="selectBoard" resultMap="boardResultSet">
 		SELECT *
 		  FROM BOARD
-		 WHERE BOARD_NO = 1;
+		 WHERE BOARD_NO = 1
 	</select>
+	
 	
 	<select id="selectBoardListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -43,7 +46,7 @@
 		WHERE BOARD_
 	</select>
 	
-	<insert id="insertBoard">
+	<!-- <insert id="insertBoard">
 		INSERT INTO BOARD
 		(
 		CATEGORY_S_NO,
@@ -58,7 +61,7 @@
 		#{content},
 		#{userNo}
 		)
-	</insert>
+	</insert> -->
 	<select id="selectUpperCategoryList" resultMap="upperCategoryResultSet">
 		SELECT *
 		  FROM UPPER_CATEGORY;
@@ -73,5 +76,25 @@
 		SELECT *
 		  FROM LOCATION;
 	</select>
+	
+	<insert id="insertBoard" parameterType="board" useGeneratedKeys="true" keyProperty="boardNo">
+	<if test="categorySNo == 0">
+		<bind name="categorySNo" value="null"/>
+	</if>
+		INSERT INTO BOARD(CATEGORY_S_NO, CATEGORY_U_NO, TITLE, CONTENT,USER_NO)
+		            VALUES(#{categorySNo}, #{categoryUNo}, #{title}, #{content}, #{userNo})
+	</insert> 
+	
+	<insert id="insertImageList" parameterType="list">
+		INSERT INTO IMAGE (ORIGIN_NAME, CHANGE_NAME, BOARD_NO, FILE_LEVEL)
+		     SELECT C.* 
+		       FROM ( <foreach collection="list" item="image" separator="UNION ALL">
+		       				SELECT #{image.originName} AS ORIGIN_NAME
+		       					 , #{image.changeName} AS CHANGE_NAME
+		       					 , #{image.boardNo} AS BOARD_NO
+		       					 , #{image.fileLevel} AS FILE_LEVEL
+		       				  FROM DUAL
+		       			</foreach> ) C	
+	</insert>
 	
 </mapper>
