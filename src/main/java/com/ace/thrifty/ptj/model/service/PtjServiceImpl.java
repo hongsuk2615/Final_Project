@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.dao.BoardDao;
@@ -46,11 +47,12 @@ public class PtjServiceImpl implements PtjService {
 		
 	}
 	
+	@Transactional(rollbackFor = {Exception.class})
+	@Override
 	public int insertPtj(Board b , Ptj p , MultipartFile image, String webPath, String serverFolderPath) throws Exception {
 		boardDao.insertBoard(b);
 		int boardNo = b.getBoardNo();
 		int result = 0;
-		
 		if(boardNo > 0 ) {
 			p.setBoardNo(boardNo);
 			result = ptjDao.insertPtj(p);
@@ -58,6 +60,10 @@ public class PtjServiceImpl implements PtjService {
 		
 		if(result > 0 && image != null) {
 			List<Image> imageList = new ArrayList();
+			
+			for(int i = 0; i < image.getSize(); i++) {
+				
+			}
 			String changeName = Utils.saveFile(image , serverFolderPath);
 			
 			Image img = new Image();
@@ -66,12 +72,12 @@ public class PtjServiceImpl implements PtjService {
 			img.setOriginName(image.getOriginalFilename());
 			img.setChangeName(changeName);
 			
-			imageList.add(img);
-			System.out.println(imageList);
 			
-			if(!imageList.isEmpty()) {
-				result = boardDao.insertImageList(imageList);
-				if(!(result == imageList.size())) {
+//			System.out.println(imageList);
+			
+			if(!image.isEmpty()) {
+				result = boardDao.insertImageList(image);
+				if(!(result == image.getSize())) {
 					throw new Exception("이미지 등록 예외발생");
 				}
 			}

@@ -91,8 +91,8 @@
                             <h3>급여 : </h3><input type="number" id="enroll-price" required name="price">&nbsp;원
                             <hr>
                             <h3>시간 : </h3>
-                            시작 시간 : <input type="time" name="enrollStartDate" class="enroll-date" value="09:00" required>&nbsp;&nbsp;
-                            마감 시간 : <input type="time" name="enrollEndDate" class="enroll-date" value="18:00" required>
+                            시작 시간 : <input type="time" name="startTime" class="enroll-date" value="09:00" required>&nbsp;&nbsp;
+                            마감 시간 : <input type="time" name="endTime" class="enroll-date" value="18:00" required>
                             <hr>
 
                             <div style="display: flex; align-items: center; " id="location-list">

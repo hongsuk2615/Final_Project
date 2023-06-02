@@ -108,7 +108,7 @@
 </select> -->
 
 <insert id="insertPtj" parameterType="ptj">
-	INSERT INTO PART_TIME_JOB(BOARD_NO , LOCATION_NO , PRICE , START_TIME , IS_END , END_TIME , LOCATION_COORDINATE)
+	INSERT INTO PART_TIME_JOB(BOARD_NO, LOCATION_NO , PRICE , START_TIME , END_TIME , LOCATION_COORDINATE)
 						VALUES(#{boardNo} , #{locationNo} , #{price} , #{startTime} , #{endTime} , #{locationCoordinate})
 </insert>
 </mapper>
