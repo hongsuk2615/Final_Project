@@ -48,11 +48,11 @@
 	<c:choose>
 		<c:when test="${contents eq 'home'}">
 			<!-- 홈 차트 생성 스크립트 -->
-			<script src="/thrifty/resources/js/admin/Chart.min.js"></script>
-			<script src="/thrifty/resources/js/admin/addHomeCharts.js"></script>
+			<script src="${contextPath}/resources/js/admin/Chart.min.js"></script>
+			<script src="${contextPath}/resources/js/admin/addHomeCharts.js"></script>
 		</c:when>
 		<c:when test="${contents eq '.sidebar-member'}">
-			<script src="/thrifty/resources/js/admin/adminMember.js"></script>
+			<script src="${contextPath}/resources/js/admin/adminMember.js"></script>
 		</c:when>
 		<c:when test="${contents eq '.sidebar-report'}">
 			
@@ -70,7 +70,7 @@
 			<!-- ckeditor CDN -->
 			<script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/super-build/ckeditor.js"></script>
 			<!-- ckeditor 설정 스크립트 -->
-			<script src="/thrifty/resources/js/admin/addCkeditor.js"></script>
+			<script src="${contextPath}/resources/js/admin/addCkeditor.js"></script>
 		</c:when>
 	</c:choose>
 	<c:if test="${contents ne 'home' }">

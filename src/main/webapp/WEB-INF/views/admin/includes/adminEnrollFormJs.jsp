@@ -5,4 +5,4 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/super-build/ckeditor.js"></script>
 
 <!-- ckeditor 설정 스크립트 -->
-<script src="/thrifty/resources/js/admin/addCkeditor.js"></script>
+<script src="${contextPath}/resources/js/admin/addCkeditor.js"></script>

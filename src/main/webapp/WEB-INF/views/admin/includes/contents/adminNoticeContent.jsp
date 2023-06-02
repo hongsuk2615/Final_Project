@@ -53,7 +53,7 @@
 							<div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
 								<div class="row justify-content-end mb-2">
 									<div class="col-sm-12 col-md-6 text-right">
-										<a href="${pageContext.request.contextPath}/admin/enrollForm/notice" class="btn btn-secondary">글 작성</a>
+										<a href="${contextPath}/admin/enrollForm/notice" class="btn btn-secondary">글 작성</a>
 									</div>
 								</div>
 								<div class="row">

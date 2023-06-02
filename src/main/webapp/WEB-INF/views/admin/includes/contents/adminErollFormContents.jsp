@@ -51,7 +51,7 @@
                                 </div>
    								<div class="row justify-content-end mb-2">
 									<div class="col-sm-12 col-md-6 text-right">
-										<a href="${pageContext.request.contextPath}/admin/enrollForm/notice" class="btn btn-primary">등록</a>
+										<a href="${contextPath}/admin/enrollForm/notice" class="btn btn-primary">등록</a>
 									</div>
 								</div>
                             </div>
