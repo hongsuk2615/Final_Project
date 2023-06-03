@@ -64,7 +64,9 @@ public class co_purchaseController {
 	@PostMapping("/insert")
 	public String insertBoard(
 						HttpSession session,
-						Board b
+						Board b,
+						Co_purchase cp,
+						Image i
 						) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		b.setCategoryUNo(6);
