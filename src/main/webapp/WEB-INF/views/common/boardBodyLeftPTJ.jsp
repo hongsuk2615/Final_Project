@@ -23,7 +23,7 @@
                 	<ul class="scrollbar">
 		                <c:forEach var="location" items="${locationList }">
 		                	<li>${location.locationName }</li>
-		                </c:forEach>                	
+		                </c:forEach>
                 	</ul>
                 </div>
                 <div id="filter">

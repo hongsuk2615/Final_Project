@@ -18,7 +18,11 @@
 	<result column="WISH_COUNT" property="wishCount"/>
 	<result column="LOCATION_NAME" property="locationName" />
 	<result column="IMG_PATH" property="imgPath" />
-</resultMap>  
+	<collection property="board" resultMap="boardResultSet"/>
+	<collection property="location" resultMap="boardResultSet"/> <!-- 집가서 ㄱㄱ -->
+</resultMap> 
+
+
 
 <select id="selectPtjDetail" resultMap="ptjDetailResultSet">
 	SELECT
@@ -52,7 +56,7 @@
 		B.CONTENT,
 		B.WISH_COUNT,
 		L.LOCATION_NAME,
-		'PTJ/' || I.CHANGE_NAME AS IMG_PATH
+		I.CHANGE_NAME AS IMG_PATH
 	FROM thrifty.PART_TIME_JOB P
 	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
 	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ace.thrifty.board.model.service.BoardService;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.member.model.vo.Member;
@@ -26,24 +27,22 @@ public class PtjController {
 
 	@Autowired
 	private PtjService ptjService;
+	
+	@Autowired
+	private BoardService boardService;
 
 //		private static final Logger logger = LoggerFactory.getLogger(PtjController.class);
 
-	@RequestMapping("/ptj")
+	@GetMapping("/ptj")
 	public String ptjMain() {
 		return "part_time_job/PTJMain";
 	}
 
 	@GetMapping("/ptj/ptjList")
-	public String ptjList(@RequestParam(value="subCategoryNo" , required = false) String categorySNo , Model model) {
-		if (categorySNo != null) {
-			List<Ptj> bList = ptjService.selectPtj(categorySNo);
-			model.addAttribute("bList", bList);
-		} else {
-			List<Ptj> bList = ptjService.selectPtjAll();
-			model.addAttribute("bList", bList);
-		}
-		
+	public String ptjList(Model model) {
+
+		List<Ptj> pList = ptjService.selectPtjAll();
+		model.addAttribute("pList", pList);
 		return "part_time_job/PTJList";
 
 	}
@@ -84,20 +83,20 @@ public class PtjController {
 //		mv.addObject(b.getTitle() , "enrollTitle");
 //		}
 
-	@RequestMapping("/ptj/ptjEnrollForm")
+	@GetMapping("/ptj/ptjEnrollForm")
 	public String ptjEnrollForm() {
 		return "part_time_job/PTJEnrollForm";
 	}
 	
-	@PostMapping("/ptj/ptjList")
+	@PostMapping("/ptj/ptjList/enroll")
 	public String insertPtj(HttpSession session,
 							Board b ,
 							Ptj p ,
-							@RequestParam(value="img" , required = false) MultipartFile image ) throws Exception {
+							@RequestParam(value="img" , required = false) List<MultipartFile> image ) throws Exception {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		b.setCategoryUNo(5);
 		b.setUserNo(loginUser.getUserNo());
-		String webPath = "/resources/upfiles/ptj";
+		String webPath = "/resources/upfiles/ptj/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		ptjService.insertPtj(b, p, image, webPath, serverFolderPath);
 		

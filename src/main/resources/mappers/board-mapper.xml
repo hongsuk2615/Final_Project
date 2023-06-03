@@ -36,7 +36,7 @@
 	<select id="selectBoard" resultMap="boardResultSet">
 		SELECT *
 		  FROM BOARD
-		 WHERE BOARD_NO = 1
+		 WHERE BOARD_NO = #{boardNo}
 	</select>
 	
 	

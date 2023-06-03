@@ -12,9 +12,7 @@ public interface PtjService {
 
 	public Ptj selectPtjDetail(int boardNo);
 	
-	public List<Ptj> selectPtj(String categorySNo);
-	
 	public List<Ptj> selectPtjAll();
 	
-	public int insertPtj(Board b, Ptj p, MultipartFile image , String webPath , String serverFolderPath) throws Exception;
+	public int insertPtj(Board b, Ptj p, List<MultipartFile> image , String webPath , String serverFolderPath) throws Exception;
 }

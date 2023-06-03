@@ -3,6 +3,10 @@ package com.ace.thrifty.ptj.model.vo;
 //import java.sql.Date;
 import java.sql.Time;
 
+import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Location;
+import com.ace.thrifty.board.model.vo.SubCategory;
+
 import lombok.Data;
 
 @Data
@@ -14,13 +18,10 @@ public class Ptj {
 	private Time startTime;
 	private Time endTime;
 	private String isEnd;
-	private int categorySNo;
-	private String title;
-	private String content;
-	private int wishCount;
-	private String locationName;
 	private String imgPath;
-	private String categorySName;
 	private String locationCoordinate;
+	private Board b;
+	private Location l;
+	private SubCategory sc;
 	
 }

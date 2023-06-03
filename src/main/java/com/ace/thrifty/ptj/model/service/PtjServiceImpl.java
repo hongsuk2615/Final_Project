@@ -49,35 +49,38 @@ public class PtjServiceImpl implements PtjService {
 	
 	@Transactional(rollbackFor = {Exception.class})
 	@Override
-	public int insertPtj(Board b , Ptj p , MultipartFile image, String webPath, String serverFolderPath) throws Exception {
+	public int insertPtj(Board b , Ptj p , List<MultipartFile> image, String webPath, String serverFolderPath) throws Exception {
 		boardDao.insertBoard(b);
 		int boardNo = b.getBoardNo();
 		int result = 0;
-		if(boardNo > 0 ) {
+		if(boardNo > 0 && image != null) {
 			p.setBoardNo(boardNo);
 			result = ptjDao.insertPtj(p);
 		}
+		System.out.println(boardNo);
 		
 		if(result > 0 && image != null) {
 			List<Image> imageList = new ArrayList();
 			
-			for(int i = 0; i < image.getSize(); i++) {
-				
-			}
-			String changeName = Utils.saveFile(image , serverFolderPath);
-			
-			Image img = new Image();
-			img.setBoardNo(boardNo);
-			img.setFileLevel(0);
-			img.setOriginName(image.getOriginalFilename());
-			img.setChangeName(changeName);
-			
+			for(int i = 0; i < image.size(); i++) {
+				if(image.get(i).getSize() > 0 ) {
+					String changeName = Utils.saveFile(image.get(i) , serverFolderPath);
+					
+					Image img = new Image();
+					img.setBoardNo(boardNo);
+					img.setFileLevel(0);
+					img.setOriginName(image.get(i).getOriginalFilename());
+					img.setChangeName(changeName);
+					
+					imageList.add(img);
+				}
+			}			
 			
 //			System.out.println(imageList);
 			
-			if(!image.isEmpty()) {
-				result = boardDao.insertImageList(image);
-				if(!(result == image.getSize())) {
+			if(!imageList.isEmpty()) {
+				result = boardDao.insertImageList(imageList);
+				if(!(result == imageList.size())) {
 					throw new Exception("이미지 등록 예외발생");
 				}
 			}

@@ -73,13 +73,13 @@
                 </div>
                 <hr style="width: 100%;  margin-top: 15px;">
                 <div id="ptj-allBody" style="height: 1000px;">
-                	<c:forEach var="ptjList" items="${bList }" begin="0" end="8" step="1" >
-               			<div style="width: 200px; height: 170px;">
-               				<img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;"/>
-               				<p style="text-align: center;">${ptjList.title }</p>
-               				<p style="text-align: center;">${ptjList.content }</p>
-               			</div>
-                	</c:forEach>
+                	<c:forEach var="ptjList" items="${pList }" begin="0" end="8" step="1" >
+	               			<div style="width: 200px; height: 170px;">
+		               				<img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;"/>
+               						<p style="text-align: center;">${ptjList.title }</p>
+               						<p style="text-align: center;">${ptjList.content }</p>
+               				</div>
+       				</c:forEach>
                 	
 	               <!-- <div id="ptj-body1">
 	                    <div style="width: 200px; height: 170px;">
@@ -134,10 +134,10 @@
 
         </div>
     </div>
-    <script>
-    	document.getElementById('write-btn').addEventListener("click",function(){
-	        location.href = "<%= request.getContextPath() %>/ptj/ptjEnrollForm";
-	   	})
-    </script>
+<script>
+   	document.getElementById('write-btn').addEventListener("click",function(){
+        location.href = "<%= request.getContextPath() %>/ptj/ptjEnrollForm";
+   	})
+</script>
 </body>
 </html>
