@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pi" value="${map.pi}" />
+<c:set var="list" value="${map.list }" />
+<c:set var="tab" value="${map.tab }" />
+
 <div class="content-wrapper" style="min-height: 1302.12px;">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
@@ -30,16 +34,16 @@
 						<div class="card-header p-0 pt-1">
 							<ul class="nav nav-tabs" id="member-tabs">
 								<li class="nav-item">
-									<a class="nav-link active" id="memberAll" data-toggle="pill" href="#">전체</a>
+									<a class="nav-link" id="memberAll" href="member?tab=all&currentPage=1">전체</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="memberActive" data-toggle="pill" href="">활성</a>
+									<a class="nav-link" id="memberActive" href="member?tab=active&currentPage=1">활성</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="memberSuspend" data-toggle="pill" href="#">정지</a>
+									<a class="nav-link" id="memberSuspend" href="member?tab=suspend&currentPage=1">정지</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="memberBanned" data-toggle="pill" href="#">탈퇴</a>
+									<a class="nav-link" id="memberBanned" href="member?tab=banned&currentPage=1">탈퇴</a>
 								</li>
 								<li class="nav-item" style="margin-left: auto;">
 									<div class="card-tools">
@@ -76,7 +80,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="list" items="${memberList}" varStatus="i">
+												<c:forEach var="list" items="${map.list}" varStatus="i">
 													<tr>
 														<td>${i.count}</td>
 														<td>
@@ -90,16 +94,36 @@
 														<td>${list.nickName}</td>
 														<td>${list.reportCount}</td>
 														<td>${list.joinDate}</td>
-														<td>${list.status}</td>
+														<c:choose>
+															<c:when test="${list.status eq 'Y' && list.isBanned eq 'N'}">
+																<td>활성</td>
+															</c:when>
+															<c:when test="${list.status eq 'N' && list.isBanned eq 'N'}">
+																<td>정지</td>
+															</c:when>
+															<c:when test="${list.isBanned eq 'Y'}">
+																<td>탈퇴</td>
+															</c:when>
+														</c:choose>
 														<td>
 															<div class="btn-group">
 																<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
-																	활성
+																	<c:choose>
+																		<c:when test="${list.status eq 'Y' && list.isBanned eq 'N'}">
+																			활성
+																		</c:when>
+																		<c:when test="${list.status eq 'N' && list.isBanned eq 'N'}">
+																			정지
+																		</c:when>
+																		<c:when test="${list.isBanned eq 'Y'}">
+																			탈퇴
+																		</c:when>
+																	</c:choose>
 																</button>
 																<div class="dropdown-menu">
-																	<a class="dropdown-item" href="#">활성</a>
-																	<a class="dropdown-item" href="#">정지</a>
-																	<a class="dropdown-item" href="#">탈퇴</a>
+																	<a class="dropdown-item" href="member/statusUpdate?tab=${tab}&currentPage=${pi.currentPage}&userNo=${list.userNo}&status=active">활성</a>
+																	<a class="dropdown-item" href="member/statusUpdate?tab=${tab}&currentPage=${pi.currentPage}&userNo=${list.userNo}&status=suspend">정지</a>
+																	<a class="dropdown-item" href="member/statusUpdate?tab=${tab}&currentPage=${pi.currentPage}&userNo=${list.userNo}&status=banned">탈퇴</a>
 																</div>
 															</div>
 														</td>
@@ -109,33 +133,53 @@
 										</table>
 									</div>
 								</div>
+
 								<div class="row">
 									<div class="col-sm-12 col-md-5">
 										<div class="dataTables_info" id="example1_info">Showing
 											1 to 10 of 57 entries</div>
 									</div>
 									<div class="col-sm-12 col-md-7">
-										<div class="dataTables_paginate paging_simple_numbers"
-											id="example1_paginate">
+										<div class="dataTables_paginate paging_simple_numbers">
 											<ul class="pagination">
-												<li class="paginate_button page-item previous disabled"
-													id="example1_previous"><a href="#" class="page-link">Previous</a>
-												</li>
-												<li class="paginate_button page-item active"><a
-													href="#" class="page-link">1</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													class="page-link">2</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													class="page-link">3</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													class="page-link">4</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													class="page-link">5</a></li>
-												<li class="paginate_button page-item "><a href="#"
-													class="page-link">6</a></li>
-												<li class="paginate_button page-item next"
-													id="example1_next"><a href="#" class="page-link">Next</a>
-												</li>
+												<c:choose>
+													<c:when test="${pi.currentPage eq 1}">
+														<li class="paginate_button page-item previous disabled">
+															<a href="member?tab=${tab}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
+														</li>
+													</c:when>
+													<c:otherwise>
+														<li class="paginate_button page-item previous">
+															<a href="member?tab=${tab}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
+														</li>
+													</c:otherwise>
+												</c:choose>
+												<c:forEach var="item" begin="${pi.startPage}" end="${pi.endPage}">
+													<c:choose>
+														<c:when test="${pi.currentPage == item}">
+															<li class="paginate_button page-item active">
+																<a href="member?tab=${tab}&currentPage=${item}" class="page-link">${item}</a>
+															</li>
+														</c:when>
+														<c:otherwise>
+															<li class="paginate_button page-item">
+																<a href="member?tab=${tab}&currentPage=${item}" class="page-link">${item}</a>
+															</li>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+												<c:choose>
+													<c:when test="${pi.currentPage eq pi.maxPage}">
+														<li class="paginate_button page-item next disabled">
+															<a href="member?tab=${tab}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
+														</li>
+													</c:when>
+													<c:otherwise>
+														<li class="paginate_button page-item next">
+															<a href="member?tab=${tab}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
+														</li>
+													</c:otherwise>
+												</c:choose>
 											</ul>
 										</div>
 									</div>

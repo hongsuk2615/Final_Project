@@ -25,7 +25,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li class="nav-item sidebar-member">
-            <a href="${contextPath}/admin/member" class="nav-link">
+            <a href="${contextPath}/admin/member?tab=all&currentPage=1" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 회원 관리

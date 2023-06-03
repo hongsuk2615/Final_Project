@@ -61,112 +61,82 @@ public class AdminController {
 	
 	@GetMapping(value = { "", "/home" } )
 	public String adminHome(Model model, HttpSession session) {
+	
+		Map<String, Integer> infoBoxMap = adminService.selectInfoBox();
+		model.addAttribute("contents", "home");
+		model.addAttribute("infoBox", infoBoxMap);
 		
-		Member loginAdmin = (Member) session.getAttribute("loginAdmin");
-		
-		if(loginAdmin != null) {
-			Map<String, Integer> infoBoxMap = adminService.selectInfoBox();
-			model.addAttribute("contents", "home");
-			model.addAttribute("infoBox", infoBoxMap);
-			
-			return "admin/adminPage";
-		}else {
-			return "redirect:/admin/login";
-		}
+		return "admin/adminPage";
 	}
 	
 	@GetMapping("/member")
-	public String adminMember(Model model, HttpSession session, @RequestParam(value="currentPage", required = false, defaultValue = "1") int pageNo) {
+	public String adminMember(Model model, HttpSession session, @RequestParam Map<String, Object> paramMap) {
 		
-		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-
-		if(loginAdmin != null) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("tab", paramMap.get("tab"));
 			
-			List<Member> memberList = adminService.memberList();
+			adminService.memberList(map, paramMap);
+			
+			System.out.println(map);
 			
 			model.addAttribute("contents", ".sidebar-member");
-			model.addAttribute("memberList", memberList);
+			model.addAttribute("map", map);
+			
 			
 			return "admin/adminPage";
-		}else {
-			return "redirect:/admin/login";
-		}
+	}
+	
+	@GetMapping("/member/statusUpdate") // ajax로 할지... 요청방식으로 할지... 고민....
+	public String member(Model model, @RequestParam Map<String, Object> paramMap) {
+		
+		System.out.println(paramMap);
+		
+		String paramUrl = "tab="+paramMap.get("tab")+"&currentPage="+paramMap.get("currentPage");
+		
+//		System.out.println(paramUrl);
+		
+		model.addAttribute("tab", paramMap.get("tab"));
+		model.addAttribute("currentPage", paramMap.get("currentPage"));
+		
+		return "redirect:/admin/member";
 	}
 	
 	@GetMapping("/report")
 	public String adminReport(Model model, HttpSession session) {
 		
-		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		
-		if(loginAdmin != null) {
 			model.addAttribute("contents", ".sidebar-report");
 			return "admin/adminPage";
-		}else {
-			return "redirect:/admin/login";
-		}
 	}
 	
 	@GetMapping("/board")
 	public String adminBoard(Model model, HttpSession session) {
 		
-		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		
-		if(loginAdmin != null) {
 			model.addAttribute("contents", ".sidebar-board");
 			return "admin/adminPage";
-		}else {
-			return "redirect:/admin/login";
-		}
 	}
 	
 	@GetMapping("/notice")
 	public String adminNotice(Model model, HttpSession session) {
 		
-		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		
-		if(loginAdmin != null) {
 			model.addAttribute("contents", ".sidebar-notice");
 			return "admin/adminPage";
-		}else {
-			return "redirect:/admin/login";
-		}
 	}
 	
 	@GetMapping("/faq")
 	public String adminfaq(Model model, HttpSession session) {
 		
-		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		
-		if(loginAdmin != null) {
 			model.addAttribute("contents", ".sidebar-faq");
 			return "admin/adminPage";
-		}else {
-			return "redirect:/admin/login";
-		}
 	}
 	
 	@GetMapping("/enrollForm/notice") //나중에 공지사항과 faq가 여기로 오게
 	public String adminenrollForm(Model model, HttpSession session) {
 		
-		Member loginAdmin = (Member) session.getAttribute("loginAdmin"); 
-		
-		if(loginAdmin != null) {
 			model.addAttribute("contents", ".btn-write");
 			
 			return "admin/adminPage";
-		}else {
-			return "redirect:/admin/login";
-		}
 	}
 	
-	@GetMapping("/member/tabs")
-	@ResponseBody
-	public String memberTabs(String tab) {
-		System.out.println(tab);
-		List<Member> list = adminService.memberListAjax(tab);
-		System.out.println(list);
-		return new Gson().toJson(list);
-	}
 	
 	
 	

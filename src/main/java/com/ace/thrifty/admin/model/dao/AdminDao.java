@@ -3,10 +3,12 @@ package com.ace.thrifty.admin.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.member.model.vo.Member;
 
 @Repository
@@ -23,8 +25,18 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.loginAdmin", m);
 	}
 	
-	public List<Member> memberList() {
-		return sqlSession.selectList("adminMapper.memberList");
+	public int selectMemberListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("adminMapper.selectMemberListCount", paramMap);
+	}
+	
+	public List<Member> memberList(PageInfo pi, String tab) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return sqlSession.selectList("adminMapper.memberList", tab, rowBounds);
 	}
 	
 	public Map<String, Integer> selectInfoBox(){

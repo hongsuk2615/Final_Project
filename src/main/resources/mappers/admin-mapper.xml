@@ -25,12 +25,42 @@
 		  AND STATUS = 'Y'
 	</select>
 	
+	<select id="selectMemberListCount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE AUTHORITY = 1
+		<choose>
+			<when test="tab == 'active'">
+				AND STATUS = 'Y'
+				AND IS_BANNED = 'N'
+			</when>
+			<when test="tab == 'suspend'">
+				AND STATUS = 'N'
+				AND IS_BANNED = 'N'
+			</when>
+			<when test="tab == 'banned'">
+				AND IS_BANNED = 'Y'
+			</when>
+		</choose>
+	</select>
+	
 	<select id="memberList" resultMap="memberResultSet">
 		SELECT * 
 		FROM MEMBER
 		WHERE AUTHORITY = 1
-		  AND STATUS = 'Y'
-		ORDER BY CURRENT_LOGIN DESC
+		<choose>
+			<when test="tab == 'active'">
+				AND STATUS = 'Y'
+				AND IS_BANNED = 'N'
+			</when>
+			<when test="tab == 'suspend'">
+				AND STATUS = 'N'
+				AND IS_BANNED = 'N'
+			</when>
+			<when test="tab == 'banned'">
+				AND IS_BANNED = 'Y'
+			</when>
+		</choose>
+		ORDER BY CURRENT_LOGIN DESC,STATUS DESC, IS_BANNED ASC
 	</select>
 	
 	<select id="selectInfoBox" resultType="hashmap">

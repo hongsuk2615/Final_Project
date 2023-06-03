@@ -25,4 +25,5 @@ public class Member {
 	private String currentLogin;
 	private Date joinDate;
 	private String status;
+	private int authority;
 }

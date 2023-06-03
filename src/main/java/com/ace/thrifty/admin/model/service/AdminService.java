@@ -9,7 +9,7 @@ public interface AdminService {
 
 	Member loginAdmin(Member m);
 	
-	List<Member> memberList();
+	void memberList(Map<String, Object> map, Map<String, Object> paramMap);
 	
 	Map<String, Integer> selectInfoBox();
 	
