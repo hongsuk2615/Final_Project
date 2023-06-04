@@ -27,7 +27,17 @@ public class SmallGroupController {
 	@Autowired
 	private SmallGroupService smallgroupService;
 	
-	
+	@PostMapping("/smallgroupupdate")
+	public String updatePage(Board b, SmallGroup sg, Model model) {
+		// detail 에있는 boardNo안받아왔다 
+		// 받아오기위해선 param을 써야함? 
+		// 수정하기 -> form 감싸서 원래 정보 다가져와 -> update페이제에서 써 
+		
+		model.addAttribute("b", b);
+		model.addAttribute("sg", sg);
+		
+		return "myPage/smallgroupupdate";
+	}
 	
 
 	
@@ -50,11 +60,11 @@ public class SmallGroupController {
 		if(result3>0){
 		
 		
-		model.addAttribute("alertMsg", "성공")
+//		model.addAttribute("alertMsg", "성공");
 		
 		
 	}
-	return "myPage/smallgrouplist";
+	return "redirect:/smallGroup";
 	}
 	
 	
@@ -63,7 +73,6 @@ public class SmallGroupController {
 								Model model) {
 		
 		ArrayList<SmallGroup> list = smallgroupService.sgSelectList();
-		System.out.println(list);
 		
 		model.addAttribute("list", list);
 		
@@ -95,7 +104,7 @@ public class SmallGroupController {
 			SmallGroup sg,
 			Board b,
 			HttpSession session) {	
-		
+		System.out.println(b);
 		int result3 = smallgroupService.sgUpdateBoard(b, sg);
 		
 		if(result3>0) {
@@ -105,14 +114,37 @@ public class SmallGroupController {
 		}
 		
 		
-		return "myPage/smallgrouplist";
+		return "redirect:/smallGroup";
 	//update -> 일단 view(jsp)에서 session loginuser == userNo(글작성 유저 번호) 같으면 수정버튼 보이게
 	// update 버튼 누를시 수정 페이지로 ㄱㄱ detail -> 수정하기 눌러 -> 수정하기 페이지로가 -> 수정하기 누르면 수정이
 	// 제목, 내용, 지역 변경 ㄱㄱ 
 	// 수정 버튼 누르기 
 	
 	}
-
+	
+	@GetMapping("/delete")
+	public String sgDeleteBoard(
+//			@RequestParam("boardNo") int boardNo,
+			Board b,
+			HttpSession session
+			
+	) {
+		
+		System.out.println(b);
+	int result1 = smallgroupService.sgDeleteBoard(b);
+	
+	if(result1>0) {
+		
+		session.setAttribute("alertMsg", "성공");
+	}else {
+		
+		session.setAttribute("alertMsg", "실패");
+	}
+	 // 삭제버튼 form에 영향을안받은 
+	
+		return "redirect:/smallGroup";
+	}
+		
 
 	
 

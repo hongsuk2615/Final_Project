@@ -1,5 +1,6 @@
 package com.ace.thrifty.board.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -48,11 +49,16 @@ public class BoardDao {
 
 	public int sgUpdateBoard(Board b) {
 		return sqlSession.update("boardMapper.sgUpdateBoard", b);
+	}	
 	public int insertBoard(Board b) {
 		return sqlSession.insert("boardMapper.insertBoard",b);
 	}
 	
 	public int insertImageList(List<Image> imageList) {
 		return sqlSession.insert("boardMapper.insertImageList", imageList);
+	}
+	
+	public ArrayList<Board> selectBoardByUserNo(int userNo){
+		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardByUserNo", userNo);
 	}
 }

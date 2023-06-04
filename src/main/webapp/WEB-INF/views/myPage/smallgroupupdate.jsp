@@ -178,7 +178,7 @@
 </style>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/smallGroup/insert" method="post">
+	<form action="${pageContext.request.contextPath}/smallGroup/update/" method="post">
     <div id="wrapper">
         <div id="header">
 			<jsp:include page="../common/header.jsp"/>
@@ -199,11 +199,11 @@
                 <div id="body-right-header">
                   <div id="body-right-header-left">
                     
-                        
-                    	<input type="text" placeholder="지역" class="body-right-title-h2" name="smallLocation">
-                    	<input type="text" placeholder="모집인원" class="body-right-title-h3" name="recruitNo">
+                        <input type="hidden" name="boardNo" value="${b.boardNo}">
+                    	<input type="text" placeholder="지역" class="body-right-title-h2" name="smallLocation" value="${sg.smallLocation}">
+                    	<input type="text" placeholder="모집인원" class="body-right-title-h3" name="recruitNo" value="${sg.recruitNo}">
                     
-                        <input type="text" placeholder="제목	"class="body-right-title-h4" id="writetitle" name="title">
+                        <input type="text" placeholder="제목	"class="body-right-title-h4" id="writetitle" name="title" value="${b.title}">
                     
                    
                         <div class="input-group">
@@ -219,7 +219,7 @@
                             
                         </div>
                         <div class="body-right-header-right-deletebutt">
-                            <button type="submit" class="btn btn-warning" id="delete_button">수정하기</button>
+                            <button type="submit" class="btn btn-warning" id="delete_button" >수정하기</button>
                    
                         </div>
                         <div class="body-right-header-right-qr">
@@ -236,7 +236,7 @@
                 <div id="body-right-body">
                     
                  <div class="body-right-body-content">
-                    <textarea class="body-right-body-contentarea" name="content">
+                    <textarea class="body-right-body-contentarea" name="content">${b.content}
 
 
 

@@ -13,6 +13,8 @@
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
 		<result column="CATEGORY_U_NO"  property="categoryUNo"/>
+		<result column="NICK_NAME" property="nickName"/>
+		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
 	</resultMap>
 	
 	<resultMap type="upperCategory" id="upperCategoryResultSet">
@@ -100,7 +102,7 @@
 	UPDATE BOARD 
 	SET TITLE = #{title},
 	   CONTENT = #{content}
-	 WHERE BOARD_NO = #{boardNO}
+	 WHERE BOARD_NO = #{boardNo}
 	  
 	</update>
 	
@@ -124,4 +126,14 @@
 		       			</foreach> ) C	
 	</insert>
 	
+	
+	<select id="selectBoardByUserNo" resultMap="boardResultSet">
+	 SELECT * 
+	  FROM BOARD B
+	  JOIN MEMBER M USING(USER_NO) 
+	  JOIN UPPER_CATEGORY U USING(CATEGORY_U_NO)
+	  WHERE USER_NO = #{userNo} AND B.STATUS='Y'
+	  ORDER BY B.BOARD_NO DESC
+
+	</select>
 </mapper>

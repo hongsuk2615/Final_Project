@@ -63,4 +63,9 @@ public class SmallGroupServiceImp implements SmallGroupService{
 		return result1*result2;
 	}
 	
+	@Override
+	public int sgDeleteBoard(Board b) {
+		return smallGroupDao.sgDeleteBoard(b);
+	}
+	
 }

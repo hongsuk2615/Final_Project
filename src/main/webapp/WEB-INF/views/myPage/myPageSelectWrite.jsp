@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -174,66 +175,15 @@
                         <th>작성자</th>
                         <th>작성 날짜</th>
                       </tr>
+                    <c:forEach items="${list}" var="b">
                       <tr>
-                        <td>카풀</td>
-                        <td>차같이 탈사람구함</td>
-                        <td>임재원 </td>
-                        <td>2023/5/24</td>
+                        <td>${b.upperCategoryName}</td>
+                        <td>${b.title}</td>
+                        <td>${b.nickName}</td>
+                        <td>${b.createDate}</td>
                       </tr>
-                      <tr>
-                        <td>쉐어하우스</td>
-                        <td>같이 살사라 구함</td>
-                        <td>임재원 </td>
-                        <td>2023/5/23</td>
-                      </tr>
-                      <tr>
-                        <td>중고장터</td>
-                        <td>내꺼 살사람구함</td>
-                        <td>임재원 </td>
-                        <td>2023/5/22</td>
-                      </tr>
-                      <tr>
-                        <td>중고장터</td>
-                        <td>내꺼 살사람구함</td>
-                        <td>임재원 </td>
-                        <td>2023/5/22</td>
-                      </tr>
-                      <tr>
-                        <td>중고장터</td>
-                        <td>내꺼 살사람구함</td>
-                        <td>임재원 </td>
-                        <td>2023/5/22</td>
-                      </tr>
-                      <tr>
-                        <td>중고장터</td>
-                        <td>내꺼 살사람구함</td>
-                        <td>임재원 </td>
-                        <td>2023/5/22</td>
-                      </tr>
-                      <tr>
-                        <td>중고장터</td>
-                        <td>내꺼 살사람구함</td>
-                        <td>임재원 </td>
-                        <td>2023/5/22</td>
-                      </tr>
-                      <tr>
-                        <td>중고장터</td>
-                        <td>내꺼 살사람구함</td>
-                        <td>임재원 </td>
-                        <td>2023/5/22</td>
-                      </tr>
-                      <tr>
-                        <td>중고장터</td>
-                        <td>내꺼 살사람구함</td>
-                        <td>임재원 </td>
-                        <td>2023/5/22</td>
-                      </tr>
-                      <tr>
-                        <td>중고장터</td>
-                        <td>내꺼 살사람구함</td>
-                        <td>임재원 </td>
-                        <td>2023/5/22</td>
-                      </tr>
+                     </c:forEach>
+                   
 
 
                     </table>

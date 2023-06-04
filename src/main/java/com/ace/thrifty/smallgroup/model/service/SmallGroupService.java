@@ -16,4 +16,6 @@ public interface SmallGroupService {
 	public SmallGroup selectsgDetail(int boardNo);
 	
 	public int sgUpdateBoard(Board b, SmallGroup sg);
+	
+	public int sgDeleteBoard(Board b);
 }

@@ -5,10 +5,16 @@
 	<typeAliases>
 		<typeAlias type="com.ace.thrifty.member.model.vo.Member" alias="member"/>
 		<typeAlias type="com.ace.thrifty.board.model.vo.Board" alias="board"/>
+		<typeAlias type="com.ace.thrifty.board.model.vo.Image" alias="image"/>
+		<typeAlias type="com.ace.thrifty.house.model.vo.House" alias="house"/>
+		<typeAlias type="com.ace.thrifty.house.model.vo.Room" alias="room"/>
+		<typeAlias type="com.ace.thrifty.house.model.vo.RoomImg" alias="roomImg"/>
 		<typeAlias type="com.ace.thrifty.board.model.vo.UpperCategory" alias="upperCategory"/>
 		<typeAlias type="com.ace.thrifty.smallgroup.model.vo.SmallGroup" alias="smallgroup"/>
 		<typeAlias type="com.ace.thrifty.board.model.vo.SubCategory" alias="subCategory"/>
 		<typeAlias type="com.ace.thrifty.board.model.vo.Location" alias="location"/>
+		<typeAlias type="com.ace.thrifty.usedProduct.model.vo.UsedProduct" alias="usedProduct"/>
+		<typeAlias type="com.ace.thrifty.co_purchase.model.vo.Co_purchase" alias="co_purchase"/>
 	</typeAliases>
 	
 	<!-- 
@@ -19,10 +25,13 @@
 	<mappers>
 		<mapper resource="/mappers/board-mapper.xml"/>
 		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/house-mapper.xml"/>
 		<mapper resource="/mappers/admin-mapper.xml"/>
 		<mapper resource="/mappers/smallgroup-mapper.xml"/>
 		
 
+		<mapper resource="/mappers/co_purchase-mapper.xml"/>
+		<mapper resource="/mappers/usedProduct-mapper.xml"/>
 	</mappers>
 
 </configuration>
