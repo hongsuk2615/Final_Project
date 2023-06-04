@@ -145,6 +145,33 @@ public class SmallGroupController {
 		return "redirect:/smallGroup";
 	}
 		
+//	@PostMapping("/insert")
+//	public String insertBoard( Model model, Board b, SmallGroup sg, HttpSession session) {
+//		
+//		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo(); 
+//		b.setUserNo(userNo);
+//		
+//		System.out.println(sg);
+//		System.out.println(b);
+//		
+////		int result = boardService.insertBoard(b, sg); 
+//		
+//		if(result>0) {
+//			model.addAttribute("alertmsg", "작성성공");
+//		}
+//		
+//		return "myPage/smallgrouplist";
+//	}
+//			
+//	@GetMapping("/detail/{boardNo}")
+//	public String selectSmallGroupDetail(@PathVariable("boardNo") int boardNo) {
+//		
+////		Board sgBoard = boardService.selectSmallGroupDetail(boardNo);
+//		
+//		System.out.println(sgBoard);
+//		
+//		return "smallgroupdetail";
+//	}
 
 	
 

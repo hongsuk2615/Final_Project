@@ -15,6 +15,8 @@
 		<result column="CATEGORY_U_NO"  property="categoryUNo"/>
 		<result column="NICK_NAME" property="nickName"/>
 		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
+		<association property="smallGroup" resultMap="smallGroupResultSet"/>
+		<association property="member" resultMap="memberResultSet"/>
 	</resultMap>
 	
 	<resultMap type="upperCategory" id="upperCategoryResultSet">
@@ -37,7 +39,7 @@
 	<select id="selectBoard" resultMap="boardResultSet">
 		SELECT *
 		  FROM BOARD
-		 WHERE BOARD_NO = 1
+		 WHERE BOARD_NO = #{boardNo}
 	</select>
 	
 	
@@ -47,7 +49,8 @@
 		WHERE BOARD_
 	</select>
 	
-	<insert id="sgInsertBoard">
+	<!-- <insert id="sgInsertBoard"> -->
+	<!-- <insert id="insertBoard">
 		INSERT INTO BOARD
 		(
 		CATEGORY_S_NO,
@@ -55,6 +58,7 @@
 		CONTENT,
 		USER_NO,
 		CATEGORY_U_NO
+		USER_NO
 		
 		)
 		VALUES(
@@ -85,6 +89,12 @@
 		SELECT * 
 		FROMM BOARD b
 		FULL OUTER JOIN SMALL_GROUP s ON b.BOARD_NO = s.BOARD_NO;
+		#{userNo}
+		)
+	</insert> -->
+	<select id="selectUpperCategoryList" resultMap="upperCategoryResultSet">
+		SELECT *
+		  FROM UPPER_CATEGORY;
 	</select>
 	
 	<select id="selectSubCategoryList" resultMap="subCategoryResultSet">
@@ -136,4 +146,10 @@
 	  ORDER BY B.BOARD_NO DESC
 
 	</select>
+	<update id="increaseReadCount" parameterType="_int">
+		UPDATE BOARD 
+		   SET READ_COUNT = READ_COUNT + 1
+		 WHERE BOARD_NO =#{bNo}
+	</update>
+	
 </mapper>

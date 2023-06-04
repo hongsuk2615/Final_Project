@@ -31,6 +31,11 @@ public class BoardDao {
 	
 	
 		
+	 
+//	public int insertBoard(Board b, SmallGroup sg) {
+//		return sqlSession.insert("boardMapper.insertBoard", b, sg);
+//	}
+
 	public List<UpperCategory >selectBoardCategoryList() {
 		return sqlSession.selectList("boardMapper.selectCategoryList");		
 	}
@@ -60,5 +65,7 @@ public class BoardDao {
 	
 	public ArrayList<Board> selectBoardByUserNo(int userNo){
 		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardByUserNo", userNo);
+	public int increaseReadCount(int bNo) {
+		return sqlSession.update("boardMapper.increaseReadCount", bNo);
 	}
 }
