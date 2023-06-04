@@ -2,6 +2,7 @@ package com.ace.thrifty.usedProduct.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,8 +30,13 @@ public class UsedProductController {
 	
 	
 	@GetMapping("")
-	public String usedProduct(String scNo, Model model) {
-		 
+	public String usedProduct(Model model, @RequestParam Map<String, Object> queryString) {
+		System.out.println(queryString);
+		ArrayList<UsedProduct> list = (ArrayList<UsedProduct>)usedProductService.selectUsedProduct(queryString);
+		if(queryString.containsKey("scNo")) {
+			model.addAttribute("scNo", queryString.get("scNo"));			
+		}
+		model.addAttribute("list", list);
 		System.out.println(list);
 		return "usedProduct/usedProduct";
 	}
