@@ -64,7 +64,7 @@ public class BoardDao {
 	}
 	
 	public ArrayList<Board> selectBoardByUserNo(int userNo){
-		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardByUserNo", userNo);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardByUserNo", userNo);}
 	public int increaseReadCount(int bNo) {
 		return sqlSession.update("boardMapper.increaseReadCount", bNo);
 	}

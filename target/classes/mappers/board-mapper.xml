@@ -15,8 +15,6 @@
 		<result column="CATEGORY_U_NO"  property="categoryUNo"/>
 		<result column="NICK_NAME" property="nickName"/>
 		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
-		<association property="smallGroup" resultMap="smallGroupResultSet"/>
-		<association property="member" resultMap="memberResultSet"/>
 	</resultMap>
 	
 	<resultMap type="upperCategory" id="upperCategoryResultSet">
@@ -49,8 +47,7 @@
 		WHERE BOARD_
 	</select>
 	
-	<!-- <insert id="sgInsertBoard"> -->
-	<!-- <insert id="insertBoard">
+	<insert id="sgInsertBoard">
 		INSERT INTO BOARD
 		(
 		CATEGORY_S_NO,
@@ -58,7 +55,6 @@
 		CONTENT,
 		USER_NO,
 		CATEGORY_U_NO
-		USER_NO
 		
 		)
 		VALUES(
@@ -89,12 +85,6 @@
 		SELECT * 
 		FROMM BOARD b
 		FULL OUTER JOIN SMALL_GROUP s ON b.BOARD_NO = s.BOARD_NO;
-		#{userNo}
-		)
-	</insert> -->
-	<select id="selectUpperCategoryList" resultMap="upperCategoryResultSet">
-		SELECT *
-		  FROM UPPER_CATEGORY;
 	</select>
 	
 	<select id="selectSubCategoryList" resultMap="subCategoryResultSet">
@@ -120,7 +110,7 @@
 	<if test="categorySNo == 0">
 		<bind name="categorySNo" value="null"/>
 	</if>
-		INSERT INTO BOARD(CATEGORY_S_NO, CATEGORY_U_NO, TITLE, CONTENT,USER_NO)
+		INSERT INTO BOARD(CATEGORY_S_NO, CATEGORY_U_NO, TITLE, CONTENT, USER_NO)
 		            VALUES(#{categorySNo}, #{categoryUNo}, #{title}, #{content}, #{userNo})
 	</insert> 
 	
