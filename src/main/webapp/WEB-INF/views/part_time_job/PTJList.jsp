@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,55 +62,67 @@
             </div>
             <div id="body-right">
                 <div id="ptj-header">
-                    <h1>최신 알바 게시글</h1>
+                	<c:forEach var="subCategory" items="${subCategoryList }">
+						<c:if test="${subCategory.categorySNo == 9}">
+                        	<h1>최신 ${subCategory.categorySName } 게시글</h1>	
+						</c:if>
+					</c:forEach>
                 </div>
-                <div style="width:100%; height:0px;">
-                	<p>메인 > 심부름/알바 > 알바</p>
+                <div style="width:100%; height:50px;" id="write-board">
+                	<p>메인 > 심부름/대타 > 대타</p><button id="write-btn">게시글 작성하기</button>
                 </div>
-                <hr style="width: 100%;  margin-top: 60px;">
+                <hr style="width: 100%;  margin-top: 15px;">
                 <div id="ptj-allBody" style="height: 1000px;">
-                	<div id="ptj-body1">
-                    <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;"/>
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                    <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                    <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                </div>
-                <div id="ptj-body2">
-                    <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                    <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                    <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                </div>
-                <div id="ptj-body3">
-                    <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                    <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                    <div style="width: 200px; height: 170px;">
-                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                </div>
+                	<c:forEach var="ptjList" items="${pList }" begin="0" end="8" step="1" >
+	               			<div style="width: 200px; height: 170px;">
+		               				<img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;"/>
+               						<p style="text-align: center;">${ptjList.title }</p>
+               						<p style="text-align: center;">${ptjList.content }</p>
+               				</div>
+       				</c:forEach>
+                	
+	               <!-- <div id="ptj-body1">
+	                    <div style="width: 200px; height: 170px;">
+	                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;"/>
+	                        <p style="text-align: center;">메롱</p>
+	                    </div>
+	                    <div style="width: 200px; height: 170px;">
+	                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
+	                        <p style="text-align: center;">메롱</p>
+	                    </div>
+	                    <div style="width: 200px; height: 170px;">
+	                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
+	                        <p style="text-align: center;">메롱</p>
+	                    </div>
+	                </div>
+	                <div id="ptj-body2">
+	                    <div style="width: 200px; height: 170px;">
+	                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
+	                        <p style="text-align: center;">메롱</p>
+	                    </div>
+	                    <div style="width: 200px; height: 170px;">
+	                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
+	                        <p style="text-align: center;">메롱</p>
+	                    </div>
+	                    <div style="width: 200px; height: 170px;">
+	                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
+	                        <p style="text-align: center;">메롱</p>
+	                    </div>
+	                </div>
+					<div id="ptj-body3">
+	                    <div style="width: 200px; height: 170px;">
+	                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
+	                        <p style="text-align: center;">메롱</p>
+	                    </div>
+	                    <div style="width: 200px; height: 170px;">
+	                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
+	                        <p style="text-align: center;">메롱</p>
+	                    </div>
+	                    <div style="width: 200px; height: 170px;">
+	                        <img src="/thrifty/resources/images/ptj/alba.jpg" style="height: 170px; width: 200px;">
+	                        <p style="text-align: center;">메롱</p>
+	                	</div>
+	                </div> -->
                 </div>
                 <div id="paging">
                     <p style="text-align: center;">< 1 2 3 4 ></p>
@@ -121,6 +134,10 @@
 
         </div>
     </div>
-    
+<script>
+   	document.getElementById('write-btn').addEventListener("click",function(){
+        location.href = "<%= request.getContextPath() %>/ptj/ptjEnrollForm";
+   	})
+</script>
 </body>
 </html>
