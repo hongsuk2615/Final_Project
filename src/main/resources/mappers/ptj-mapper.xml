@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ptjMapper">
+
+<resultMap type="ptj" id="ptjDetailResultSet">
+	<result column="BOARD_NO" property="boardNo" />
+	<result column="LOCATION_NO" property="locationNo" />
+	<result column="PRICE" property="price" />
+	<result column="START_TIME" property="startTime" />
+	<result column="END_TIME" property="endTime" />
+	<result column="IS_END" property="isEnd" />
+	<result column="USER_NO" property="userNo" />
+	<!-- <result column="NICK_NAME" property="nickName" /> -->
+	<result column="CATEGORY_S_NO" property="categorySNo" />
+	<result column="CATEGORY_S_NAME" property="categorySName" />
+	<result column="TITLE" property="title" />
+	<result column="CONTENT" property="content" />
+	<result column="WISH_COUNT" property="wishCount"/>
+	<result column="LOCATION_NAME" property="locationName" />
+	<result column="IMG_PATH" property="imgPath" />
+	<collection property="board" resultMap="boardResultSet"/>
+	<collection property="location" resultMap="boardResultSet"/> <!-- 집가서 ㄱㄱ -->
+</resultMap> 
+
+
+
+<select id="selectPtjDetail" resultMap="ptjDetailResultSet">
+	SELECT
+		P.BOARD_NO,
+		P.LOCATION_NO,
+		P.PRICE,
+		P.START_TIME,
+		P.END_TIME,
+		P.IS_END,
+		B.CATEGORY_S_NO,
+		B.TITLE,
+		B.CONTENT,
+		B.WISH_COUNT,
+		L.LOCATION_NAME
+	FROM thrifty.PART_TIME_JOB P
+	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
+	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
+	WHERE P.BOARD_NO = #{boardNo}
+</select>
+
+<select id="selectPtj" resultMap="ptjDetailResultSet">
+	SELECT
+		P.BOARD_NO,
+		P.LOCATION_NO,
+		P.PRICE,
+		P.START_TIME,
+		P.END_TIME,
+		P.IS_END,
+		B.CATEGORY_S_NO,
+		B.TITLE,
+		B.CONTENT,
+		B.WISH_COUNT,
+		L.LOCATION_NAME,
+		I.CHANGE_NAME AS IMG_PATH
+	FROM thrifty.PART_TIME_JOB P
+	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
+	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
+	LEFT JOIN thrifty.SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+	LEFT JOIN thrifty.IMAGE I ON B.BOARD_NO = I.BOARD_NO
+	WHERE SC.CATEGORY_S_NO = #{categorySNo}
+</select>
+
+<select id="selectPtjAll" resultMap="ptjDetailResultSet">
+	SELECT
+		P.BOARD_NO,
+		P.LOCATION_NO,
+		P.PRICE,
+		P.START_TIME,
+		P.END_TIME,
+		P.IS_END,
+		B.CATEGORY_S_NO,
+		B.TITLE,
+		B.CONTENT,
+		B.WISH_COUNT,
+		L.LOCATION_NAME,
+		'PTJ/' || I.CHANGE_NAME AS IMG_PATH
+	FROM thrifty.PART_TIME_JOB P
+	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
+	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
+	LEFT JOIN thrifty.IMAGE I ON B.BOARD_NO = I.BOARD_NO
+	LEFT JOIN thrifty.UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
+	WHERE UC.CATEGORY_U_NO = 5
+</select>
+
+<!-- <select id="selectSubCategory" resultMap="ptjDetailResultSet">
+	SELECT
+		P.BOARD_NO,
+		P.LOCATION_NO,
+		P.PRICE,
+		P.START_TIME,
+		P.END_TIME,
+		P.IS_END,
+		B.CATEGORY_S_NO,
+		B.TITLE,
+		B.CONTENT,
+		B.WISH_COUNT,
+		L.LOCATION_NAME,
+		SC.CATEGORY_S_NAME,
+		'PTJ/' || I.CHANGE_NAME AS IMG_PATH
+	FROM thrifty.PART_TIME_JOB P
+	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
+	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
+	LEFT JOIN thrifty.IMAGE I ON B.BOARD_NO = I.BOARD_NO
+	LEFT JOIN thrifty.UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
+	LEFT JOIN thrifty.SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+	WHERE SC.CATEGORY_S_NO in (9 , 10) AND UC.CATEGORY_U_NO = 5
+</select> -->
+
+<insert id="insertPtj" parameterType="ptj">
+	INSERT INTO PART_TIME_JOB(BOARD_NO, LOCATION_NO , PRICE , START_TIME , END_TIME , LOCATION_COORDINATE)
+						VALUES(#{boardNo} , #{locationNo} , #{price} , #{startTime} , #{endTime} , #{locationCoordinate})
+</insert>
+</mapper>

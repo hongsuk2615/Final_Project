@@ -170,5 +170,11 @@
 }
 
 select {
-    height: 30px;
+    height: 40px;
+    width: 90px;
+}
+
+#enroll-category h1 {
+	display: flex;
+	align-items: center;
 }
