@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>detailForm</title>
     <link href="/thrifty/resources/css/part_time_job/part_time_job_detail.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
@@ -31,8 +31,9 @@
         display: flex;
         justify-content: center;
         flex-direction: row;
+        width: 100%;
     }
-    
+
     #body-left{
         display: inline-block;
         width: 20%;
@@ -56,20 +57,16 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"/>
     <div id="wrapper">
-        <div id="header">
-            <jsp:include page="../common/header.jsp"/>
-        </div>
         <div id="body">
-            <div id="body-left">
-                <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
-            </div>
+		    <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             <div id="body-right">
                 <div id="enroll-category">
-                    <div style="width: 50%;">
-                        <h1>상위 카테고리명</h1>
+                    <div style="width: 500px;">
+                        <h1>${p.board.categorySNo }</h1>
                     </div>
-                    <div style="width: 55%;" id="enroll-update">
+                    <div id="enroll-update">
                         <button style="border: 0;">수정하기</button>
                         <button style="border: 0;">삭제하기</button>
                         <button style="border: 0;">구인완료</button>
@@ -80,27 +77,27 @@
                         <div id="enroll-header">
                             <div style="display: flex; flex-direction: column;">
                                 <div>
-                                    <h2>대표 이미지(requierd 아님)</h2>
+                                    <img src="${contextPath }${webPath }${p.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>
                                 </div>
                                 <div>
-                                    <h2>제목 : &nbsp;응애애애애애</h2>
+                                    <h2>제목 : &nbsp;${p.board.title }</h2>
                                 </div>
                             </div>
                             <br>
                             <div>
-                                <h3 id="enroll-content">내용 :  </h3><p>응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애</p>
+                                <h3 id="enroll-content">내용 :  </h3><p>${p.board.content }</p>
                             </div>
                             <!-- <div id="좌표"></div> -->
                         </div>
                         <hr>
                         <div id="enroll-body">
-                            <h3>연락처 : &nbsp;010 - 1234 - 5678</h3>
+                            <h3>연락처 : &nbsp;${p.member.phone }</h3>
                             <hr>
-                            <h3>알바 카테고리 : 서빙/홀 서비스</h3>
+                            <h3>알바 카테고리 : ${p.subCategory.categorySName }</h3>
                             <hr>
                             <div id="item-btns">
-                                <div id="inquiry-btn">쪽지</div>
-                                <div id="wish-btn">찜</div>
+                                <div id="inquiry-btn">쪽지 보내기</div>
+                                <div id="wish-btn">찜하기</div>
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
                             <hr>
@@ -110,12 +107,13 @@
                             시작 시간 : ${p.startTime } &nbsp;&nbsp;
                             마감 시간 : ${p.endTime }
                             <hr>
-                            <h3>시 / 군 / 구 : ${p.locationName }</h3>
+                            <h3>시 / 군 / 구 : ${p.location.locationName }</h3>
                             <hr>
                             <div id="enroll-map">
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
                                 <div id="map" style="width:100%; height:350px; border-radius: 5px;"></div>
                             </div>
+                            <p>${p.locationCoordinate }</p>
                         </div>
                         <div id="enroll-footer">
                             <button id="enroll-btn" style="border: 0;">뒤로가기</button>
@@ -124,13 +122,23 @@
                 <!-- div id="map" style="width:100%;height:350px;"></div> -->
             </div>
         </div>
-        <div id="footer">
+        <!-- <div id="footer">
         
-        </div>
+        </div> -->
+        
     </div>
 <script type="text/javascript" src="/thrifty/resources/js/common/btn_event.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 <script>
+	let a = "${p.locationCoordinate}".split(',');
+	console.log(a[0]);
+    let y = a[0];
+    let x = a[1];
+
+    var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+    mapDetail(y, x);
+
     function mapDetail(y, x) {
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
@@ -151,6 +159,22 @@
 
     // 마커가 지도 위에 표시되도록 설정합니다
     marker.setMap(map);
+
+        kakao.maps.event.addListener(marker, 'click', function() {
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        // let place = "교회";
+        coordinate = marker.getPosition().La + "," + marker.getPosition().Ma;
+        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        console.log(marker.place_name);
+        infowindow.open(map, marker);
+        console.log(marker.getPosition());
+        map.setLevel(1);
+    });
+
+        // setCenter(marker.getPosition().Ma , marker.getPosition().La);
+        // document.getElementById('좌표').innerHTML="작은거 : "  + marker.getPosition().Ma+ " 큰거 : " + marker.getPosition().La;
+        // document.getElementById('locationCoordinate').value = marker.getPosition().Ma + "," + marker.getPosition().La;
+
     }
 </script>
 

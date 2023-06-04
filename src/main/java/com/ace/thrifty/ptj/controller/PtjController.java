@@ -43,6 +43,9 @@ public class PtjController {
 
 		List<Ptj> pList = ptjService.selectPtjAll();
 		model.addAttribute("pList", pList);
+		System.out.println(pList);
+		String webPath = "/resources/upfiles/ptj/";
+		model.addAttribute("webPath" , webPath);
 		return "part_time_job/PTJList";
 
 	}
@@ -65,9 +68,10 @@ public class PtjController {
 //			System.out.println(boardNo);
 
 		Ptj p = ptjService.selectPtjDetail(boardNo);
-
+		System.out.println(p);
 		model.addAttribute("p", p);
-
+		String webPath = "/resources/upfiles/ptj/";
+		model.addAttribute("webPath" , webPath);
 		return "part_time_job/PTJDetail";
 
 	}

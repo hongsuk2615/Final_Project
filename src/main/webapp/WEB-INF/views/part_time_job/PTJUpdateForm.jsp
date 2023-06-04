@@ -55,9 +55,7 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="header">
             <jsp:include page="../common/header.jsp"/>
-        </div>
         <div id="body">
             <div id="body-left">
                 <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
