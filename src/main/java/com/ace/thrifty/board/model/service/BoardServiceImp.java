@@ -24,6 +24,7 @@ public class BoardServiceImp implements BoardService{
 		Board b = boardDao.selectBoard();
 		return b;
 	}
+	
 
 	@Override
 	public List<UpperCategory> selectUpperCategoryList() {

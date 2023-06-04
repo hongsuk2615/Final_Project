@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,7 +77,6 @@
                 </div>
                 <hr>
                 <div id="enroll">
-                    <form>
                         <div id="enroll-header">
                             <div style="display: flex; flex-direction: column;">
                                 <div>
@@ -104,13 +104,13 @@
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
                             <hr>
-                            <h3>급여 : </h3><p><b style="color: red; font-size: 30px;">100,000</b> 원</p>
+                            <h3>급여 : </h3><p><b style="color: red; font-size: 30px;">${p.price }</b> 원</p>
                             <hr>
                             <h3>시간 : </h3>
-                            시작 시간 : 09:00 &nbsp;&nbsp;
-                            마감 시간 : 18:00
+                            시작 시간 : ${p.startTime } &nbsp;&nbsp;
+                            마감 시간 : ${p.endTime }
                             <hr>
-                            <h3>시 / 군 / 구 : 서울시</h3>
+                            <h3>시 / 군 / 구 : ${p.locationName }</h3>
                             <hr>
                             <div id="enroll-map">
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
@@ -120,7 +120,6 @@
                         <div id="enroll-footer">
                             <button id="enroll-btn" style="border: 0;">뒤로가기</button>
                         </div>
-                    </form>
                 </div>
                 <!-- div id="map" style="width:100%;height:350px;"></div> -->
             </div>
