@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,70 +71,36 @@
                     
                 </div>
                 <div id="body-right-list">
-                    <div class="item">
-                        <div class="item-img">
-
-                        </div>
-                        <div class="item-info">
-
-                        </div>     
-                    </div>
-                    <div class="item">
-                        <div class="item-img">
-
-                        </div>
-                        <div class="item-info">
-
-                        </div>     
-                    </div>
-                    <div class="item">
-                        <div class="item-img">
-
-                        </div>
-                        <div class="item-info">
-
-                        </div>     
-                    </div>
-                    <div class="item">
-                        <div class="item-img">
-
-                        </div>
-                        <div class="item-info">
-
-                        </div>     
-                    </div>
-                    <div class="item">
-                        <div class="item-img">
-
-                        </div>
-                        <div class="item-info">
-
-                        </div>     
-                    </div>
-                    <div class="item">
-                        <div class="item-img">
-
-                        </div>
-                        <div class="item-info">
-
-                        </div>     
-                    </div>
-                    <div class="item">
-                        <div class="item-img">
-
-                        </div>
-                        <div class="item-info">
-
-                        </div>     
-                    </div>
-                    <div class="item">
-                        <div class="item-img">
-
-                        </div>
-                        <div class="item-info">
-
-                        </div>     
-                    </div>
+                	<c:forEach var="i"  begin="0" end="7" step="1">
+	                    <c:choose>
+	                    	<c:when test="${i lt list.size()}" >
+			                    <div class="item" onclick = "location.href = '${contextPath}/usedProduct/detail?bNo=${list.get(i).boardNo}'">
+			                        <div class="item-img">
+											<img alt="" src='${contextPath}/${list.get(i).thumbNail }'>
+			                        </div>
+			                        <div class="item-info">
+			                        	제목 : ${list.get(i).title} <br>
+										가격 : ${list.get(i).price} <br>
+										지역 : ${list.get(i).locationName}
+			                        </div>     
+			                    </div>                	
+	                    	
+	                    	
+	                    	</c:when>
+							<c:otherwise>
+								<div class="item">
+			                        <div class="item-img">
+											
+			                        </div>
+			                        <div class="item-info">
+											
+			
+			                        </div>     
+			                    </div>         
+							</c:otherwise>		                    
+	                    </c:choose>
+                    
+                	</c:forEach>
 
                 </div>
                 <div id="body-right-footer">
