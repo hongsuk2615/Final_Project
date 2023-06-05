@@ -37,6 +37,7 @@
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
+		<result column="STATUS" property="status" />
 </resultMap>
 
 <resultMap type="member" id="memberResultSet">
@@ -142,4 +143,10 @@
 	INSERT INTO PART_TIME_JOB(BOARD_NO, LOCATION_NO , PRICE , START_TIME , END_TIME , LOCATION_COORDINATE)
 						VALUES(#{boardNo} , #{locationNo} , #{price} , #{startTime} , #{endTime} , #{locationCoordinate})
 </insert>
+
+<update id="deletePtj">
+	UPDATE BOARD SET
+	STATUS = 'N'
+	WHERE BOARD_NO = #{boardNo}
+</update>
 </mapper>

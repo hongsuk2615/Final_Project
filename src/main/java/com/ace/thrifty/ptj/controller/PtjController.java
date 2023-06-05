@@ -107,5 +107,11 @@ public class PtjController {
 		return "part_time_job/PTJList";
 		
 	}
+	
+	@PostMapping("/ptj/ptjList")
+	public String deletePtj( @RequestParam(value="boardNo" , required = false) int boardNo) {
+		ptjService.deletePtj(boardNo);
+		return "part_time_job/PTJList";
+	}
 
 }

@@ -89,4 +89,10 @@ public class PtjServiceImpl implements PtjService {
 		return boardNo;
 	}
 	
+	public int deletePtj(int boardNo) {
+		
+		return ptjDao.deletePtj(boardNo);
+		
+	}
+	
 }
