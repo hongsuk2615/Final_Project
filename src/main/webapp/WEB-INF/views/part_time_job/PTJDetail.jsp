@@ -59,12 +59,12 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
     <div id="wrapper">
-        <div id="body">
+        <div id="body" style="padding-top: 150px;">
 		    <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             <div id="body-right">
                 <div id="enroll-category">
                     <div style="width: 500px;">
-                        <h1>${p.board.categorySNo }</h1>
+                        <h1>${p.subCategory.categorySName } 게시글</h1>
                     </div>
                     <div id="enroll-update">
                         <button style="border: 0;">수정하기</button>
@@ -77,7 +77,7 @@
                         <div id="enroll-header">
                             <div style="display: flex; flex-direction: column;">
                                 <div>
-                                    <img src="${contextPath }${webPath }${p.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>
+                                    <img src="${contextPath }${webPath }${p.imgPath }" style="height: 200px; width: 240px; border-radius: 10px;"/>
                                 </div>
                                 <div>
                                     <h2>제목 : &nbsp;${p.board.title }</h2>
@@ -91,6 +91,7 @@
                         </div>
                         <hr>
                         <div id="enroll-body">
+                        	<h3>작성자 아이디 : ${p.member.userId }</h3>
                             <h3>연락처 : &nbsp;${p.member.phone }</h3>
                             <hr>
                             <h3>알바 카테고리 : ${p.subCategory.categorySName }</h3>
@@ -113,10 +114,9 @@
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
                                 <div id="map" style="width:100%; height:350px; border-radius: 5px;"></div>
                             </div>
-                            <p>${p.locationCoordinate }</p>
                         </div>
                         <div id="enroll-footer">
-                            <button id="enroll-btn" style="border: 0;">뒤로가기</button>
+                            <button id="back-btn" style="border: 0;">뒤로가기</button>
                         </div>
                 </div>
                 <!-- div id="map" style="width:100%;height:350px;"></div> -->
@@ -176,6 +176,13 @@
         // document.getElementById('locationCoordinate').value = marker.getPosition().Ma + "," + marker.getPosition().La;
 
     }
+</script>
+<script>
+	document.getElementById('back-btn').addEventListener("click",function(){
+    	location.href = "${contextPath}/ptj/ptjList";
+	})
+	
+	
 </script>
 
 </body>
