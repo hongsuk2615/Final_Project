@@ -86,19 +86,13 @@ public class AdminController {
 			return "admin/adminPage";
 	}
 	
-	@GetMapping("/member/statusUpdate") // ajax로 할지... 요청방식으로 할지... 고민....
-	public String member(Model model, @RequestParam Map<String, Object> paramMap) {
+	@GetMapping("/member/status/update") // ajax로 할지... 요청방식으로 할지... 고민....
+	@ResponseBody()
+	public String member(String statusVal) {
 		
-		System.out.println(paramMap);
+		System.out.println(statusVal);
 		
-		String paramUrl = "tab="+paramMap.get("tab")+"&currentPage="+paramMap.get("currentPage");
-		
-//		System.out.println(paramUrl);
-		
-		model.addAttribute("tab", paramMap.get("tab"));
-		model.addAttribute("currentPage", paramMap.get("currentPage"));
-		
-		return "redirect:/admin/member";
+		return "성공 ";
 	}
 	
 	@GetMapping("/report")

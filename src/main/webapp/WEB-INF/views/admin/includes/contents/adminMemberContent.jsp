@@ -121,9 +121,9 @@
 																	</c:choose>
 																</button>
 																<div class="dropdown-menu">
-																	<a class="dropdown-item" href="member/statusUpdate?tab=${tab}&currentPage=${pi.currentPage}&userNo=${list.userNo}&status=active">활성</a>
-																	<a class="dropdown-item" href="member/statusUpdate?tab=${tab}&currentPage=${pi.currentPage}&userNo=${list.userNo}&status=suspend">정지</a>
-																	<a class="dropdown-item" href="member/statusUpdate?tab=${tab}&currentPage=${pi.currentPage}&userNo=${list.userNo}&status=banned">탈퇴</a>
+																	<button class="dropdown-item member-status-dropdown" value="active">활성</button>
+																	<button class="dropdown-item member-status-dropdown" value="suspend">정지</button>
+																	<button class="dropdown-item member-status-dropdown" value="banned">탈퇴</button>
 																</div>
 															</div>
 														</td>

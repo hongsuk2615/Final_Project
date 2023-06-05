@@ -5,6 +5,21 @@ $.each($('#member-tabs').children('li>a'), function (index, value) {
      console.log(value);
 });
 
+console.log("dd");
+$(".member-status-dropdown").on('click', function(){
+
+    const statusVal =  $(this).val();
+
+    $.ajax({
+        url: "member/status/update",
+        data: {statusVal},
+        success: function(result){
+            console.log("성공")
+
+        }
+    });
+});
+
 switch(urlTab){
     case 'all':
         $('#member-tabs').children('.nav-item').children('#memberAll').addClass('active');
