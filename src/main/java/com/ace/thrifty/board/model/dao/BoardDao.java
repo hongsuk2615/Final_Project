@@ -48,4 +48,8 @@ public class BoardDao {
 	public int insertImageList(List<Image> imageList) {
 		return sqlSession.insert("boardMapper.insertImageList", imageList);
 	}
+	
+	public int increaseReadCount(int bNo) {
+		return sqlSession.update("boardMapper.increaseReadCount", bNo);
+	}
 }
