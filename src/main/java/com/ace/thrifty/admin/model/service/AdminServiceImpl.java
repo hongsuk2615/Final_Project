@@ -29,6 +29,10 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.loginAdmin(m);
 	}
 
+	@Override
+	public Map<String, Integer> selectInfoBox() {
+		return adminDao.selectInfoBox();
+	}
 
 	@Override
 	public void memberList(Map<String, Object> map, Map<String, Object> paramMap) {
@@ -40,22 +44,17 @@ public class AdminServiceImpl implements AdminService{
 		
 		PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<Member> list = adminDao.memberList(pi, (String)paramMap.get("tab")); 
+		List<Member> list = adminDao.memberList(pi, paramMap); 
 		
 		map.put("pi", pi);
 		map.put("list", list);
 	}
 
-
 	@Override
-	public Map<String, Integer> selectInfoBox() {
-		return adminDao.selectInfoBox();
+	public int memberStatusUpdate(Map<String, Object> paramMap) {
+		return adminDao.memberStatusUpdate(paramMap);
 	}
 
 
-	@Override
-	public List<Member> memberListAjax(String tab) {
-		return adminDao.memberListAjax(tab);
-	}
 
 }

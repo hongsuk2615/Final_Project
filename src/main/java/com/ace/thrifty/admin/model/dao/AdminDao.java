@@ -29,14 +29,14 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.selectMemberListCount", paramMap);
 	}
 	
-	public List<Member> memberList(PageInfo pi, String tab) {
+	public List<Member> memberList(PageInfo pi, Map<String, Object> paramMap) {
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return sqlSession.selectList("adminMapper.memberList", tab, rowBounds);
+		return sqlSession.selectList("adminMapper.memberList", paramMap, rowBounds);
 	}
 	
 	public Map<String, Integer> selectInfoBox(){
@@ -45,5 +45,9 @@ public class AdminDao {
 	
 	public List<Member> memberListAjax(String tab){
 		return sqlSession.selectList("adminMapper.memberListAjax", tab);
+	}
+	
+	public int memberStatusUpdate(Map<String, Object> paramMap) {
+		return sqlSession.update("adminMapper.memberStatusUpdate", paramMap);
 	}
 }

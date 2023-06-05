@@ -72,12 +72,12 @@ public class AdminController {
 	@GetMapping("/member")
 	public String adminMember(Model model, HttpSession session, @RequestParam Map<String, Object> paramMap) {
 		
+			System.out.println(paramMap.get("search"));
+		
 			Map<String, Object> map = new HashMap<>();
 			map.put("tab", paramMap.get("tab"));
 			
 			adminService.memberList(map, paramMap);
-			
-			System.out.println(map);
 			
 			model.addAttribute("contents", ".sidebar-member");
 			model.addAttribute("map", map);
@@ -86,13 +86,15 @@ public class AdminController {
 			return "admin/adminPage";
 	}
 	
-	@GetMapping("/member/status/update") // ajax로 할지... 요청방식으로 할지... 고민....
+	@GetMapping(value="/member/status/update", produces = "application/text; charset=UTF-8") // ajax로 할지... 요청방식으로 할지... 고민....
 	@ResponseBody()
-	public String member(String statusVal) {
+	public String member(@RequestParam Map<String, Object> paramMap) {
 		
-		System.out.println(statusVal);
+		adminService.memberStatusUpdate(paramMap);
 		
-		return "성공 ";
+		String result = "의 상태가 변경되었습니다.";
+		
+		return result;
 	}
 	
 	@GetMapping("/report")

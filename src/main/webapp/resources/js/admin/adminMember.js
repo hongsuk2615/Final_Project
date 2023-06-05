@@ -1,40 +1,52 @@
 const urlParams = new URL(location.href).searchParams;
-const urlTab = urlParams.get('tab');
 
-$.each($('#member-tabs').children('li>a'), function (index, value) { 
-     console.log(value);
+$('.table_search_btn').on('click', function(){
+    const searchVal = $('input[name=table_search]').val();
+    
+    if(searchVal != ''){
+        urlParams.set('search', searchVal);
+        location.href =  "member?"+urlParams.toString();
+    }
 });
 
-console.log("dd");
 $(".member-status-dropdown").on('click', function(){
-
+    
     const statusVal =  $(this).val();
+    const userNo = $(this).parents('tr').children('input[type=hidden]').val();
+    const userId = $(this).parents('tr').children('.member-userId').html();
 
     $.ajax({
         url: "member/status/update",
-        data: {statusVal},
+        data: {
+                statusVal,
+                userNo
+            },
+        dataType: "text", 
         success: function(result){
-            console.log("성공")
-
+            console.log(result);
+            alert(userId+result);
+            location.reload();
+            
         }
+        });
     });
-});
 
-switch(urlTab){
+const urlParamTab = urlParams.get('tab');
+let memberTab = "";
+
+switch(urlParamTab){
     case 'all':
-        $('#member-tabs').children('.nav-item').children('#memberAll').addClass('active');
-        console.log('all');
+        memberTab = '#memberAll';
     break;
     case 'active':
-        $('#member-tabs').children('.nav-item').children('#memberActive').addClass('active');
-        console.log('active');
+        memberTab = '#memberActive';
     break;
     case 'suspend':
-        $('#member-tabs').children('.nav-item').children('#memberSuspend').addClass('active');
-        console.log('suspend');
+        memberTab = '#memberSuspend';
     break;
     case 'banned':
-        $('#member-tabs').children('.nav-item').children('#memberBanned').addClass('active');
-        console.log('banned');
+        memberTab = '#memberBanned';
     break;
 }
+
+$('#member-tabs').children('.nav-item').children(memberTab).addClass('active');

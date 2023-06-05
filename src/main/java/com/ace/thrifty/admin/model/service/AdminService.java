@@ -13,5 +13,7 @@ public interface AdminService {
 	
 	Map<String, Integer> selectInfoBox();
 	
-	List<Member> memberListAjax(String tab);
+//	List<Member> memberListAjax(String tab);
+	
+	int memberStatusUpdate(Map<String, Object> paramMap);
 }

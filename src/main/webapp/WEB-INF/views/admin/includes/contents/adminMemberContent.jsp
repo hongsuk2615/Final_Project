@@ -48,10 +48,9 @@
 								<li class="nav-item" style="margin-left: auto;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 180px;">
-											<input type="text" name="table_search"
-												class="form-control float-right" placeholder="Search">
+											<input type="text" name="table_search" class="form-control float-right" placeholder="닉네임, 아이디">
 											<div class="input-group-append">
-												<button type="submit" class="btn btn-default">
+												<button type="submit" class="btn btn-default table_search_btn">
 													<i class="fas fa-search"></i>
 												</button>
 											</div>
@@ -82,18 +81,19 @@
 											<tbody>
 												<c:forEach var="list" items="${map.list}" varStatus="i">
 													<tr>
+														<input type="hidden" value="${list.userNo}">
 														<td>${i.count}</td>
-														<td>
+														<td class="member-login">
 															<div class="out-circle">
 																<c:if test="${list.currentLogin eq 'Y'}">
 																		<span class="in-circle"></span>
 																</c:if>
 															</div>	
 														</td>
-														<td>${list.userId}</td>
-														<td>${list.nickName}</td>
-														<td>${list.reportCount}</td>
-														<td>${list.joinDate}</td>
+														<td class="member-userId">${list.userId}</td>
+														<td class="member-nickName">${list.nickName}</td>
+														<td class="member-reportCount">${list.reportCount}</td>
+														<td class="member-joinDate">${list.joinDate}</td>
 														<c:choose>
 															<c:when test="${list.status eq 'Y' && list.isBanned eq 'N'}">
 																<td>활성</td>

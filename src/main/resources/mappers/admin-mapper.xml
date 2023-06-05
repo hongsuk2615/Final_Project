@@ -43,7 +43,7 @@
 		</choose>
 	</select>
 	
-	<select id="memberList" resultMap="memberResultSet">
+	<select id="memberList" resultMap="memberResultSet" parameterType="map">
 		SELECT * 
 		FROM MEMBER
 		WHERE AUTHORITY = 1
@@ -60,6 +60,11 @@
 				AND IS_BANNED = 'Y'
 			</when>
 		</choose>
+		 <if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND USER_ID LIKE #{searchPattern}
+		 	OR NICK_NAME LIKE #{searchPattern}
+		 </if>
 		ORDER BY CURRENT_LOGIN DESC,STATUS DESC, IS_BANNED ASC
 	</select>
 	
@@ -91,4 +96,22 @@
 		</choose>
 		ORDER BY CURRENT_LOGIN DESC
 	</select>
+	
+	<update id="memberStatusUpdate" parameterType="map">
+		UPDATE MEMBER SET
+		<choose>
+			<when test="statusVal == 'active'">
+				STATUS = 'Y',
+				IS_BANNED = 'N'
+			</when>
+			<when test="statusVal == 'suspend'">
+				STATUS = 'N',
+				IS_BANNED = 'N'
+			</when>
+			<when test="statusVal == 'banned'">
+				IS_BANNED = 'Y'
+			</when>
+		</choose>
+		WHERE USER_NO = #{userNo}
+	</update>
 </mapper>
