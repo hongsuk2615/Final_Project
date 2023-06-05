@@ -1,36 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="co_purchaseMapper">
-	<resultMap type="board" id="boardResultSet">
+
+	<resultMap type="co_purchase" id="coPurchaseListResultSet">
 		<id column="BOARD_NO" property="boardNo"/>
-		<result column="CATEGORY_S_NO"  property="categorySNo"/>
-		<result column="CONTENT"  property="content"/>
-		<result column="CREATE_DATE"  property="createDate"/>
-		<result column="READ_COUNT"  property="readCount"/>
-		<result column="REPORT_COUNT"  property="reportCount"/>
-		<result column="TITLE"  property="title"/>
-		<result column="USER_NO"  property="userNo"/>
-		<result column="WISH_COUNT"  property="wishCount"/>
-		
-		<collection property="imgList" resultMap="boardImgResultSet" />
-		<collection property="coPurchaseList" resultMap="coPurchaseResultSet" />
-	</resultMap>
-	
-	<resultMap type="image" id="boardImgResultSet">
-		<result column="IMG_NO" property="imgNo"/>
-		<result column="BOARD_NO" property="boardNo"/>
-		<result column="ORIGIN_NAME" property="originName"/>
-		<result column="CHANGE_NAME" property="changeName"/>
-		<result column="FILE_LEVEL" property="fileLevel"/>
-	</resultMap>
-	
-	<resultMap type="co_purchase" id="coPurchaseResultSet">
-		<result column="BOARD_NO" property="boardNo"/>
+		<result column="TITLE" property="title"/>
+		<result column="PRICE" property="price"/>
 		<result column="RECRUITS_NUM" property="recruitsNum"/>
 		<result column="RECRUITS_CURR" property="recruitsCurr"/>
 		<result column="PRICE" property="price"/>
 		<result column="DEAD_LINE" property="deadLine"/>
 		<result column="IS_END" property="isEnd"/>
+		<result column="THUMB_NAIL" property="thumbNail"/>
+	</resultMap>
+	
+	<resultMap type="co_purcahse" id="coPurchaseResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="RECRUITS_NUM" property="recruitsNum"/>
+		<result column="RECRUITS_CURR" property="recruitsCurr"/>
+		<result column="PRICE" property="price"/>
+		<result column="DEAD_LINE" property="deadLine"/>
+		<result column="IS_END" property="isEnd"/>
+		
+		<association property="board" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Board">
+			<id column="BOARD_NO" property="boardNo"/>			
+			<result column="CATEGORY_S_NO"  property="categorySNo"/>
+			<result column="CONTENT"  property="content"/>
+			<result column="CREATE_DATE"  property="createDate"/>
+			<result column="READ_COUNT"  property="readCount"/>
+			<result column="REPORT_COUNT"  property="reportCount"/>
+			<result column="TITLE"  property="title"/>
+			<result column="USER_NO"  property="userNo"/>
+			<result column="WISH_COUNT"  property="wishCount"/>
+		</association>
+		<association property="seller" column="BOARD_NO" javaType="com.ace.thrifty.member.model.vo.Member">
+			<id column="USED_NO" property="userNo"/>
+			<result column="NICK_NAME" property="nickName"/>
+		</association>
+		<association property="image" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Image">
+			<id column="IMG_NO" property="imgNo"/>
+			<result column="BOARD_NO" property="boardNo"/>
+			<result column="ORIGIN_NAME" property="originName"/>
+			<result column="CHANGE_NAME" property="changeName"/>
+			<result column="FILE_LEVEL" property="fileLevel"/>
+			<result column="STATUS" property="status"/>
+		</association>
 	</resultMap>
 	
 	<select id="selectBoardListCount" resultType="_int">
@@ -55,8 +69,8 @@
 		WHERE BOARD_NO = #{ boardNo }
 	</select>
 	
-	<insert id="insertBoard" parameterType="board">
-		INSERT INTO BOARD(CATEGORY_S_NO, USER_NO, TITLE, CONTENT, CATEGORY_U_NO)
-					VALUES (#{categorySNo}, #{userNo}, #{title}, #{content}, 6)
+	<insert id="insertCo_purchase" parameterType="co_purchase">
+		INSERT INTO CO_PURCHASE(RECRUITS_CURR, RECRUIS_NUM, PRICE, DEAD_LINE, IS_END)
+					VALUES (#{ recruitsCurr }, #{ recruitsNum }, #{ price }, #{ deadLine }, #{ isEnd })
 	</insert>
 </mapper>

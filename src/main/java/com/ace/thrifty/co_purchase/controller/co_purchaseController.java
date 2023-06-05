@@ -72,8 +72,9 @@ public class co_purchaseController {
 		b.setCategoryUNo(6);
 		b.setUserNo(loginUser.getUserNo());
 		String webPath = "/resources/upfiles/co_purchase/";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		
-		int result = coService.insertBoard(b, webPath);
+		int result = coService.insertBoard(b, cp, i, webPath, serverFolderPath);
 		System.out.println(b);
 		return "co_purchase";
 	}
