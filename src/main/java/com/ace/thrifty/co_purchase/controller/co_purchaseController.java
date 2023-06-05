@@ -2,6 +2,7 @@ package com.ace.thrifty.co_purchase.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
@@ -66,16 +68,15 @@ public class co_purchaseController {
 						HttpSession session,
 						Board b,
 						Co_purchase cp,
-						Image i
-						) {
+						List<MultipartFile> imgList
+						) throws Exception {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		b.setCategoryUNo(6);
 		b.setUserNo(loginUser.getUserNo());
 		String webPath = "/resources/upfiles/co_purchase/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		coService.insertBoard(b, cp, imgList, webPath, serverFolderPath);
 		
-		int result = coService.insertBoard(b, cp, i, webPath, serverFolderPath);
-		System.out.println(b);
 		return "co_purchase";
 	}
 	
