@@ -14,7 +14,7 @@
 		<result column="THUMB_NAIL" property="thumbNail"/>
 	</resultMap>
 	
-	<resultMap type="co_purcahse" id="coPurchaseResultSet">
+	<resultMap type="co_purchase" id="coPurchaseResultSet">
 		<id column="BOARD_NO" property="boardNo"/>
 		<result column="RECRUITS_NUM" property="recruitsNum"/>
 		<result column="RECRUITS_CURR" property="recruitsCurr"/>
@@ -56,12 +56,12 @@
 		AND CATEGORY_PATH = #{ categoryPath }
 	</select>
 	
-	<select id="selectBoardImg" resultMap="boardImgResultSet">
+	<!-- <select id="selectBoardImg" resultMap="boardImgResultSet">
 		SELECT *
 		FROM IMAGE
 		WHERE BOARD_NO = #{ boardNo }
 		ORDER BY FILE_LEVEL
-	</select>
+	</select> -->
 	
 	<select id="selectCoPurchase" resultMap="coPurchaseResultSet">
 		SELECT *
@@ -70,7 +70,7 @@
 	</select>
 	
 	<insert id="insertCo_purchase" parameterType="co_purchase">
-		INSERT INTO CO_PURCHASE(RECRUITS_CURR, RECRUIS_NUM, PRICE, DEAD_LINE, IS_END)
+		INSERT INTO CO_PURCHASE(RECRUITS_CURR, RECRUITS_NUM, PRICE, DEAD_LINE, IS_END)
 					VALUES (#{ recruitsCurr }, #{ recruitsNum }, #{ price }, #{ deadLine }, #{ isEnd })
 	</insert>
 </mapper>
