@@ -33,20 +33,19 @@ public class co_purchaseController {
 	@Autowired
 	private Co_purchaseService coService;
 
-	@GetMapping(value={"", "/main"})
-	public String usedProduct( 
+	@GetMapping("")
+	public String selectList( 
 							@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 							Model model,
 							Board b,
 							@RequestParam Map<String, Object> paramMap,
 							HttpServletRequest req) {
-//		if(categoryPath == null) {
 		System.out.println(req.getServletPath());
-//		}
 		
+		String categoryPath = "co_purchase";
 		Map<String, Object> map = new HashMap();
 		
-		//coService.selectBoardList(currentPage, categoryPath, map);
+		coService.selectBoardList(currentPage, categoryPath, map);
 		
 		model.addAttribute("map", map);
 		
@@ -68,16 +67,18 @@ public class co_purchaseController {
 						HttpSession session,
 						Board b,
 						Co_purchase cp,
-						List<MultipartFile> imgList
+						@RequestParam(value = "image", required = false ) List<MultipartFile> imgList
 						) throws Exception {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		b.setCategoryUNo(6);
 		b.setUserNo(loginUser.getUserNo());
 		String webPath = "/resources/upfiles/co_purchase/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		System.out.println(cp.getDeadLine());
+		System.out.println(b);
 		coService.insertBoard(b, cp, imgList, webPath, serverFolderPath);
 		
-		return "co_purchase";
+		return "co_purchase/purchaseMain";
 	}
 	
 }

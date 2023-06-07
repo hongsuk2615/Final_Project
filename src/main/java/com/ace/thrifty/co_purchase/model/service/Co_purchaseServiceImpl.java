@@ -42,7 +42,7 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 		
 		if (result > 0 && imgList != null) {
 			List<Image> imageList = new ArrayList();
-
+			System.out.println(imgList);
 			for (int i = 0; i < imgList.size(); i++) {
 				if (imgList.get(i).getSize() > 0) {
 					String changeName = Utils.saveFile(imgList.get(i), serverFolderPath);
@@ -76,8 +76,13 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 		PageInfo pi = pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
 		
 		ArrayList<Board> list = coDao.selectBoardList(pi, categoryPath);
+		ArrayList<Co_purchase> coList = coDao.selectCoList();
+		ArrayList<Image> imgList = coDao.selectImgList();
 		
 		map.put("pi", pi);
 		map.put("list", list);
+		map.put("coList", coList);
+		map.put("imgList", imgList);
+		
 	}
 }

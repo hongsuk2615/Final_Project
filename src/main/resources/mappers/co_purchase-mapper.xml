@@ -56,12 +56,18 @@
 		AND CATEGORY_PATH = #{ categoryPath }
 	</select>
 	
-	<!-- <select id="selectBoardImg" resultMap="boardImgResultSet">
+	<select id="selectImgList" resultMap="boardImgResultSet">
 		SELECT *
 		FROM IMAGE
-		WHERE BOARD_NO = #{ boardNo }
-		ORDER BY FILE_LEVEL
-	</select> -->
+		JOIN BOARD USING(BOARD_NO)
+		JOIN CO_PURCHASE USING(BOARD_NO)
+	</select>
+	
+	<select id="selectCoList" resultMap="boardImgResultSet">
+		SELECT *
+		FROM CO_PURCHASE
+		JOIN BOARD USING(BOARD_NO)
+	</select>
 	
 	<select id="selectCoPurchase" resultMap="coPurchaseResultSet">
 		SELECT *
@@ -70,7 +76,8 @@
 	</select>
 	
 	<insert id="insertCo_purchase" parameterType="co_purchase">
-		INSERT INTO CO_PURCHASE(RECRUITS_CURR, RECRUITS_NUM, PRICE, DEAD_LINE, IS_END)
-					VALUES (#{ recruitsCurr }, #{ recruitsNum }, #{ price }, #{ deadLine }, #{ isEnd })
+		INSERT INTO CO_PURCHASE(BOARD_NO, RECRUITS_CURR, RECRUITS_NUM, PRICE, DEAD_LINE)
+					VALUES (#{boardNo}, #{ recruitsCurr }, #{ recruitsNum }, #{ price }, #{ deadLine })
 	</insert>
+	
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
 import com.ace.thrifty.common.model.vo.PageInfo;
 
@@ -34,4 +35,13 @@ public class Co_purchaseDao {
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardList", categoryPath, rowBounds);
 	}
+
+	public ArrayList<Image> selectImgList() {
+		return (ArrayList)sqlSession.selectList("co_purchaseMapper.selectImgList");
+	}
+	
+	public ArrayList<Co_purchase> selectCoList() {
+		return (ArrayList)sqlSession.selectList("co_purchaseMapper.selectCoList");
+	}
+	
 }

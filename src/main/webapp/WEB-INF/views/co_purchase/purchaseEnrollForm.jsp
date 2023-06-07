@@ -50,7 +50,7 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeftCo_purchase.jsp"/>
             <div id="body-right">
-                <form action="insert" method="post">
+                <form action="insert" method="post" enctype="multipart/form-data">
                     <div id="cat_title">
                         <div id="cat_title_1">글쓰기</div>
                         <input type="submit" id="submit_button" value="등록">
@@ -64,7 +64,7 @@
                     <div id="invite_info">
                         <div class="write_case invite_info_1">
                             <div class="write_case_head">모집 인원</div>
-                            <input type="text" id="" class="info_content" name="recruitNum" placeholder="숫자만 입력">
+                            <input type="text" id="" class="info_content" name="recruitsNum" placeholder="숫자만 입력">
                         </div>
                         <div class="write_case invite_info_1">
                             <div class="write_case_head">마감 기한</div>
@@ -75,7 +75,7 @@
                                 카테고리
                             </div>
                             <div class="selectBox2 ">
-                                <button type="button" class="label" name="category">카테고리 선택</button>
+                                <button type="button" name="categorySNo" id="categorySNo" class="label">카테고리 선택</button>
                                 <ul class="optionList" style="display: none;">
                                     <c:forEach var="subCategory" items="${subCategoryList}">
                                         <c:if test="${subCategory.categoryUNo eq 6}">
@@ -91,7 +91,7 @@
                             <div id="fileUpload_1" class="write_case_head">첨부파일</div>
                             <div class="filebox">
                                 <label for="file">&nbsp;사진 등록&nbsp;</label> 
-                                <input type="file" id="file"><br>
+                                <input type="file" name="image" id="file"><br>
                                 <input class="upload-name" value="선택된 파일" placeholder="선택된 파일" name="uploadFile" readonly>
                             </div>
                         </div>

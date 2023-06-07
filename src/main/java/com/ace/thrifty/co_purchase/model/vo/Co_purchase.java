@@ -1,6 +1,7 @@
 package com.ace.thrifty.co_purchase.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
@@ -24,5 +25,5 @@ public class Co_purchase {
 	
 	private Board board;
 	private Member seller;
-	private Image image;
+	private ArrayList<Image> imageList;
 }
