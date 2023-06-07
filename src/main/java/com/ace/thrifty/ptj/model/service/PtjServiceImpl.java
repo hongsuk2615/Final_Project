@@ -95,4 +95,8 @@ public class PtjServiceImpl implements PtjService {
 		
 	}
 	
+	public int updatePtj(int boardNo) {
+		return ptjDao.updatePtj(boardNo);
+	}
+	
 }

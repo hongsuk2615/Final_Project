@@ -67,7 +67,7 @@
                         <h1>${p.subCategory.categorySName } 게시글</h1>
                     </div>
                     <div id="enroll-update">
-                        <button style="border: 0;">수정하기</button>
+                        <button style="border: 0;" id="update-btn">수정하기</button>
                         <button style="border: 0;" id="delete-btn">삭제하기</button>
                         <button style="border: 0;">구인완료</button>
                     </div>
@@ -81,7 +81,7 @@
                                 </div>
                                 <div>
                                     <h2>제목 : &nbsp;${p.board.title }</h2>
-                                    <input type="hidden" name="${p.boardNo }">
+                                    <!-- <input type="hidden" name="boardNo"> -->
                                 </div>
                             </div>
                             <br>
@@ -184,7 +184,11 @@
 	})
 	
 	document.getElementById('delete-btn').addEventListener("click",function(){
-    	location.href = "${contextPath}/ptj/ptjList";
+    	location.href = "${contextPath}/ptj/ptjDelete";
+	})
+	
+	document.getElementById('update-btn').addEventListener("click",function(){
+    	location.href = "${contextPath}/ptj/ptjUpdate/${boardNo}";
 	})
 	
 </script>

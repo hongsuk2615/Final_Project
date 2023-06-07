@@ -144,9 +144,19 @@
 						VALUES(#{boardNo} , #{locationNo} , #{price} , #{startTime} , #{endTime} , #{locationCoordinate})
 </insert>
 
-<update id="deletePtj">
+<update id="deletePtj" parameterType="ptj">
 	UPDATE BOARD SET
 	STATUS = 'N'
+	WHERE BOARD_NO = #{boardNo}
+</update>
+
+<update id="updatePtj">
+	UPDATE PART_TIME_JOB SET
+	LOCATION_NO = #{locationNo}
+	PRICE = #{price} ,
+	START_TIME = #{startTime} ,
+	END_TIME = #{endTime} ,
+	LOCATION_COORDINATE = #{locationCoordinate}
 	WHERE BOARD_NO = #{boardNo}
 </update>
 </mapper>

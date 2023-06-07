@@ -10,7 +10,7 @@
     <link href="/thrifty/resources/css/part_time_job/part_time_job_enrollform.css" rel="stylesheet">
 <style>
     *{
-        border: 1px solid blue !important;
+        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{

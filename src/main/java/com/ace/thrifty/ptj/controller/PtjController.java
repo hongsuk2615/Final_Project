@@ -104,14 +104,20 @@ public class PtjController {
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		ptjService.insertPtj(b, p, image, webPath, serverFolderPath);
 		
-		return "part_time_job/PTJList";
+		return "redirect:/part_time_job/PTJList";
 		
 	}
 	
-	@PostMapping("/ptj/ptjList")
-	public String deletePtj( @RequestParam(value="boardNo" , required = false) int boardNo) {
-		ptjService.deletePtj(boardNo);
-		return "part_time_job/PTJList";
+	@GetMapping("/ptj/ptjDelete")
+	public String deletePtj() {
+		return "redirect:/part_time_job/PTJList";			
 	}
-
+	
+	
+	@GetMapping("/ptj/ptjUpdate/{boardNo}")
+	public String updatePtj(
+							@PathVariable("boardNo")int boardNo) {
+		ptjService.updatePtj(boardNo);
+		return "part_time_job/PTJUpdateForm";
+	}
 }

@@ -34,5 +34,9 @@ public class PtjDao {
 	public int deletePtj(int boardNo) {
 		return sqlSession.update("ptjMapper.deletePtj" , boardNo);
 	}
+	
+	public int updatePtj(int boardNo) {
+		return sqlSession.update("ptjMapper.updatePtj" , boardNo);
+	}
 
 }
