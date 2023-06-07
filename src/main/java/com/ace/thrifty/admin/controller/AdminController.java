@@ -1,6 +1,8 @@
 package com.ace.thrifty.admin.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.ace.thrifty.admin.model.service.AdminService;
+import com.ace.thrifty.board.model.vo.SubCategory;
+import com.ace.thrifty.board.model.vo.UpperCategory;
 import com.ace.thrifty.member.model.vo.Member;
-import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/admin")
@@ -70,23 +74,27 @@ public class AdminController {
 	}
 	
 	@GetMapping("/member")
-	public String adminMember(Model model, HttpSession session, @RequestParam Map<String, Object> paramMap) {
+	public String adminMember(Model model, @RequestParam Map<String, Object> paramMap) {
 		
-			System.out.println(paramMap.get("search"));
-		
+			Map<String, String> tabMap = new LinkedHashMap<String, String>();
+			tabMap.put("all", "전체");
+			tabMap.put("active", "활성");
+			tabMap.put("suspend", "정지");
+			tabMap.put("banned", "탈퇴");
+			
 			Map<String, Object> map = new HashMap<>();
 			map.put("tab", paramMap.get("tab"));
 			
 			adminService.memberList(map, paramMap);
 			
-			model.addAttribute("contents", ".sidebar-member");
+			model.addAttribute("contents", "member");
+			model.addAttribute("tabMap", tabMap);
 			model.addAttribute("map", map);
-			
 			
 			return "admin/adminPage";
 	}
 	
-	@GetMapping(value="/member/status/update", produces = "application/text; charset=UTF-8") // ajax로 할지... 요청방식으로 할지... 고민....
+	@GetMapping(value="/member/status/update", produces = "application/text; charset=UTF-8")
 	@ResponseBody()
 	public String member(@RequestParam Map<String, Object> paramMap) {
 		
@@ -98,43 +106,58 @@ public class AdminController {
 	}
 	
 	@GetMapping("/report")
-	public String adminReport(Model model, HttpSession session) {
+	public String adminReport(Model model, @RequestParam Map<String, Object> paramMap) {
 		
-			model.addAttribute("contents", ".sidebar-report");
+			model.addAttribute("contents", "report");
 			return "admin/adminPage";
 	}
 	
 	@GetMapping("/board")
-	public String adminBoard(Model model, HttpSession session) {
+	public String adminBoard(Model model, @RequestParam Map<String, Object> paramMap) {
 		
-			model.addAttribute("contents", ".sidebar-board");
+			model.addAttribute("contents", "board");
 			return "admin/adminPage";
 	}
 	
 	@GetMapping("/notice")
-	public String adminNotice(Model model, HttpSession session) {
+	public String adminNotice(Model model, @RequestParam Map<String, Object> paramMap) {
 		
-			model.addAttribute("contents", ".sidebar-notice");
+			Map<String, Object> map = new HashMap<>();
+			
+			map.put("catUNo", paramMap.get("catUNo"));
+			
+			List<SubCategory> tab = adminService.subCatList();
+			adminService.noticeList(map, paramMap);
+			
+			map.put("tabList", tab);
+			
+			System.out.println(tab);
+			
+			model.addAttribute("contents", "notice");
+			model.addAttribute("map", map);
+			
 			return "admin/adminPage";
 	}
 	
 	@GetMapping("/faq")
-	public String adminfaq(Model model, HttpSession session) {
+	public String adminfaq(Model model, @RequestParam Map<String, Object> paramMap) {
 		
-			model.addAttribute("contents", ".sidebar-faq");
+			model.addAttribute("contents", "faq");
 			return "admin/adminPage";
 	}
 	
 	@GetMapping("/enrollForm/notice") //나중에 공지사항과 faq가 여기로 오게
-	public String adminenrollForm(Model model, HttpSession session) {
+	public String adminenrollForm(Model model, @RequestParam Map<String, Object> paramMap) {
 		
 			model.addAttribute("contents", ".btn-write");
 			
 			return "admin/adminPage";
 	}
 	
-	
-	
-	
+	@GetMapping("/logout")
+	public String logOut(SessionStatus status) {
+		status.setComplete();
+		return "redirect:/admin/login";
+	}
 
 }

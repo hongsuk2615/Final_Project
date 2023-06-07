@@ -22,19 +22,19 @@
 			<c:when test="${contents eq 'home'}">
 				<jsp:include page="./includes/contents/adminHomeContent.jsp" />
 			</c:when>
-			<c:when test="${contents eq '.sidebar-member'}">
+			<c:when test="${contents eq 'member'}">
 				<jsp:include page="./includes/contents/adminMemberContent.jsp" />
 			</c:when>
-			<c:when test="${contents eq '.sidebar-report'}">
+			<c:when test="${contents eq 'report'}">
 				<jsp:include page="./includes/contents/adminReportContent.jsp" />
 			</c:when>
-			<c:when test="${contents eq '.sidebar-board'}">
+			<c:when test="${contents eq 'board'}">
 				<jsp:include page="./includes/contents/adminBoardContent.jsp" />
 			</c:when>
-			<c:when test="${contents eq '.sidebar-notice'}">
+			<c:when test="${contents eq 'notice'}">
 				<jsp:include page="./includes/contents/adminNoticeContent.jsp" />
 			</c:when>
-			<c:when test="${contents eq '.sidebar-faq'}">
+			<c:when test="${contents eq 'faq'}">
 				<jsp:include page="./includes/contents/adminFaqContent.jsp" />
 			</c:when>
 			<c:when test="${contents eq '.btn-write'}">
@@ -45,25 +45,26 @@
 		<jsp:include page="./includes/adminFooter.jsp" />
 	</div>
 	<jsp:include page="./includes/adminRequiredJs.jsp" />
+	<script src="${contextPath}/resources/js/admin/adminTables.js"></script>
 	<c:choose>
 		<c:when test="${contents eq 'home'}">
 			<!-- 홈 차트 생성 스크립트 -->
 			<script src="${contextPath}/resources/js/admin/Chart.min.js"></script>
 			<script src="${contextPath}/resources/js/admin/addHomeCharts.js"></script>
 		</c:when>
-		<c:when test="${contents eq '.sidebar-member'}">
-			<script src="${contextPath}/resources/js/admin/adminMember.js"></script>
+		<c:when test="${contents eq 'member'}">
+		
 		</c:when>
-		<c:when test="${contents eq '.sidebar-report'}">
+		<c:when test="${contents eq 'report'}">
 			
 		</c:when>
-		<c:when test="${contents eq '.sidebar-board'}">
+		<c:when test="${contents eq 'board'}">
 			
 		</c:when>
-		<c:when test="${contents eq '.sidebar-notice'}">
-			
+		<c:when test="${contents eq 'notice'}">
+		
 		</c:when>
-		<c:when test="${contents eq '.sidebar-faq'}">
+		<c:when test="${contents eq 'faq'}">
 			
 		</c:when>
 		<c:when test="${contents eq '.btn-write'}">
@@ -75,7 +76,7 @@
 	</c:choose>
 	<c:if test="${contents ne 'home' }">
 		<script>
-			$("${contents}").children("a").addClass("active");
+			$(".sidebar-${contents}").children("a").addClass("active");
 		</script>
 	</c:if>
 </body>

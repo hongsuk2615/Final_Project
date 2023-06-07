@@ -37,9 +37,6 @@
 						<button type="submit" class="btn btn-primary btn-block text-bold">로그인</button>
 					</div>
 				</form>
-<!-- 				<p class="mb-1"> -->
-<!-- 					<a href="forgot-password.html">I forgot my password</a> -->
-<!-- 				</p> -->
 			</div>
 		</div>
 	</div>

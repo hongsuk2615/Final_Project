@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ace.thrifty.admin.model.dao.AdminDao;
+import com.ace.thrifty.admin.model.vo.Notice;
+import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.common.template.Pagination;
 import com.ace.thrifty.member.model.vo.Member;
@@ -49,12 +51,32 @@ public class AdminServiceImpl implements AdminService{
 		map.put("pi", pi);
 		map.put("list", list);
 	}
-
+	
 	@Override
 	public int memberStatusUpdate(Map<String, Object> paramMap) {
 		return adminDao.memberStatusUpdate(paramMap);
 	}
 
+	@Override
+	public void noticeList(Map<String, Object> map, Map<String, Object> paramMap) {
+		
+		int listCount = adminDao.selectNoticeListCount(paramMap);
+		Integer currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<Notice> list = adminDao.noticeList(pi, paramMap); 
+		
+		map.put("pi", pi);
+		map.put("list", list);
+	}
 
+
+	@Override
+	public List<SubCategory> subCatList() {
+		return adminDao.subCatList();
+	}
 
 }

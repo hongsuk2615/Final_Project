@@ -4,6 +4,7 @@
 	
 <!-- 	<settings> -->
 <!-- 		<setting name="logImpl" value="LOG4J"/> -->
+<!-- 		<setting name="jdbcTypeForNull" value="NULL"/> -->
 <!-- 	</settings> -->
 
 	
@@ -20,6 +21,7 @@
 		<typeAlias type="com.ace.thrifty.board.model.vo.Location" alias="location"/>
 		<typeAlias type="com.ace.thrifty.usedProduct.model.vo.UsedProduct" alias="usedProduct"/>
 		<typeAlias type="com.ace.thrifty.co_purchase.model.vo.Co_purchase" alias="co_purchase"/>
+		<typeAlias type="com.ace.thrifty.admin.model.vo.Notice" alias="notice"/>
 	</typeAliases>
 	
 	<!-- 

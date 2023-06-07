@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="pi" value="${map.pi}" />
-<c:set var="list" value="${map.list }" />
-<c:set var="tab" value="${map.tab }" />
+<c:set var="list" value="${map.list}" />
+<c:set var="currentTab" value="${map.tab}" />
 
 <div class="content-wrapper" style="min-height: 1302.12px;">
 	<!-- Content Header (Page header) -->
@@ -33,18 +33,11 @@
 					<div class="card card-primary card-tabs">
 						<div class="card-header p-0 pt-1">
 							<ul class="nav nav-tabs" id="member-tabs">
-								<li class="nav-item">
-									<a class="nav-link" id="memberAll" href="member?tab=all&currentPage=1">전체</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="memberActive" href="member?tab=active&currentPage=1">활성</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="memberSuspend" href="member?tab=suspend&currentPage=1">정지</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="memberBanned" href="member?tab=banned&currentPage=1">탈퇴</a>
-								</li>
+									<c:forEach var="tab" items="${tabMap}">
+										<li class="nav-item">
+											<a class="nav-link" id="member-${tab.key}" href="member?tab=${tab.key}&currentPage=1">${tab.value}</a>
+										</li>
+									</c:forEach>
 								<li class="nav-item" style="margin-left: auto;">
 									<div class="card-tools">
 										<div class="input-group input-group-sm" style="width: 180px;">
@@ -58,7 +51,6 @@
 									</div>
 								</li>
 							</ul>
-
 						</div>
 						<div class="card-body">
 							<div id="example1_wrapper"
@@ -135,22 +127,18 @@
 								</div>
 
 								<div class="row">
-									<div class="col-sm-12 col-md-5">
-										<div class="dataTables_info" id="example1_info">Showing
-											1 to 10 of 57 entries</div>
-									</div>
 									<div class="col-sm-12 col-md-7">
 										<div class="dataTables_paginate paging_simple_numbers">
 											<ul class="pagination">
 												<c:choose>
 													<c:when test="${pi.currentPage eq 1}">
 														<li class="paginate_button page-item previous disabled">
-															<a href="member?tab=${tab}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
+															<a href="member?tab=${currentTab}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
 														</li>
 													</c:when>
 													<c:otherwise>
 														<li class="paginate_button page-item previous">
-															<a href="member?tab=${tab}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
+															<a href="member?tab=${currentTab}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
 														</li>
 													</c:otherwise>
 												</c:choose>
@@ -158,12 +146,12 @@
 													<c:choose>
 														<c:when test="${pi.currentPage == item}">
 															<li class="paginate_button page-item active">
-																<a href="member?tab=${tab}&currentPage=${item}" class="page-link">${item}</a>
+																<a href="member?tab=${currentTab}&currentPage=${item}" class="page-link">${item}</a>
 															</li>
 														</c:when>
 														<c:otherwise>
 															<li class="paginate_button page-item">
-																<a href="member?tab=${tab}&currentPage=${item}" class="page-link">${item}</a>
+																<a href="member?tab=${currentTab}&currentPage=${item}" class="page-link">${item}</a>
 															</li>
 														</c:otherwise>
 													</c:choose>
@@ -171,12 +159,12 @@
 												<c:choose>
 													<c:when test="${pi.currentPage eq pi.maxPage}">
 														<li class="paginate_button page-item next disabled">
-															<a href="member?tab=${tab}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
+															<a href="member?tab=${currentTab}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
 														</li>
 													</c:when>
 													<c:otherwise>
 														<li class="paginate_button page-item next">
-															<a href="member?tab=${tab}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
+															<a href="member?tab=${currentTab}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
 														</li>
 													</c:otherwise>
 												</c:choose>

@@ -12,7 +12,6 @@
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
-		<association property="smallGroup" resultMap="smallGroupResultSet"/>
 		<association property="member" resultMap="memberResultSet"/>
 	</resultMap>
 	
