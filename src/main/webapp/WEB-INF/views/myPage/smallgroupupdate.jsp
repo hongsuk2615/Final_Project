@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,6 +114,23 @@
         border: solid 2px;
         text-align: center;
     }
+    
+    .body-right-title-h2{
+    	margin: 10px 20px 20px 0px;
+        border-radius: 4rem;
+        background-color: #ffffff;
+        border: solid 2px;
+        text-align: center;
+    }
+    
+    .body-right-title-h3{
+    	margin: 10px 10px 20px 20px;
+        border-radius: 4rem;
+        background-color: #ffffff;
+        border: solid 2px;
+        text-align: center;
+    }
+    
   
     .body-right-body-content{
         width:100%;
@@ -153,28 +170,15 @@
     }
     
     
-
-    .body-right-title-h2{
-    	margin: 10px 20px 20px 0px;
-        border-radius: 4rem;
-        background-color: #ffffff;
-        border: solid 2px;
-        text-align: center;
-    }
-    
-    .body-right-title-h3{
-    	margin: 10px 10px 20px 20px;
-        border-radius: 4rem;
-        background-color: #ffffff;
-        border: solid 2px;
-        text-align: center;
+    #writetitle{
+        width: 430px;
+        height: 30px;
     }
 
 </style>
 </head>
-
 <body>
- 
+	<form action="${pageContext.request.contextPath}/smallGroup/update/" method="post">
     <div id="wrapper">
         <div id="header">
 			<jsp:include page="../common/header.jsp"/>
@@ -182,7 +186,6 @@
 
 
         </div>
-        <form action="${pageContext.request.contextPath}/smallGroup/smallgroupupdate/" method="post">
         <div id="body">
             <div id="body-left">
 				<jsp:include page="../common/boardBodyLeft.jsp"/>
@@ -190,30 +193,35 @@
             </div>
 
 
-		
+
             <div id="body-right">
-              
+            
                 <div id="body-right-header">
                   <div id="body-right-header-left">
                     
-                        <h4 class="body-right-title-h2" name="smallLocation">${sg.smallLocation}</h4>
-                        <h4 class="body-right-title-h3" name="recruitNo">${sg.recruitNo} 명</h4>
-                        <h4 class="body-right-title-h4" name="title">${sg.board.title}</h4>
-                    	<input type="hidden" name="boardNo" value="${sg.board.boardNo }">
+                        <input type="hidden" name="boardNo" value="${b.boardNo}">
+                    	<input type="text" placeholder="지역" class="body-right-title-h2" name="smallLocation" value="${sg.smallLocation}">
+                    	<input type="text" placeholder="모집인원" class="body-right-title-h3" name="recruitNo" value="${sg.recruitNo}">
+                    
+                        <input type="text" placeholder="제목	"class="body-right-title-h4" id="writetitle" name="title" value="${b.title}">
+                    
                    
-                      
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+                        </div>
 
                     
                   </div>
+
                     <div id="body-right-header-right">
-                       <c:if test="${sg.member.userNo == loginUser.userNo}">
                         <div class="body-right-header-right-updatebutt">
-                            <button type="submit" class="btn btn-warning">수정하기</button>
+                            
                         </div>
                         <div class="body-right-header-right-deletebutt">
-                            <button type="button" class="btn btn-danger" id="delete_button">삭제하기</button>
+                            <button type="submit" class="btn btn-warning" id="delete_button" >수정하기</button>
+                   
                         </div>
-                   		</c:if> 
                         <div class="body-right-header-right-qr">
                             <div class="square">
                             <img src="resources/images/myPage/opentalkroom.png" width="100%" height="100%">
@@ -228,8 +236,14 @@
                 <div id="body-right-body">
                     
                  <div class="body-right-body-content">
-                    <textarea class="body-right-body-contentarea" name="content">
-						${sg.board.content}
+                    <textarea class="body-right-body-contentarea" name="content">${b.content}
+
+
+
+
+
+
+
                     </textarea>
                  </div>
                  <div class="body-right-body-list"> 
@@ -239,11 +253,10 @@
              
                 
                 
-               
+              
             </div>
-            
         </div>
- 	</form>
+
         <div id="footer">
 
 
@@ -251,39 +264,8 @@
 
         </div>
     </div>
+    </form>
     
-    
- <script>
-	document.getElementById('delete_button').addEventListener('click', function(){
-    Swal.fire({
-  title: '정말 삭제하시겠습니까?',
-  text: "ㅋ",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: '삭제'
-}).then((result) => {
-  if (result.isConfirmed) {
-	let boardNo =  document.querySelector('input[name=boardNo]').value;
-	location.href = '${contextPath}/smallGroup/delete?boardNo='+boardNo; //? 뒤에있는것들은 requestparam으로 받아올수있ㅇㅁ 
-    Swal.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  }
-})
-	})
-    
-</script>  
- 
-<script>
-document.getElementById('delete_button').addEventListener('click', function(){
-	let boardNo =  document.querySelector('input[name=boardNo]').value;
-    location.href = '${contextPath}/smallGroup/delete?boardNo='+boardNo; //? 뒤에있는것들은 requestparam으로 받아올수있ㅇㅁ 
-});
-
-</script> 
+   
 </body>
 </html>

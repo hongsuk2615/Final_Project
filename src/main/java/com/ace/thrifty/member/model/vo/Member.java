@@ -26,4 +26,9 @@ public class Member {
 	private Date joinDate;
 	private int authority;
 	private String status;
+	
+	
+	private String originName;
+	private String changeName;
+	
 }

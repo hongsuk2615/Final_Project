@@ -19,6 +19,7 @@ public class Board {
 	private int boardNo;
 	private String categorySNo;
 	private int categoryUNo;
+	private String upperCategoryName;
 	private String content;
 	private Date createDate;
 	private int readCount;
@@ -26,6 +27,11 @@ public class Board {
 	private String title;
 	private int userNo;
 	private int wishCount;
+	private String nickName;
+
+	
+	private ArrayList<Image> imgList;
+	private ArrayList<Co_purchase> coPurchaseList;
 	private String status;
 	
 }
