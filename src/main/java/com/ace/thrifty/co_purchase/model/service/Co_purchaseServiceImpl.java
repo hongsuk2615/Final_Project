@@ -68,21 +68,17 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 	}
 	
 	@Override
-	public void selectBoardList(int currentPage, String categoryPath, Map<String, Object> map) {
+	public void selectCoPurchaseList(int currentPage, Map<String, Object> map) {
 		
-		int listCount = coDao.selectBoardListCount(categoryPath);
+		int listCount = coDao.selectBoardListCount();
 		int pageLimit = 10;
 		int boardLimit = 5;
 		PageInfo pi = pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
 		
-		ArrayList<Board> list = coDao.selectBoardList(pi, categoryPath);
-		ArrayList<Co_purchase> coList = coDao.selectCoList();
-		ArrayList<Image> imgList = coDao.selectImgList();
+		ArrayList<Board> list = coDao.selectCoPurchaseList(pi);
 		
 		map.put("pi", pi);
 		map.put("list", list);
-		map.put("coList", coList);
-		map.put("imgList", imgList);
 		
 	}
 }

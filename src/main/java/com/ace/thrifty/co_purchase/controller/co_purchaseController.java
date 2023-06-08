@@ -34,7 +34,7 @@ public class co_purchaseController {
 	private Co_purchaseService coService;
 
 	@GetMapping("")
-	public String selectList( 
+	public String selectCoPurchaseList( 
 							@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 							Model model,
 							Board b,
@@ -45,7 +45,7 @@ public class co_purchaseController {
 		String categoryPath = "co_purchase";
 		Map<String, Object> map = new HashMap();
 		
-		// coService.selectBoardList(currentPage, categoryPath, map);
+		coService.selectCoPurchaseList(currentPage, map);
 		
 		model.addAttribute("map", map);
 		

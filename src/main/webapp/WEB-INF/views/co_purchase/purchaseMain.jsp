@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pi" value="${ map.pi }"/>
+<c:set var="list" value="${ map.list }"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,22 +58,28 @@
                 <div id="cat_title">공동구매</div>
 				<table>
                     <tbody>        
-                        <tr>
-                            <td class="flex">
-                                <div class="detail_img">
-                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
-                                </div>
-                                <div class="detail">
+                    	<c:if test="${ empty list }">
+							<td colspan="6"> 게시글이 없습니다.</td>
+						</c:if>
+						<c:forEach items="${ list }" var="b">
+							<tr>
+								<td class="flex">
+									<div class="detail_img">
+                                    	<img src="${ list.thumbNail }" alt="" class="detail_img_1">
+                                    </div>
+                                    <div class="detail">
                                     <div class="detail_top">
                                         <div class="detail_top_recruiting">
                                             모집중
                                         </div>
                                     </div>
-                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
+                                    <a href="/thrifty/co_purchase/detail">
+                                        <div class="detail_middle">${ list.title }</div>
+                                    </a>
                                     <div class="detail_bottom flex">
                                         <div class="flex align">
                                             <div>가격</div>
-                                            <div class="detail_bottom_price">20,000</div>
+                                            <div class="detail_bottom_price">${ list.price }</div>
                                         </div>
                                         <div class="detail_bottom_2 flex align">
                                             <div>
@@ -78,77 +87,15 @@
                                             </div>
                                             <div class="detail_bottom_nickname">김김훙훙숙숙</div>
                                             <span>|</span>
-                                            <div>24</div>
+                                            <div>${ list.readCount }</div>
                                             <span>|</span>
-                                            <div>06:24</div>
+                                            <div>${ list.createDate }</div>
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="flex">
-                                <div class="detail_img">
-                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
-                                </div>
-                                <div class="detail">
-                                    <div class="detail_top">
-                                        <div class="detail_top_recruiting">
-                                            모집중
-                                        </div>
-                                    </div>
-                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
-                                    <div class="detail_bottom flex">
-                                        <div class="flex align">
-                                            <div>가격</div>
-                                            <div class="detail_bottom_price">20,000</div>
-                                        </div>
-                                        <div class="detail_bottom_2 flex align">
-                                            <div>
-                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
-                                            </div>
-                                            <div class="detail_bottom_nickname">김김훙훙숙숙</div>
-                                            <span>|</span>
-                                            <div>24</div>
-                                            <span>|</span>
-                                            <div>06:24</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="flex">
-                                <div class="detail_img">
-                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
-                                </div>
-                                <div class="detail">
-                                    <div class="detail_top">
-                                        <div class="detail_top_recruiting">
-                                            모집중
-                                        </div>
-                                    </div>
-                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
-                                    <div class="detail_bottom flex">
-                                        <div class="flex align">
-                                            <div>가격</div>
-                                            <div class="detail_bottom_price">20,000</div>
-                                        </div>
-                                        <div class="detail_bottom_2 flex align">
-                                            <div>
-                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
-                                            </div>
-                                            <div class="detail_bottom_nickname">김김훙훙숙숙</div>
-                                            <span>|</span>
-                                            <div>24</div>
-                                            <span>|</span>
-                                            <div>06:24</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
+							</tr>		
+						</c:forEach>	
+                        <!-- <tr>
                             <td class="flex">
                                 <div class="detail_img">
                                     <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
@@ -211,7 +158,7 @@
                                     </div>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 <div id="pagingbar"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
