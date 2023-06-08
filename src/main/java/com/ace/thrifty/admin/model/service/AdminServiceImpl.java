@@ -53,8 +53,13 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public int memberStatusUpdate(Map<String, Object> paramMap) {
-		return adminDao.memberStatusUpdate(paramMap);
+	public int StatusUpdate(String location, Map<String, Object> paramMap) {
+		
+		if(location.equals("member")) {
+			return adminDao.memberStatusUpdate(paramMap);
+		}else {
+			return adminDao.boardStatusUpdate(paramMap);
+		}
 	}
 
 	@Override
@@ -72,11 +77,32 @@ public class AdminServiceImpl implements AdminService{
 		map.put("pi", pi);
 		map.put("list", list);
 	}
+	
+	@Override
+	public void faqList(Map<String, Object> map, Map<String, Object> paramMap) {
+		int listCount = adminDao.selectFaqListCount(paramMap);
+		Integer currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<Notice> list = adminDao.faqList(pi, paramMap); 
+		
+		map.put("pi", pi);
+		map.put("list", list);
+	}
 
 
 	@Override
-	public List<SubCategory> subCatList() {
-		return adminDao.subCatList();
+	public List<SubCategory> noticeSubCatList() {
+		return adminDao.noticeSubCatList();
+	}
+
+
+	@Override
+	public List<SubCategory> faqSubCatList() {
+		return adminDao.faqSubCatList();
 	}
 
 }

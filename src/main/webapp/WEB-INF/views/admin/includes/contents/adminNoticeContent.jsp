@@ -100,8 +100,8 @@
 																	</c:choose>
 																</button>
 																<div class="dropdown-menu">
-																	<button class="dropdown-item notice-status-drodown" href="#">활성</button>
-																	<button class="dropdown-item notice-status-drodown" href="#">삭제</button>
+																	<button class="dropdown-item notice-status-dropdown" value="Y">활성</button>
+																	<button class="dropdown-item notice-status-dropdown" value="N">삭제</button>
 																</div>
 															</div>
 														</td>

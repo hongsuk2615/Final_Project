@@ -35,6 +35,16 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.selectMemberListCount", paramMap);
 	}
 	
+	public int selectNoticeListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("adminMapper.selectNoticeListCount", paramMap);
+	}
+	
+	
+	public int selectFaqListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("adminMapper.selectFaqListCount", paramMap);
+	}
+	
+	
 	public List<Member> memberList(PageInfo pi, Map<String, Object> paramMap) {
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
@@ -43,10 +53,6 @@ public class AdminDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return sqlSession.selectList("adminMapper.memberList", paramMap, rowBounds);
-	}
-	
-	public int memberStatusUpdate(Map<String, Object> paramMap) {
-		return sqlSession.update("adminMapper.memberStatusUpdate", paramMap);
 	}
 	
 	public List<Notice> noticeList(PageInfo pi, Map<String, Object> paramMap) {
@@ -59,12 +65,32 @@ public class AdminDao {
 		return sqlSession.selectList("adminMapper.noticeList", paramMap, rowBounds);
 	}
 	
-	public int selectNoticeListCount(Map<String, Object> paramMap) {
-		return sqlSession.selectOne("adminMapper.selectNoticeListCount", paramMap);
+	public List<Notice> faqList(PageInfo pi, Map<String, Object> paramMap) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return sqlSession.selectList("adminMapper.faqList", paramMap, rowBounds);
 	}
 	
-	public List<SubCategory> subCatList(){
-		return sqlSession.selectList("adminMapper.subCatList");
+	public int memberStatusUpdate(Map<String, Object> paramMap) {
+		return sqlSession.update("adminMapper.memberStatusUpdate", paramMap);
+	}
+	
+	public int boardStatusUpdate(Map<String, Object> paramMap) {
+		return sqlSession.update("adminMapper.boardStatusUpdate", paramMap);
+	}
+	
+	
+
+	public List<SubCategory> noticeSubCatList(){
+		return sqlSession.selectList("adminMapper.noticeSubCatList");
+	}
+	
+	public List<SubCategory> faqSubCatList(){
+		return sqlSession.selectList("adminMapper.faqSubCatList");
 	}
 
 	

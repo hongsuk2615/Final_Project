@@ -12,13 +12,17 @@ public interface AdminService {
 	
 	void memberList(Map<String, Object> map, Map<String, Object> paramMap);
 	
-	List<SubCategory> subCatList();
+	List<SubCategory> noticeSubCatList();
+	
+	List<SubCategory> faqSubCatList();
 	
 	void noticeList(Map<String, Object> map, Map<String, Object> paramMap);
 	
+	void faqList(Map<String, Object> map, Map<String, Object> paramMap);
+	
 	Map<String, Integer> selectInfoBox();
 	
-	int memberStatusUpdate(Map<String, Object> paramMap);
+	int StatusUpdate(String location, Map<String, Object> paramMap);
 	
 	
 }

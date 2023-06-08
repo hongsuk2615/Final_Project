@@ -125,13 +125,32 @@
 				IS_BANNED = 'Y'
 			</when>
 		</choose>
-		WHERE USER_NO = #{userNo}
+		WHERE USER_NO = #{priNo}
 	</update>
 	
-	<select id="subCatList" resultMap="subCategoryResultSet">
+	<update id="boardStatusUpdate" parameterType="map">
+		UPDATE BOARD SET
+		<choose>
+			<when test='statusVal == "Y"'>
+				STATUS = 'Y'
+			</when>
+			<when test='statusVal == "N"'>
+				STATUS = 'N'
+			</when>
+		</choose>
+		WHERE BOARD_NO = #{priNo}
+	</update>
+	
+	<select id="noticeSubCatList" resultMap="subCategoryResultSet">
 		SELECT *
 		FROM SUB_CATEGORY
 		WHERE CATEGORY_U_NO = 1
+	</select>
+		
+	<select id="faqSubCatList" resultMap="subCategoryResultSet">
+		SELECT *
+		FROM SUB_CATEGORY
+		WHERE CATEGORY_U_NO = 9
 	</select>
 	
 	<select id="selectNoticeListCount" resultType="int">
@@ -139,6 +158,20 @@
 		FROM BOARD B
         JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 		WHERE  B.CATEGORY_U_NO = 1
+		<if test="catUNo != 0">
+			AND SC.CATEGORY_S_NO = #{catUNo}
+		</if>
+	 	<if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND B.TITLE LIKE #{searchPattern}
+		</if>
+	</select>
+	
+	<select id="selectFaqListCount" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM BOARD B
+        JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+		WHERE  B.CATEGORY_U_NO = 9
 		<if test="catUNo != 0">
 			AND SC.CATEGORY_S_NO = #{catUNo}
 		</if>
@@ -164,4 +197,22 @@
 		</if>
 		ORDER BY B.CREATE_DATE DESC
 	</select>
+	
+	<select id="faqList" resultMap="noticeResultSet" parameterType="map">
+		SELECT B.BOARD_NO, SC.CATEGORY_S_NAME, B.TITLE, M.NICK_NAME, B.CREATE_DATE, B.READ_COUNT, B.STATUS
+		FROM BOARD B
+		JOIN MEMBER M ON B.USER_NO = M.USER_NO
+		JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
+		JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+		WHERE B.CATEGORY_U_NO = 9
+		<if test="catUNo != 0">
+			AND B.CATEGORY_S_NO = #{catUNo}
+		</if>
+		<if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND B.TITLE LIKE #{searchPattern}
+		</if>
+		ORDER BY B.CREATE_DATE DESC
+	</select>
+
 </mapper>

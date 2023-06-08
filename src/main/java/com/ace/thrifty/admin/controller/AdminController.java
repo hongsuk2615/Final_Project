@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,15 +95,22 @@ public class AdminController {
 			return "admin/adminPage";
 	}
 	
-	@GetMapping(value="/member/status/update", produces = "application/text; charset=UTF-8")
+	@GetMapping(value="/{location}/status/update", produces = "application/text; charset=UTF-8")
 	@ResponseBody()
-	public String member(@RequestParam Map<String, Object> paramMap) {
+	public String statusUpdate(@PathVariable("location") String location, @RequestParam Map<String, Object> paramMap) {
 		
-		adminService.memberStatusUpdate(paramMap);
+		String alert = "";
+		System.out.println(paramMap+" || "+location);
 		
-		String result = "의 상태가 변경되었습니다.";
+		int result = adminService.StatusUpdate(location, paramMap);
 		
-		return result;
+		if(result>0) {
+		 alert = "변경되었습니다.";
+		}else {
+			alert = "변경실패";
+		}
+		
+		return alert;
 	}
 	
 	@GetMapping("/report")
@@ -126,12 +134,12 @@ public class AdminController {
 			
 			map.put("catUNo", paramMap.get("catUNo"));
 			
-			List<SubCategory> tab = adminService.subCatList();
+			List<SubCategory> tab = adminService.noticeSubCatList();
 			adminService.noticeList(map, paramMap);
 			
 			map.put("tabList", tab);
 			
-			System.out.println(tab);
+//			System.out.println(tab);
 			
 			model.addAttribute("contents", "notice");
 			model.addAttribute("map", map);
@@ -142,8 +150,21 @@ public class AdminController {
 	@GetMapping("/faq")
 	public String adminfaq(Model model, @RequestParam Map<String, Object> paramMap) {
 		
-			model.addAttribute("contents", "faq");
-			return "admin/adminPage";
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("catUNo", paramMap.get("catUNo"));
+		
+		List<SubCategory> tab = adminService.faqSubCatList();
+		adminService.faqList(map, paramMap);
+		
+		map.put("tabList", tab);
+		
+//		System.out.println(tab);
+		
+		model.addAttribute("contents", "faq");
+		model.addAttribute("map", map);
+		
+		return "admin/adminPage";
 	}
 	
 	@GetMapping("/enrollForm/notice") //나중에 공지사항과 faq가 여기로 오게
