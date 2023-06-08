@@ -127,6 +127,7 @@ document.getElementById('inquiry-btn').addEventListener('click', async function(
 })
 
 document.getElementById('delete-btn').addEventListener('click',function(){
+    
     Swal.fire({
             title: '정말삭제하시겠습니까?',
             icon: 'warning',
@@ -138,6 +139,7 @@ document.getElementById('delete-btn').addEventListener('click',function(){
             }).then((result) => {
                 if (result.isConfirmed) {
                     let bNo = $(this).attr("bNo");
+                    let url = $(this).attr("url");
                     $.ajax({
                         url : "/thrifty/board/delete",
                         data : {bNo},
@@ -151,7 +153,7 @@ document.getElementById('delete-btn').addEventListener('click',function(){
                                     showConfirmButton: false,
                                     timer: 1000
                                 }).then(()=>{
-                                    location.href="/thrifty/usedProduct"; 
+                                    location.href="/thrifty/"+url; 
                                 })
                             }else if(result == -1){
                                 Swal.fire({

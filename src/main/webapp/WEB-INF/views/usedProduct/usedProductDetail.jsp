@@ -132,7 +132,7 @@
                     <c:if test="${loginUser.userNo eq board.userNo or loginUser.authority eq 0}">
 	                    <div id="writer-btns">
 	                        <div id="modify-btn" bNo ="${board.boardNo}">수정</div>
-	                        <div id="delete-btn" bNo ="${board.boardNo}">삭제</div>
+	                        <div id="delete-btn" bNo ="${board.boardNo}" url="usedProduct">삭제</div>
 	                    </div>                    
                     </c:if>
                 </div>
