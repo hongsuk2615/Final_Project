@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,9 +154,27 @@
     
     
 
+    .body-right-title-h2{
+    	margin: 10px 20px 20px 0px;
+        border-radius: 4rem;
+        background-color: #ffffff;
+        border: solid 2px;
+        text-align: center;
+    }
+    
+    .body-right-title-h3{
+    	margin: 10px 10px 20px 20px;
+        border-radius: 4rem;
+        background-color: #ffffff;
+        border: solid 2px;
+        text-align: center;
+    }
+
 </style>
 </head>
+
 <body>
+ 
     <div id="wrapper">
         <div id="header">
 			<jsp:include page="../common/header.jsp"/>
@@ -164,6 +182,7 @@
 
 
         </div>
+        <form action="${pageContext.request.contextPath}/smallGroup/smallgroupupdate/" method="post">
         <div id="body">
             <div id="body-left">
 				<jsp:include page="../common/boardBodyLeft.jsp"/>
@@ -171,34 +190,30 @@
             </div>
 
 
-
+		
             <div id="body-right">
               
                 <div id="body-right-header">
                   <div id="body-right-header-left">
                     
-                        <h4 class="body-right-title-h4">소모임 그룹 게시판 상세보기 </h2>
-                    
-                    
-                        <h4 class="body-right-title-h4">런닝크루 구한다 ㅋ</h2>
-                    
+                        <h4 class="body-right-title-h2" name="smallLocation">${sg.smallLocation}</h4>
+                        <h4 class="body-right-title-h3" name="recruitNo">${sg.recruitNo} 명</h4>
+                        <h4 class="body-right-title-h4" name="title">${sg.board.title}</h4>
+                    	<input type="hidden" name="boardNo" value="${sg.board.boardNo }">
                    
-                        <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
-                        </div>
+                      
 
                     
                   </div>
-
                     <div id="body-right-header-right">
+                       <c:if test="${sg.member.userNo == loginUser.userNo}">
                         <div class="body-right-header-right-updatebutt">
-                            <button type="button" class="btn btn-warning" >수정하기</button>
+                            <button type="submit" class="btn btn-warning">수정하기</button>
                         </div>
                         <div class="body-right-header-right-deletebutt">
                             <button type="button" class="btn btn-danger" id="delete_button">삭제하기</button>
-                   
                         </div>
+                   		</c:if> 
                         <div class="body-right-header-right-qr">
                             <div class="square">
                             <img src="resources/images/myPage/opentalkroom.png" width="100%" height="100%">
@@ -213,21 +228,8 @@
                 <div id="body-right-body">
                     
                  <div class="body-right-body-content">
-                    <textarea class="body-right-body-contentarea">
-런닝 동호회
-
-어쩌꾸 저쩌구 FC  모집중 
-
-모집인원 5명 
-
-오픈카카오톡 들어오셔서 양식 작성 및 제출 요망
-
-이름 :
-나이 :
-거주지 :
-참여율 :
-포부 : 
-
+                    <textarea class="body-right-body-contentarea" name="content">
+						${sg.board.content}
                     </textarea>
                  </div>
                  <div class="body-right-body-list"> 
@@ -239,8 +241,9 @@
                 
                
             </div>
+            
         </div>
-
+ 	</form>
         <div id="footer">
 
 
@@ -250,7 +253,7 @@
     </div>
     
     
-    <script>
+ <script>
 	document.getElementById('delete_button').addEventListener('click', function(){
     Swal.fire({
   title: '정말 삭제하시겠습니까?',
@@ -262,6 +265,8 @@
   confirmButtonText: '삭제'
 }).then((result) => {
   if (result.isConfirmed) {
+	let boardNo =  document.querySelector('input[name=boardNo]').value;
+	location.href = '${contextPath}/smallGroup/delete?boardNo='+boardNo; //? 뒤에있는것들은 requestparam으로 받아올수있ㅇㅁ 
     Swal.fire(
       'Deleted!',
       'Your file has been deleted.',
@@ -271,6 +276,14 @@
 })
 	})
     
-    </script>
+</script>  
+ 
+<script>
+document.getElementById('delete_button').addEventListener('click', function(){
+	let boardNo =  document.querySelector('input[name=boardNo]').value;
+    location.href = '${contextPath}/smallGroup/delete?boardNo='+boardNo; //? 뒤에있는것들은 requestparam으로 받아올수있ㅇㅁ 
+});
+
+</script> 
 </body>
 </html>

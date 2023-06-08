@@ -1,8 +1,11 @@
 package com.ace.thrifty.co_purchase.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Image;
+import com.ace.thrifty.member.model.vo.Member;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +18,12 @@ public class Co_purchase {
 	
 	private int boardNo;
 	private int recruitsCurr;
-	private int recruitNum;
+	private int recruitsNum;
 	private int price;
 	private Date deadLine;
 	private String isEnd;
 	
+	private Board board;
+	private Member seller;
+	private ArrayList<Image> imageList;
 }
