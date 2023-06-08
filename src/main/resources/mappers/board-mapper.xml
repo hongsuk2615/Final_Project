@@ -78,8 +78,6 @@
 		SELECT *
 		  FROM UPPER_CATEGORY
 	  WHERE CATEGORY_U_NO != 9
-		  FROM UPPER_CATEGORY;
-		
 	</select>
 	
 	
