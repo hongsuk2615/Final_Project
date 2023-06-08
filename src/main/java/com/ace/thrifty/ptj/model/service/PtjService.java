@@ -21,5 +21,7 @@ public interface PtjService {
 	public Ptj updateFormPtj(int boardNo);
 	
 	public int updatePtj(Ptj p);
+	
+	public int workEnd(Ptj p);
 
 }

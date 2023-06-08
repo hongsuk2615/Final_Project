@@ -42,6 +42,8 @@
 
 <resultMap type="member" id="memberResultSet">
 	<result column="PHONE" property="phone" />
+	<result column="USER_ID" property="userId" />
+	<result column="USER_NO" property="userNo" />
 </resultMap>
 
 
@@ -61,6 +63,8 @@
 		L.LOCATION_NAME,
 		I.CHANGE_NAME AS IMG_PATH,
 		M.PHONE,
+		M.USER_ID,
+		M.USER_NO,
 		P.LOCATION_COORDINATE
 	FROM thrifty.PART_TIME_JOB P
 	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
@@ -106,7 +110,8 @@
 		B.CONTENT,
 		B.WISH_COUNT,
 		L.LOCATION_NAME,
-		I.CHANGE_NAME AS IMG_PATH
+		I.CHANGE_NAME AS IMG_PATH,
+		B.STATUS
 	FROM thrifty.PART_TIME_JOB P
 	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
 	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
@@ -185,4 +190,13 @@
 	LEFT JOIN thrifty.UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
 	WHERE UC.CATEGORY_U_NO = 5 AND P.BOARD_NO = #{boardNo}
 </select>
+
+<update id="workEnd" parameterType="ptj">
+	UPDATE PART_TIME_JOB
+	SET IS_END = 'Y'
+	WHERE BOARD_NO = #{boardNo}
+	<if test="userNo != null and userNo != 0">
+		AND USER_NO = #{userNo}
+	</if>
+</update>
 </mapper>

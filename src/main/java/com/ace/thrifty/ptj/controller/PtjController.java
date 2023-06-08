@@ -29,9 +29,7 @@ public class PtjController {
 
 	@Autowired
 	private PtjService ptjService;
-	
-	@Autowired
-	private BoardService boardService;
+
 
 //		private static final Logger logger = LoggerFactory.getLogger(PtjController.class);
 
@@ -45,7 +43,7 @@ public class PtjController {
 
 		List<Ptj> pList = ptjService.selectPtjAll();
 		model.addAttribute("pList", pList);
-		/* System.out.println(pList); */
+		System.out.println(pList);
 		String webPath = "/resources/upfiles/ptj/";
 		model.addAttribute("webPath" , webPath);
 		return "part_time_job/PTJList";
@@ -110,24 +108,17 @@ public class PtjController {
 		
 	}
 	
-	@GetMapping("/ptj/ptjDelete")
-	@ResponseBody
-	public int deleteBoard(int boardNo, HttpSession session) {
-		Member loginUser = (Member) session.getAttribute("loginUser");
-		System.out.println(loginUser);
-		if (loginUser == null) {
-			return -1;
-		} else {
-			Board board = new Board();
-			if (loginUser.getAuthority() == 0) {
-				board.setBoardNo(boardNo);
-			} else {
-				board.setBoardNo(boardNo);
-				board.setUserNo(loginUser.getUserNo());
-			}
-		return boardService.deleteBoard(board);
-		}
-	}
+	/*
+	 * @GetMapping("/ptj/ptjDelete")
+	 * 
+	 * @ResponseBody public int deleteBoard(int bNo, HttpSession session) { Member
+	 * loginUser = (Member) session.getAttribute("loginUser");
+	 * System.out.println(loginUser); if (loginUser == null) { return -1; } else {
+	 * Board board = new Board(); if (loginUser.getAuthority() == 0) {
+	 * board.setBoardNo(bNo); } else { board.setBoardNo(bNo);
+	 * board.setUserNo(loginUser.getUserNo()); } return
+	 * boardService.deleteBoard(board); } }
+	 */
 	
 	@GetMapping("/ptj/ptjUpdate/{boardNo}")
 	public String updatePtj(
@@ -145,6 +136,24 @@ public class PtjController {
 	public String update(@ModelAttribute Ptj p) {
 		ptjService.updatePtj(p);
 		return "redirect:/part_time_job/PTJList";
+	}
+	
+	@GetMapping("/ptj/workEnd")
+	@ResponseBody
+	public int workEnd(int bNo, HttpSession session) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			return -1;
+		} else {
+			Ptj p = new Ptj();
+			if (loginUser.getAuthority() == 0) {
+				p.setBoardNo(bNo);
+			} else {
+				p.setBoardNo(bNo);
+				p.getBoard().setUserNo(loginUser.getUserNo());
+			}
+			return ptjService.workEnd(p);
+		}
 	}
 	
 	/*

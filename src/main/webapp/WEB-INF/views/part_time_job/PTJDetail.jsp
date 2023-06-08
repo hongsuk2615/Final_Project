@@ -65,11 +65,12 @@
                 <div id="enroll-category">
                     <div style="width: 500px;">
                         <h1>${p.subCategory.categorySName } 게시글</h1>
+                        <h1>${p.member.userNo }</h1>
                     </div>
                     <div id="enroll-update">
                         <button style="border: 0;" id="update-btn">수정하기</button>
-                        <button style="border: 0;" id="delete-btn">삭제하기</button>
-                        <button style="border: 0;">구인완료</button>
+                        <button style="border: 0;" id="delete-btn" bNo="${p.board.boardNo }" url="ptj/ptjList">삭제하기</button>
+                        <button style="border: 0;" id="work-end-btn" bNo="${p.board.boardNo }" url="ptj/workEnd">구인완료</button>
                     </div>
                 </div>
                 <hr>
@@ -98,8 +99,9 @@
                             <h3>알바 카테고리 : ${p.subCategory.categorySName }</h3>
                             <hr>
                             <div id="item-btns">
-                                <div id="inquiry-btn">쪽지 보내기</div>
-                                <div id="wish-btn">찜하기</div>
+                                <div id="inquiry-btn" uNo="${p.board.userNo }" seller="${p.member.userId }">쪽지 보내기</div>
+                                <div id="report-btn" bNo="${p.board.boardNo }">신고하기</div>
+                                <div id="wish-btn" bNo="${p.board.boardNo }" >찜하기</div>
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
                             <hr>
@@ -128,8 +130,10 @@
         </div> -->
         
     </div>
-<script type="text/javascript" src="/thrifty/resources/js/common/btn_event.js"></script>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
+<script type="text/javascript" src="/thrifty/resources/js/common/commonModal.js"></script>
+<script type="text/javascript" src="/thrifty/resources/js/ptj/ptj_work_end.js"></script>
 <script>
 	let a = "${p.locationCoordinate}".split(',');
 	console.log(a[0]);
@@ -183,9 +187,9 @@
     	location.href = "${contextPath}/ptj/ptjList";
 	})
 	
-	document.getElementById('delete-btn').addEventListener("click",function(){
+	/* document.getElementById('delete-btn').addEventListener("click",function(){
     	location.href = "${contextPath}/ptj/ptjDelete";
-	})
+	}) */
 	
 	document.getElementById('update-btn').addEventListener("click",function(){
     	location.href = "${contextPath}/ptj/ptjUpdate/${boardNo}";

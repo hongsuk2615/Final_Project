@@ -38,5 +38,9 @@ public class PtjDao {
 	public int updatePtj(Ptj p) {
 		return sqlSession.update("ptjMapper.updatePtj" , p);
 	}
+	
+	public int workEnd(Ptj p) {
+		return sqlSession.update("ptjMapper.workEnd" , p);
+	}
 
 }

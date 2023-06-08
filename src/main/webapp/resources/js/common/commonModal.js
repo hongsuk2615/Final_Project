@@ -1,5 +1,5 @@
 document.getElementById('wish-btn').addEventListener('click', function(){
-    let bNo = $(this).attr("bNo");
+
     console.log(bNo);
     $.ajax({
         url : "/thrifty/wishList/insert",
@@ -13,7 +13,7 @@ document.getElementById('wish-btn').addEventListener('click', function(){
                     title: '찜완료',
                     showConfirmButton: false,
                     timer: 1000
-                 })
+                })
             }else if(result == -1){
                 Swal.fire({
                     position: 'top-center',

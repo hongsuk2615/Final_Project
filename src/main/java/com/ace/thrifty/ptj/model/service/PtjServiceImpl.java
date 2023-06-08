@@ -57,7 +57,6 @@ public class PtjServiceImpl implements PtjService {
 			p.setBoardNo(boardNo);
 			result = ptjDao.insertPtj(p);
 		}
-		System.out.println(boardNo);
 		
 		if(result > 0 && image != null) {
 			List<Image> imageList = new ArrayList();
@@ -76,7 +75,6 @@ public class PtjServiceImpl implements PtjService {
 				}
 			}			
 			
-//			System.out.println(imageList);
 			
 			if(!imageList.isEmpty()) {
 				result = boardDao.insertImageList(imageList);
@@ -102,6 +100,11 @@ public class PtjServiceImpl implements PtjService {
 	public int updatePtj(Ptj p) {
 		return ptjDao.updatePtj(p);
 		
+	}
+	
+	@Override
+	public int workEnd(Ptj p) {
+		return ptjDao.workEnd(p);
 	}
 	
 }
