@@ -4,9 +4,13 @@
 	<resultMap type="house" id="houseResultSet">
 		<id column="BOARD_NO" property="boardNo"/>
 		<result column="HOUSE_ADDRESS"  property="houseAddress"/>
-		<result column="HOUSE_COORDINATE"  property="houseCoordinate"/>
+		<result column="HOUSE_LONGITUDE"  property="houseLongitude"/>
+		<result column="HOUSE_LATITUDE"  property="houseLatitude"/>
 		<result column="INFORMATION"  property="information"/>
 		<result column="THUMBNAIL"  property="thumbnail"/>
+			<collection property="roomList" javaType="java.util.ArrayList" ofType="room"
+			select="selectRoomList" column="BOARD_NO" />
+			<collection property="board" resultMap="boardResultSet"/>
 	</resultMap>
 	
 	<resultMap type="room" id="roomResultSet">
@@ -24,7 +28,6 @@
 		<result column="CONTRAT"  property="contrat"/>
 		<collection property="imgList" javaType="java.util.ArrayList" ofType="roomImg"
 		select="selectImgList" column="ROOM_NO" />
-		<collection property="imgList" resultMap="roomImgResultSet" />
 	</resultMap>
 	
 	<resultMap type="roomImg" id="roomImgResultSet">
@@ -50,8 +53,8 @@
 	</resultMap>
 	
 	<insert id="insertHouse" parameterType="house">
-		INSERT INTO SHARE_HOUSE (BOARD_NO, HOUSE_ADDRESS, HOUSE_COORDINATE, INFORMATION, THUMBNAIL)
-		VALUES (#{boardNo}, #{houseAddress}, #{houseCoordinate}, #{information}, #{thumbnail})
+		INSERT INTO SHARE_HOUSE (BOARD_NO, HOUSE_ADDRESS, HOUSE_LATITUDE, HOUSE_LONGITUDE, INFORMATION, THUMBNAIL)
+		VALUES (#{boardNo}, #{houseAddress},  #{houseLatitude}, #{houseLongitude}, #{information}, #{thumbnail})
 	</insert>
 	
 	<insert id="insertRoom" useGeneratedKeys="true" parameterType="house" keyProperty="roomNo">
@@ -76,24 +79,44 @@
 	) C
 </insert>
 
-	<!-- <select id="selectBoard" parameterType="board" resultMap="hashMap">
+	<select id="selectHouse" parameterType="_int" resultMap="houseResultSet">
 		SELECT *
-		FROM BOARD
-		JOIN HOUSE USING (BOARD_NO)
-		WHERE BOARD_NO = #{b.boardNo
+		FROM SHARE_HOUSE
+		WHERE BOARD_NO = #{boardNo}
 	</select>
 	
-	<select id="selectLocation"  resultMap="board, house"> List<List<Object>> [[obj, obj], [obj, obj], [obj, obj],  ] 
-		SELECT BOARD_NO, TITLE, HOUSE_COORDINATE
-		FROM BOARD
-		JOIN HOUSE USING (BOARD_NO)
+	 
+	<select id="selectLocation"  parameterType="coordinate" resultMap="houseResultSet">
+		SELECT BOARD.BOARD_NO, USER_NO, TITLE, HOUSE_LATITUDE, HOUSE_LONGITUDE, THUMBNAIL
+			FROM BOARD
+		    LEFT JOIN SHARE_HOUSE ON SHARE_HOUSE.BOARD_NO = BOARD.BOARD_NO
+		    WHERE CATEGORY_U_NO = '2'
+				AND STATUS = 'Y'
+				AND HOUSE_LATITUDE BETWEEN #{swLat} AND #{neLat}
+				AND HOUSE_LONGITUDE BETWEEN #{swLng} AND #{neLng}
+			ORDER BY CREATE_DATE
 	</select>
+	
+	<select id="selectRoomList" resultMap="roomResultSet">
+	SELECT *
+	FROM ROOM
+	WHERE BOARD_NO = #{boardNo}
+	</select> 
 	
 	<select id="selectImgList" resultMap="roomImgResultSet">
 	SELECT *
-	FROM ROOM_IMG
-	WHERE ROOM_NO = #{r.roomNo}
-	ORDER BY IMG_LEVEL
-	</select> -->
+	FROM ROOM_IMAGE
+	WHERE ROOM_NO = #{roomNo}
+	ORDER BY FILE_LEVEL
+	</select>
+	
+	<select id="selectHouseList" resultMap="houseResultSet">
+		SELECT BOARD.BOARD_NO, USER_NO, TITLE, HOUSE_LATITUDE, HOUSE_LONGITUDE, THUMBNAIL
+			FROM BOARD
+		    LEFT JOIN SHARE_HOUSE ON SHARE_HOUSE.BOARD_NO = BOARD.BOARD_NO
+		    WHERE CATEGORY_U_NO = '2'
+				AND STATUS = 'Y'
+			ORDER BY CREATE_DATE
+	</select>
 	
 </mapper>

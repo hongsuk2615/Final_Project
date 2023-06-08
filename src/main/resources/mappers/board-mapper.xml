@@ -32,7 +32,7 @@
 		<result column="LOCATION_NAME" property="locationName"/>
 	</resultMap>
 	
-	<select id="selectBoard" resultMap="boardResultSet">
+	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
 		SELECT *
 		  FROM BOARD
 		 WHERE BOARD_NO = #{boardNo}

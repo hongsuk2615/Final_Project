@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.common.model.vo.Coordinate;
 import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
 import com.ace.thrifty.house.model.vo.RoomImg;
@@ -15,8 +16,15 @@ public interface HouseService {
 	
 	int insertHouse(Board b, House h, List<Room> rooms, Map<String,List<MultipartFile>> roomImgs, String webPath, String serverFolderPath) throws Exception;
 
+	List<Object> selectHouse(int boardNo);
+	
 	Map<String, Object> selectBoard(Board b);
 
-	List<Object> selectLocation();
+	List<Object> selectHouseList();
 
+	List<Object> selectLocation(Coordinate c);
+	
+	List<Object> selectRoomImg(int roomNo);
+	
+	
 }
