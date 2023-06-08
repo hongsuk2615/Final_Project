@@ -85,6 +85,11 @@
 		            VALUES(#{categorySNo}, #{categoryUNo}, #{title}, #{content}, #{userNo})
 	</insert> 
 	
+	<insert id="insertImage" parameterType="image">
+		INSERT INTO IMAGE (ORIGIN_NAME, CHANGE_NAME, BOARD_NO, FILE_LEVEL)
+					VALUES(#{originName}, #{changeName}, #{boardNo}, #{fileLevel})
+	</insert>
+	
 	<insert id="insertImageList" parameterType="list">
 		INSERT INTO IMAGE (ORIGIN_NAME, CHANGE_NAME, BOARD_NO, FILE_LEVEL)
 		     SELECT C.* 
