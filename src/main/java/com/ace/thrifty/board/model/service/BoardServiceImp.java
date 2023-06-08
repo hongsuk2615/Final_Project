@@ -50,6 +50,14 @@ public class BoardServiceImp implements BoardService{
 	public int insertImageList(ArrayList<Image> imageList) {
 		return boardDao.insertImageList(imageList);
 	}
+
+
+	@Override
+	public int deleteBoard(Board b) {
+		return boardDao.deleteBoard(b);
+	}
+
+
 	
 //	@Override
 //	public int insertBoard(Board b, SmallGroup sg) {
