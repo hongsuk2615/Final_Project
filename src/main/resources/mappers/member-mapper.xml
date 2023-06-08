@@ -15,6 +15,8 @@
 		<result column="REPORT_COUNT" property="reportCount"/>
 		<result column="CURRENT_LOGIN" property="currentLogin"/>
 		<result column="JOIN_DATE" property="joinDate"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
 	</resultMap>
 	
 	<select id="selectMember" resultMap="memberResultSet">
@@ -73,8 +75,11 @@
 		WHERE USER_NO = #{userNo} AND STATUS='Y'
 	</select>
 	
-	<!-- <update id="changeProfile">
+	
+	<update id="changeProfile">
 		UPDATE MEMBER
-		SET USER_
-	</update> -->
+		SET CHANGE_NAME = #{changeName},
+			ORIGIN_NAME= #{originName}
+		WHERE USER_NO = #{userNo}
+	</update>
 </mapper>

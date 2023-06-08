@@ -90,19 +90,20 @@ public class MyPageController {
 		
 		}
 	
-	@RequestMapping("insertProfile.do")
+	@PostMapping("/insertProfile.do")
 	public String changeProfile(HttpSession session,
-								Member m,
-								@RequestParam(value = "images", required = false ) MultipartFile profileimage) {
-		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
-		m.setUserNo(userNo);
+								@RequestParam(value = "images", required = false ) MultipartFile profileimage) throws Exception{
+		Member m = (Member)session.getAttribute("loginUser");
 		
-		String webPath = "/resources/upfiles/myPage/";
+		
+		
+		String webPath = "/resources/images/myPage/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		myPageService.changeProfile(m, profileimage, webPath, serverFolderPath);
 		
+		System.out.print(m);
 		
-		return "";
+		return "myPage/myPageMain";
 	}
 	
 	

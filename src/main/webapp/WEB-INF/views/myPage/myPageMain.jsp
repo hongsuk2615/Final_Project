@@ -222,7 +222,7 @@
                 <div id="body-right-header">
                     
                     <div class="profile-pic">
-                        <img src="resources/images/myPage/defaultProfile.png" width="100%" height="100%" style="object-fit: cover;">
+                       <img src="${contextPath}/resources/images/myPage/${loginUser.changeName}"  width="100%" height="100%" style="object-fit: cover;">
                     </div>
 
                     <div class="profile-title">

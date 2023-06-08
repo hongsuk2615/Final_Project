@@ -18,8 +18,6 @@ public class MyPageDao {
 	public String selectMyPage() {
 		
 		return sqlSession.selectOne("mypageMapper.selectMyPage");
-		
-		
 	}
 	
 	public int myPageUpdate(Member m) {

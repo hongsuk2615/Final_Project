@@ -50,13 +50,15 @@ public class MyPageServiceImp  implements MyPageService{
 	public int changeProfile(Member m, MultipartFile profileimage, String webPath,
 			String serverFolderPath) throws Exception {
 	
-		
+		System.out.println(profileimage);
 		String changeName = Utils.saveFile(profileimage , serverFolderPath);
 		
 		
 		m.setOriginName(profileimage.getOriginalFilename());
 		m.setChangeName(changeName);
+		
 		return myPageDao.changeProfile(m);
+		
 		
 	}
 	

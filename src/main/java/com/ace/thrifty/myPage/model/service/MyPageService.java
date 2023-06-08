@@ -18,7 +18,7 @@ public interface MyPageService {
 	
 	public Member myPageUpdateSelectM (Member m);
 	
-	public String changeProfile(Member m, MultipartFile profileimg, String webPath, String serverFolderPath);
+	public int changeProfile (Member m, MultipartFile profileimg, String webPath, String serverFolderPath) throws Exception;
 
-	public String zzimSelect(Member m, Board b);
+//	public String zzimSelect(Member m, Board b);
 }
