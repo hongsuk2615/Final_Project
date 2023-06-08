@@ -11,7 +11,12 @@ import com.ace.thrifty.board.model.vo.UpperCategory;
 
 public interface BoardService {
 
+<<<<<<< HEAD
 	public Board selectBoard();	
+=======
+	public Board selectBoard(int boardNo);	
+//	public int insertBoard(Board b, SmallGroup sg);	
+>>>>>>> main
 	public List<UpperCategory> selectUpperCategoryList();	
 	public List<SubCategory> selectSubCategoryList();
 	public List<Location> selectLocationList();

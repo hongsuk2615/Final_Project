@@ -20,9 +20,8 @@ public class BoardServiceImp implements BoardService{
 	BoardDao boardDao;
 
 	@Override
-	public Board selectBoard() {
-		Board b = boardDao.selectBoard();
-		return b;
+	public Board selectBoard(int boardNo) {
+		return boardDao.selectBoard(boardNo);
 	}
 	
 
