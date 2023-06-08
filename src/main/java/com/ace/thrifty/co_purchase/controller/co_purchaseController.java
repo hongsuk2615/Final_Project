@@ -45,7 +45,7 @@ public class co_purchaseController {
 		String categoryPath = "co_purchase";
 		Map<String, Object> map = new HashMap();
 		
-		coService.selectBoardList(currentPage, categoryPath, map);
+		// coService.selectBoardList(currentPage, categoryPath, map);
 		
 		model.addAttribute("map", map);
 		
@@ -74,8 +74,9 @@ public class co_purchaseController {
 		b.setUserNo(loginUser.getUserNo());
 		String webPath = "/resources/upfiles/co_purchase/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
-		System.out.println(cp.getDeadLine());
+		System.out.println(cp);
 		System.out.println(b);
+		
 		coService.insertBoard(b, cp, imgList, webPath, serverFolderPath);
 		
 		return "co_purchase/purchaseMain";

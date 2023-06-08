@@ -74,8 +74,10 @@
                             <div class="write_case_head">
                                 카테고리
                             </div>
+<!--                             <input type="hidden" name="categorySNo" value="123"> -->
                             <div class="selectBox2 ">
-                                <button type="button" name="categorySNo" id="categorySNo" class="label">카테고리 선택</button>
+                                <input type="text" id="categorySNo" class="label" value="카테고리 선택">
+                                <input type="hidden" name="categorySNo" class="label2">
                                 <ul class="optionList" style="display: none;">
                                     <c:forEach var="subCategory" items="${subCategoryList}">
                                         <c:if test="${subCategory.categoryUNo eq 6}">
@@ -113,7 +115,6 @@
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
-    <script type="text/javascript" src="/thrifty/resources/js/co_purchase/main.js"></script>   
     <script type="text/javascript" src="/thrifty/resources/js/co_purchase/enrollForm.js"></script>
 </body>
 </html>

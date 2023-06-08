@@ -56,18 +56,18 @@
 		AND CATEGORY_PATH = #{ categoryPath }
 	</select>
 	
-	<select id="selectImgList" resultMap="boardImgResultSet">
-		SELECT *
-		FROM IMAGE
-		JOIN BOARD USING(BOARD_NO)
-		JOIN CO_PURCHASE USING(BOARD_NO)
-	</select>
+<!-- 	<select id="selectImgList" resultMap=""> -->
+<!-- 		SELECT * -->
+<!-- 		FROM IMAGE -->
+<!-- 		JOIN BOARD USING(BOARD_NO) -->
+<!-- 		JOIN CO_PURCHASE USING(BOARD_NO) -->
+<!-- 	</select> -->
 	
-	<select id="selectCoList" resultMap="boardImgResultSet">
-		SELECT *
-		FROM CO_PURCHASE
-		JOIN BOARD USING(BOARD_NO)
-	</select>
+<!-- 	<select id="selectCoList" resultMap=""> -->
+<!-- 		SELECT * -->
+<!-- 		FROM CO_PURCHASE -->
+<!-- 		JOIN BOARD USING(BOARD_NO) -->
+<!-- 	</select> -->
 	
 	<select id="selectCoPurchase" resultMap="coPurchaseResultSet">
 		SELECT *
