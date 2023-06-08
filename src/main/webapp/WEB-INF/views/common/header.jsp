@@ -29,11 +29,11 @@
             <div id="header_1_2">
             <c:choose>
             	<c:when test="${empty loginUser}">
-	                <div href="" class="content_white change_content" onclick="login();">로그인</div>
-	                <div href="" class="content_white change_content" onclick="enroll();">회원가입</div>        	
+	                <div class="content_white change_content" onclick="login();">로그인</div>
+	                <div class="content_white change_content" onclick="enroll();">회원가입</div>        	
             	</c:when>
             	<c:otherwise>
-	                <a href="" class="content_white change_content">내정보</a>
+	                <div class="content_white change_content" onclick="myPage();" >내정보</div>
 	                <div class="content_white change_content" onclick="logout();">로그아웃</div>
             	</c:otherwise>
             </c:choose>

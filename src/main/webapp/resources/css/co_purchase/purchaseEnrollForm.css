@@ -26,7 +26,7 @@
     width: 700px;
     border: none;
 }
-#enroll_title:focus{
+#enroll_title:focus, .info_content:focus{
     outline: none;
 }
 
@@ -42,7 +42,7 @@
     padding-left: 10px;
     padding-right: 10px;
     margin: 5px 10px 5px 0;
-    width: 90px;
+    width: 93px;
     text-align: center;
 }
 
@@ -57,9 +57,28 @@
     border-radius: 5px;
 }
 
-#fileUpload_0, #write_title{
+#fileUpload_0{
     width: 64%;
     margin-right: 8px;
+}
+
+#write_title{
+    width: 100%;
+    margin-right: 8px;
+}
+
+#invite_info{
+    width: 100%;
+    display: flex;
+}
+
+.invite_info_1{
+    width: 292px;
+    margin-right: 8px;
+}
+
+.info_content{
+    border: none;
 }
 
 #fileUpload_1{
