@@ -63,14 +63,20 @@
                 <table>
                     <tr>
                         <th colspan="5">
-                            <img src="/thrifty/resources/images/main/icon/exchange-1.png" width="35" height="35">
+                            <img src="/thrifty/resources/images/main/icon/second-hand.png" width="35" height="35">
                             <h1>중고거래 글쓰기</h1>
                         </th>
                     </tr>
                     <tr>
                         <th>글제목</th>
                         <td colspan="4">
-                            <input type="text" name="title" placeholder="제목을 입력하세요">
+                            <input type="text" name="title" placeholder="제목을 입력하세요" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>상품명</th>
+                        <td colspan="4">
+                            <input type="text" name="productName" placeholder="상품명을 입력하세요" required>
                         </td>
                     </tr>
                     <tr id="categoryAndLocation">
@@ -97,7 +103,7 @@
                     <tr id="trade-method">
                         <th>거래방법</th>
                         <td>
-                            <input type="radio" name="tradeMethod" id="direct" value="D">
+                            <input type="radio" name="tradeMethod" id="direct" value="D" checked>
                             <label for="direct">직거래</label>
                         </td>
                         <td>
@@ -112,18 +118,23 @@
                     </tr>
                     <tr>
                         <th>가격</th>
-                        <td colspan="3">
-                            <input type="text" name="price" placeholder="가격을 입력하세요">
+                        <td colspan="4">
+                            <input type="number" name="price" placeholder="가격을 입력하세요" min="0" required>
                         </td>
                         <td></td>
                     </tr>
                     <tr id="images">
-                    <input type="file" name="images" multiple style="opacity : 0;" onchange="imagePreview(this);">
+                        
                         <th>이미지<br>(최대4장)<br><button type="button" onclick="insertImage();">이미지 첨부</button></th>
                         <td id="image0"></td>
                         <td id="image1"></td>
                         <td id="image2"></td>
                         <td id="image3"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="height: 1px; padding: 0; margin: 0;">
+                            <input type="file" name="images" multiple style="opacity : 0;" onchange="imagePreview(this);" required>
+                        </td>
                     </tr>
                     <tr id="boardContent">
                         <th>내용</th>

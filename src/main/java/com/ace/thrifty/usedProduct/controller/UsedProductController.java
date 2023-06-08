@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.usedProduct.model.service.UsedProductService;
 import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
@@ -32,12 +34,16 @@ public class UsedProductController {
 	@GetMapping("")
 	public String usedProduct(Model model, @RequestParam Map<String, Object> queryString) {
 		System.out.println(queryString);
-		ArrayList<UsedProduct> list = (ArrayList<UsedProduct>)usedProductService.selectUsedProduct(queryString);
+		if(!queryString.containsKey("currPage")) {
+			queryString.put("currPage", "1");
+		}
+		usedProductService.selectUsedProduct(queryString);
 		if(queryString.containsKey("scNo")) {
 			model.addAttribute("scNo", queryString.get("scNo"));			
 		}
-		model.addAttribute("list", list);
-		System.out.println(list);
+		model.addAttribute("filter", queryString);
+		model.addAttribute("list", queryString.get("list"));
+		model.addAttribute("pi", queryString.get("pi"));
 		return "usedProduct/usedProduct";
 	}
 	
@@ -71,10 +77,20 @@ public class UsedProductController {
 		String webPath = "/resources/upfiles/usedProduct/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		usedProductService.insertUsedProduct(b,	uP, imgList, webPath, serverFolderPath);
-		
-		
-		
-		
-		return "usedProduct/usedProduct";
+		return "redirect:/usedProduct";
+	}
+	
+	@GetMapping("/modify")
+	public String usedProductModify(int bNo, Model model, HttpServletRequest request) {
+		UsedProduct uP = usedProductService.selectUsedProductByBno(bNo);
+		if(uP != null) {
+			model.addAttribute("usedProduct", uP);
+			model.addAttribute("board", uP.getBoard());
+			model.addAttribute("imageList", uP.getImageList());
+			return "usedProduct/usedProductModify";
+		}else {
+			String referer = request.getHeader("Referer");	
+			return "redirect:" + referer;
+		}
 	}
 }
