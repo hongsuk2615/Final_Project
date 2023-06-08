@@ -6,6 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.member.model.vo.Member;
+
 @Repository
 public class MyPageDao {
 
@@ -19,6 +22,18 @@ public class MyPageDao {
 		
 	}
 	
+	public int myPageUpdate(Member m) {
+		
+		return sqlSession.update("memberMapper.myPageUpdate", m);
+	}
 	
+	public Member myPageUpdateSelectM(Member m) {
+		
+		return sqlSession.selectOne("memberMapper.myPageUpdateSelectM", m);
+	}
+	
+	public String zzimSelect(Member m , Board b) {
+		return sqlSession.selectOne("")
+	}
 	
 }

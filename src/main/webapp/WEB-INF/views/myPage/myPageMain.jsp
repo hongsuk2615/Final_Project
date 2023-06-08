@@ -284,7 +284,7 @@
 
                       
                     </div>
-                    <button type="button" class="btn btn-primary" id="button_modify">수정하기</button>
+                    <a  class="btn btn-primary" id="button_modify" href="${pageContext.request.contextPath}/mypage/myUpdateForm">수정하기</a>
                     <button type="button" class="btn btn-secondary" id="button_cancel">취소</button>
                    
                     

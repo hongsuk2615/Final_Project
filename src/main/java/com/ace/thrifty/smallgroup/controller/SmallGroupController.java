@@ -27,6 +27,26 @@ public class SmallGroupController {
 	@Autowired
 	private SmallGroupService smallgroupService;
 	
+	
+	//리스트
+	@GetMapping("")
+	public String sgSelectList(
+								Model model) {
+		
+		ArrayList<SmallGroup> list = smallgroupService.sgSelectList();
+		
+		model.addAttribute("list", list);
+		
+		
+		
+		return "myPage/smallgrouplist";
+	}
+	
+	
+	
+	
+	
+	//수정하기 폼
 	@PostMapping("/smallgroupupdate")
 	public String updatePage(Board b, SmallGroup sg, Model model) {
 		// detail 에있는 boardNo안받아왔다 
@@ -40,13 +60,13 @@ public class SmallGroupController {
 	}
 	
 
-	
+	//글 작성하기 폼 이동 
 	@GetMapping("/boardEnrollForm")
 	public String enroll() {
 		return "myPage/smallgroupwrite";
 	}
 	
-	//글작성 - 글작성 버튼 
+	//글 작성하기 
 	@PostMapping("/insert")
 	public String sgInsertBoard(
 			Model model,
@@ -68,23 +88,11 @@ public class SmallGroupController {
 	}
 	
 	
-	@GetMapping("")
-	public String sgSelectList(
-								Model model) {
-		
-		ArrayList<SmallGroup> list = smallgroupService.sgSelectList();
-		
-		model.addAttribute("list", list);
-		
-		
-		
-		return "myPage/smallgrouplist";
-	}
+	
 	// 리스트 조회 
 	
 	
 	//게시글 상세조회
-	
 	@GetMapping("/detail/{boardNo}")
 	public String sgDetail(@PathVariable("boardNo") int boardNo,
 							Model model
@@ -97,7 +105,7 @@ public class SmallGroupController {
 		return "myPage/smallgroupdetail";
 	}
 	
-	
+	// 게시글 수정
 	@PostMapping("/update")
 	public String sgUpdateBoard(
 			Model model,
@@ -122,6 +130,7 @@ public class SmallGroupController {
 	
 	}
 	
+	//게시글 삭제 
 	@GetMapping("/delete")
 	public String sgDeleteBoard(
 //			@RequestParam("boardNo") int boardNo,
