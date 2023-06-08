@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,8 +119,8 @@
         <div>
         <form method="post" action="/thrifty/sharehouse/enroll" enctype="multipart/form-data">
 
-            <input type="text" placeholder="이름" name="userName" id="userName" required> <br><br>
-            <input  type="tel" placeholder="연락처" name="phone" id="phone" required> <br><br>
+            <input type="text" placeholder="이름" name="userName" id="userName" required value="${loginUser.userName }" disabled> <br><br>
+            <input  type="tel" placeholder="연락처" name="phone" id="phone" required value="${loginUser.phone }" disabled> <br><br>
              <input type="text" placeholder="집 이름" name="title" required> <br><br>
             <button type="button" onclick="addRoom()">방 추가하기</button>
             * 첫번째 사진이 대표사진으로 설정됩니다. <br><br>
@@ -129,6 +130,12 @@
             <div>
                 <table id="tableA">
                     <tr> <!-- 반복문 돌려서 목록 가져오기 -->
+                     <c:forEach var="subCategory" items="${subCategoryList }">
+                 		 <c:if test="${subCategory.categorySNo == 9}">
+                         	  <h1>최신 ${subCategory.categorySName } 게시글</h1>   
+                		</c:if>
+              		 </c:forEach>
+                    
                         <th>입주신청</th>
                         <th>구분</th>
                         <th>성별</th>
@@ -143,8 +150,9 @@
             </div>
             <br>
             
-            <input type="text"  placeholder="위치" name="houseAddress" id="houseAddress" onchange="getLocation()" required>
-            <input type="hidden" name="houseCoordinate" id="houseCoordinate">
+            <input type="text"  placeholder="위치" name="houseAddress" id="houseAddress" onchange="getLocation()" required readonly>
+            <input type="hidden" name="houseLongitude" id="houseLongitude">
+            <input type="hidden" name="houseLatitude" id="houseLatitude">
             <button type="button" onclick="insertDaumPostcodeBtn();" >주소검색</button>
             <br>
 
@@ -270,7 +278,11 @@
 	        })
         }
         inputCheck();
-        //$('#apply').attr("disabled", false);
+        
+    	document.getElementById('houseAddress').addEventListener('click', function(){
+    		alert('주소검색버튼을 통해 입력바랍니다.');
+    	})
+        
         function insertDaumPostcodeBtn(){
             new daum.Postcode({
                 oncomplete: function(data){
@@ -292,7 +304,7 @@
                 
                     // document.getElementById("postcodeInsert").value = data.zonecode;
                     document.getElementById("houseAddress").value = roadAddr + extraRoadAddr;
-                    
+                    getLocation();
                 }
             }).open();
 }
@@ -318,10 +330,8 @@
              if (status === kakao.maps.services.Status.OK) {
 
                 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        		var message = result[0].y + ', ';
-        		message += result[0].x ;
-        		console.log(message);
-        		$("#houseCoordinate").val(message);
+        		$("#houseLatitude").val(result[0].y);
+        		$("#houseLongitude").val(result[0].x);
             } 
         });    
         }

@@ -14,6 +14,7 @@
 		<typeAlias type="com.ace.thrifty.board.model.vo.Location" alias="location"/>
 		<typeAlias type="com.ace.thrifty.usedProduct.model.vo.UsedProduct" alias="usedProduct"/>
 		<typeAlias type="com.ace.thrifty.co_purchase.model.vo.Co_purchase" alias="co_purchase"/>
+		<typeAlias type="com.ace.thrifty.common.model.vo.Coordinate" alias="coordinate"/>
 	</typeAliases>
 	
 	<!-- 

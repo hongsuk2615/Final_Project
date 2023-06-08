@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +10,18 @@
     <style>
 .wrap {
     display: flex;
-    padding-top: 155px;
+    padding-top: 17vh;
 }
 
 #map{
-    width:70%;
-    height:350px;
+    width: 127vh;
+    height: 82vh;
+     padding-top : 9px;
 }
 
 #left{
     margin-left: 20px;
+    padding-top : 30px;
     width: 50%;
 }
 
@@ -45,10 +48,10 @@ body{
 #housewrap{
     display: flex;
     width: 98%;
-    height: 750px;
+    height: 70vh;
     flex-wrap: wrap;
     overflow:scroll;
-    overflow-x: hidden
+    overflow-x: hidden;
 }
 
 .house {
@@ -124,11 +127,6 @@ body{
    width: 10%;
 }
 
-#map {
-     height: 100vh;
-    
-    
-}
 .house div:nth-child(1){
     width: 100%;
     height: 10vw;
@@ -197,65 +195,11 @@ input::-webkit-search-results-decoration{
 
             <div class="house">
                 <div><img src="e.jpg"></div>
-                <h3>쉐어하우스 제목</h3>
+                <h3>${board.title }</h3>
                 <p>쉐어하우스 가격</p>
                 <p>쉐어하우스 입주가능날짜</p>
             </div>  
-            <div class="house">
-                <div><img src="e.jpg"></div>
-                <h3>쉐어하우스 제목</h3>
-                <p>쉐어하우스 가격</p>
-                <p>쉐어하우스 입주가능날짜</p>
-            </div>   
-            <div class="house">
-                <div><img src="e.jpg"></div>
-                <h3>쉐어하우스 제목</h3>
-                <p>쉐어하우스 가격</p>
-                <p>쉐어하우스 입주가능날짜</p>
-            </div>   
-            <div class="house">
-                <div><img src="e.jpg"></div>
-                <h3>쉐어하우스 제목</h3>
-                <p>쉐어하우스 가격</p>
-                <p>쉐어하우스 입주가능날짜</p>
-            </div>   
-            <div class="house">
-                <div><img src="e.jpg"></div>
-                <h3>쉐어하우스 제목</h3>
-                <p>쉐어하우스 가격</p>
-                <p>쉐어하우스 입주가능날짜</p>
-            </div>   
-            <div class="house">
-                <div><img src="e.jpg"></div>
-                <h3>쉐어하우스 제목</h3>
-                <p>쉐어하우스 가격</p>
-                <p>쉐어하우스 입주가능날짜</p>
-            </div>   
-            <div class="house">
-                <div><img src="e.jpg"></div>
-                <h3>쉐어하우스 제목</h3>
-                <p>쉐어하우스 가격</p>
-                <p>쉐어하우스 입주가능날짜</p>
-            </div>   
-            <div class="house">
-                <div><img src="e.jpg"></div>
-                <h3>쉐어하우스 제목</h3>
-                <p>쉐어하우스 가격</p>
-                <p>쉐어하우스 입주가능날짜</p>
-            </div>   
-            <div class="house">
-                <div><img src="e.jpg"></div>
-                <h3>쉐어하우스 제목</h3>
-                <p>쉐어하우스 가격</p>
-                <p>쉐어하우스 입주가능날짜</p>
-            </div>   
-            <div class="house">
-                <div><img src="e.jpg"></div>
-                <h3>쉐어하우스 제목</h3>
-                <p>쉐어하우스 가격</p>
-                <p>쉐어하우스 입주가능날짜</p>
-            </div>   
-            
+           
 
         </div>
 
@@ -274,8 +218,8 @@ input::-webkit-search-results-decoration{
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		mapOption = {
-			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			level : 3
+			center : new kakao.maps.LatLng(37.413294, 126.734086), // 지도의 중심좌표
+			level : 6
 		// 지도의 확대 레벨
 		};
 
@@ -315,20 +259,97 @@ input::-webkit-search-results-decoration{
 			// 마커 이미지 
 			});
 		}
+			// 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+			 kakao.maps.event.addListener(map, 'dragend', function() {        
+				 
+				// 지도의 현재 영역을 얻어옵니다 
+				    var bounds = map.getBounds();
+				    
+				   // 영역의 남서쪽 좌표를 얻어옵니다 
+				    var swLatLng = bounds.getSouthWest(); 
+				    
+				    // 영역의 북동쪽 좌표를 얻어옵니다 
+				    var neLatLng = bounds.getNorthEast(); 
+				    
+				   //남서위도
+				   swLat = swLatLng.getLat();
+				   
+				   //남서경도
+				   swLng = swLatLng.getLng();
+				   
+				   //북동위도
+				   neLat = neLatLng.getLat();
+				   
+				   //북동경도
+				   neLng = neLatLng.getLng();
+					
+   				   selectLocation();
+			 });
+			
+
+			// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+			var zoomControl = new kakao.maps.ZoomControl();
+			map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+			// 지도가 확대 또는 축소되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+			kakao.maps.event.addListener(map, 'zoom_changed', function() {        
+			    
+				// 지도의 현재 영역을 얻어옵니다 
+			    var bounds = map.getBounds();
+			    
+			   // 영역의 남서쪽 좌표를 얻어옵니다 
+			    var swLatLng = bounds.getSouthWest(); 
+			    
+			    // 영역의 북동쪽 좌표를 얻어옵니다 
+			    var neLatLng = bounds.getNorthEast(); 
+			    
+			   //남서위도
+			   swLat = swLatLng.getLat();
+			   
+			   //남서경도
+			   swLng = swLatLng.getLng();
+			   
+			   //북동위도
+			   neLat = neLatLng.getLat();
+			   
+			   //북동경도
+			   neLng = neLatLng.getLng();
+				
+				   selectLocation();						    
+			});
+		
 	</script>
 	
 	<script>
 	function selectLocation(){
 		$.ajax({
-			url : 'thrifty/sharehouse/selectLocation',
+			url : '${contextPath}/sharehouse/selectLocation',
+			data : {
+				swLat, swLng, neLat, neLng
+			},
 			dataType : 'json',
 			success: function(result){ 
-
+				let house = "";
 				
-			
+			  result.forEach(function(shareHouse){
+			  		house += `
+			  		<div class="house" boardNo="\${shareHouse.boardNo}" onclick="selectHouse(this);">
+	                <div><img src="/thrifty/\${shareHouse.thumbnail}"></div>
+	                <h3>\${shareHouse.board.title}</h3>
+	                <p>쉐어하우스 가격</p>
+	                <p>쉐어하우스 입주가능날짜</p>
+	            	</div>`	
+			 	}) 
+             	
+			  		$('#housewrap').html(house);
 			}
-			} 
-		})
+			}) 
+		}
+	
+	function selectHouse(e){
+		let boardNo = $(e).attr('boardNo');
+		location.href="/thrifty/sharehouse/detail?boardNo="+boardNo;
+	}
 	</script>
 </body>
 </html>

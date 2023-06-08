@@ -1,7 +1,6 @@
 package com.ace.thrifty.house.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,10 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.common.model.vo.Coordinate;
 import com.ace.thrifty.house.model.service.HouseService;
 import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
-import com.ace.thrifty.house.model.vo.RoomImg;
 import com.ace.thrifty.member.model.vo.Member;
 import com.google.gson.Gson;
 
@@ -38,19 +37,24 @@ public class HouseController {
 	}
 	
 	@GetMapping("") // 헤더의 쉐어하우스 클릭 시 
-	public String shareHouse() {
+	public String shareHouse(Model m) {
+			List<Object> house = houseService.selectHouseList();
+			m.addAttribute("house", house);
 		return "house/house";
 	}
 	
 	@ResponseBody
 	@GetMapping("/selectLocation") // 메인화면 지도 변경할 때 마다 방 가져오기
-	public String selectLocation() {
-		return new Gson().toJson(houseService.selectLocation());
+	public String selectLocation(Coordinate c)  {
+		return new Gson().toJson(houseService.selectLocation(c));
 	}
 	
 	@GetMapping("/detail") // 쉐어하우스 메인화면의 방 하나 클릭 시
-	public String houseDetail(Model m, Board b) {
-		m.addAttribute("data", houseService.selectBoard(b));
+	public String houseDetail(Model m,
+			@RequestParam(value="boardNo", required=false) int boardNo) {
+		List<Object> house = houseService.selectHouse(boardNo);
+		System.out.println("house:"+house);
+		m.addAttribute("house", house);
 		return "house/houseDetail";
 	}
 	
@@ -103,7 +107,15 @@ public class HouseController {
 		String webPath = "/resources/images/house/";
 		String serverFolderPath = s.getServletContext().getRealPath(webPath);
 		int result = houseService.insertHouse(b, h, rooms, roomImgs, webPath, serverFolderPath);
-		return result > 0 ?  "house/houseDetail" : "house/houseEnroll";
+		model.addAttribute("boardNo", b.getBoardNo());
+		return result > 0 ?  "redirect:/sharehouse/detail" : "redirect:/";
 	}
 	
+	
+	@ResponseBody
+	@GetMapping("/selectRoomImg") // detail에서 room이미지 가져오기
+	public String selectRoomImg(@RequestParam(value="roomNo", required=false) int roomNo)  {
+		
+		return new Gson().toJson(houseService.selectRoomImg(roomNo));
+	}
 }

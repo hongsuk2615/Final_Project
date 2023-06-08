@@ -12,8 +12,8 @@
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
-		<association property="smallGroup" resultMap="smallGroupResultSet"/>
-		<association property="member" resultMap="memberResultSet"/>
+		<!-- <association property="smallGroup" resultMap="smallGroupResultSet"/>
+		<association property="member" resultMap="memberResultSet"/> -->
 	</resultMap>
 	
 	<resultMap type="upperCategory" id="upperCategoryResultSet">
@@ -33,10 +33,10 @@
 		<result column="LOCATION_NAME" property="locationName"/>
 	</resultMap>
 	
-	<select id="selectBoard" resultMap="boardResultSet">
+	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
 		SELECT *
 		  FROM BOARD
-		 WHERE BOARD_NO = 1
+		 WHERE BOARD_NO = #{boardNo}
 	</select>
 	
 	

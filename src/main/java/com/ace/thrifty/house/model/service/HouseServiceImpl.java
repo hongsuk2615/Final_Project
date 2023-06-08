@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.common.Utils;
+import com.ace.thrifty.common.model.vo.Coordinate;
 import com.ace.thrifty.house.model.dao.HouseDao;
 import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
@@ -66,6 +67,14 @@ public class HouseServiceImpl implements HouseService{
 
 		return result1;
 	}
+	
+	@Override
+	public List<Object> selectHouse(int boardNo) {
+		List<Object> list = new ArrayList();
+		list.add(boardDao.selectBoard(boardNo));
+		list.add(houseDao.selectHouse(boardNo));
+		return list;
+	}
 
 	@Override
 	public Map<String, Object> selectBoard(Board b) {
@@ -73,9 +82,21 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public List<Object> selectLocation() {
-		return houseDao.selectLocation();
+	public List<Object> selectHouseList() {
+		return houseDao.selectHouseList();
 	}
+	
+	@Override
+	public List<Object> selectLocation(Coordinate c) {
+		return houseDao.selectLocation(c);
+	}
+
+	@Override
+	public List<Object> selectRoomImg(int roomNo) {
+		return houseDao.selectRoomImg(roomNo);
+	}
+
+
 	
 	
 	

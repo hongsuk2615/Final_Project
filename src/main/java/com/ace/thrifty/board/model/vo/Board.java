@@ -27,7 +27,4 @@ public class Board {
 	private int userNo;
 	private int wishCount;
 
-
-	private ArrayList<Image> imgList;
-	private ArrayList<Co_purchase> coPurchaseList;
 }

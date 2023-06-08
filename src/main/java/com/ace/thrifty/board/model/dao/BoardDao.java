@@ -18,8 +18,8 @@ public class BoardDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public Board selectBoard() {
-		return sqlSession.selectOne("boardMapper.selectBoard");
+	public Board selectBoard(int boardNo) {
+		return sqlSession.selectOne("boardMapper.selectBoard", boardNo);
 	}	
 	public List<UpperCategory >selectBoardCategoryList() {
 		return sqlSession.selectList("boardMapper.selectCategoryList");		
