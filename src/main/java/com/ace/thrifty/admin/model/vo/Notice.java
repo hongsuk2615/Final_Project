@@ -1,12 +1,12 @@
-package com.ace.thrifty.board.model.vo;
+package com.ace.thrifty.admin.model.vo;
 
 import java.sql.Date;
 import java.util.ArrayList;
 
-import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
-
+import com.ace.thrifty.board.model.vo.Image;
+import com.ace.thrifty.board.model.vo.SubCategory;
+import com.ace.thrifty.board.model.vo.UpperCategory;
 import com.ace.thrifty.member.model.vo.Member;
-import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Board {
+public class Notice {
 	private int boardNo;
 	private int categorySNo;
 	private int categoryUNo;
@@ -27,5 +27,10 @@ public class Board {
 	private int userNo;
 	private int wishCount;
 	private String status;
+
+	private Member member;
+	private UpperCategory upperCategory;
+	private SubCategory subCategory;
 	
+	private ArrayList<Image> imgList;
 }

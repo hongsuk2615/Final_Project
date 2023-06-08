@@ -2,11 +2,9 @@ package com.ace.thrifty.co_purchase.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.co_purchase.model.service.Co_purchaseService;
 import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
-import com.ace.thrifty.member.model.vo.Member;
 
 @Controller
 @RequestMapping("/co_purchase")
@@ -33,19 +29,20 @@ public class co_purchaseController {
 	@Autowired
 	private Co_purchaseService coService;
 
-	@GetMapping("")
-	public String selectList( 
+	@GetMapping(value={"", "/main"})
+	public String usedProduct( 
 							@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 							Model model,
 							Board b,
 							@RequestParam Map<String, Object> paramMap,
 							HttpServletRequest req) {
+//		if(categoryPath == null) {
 		System.out.println(req.getServletPath());
+//		}
 		
-		String categoryPath = "co_purchase";
 		Map<String, Object> map = new HashMap();
 		
-		// coService.selectBoardList(currentPage, categoryPath, map);
+		//coService.selectBoardList(currentPage, categoryPath, map);
 		
 		model.addAttribute("map", map);
 		
@@ -64,22 +61,12 @@ public class co_purchaseController {
 	
 	@PostMapping("/insert")
 	public String insertBoard(
-						HttpSession session,
-						Board b,
-						Co_purchase cp,
-						@RequestParam(value = "image", required = false ) List<MultipartFile> imgList
-						) throws Exception {
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		b.setCategoryUNo(6);
-		b.setUserNo(loginUser.getUserNo());
-		String webPath = "/resources/upfiles/co_purchase/";
-		String serverFolderPath = session.getServletContext().getRealPath(webPath);
-		System.out.println(cp);
+						Board b
+						) {
+		
+		int result = coService.insertBoard(b);
 		System.out.println(b);
-		
-		coService.insertBoard(b, cp, imgList, webPath, serverFolderPath);
-		
-		return "co_purchase/purchaseMain";
+		return "co_purchase";
 	}
 	
 }

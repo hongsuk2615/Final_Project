@@ -7,16 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ace.thrifty.admin.model.dao.AdminDao;
+import com.ace.thrifty.admin.model.vo.Notice;
+import com.ace.thrifty.board.model.vo.SubCategory;
+import com.ace.thrifty.common.model.vo.PageInfo;
+import com.ace.thrifty.common.template.Pagination;
 import com.ace.thrifty.member.model.vo.Member;
 
 @Service
 public class AdminServiceImpl implements AdminService{
 
 	private AdminDao adminDao;
+	private Pagination pageination;
 	
 	@Autowired
-	public AdminServiceImpl(AdminDao adminDao) {
+	public AdminServiceImpl(AdminDao adminDao, Pagination pageination) {
 		this.adminDao = adminDao;
+		this.pageination = pageination;
 	}
 	
 	
@@ -25,22 +31,52 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.loginAdmin(m);
 	}
 
-
-	@Override
-	public List<Member> memberList() {
-		return adminDao.memberList();
-	}
-
-
 	@Override
 	public Map<String, Integer> selectInfoBox() {
 		return adminDao.selectInfoBox();
 	}
 
+	@Override
+	public void memberList(Map<String, Object> map, Map<String, Object> paramMap) {
+		
+		int listCount = adminDao.selectMemberListCount(paramMap);
+		Integer currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<Member> list = adminDao.memberList(pi, paramMap); 
+		
+		map.put("pi", pi);
+		map.put("list", list);
+	}
+	
+	@Override
+	public int memberStatusUpdate(Map<String, Object> paramMap) {
+		return adminDao.memberStatusUpdate(paramMap);
+	}
 
 	@Override
-	public List<Member> memberListAjax(String tab) {
-		return adminDao.memberListAjax(tab);
+	public void noticeList(Map<String, Object> map, Map<String, Object> paramMap) {
+		
+		int listCount = adminDao.selectNoticeListCount(paramMap);
+		Integer currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<Notice> list = adminDao.noticeList(pi, paramMap); 
+		
+		map.put("pi", pi);
+		map.put("list", list);
+	}
+
+
+	@Override
+	public List<SubCategory> subCatList() {
+		return adminDao.subCatList();
 	}
 
 }
