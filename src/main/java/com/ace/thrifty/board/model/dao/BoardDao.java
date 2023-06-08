@@ -52,4 +52,8 @@ public class BoardDao {
 	public int increaseReadCount(int bNo) {
 		return sqlSession.update("boardMapper.increaseReadCount", bNo);
 	}
+	
+	public int deleteBoard(Board b) {
+		return sqlSession.update("boardMapper.deleteBoard", b);
+	}
 }

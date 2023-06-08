@@ -1,5 +1,7 @@
 function login(){
-    Swal.fire({html:`<div id="login-content">
+    Swal.fire({
+        background: "transparent",
+        html:`<div id="login-content">
             <div id="title">
                 <img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="로고이미지" width="60" height="60">
                 <div>알뜰살뜰 로그인</div>
@@ -56,6 +58,7 @@ function login(){
 
 function findId(){
     Swal.fire({
+        background: "transparent",
         html : `<div id="find-content">
         <div id="find-title">
             <div><img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="로고이미지" width="60" height="60"></div>
@@ -89,6 +92,7 @@ function findId(){
 
 function findPwd(){
     Swal.fire({
+        background: "transparent",
         html : `<div id="find-content">
         <div id="find-title">
             <div><img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="로고이미지" width="60" height="60"></div>
@@ -121,6 +125,7 @@ function findPwd(){
 
 function enroll(){
     Swal.fire({
+        background: "transparent",
         html : `<div id="content">
         <div id="title">
             <img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="로고이미지" width="60" height="60">

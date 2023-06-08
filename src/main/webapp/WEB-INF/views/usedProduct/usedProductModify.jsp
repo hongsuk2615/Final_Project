@@ -64,19 +64,13 @@
                     <tr>
                         <th colspan="5">
                             <img src="/thrifty/resources/images/main/icon/second-hand.png" width="35" height="35">
-                            <h1>중고거래 글쓰기</h1>
+                            <h1>중고거래 글수정</h1>
                         </th>
                     </tr>
                     <tr>
                         <th>글제목</th>
                         <td colspan="4">
-                            <input type="text" name="title" placeholder="제목을 입력하세요" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>상품명</th>
-                        <td colspan="4">
-                            <input type="text" name="productName" placeholder="상품명을 입력하세요" required>
+                            <input type="text" name="title" placeholder="제목을 입력하세요" value="${board.title}">
                         </td>
                     </tr>
                     <tr id="categoryAndLocation">
@@ -85,7 +79,7 @@
                             <select name="categorySNo" id="">
                             	<c:forEach var="subCategory" items="${subCategoryList}">
 	                            	<c:if test="${subCategory.categoryUNo eq 4 }">
-		                                <option value="${subCategory.categorySNo}">${subCategory.categorySName}</option>                            	
+	                            				<option value="${subCategory.categorySNo}" ${board.categorySNo eq subCategory.categorySNo ? "selected" : ""}>${subCategory.categorySName}</option>                       			
 	                            	</c:if>
                              	</c:forEach>
                             </select>
@@ -94,7 +88,7 @@
                         <td>
                             <select name="locationNo" id="">
                             	<c:forEach var="location" items="${locationList}">
-                                <option value="${location.locationNo}">${location.locationName}</option>
+                            				<option value="${location.locationNo}" ${usedProduct.locationNo eq location.locationNo ? "selected" : ""}>${location.locationName}</option>   
                                 </c:forEach>
                             </select>
                     </td>
@@ -103,49 +97,44 @@
                     <tr id="trade-method">
                         <th>거래방법</th>
                         <td>
-                            <input type="radio" name="tradeMethod" id="direct" value="D" checked>
+                            <input type="radio" name="tradeMethod" id="direct" value="D" ${usedProduct.tradeMethod eq 'D' ? "checked": ""}>
                             <label for="direct">직거래</label>
                         </td>
                         <td>
-                            <input type="radio" name="tradeMethod" id="parcel" value="P">
+                            <input type="radio" name="tradeMethod" id="parcel" value="P" ${usedProduct.tradeMethod eq 'P' ? "checked": ""}>
                             <label for="parcel">택배</label>
                         </td>
                         <td>
-                            <input type="radio" name="tradeMethod" id="both" value="B">
+                            <input type="radio" name="tradeMethod" id="both" value="B" ${usedProduct.tradeMethod eq 'B' ? "checked": ""}>
                             <label for="both">둘다</label>
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <th>가격</th>
-                        <td colspan="4">
-                            <input type="number" name="price" placeholder="가격을 입력하세요" min="0" required>
+                        <td colspan="3">
+                            <input type="text" name="price" placeholder="가격을 입력하세요" value="${usedProduct.price }">
                         </td>
                         <td></td>
                     </tr>
                     <tr id="images">
-                        
+                    <input type="file" name="images" multiple style="opacity : 0;" onchange="imagePreview(this);">
                         <th>이미지<br>(최대4장)<br><button type="button" onclick="insertImage();">이미지 첨부</button></th>
                         <td id="image0"></td>
                         <td id="image1"></td>
                         <td id="image2"></td>
                         <td id="image3"></td>
                     </tr>
-                    <tr>
-                        <td colspan="5" style="height: 1px; padding: 0; margin: 0;">
-                            <input type="file" name="images" multiple style="opacity : 0;" onchange="imagePreview(this);" required>
-                        </td>
-                    </tr>
                     <tr id="boardContent">
                         <th>내용</th>
                         <td colspan="4">
-                            <textarea name="content" id="" cols="30" rows="10"></textarea>
+                            <textarea name="content" id="" cols="30" rows="10">${board.content}</textarea>
                         </td>
                     </tr>
                 </table>
                 <div id="btns">
                     <div id="cancel-btn">취소</div>
-                    <button id="complete-btn">작성완료</button>
+                    <button id="complete-btn">수정완료</button>
                 </div>
                 </form>
             </div>

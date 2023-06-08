@@ -16,8 +16,8 @@
             <div id="body-left">
                 <div id="upper-category">
                     <div>
-                        <img src="/thrifty/resources/images/shopping-cart.png" alt="상위 카테고리 이미지">
-                        <div id="upper-category-name">중고거래</div>
+                        <img src="/thrifty/resources/images/main/icon/second-hand.png" alt="상위 카테고리 이미지">
+                        <div id="upper-category-name"><a href="/thrifty/usedProduct">중고거래</a></div>
                     </div>
                 </div>
                 <div id="sub-category" >
@@ -32,29 +32,30 @@
                 <div id="filter">
                     <ul class="scrollbar">
                         <li>가격</li>
-                        <li><input type="number" name="minPrice"> ~ <input type="number" name="maxPrice"> </li>
+                        <li><input type="number" name="minPrice" value="${filter.minPrice}"> ~ <input type="number" name="maxPrice" value="${filter.maxPrice}"> </li>
                         <li>지역</li>
                         <li>
                             <select name="flocation" id="">
-                                <option value="" selected>지역</option>
+                                <option id="default-location" value="" selected>지역</option>
                          		<c:forEach var="location" items="${locationList}">
-                            		<option  value="${location.locationNo}">${location.locationName}</option>
+                            		<option  value="${location.locationNo}" ${filter.location eq location.locationNo ? "selected":"" }>${location.locationName}</option>
                             	</c:forEach>   
                             </select>
                         </li>
 
                         <li>거래방법</li>
                         <li>
-                            <input type="radio" name="fTradeMethod" id="filter-direct" value="D">
+                            <input type="radio" name="fTradeMethod" id="filter-direct" value="D" ${filter.tradeMethod eq 'D'? "checked":""}>
                             <label for="filter-direct">직거래</label>
-                            <input type="radio" name="fTradeMethod" id="filter-parcel" value="P">
+                            <input type="radio" name="fTradeMethod" id="filter-parcel" value="P" ${filter.tradeMethod eq 'P'? "checked":""}>
                             <label for="filter-parcel">택배</label>
-                            <input type="radio" name="fTradeMethod" id="filter-both" value="B">
+                            <input type="radio" name="fTradeMethod" id="filter-both" value="B" ${filter.tradeMethod eq 'B'? "checked":""}>
                             <label for="filter-both">둘다</label>
 
                         </li>
+                        <li style="display: flex; justify-content: flex-end; padding-right:15px ;"><button onclick="resetFilter();">필터초기화</button><button onclick="filter();">필터적용</button></li>
                     </ul>
-                    <button onclick="filter();">필터적용</button>
+                    
                 </div>
 
             </div>
@@ -81,8 +82,17 @@
             		let url = "/thrifty/usedProduct"+queryString;
             		window.location.href = url;
             	}
+            	
+            	function resetFilter(){
+            		$('[name="minPrice"]').val('');
+            		$('[name="maxPrice"]').val('');
+            		$('[name="flocation"]>option:selected').removeAttr("selected");
+            		$('#default-location').select();
+            		$('[name="fTradeMethod"]:checked').removeAttr("checked");
+            	}
+
             
-            
+
             </script>
 
     
