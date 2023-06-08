@@ -159,7 +159,7 @@
     justify-content: center;
 }
 
-#enroll-btn {
+#back-btn {
     width: 300px;
     height: 60px;
     background-color: rgb(0, 60, 120);
@@ -171,6 +171,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 500px;
 }
 
 #enroll-update button {
@@ -179,6 +180,8 @@
     background-color: rgb(0, 60, 120);
     border-radius: 10px;
     color: white;
+    
+    align-items: center;
 }
 
 #enroll-category {

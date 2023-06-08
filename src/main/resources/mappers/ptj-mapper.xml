@@ -4,24 +4,45 @@
 
 <resultMap type="ptj" id="ptjDetailResultSet">
 	<result column="BOARD_NO" property="boardNo" />
-	<result column="LOCATION_NO" property="locationNo" />
 	<result column="PRICE" property="price" />
 	<result column="START_TIME" property="startTime" />
 	<result column="END_TIME" property="endTime" />
 	<result column="IS_END" property="isEnd" />
-	<result column="USER_NO" property="userNo" />
-	<!-- <result column="NICK_NAME" property="nickName" /> -->
-	<result column="CATEGORY_S_NO" property="categorySNo" />
-	<result column="CATEGORY_S_NAME" property="categorySName" />
-	<result column="TITLE" property="title" />
-	<result column="CONTENT" property="content" />
-	<result column="WISH_COUNT" property="wishCount"/>
-	<result column="LOCATION_NAME" property="locationName" />
 	<result column="IMG_PATH" property="imgPath" />
+	<result column="LOCATION_COORDINATE" property="locationCoordinate" />
 	<collection property="board" resultMap="boardResultSet"/>
-	<collection property="location" resultMap="boardResultSet"/> <!-- 집가서 ㄱㄱ -->
+	<collection property="location" resultMap="locationResultSet"/> <!-- 집가서 ㄱㄱ -->
+	<collection property="member" resultMap="memberResultSet" />
+	<collection property="subCategory" resultMap="subCategoryResultSet" />
 </resultMap> 
 
+<resultMap type="location" id="locationResultSet">
+	<result column="LOCATION_NAME" property="locationName" />
+	<result column="LOCATION_NO" property="locationNo" />
+</resultMap>
+
+<resultMap type="subCategory" id="subCategoryResultSet">
+	<result column="CATEGORY_S_NO" property="categorySNo" />
+	<result column="CATEGORY_S_NAME" property="categorySName" />
+	<result column="CATEGORY_U_NO" property="categoryUNo" />
+</resultMap>
+
+<resultMap type="board" id="boardResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="CATEGORY_S_NO"  property="categorySNo"/>
+		<result column="CONTENT"  property="content"/>
+		<result column="CREATE_DATE"  property="createDate"/>
+		<result column="READ_COUNT"  property="readCount"/>
+		<result column="REPORT_COUNT"  property="reportCount"/>
+		<result column="TITLE"  property="title"/>
+		<result column="USER_NO"  property="userNo"/>
+		<result column="WISH_COUNT"  property="wishCount"/>
+		<result column="STATUS" property="status" />
+</resultMap>
+
+<resultMap type="member" id="memberResultSet">
+	<result column="PHONE" property="phone" />
+</resultMap>
 
 
 <select id="selectPtjDetail" resultMap="ptjDetailResultSet">
@@ -33,13 +54,20 @@
 		P.END_TIME,
 		P.IS_END,
 		B.CATEGORY_S_NO,
+		SC.CATEGORY_S_NAME,
 		B.TITLE,
 		B.CONTENT,
 		B.WISH_COUNT,
-		L.LOCATION_NAME
+		L.LOCATION_NAME,
+		I.CHANGE_NAME AS IMG_PATH,
+		M.PHONE,
+		P.LOCATION_COORDINATE
 	FROM thrifty.PART_TIME_JOB P
 	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
 	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
+	LEFT JOIN thrifty.IMAGE I ON B.BOARD_NO = I.BOARD_NO
+	LEFT JOIN MEMBER M ON B.USER_NO = M.USER_NO
+	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 	WHERE P.BOARD_NO = #{boardNo}
 </select>
 
@@ -78,7 +106,7 @@
 		B.CONTENT,
 		B.WISH_COUNT,
 		L.LOCATION_NAME,
-		'PTJ/' || I.CHANGE_NAME AS IMG_PATH
+		I.CHANGE_NAME AS IMG_PATH
 	FROM thrifty.PART_TIME_JOB P
 	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
 	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
@@ -115,4 +143,52 @@
 	INSERT INTO PART_TIME_JOB(BOARD_NO, LOCATION_NO , PRICE , START_TIME , END_TIME , LOCATION_COORDINATE)
 						VALUES(#{boardNo} , #{locationNo} , #{price} , #{startTime} , #{endTime} , #{locationCoordinate})
 </insert>
+
+<update id="deletePtj" parameterType="ptj">
+	UPDATE BOARD SET
+	STATUS = 'N'
+	WHERE BOARD_NO = #{boardNo}
+</update>
+
+<update id="updatePtj" parameterType="ptj">
+	UPDATE PART_TIME_JOB P
+	JOIN BOARD B
+	ON P.BOARD_NO = B.BOARD_NO 
+	SET
+		P.LOCATION_NO = #{locationNo},
+		P.PRICE = #{price} ,
+		P.START_TIME = #{startTime} ,
+		P.END_TIME = #{endTime} ,
+		B.TITLE = #{title} ,
+		B.CONTENT = #{content}
+	WHERE BOARD_NO = #{boardNo}
+</update>
+
+<select id="updateFormPtj" resultMap="ptjDetailResultSet">
+	SELECT
+		P.BOARD_NO,
+		P.LOCATION_NO,
+		P.PRICE,
+		P.START_TIME,
+		P.END_TIME,
+		P.IS_END,
+		B.CATEGORY_S_NO,
+		SC.CATEGORY_S_NAME,
+		B.TITLE,
+		B.CONTENT,
+		B.WISH_COUNT,
+		L.LOCATION_NAME,
+		I.CHANGE_NAME AS IMG_PATH,
+		M.PHONE,
+		P.LOCATION_COORDINATE,
+		M.USER_ID
+	FROM thrifty.PART_TIME_JOB P
+	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
+	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
+	LEFT JOIN thrifty.IMAGE I ON B.BOARD_NO = I.BOARD_NO
+	LEFT JOIN MEMBER M ON B.USER_NO = M.USER_NO
+	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+	LEFT JOIN thrifty.UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
+	WHERE UC.CATEGORY_U_NO = 5 AND P.BOARD_NO = #{boardNo}
+</select>
 </mapper>

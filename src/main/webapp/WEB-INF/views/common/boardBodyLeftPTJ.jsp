@@ -21,7 +21,7 @@
                 </div>
                 <div id="sub-category" >
                 	<ul class="scrollbar">
-		                <c:forEach var="location" items="${locationList }">
+		                <c:forEach var="location" items="${locationList}">
 		                	<li>${location.locationName }</li>
 		                </c:forEach>
                 	</ul>

@@ -61,9 +61,7 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="header">
 			<jsp:include page="../common/header.jsp" />
-        </div>
         <div id="body">
             <div id="body-search">
                 <swiper-container class="mySwiper" navigation="true" style="border-radius: 30px; --swiper-navigation-color: white;">
