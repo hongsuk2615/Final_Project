@@ -18,5 +18,8 @@ public interface PtjService {
 	
 	public int deletePtj(int boardNo);
 	
-	public int updatePtj(int boardNo);
+	public Ptj updateFormPtj(int boardNo);
+	
+	public int updatePtj(Ptj p);
+
 }

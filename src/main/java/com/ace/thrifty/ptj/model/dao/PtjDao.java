@@ -35,8 +35,12 @@ public class PtjDao {
 		return sqlSession.update("ptjMapper.deletePtj" , boardNo);
 	}
 	
-	public int updatePtj(int boardNo) {
-		return sqlSession.update("ptjMapper.updatePtj" , boardNo);
+	public Ptj updateFormPtj(int boardNo) {
+		return sqlSession.selectOne("ptjMapper.updateFormPtj" , boardNo);
+	}
+	
+	public int updatePtj(Ptj p) {
+		return sqlSession.update("ptjMapper.updatePtj" , p);
 	}
 
 }

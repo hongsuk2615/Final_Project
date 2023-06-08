@@ -150,13 +150,45 @@
 	WHERE BOARD_NO = #{boardNo}
 </update>
 
-<update id="updatePtj">
-	UPDATE PART_TIME_JOB SET
-	LOCATION_NO = #{locationNo}
-	PRICE = #{price} ,
-	START_TIME = #{startTime} ,
-	END_TIME = #{endTime} ,
-	LOCATION_COORDINATE = #{locationCoordinate}
+<update id="updatePtj" parameterType="ptj">
+	UPDATE PART_TIME_JOB P
+	JOIN BOARD B
+	ON P.BOARD_NO = B.BOARD_NO 
+	SET
+		P.LOCATION_NO = #{locationNo},
+		P.PRICE = #{price} ,
+		P.START_TIME = #{startTime} ,
+		P.END_TIME = #{endTime} ,
+		B.TITLE = #{title} ,
+		B.CONTENT = #{content}
 	WHERE BOARD_NO = #{boardNo}
 </update>
+
+<select id="updateFormPtj" resultMap="ptjDetailResultSet">
+	SELECT
+		P.BOARD_NO,
+		P.LOCATION_NO,
+		P.PRICE,
+		P.START_TIME,
+		P.END_TIME,
+		P.IS_END,
+		B.CATEGORY_S_NO,
+		SC.CATEGORY_S_NAME,
+		B.TITLE,
+		B.CONTENT,
+		B.WISH_COUNT,
+		L.LOCATION_NAME,
+		I.CHANGE_NAME AS IMG_PATH,
+		M.PHONE,
+		P.LOCATION_COORDINATE,
+		M.USER_ID
+	FROM thrifty.PART_TIME_JOB P
+	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
+	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
+	LEFT JOIN thrifty.IMAGE I ON B.BOARD_NO = I.BOARD_NO
+	LEFT JOIN MEMBER M ON B.USER_NO = M.USER_NO
+	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+	LEFT JOIN thrifty.UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
+	WHERE UC.CATEGORY_U_NO = 5 AND P.BOARD_NO = #{boardNo}
+</select>
 </mapper>

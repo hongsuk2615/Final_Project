@@ -95,8 +95,13 @@ public class PtjServiceImpl implements PtjService {
 		
 	}
 	
-	public int updatePtj(int boardNo) {
-		return ptjDao.updatePtj(boardNo);
+	public Ptj updateFormPtj(int boardNo) {
+		return ptjDao.updateFormPtj(boardNo);
+	}
+	
+	public int updatePtj(Ptj p) {
+		return ptjDao.updatePtj(p);
+		
 	}
 	
 }

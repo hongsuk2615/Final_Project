@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,7 @@ public class PtjController {
 
 		List<Ptj> pList = ptjService.selectPtjAll();
 		model.addAttribute("pList", pList);
-		System.out.println(pList);
+		/* System.out.println(pList); */
 		String webPath = "/resources/upfiles/ptj/";
 		model.addAttribute("webPath" , webPath);
 		return "part_time_job/PTJList";
@@ -68,7 +69,7 @@ public class PtjController {
 //			System.out.println(boardNo);
 
 		Ptj p = ptjService.selectPtjDetail(boardNo);
-		System.out.println(p);
+		/* System.out.println(p); */
 		model.addAttribute("p", p);
 		String webPath = "/resources/upfiles/ptj/";
 		model.addAttribute("webPath" , webPath);
@@ -116,8 +117,24 @@ public class PtjController {
 	
 	@GetMapping("/ptj/ptjUpdate/{boardNo}")
 	public String updatePtj(
-							@PathVariable("boardNo")int boardNo) {
-		ptjService.updatePtj(boardNo);
-		return "part_time_job/PTJUpdateForm";
+							@PathVariable("boardNo")int boardNo ,
+							Model model) {
+		Ptj p = ptjService.updateFormPtj(boardNo);
+		if(boardNo > 0) {
+			model.addAttribute("p" , p);
+			/* System.out.println(p); */
+		}
+		return "part_time_job/PTJUpdateForm";			
 	}
+	
+	@PostMapping("/ptj/ptjUpdate")
+	public String update(@ModelAttribute Ptj p) {
+		ptjService.updatePtj(p);
+		return "redirect:/part_time_job/PTJList";
+	}
+	
+	/*
+	 * @GetMapping("/ptj") public String updatePtj(Ptj p , Model model) {
+	 * ptjService.updatePtj(p); return "part_time_job/PTJUpdateForm"; }
+	 */
 }
