@@ -47,38 +47,23 @@ public class MyPageServiceImp  implements MyPageService{
 	}
 	
 	@Override
-	public int insertProfile(Member m,List<MultipartFile> imgList, String webPath,
+	public int changeProfile(Member m, MultipartFile profileimage, String webPath,
 			String serverFolderPath) throws Exception {
-		int result = 0;
-		List<Image>imageList = new ArrayList();
+	
 		
-		for (int i = 0; i < imgList.size(); i++) {
-			if (imgList.get(i).getSize() > 0) {
-				String changeName = Utils.saveFile(imgList.get(i), serverFolderPath);
-
-				Image img = new Image();
-				img.setBoardNo(boardNo);
-				img.setFileLevel(i);
-				img.setOriginName(imgList.get(i).getOriginalFilename());
-				img.setChangeName(changeName);
-
-				imageList.add(img);
-			}
-		}
-
-		if (!imageList.isEmpty()) {
-			result = boardDao.insertImageList(imageList);
-			if (!(result == imageList.size())) {
-				throw new Exception("이미지 등록 예외발생");
-			}
-		}
+		String changeName = Utils.saveFile(profileimage , serverFolderPath);
+		
+		
+		m.setOriginName(profileimage.getOriginalFilename());
+		m.setChangeName(changeName);
+		return myPageDao.changeProfile(m);
 		
 	}
 	
 	
-	@Override
-	public String zzimSelect(Member m, Board b) {
-		return myPageDao.zzimSelect(m, b);
-	}
+//	@Override
+//	public String zzimSelect(Member m, Board b) {
+//		return myPageDao.zzimSelect(m, b);
+//	}
 	
 }

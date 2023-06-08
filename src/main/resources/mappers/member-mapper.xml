@@ -72,4 +72,9 @@
 		FROM MEMBER
 		WHERE USER_NO = #{userNo} AND STATUS='Y'
 	</select>
+	
+	<!-- <update id="changeProfile">
+		UPDATE MEMBER
+		SET USER_
+	</update> -->
 </mapper>

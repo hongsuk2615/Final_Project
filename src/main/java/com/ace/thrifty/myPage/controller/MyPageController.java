@@ -91,39 +91,43 @@ public class MyPageController {
 		}
 	
 	@RequestMapping("insertProfile.do")
-	public String insertProfile(HttpSession session,
+	public String changeProfile(HttpSession session,
 								Member m,
-								@RequestParam(value = "images", required = false ) List<MultipartFile> imgList) {
+								@RequestParam(value = "images", required = false ) MultipartFile profileimage) {
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		m.setUserNo(userNo);
 		
 		String webPath = "/resources/upfiles/myPage/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
-		myPageService.insertProfile(m, webPath, serverFolderPath);
+		myPageService.changeProfile(m, profileimage, webPath, serverFolderPath);
 		
 		
-		
+		return "";
 	}
 	
 	
-	@GetMapping("zzimselect")
-	public String zzimSelect(HttpSession session,
-							Member m,
-							Board b) {
+//	@GetMapping("zzimselect")
+//	public String zzimSelect(HttpSession session,
+//							Member m,
+//							Board b) {
 		//찜 을 셀렉트 하기 
 		//wishlist라는 테이블에서 boardNo, user.no
 		//앞에다가 보여줄 화면 : 각자uppercateogry별로 찜 보여줌 boardNo로 가져와야
 		// 일단 로그인 유저의 번호가 필요함 UserNo.
-		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
-		m.setUserNo(userNo);
+//		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+//		m.setUserNo(userNo);
 		//유저 넘버 뽑아서 멤버에 넣어둠
 		
 		
+//		select M.USER_NO, B.BOARD_NO, TITLE, CHANGE_NAME, CATEGORY_U_NO from WISH_LIST W
+//		JOIN BOARD B USING(BOARD_NO)
+//		JOIN MEMBER M ON(B.USER_NO = M.USER_NO)
+//		JOIN IMAGE I USING(BOARD_NO)
+//		WHERE W.USER_NO= 1;
 		
 		
 		
 		
-		
-		
-	}
+//		
+//	}
 }

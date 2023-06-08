@@ -32,8 +32,12 @@ public class MyPageDao {
 		return sqlSession.selectOne("memberMapper.myPageUpdateSelectM", m);
 	}
 	
-	public String zzimSelect(Member m , Board b) {
-		return sqlSession.selectOne("")
+	public int changeProfile(Member m) {
+		return sqlSession.update("memberMapper.changeProfile", m);
 	}
+	
+//	public String zzimSelect(Member m , Board b) {
+//		return sqlSession.selectOne("")
+//	}
 	
 }
