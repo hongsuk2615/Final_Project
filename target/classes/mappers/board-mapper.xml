@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+
+	<resultMap type="board" id="boardResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="CATEGORY_S_NO"  property="categorySNo"/>
+		<result column="CONTENT"  property="content"/>
+		<result column="CREATE_DATE"  property="createDate"/>
+		<result column="READ_COUNT"  property="readCount"/>
+		<result column="REPORT_COUNT"  property="reportCount"/>
+		<result column="TITLE"  property="title"/>
+		<result column="USER_NO"  property="userNo"/>
+		<result column="WISH_COUNT"  property="wishCount"/>
+		<association property="member" resultMap="memberResultSet"/>
+	</resultMap>
+	
+	<resultMap type="upperCategory" id="upperCategoryResultSet">
+		<id column="CATEGORY_U_NO" property="categoryUNo"/>
+		<result column="CATEGORY_U_NAME" property="categoryUName"/>
+		<result column="CATEGORY_PATH" property="categoryPath"/>
+	</resultMap>
+	
+	<resultMap type="subCategory" id="subCategoryResultSet">
+		<id column="CATEGORY_S_NO" property="categorySNo"/>
+		<result column="CATEGORY_U_NO" property="categoryUNo"/>
+		<result column="CATEGORY_S_NAME" property="categorySName"/>
+	</resultMap>
+	
+	<resultMap type="location" id="locationResultSet">
+		<id column="LOCATION_NO" property="locationNo"/>
+		<result column="LOCATION_NAME" property="locationName"/>
+	</resultMap>
+	
+	<select id="selectBoard" resultMap="boardResultSet">
+		SELECT *
+		  FROM BOARD
+		 WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	
+	<select id="selectBoardListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE BOARD_
+	</select>
+	
+	<!-- <insert id="insertBoard">
+		INSERT INTO BOARD
+		(
+		CATEGORY_S_NO,
+		TITLE,
+		CONTENT,
+		USER_NO
+		
+		)
+		VALUES(
+		2,
+		#{title},
+		#{content},
+		#{userNo}
+		)
+	</insert> -->
+	<select id="selectUpperCategoryList" resultMap="upperCategoryResultSet">
+		SELECT *
+		  FROM UPPER_CATEGORY
+	  WHERE CATEGORY_U_NO != 9
+	</select>
+	
+	<select id="selectSubCategoryList" resultMap="subCategoryResultSet">
+		SELECT *
+		  FROM SUB_CATEGORY
+	  WHERE CATEGORY_U_NO != 9
+	</select>
+	
+	<select id="selectLocationList" resultMap="locationResultSet">
+		SELECT *
+		  FROM LOCATION;
+	</select>
+	
+	<insert id="insertBoard" parameterType="board" useGeneratedKeys="true" keyProperty="boardNo">
+	<if test="categorySNo == 0">
+		<bind name="categorySNo" value="null"/>
+	</if>
+		INSERT INTO BOARD(CATEGORY_S_NO, CATEGORY_U_NO, TITLE, CONTENT, USER_NO)
+		            VALUES(#{categorySNo}, #{categoryUNo}, #{title}, #{content}, #{userNo})
+	</insert> 
+	
+	<insert id="insertImageList" parameterType="list">
+		INSERT INTO IMAGE (ORIGIN_NAME, CHANGE_NAME, BOARD_NO, FILE_LEVEL)
+		     SELECT C.* 
+		       FROM ( <foreach collection="list" item="image" separator="UNION ALL">
+		       				SELECT #{image.originName} AS ORIGIN_NAME
+		       					 , #{image.changeName} AS CHANGE_NAME
+		       					 , #{image.boardNo} AS BOARD_NO
+		       					 , #{image.fileLevel} AS FILE_LEVEL
+		       				  FROM DUAL
+		       			</foreach> ) C	
+	</insert>
+	
+	<update id="increaseReadCount" parameterType="_int">
+		UPDATE BOARD 
+		   SET READ_COUNT = READ_COUNT + 1
+		 WHERE BOARD_NO =#{bNo}
+	</update>
+	
+	<update id="deleteBoard" parameterType="board">
+		UPDATE BOARD
+		   SET STATUS = 'N'
+		 WHERE BOARD_NO = #{boardNo}
+		  <if test="userNo != null and userNo != 0">
+		  	AND USER_NO = #{userNo}
+		  </if>
+	</update>
+	
+</mapper>

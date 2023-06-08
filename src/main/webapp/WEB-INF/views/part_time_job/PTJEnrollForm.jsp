@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,110 +56,78 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="header">
             <jsp:include page="../common/header.jsp"/>
-        </div>
-        <div id="body">
+        <div id="body" style="padding-top: 150px;">
             <div id="body-left">
                 <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             </div>
+		<form id="ptj-enroll-form" action="${contextPath}/ptj/ptjList/enroll" enctype="multipart/form-data" method="post">
             <div id="body-right">
                 <div id="enroll-category">
-                    <h1>카테고리명</h1>
+                    <h1>카테고리를 정해주세요.
+                    	<select style="margin-left: 10px;" name="categorySNo" id="category-s-name">
+							<c:forEach var="categorySName" items="${subCategoryList }">
+								<c:if test="${categorySName.categoryUNo eq 5 }" >
+									<option value="${categorySName.categorySNo }">${categorySName.categorySName }</option>
+								</c:if>
+							</c:forEach>
+                    	</select>
+                    </h1>
                 </div>
                 <hr>
                 <div id="enroll">
-                    <form>
                         <div id="enroll-header">
-                            <h3>대표 이미지 <input type="file"></h3>
-                            <h2>제목 : &nbsp;<input name="enrollTitle" id="enroll-title" required placeholder="제목을 적어주세요."></h2><br>
-                            <h3 id="enroll-content">내용 :  &nbsp;<textarea name="enrollContent" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required placeholder="날짜와 내용을 적어주세요."></textarea></h3>
-                            <!-- <div id="좌표"></div> -->
+                            <h3>대표 이미지 <input type="file" name="img"></h3>
+                            <h2>제목 : &nbsp;<input name="title" id="enroll-title" required placeholder="제목을 적어주세요."></h2><br>
+                            <h3 id="enroll-content">내용 :  &nbsp;<textarea name="content" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required placeholder="날짜와 내용을 적어주세요."></textarea></h3>
                         </div>
                         <hr>
                         <div id="enroll-body">
-                            <h3>연락처 : &nbsp;<input type="text" name="enrollContact" id="enroll-contact" required placeholder="연락처나 카카오톡ID 를 적어주세요."></h3><br>
+                            <h3>현재 접속한 아이디의 연락처가 표시 됩니다.</h3><br>
                             <hr>
-                            <h3>알바 카테고리 : 
-                                <select>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                    <option>메롱</option>
-                                </select>
-                            </h3>
-                            <hr>
-                            <h3>급여 : </h3><input type="number" id="enroll-price" required>&nbsp;원
+                            <h3>급여 : </h3><input type="number" id="enroll-price" required name="price" >&nbsp;원
                             <hr>
                             <h3>시간 : </h3>
-                            시작 시간 : <input type="time" name="enrollStartDate" class="enroll-date" value="09:00" required>&nbsp;&nbsp;
-                            마감 시간 : <input type="time" name="enrollEndDate" class="enroll-date" value="18:00" required>
+                            시작 시간 : <input type="time" name="startTime" class="enroll-date" value="09:00:00" step="2" required>&nbsp;&nbsp;
+                            마감 시간 : <input type="time" name="endTime" class="enroll-date" value="18:00:00" step="2" required>
                             <hr>
-
+							<input type="hidden" name="status" value="Y">
                             <div style="display: flex; align-items: center; " id="location-list">
                                 <h3>시 / 군 / 구 : </h3>
-                                <select style="height:40px; margin-left: 20px;">
-                                    <option>서울시</option>
-                                    <option>김포시</option>
-                                    <option>고양시</option>
-                                    <option>파주시</option>
-                                    <option>양주시</option>
-                                    <option>동두천시</option>
-                                    <option>연천군</option>
-                                    <option>의정부시</option>
-                                    <option>포천시</option>
-                                    <option>가평군</option>
-                                    <option>남양주시</option>
-                                    <option>구리시</option>
-                                    <option>하남시</option>
-                                    <option>양평군</option>
-                                    <option>광주시</option>
-                                    <option>이천시</option>
-                                    <option>여주군</option>
-                                    <option>용인시</option>
-                                    <option>성남시</option>
-                                    <option>의왕시</option>
-                                    <option>과천시</option>
-                                    <option>군포시</option>
-                                    <option>안양시</option>
-                                    <option>안산시</option>
-                                    <option>시흥시</option>
-                                    <option>광명시</option>
-                                    <option>부천시</option>
-                                    <option>수원시</option>
-                                    <option>화성시</option>
-                                    <option>오산시</option>
-                                    <option>평택시</option>
-                                    <option>안성시</option>
+                                <select style="height:40px; margin-left: 20px;" name="locationNo">
+                                    <c:forEach var="location" items="${locationList}">
+                                <option value="${location.locationNo}">${location.locationName}</option>
+                                </c:forEach>
                                 </select>
                             </div>
 
                             <hr>
 
                             <div id="enroll-map">
-                                <div>지역 : <input type="text" name="" id="keyword" placeholder="지점 또는 관련 키워드를 검색 해 주세요!"></div><br>
+                                <div>지역 : <input type="text" name="keyword" id="keyword" placeholder="지점 또는 관련 키워드를 검색 해 주세요!"></div><br>
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
                                 <div id="map" style="width:100%; height:350px;"></div>
+                                <div id="좌표"></div>
                             </div>
                         </div>
                         <div id="enroll-footer">
                             <button id="enroll-btn">게시글 등록하기</button>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
-            <!-- <div id="map" style="width:100%;height:350px;"></div> -->
+		</form>
         </div>
         <div id="footer">
         
         </div>
     </div>
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 <script type="text/javascript" src="/thrifty/resources/js/kakaoAPI/map_search.js"></script>
-
+<script>
+	document.getElementById('enroll-btn').addEventListener("click",function(){
+    	location.href = "<%= request.getContextPath() %>/ptj/ptjList";
+	})
+</script>
 </body>
 </html>

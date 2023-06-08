@@ -26,5 +26,6 @@ public class Board {
 	private String title;
 	private int userNo;
 	private int wishCount;
-
+	private String status;
+	
 }

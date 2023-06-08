@@ -1,16 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="usedProductMapper">
+	<resultMap type="usedProduct" id="usedProductListResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="TITLE" property="title"/>
+		<result column="PRICE" property="price"/>
+		<result column="TRADE_METHOD" property="tradeMethod"/>
+		<result column="IS_SOLD_OUT" property="isSoldOut"/>
+		<result column="LOCATION_NO" property="locationNo"/>
+		<result column="LOCATION_NAME" property="locationName"/>
+		<result column="THUMB_NAIL" property="thumbNail"/>
+	</resultMap>
+	
+	
+	
 	<resultMap type="usedProduct" id="usedProductResultSet">
-		
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="PRODUCT_NAME" property="productName"/>
+		<result column="PRICE" property="price"/>
+		<result column="TRADE_METHOD" property="tradeMethod"/>
+		<result column="IS_SOLD_OUT" property="isSoldOut"/>
+		<result column="LOCATION_NO" property="locationNo"/>
+		<result column="LOCATION_NAME" property="locationName"/>
+		<result column="THUMB_NAIL" property="thumbNail"/>
+		<result column="CATEGORY_S_NAME" property="categoryName"/>
+		<association property="board" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Board">
+			<id column="BOARD_NO" property="boardNo"/>			
+			<result column="CATEGORY_S_NO"  property="categorySNo"/>
+			<result column="CONTENT"  property="content"/>
+			<result column="CREATE_DATE"  property="createDate"/>
+			<result column="READ_COUNT"  property="readCount"/>
+			<result column="REPORT_COUNT"  property="reportCount"/>
+			<result column="TITLE"  property="title"/>
+			<result column="USER_NO"  property="userNo"/>
+			<result column="WISH_COUNT"  property="wishCount"/>
+		</association>
+		<association property="seller" column="BOARD_NO" javaType="com.ace.thrifty.member.model.vo.Member">
+			<id column="USED_NO" property="userNo"/>
+			<result column="NICK_NAME" property="nickName"/>
+		</association>
+		<collection property="imageList" column="BOARD_NO" javaType="java.util.ArrayList" ofType="com.ace.thrifty.board.model.vo.Image">
+			<id column="IMG_NO" property="imgNo"/>
+			<result column="BOARD_NO" property="boardNo"/>
+			<result column="ORIGIN_NAME" property="originName"/>
+			<result column="CHANGE_NAME" property="changeName"/>
+			<result column="FILE_LEVEL" property="fileLevel"/>
+			<result column="STATUS" property="status"/>
+		</collection>
 	</resultMap>
 	
 	<insert id="insertUsedProduct" parameterType="usedProduct">
-		INSERT INTO USED_PRODUCT(BOARD_NO, PRICE, TRADE_METHOD, LOCATION_NO)
-		                  VALUES(#{boardNo}, #{price}, #{tradeMethod}, #{locationNo})	
+		INSERT INTO USED_PRODUCT(BOARD_NO, PRICE, TRADE_METHOD, LOCATION_NO, PRODUCT_NAME)
+		                  VALUES(#{boardNo}, #{price}, #{tradeMethod}, #{locationNo}, #{productName})	
 	</insert>
 	
+	<select id="selectUsedProduct" parameterType="map" resultMap="usedProductListResultSet">
+		SELECT BOARD_NO
+			 , TITLE
+			 , PRICE
+			 , TRADE_METHOD
+			 , IS_SOLDOUT
+			 , LOCATION_NAME
+			 , TITLE
+			 , PRODUCT_NAME
+			 , CONCAT('/resources/upfiles/usedProduct/', CHANGE_NAME) AS THUMB_NAIL
+		  FROM USED_PRODUCT
+		  JOIN LOCATION USING(LOCATION_NO)
+		  JOIN BOARD B USING(BOARD_NO)
+		  JOIN IMAGE USING(BOARD_NO)
+		 WHERE B.STATUS = 'Y'
+		 	<if test= 'scNo!= null and scNo !="" '>
+		 		AND CATEGORY_S_NO = #{scNo}
+		 	</if>
+		 	<if test='location != null and location!= ""'>
+		 		AND LOCATION_NO = #{location}
+		 	</if>
+		 	<if test='minPrice != null and  minPrice != ""'>
+		 		AND PRICE &gt;= #{minPrice}
+		 	</if>
+		 	<if test='maxPrice != null and maxPrice != ""'>
+		 		AND PRICE &lt;= #{maxPrice}
+		 	</if> 
+		 	<if test='tradeMethod != null and tradeMethod != "undefined" and tradeMethod !=""'>
+		 		AND TRADE_METHOD = #{tradeMethod}
+		 	</if>
+	    GROUP BY BOARD_NO
+	</select>
 	
 	
 	
+	
+	
+	<select id="selectUsedProductByBno" resultMap="usedProductResultSet">
+		SELECT *
+		  FROM USED_PRODUCT
+		  JOIN LOCATION USING(LOCATION_NO)
+		  JOIN BOARD B USING(BOARD_NO)
+		  JOIN IMAGE USING(BOARD_NO)
+		  JOIN SUB_CATEGORY USING(CATEGORY_S_NO)
+		  JOIN MEMBER USING (USER_NO)
+		 WHERE BOARD_NO = ${bNo} 
+		   AND B.STATUS = 'Y'	
+	</select>
+	<select id="selectUsedProductCount" parameterType="map" resultType="_int">
+		SELECT COUNT(*)
+		  FROM USED_PRODUCT
+		  JOIN LOCATION USING(LOCATION_NO)
+		  JOIN BOARD B USING(BOARD_NO)
+		  JOIN IMAGE USING(BOARD_NO)
+		 WHERE B.STATUS = 'Y'
+		 	<if test= 'scNo!= null and scNo !="" '>
+		 		AND CATEGORY_S_NO = #{scNo}
+		 	</if>
+		 	<if test='location != null and location!= ""'>
+		 		AND LOCATION_NO = #{location}
+		 	</if>
+		 	<if test='minPrice != null and  minPrice != ""'>
+		 		AND PRICE &gt;= #{minPrice}
+		 	</if>
+		 	<if test='maxPrice != null and maxPrice != ""'>
+		 		AND PRICE &lt;= #{maxPrice}
+		 	</if> 
+		 	<if test='tradeMethod != null and tradeMethod != "undefined" and tradeMethod !=""'>
+		 		AND TRADE_METHOD = #{tradeMethod}
+		 	</if>
+	</select>
+
 </mapper>

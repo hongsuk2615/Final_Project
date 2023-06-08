@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script type="text/javascript" src="/thrifty/resources/js/common/header.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="/thrifty/resources/css/common/header.css">
+    <link rel="stylesheet" href="/thrifty/resources/css/common/mainHeader.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/login.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/find.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/enroll.css">

@@ -4,10 +4,6 @@
     justify-content: space-between;
 }
 
-#ptj-header {
-    margin-left: 4%;
-}
-
 #ptj-body1 ,
 #ptj-body2 ,
 #ptj-body3 {
@@ -22,7 +18,25 @@
 
 #ptj-allBody{
 	display: flex;
-	flex-direction: column;
 	justify-content: space-around;
 	margin-bottom: 100px;
+	flex-wrap: wrap;
+}
+
+#write-board {
+	display: flex;
+	justify-content: space-between;
+}
+
+#write-btn{
+	border-radius: 10px;
+	border: 0;
+	box-shadow: 5px 5px 5px gray;
+	background: rgb(0, 60, 120);
+	color: white;
+}
+
+#write-btn:hover,
+.list-detail:hover {
+	cursor: pointer;
 }

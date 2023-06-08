@@ -21,6 +21,7 @@ public class BoardDao {
 	public Board selectBoard(int boardNo) {
 		return sqlSession.selectOne("boardMapper.selectBoard", boardNo);
 	}	
+
 	public List<UpperCategory >selectBoardCategoryList() {
 		return sqlSession.selectList("boardMapper.selectCategoryList");		
 	}
@@ -42,5 +43,13 @@ public class BoardDao {
 	
 	public int insertImageList(List<Image> imageList) {
 		return sqlSession.insert("boardMapper.insertImageList", imageList);
+	}
+	
+	public int increaseReadCount(int bNo) {
+		return sqlSession.update("boardMapper.increaseReadCount", bNo);
+	}
+	
+	public int deleteBoard(Board b) {
+		return sqlSession.update("boardMapper.deleteBoard", b);
 	}
 }

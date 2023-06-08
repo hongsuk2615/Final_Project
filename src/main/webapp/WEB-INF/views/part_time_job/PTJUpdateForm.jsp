@@ -10,7 +10,7 @@
     <link href="/thrifty/resources/css/part_time_job/part_time_job_enrollform.css" rel="stylesheet">
 <style>
     *{
-        border: 1px solid blue !important;
+        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -55,43 +55,41 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="header">
             <jsp:include page="../common/header.jsp"/>
-        </div>
         <div id="body">
             <div id="body-left">
                 <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             </div>
             <div id="body-right">
-                <div id="enroll-category">
-                    <h1>카테고리명</h1>
-                </div>
-                <hr>
+               	<div id="enroll-category">
+               		<h1>${p.subCategory.categorySName} 게시글</h1>
+           		</div>
                 <div id="enroll">
-                    <form>
+                    <form action="${contextPath }/ptj/ptjUpdate" method="post" name="updateForm">
+                		<hr>
                         <div id="enroll-header">
-                            <h2>제목 : &nbsp;<input name="enrollTitle" id="enroll-title" required placeholder="제목을 적어주세요."></h2><br>
-                            <h3 id="enroll-content">내용 :  &nbsp;<textarea name="enrollContent" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required placeholder="날짜와 내용을 적어주세요."></textarea></h3>
-                            <!-- <div id="좌표"></div> -->
+                            <h2>제목 : &nbsp;<input name="title" id="enroll-title" required value="${p.board.title }"></h2><br>
+                            <h3 id="enroll-content">내용 :  &nbsp;<textarea name="enrollContent" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required value="${p.board.content }"></textarea></h3>
                         </div>
                         <hr>
                         <div id="enroll-body">
-                            <h3>연락처 : &nbsp;<input type="text" name="enrollContact" id="enroll-contact" required placeholder="연락처나 카카오톡ID 를 적어주세요."></h3><br>
+                        	<h3>${p.member.userId }</h3>
+                            <h3>연락처 : &nbsp;<input type="text" name="phone" id="enroll-contact" required value="${p.member.phone }" disabled></h3><br>
                             <hr>
-                            <h3>급여 : </h3><input type="number" id="enroll-price" required>&nbsp;원
+                            <h3>급여 : </h3><input type="number" id="enroll-price" name="price" required value="${p.price }">&nbsp;원
                             <hr>
                             <h3>시간 : </h3>
-                            시작 시간 : <input type="time" name="enrollStartDate" class="enroll-date" value="09:00" required>&nbsp;&nbsp;
-                            마감 시간 : <input type="time" name="enrollEndDate" class="enroll-date" value="18:00" required>
+                            시작 시간 : <input type="time" name="startTime" class="enroll-date" value="${p.startTime }" required>&nbsp;&nbsp;
+                            마감 시간 : <input type="time" name="endTime" class="enroll-date" value="${p.endTime }" required>
                             <hr>
                             <div id="enroll-map">
-                                <div>지역 : <input type="text" name="" id="keyword" placeholder="지점 또는 관련 키워드를 검색 해 주세요!"></div><br>
+                                <div>지역 : <input type="text" name="keyword" id="keyword" placeholder="지점 또는 관련 키워드를 검색 해 주세요!"></div><br>
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
                                 <div id="map" style="width:100%; height:350px;"></div>
                             </div>
                         </div>
                         <div id="enroll-footer">
-                            <button id="enroll-btn">게시글 등록하기</button>
+                            <button id="enroll-btn">게시글 수정하기</button>
                         </div>
                     </form>
                 </div>
@@ -105,6 +103,10 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 <script type="text/javascript" src="/thrifty/resources/js/kakaoAPI/map_search.js"></script>
-
+<script>
+	document.getElementById('enroll-btn').addEventListener("click",function(){
+    	location.href = "<%= request.getContextPath() %>/ptj/ptjUpdate";
+	})
+</script>
 </body>
 </html>
