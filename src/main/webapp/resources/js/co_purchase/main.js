@@ -6,7 +6,6 @@ let handleSelect = function (item) {
     label.innerHTML = item.textContent;
     label.value = item.value;
     label.parentNode.classList.remove('active');
-	console.log(label.value);
 }
 // 옵션 클릭시 클릭한 옵션을 넘김
 options.forEach(function (option) {

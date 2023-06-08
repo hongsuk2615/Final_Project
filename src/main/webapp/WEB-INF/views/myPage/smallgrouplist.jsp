@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -172,20 +172,67 @@
                         <th>그룹장 닉네임</th>
                         <th>제목</th>
                         <th>모집인원 </th>
-                        <th>생성일</th>
                       </tr>
-                      <c:forEach items="${list}" var="b">
-                      <tr onclick="movePage(${b.boardNo});"> 
-                        <td>${b.smallLocation}</td>
-                        <td>${b.member.nickName}</td>
-                        <td>${b.board.title} </td>
-                        <td>${b.recruitNo}</td>
-                        <td>${b.board.createDate}</td>
+                      <tr>
+                        <td>강남구</td>
+                        <td>nemo0824</td>
+                        <td>아무나구함 오라사람와라 </td>
+                        <td>5</td>
                       </tr>
-                      </c:forEach>
-                      
-                      
-                   
+                      <tr>
+                        <td>강남구</td>
+                        <td>nemo0824</td>
+                        <td>아무나구함 오라사람와라 </td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>강남구</td>
+                        <td>nemo0824</td>
+                        <td>아무나구함 오라사람와라 </td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>강남구</td>
+                        <td>nemo0824</td>
+                        <td>아무나구함 오라사람와라 </td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>강남구</td>
+                        <td>nemo0824</td>
+                        <td>아무나구함 오라사람와라 </td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>강남구</td>
+                        <td>nemo0824</td>
+                        <td>아무나구함 오라사람와라 </td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>강남구</td>
+                        <td>nemo0824</td>
+                        <td>아무나구함 오라사람와라 </td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>강남구</td>
+                        <td>nemo0824</td>
+                        <td>아무나구함 오라사람와라 </td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>강남구</td>
+                        <td>nemo0824</td>
+                        <td>아무나구함 오라사람와라 </td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>강남구</td>
+                        <td>nemo0824</td>
+                        <td>아무나구함 오라사람와라 </td>
+                        <td>5</td>
+                      </tr>
 
 
                     </table>
@@ -211,10 +258,6 @@
 
         </div>
     </div>
-    <script>
-    	function movePage(boardNo){
-    		location.href= '${pageContext.request.contextPath}/smallGroup/detail/'+boardNo;
-    	}
-    </script>
+    
 </body>
 </html>
