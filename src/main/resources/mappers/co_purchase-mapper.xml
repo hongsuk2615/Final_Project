@@ -12,6 +12,7 @@
 		<result column="DEAD_LINE" property="deadLine"/>
 		<result column="IS_END" property="isEnd"/>
 		<result column="THUMB_NAIL" property="thumbNail"/>
+		<result column="CREATE_DATE" property="createDate"/>
 	</resultMap>
 	
 	<resultMap type="co_purchase" id="coPurchaseResultSet">
@@ -72,6 +73,7 @@
 		JOIN IMAGE I USING(BOARD_NO)
 		WHERE B.STATUS = 'Y'
 		GROUP BY BOARD_NO
+		ORDER BY BOARD_NO DESC
 	</select>
 	
 	<insert id="insertCo_purchase" parameterType="co_purchase">

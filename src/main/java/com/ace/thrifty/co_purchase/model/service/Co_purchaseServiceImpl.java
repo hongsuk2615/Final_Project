@@ -76,7 +76,7 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 		PageInfo pi = pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
 		
 		ArrayList<Board> list = coDao.selectCoPurchaseList(pi);
-		
+		System.out.println(list);
 		map.put("pi", pi);
 		map.put("list", list);
 		

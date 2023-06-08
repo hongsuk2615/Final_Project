@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/thrifty/resources/css/co_purchase/purchaseMain.css">
+    <link rel="stylesheet" href="${ contextPath }/resources/css/co_purchase/purchaseMain.css">
 
 <style>
     *{
@@ -65,7 +65,7 @@
 							<tr>
 								<td class="flex">
 									<div class="detail_img">
-                                    	<img src="${ list.thumbNail }" alt="" class="detail_img_1">
+                                    	<img src="${ contextPath }/${ b.thumbNail }" alt="" class="detail_img_1">
                                     </div>
                                     <div class="detail">
                                     <div class="detail_top">
@@ -73,23 +73,23 @@
                                             모집중
                                         </div>
                                     </div>
-                                    <a href="/thrifty/co_purchase/detail">
-                                        <div class="detail_middle">${ list.title }</div>
+                                    <a href="${ contextPath }/co_purchase/detail">
+                                        <div class="detail_middle">${ b.title }</div>
                                     </a>
                                     <div class="detail_bottom flex">
                                         <div class="flex align">
                                             <div>가격</div>
-                                            <div class="detail_bottom_price">${ list.price }</div>
+                                            <div class="detail_bottom_price">${ b.price }</div>
                                         </div>
                                         <div class="detail_bottom_2 flex align">
                                             <div>
-                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                                <img src="${ contextPath }/resources/hong.png" alt="" class="detail_bottom_img">
                                             </div>
                                             <div class="detail_bottom_nickname">김김훙훙숙숙</div>
                                             <span>|</span>
-                                            <div>${ list.readCount }</div>
+                                            <div>${ b.readCount }</div>
                                             <span>|</span>
-                                            <div>${ list.createDate }</div>
+                                            <div>${ b.createDate }</div>
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                         <!-- <tr>
                             <td class="flex">
                                 <div class="detail_img">
-                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
+                                    <img src="${ contextPath }/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
                                 </div>
                                 <div class="detail">
                                     <div class="detail_top">
@@ -106,7 +106,7 @@
                                             모집중
                                         </div>
                                     </div>
-                                    <a href="/thrifty/co_purchase/detail">
+                                    <a href="${ contextPath }/co_purchase/detail">
                                         <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
                                     </a>
                                     <div class="detail_bottom flex">
@@ -116,7 +116,7 @@
                                         </div>
                                         <div class="detail_bottom_2 flex align">
                                             <div>
-                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                                <img src="${ contextPath }/resources/hong.png" alt="" class="detail_bottom_img">
                                             </div>
                                             <div class="detail_bottom_nickname">김김훙훙숙숙</div>
                                             <span>|</span>
@@ -131,7 +131,7 @@
                         <tr>
                             <td class="flex">
                                 <div class="detail_img">
-                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
+                                    <img src="${ contextPath }/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
                                 </div>
                                 <div class="detail">
                                     <div class="detail_top">
@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="detail_bottom_2 flex align">
                                             <div>
-                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                                <img src="${ contextPath }/resources/hong.png" alt="" class="detail_bottom_img">
                                             </div>
                                             <div class="detail_bottom_nickname">김김훙훙숙숙</div>
                                             <span>|</span>
@@ -178,7 +178,7 @@
                         <!-- <input type="submit" value="검색" id="search_submit"> -->
                     </div>
                     <div>
-                        <a href="/thrifty/co_purchase/enroll" id="write_content">글쓰기</a>
+                        <a href="${ contextPath }/co_purchase/enroll" id="write_content">글쓰기</a>
                         <!-- <input type="submit" value="글쓰기" id="write_content"> -->
                     </div>
                 </div>
@@ -186,6 +186,6 @@
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
-    <script src="/thrifty/resources/js/co_purchase/main.js"></script>
+    <script src="${ contextPath }/resources/js/co_purchase/main.js"></script>
 </body>
 </html>

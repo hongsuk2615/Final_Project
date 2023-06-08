@@ -76,12 +76,8 @@
 	
 	<select id="selectUpperCategoryList" resultMap="upperCategoryResultSet">
 		SELECT *
-<<<<<<< HEAD
 		  FROM UPPER_CATEGORY
 	  WHERE CATEGORY_U_NO != 9
-=======
-		  FROM UPPER_CATEGORY;
-		
 	</select>
 	
 	
@@ -89,7 +85,6 @@
 		SELECT * 
 		FROMM BOARD b
 		FULL OUTER JOIN SMALL_GROUP s ON b.BOARD_NO = s.BOARD_NO;
->>>>>>> parent of 81f67b1 (Revert "Merge branch 'main' into suhwan")
 	</select>
 	
 	<select id="selectSubCategoryList" resultMap="subCategoryResultSet">

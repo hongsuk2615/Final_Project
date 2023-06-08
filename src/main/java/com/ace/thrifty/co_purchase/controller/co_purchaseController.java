@@ -79,7 +79,7 @@ public class co_purchaseController {
 		
 		coService.insertBoard(b, cp, imgList, webPath, serverFolderPath);
 		
-		return "co_purchase/purchaseMain";
+		return "redirect:/co_purchase";
 	}
 	
 }
