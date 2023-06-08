@@ -226,7 +226,7 @@
                     </div>
 
                     <div class="profile-title">
-                        <h4>임재원</h4> <span>님 환영합니다</span>
+                        <h4>${loginUser.nickName}</h4> <span>님 환영합니다</span>
                      
                           <label for="toggle" class="toggleSwitch blue">
                             <span class="toggleButton"></span>
@@ -247,33 +247,33 @@
                         <table border="1" width="600" height="200">
                             <tr>
                                 <td width="100" class="tablecolor">회원 이름</td>
-                                <td width="300">임재원</td>
+                                <td width="300">${loginUser.userName}</td>
                                 
                             </tr>
 
                             <tr>
                                 <td width="100" class="tablecolor">회원 아이디 </td>
-                                <td>nemo0824</td>
+                                <td>${loginUser.userId}</td>
                                 
                             </tr>
 
 
                             <tr>
                                 <td width="100" class="tablecolor">닉네임</td>
-                                <td>하이</td>
+                                <td>${loginUser.nickName}</td>
                                 
                             </tr>
 
 
                             <tr>
                                 <td width="100" class="tablecolor">핸드폰</td>
-                                <td>01041465622</td>
+                                <td>${loginUser.phone}</td>
                                 
                             </tr>
 
                             <tr>
                                 <td width="100" class="tablecolor">이메일</td>
-                                <td>nemo0824@naver.com</td>
+                                <td>${loginUser.email}</td>
                                 
                             </tr>
                             
@@ -284,7 +284,7 @@
 
                       
                     </div>
-                    <button type="button" class="btn btn-primary" id="button_modify">수정하기</button>
+                    <a  class="btn btn-primary" id="button_modify" href="${pageContext.request.contextPath}/mypage/myUpdateForm">수정하기</a>
                     <button type="button" class="btn btn-secondary" id="button_cancel">취소</button>
                    
                     
