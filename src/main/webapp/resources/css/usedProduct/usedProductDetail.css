@@ -40,7 +40,7 @@
     display: flex;
     align-items: center;
     margin: 7px 0px;
-    padding : 10px;
+    padding : 10px 0px 10px 10px;
     height: 550px;
     border-top: 2px solid gray;
     border-bottom: 2px solid gray;
@@ -64,7 +64,7 @@
 }
 
 .sub-img{
-    width: 100px;
+    width: 95px;
     height: 90px;
     border-radius: 5px;
     margin-top: 10px;
@@ -102,7 +102,8 @@
 }
 
 #item-btns>div{
-    margin : 0px 5px;
+    margin-top: 5px;
+    margin-left: 5px;
     width : 75px;
     height : 30px;
     padding : 3px;
@@ -120,10 +121,34 @@
 #wish-btn{
     background-color: rgb(52, 152, 219);
 }
+#report-btn{
+    background-color: red;
+}
 
 #body-right-content{
     background-color: lightgray;
 }
+#writer-btns{
+    display: flex;
+    justify-content: flex-end;
+}
+#writer-btns>div{
+    margin-top: 5px;
+    margin-left: 5px;
+    width : 75px;
+    height : 30px;
+    padding : 3px;
+    border-radius: 4px;
+    color : white;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+#delete-btn{
+    background-color: black;
+}
+#modify-btn{
+    background-color: rgb(52, 152, 219);
 
 
 
