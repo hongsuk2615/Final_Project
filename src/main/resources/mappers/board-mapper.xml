@@ -102,4 +102,13 @@
 		 WHERE BOARD_NO =#{bNo}
 	</update>
 	
+	<update id="deleteBoard" parameterType="board">
+		UPDATE BOARD
+		   SET STATUS = 'N'
+		 WHERE BOARD_NO = #{boardNo}
+		  <if test="userNo != null and userNo != 0">
+		  	AND USER_NO = #{userNo}
+		  </if>
+	</update>
+	
 </mapper>

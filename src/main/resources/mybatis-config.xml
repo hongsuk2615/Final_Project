@@ -22,6 +22,8 @@
 		<typeAlias type="com.ace.thrifty.usedProduct.model.vo.UsedProduct" alias="usedProduct"/>
 		<typeAlias type="com.ace.thrifty.co_purchase.model.vo.Co_purchase" alias="co_purchase"/>
 		<typeAlias type="com.ace.thrifty.admin.model.vo.Notice" alias="notice"/>
+		<typeAlias type="com.ace.thrifty.wishList.model.vo.WishList" alias="wishList"/>
+		<typeAlias type="com.ace.thrifty.message.model.vo.Message" alias="message"/>
 	</typeAliases>
 	
 	<!-- 
@@ -37,6 +39,8 @@
 		<mapper resource="/mappers/ptj-mapper.xml" />
 		<mapper resource="/mappers/co_purchase-mapper.xml"/>
 		<mapper resource="/mappers/usedProduct-mapper.xml"/>
+		<mapper resource="/mappers/wishList-mapper.xml"/>
+		<mapper resource="/mappers/message-mapper.xml"/>
 	</mappers>
 
 </configuration>

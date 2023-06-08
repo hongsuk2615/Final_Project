@@ -27,8 +27,5 @@ public class Board {
 	private int userNo;
 	private int wishCount;
 	private String status;
-
-	private Member member;
-	private ArrayList<Image> imgList;
-	private ArrayList<Co_purchase> coPurchaseList;
+	
 }

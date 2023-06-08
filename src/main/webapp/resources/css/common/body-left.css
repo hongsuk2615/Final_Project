@@ -46,8 +46,10 @@
     height: 60px;
     margin-right: 10px;
 }
-#upper-category-name{
+#upper-category-name > a{
     font-size: 28px;
+    text-decoration : none;
+    color : white;
 }
 
 #sub-category{

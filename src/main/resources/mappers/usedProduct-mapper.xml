@@ -50,8 +50,8 @@
 	</resultMap>
 	
 	<insert id="insertUsedProduct" parameterType="usedProduct">
-		INSERT INTO USED_PRODUCT(BOARD_NO, PRICE, TRADE_METHOD, LOCATION_NO)
-		                  VALUES(#{boardNo}, #{price}, #{tradeMethod}, #{locationNo})	
+		INSERT INTO USED_PRODUCT(BOARD_NO, PRICE, TRADE_METHOD, LOCATION_NO, PRODUCT_NAME)
+		                  VALUES(#{boardNo}, #{price}, #{tradeMethod}, #{locationNo}, #{productName})	
 	</insert>
 	
 	<select id="selectUsedProduct" parameterType="map" resultMap="usedProductListResultSet">
@@ -62,12 +62,13 @@
 			 , IS_SOLDOUT
 			 , LOCATION_NAME
 			 , TITLE
+			 , PRODUCT_NAME
 			 , CONCAT('/resources/upfiles/usedProduct/', CHANGE_NAME) AS THUMB_NAIL
 		  FROM USED_PRODUCT
 		  JOIN LOCATION USING(LOCATION_NO)
-		  JOIN BOARD USING(BOARD_NO)
+		  JOIN BOARD B USING(BOARD_NO)
 		  JOIN IMAGE USING(BOARD_NO)
-		 WHERE FILE_LEVEL = 0
+		 WHERE B.STATUS = 'Y'
 		 	<if test= 'scNo!= null and scNo !="" '>
 		 		AND CATEGORY_S_NO = #{scNo}
 		 	</if>
@@ -78,11 +79,12 @@
 		 		AND PRICE &gt;= #{minPrice}
 		 	</if>
 		 	<if test='maxPrice != null and maxPrice != ""'>
-		 		AND PRICE &lt; = #{maxPrice}
+		 		AND PRICE &lt;= #{maxPrice}
 		 	</if> 
 		 	<if test='tradeMethod != null and tradeMethod != "undefined" and tradeMethod !=""'>
 		 		AND TRADE_METHOD = #{tradeMethod}
 		 	</if>
+	    GROUP BY BOARD_NO
 	</select>
 	
 	
@@ -93,14 +95,35 @@
 		SELECT *
 		  FROM USED_PRODUCT
 		  JOIN LOCATION USING(LOCATION_NO)
-		  JOIN BOARD USING(BOARD_NO)
+		  JOIN BOARD B USING(BOARD_NO)
 		  JOIN IMAGE USING(BOARD_NO)
 		  JOIN SUB_CATEGORY USING(CATEGORY_S_NO)
 		  JOIN MEMBER USING (USER_NO)
-		 WHERE BOARD_NO = ${bNo} 	
+		 WHERE BOARD_NO = ${bNo} 
+		   AND B.STATUS = 'Y'	
 	</select>
-	
-	
-	
-	
+	<select id="selectUsedProductCount" parameterType="map" resultType="_int">
+		SELECT COUNT(*)
+		  FROM USED_PRODUCT
+		  JOIN LOCATION USING(LOCATION_NO)
+		  JOIN BOARD B USING(BOARD_NO)
+		  JOIN IMAGE USING(BOARD_NO)
+		 WHERE B.STATUS = 'Y'
+		 	<if test= 'scNo!= null and scNo !="" '>
+		 		AND CATEGORY_S_NO = #{scNo}
+		 	</if>
+		 	<if test='location != null and location!= ""'>
+		 		AND LOCATION_NO = #{location}
+		 	</if>
+		 	<if test='minPrice != null and  minPrice != ""'>
+		 		AND PRICE &gt;= #{minPrice}
+		 	</if>
+		 	<if test='maxPrice != null and maxPrice != ""'>
+		 		AND PRICE &lt;= #{maxPrice}
+		 	</if> 
+		 	<if test='tradeMethod != null and tradeMethod != "undefined" and tradeMethod !=""'>
+		 		AND TRADE_METHOD = #{tradeMethod}
+		 	</if>
+	</select>
+
 </mapper>

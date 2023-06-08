@@ -13,6 +13,8 @@ import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.common.Utils;
+import com.ace.thrifty.common.model.vo.PageInfo;
+import com.ace.thrifty.common.template.Pagination;
 import com.ace.thrifty.usedProduct.model.dao.UsedProductDao;
 import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 
@@ -24,6 +26,9 @@ public class UsedProductServiceImp implements UsedProductService {
 
 	@Autowired
 	UsedProductDao usedProductDao;
+	
+	@Autowired
+	private Pagination pagination;
 
 	@Transactional(rollbackFor = { Exception.class })
 	@Override
@@ -66,9 +71,15 @@ public class UsedProductServiceImp implements UsedProductService {
 	}
 
 	@Override
-	public List<UsedProduct> selectUsedProduct(Map<String, Object> queryString) {
-
-		return usedProductDao.selectUsedProduct(queryString);
+	public void selectUsedProduct(Map<String, Object> queryString) {
+		int listCount = usedProductDao.selectUsedProductCount(queryString);
+		int pageLimit = 10;
+		int boardLimit = 8;
+		PageInfo pi = pagination.getPageInfo(listCount, Integer.parseInt((String)(queryString.get("currPage"))), pageLimit, boardLimit);
+		List<UsedProduct> list = usedProductDao.selectUsedProduct(pi, queryString);
+		
+		queryString.put("pi", pi);
+		queryString.put("list", list);
 	}
 
 	@Override

@@ -10,6 +10,6 @@ import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 
 public interface UsedProductService {
 	public int insertUsedProduct(Board b, UsedProduct uP, List<MultipartFile> imgList, String webPath, String serverFolderPath) throws Exception;
-	public List<UsedProduct> selectUsedProduct(Map<String, Object> queryString);
+	public void selectUsedProduct(Map<String, Object> queryString);
 	public UsedProduct selectUsedProductByBno(int bNo);
 }
