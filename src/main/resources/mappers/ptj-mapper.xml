@@ -144,12 +144,6 @@
 						VALUES(#{boardNo} , #{locationNo} , #{price} , #{startTime} , #{endTime} , #{locationCoordinate})
 </insert>
 
-<update id="deletePtj" parameterType="ptj">
-	UPDATE BOARD SET
-	STATUS = 'N'
-	WHERE BOARD_NO = #{boardNo}
-</update>
-
 <update id="updatePtj" parameterType="ptj">
 	UPDATE PART_TIME_JOB P
 	JOIN BOARD B

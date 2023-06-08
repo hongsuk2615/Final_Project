@@ -31,10 +31,6 @@ public class PtjDao {
 		return sqlSession.insert("ptjMapper.insertPtj" , p);
 	}
 	
-	public int deletePtj(int boardNo) {
-		return sqlSession.update("ptjMapper.deletePtj" , boardNo);
-	}
-	
 	public Ptj updateFormPtj(int boardNo) {
 		return sqlSession.selectOne("ptjMapper.updateFormPtj" , boardNo);
 	}

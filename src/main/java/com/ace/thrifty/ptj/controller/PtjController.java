@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.service.BoardService;
@@ -105,15 +106,28 @@ public class PtjController {
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		ptjService.insertPtj(b, p, image, webPath, serverFolderPath);
 		
-		return "redirect:/part_time_job/PTJList";
+		return "redirect:/ptj/ptjList";
 		
 	}
 	
 	@GetMapping("/ptj/ptjDelete")
-	public String deletePtj() {
-		return "redirect:/part_time_job/PTJList";			
+	@ResponseBody
+	public int deleteBoard(int boardNo, HttpSession session) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		System.out.println(loginUser);
+		if (loginUser == null) {
+			return -1;
+		} else {
+			Board board = new Board();
+			if (loginUser.getAuthority() == 0) {
+				board.setBoardNo(boardNo);
+			} else {
+				board.setBoardNo(boardNo);
+				board.setUserNo(loginUser.getUserNo());
+			}
+		return boardService.deleteBoard(board);
+		}
 	}
-	
 	
 	@GetMapping("/ptj/ptjUpdate/{boardNo}")
 	public String updatePtj(
