@@ -220,6 +220,7 @@ input:focus { outline: none; }
 </style>
 </head>
 <body>
+<form  action ="${pageContext.request.contextPath}/mypage/myUpdate" method="post">
     <div id="wrapper">
         <div id="header">
             <jsp:include page="../common/header.jsp"/>
@@ -258,19 +259,21 @@ input:focus { outline: none; }
                     <div class="personinfoborder">
 
                         <div class="classa">
-                            <input type="text" required class="inputa">
+                            <input type="text" required class="inputa" name="userId">
+                            
                             <label class="labela">아이디</label>
                             <span class="spana"></span>
                         </div>
 
                         <div class="classa">
-                            <input type="password" required class="inputa">
+                            <input type="password" required class="inputa" name="userPwd">
                             <label class="labela">비밀번호 변경</label>
                             <span class="spana"></span>
                         </div>
 
                         <div class="classa">
-                            <input type="password" required class="inputa">
+                            <input type="password" required class="inputa" name="userPwdcheck">
+                 
                             <label class="labela">비밀번호 변경 확인</label>
                             <span class="spana"></span>
                         </div>
@@ -280,32 +283,32 @@ input:focus { outline: none; }
 
 
                         <div class="classa">
-                            <input type="text" required class="inputa">
+                            <input type="text" required class="inputa" name="userName">
                             <label class="labela">이름</label>
                             <span class="spana"></span>
                         </div>
 
 
                         <div class="classa">
-                            <input type="text" required class="inputa">
+                            <input type="text" required class="inputa" name="nickName">
                             <label class="labela">닉네임</label>
                             <span class="spana"></span>
                         </div>
 
 
                         <div class="classa">
-                            <input type="text" required class="inputa">
+                            <input type="text" required class="inputa" name="phone">
                             <label class="labela">핸드폰</label>
                             <span class="spana"></span>
                         </div>
                         
                         <div class="classa">
-                            <input type="text" required class="inputa">
+                            <input type="text" required class="inputa" name="email">
                             <label class="labela">이메일</label>
                             <span class="spana"></span>
                         </div>
 
-                        <button type="button" class="btn btn-primary" id="button_modify">수정하기</button>
+                        <button type="submit" class="btn btn-primary" id="button_modify">수정하기</button>
                         <button type="button" class="btn btn-secondary" id="button_cancel">취소</button>
                     </div>
                     
@@ -336,34 +339,15 @@ input:focus { outline: none; }
 
         </div>
     </div>
-    
-	<script>
-	document.getElementById('button_modify').addEventListener('click', function(){
-    Swal.fire({
-  title: '정말 수정하시겠습니까?',
-  text: "ㅋ",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: '수정'
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  }
-})
-	})
-    
-    </script>
-
+   </form>
 
 <script>
     AOS.init();
-  </script>
+</script>
+
+
+
+
 </body>
 
 </html>
