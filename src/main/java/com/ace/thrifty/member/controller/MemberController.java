@@ -1,5 +1,7 @@
 package com.ace.thrifty.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,22 +42,26 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login")
-	public String loginMember(Member m, Model model) {
+	public String loginMember(Member m, Model model, HttpServletRequest request) {
 		System.out.println(m);
+		String referer = request.getHeader("Referer");
 		Member loginUser = memberService.loginMember(m);
 		if( loginUser != null) {
 			model.addAttribute("loginUser", loginUser);
-			return "redirect:/";
+			
 		}else {
 			model.addAttribute("alertMsg", "로그인 실패");
-			return "redirect:/";
+		
 		}
+		return "redirect:" + referer;
 	}
 	
 	@GetMapping("/logout")
-	public String logOut(SessionStatus status) {
+	public String logOut(SessionStatus status, HttpServletRequest request) {
+		String referer = request.getHeader("Referer");
+		System.out.println(referer);
 		status.setComplete();
-		return "redirect:/";
+		return "redirect:" + referer;
 	}
 	
 	@GetMapping("/validateId")

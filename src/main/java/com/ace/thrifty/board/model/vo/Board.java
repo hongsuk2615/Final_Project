@@ -32,4 +32,6 @@ public class Board {
 	
 	private ArrayList<Image> imgList;
 	private ArrayList<Co_purchase> coPurchaseList;
+	private String status;
+	
 }

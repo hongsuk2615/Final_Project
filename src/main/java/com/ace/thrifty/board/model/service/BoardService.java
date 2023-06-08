@@ -17,4 +17,5 @@ public interface BoardService {
 	public List<Location> selectLocationList();
 	public int insertBoard(Board b);
 	public int insertImageList(ArrayList<Image> imageList);
+	public int deleteBoard(Board b);
 }

@@ -89,4 +89,19 @@ public class PtjServiceImpl implements PtjService {
 		return boardNo;
 	}
 	
+	public int deletePtj(int boardNo) {
+		
+		return ptjDao.deletePtj(boardNo);
+		
+	}
+	
+	public Ptj updateFormPtj(int boardNo) {
+		return ptjDao.updateFormPtj(boardNo);
+	}
+	
+	public int updatePtj(Ptj p) {
+		return ptjDao.updatePtj(p);
+		
+	}
+	
 }

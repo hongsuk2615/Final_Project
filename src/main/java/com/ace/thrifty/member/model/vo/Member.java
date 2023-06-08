@@ -24,6 +24,7 @@ public class Member {
 	private int reportCount;
 	private String currentLogin;
 	private Date joinDate;
+	private int authority;
 	private String status;
 	
 	
