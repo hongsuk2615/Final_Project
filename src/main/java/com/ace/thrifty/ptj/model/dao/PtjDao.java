@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.ptj.model.vo.Ptj;
 
 @Repository
@@ -41,6 +42,10 @@ public class PtjDao {
 	
 	public int workEnd(Ptj p) {
 		return sqlSession.update("ptjMapper.workEnd" , p);
+	}
+	
+	public int deleteImage(Board b) {
+		return sqlSession.update("ptjMapper.deleteImage", b);
 	}
 
 }

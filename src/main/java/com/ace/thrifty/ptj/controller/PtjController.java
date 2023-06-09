@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ace.thrifty.board.model.service.BoardService;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
+import com.ace.thrifty.common.Utils;
 import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.ptj.model.service.PtjService;
 import com.ace.thrifty.ptj.model.vo.Ptj;
@@ -43,11 +44,9 @@ public class PtjController {
 
 		List<Ptj> pList = ptjService.selectPtjAll();
 		model.addAttribute("pList", pList);
-		System.out.println(pList);
 		String webPath = "/resources/upfiles/ptj/";
 		model.addAttribute("webPath" , webPath);
 		return "part_time_job/PTJList";
-
 	}
 
 	/*
@@ -94,10 +93,11 @@ public class PtjController {
 	
 	@PostMapping("/ptj/ptjList/enroll")
 	public String insertPtj(HttpSession session,
-							Board b ,
-							Ptj p ,
-							@RequestParam(value="img" , required = false) List<MultipartFile> image ) throws Exception {
+							Board b,
+							Ptj p,
+							@RequestParam(value="img" , required = false) MultipartFile image ) throws Exception {
 		Member loginUser = (Member)session.getAttribute("loginUser");
+
 		b.setCategoryUNo(5);
 		b.setUserNo(loginUser.getUserNo());
 		String webPath = "/resources/upfiles/ptj/";
@@ -133,9 +133,31 @@ public class PtjController {
 	}
 	
 	@PostMapping("/ptj/ptjUpdate")
-	public String update(@ModelAttribute Ptj p) {
-		ptjService.updatePtj(p);
-		return "redirect:/part_time_job/PTJList";
+	public String update(HttpSession session,
+						 Ptj p ,
+						 Board b,
+						 @RequestParam(value="img" , required = false) MultipartFile image ) throws Exception {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		/*
+		 * System.out.println(p); System.out.println(b);
+		 */
+		b.setCategoryUNo(5);
+		b.setUserNo(loginUser.getUserNo());
+		String webPath = "/resources/upfiles/ptj/";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		Image img = new Image();
+		if(!image.isEmpty()) {
+			String changeName = Utils.saveFile(image, serverFolderPath);
+			img.setOriginName(image.getOriginalFilename());
+			img.setChangeName(changeName);
+			img.setFileLevel(0);
+			img.setBoardNo(p.getBoardNo());
+		}
+		System.out.println(b);
+		System.out.println(p);
+		System.out.println(img);
+		ptjService.updatePtj(p, b, img, webPath, serverFolderPath);
+		return "redirect:/ptj/ptjList";
 	}
 	
 	@GetMapping("/ptj/workEnd")

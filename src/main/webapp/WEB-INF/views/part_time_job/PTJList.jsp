@@ -69,20 +69,12 @@
                 <div id="ptj-allBody" style="height: 1000px;">
                 <!-- <input type="hidden" name="boardNo"> -->
                 	<c:forEach var="ptjList" items="${pList }" begin="0" end="8" step="1" >
-                		<c:choose>
-                			<c:when test="${ptjList.board.status == 'Y' }">
-		               			<div style="width: 200px; height: 300px;" class="list-detail" onclick="a(${ptjList.boardNo})">
-			               				<img src="${contextPath }${webPath }${ptjList.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>
-	               						<p style="display: none;">${ptjList.boardNo }</p>
-	               						<p style="text-align: center;">${ptjList.board.title }</p>
-	               						<p style="text-align: center;">${ptjList.board.content }</p>
-	               				</div>                				
-                			</c:when>
-                			<c:when test="${ptjList.board.status == 'N' }">
-                				<div style="display: none;" class="list-detail">
-	               				</div>
-                			</c:when>
-                		</c:choose>
+               			<div style="width: 200px; height: 300px;" class="list-detail" onclick="a(${ptjList.boardNo})">
+               				<img src="${contextPath }${webPath }${ptjList.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>
+       						<p style="display: none;">${ptjList.board.boardNo }</p>
+       						<p style="text-align: center;">제목 :${ptjList.board.title }</p>
+       						<p style="text-align: center;">${ptjList.board.content }</p>
+           				</div>
        				</c:forEach>
                 </div>
                 <div id="paging">
@@ -104,7 +96,7 @@
 	   		location.href = "${contextPath}/ptj/ptjDetail/"+boardNo;
    	}
    	
-   	
+
 </script>
 </body>
 </html>

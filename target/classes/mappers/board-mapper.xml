@@ -156,4 +156,12 @@
 		  </if>
 	</update>
 	
+	<update id="updateBoard" parameterType="board">
+		UPDATE BOARD
+		   SET
+			   TITLE = #{title},
+			   CONTENT = #{content}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
 </mapper>

@@ -65,7 +65,6 @@
                 <div id="enroll-category">
                     <div style="width: 500px;">
                         <h1>${p.subCategory.categorySName } 게시글</h1>
-                        <h1>${p.member.userNo }</h1>
                     </div>
                     <div id="enroll-update">
                         <button style="border: 0;" id="update-btn">수정하기</button>
