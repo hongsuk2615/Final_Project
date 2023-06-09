@@ -34,7 +34,7 @@
 		<result column="LOCATION_NAME" property="locationName"/>
 	</resultMap>
 	
-	<select id="selectBoard" resultMap="boardResultSet">
+	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
 		SELECT *
 		  FROM BOARD
 		 WHERE BOARD_NO = #{boardNo}
@@ -76,8 +76,8 @@
 	
 	<select id="selectUpperCategoryList" resultMap="upperCategoryResultSet">
 		SELECT *
-		  FROM UPPER_CATEGORY;
-		
+		  FROM UPPER_CATEGORY
+	  WHERE CATEGORY_U_NO != 9
 	</select>
 	
 	
@@ -90,6 +90,7 @@
 	<select id="selectSubCategoryList" resultMap="subCategoryResultSet">
 		SELECT *
 		  FROM SUB_CATEGORY
+	  WHERE CATEGORY_U_NO != 9
 	</select>
 	
 	<select id="selectLocationList" resultMap="locationResultSet">

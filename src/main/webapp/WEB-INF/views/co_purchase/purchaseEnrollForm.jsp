@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="/thrifty/resources/css/co_purchase/purchaseEnrollForm.css">
+    <link rel="stylesheet" href="${ contextPath }/resources/css/co_purchase/purchaseEnrollForm.css">
     <style>
         *{
             /* border: 1px solid blue !important; */
@@ -115,6 +115,6 @@
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
-    <script type="text/javascript" src="/thrifty/resources/js/co_purchase/enrollForm.js"></script>
+    <script type="text/javascript" src="${ contextPath }/resources/js/co_purchase/enrollForm.js"></script>
 </body>
 </html>

@@ -4,11 +4,11 @@
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<script src="/thrifty/resources/js/admin/jquery.min.js"></script>
+<script src="${contextPath}/resources/js/admin/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/thrifty/resources/js/admin/bootstrap.bundle.min.js"></script>
+<script src="${contextPath}/resources/js/admin/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/thrifty/resources/js/admin/adminlte.min.js"></script>
+<script src="${contextPath}/resources/js/admin/adminlte.min.js"></script>
 <!-- sweeetalert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

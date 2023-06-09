@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/thrifty/resources/css/co_purchase/purchaseDetail.css">
+    <link rel="stylesheet" href="${ contextPath }/resources/css/co_purchase/purchaseDetail.css">
     <style>
         *{
             /* border: 1px solid blue !important; */
@@ -55,14 +55,14 @@
                     <div id="detail_header_1">
                         <div id="detail_header_1_title">넷플릭스 패밀리 2명 구합니다</div> <!-- 글 제목 -->
                         <div class="flex">
-                            <img src="/thrifty/resources/images/main/icon/alarm.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;">
+                            <img src="${ contextPath }/resources/images/main/icon/alarm.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;">
                             <div>신고</div>
                         </div>
                     </div>
                     <div id="profile" class="flex">
                         <div id="profile_1" class="flex">
                             <div id="profile_img">
-                                <img src="/thrifty/resources/hong.png" alt="" style="width: 40px; height: 40px; border-radius: 100px;">
+                                <img src="${ contextPath }/resources/hong.png" alt="" style="width: 40px; height: 40px; border-radius: 100px;">
                             </div> <!-- 프로필 -->
                             <div id="nickname">김김홍홍석석</div>
                         </div>
@@ -88,7 +88,7 @@
                 <div id="detail_body">
                     <div id="body_description" class="flex">
                         <div id="body_description_1">
-                            <img src="/thrifty/resources/NETFLIX.png" id="body_img" alt="">
+                            <img src="${ contextPath }/resources/NETFLIX.png" id="body_img" alt="">
                         </div>
                         <div id="body_description_2">
                             <div id="body_description_content">

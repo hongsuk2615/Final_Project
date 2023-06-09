@@ -20,18 +20,15 @@ public class BoardDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public Board selectBoard() {
-		return sqlSession.selectOne("boardMapper.selectBoard");
-	}
-	
+	public Board selectBoard(int boardNo) {
+		return sqlSession.selectOne("boardMapper.selectBoard", boardNo);
+	}	
 	
 	public int sgInsertBoard(Board b) {
 		return sqlSession.insert("boardMapper.sgInsertBoard", b);
 	}
 	
-	
 		
-	 
 //	public int insertBoard(Board b, SmallGroup sg) {
 //		return sqlSession.insert("boardMapper.insertBoard", b, sg);
 //	}

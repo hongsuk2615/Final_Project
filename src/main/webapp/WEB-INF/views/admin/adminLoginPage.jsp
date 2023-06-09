@@ -15,7 +15,7 @@
 				<img alt="" src="/thrifty/resources/images/main/icon/logo2.1.png" width="160px" height="160px">
 			</div>
 			<div class="card-body">
-				<form action="${pageContext.request.contextPath}/admin/login" method="post">
+				<form action="${contextPath}/admin/login" method="post">
 					<h1 class="mb-4 text-bold text-center">LOGIN</h1>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
@@ -37,9 +37,6 @@
 						<button type="submit" class="btn btn-primary btn-block text-bold">로그인</button>
 					</div>
 				</form>
-<!-- 				<p class="mb-1"> -->
-<!-- 					<a href="forgot-password.html">I forgot my password</a> -->
-<!-- 				</p> -->
 			</div>
 		</div>
 	</div>

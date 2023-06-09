@@ -2,6 +2,12 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	
+<!-- 	<settings> -->
+<!-- 		<setting name="logImpl" value="LOG4J"/> -->
+<!-- 		<setting name="jdbcTypeForNull" value="NULL"/> -->
+<!-- 	</settings> -->
+
+	
 	<typeAliases>
 		<typeAlias type="com.ace.thrifty.member.model.vo.Member" alias="member"/>
 		<typeAlias type="com.ace.thrifty.board.model.vo.Board" alias="board"/>
@@ -16,6 +22,8 @@
 		<typeAlias type="com.ace.thrifty.board.model.vo.Location" alias="location"/>
 		<typeAlias type="com.ace.thrifty.usedProduct.model.vo.UsedProduct" alias="usedProduct"/>
 		<typeAlias type="com.ace.thrifty.co_purchase.model.vo.Co_purchase" alias="co_purchase"/>
+		<typeAlias type="com.ace.thrifty.common.model.vo.Coordinate" alias="coordinate"/>
+		<typeAlias type="com.ace.thrifty.admin.model.vo.Notice" alias="notice"/>
 		<typeAlias type="com.ace.thrifty.wishList.model.vo.WishList" alias="wishList"/>
 		<typeAlias type="com.ace.thrifty.message.model.vo.Message" alias="message"/>
 	</typeAliases>

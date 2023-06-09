@@ -15,6 +15,34 @@
 		<result column="CURRENT_LOGIN" property="currentLogin"/>
 		<result column="JOIN_DATE" property="joinDate"/>
 	</resultMap>
+	
+	<resultMap type="notice" id="noticeResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="CATEGORY_S_NO"  property="categorySNo"/>
+		<result column="CONTENT"  property="content"/>
+		<result column="CREATE_DATE"  property="createDate"/>
+		<result column="READ_COUNT"  property="readCount"/>
+		<result column="REPORT_COUNT"  property="reportCount"/>
+		<result column="TITLE"  property="title"/>
+		<result column="USER_NO"  property="userNo"/>
+		<result column="WISH_COUNT"  property="wishCount"/>
+		<result column="STATUS" property="status"/>
+		<association property="member" resultMap="memberResultSet"/>
+		<association property="upperCategory" resultMap="upperCategoryResultSet"/>
+		<association property="subCategory" resultMap="subCategoryResultSet"/>
+	</resultMap>
+	
+	<resultMap type="upperCategory" id="upperCategoryResultSet">
+		<id column="CATEGORY_U_NO" property="categoryUNo"/>
+		<result column="CATEGORY_U_NAME" property="categoryUName"/>
+		<result column="CATEGORY_PATH" property="categoryPath"/>
+	</resultMap>
+	
+	<resultMap type="subCategory" id="subCategoryResultSet">
+		<id column="CATEGORY_S_NO" property="categorySNo"/>
+		<result column="CATEGORY_U_NO" property="categoryUNo"/>
+		<result column="CATEGORY_S_NAME" property="categorySName"/>
+	</resultMap>
 
 	<select id="loginAdmin" parameterType="member" resultMap="memberResultSet">
 		SELECT * 
@@ -25,12 +53,52 @@
 		  AND STATUS = 'Y'
 	</select>
 	
-	<select id="memberList" resultMap="memberResultSet">
+	<select id="selectMemberListCount" resultType="int" parameterType="map">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE AUTHORITY = 1
+		<choose>
+			<when test="tab == 'active'">
+				AND STATUS = 'Y'
+				AND IS_BANNED = 'N'
+			</when>
+			<when test="tab == 'suspend'">
+				AND STATUS = 'N'
+				AND IS_BANNED = 'N'
+			</when>
+			<when test="tab == 'banned'">
+				AND IS_BANNED = 'Y'
+			</when>
+		</choose>
+		 <if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND USER_ID LIKE #{searchPattern}
+		 	OR NICK_NAME LIKE #{searchPattern}
+		 </if>
+	</select>
+	
+	<select id="memberList" resultMap="memberResultSet" parameterType="map">
 		SELECT * 
 		FROM MEMBER
 		WHERE AUTHORITY = 1
-		  AND STATUS = 'Y'
-		ORDER BY CURRENT_LOGIN DESC
+		<choose>
+			<when test="tab == 'active'">
+				AND STATUS = 'Y'
+				AND IS_BANNED = 'N'
+			</when>
+			<when test="tab == 'suspend'">
+				AND STATUS = 'N'
+				AND IS_BANNED = 'N'
+			</when>
+			<when test="tab == 'banned'">
+				AND IS_BANNED = 'Y'
+			</when>
+		</choose>
+		 <if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND USER_ID LIKE #{searchPattern}
+		 	OR NICK_NAME LIKE #{searchPattern}
+		 </if>
+		ORDER BY CURRENT_LOGIN DESC,STATUS DESC, IS_BANNED ASC
 	</select>
 	
 	<select id="selectInfoBox" resultType="hashmap">
@@ -39,26 +107,61 @@
 	       (SELECT COUNT(*) FROM MEMBER WHERE IS_BANNED = 'Y' AND AUTHORITY = '1') as 'ban',
 	       (SELECT COUNT(*) FROM MEMBER WHERE STATUS = 'N' AND AUTHORITY = '1') as 'suspend'
 		FROM MEMBER
-		WHERE AUTHORITY = '1';
+		WHERE AUTHORITY = '1'
 	</select>
 	
-	<select id="memberListAjax" resultMap="memberResultSet" parameterType="String">
-		SELECT *
-		FROM MEMBER
-		WHERE AUTHORITY = 1
+	<update id="memberStatusUpdate" parameterType="map">
+		UPDATE MEMBER SET
 		<choose>
-			<when test="tab == 'memberActive'">
-				AND STATUS = 'Y'
-				AND IS_BANNED = 'N'
+			<when test="statusVal == 'active'">
+				STATUS = 'Y',
+				IS_BANNED = 'N'
 			</when>
-			<when test="tab == 'memberSuspend'">
-				AND STATUS = 'N'
-				AND IS_BANNED = 'N'
+			<when test="statusVal == 'suspend'">
+				STATUS = 'N',
+				IS_BANNED = 'N'
 			</when>
-			<when test="tab == 'memberBanned'">
-				AND IS_BANNED = 'Y'
+			<when test="statusVal == 'banned'">
+				IS_BANNED = 'Y'
 			</when>
 		</choose>
-		ORDER BY CURRENT_LOGIN DESC
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<select id="subCatList" resultMap="subCategoryResultSet">
+		SELECT *
+		FROM SUB_CATEGORY
+		WHERE CATEGORY_U_NO = 1
+	</select>
+	
+	<select id="selectNoticeListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM BOARD B
+        JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+		WHERE  B.CATEGORY_U_NO = 1
+		<if test="catUNo != 0">
+			AND SC.CATEGORY_S_NO = #{catUNo}
+		</if>
+	 	<if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND B.TITLE LIKE #{searchPattern}
+		</if>
+	</select>
+	
+	<select id="noticeList" resultMap="noticeResultSet" parameterType="map">
+		SELECT B.BOARD_NO, SC.CATEGORY_S_NAME, B.TITLE, M.NICK_NAME, B.CREATE_DATE, B.READ_COUNT, B.STATUS
+		FROM BOARD B
+		JOIN MEMBER M ON B.USER_NO = M.USER_NO
+		JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
+		JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+		WHERE B.CATEGORY_U_NO = 1
+		<if test="catUNo != 0">
+			AND B.CATEGORY_S_NO = #{catUNo}
+		</if>
+		<if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND B.TITLE LIKE #{searchPattern}
+		</if>
+		ORDER BY B.CREATE_DATE DESC
 	</select>
 </mapper>
