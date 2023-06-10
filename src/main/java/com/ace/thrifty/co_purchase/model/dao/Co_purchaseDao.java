@@ -22,26 +22,19 @@ public class Co_purchaseDao {
 		return sqlSession.insert("co_purchaseMapper.insertCo_purchase", co);
 	}
 	
-	public int selectBoardListCount(String categoryPath) {
-		return sqlSession.selectOne("co_purchaseMapper.selectBoardListCount", categoryPath);
+	public int selectBoardListCount() {
+		return sqlSession.selectOne("co_purchaseMapper.selectBoardListCount");
 	}
 	
-	public ArrayList<Board> selectBoardList(PageInfo pi, String categoryPath) {
+	public ArrayList<Board> selectCoPurchaseList(PageInfo pi) {
 		
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardList", categoryPath, rowBounds);
+		return (ArrayList)sqlSession.selectList("co_purchaseMapper.selectCoPurchaseList", rowBounds);
 	}
 
-	public ArrayList<Image> selectImgList() {
-		return (ArrayList)sqlSession.selectList("co_purchaseMapper.selectImgList");
-	}
-	
-	public ArrayList<Co_purchase> selectCoList() {
-		return (ArrayList)sqlSession.selectList("co_purchaseMapper.selectCoList");
-	}
 	
 }
