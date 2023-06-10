@@ -10,10 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ace.thrifty.admin.model.vo.Notice;
 import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.common.Utils;
+import com.ace.thrifty.common.model.vo.PageInfo;
+import com.ace.thrifty.common.template.Pagination;
+import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.ptj.model.dao.PtjDao;
 import com.ace.thrifty.ptj.model.vo.Ptj;
 
@@ -25,12 +29,8 @@ public class PtjServiceImpl implements PtjService {
 	
 	@Autowired
 	BoardDao boardDao;
-//	
-//	@Override
-//	public Ptj selectPtj() {
-//		Ptj p = ptjDao.selectPtj();
-//		return p;
-//	}
+
+	private Pagination pageination;
 	
 	@Override
 	public Ptj selectPtjDetail(int boardNo) {
@@ -40,17 +40,19 @@ public class PtjServiceImpl implements PtjService {
 	}
 	
 
-	public List<Ptj> selectPtj(String categorySNo) {
-		
-		return ptjDao.selectPtj(categorySNo);
-	}
+	/*
+	 * public List<Ptj> selectPtj(String categorySNo) {
+	 * 
+	 * return ptjDao.selectPtj(categorySNo); }
+	 */
 	
-	@Override
-	public List<Ptj> selectPtjAll() {
-		
-		return ptjDao.selectPtjAll();
-		
-	}
+	
+	 @Override public List<Ptj> selectPtjAll() {
+	 
+		 return ptjDao.selectPtjAll();
+	  
+	 }
+	 
 	
 	@Transactional(rollbackFor = {Exception.class})
 	@Override
@@ -101,12 +103,10 @@ public class PtjServiceImpl implements PtjService {
 		System.out.println(result2);
 		if(p.getImgPath() != null) {
 			ptjDao.deleteImage(b);
-			System.out.println("dd");
 		}
 		
 		if(img != null) {
 			boardDao.insertImage(img);
-			System.out.println("ss");
 		}
 		return 0;
 	}
@@ -117,5 +117,23 @@ public class PtjServiceImpl implements PtjService {
 	public int workEnd(Ptj p) {
 		return ptjDao.workEnd(p);
 	}
+	
+	/*
+	 * @Override public void ptjBoardPaging(Map<String, Object> map, Map<String,
+	 * Object> paramMap) {
+	 * 
+	 * int listCount = ptjDao.selectPtjBoardListCount(paramMap); Integer currentPage
+	 * = Integer.parseInt((String)paramMap.get("currentPage")); int pageLimit = 5;
+	 * int boardLimit = 9;
+	 * 
+	 * PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit,
+	 * boardLimit);
+	 * 
+	 * List<Ptj> list = ptjDao.selectPtjAll(pi, paramMap);
+	 * 
+	 * map.put("pi", pi); map.put("list", list);
+	 * 
+	 * }
+	 */
 	
 }

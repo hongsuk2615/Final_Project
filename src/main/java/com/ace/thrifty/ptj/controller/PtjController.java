@@ -1,7 +1,9 @@
 package com.ace.thrifty.ptj.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ace.thrifty.board.model.service.BoardService;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
+import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.common.Utils;
 import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.ptj.model.service.PtjService;
@@ -31,36 +34,34 @@ public class PtjController {
 	@Autowired
 	private PtjService ptjService;
 
-
+	@Autowired
+	private BoardService boardService;
 //		private static final Logger logger = LoggerFactory.getLogger(PtjController.class);
 
 	@GetMapping("/ptj")
-	public String ptjMain() {
-		return "part_time_job/PTJMain";
-	}
-
-	@GetMapping("/ptj/ptjList")
-	public String ptjList(Model model) {
-
-		List<Ptj> pList = ptjService.selectPtjAll();
-		model.addAttribute("pList", pList);
+	public String ptjMain(Model model) {
+		List<Ptj> p = ptjService.selectPtjAll();
+		model.addAttribute("p" , p);
 		String webPath = "/resources/upfiles/ptj/";
 		model.addAttribute("webPath" , webPath);
-		return "part_time_job/PTJList";
+		System.out.println(p);
+		return "part_time_job/PTJMain";
+		
 	}
 
-	/*
-	 * @GetMapping("/ptj/ptjList") public String ptjSubCategory( String subCategory,
-	 * Model model ) { if(subCategory != null) { List<Ptj> bList =
-	 * ptjService.selectPtjSubCategory(subCategory); model.addAttribute("bList" ,
-	 * bList); } else { List<Ptj> bList = ptjService.selectPtjAll();
-	 * model.addAttribute("bList" , bList); }
-	 * 
-	 * 
-	 * return "part_time_job/PTJList";
-	 * 
-	 * }
-	 */
+	
+	 @GetMapping("/ptj/ptjList") 
+	 public String ptjList(Model model) {
+	 
+		 List<Ptj> pList = ptjService.selectPtjAll();
+		 model.addAttribute("pList",pList); 
+		 String webPath = "/resources/upfiles/ptj/";
+		 model.addAttribute("webPath" , webPath);
+		 
+		 return "part_time_job/PTJList"; 
+	 
+	 }
+	
 
 	@GetMapping("/ptj/ptjDetail/{boardNo}")
 	public String selectPtjDetail(Model model, @PathVariable("boardNo") int boardNo) {
@@ -95,9 +96,9 @@ public class PtjController {
 	public String insertPtj(HttpSession session,
 							Board b,
 							Ptj p,
-							@RequestParam(value="img" , required = false) MultipartFile image ) throws Exception {
+							@RequestParam(value="img" , required = false) MultipartFile image) throws Exception {
+		
 		Member loginUser = (Member)session.getAttribute("loginUser");
-
 		b.setCategoryUNo(5);
 		b.setUserNo(loginUser.getUserNo());
 		String webPath = "/resources/upfiles/ptj/";
@@ -107,6 +108,24 @@ public class PtjController {
 		return "redirect:/ptj/ptjList";
 		
 	}
+	
+//	@GetMapping("/ptj/ptjList")
+//	public String ptjListPaging(Model model , @RequestParam Map<String, Object> paramMap) {
+//		
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("pList", )
+//		List<Ptj> pList = ptjService.selectPtjAll(); 
+//		model.addAttribute("pList", pList); 
+//		String webPath = "/resources/upfiles/ptj/";
+//		model.addAttribute("webPath" , webPath);
+//		ptjService.ptjBoardPaging(map, paramMap);
+//		map.put("pList", pList);
+//		
+//		model.addAttribute("contents", "ptj");
+//		model.addAttribute("map", map);
+//		
+//		return "part_time_job/PTJList";
+//	}
 	
 	/*
 	 * @GetMapping("/ptj/ptjDelete")
@@ -178,8 +197,13 @@ public class PtjController {
 		}
 	}
 	
-	/*
-	 * @GetMapping("/ptj") public String updatePtj(Ptj p , Model model) {
-	 * ptjService.updatePtj(p); return "part_time_job/PTJUpdateForm"; }
-	 */
+/*	@GetMapping("/ptj/ptjList") 페이징 처리는 내일.;;;;
+	public String paging(Model model,
+						 @RequestParam(value="page" , required = false , defaultValue = "1") int page) {
+		// 해당 페이지에 보여줄 글 목록
+		List<Ptj> pList = ptjService.selectPtjAll(page);
+		return "part_time_job/PTJList";
+	}*/
+						
+	
 }

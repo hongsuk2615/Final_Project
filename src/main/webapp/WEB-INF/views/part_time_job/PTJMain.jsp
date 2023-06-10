@@ -62,7 +62,7 @@
 <body>
     <div id="wrapper">
 			<jsp:include page="../common/header.jsp" />
-        <div id="body">
+        <div id="body" style="padding-top: 150px;">
             <div id="body-search">
                 <swiper-container class="mySwiper" navigation="true" style="border-radius: 30px; --swiper-navigation-color: white;">
                     <swiper-slide><img src="/thrifty/resources/images/ptj/ptj.jpg"></swiper-slide>
@@ -78,15 +78,12 @@
             </div>
             <div id="body1">
 				<div id="simburum">
-                    <button style="width: 300px; height: 200px;" id="simburum-btn">
-                        <img src="/thrifty/resources/images/ptj/house.png" style="width: 64px; height: 64px;"><br>
-                        <p style="color: white;">심부름 서비스</p>
-                    </button>
-				</div>
-				<div id="alba">
-					<button style="width: 300px; height: 200px;" id="alba-btn">
-                        <img src="/thrifty/resources/images/ptj/part-time.png">
-                        <p style="color: white;">대타 구하기</p>
+                    <button style="width: 900px; height: 200px; border: 0;" id="simburum-btn">
+                    	<div style="width: 500px;" id="simburum-img">
+    	                   	<img src="/thrifty/resources/images/ptj/house.png" style="width: 64px; height: 64px;">
+	                        <img src="/thrifty/resources/images/ptj/part-time.png"><br>
+                    	</div>
+                        <p style="color: white;">심부름 서비스 / 대타 구하기</p>
                     </button>
 				</div>
             </div>
@@ -114,30 +111,17 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div style="height: 450px">
             <h2 style="margin-left: 250px;">최신 심부름 / 알바 게시글</h2>
             <div id="alba-board">
-                <div>
-                    <img src="/thrifty/resources/images/ptj/alba1.png">
-                    <p><b>3명 모집중</b></p>
-                    <p>알바생 구해요~ 역삼역 근처</p>
-                </div>
-                <div>
-                    <img src="/thrifty/resources/images/ptj/alba1.png">
-                    <p><b>3명 모집중</b></p>
-                    <p>알바생 구해요~ 역삼역 근처</p>
-                </div>
-                <div>
-                    <img src="/thrifty/resources/images/ptj/alba1.png">
-                    <p><b>3명 모집중</b></p>
-                    <p>알바생 구해요~ 역삼역 근처</p>
-                </div>
-                <div>
-                    <img src="/thrifty/resources/images/ptj/alba1.png">
-                    <p><b>3명 모집중</b></p>
-                    <p>알바생 구해요~ 역삼역 근처</p>
-                </div>
-            </div>
+            	<c:forEach var="p" items="${p }" begin="0" end="3" step="1">
+	                <div>
+	                    <img src="${contextPath }${webPath }${p.imgPath }" style="width: 230px; height: 180px;">
+	                    <p>${p.isEnd == "N" ? "모집중" : "모집 완료" }</p>
+	                    <p>${p.board.content }</p>
+	                </div>
+            	</c:forEach>
+            </div> 
         </div>
 
         <div id="footer">

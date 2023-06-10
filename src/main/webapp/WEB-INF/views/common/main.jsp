@@ -62,7 +62,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="/thrifty/carpool/">
+                    <a href="/thrifty/carPool/">
                         <img src="/thrifty/resources/images/main/icon/car-sharing.png" class="main_menu_icon" alt="">
                         <div>카풀</div>
                     </a>

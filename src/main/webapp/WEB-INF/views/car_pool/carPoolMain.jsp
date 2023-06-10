@@ -42,7 +42,7 @@
         <jsp:include page="../common/header.jsp"/>
         <div id="body">
             <div id="car-pool-body">
-                <form>
+                <%-- <form action="${contextPath }/carPool/"> --%>
                     <div id="car-pool-title">
                         <div id="bg">
                             <div id="car-pool-service">
@@ -115,8 +115,8 @@
                             <button>평택시</button>
                             <button>안성시</button>
                         </div> -->
-                    </div>
-                </form>
+                <!-- </form> -->
+			</div>
             </div>
             <div id="car-pool-footer">
                 <div id="car-pool-footer1" data-aos="fade-left">
@@ -154,7 +154,6 @@
 
 
         </div>
-    </div>
 
 <script>
     $("#location-search-btn").click(function(){
@@ -170,6 +169,16 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
+</script>
+
+<script>
+	document.getElementById("drive").addEventListener("click",function(){
+       location.href = "/thrifty/carPool/drive";
+  	})
+  	
+  	document.getElementById("occupant").addEventListener("click",function(){
+       location.href = "/thrifty/carPool/occupant";
+  	})
 </script>
 </body>
 </html>

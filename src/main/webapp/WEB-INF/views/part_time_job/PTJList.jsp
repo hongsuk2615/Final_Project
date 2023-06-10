@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pi" value="${map.pi}" />
+<c:set var="list" value="${map.list}" />
+<c:set var="currentTab" value="${map.tab}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,9 +80,53 @@
            				</div>
        				</c:forEach>
                 </div>
-                <div id="paging">
-                    <p style="text-align: center;">< 1 2 3 4 ></p>
-                </div>
+                
+                <div class="row">
+					<div class="col-sm-12 col-md-7">
+						<div class="dataTables_paginate paging_simple_numbers">
+							<ul class="pagination">
+								<c:choose>
+									<c:when test="${pi.currentPage eq 1}">
+										<li class="paginate_button page-item previous disabled">
+											<a href="ptjList?tab=${currentTab}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li class="paginate_button page-item previous">
+											<a href="ptjList?tab=${currentTab}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
+										</li>
+									</c:otherwise>
+								</c:choose>
+								<c:forEach var="item" begin="${pi.startPage}" end="${pi.endPage}">
+									<c:choose>
+										<c:when test="${pi.currentPage == item}">
+											<li class="paginate_button page-item active">
+												<a href="ptjList?tab=${currentTab}&currentPage=${item}" class="page-link">${item}</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li class="paginate_button page-item">
+												<a href="ptjList?tab=${currentTab}&currentPage=${item}" class="page-link">${item}</a>
+											</li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:choose>
+									<c:when test="${pi.currentPage eq pi.maxPage}">
+										<li class="paginate_button page-item next disabled">
+											<a href="ptjList?tab=${currentTab}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li class="paginate_button page-item next">
+											<a href="ptjList?tab=${currentTab}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
+										</li>
+									</c:otherwise>
+								</c:choose>
+							</ul>
+						</div>
+					</div>
+			</div>
             </div>
         </div>
 

@@ -68,7 +68,7 @@
                 </div>
                 <hr>
                 <div id="enroll">
-                    <!-- <form> -->
+                    <form action="/thrifty/carPool/enroll" method="post">
                         <div id="enroll-header">
                             <h2>제목 : &nbsp;<input name="enrollTitle" id="enroll-title" required placeholder="제목을 적어주세요."></h2><br>
                             <h3 id="enroll-content">내용 :  &nbsp;<textarea name="enrollContent" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required placeholder="날짜와 내용을 적어주세요."></textarea></h3>
@@ -163,7 +163,7 @@
                         <div id="enroll-footer">
                             <button id="carpool-enroll-btn">게시글 등록하기</button>
                         </div>
-                    <!-- </form> -->
+                    </form>
                 </div>
             </div>
             <!-- <div id="map" style="width:100%;height:350px;"></div> -->

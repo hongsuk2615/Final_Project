@@ -177,4 +177,11 @@
 	   SET STATUS = 'N'
 	WHERE BOARD_NO = #{boardNo}
 </update>
+
+<select id="selectPtjBoardListCount" resultType="int">
+	SELECT COUNT(*) FROM PART_TIME_JOB P
+	JOIN BOARD B ON B.BOARD_NO = P.BOARD_NO
+	LEFT JOIN thrifty.UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
+	WHERE B.STATUS = 'Y' AND  UC.CATEGORY_U_NO = 5
+</select>
 </mapper>

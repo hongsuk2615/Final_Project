@@ -2,6 +2,7 @@ package com.ace.thrifty.ptj.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +15,8 @@ public interface PtjService {
 	public Ptj selectPtjDetail(int boardNo);
 	
 	public List<Ptj> selectPtjAll();
+	
+	/* public void ptjBoardPaging(Map<String, Object> paramMap); */
 	
 	public int insertPtj(Board b, Ptj p, MultipartFile image , String webPath , String serverFolderPath) throws Exception;
 	
