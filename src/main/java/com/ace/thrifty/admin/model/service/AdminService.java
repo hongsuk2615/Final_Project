@@ -27,4 +27,11 @@ public interface AdminService {
 	
 	int enrollInsert(Board b);
 	
+	int enrollUpdate(Board b);
+	
+	List<SubCategory> subCatList(int catUNo);
+	
+	Board enrollSelect(int boardNo);
+	
+	
 }

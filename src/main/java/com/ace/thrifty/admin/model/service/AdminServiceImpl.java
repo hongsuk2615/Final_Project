@@ -112,4 +112,22 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.enrollInsert(b);
 	}
 
+
+	@Override
+	public List<SubCategory> subCatList(int catUNo) {
+		return adminDao.subCatList(catUNo);
+	}
+
+
+	@Override
+	public Board enrollSelect(int boardNo) {
+		return adminDao.enrollSelect(boardNo);
+	}
+
+
+	@Override
+	public int enrollUpdate(Board b) {
+		return adminDao.enrollUpdate(b);
+	}
+
 }

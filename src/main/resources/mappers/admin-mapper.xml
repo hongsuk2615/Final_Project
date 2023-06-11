@@ -44,6 +44,21 @@
 		<result column="CATEGORY_S_NAME" property="categorySName"/>
 	</resultMap>
 
+	<resultMap type="board" id="boardResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="CATEGORY_S_NO"  property="categorySNo"/>
+		<result column="CONTENT"  property="content"/>
+		<result column="CREATE_DATE"  property="createDate"/>
+		<result column="READ_COUNT"  property="readCount"/>
+		<result column="REPORT_COUNT"  property="reportCount"/>
+		<result column="TITLE"  property="title"/>
+		<result column="USER_NO"  property="userNo"/>
+		<result column="WISH_COUNT"  property="wishCount"/>
+		<result column="CATEGORY_U_NO"  property="categoryUNo"/>
+		<result column="NICK_NAME" property="nickName"/>
+		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
+	</resultMap>
+
 	<select id="loginAdmin" parameterType="member" resultMap="memberResultSet">
 		SELECT * 
 		FROM MEMBER
@@ -158,7 +173,7 @@
 		FROM BOARD B
         JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 		WHERE  B.CATEGORY_U_NO = 1
-		<if test="catUNo != 0">
+		<if test="catSNo != 0">
 			AND SC.CATEGORY_S_NO = #{catUNo}
 		</if>
 	 	<if test="search != null">
@@ -172,7 +187,7 @@
 		FROM BOARD B
         JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 		WHERE  B.CATEGORY_U_NO = 9
-		<if test="catUNo != 0">
+		<if test="catSNo != 0">
 			AND SC.CATEGORY_S_NO = #{catUNo}
 		</if>
 	 	<if test="search != null">
@@ -188,8 +203,8 @@
 		JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
 		JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 		WHERE B.CATEGORY_U_NO = 1
-		<if test="catUNo != 0">
-			AND B.CATEGORY_S_NO = #{catUNo}
+		<if test="catSNo != 0">
+			AND B.CATEGORY_S_NO = #{catSNo}
 		</if>
 		<if test="search != null">
 		 	<bind name="searchPattern" value="'%'+search+'%'"/>
@@ -205,8 +220,8 @@
 		JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
 		JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 		WHERE B.CATEGORY_U_NO = 9
-		<if test="catUNo != 0">
-			AND B.CATEGORY_S_NO = #{catUNo}
+		<if test="catSNo != 0">
+			AND B.CATEGORY_S_NO = #{catSNo}
 		</if>
 		<if test="search != null">
 		 	<bind name="searchPattern" value="'%'+search+'%'"/>
@@ -217,6 +232,27 @@
 
 	<insert id="enrollInsert" parameterType="board">
 		INSERT INTO BOARD(CATEGORY_U_NO, CATEGORY_S_NO, TITLE, CONTENT, USER_NO)
-		VALUES(#{categoryUNo}, #{categorySNo}, #{title}, #{content}, #{userNo})
+		VALUES(#{categoryUNo}, #{categorySNo}, #{title}, #{content}, #{userNo});
 	</insert>
+	
+	<update id="enrollUpdate" parameterType="board">
+		UPDATE BOARD
+		SET CATEGORY_S_NO = #{categorySNo},
+			TITLE = #{title},
+			CONTENT = #{content},
+			USER_NO = #{userNo}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<select id="subCatList" resultMap="subCategoryResultSet">
+		SELECT *
+		FROM SUB_CATEGORY
+		WHERE CATEGORY_U_NO = #{catUNo}
+	</select>
+	
+	<select id="enrollSelect" resultMap="boardResultSet">
+		SELECT *
+		FROM BOARD
+		WHERE BOARD_NO = #{boardNo}
+	</select>
 </mapper>

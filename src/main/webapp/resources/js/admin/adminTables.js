@@ -90,7 +90,7 @@ if(lasturlPath == 'member'){
     
     $.each($(tabArr), function(index, item){
         let tabId = $(item).attr('id');
-        if(tabId == urlParams.get('catUNo')){
+        if(tabId == urlParams.get('catSNo')){
             currentTab = tabId;
         };
     });

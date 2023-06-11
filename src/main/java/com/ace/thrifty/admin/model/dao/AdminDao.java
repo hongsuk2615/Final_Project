@@ -97,4 +97,16 @@ public class AdminDao {
 	public int enrollInsert(Board b) {
 		return sqlSession.insert("adminMapper.enrollInsert", b);
 	}
+	
+	public int enrollUpdate(Board b) {
+		return sqlSession.update("adminMapper.enrollUpdate", b);
+	}
+	
+	public List<SubCategory> subCatList(int catUNo){
+		return sqlSession.selectList("adminMapper.subCatList", catUNo);
+	}
+	
+	public Board enrollSelect(int boardNo) {
+		return sqlSession.selectOne("adminMapper.enrollSelect", boardNo);
+	}
 }

@@ -4,6 +4,7 @@
 <c:set var="pi" value="${map.pi}" />
 <c:set var="list" value="${map.list}" />
 <c:set var="catUNo" value="${map.catUNo}" />
+<c:set var="catSNo" value="${map.catSNo}" />
 <c:set var="tab" value="${map.tabList}" />
 
 <div class="content-wrapper" style="min-height: 1302.12px;">
@@ -33,11 +34,11 @@
 						<div class="card-header p-0 pt-1">
 							<ul class="nav nav-tabs" id="faq-tabs">
 								<li class="nav-item">
-									<a class="nav-link" id="0" href="faq?catUNo=0&currentPage=1">전체</a>
+									<a class="nav-link" id="0" href="faq?catSNo=0&currentPage=1">전체</a>
 								</li>
 								<c:forEach var="list" items="${tab}">
 										<li class="nav-item">
-											<a class="nav-link" id="${list.categorySNo}" href="faq?catUNo=${list.categorySNo}&currentPage=1">${list.categorySName}</a>
+											<a class="nav-link" id="${list.categorySNo}" href="faq?catSNo=${list.categorySNo}&currentPage=1">${list.categorySName}</a>
 										</li>
 								</c:forEach>
 								<li class="nav-item" style="margin-left: auto;">
@@ -58,7 +59,7 @@
 							<div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
 								<div class="row justify-content-end mb-2">
 									<div class="col-sm-12 col-md-6 text-right">
-										<a href="${contextPath}/admin/enrollForm/faq" class="btn btn-secondary">글 작성</a>
+										<a href="${contextPath}/admin/enrollForm/faq?catUNo=${catUNo}" class="btn btn-secondary">글 작성</a>
 									</div>
 								</div>
 								<div class="row">
@@ -118,12 +119,12 @@
 												<c:choose>
 													<c:when test="${pi.currentPage eq 1}">
 														<li class="paginate_button page-item previous disabled">
-															<a href="faq?catUNo=${catUNo}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
+															<a href="faq?catSNo=${catSNo}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
 														</li>
 													</c:when>
 													<c:otherwise>
 														<li class="paginate_button page-item previous">
-															<a href="faq?catUNo=${catUNo}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
+															<a href="faq?catSNo=${catSNo}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
 														</li>
 													</c:otherwise>
 												</c:choose>
@@ -131,12 +132,12 @@
 													<c:choose>
 														<c:when test="${pi.currentPage == item}">
 															<li class="paginate_button page-item active">
-																<a href="faq?catUNo=${catUNo}&currentPage=${item}" class="page-link">${item}</a>
+																<a href="faq?catSNo=${catSNo}&currentPage=${item}" class="page-link">${item}</a>
 															</li>
 														</c:when>
 														<c:otherwise>
 															<li class="paginate_button page-item">
-																<a href="faq?catUNo=${catUNo}&currentPage=${item}" class="page-link">${item}</a>
+																<a href="faq?catSNo=${catSNo}&currentPage=${item}" class="page-link">${item}</a>
 															</li>
 														</c:otherwise>
 													</c:choose>
@@ -144,12 +145,12 @@
 												<c:choose>
 													<c:when test="${pi.currentPage eq pi.maxPage}">
 														<li class="paginate_button page-item next disabled">
-															<a href="faq?catUNo=${catUNo}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
+															<a href="faq?catSNo=${catSNo}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
 														</li>
 													</c:when>
 													<c:otherwise>
 														<li class="paginate_button page-item next">
-															<a href="faq?tab=${catUNo}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
+															<a href="faq?tab=${catSNo}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
 														</li>
 													</c:otherwise>
 												</c:choose>

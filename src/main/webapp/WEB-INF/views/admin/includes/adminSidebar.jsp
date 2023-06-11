@@ -52,7 +52,7 @@
           </li>
           
           <li class="nav-item sidebar-notice">
-            <a href="${contextPath}/admin/notice?catUNo=0&currentPage=1" class="nav-link">
+            <a href="${contextPath}/admin/notice?catSNo=0&currentPage=1" class="nav-link">
               <i class="nav-icon fas fa-bullhorn"></i>
               <p>
                 공지사항 관리
@@ -61,7 +61,7 @@
           </li>
           
           <li class="nav-item sidebar-faq">
-            <a href="${contextPath}/admin/faq?catUNo=0&currentPage=1" class="nav-link">
+            <a href="${contextPath}/admin/faq?catSNo=0&currentPage=1" class="nav-link">
               <i class="nav-icon fas fa-question-circle"></i>
               <p>FAQ</p>
             </a>

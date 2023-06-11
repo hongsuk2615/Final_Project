@@ -1,6 +1,5 @@
 package com.ace.thrifty.admin.controller;
 
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ace.thrifty.admin.model.service.AdminService;
 import com.ace.thrifty.board.model.vo.Board;
@@ -140,14 +138,14 @@ public class AdminController {
 		
 			Map<String, Object> map = new HashMap<>();
 			
-			map.put("catUNo", paramMap.get("catUNo"));
+			
+			map.put("catSNo", paramMap.get("catSNo"));
 			
 			List<SubCategory> tab = adminService.noticeSubCatList();
 			adminService.noticeList(map, paramMap);
 			
+			map.put("catUNo", tab.get(0).getCategoryUNo());
 			map.put("tabList", tab);
-			
-//			System.out.println(tab);
 			
 			model.addAttribute("contents", "notice");
 			model.addAttribute("map", map);
@@ -160,14 +158,13 @@ public class AdminController {
 		
 		Map<String, Object> map = new HashMap<>();
 		
-		map.put("catUNo", paramMap.get("catUNo"));
+		map.put("catSNo", paramMap.get("catSNo"));
 		
 		List<SubCategory> tab = adminService.faqSubCatList();
 		adminService.faqList(map, paramMap);
 		
+		map.put("catUNo", tab.get(0).getCategoryUNo());
 		map.put("tabList", tab);
-		
-//		System.out.println(tab);
 		
 		model.addAttribute("contents", "faq");
 		model.addAttribute("map", map);
@@ -175,12 +172,13 @@ public class AdminController {
 		return "admin/adminPage";
 	}
 	
-	@GetMapping("/enrollForm/notice") //나중에 공지사항과 faq가 여기로 오게
-	public String adminEnrollForm(Model model, @RequestParam Map<String, Object> paramMap) {
+	@GetMapping("/enrollForm/{enroll}") // enrollForm으로 이동
+	public String adminEnrollForm(Model model, @PathVariable("enroll") String enroll,  @RequestParam int catUNo) {
 		
-			List<SubCategory> subCatList = adminService.noticeSubCatList(); //나중에 faq, notice 둘 다 하나의 메서드에 가능하게 수
+			List<SubCategory> subCatList = adminService.subCatList(catUNo);
 			
-			model.addAttribute("upCat", "1"); //이것도 맞게 수정해야됨 지금 하드코딩
+			model.addAttribute("boardName", enroll);
+			model.addAttribute("catUNo", catUNo);
 			model.addAttribute("subCatList", subCatList);
 			model.addAttribute("contents", ".btn-write");
 			
@@ -188,27 +186,76 @@ public class AdminController {
 	}
 	
 	
-	@PostMapping("/enrollForm/notice") //나중에 공지사항과 faq가 여기로 오게
-	public String adminEnrollFormInsert(Board b, HttpServletRequest request, HttpSession session) {
+	@PostMapping("/enrollForm/{enroll}") //insert
+	public String adminEnrollFormInsert(Board b, HttpSession session, @PathVariable("enroll") String enroll) {
 		
 		int userNo = ((Member)session.getAttribute("loginAdmin")).getUserNo();
-		
+	
 		b.setUserNo(userNo);
-		
-		Enumeration e = request.getParameterNames();
-		while (e.hasMoreElements()) {
-			String name = (String) e.nextElement();
-			String[] values = request.getParameterValues(name);
-			for (String value : values) {
-				System.out.println("name=" + name + ",value=" + value);
-			}
-		}
+		String returnVal = "";
+		String alert = "";
 		
 		int result = adminService.enrollInsert(b);
 		
-		System.out.println(b);
+		if(result > 0) {
+			
+			alert = "등록되었습니다.";
+			
+			returnVal = "redirect:/admin/"+enroll+"?catSNo=0&currentPage=1";
+		}else {
+			alert = "등록에 실패하였습니다.";
+			
+			returnVal = "redirect:/admin/enrollForm/"+enroll;
+		}
 		
-		return "redirect:/notice";
+		session.setAttribute("alert", alert);
+		
+		return returnVal;
+	}
+	
+	@GetMapping("/enrollForm/update/{enroll}") // enrollForm으로 이동
+	public String adminUpdateEnrollForm(Model model, @PathVariable("enroll") String enroll,  @RequestParam int catUNo, @RequestParam int boardNo) {
+		
+			List<SubCategory> subCatList = adminService.subCatList(catUNo);
+			
+			Board b = adminService.enrollSelect(boardNo);
+			
+			model.addAttribute("b", b);
+			model.addAttribute("boardName", enroll);
+			model.addAttribute("catUNo", catUNo);
+			model.addAttribute("subCatList", subCatList);
+			model.addAttribute("contents", ".btn-write");
+			
+			return "admin/adminPage";
+	}
+	
+	@PostMapping("/enrollForm/update/{enroll}") //update
+	public String adminEnrollFormUpdate(Board b, HttpSession session, @PathVariable("enroll") String enroll) {
+		
+		int userNo = ((Member)session.getAttribute("loginAdmin")).getUserNo();
+	
+		b.setUserNo(userNo);
+		String returnVal = "";
+		String alert = "";
+		
+		System.out.println("post"+b);
+		
+		int result = adminService.enrollUpdate(b);
+		
+		if(result > 0) {
+			
+			alert = "수정되었습니다.";
+			
+			returnVal = "redirect:/admin/"+enroll+"?catSNo=0&currentPage=1";
+		}else {
+//			alert = "수정에 실패하였습니다.";
+			System.out.println("실패");
+//			returnVal = "redirect:/admin/enrollForm/update/"+enroll;
+		}
+		
+		session.setAttribute("alert", alert);
+		
+		return returnVal;
 	}
 
 	@PostMapping("/enrollForm/preview")
@@ -222,10 +269,8 @@ public class AdminController {
 		
 		String changeName = Utils.saveFile(previewImg, ServerPriviewPath);
 
+		String url = request.getContextPath()+privewPath+changeName;
 		
-		String url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+privewPath+changeName; 
-		System.out.println(url);
-
 		Map<String, Object> preview = new HashMap<>();
 		
 		preview.put("url", url);
