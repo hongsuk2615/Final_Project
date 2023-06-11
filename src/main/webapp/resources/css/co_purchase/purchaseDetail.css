@@ -1,8 +1,17 @@
-#cat_title_1{
-    padding-top: 30px;
+#cat_title_box{
+	padding-top: 30px;
     padding-bottom: 30px;
+	display: flex;
+	justify-content: 
+}
+
+#cat_title_1{
     font-weight: 500;
     font-size: 3em;
+}
+
+#edit{
+	margin-right: 5px;
 }
 
 #detail_header{

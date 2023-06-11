@@ -105,7 +105,7 @@
     color: #6d6d6d;
 }
 
-.upload-name:focus{
+{
     outline: none;
 }
 
@@ -131,6 +131,14 @@
     border: 0;
 }
 
+#title_link{
+	margin-bottom: 10px;
+}
+
+#enroll_link{
+	border: none;
+}
+
 .write_content{
     width: 100%;
     height: 30px;
@@ -139,7 +147,7 @@
     border-width: 1px;
     border: none;
 }
-.write_content:focus{
+.write_content:focus, .upload-name:focus, #enroll_link:focus{
     outline: none;
 }
 
