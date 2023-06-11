@@ -84,7 +84,23 @@
 		 	<if test='tradeMethod != null and tradeMethod != "undefined" and tradeMethod !=""'>
 		 		AND TRADE_METHOD = #{tradeMethod}
 		 	</if>
+		 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+		 		AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+		 		 OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+		 	</if>
 	    GROUP BY BOARD_NO
+	    	<if test="order == 0">
+	    		ORDER BY BOARD_NO DESC
+	    	</if>
+	    	<if test="order == 1">
+	    		ORDER BY WISH_COUNT DESC
+	    	</if>
+	    	<if test="order == 2">
+	    		ORDER BY READ_COUNT DESC
+	    	</if>
+	    	<if test="order == 3">
+	    		ORDER BY PRICE DESC
+	    	</if>
 	</select>
 	
 	
@@ -124,6 +140,10 @@
 		 	<if test='tradeMethod != null and tradeMethod != "undefined" and tradeMethod !=""'>
 		 		AND TRADE_METHOD = #{tradeMethod}
 		 	</if>
+		 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+		 		AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+		 		 OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+		 	</if>	
 	</select>
 
 </mapper>

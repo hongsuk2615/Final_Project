@@ -71,14 +71,14 @@
 
                     <div id="body-right-filter">
                         <div id="order-list">
-                            <div>최신순</div>
-                            <div>추천순</div>
-                            <div>조회순</div>
-                            <div>가격순</div>
+                            <div><a href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=0">최신순</a></div>
+                            <div><a href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=1">찜순</a></div>
+                            <div><a href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=2">조회순</a></div>
+                            <div><a href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=3">가격순</a></div>
                         </div>
                         <div id="search">
                             <img src="/thrifty/resources/images/main/icon/search-1.png" width="25px" height="25px">
-                            <input type="search">
+                            <input type="search" id="keyword">
                         </div>
                     </div>
                     
@@ -128,18 +128,18 @@
 		                     <div>&lt;</div>
 		                  </c:when>
 		                  <c:otherwise>
-		                     <div><a href="/thrifty/usedProduct?currPage=${filter.currPage-1}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}">&lt;</a></div>
+		                     <div><a href="/thrifty/usedProduct?currPage=${filter.currPage-1}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}">&lt;</a></div>
 		                  </c:otherwise>               
 		               </c:choose>
 		               <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
-	                  	<div><a href="/thrifty/usedProduct?currPage=${item}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}">${item}</a></div>
+	                  	<div><a href="/thrifty/usedProduct?currPage=${item}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}">${item}</a></div>
 	               		</c:forEach>
 	               		<c:choose>
 		                  <c:when test="${ pi.currentPage eq pi.maxPage }">
 		                     <div>&gt;</div>
 		                  </c:when>
 		                  <c:otherwise>
-		                     <div><a href="/thrifty/usedProduct?currPage=${filter.currPage+1}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}">&gt;</a></div>
+		                     <div><a href="/thrifty/usedProduct?currPage=${filter.currPage+1}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}">&gt;</a></div>
 		                  </c:otherwise>               
 		               </c:choose>
                     </div>
@@ -173,6 +173,13 @@
     document.getElementById('write').addEventListener('click',function(){
     	location.href = "/thrifty/usedProduct/enroll";
     });
+
+    document.getElementById('keyword').addEventListener('keyup',function(){
+        console.log(this.value);
+            if (window.event.keyCode == 13) {
+                location.href="/thrifty/usedProduct?keyword="+this.value;
+        }
+    })
     </script>
 </body>
 </html>
