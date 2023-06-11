@@ -28,6 +28,9 @@
                         reversed: true
                     }
                 },
+                ckfinder: {
+                	uploadUrl: 'preview'
+            	},
                 // https://ckeditor.com/docs/ckeditor5/latest/features/headings.html#configuration
                 heading: {
                     options: [
@@ -115,7 +118,6 @@
                     // 'ExportPdf',
                     // 'ExportWord',
                     'CKBox',
-                    'CKFinder',
                     'EasyImage',
                     // This sample uses the Base64UploadAdapter to handle image uploads as it requires no configuration.
                     // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html

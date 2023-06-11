@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ace.thrifty.admin.model.dao.AdminDao;
 import com.ace.thrifty.admin.model.vo.Notice;
+import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.common.template.Pagination;
@@ -103,6 +104,12 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<SubCategory> faqSubCatList() {
 		return adminDao.faqSubCatList();
+	}
+
+
+	@Override
+	public int enrollInsert(Board b) {
+		return adminDao.enrollInsert(b);
 	}
 
 }

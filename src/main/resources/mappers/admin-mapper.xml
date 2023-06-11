@@ -215,4 +215,8 @@
 		ORDER BY B.CREATE_DATE DESC
 	</select>
 
+	<insert id="enrollInsert" parameterType="board">
+		INSERT INTO BOARD(CATEGORY_U_NO, CATEGORY_S_NO, TITLE, CONTENT, USER_NO)
+		VALUES(#{categoryUNo}, #{categorySNo}, #{title}, #{content}, #{userNo})
+	</insert>
 </mapper>

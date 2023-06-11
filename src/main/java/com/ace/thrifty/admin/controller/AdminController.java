@@ -1,11 +1,13 @@
 package com.ace.thrifty.admin.controller;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ace.thrifty.admin.model.service.AdminService;
+import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
+import com.ace.thrifty.common.Utils;
 import com.ace.thrifty.member.model.vo.Member;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/admin")
@@ -96,7 +104,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value="/{location}/status/update", produces = "application/text; charset=UTF-8")
-	@ResponseBody()
+	@ResponseBody
 	public String statusUpdate(@PathVariable("location") String location, @RequestParam Map<String, Object> paramMap) {
 		
 		String alert = "";
@@ -163,16 +171,68 @@ public class AdminController {
 		
 		model.addAttribute("contents", "faq");
 		model.addAttribute("map", map);
-		
+		 
 		return "admin/adminPage";
 	}
 	
 	@GetMapping("/enrollForm/notice") //나중에 공지사항과 faq가 여기로 오게
-	public String adminenrollForm(Model model, @RequestParam Map<String, Object> paramMap) {
+	public String adminEnrollForm(Model model, @RequestParam Map<String, Object> paramMap) {
 		
+			List<SubCategory> subCatList = adminService.noticeSubCatList(); //나중에 faq, notice 둘 다 하나의 메서드에 가능하게 수
+			
+			model.addAttribute("upCat", "1"); //이것도 맞게 수정해야됨 지금 하드코딩
+			model.addAttribute("subCatList", subCatList);
 			model.addAttribute("contents", ".btn-write");
 			
 			return "admin/adminPage";
+	}
+	
+	
+	@PostMapping("/enrollForm/notice") //나중에 공지사항과 faq가 여기로 오게
+	public String adminEnrollFormInsert(Board b, HttpServletRequest request, HttpSession session) {
+		
+		int userNo = ((Member)session.getAttribute("loginAdmin")).getUserNo();
+		
+		b.setUserNo(userNo);
+		
+		Enumeration e = request.getParameterNames();
+		while (e.hasMoreElements()) {
+			String name = (String) e.nextElement();
+			String[] values = request.getParameterValues(name);
+			for (String value : values) {
+				System.out.println("name=" + name + ",value=" + value);
+			}
+		}
+		
+		int result = adminService.enrollInsert(b);
+		
+		System.out.println(b);
+		
+		return "redirect:/notice";
+	}
+
+	@PostMapping("/enrollForm/preview")
+	@ResponseBody
+	public String adminEnrollFormPrivew(HttpSession session, MultipartHttpServletRequest request)throws Exception {
+		
+		MultipartFile previewImg = request.getFile("upload");
+		String privewPath = "/resources/images/admin/";
+
+		String ServerPriviewPath = session.getServletContext().getRealPath(privewPath);
+		
+		String changeName = Utils.saveFile(previewImg, ServerPriviewPath);
+
+		
+		String url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+privewPath+changeName; 
+		System.out.println(url);
+
+		Map<String, Object> preview = new HashMap<>();
+		
+		preview.put("url", url);
+		preview.put("uploaded", true);
+		
+		
+		return new Gson().toJson(preview);
 	}
 	
 	@GetMapping("/logout")
