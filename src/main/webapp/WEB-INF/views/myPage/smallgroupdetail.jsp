@@ -251,7 +251,7 @@
                     	</c:if> 
                         <div class="body-right-header-right-qr">
                             <div class="square">
-                            <img src="resources/images/myPage/opentalkroom.png" width="100%" height="100%">
+                            <img src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${sg.kakaoLink}" width="100%" height="100%">
                             </div>
                         </div>
                         
@@ -263,7 +263,7 @@
                 <div id="body-right-body">
                     
                  <div class="body-right-body-content">
-                    <textarea class="body-right-body-contentarea" name="content">
+                    <textarea class="body-right-body-contentarea" name="content" readonly>
 						${sg.board.content}
                     </textarea>
                  </div>

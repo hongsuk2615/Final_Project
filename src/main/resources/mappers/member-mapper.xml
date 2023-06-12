@@ -91,4 +91,12 @@
 		 WHERE LOGIN_METHOD = 'K'
 		   AND USER_ID = #{kakaoId}
 	</select>
+	
+	<update id="selfban">
+		UPDATE MEMBER
+		SET STATUS = 'N'
+		WHERE USER_NO = #{userNo}
+	
+	
+	</update>
 </mapper>

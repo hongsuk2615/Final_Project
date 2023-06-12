@@ -71,6 +71,12 @@ public class MyPageServiceImp  implements MyPageService{
 		
 	}
 	
+	@Override
+	public int selfban(Member m) {
+		
+		return myPageDao.selfban(m);
+	}
+	
 	
 //	@Override
 //	public String zzimSelect(Member m, Board b) {

@@ -120,6 +120,7 @@
 					VALUES(#{originName}, #{changeName}, #{boardNo}, #{fileLevel})
 	</insert>
 	
+	
 	<insert id="insertImageList" parameterType="list">
 		INSERT INTO IMAGE (ORIGIN_NAME, CHANGE_NAME, BOARD_NO, FILE_LEVEL)
 		     SELECT C.* 

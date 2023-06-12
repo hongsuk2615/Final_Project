@@ -11,7 +11,7 @@ public interface SmallGroupService {
 
 	
 	
-	public int sgInsertBoard(Board b, SmallGroup sg, MultipartFile qrimage, String webPath, String serverFolderPath)throws Exception;
+	public int sgInsertBoard(Board b, SmallGroup sg);
 	
 	public ArrayList<SmallGroup> sgSelectList();
 	

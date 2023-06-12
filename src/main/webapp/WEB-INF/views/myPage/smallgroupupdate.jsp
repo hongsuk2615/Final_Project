@@ -207,8 +207,7 @@
                     
                    
                         <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+                            <input type="text" class="form-control" name="kakaoLink" placeholder="오픈카카오톡 링크 입력하세요"id="inputGroupFile04">
                         </div>
 
                     

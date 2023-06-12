@@ -22,6 +22,8 @@ public interface MyPageService {
 	public int changeProfile (Member m, MultipartFile profileimg, String webPath, String serverFolderPath) throws Exception;
 	
 	public ArrayList<Board> zzimSelect (Member m , Board b);
-
+	
+	public int selfban(Member m);
+	
 
 }

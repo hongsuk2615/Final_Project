@@ -13,10 +13,10 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <style>
-         /* *{
+          *{
         border: 1px solid blue !important;
         box-sizing: border-box;
-    }        */
+    }        
     body{
         margin: 0;
     }
@@ -287,14 +287,17 @@
                     <a  class="btn btn-primary" id="button_modify" href="${pageContext.request.contextPath}/mypage/myUpdateForm">수정하기</a>
                     <button type="button" class="btn btn-secondary" id="button_cancel">취소</button>
                    
-                    
+                    <div>
+                        
+                        <a href="/thrifty/mypage/selfban" class="btn btn-danger">회원 탈퇴</a>
+                    </div>
                 </div>
                     
                    
                       
                       
-                      
-                   
+                    
+
                   
 
                </div>
@@ -303,7 +306,7 @@
                
             </div>
             
-        
+           
         
 
         <div id="footer">

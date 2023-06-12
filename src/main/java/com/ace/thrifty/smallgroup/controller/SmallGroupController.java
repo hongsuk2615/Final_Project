@@ -72,16 +72,16 @@ public class SmallGroupController {
 	public String sgInsertBoard(
 			Model model,
 			SmallGroup sg,
-			Board b, HttpSession session,
-			@RequestParam(value="images", required = false) MultipartFile qrimage) throws Exception {
+			Board b, HttpSession session)
+			{
 		
-		String webPath = "resources/images/smallGroup";
-		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		
 		
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		b.setUserNo(userNo);
 	
-		int result3 = smallgroupService.sgInsertBoard(b, sg, qrimage, webPath, serverFolderPath);
+		int result3 = smallgroupService.sgInsertBoard(b, sg);
+		
 		
 		if(result3>0){
 		
@@ -108,6 +108,8 @@ public class SmallGroupController {
 		
 		model.addAttribute("sg", detail);
 		
+		System.out.println(detail);
+		
 		return "myPage/smallgroupdetail";
 	}
 	
@@ -123,6 +125,7 @@ public class SmallGroupController {
 		
 		if(result3>0) {
 			
+		
 
 			model.addAttribute("alertMsg", "성공 ");	
 		}

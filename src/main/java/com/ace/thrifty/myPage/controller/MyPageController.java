@@ -100,7 +100,7 @@ public class MyPageController {
 		
 		
 		
-		String webPath = "/resources/images/myPage/";
+		String webPath = "/resources/upfiles/myPage/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		myPageService.changeProfile(m, profileimage, webPath, serverFolderPath);
 		
@@ -149,6 +149,18 @@ public class MyPageController {
 		
 //		
 	}
+	
+	@GetMapping("/selfban")
+	public String selfban(HttpSession session, Member m) {
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		m.setUserNo(userNo);
+	
+		int result1 = myPageService.selfban(m);
+		
+		
+		return "redirect:/member/logout";
+	}
+	
 	
 	
 }

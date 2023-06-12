@@ -41,4 +41,8 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("wishListMapper.zzimSelect", m);
 	}
 	
+	public int selfban (Member m) {
+		return sqlSession.update("memberMapper.selfban", m);
+	}
+	
 }

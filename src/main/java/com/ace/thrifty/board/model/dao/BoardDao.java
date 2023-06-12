@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
@@ -60,8 +61,13 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertImageList", imageList);
 	}
 	
+	public int insertImage(Image img) {
+		return sqlSession.insert("boardMapper.insertImage", img);
+	}
+	
 	public ArrayList<Board> selectBoardByUserNo(int userNo){
 		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardByUserNo", userNo);}
+	
 	public int increaseReadCount(int bNo) {
 		return sqlSession.update("boardMapper.increaseReadCount", bNo);
 	}
