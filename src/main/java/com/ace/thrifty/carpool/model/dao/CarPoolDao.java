@@ -35,4 +35,8 @@ public class CarPoolDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);		
 		return sqlSession.selectList("carPoolMapper.selectDriveList", queryString, rowBounds);
 	}
+	
+	public int insertCarPool(CarPool c) {
+		return sqlSession.insert("carPoolMapper.insertCarPool" , c);
+	}
 }

@@ -54,11 +54,9 @@
 </head>
 <body>
     <div id="wrapper">
-            <jsp:include page="../common/header.jsp"/>
+		<jsp:include page="../common/header.jsp"/>
         <div id="body"  style="padding-top: 150px;">
-            <div id="body-left">
-                <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
-            </div>
+            <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             <div id="body-right">
                 <div id="ptj-header">
 					<c:choose>
@@ -84,16 +82,13 @@
                 <div id="ptj-allBody" style="height: 1000px;">
                 <!-- <input type="hidden" name="boardNo"> -->
                 	<c:forEach var="ptj"  items="${list}" >
-	                	
 	                			<div style="width: 200px; height: 300px;" class="list-detail" onclick="location.href = '${contextPath}/ptj/ptjDetail?bNo=${ptj.boardNo }'">
 		               				<img src="${contextPath }/${ptj.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>
 		       						<p style="display: none;">${ptj.boardNo }</p>
 		       						<p style="text-align: center;">제목 :${ptj.board.title }</p>
-		       						<p style="text-align: center;">${ptj.board.content }</p>
-		       						<p style="text-align: center;">${ptj.location.locationName }</p>
-		           				</div>  
-
-	                	
+		       						<p style="text-align: center;">내용 :${ptj.board.content }</p>
+		       						<p style="text-align: center;">지역 :${ptj.location.locationName }</p>
+		           				</div>
        				</c:forEach>
                 </div>
                 <div id="body-right-footer">

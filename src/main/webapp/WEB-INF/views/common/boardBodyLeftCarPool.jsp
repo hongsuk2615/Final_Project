@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
             <div id="body-left">
                 <div id="upper-category">
                     <div>
-                        <img src="/thrifty/resources/images/shopping-cart.png" alt="상위 카테고리 이미지">
+                        <!-- <img src="/thrifty/resources/images/shopping-cart.png" alt="상위 카테고리 이미지"> -->
                         <div id="upper-category-name">지역별 카테고리</div>
                     </div>
                 </div>

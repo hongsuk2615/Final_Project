@@ -57,7 +57,6 @@ public class PtjController {
 			model.addAttribute("lNo", queryString.get("lNo"));			
 		 }
 		 model.addAttribute("filter", queryString.get("filter"));
-		 System.out.println(queryString.get("filter"));
 		 model.addAttribute("list", queryString.get("list"));
 		 model.addAttribute("pi", queryString.get("pi"));
 		 return "part_time_job/PTJList"; 
@@ -150,7 +149,6 @@ public class PtjController {
 							Model model) {
 		Ptj p = ptjService.updateFormPtj(boardNo);
 		model.addAttribute("p" , p);
-		System.out.println(p);
 		return "part_time_job/PTJUpdateForm";		
 	}
 	
@@ -175,9 +173,6 @@ public class PtjController {
 			img.setFileLevel(0);
 			img.setBoardNo(p.getBoardNo());
 		}
-		System.out.println(b);
-		System.out.println(p);
-		System.out.println(img);
 		ptjService.updatePtj(p, b, img, webPath, serverFolderPath);
 		return "redirect:/ptj/ptjList";
 	}

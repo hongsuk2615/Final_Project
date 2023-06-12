@@ -6,8 +6,13 @@
 	<id column="BOARD_NO" property="boardNo" />
 	<result column="RECRUITS_NUM" property="recruitsNum" />
 	<result column="RECRUITS_CURR" property="recruitsCurr" />
+	<result column="START_TIME" property="startTime" />
+	<result column="END_TIME" property="endTime" />
 	<result column="IS_END" property="isEnd" />
 	<result column="LOCATION_NO" property="locationNo" />
+	<result column="IMG_PATH" property="imgPath" />
+	<result column="ORIGIN" property="origin" />
+	<result column="DESTINATION" property="destination" />
 	<association property="board" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Board">
 			<id column="BOARD_NO" property="boardNo"/>			
 			<result column="CATEGORY_S_NO"  property="categorySNo"/>
@@ -26,7 +31,12 @@
 			<result column="CHANGE_NAME" property="changeName"/>
 			<result column="FILE_LEVEL" property="fileLevel"/>
 			<result column="STATUS" property="status"/>
-		</collection>
+	</collection>
+	<collection property="subCategory" javaType="com.ace.thrifty.board.model.vo.SubCategory">
+			<id column="CATEGORY_S_NO" property="categorySNo"/>
+			<result column="CATEGORY_U_NO" property="categoryUNo"/>
+			<result column="CATEGORY_S_NAME" property="categorySName"/>
+	</collection>
 </resultMap>
 
 <select id="driveList" resultMap="carPoolResultSet">
@@ -40,4 +50,55 @@
 	JOIN UPPER_CATEGORY UC ON UC.CATEGORY_U_NO = B.CATEGORY_U_NO
 	WHERE B.STATUS = 'Y' AND UC.CATEGORY_U_NO = 3
 </select>
+
+<select id="selectDriveListCount" parameterType="map" resultType="_int">
+	SELECT COUNT(*)
+	FROM CARPOOL
+	JOIN LOCATION USING(LOCATION_NO)
+	JOIN BOARD B USING(BOARD_NO)
+	JOIN IMAGE USING(BOARD_NO)
+	WHERE B.STATUS = 'Y'
+		<if test= 'scNo!= null and scNo !="" '>
+	 		AND CATEGORY_S_NO = #{scNo}
+	 	</if>
+	 	<if test='lNo != null and lNo != ""'>
+	 		AND LOCATION_NO = #{lNo}
+	 	</if>
+</select>
+
+<select id="selectDriveList" resultMap="carPoolResultSet">
+	SELECT
+		C.BOARD_NO,
+		C.LOCATION_NO,
+		C.RECRUITS_NUM,
+		C.RECRUITS_CURR,
+		C.IS_END,
+		B.CATEGORY_S_NO,
+		B.TITLE,
+		B.CONTENT,
+		B.WISH_COUNT,
+		L.LOCATION_NAME,
+		CONCAT('/resources/upfiles/carPool/', CHANGE_NAME) AS IMG_PATH,
+		B.STATUS,
+		SC.CATEGORY_S_NAME
+	FROM CARPOOL C
+	LEFT JOIN BOARD B ON B.BOARD_NO = C.BOARD_NO
+	LEFT JOIN LOCATION L ON C.LOCATION_NO = L.LOCATION_NO
+	LEFT JOIN IMAGE I ON C.BOARD_NO = I.BOARD_NO
+	LEFT JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
+	JOIN SUB_CATEGORY SC ON UC.CATEGORY_U_NO = SC.CATEGORY_U_NO
+	WHERE SC.CATEGORY_S_NO = 31 AND B.STATUS = 'Y' AND I.STATUS = 'Y' AND I.FILE_LEVEL = 0
+		<if test= 'scNo!= null and scNo !="" '>
+		 	AND B.CATEGORY_S_NO = #{scNo}
+		</if>
+		<if test='lNo != null and lNo!= ""'>
+	 		AND C.LOCATION_NO = #{lNo}
+	 	</if>
+		
+</select>
+
+<insert id="insertCarPool" parameterType="carPool">
+	INSERT INTO CARPOOL(BOARD_NO , RECRUITS_NUM , RECRUITS_CURR , LOCATION_NO , PRICE , START_TIME , END_TIME , ORIGIN , DESTINATION)
+				 VALUES(#{boardNo} , #{recruitsNum} , #{recruitsCurr} , #{locationNo} , #{price} , #{startTime} , #{endTime} , #{origin} , #{destination})
+</insert>
 </mapper>

@@ -53,20 +53,26 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="header">
-            <jsp:include page="../common/header.jsp" />
-        </div>
+		<jsp:include page="../common/header.jsp" />
         <div id="body">
-            <div id="body-left">
-                <jsp:include page="../common/boardBodyLeftCarPool.jsp"/>
-            </div>
-            
+			<jsp:include page="../common/boardBodyLeftCarPool.jsp"/>
             <div id="body-right">
-                <div id="ptj-header">
-                    <h1><%-- ${ } --%></h1>
+                <div id="carpool-header">
+                	<c:choose>
+                		<c:when test="${subCategory.categorySNo == 31 }">
+                			<h1>[태워드려요!]</h1>
+                		</c:when>
+                		<c:when test="${subCategory.categorySNo == 32 }">
+                			<h1>[태워주세요!]</h1>
+                		</c:when>
+                		<c:otherwise>
+                			<h1>[태워드려요! / 태워주세요!]</h1>
+                		</c:otherwise>
+                	</c:choose>
+                    
                 </div>
                 <div style="width:100%; display: flex; align-items: center; justify-content: space-between;">
-                	<p>메인 > 카풀 > 태워주세요</p>
+                	<p><a href="/thrifty">메인</a> > <a href="/thrifty/carPool">카풀</a></p>
                     <div>
                     	<c:if test="${loginUser != null }">
                         	<button id="write-btn">글 작성하기</button>
@@ -74,17 +80,16 @@
                     </div>
                 </div>
                 <hr style="width: 100%;">
-                <form action="/thrifty/carPool/detail?bno=${cList.boardNo }"method="post">
-	                <div id="ptj-allBody" style="height: 1000px;">
-	                	<c:forEach var="cList" items="${cList }" begin="0" end="8" step="1">
-		                    <div style="width: 200px; height: 170px; border: 1px gray;" onclick="location.href='${contextPath}/carPool/detail?bNo=${carPool.boardNo }'">
-		                        <img src="/${contextPath }/${carPool.imgPath}" style="height: 170px; width: 210px;"/>
-		                        <p style="text-align: center;">제목 : ${cList.board.title }</p>
-		                        <p style="text-align: center;">내용 : ${cList.board.content }</p>
-		                    </div>
-	                	</c:forEach>
-	                </div>
-				</form>
+                <div id="carpool-allBody" style="height: 1000px;">
+                	<c:forEach var="cList" items="${list }" begin="0" end="8" step="1">
+	                    <div style="width: 200px; height: 170px; border: 1px gray;" onclick="location.href='${contextPath}/carPool/detail?bNo=${cList.boardNo }'">
+	                        <img src="${contextPath }/${cList.imgPath}" style="height: 170px; width: 210px; border-radius: 10px;"/>
+	                        <p style="text-align: center;">카테고리 : ${cList.subCategory.categorySName }</p>
+	                        <p style="text-align: center;">제목 : ${cList.board.title }</p>
+	                        <p style="text-align: center;">카풀비 : ${cList.price }</p>
+	                    </div>
+                	</c:forEach>
+                </div>
 				
 				
                 <div id="body-right-footer">
@@ -121,7 +126,7 @@
 </body>
 <script>
 	document.getElementById("write-btn").addEventListener("click",function(){
-    	location.href = "/thrifty/carPool/enroll";
+    	location.href = "${contextPath}/carPool/enroll";
 	})
 </script>
 

@@ -57,8 +57,8 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../common/header.jsp"/>
     <div id="wrapper">
+	<jsp:include page="../common/header.jsp"/>
         <div id="body" style="padding-top: 150px;">
 		    <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             <div id="body-right">
