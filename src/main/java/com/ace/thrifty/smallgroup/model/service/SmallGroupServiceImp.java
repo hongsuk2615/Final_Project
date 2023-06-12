@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Image;
+import com.ace.thrifty.common.Utils;
 import com.ace.thrifty.smallgroup.model.dao.SmallGroupDao;
 import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 
@@ -26,12 +29,17 @@ public class SmallGroupServiceImp implements SmallGroupService{
 		int result1 = 0;
 		int result2 = 0;
 		
+		
+		
+		
 		result1 = boardDao.sgInsertBoard(b);
 		
 		
 		if(result1>0) {
 			sg.setBoardNo(b.getBoardNo());
+			
 			result2 = smallGroupDao.sgInsertBoard2(sg);
+			
 		}
 		
 		return result1*result2;
