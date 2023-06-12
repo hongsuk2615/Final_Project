@@ -9,8 +9,7 @@ import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.common.model.vo.Coordinate;
 import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
-import com.ace.thrifty.house.model.vo.RoomImg;
-import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.house.model.vo.Tour;
 
 public interface HouseService {
 	
@@ -31,6 +30,8 @@ public interface HouseService {
 	int scrapCancle(int userNo, int boardNo);
 	
 	List<Object> searchHouse(String keyword, int userNo);
+	
+	int tourApply(Tour tour);
 	
 	
 }

@@ -1,7 +1,6 @@
 package com.ace.thrifty.house.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +23,7 @@ import com.ace.thrifty.common.model.vo.Coordinate;
 import com.ace.thrifty.house.model.service.HouseService;
 import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
+import com.ace.thrifty.house.model.vo.Tour;
 import com.ace.thrifty.member.model.vo.Member;
 import com.google.gson.Gson;
 
@@ -37,12 +37,15 @@ public class HouseController {
 		this.houseService = houseService;
 	}
 	
-	@GetMapping("") // 헤더의 쉐어하우스 클릭 시 
-	public String shareHouse(Model m,  HttpSession s) {
+	@ResponseBody
+	@PostMapping("") // 헤더의 쉐어하우스 클릭 시 
+	public String shareHouse(HttpSession s) {
 		int userNo = ((Member)s.getAttribute("loginUser")).getUserNo();
-		List<Object> house = houseService.selectHouseList(userNo);
-		m.addAttribute("house", house);
-		System.out.println("house처음:"+house);
+		return new Gson().toJson(houseService.selectHouseList(userNo));
+	}
+	
+	@GetMapping("")
+	public String shareHouseMain() {
 		return "house/house";
 	}
 	
@@ -146,10 +149,29 @@ public class HouseController {
 	
 	@ResponseBody
 	@GetMapping("/searchHouse")
-	public String searchHouse(Model m, HttpSession s,
+	public String searchHouse(HttpSession s,
 			@RequestParam(value="keyword", required=false) String keyword) {
 		int userNo = ((Member)s.getAttribute("loginUser")).getUserNo();
 		keyword = '%' + keyword + '%';
 		return new Gson().toJson(houseService.searchHouse(keyword, userNo));
+	}
+	
+	@GetMapping("/updateHouse")
+	public String updateHouse(Model m, HttpSession s,
+			@RequestParam(value="boardNo", required=false) int boardNo) {
+		List<Object> house = houseService.selectHouse(boardNo);
+		m.addAttribute("house", house);
+		return "house/houseUpdate";
+	}
+	
+	@ResponseBody
+	@GetMapping("/tourApply")
+	public String tourApply(HttpSession s,
+			@RequestParam(value="roomNo", required=false) int roomNo,
+			@RequestParam(value="moveIn", required=false) String moveIn,
+			@RequestParam(value="enquiry", required=false) String enquiry) {
+		int userNo = ((Member) s.getAttribute("loginUser")).getUserNo();
+		Tour tour = Tour.builder().userNo(userNo).roomNo(roomNo).moveIn(moveIn).enquiry(enquiry).build();
+		return new Gson().toJson(houseService.tourApply(tour));
 	}
 }

@@ -17,6 +17,7 @@ import com.ace.thrifty.house.model.dao.HouseDao;
 import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
 import com.ace.thrifty.house.model.vo.RoomImg;
+import com.ace.thrifty.house.model.vo.Tour;
 import com.ace.thrifty.wishList.model.dao.WishListDao;
 import com.ace.thrifty.wishList.model.vo.WishList;
 
@@ -128,6 +129,11 @@ public class HouseServiceImpl implements HouseService{
 	@Override
 	public List<Object> searchHouse(String keyword, int userNo) {
 		return houseDao.searchHouse(keyword, userNo);
+	}
+
+	@Override
+	public int tourApply(Tour tour) {
+		return houseDao.tourApply(tour);
 	}
 
 

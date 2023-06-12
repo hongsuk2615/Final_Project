@@ -54,6 +54,13 @@
 	
 	</resultMap>
 	
+	<resultMap type="tour" id="tourResultSet">
+		<id column="ROOM_NO" property="roomNo"/>
+		<result column="USER_NO"  property="userNo"/>
+		<result column="MOVE_IN"  property="moveIn"/>
+		<result column="ENQUIRY"  property="enquiry"/>
+	</resultMap>
+	
 	<insert id="insertHouse" parameterType="house">
 		INSERT INTO SHARE_HOUSE (BOARD_NO, HOUSE_ADDRESS, HOUSE_LATITUDE, HOUSE_LONGITUDE, INFORMATION, THUMBNAIL)
 		VALUES (#{boardNo}, #{houseAddress},  #{houseLatitude}, #{houseLongitude}, #{information}, #{thumbnail})
@@ -143,6 +150,11 @@
 				AND STATUS = 'Y'
 			ORDER BY CREATE_DATE
 	</select>
+	
+	<insert id="tourApply" parameterType="tour">
+		INSERT INTO TOUR (ROOM_NO, USER_NO, MOVE_IN, ENQUIRY)
+		VALUES (#{roomNo}, #{userNo},  #{moveIn}, #{enquiry})
+	</insert>
 	
 	
 </mapper>

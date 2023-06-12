@@ -13,6 +13,7 @@ import com.ace.thrifty.common.model.vo.Coordinate;
 import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
 import com.ace.thrifty.house.model.vo.RoomImg;
+import com.ace.thrifty.house.model.vo.Tour;
 
 @Repository
 public class HouseDao {
@@ -60,7 +61,11 @@ public class HouseDao {
 		map.put("keyword", keyword);
 		map.put("userNo", userNo);
 	return sqlSession.selectList("houseMapper.searchHouse", map);
-}
+	}
+	
+	public int tourApply(Tour tour) {
+		return sqlSession.insert("houseMapper.tourApply", tour);
+	}
 	
 
 	
