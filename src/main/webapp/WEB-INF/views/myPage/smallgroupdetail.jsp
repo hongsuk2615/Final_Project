@@ -170,6 +170,34 @@
         text-align: center;
     }
 
+
+	#item-btns{
+    display: flex;
+    justify-content: right;
+}
+
+#item-btns>div{
+    margin-top: 5px;
+    margin-left: 5px;
+    width : 75px;
+    height : 30px;
+    padding : 3px;
+    border-radius: 4px;
+    color : white;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+#wish-btn{
+    background-color: rgb(52, 152, 219);
+}
+#report-btn{
+    background-color: red;
+}
+	
+
 </style>
 </head>
 
@@ -213,7 +241,14 @@
                         <div class="body-right-header-right-deletebutt">
                             <button type="button" class="btn btn-danger" id="delete_button">삭제하기</button>
                         </div>
-                   		</c:if> 
+                   		</c:if>
+                   		
+                   		<c:if test="${sg.member.userNo 	!= loginUser.userNo}">
+                            <div id="item-btns">
+                                <div id="wish-btn" bNo ="${board.boardNo}">찜</div>
+                                <div id="report-btn" bNo="${board.boardNo}">신고</div>
+                            </div>
+                    	</c:if> 
                         <div class="body-right-header-right-qr">
                             <div class="square">
                             <img src="resources/images/myPage/opentalkroom.png" width="100%" height="100%">
@@ -222,7 +257,7 @@
                         
 
                     </div>
-                    
+                    	
                 </div>
                 
                 <div id="body-right-body">
@@ -285,5 +320,76 @@ document.getElementById('delete_button').addEventListener('click', function(){
 });
 
 </script> 
+
+
+
+<script>
+            document.getElementById('wish-btn').addEventListener('click', function(){
+                let bNo = $(this).attr("bNo");
+                console.log(bNo);
+                $.ajax({
+                    url : "/thrifty/wishList/insert",
+                    data : {bNo},
+                    success : function(result){
+                        console.log(result);
+                        if(result == 1){
+                            Swal.fire({
+                                position: 'top-center',
+                                icon: 'success',
+                                title: '찜완료',
+                                showConfirmButton: false,
+                                timer: 1000
+                             })
+                        }else if(result == -1){
+                            Swal.fire({
+                                position: 'top-center',
+                                icon: 'warning',
+                                title: '비로그인 상태입니다.',
+                                showConfirmButton: false,
+                                timer: 1000
+                            }).then(()=>{
+                                login();
+                            })
+                            
+
+                        }else if(result == 2){
+                            Swal.fire({
+                                position: 'top-center',
+                                icon: 'error',
+                                title: '이미 찜한 게시글입니다.',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+                        }
+                    }
+                })
+            })
+
+            document.getElementById('report-btn').addEventListener('click', function(){
+                let bNo=$(this).attr("bNo");
+                const { value: fruit } = Swal.fire({
+                    title: '신고항목을 고르세요',
+                    input: 'select',
+                    inputOptions: {
+                        
+                    },
+                    inputPlaceholder: '신고항목',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '신고하기',
+                    cancelButtonText: '취소',
+                    inputValidator: (value) => {
+                        return new Promise((resolve) => {
+                        if (value === 'oranges') {
+                            resolve()
+                        } else {
+                            resolve('You need to select oranges :)')
+                        }
+                        })
+                    }
+                })
+            })
+</script>
 </body>
 </html>

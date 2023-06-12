@@ -1,7 +1,9 @@
 package com.ace.thrifty.myPage.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +20,7 @@ import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.myPage.model.service.MyPageService;
 import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
+import com.ace.thrifty.wishList.model.vo.WishList;
 
 @Controller
 @RequestMapping("/mypage")
@@ -107,10 +110,25 @@ public class MyPageController {
 	}
 	
 	
-//	@GetMapping("zzimselect")
-//	public String zzimSelect(HttpSession session,
-//							Member m,
-//							Board b) {
+	@GetMapping("/zzimselect")
+	public String zzimSelect(HttpSession session,
+			Board b,
+			Model model) {
+		Member m = (Member)session.getAttribute("loginUser");
+		
+		
+		
+		//wishlist.userno = loginUser.userno 
+		
+		ArrayList<Board> list = myPageService.zzimSelect(m, b);
+		
+		System.out.println(list);
+		
+		model.addAttribute("list",list);
+		
+		return "myPage/myPagezzim";
+		
+		
 		//찜 을 셀렉트 하기 
 		//wishlist라는 테이블에서 boardNo, user.no
 		//앞에다가 보여줄 화면 : 각자uppercateogry별로 찜 보여줌 boardNo로 가져와야
@@ -130,5 +148,7 @@ public class MyPageController {
 		
 		
 //		
-//	}
+	}
+	
+	
 }

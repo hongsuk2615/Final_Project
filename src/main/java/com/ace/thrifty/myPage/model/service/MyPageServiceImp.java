@@ -13,6 +13,7 @@ import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.common.Utils;
 import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.myPage.model.dao.MyPageDao;
+import com.ace.thrifty.wishList.model.vo.WishList;
 
 @Service
 public class MyPageServiceImp  implements MyPageService{
@@ -59,6 +60,14 @@ public class MyPageServiceImp  implements MyPageService{
 		
 		return myPageDao.changeProfile(m);
 		
+		
+	}
+	
+	@Override
+	public ArrayList<Board> zzimSelect(Member m, Board b) {
+		
+		
+		return myPageDao.zzimSelect(m, b);
 		
 	}
 	
