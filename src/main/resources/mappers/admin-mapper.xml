@@ -59,7 +59,10 @@
 		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
 	</resultMap>
 	
-<!-- 	<resultMap type="reportCategory" id="reportCategoryResultSet"></resultMap>  reportCategory별칭지정-->
+	<resultMap type="reportCategory" id="reportCategoryResultSet">
+		<id column="R_CATEGORY_NO" property="reportCategoryNo"/>
+		<result column="R_CATEGORY_NAME" property="reportCategoyName"/>	
+	</resultMap>
 
 	<select id="loginAdmin" parameterType="member" resultMap="memberResultSet">
 		SELECT * 
