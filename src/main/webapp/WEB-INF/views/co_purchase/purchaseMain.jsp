@@ -73,7 +73,7 @@
                                             모집중
                                         </div>
                                     </div>
-                                    <a href="${ contextPath }/co_purchase/detail">
+                                    <a href="${ contextPath }/co_purchase/detail?bNo=${ list.get(i).boardNo }">
                                         <div class="detail_middle">${ b.title }</div>
                                     </a>
                                     <div class="detail_bottom flex">
@@ -177,10 +177,12 @@
                         <a href="" id="search_submit">검색</a>
                         <!-- <input type="submit" value="검색" id="search_submit"> -->
                     </div>
-                    <div>
-                        <a href="${ contextPath }/co_purchase/enroll" id="write_content">글쓰기</a>
-                        <!-- <input type="submit" value="글쓰기" id="write_content"> -->
-                    </div>
+	                <div>
+	                    <c:if test="${loginUser != null}">
+	                        <a href="${ contextPath }/co_purchase/enroll" id="write_content">글쓰기</a>
+	                        <!-- <input type="submit" value="글쓰기" id="write_content"> -->
+	                    </c:if>
+	                </div>
                 </div>
             </div>
         </div>

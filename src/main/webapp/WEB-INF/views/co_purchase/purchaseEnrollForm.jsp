@@ -99,9 +99,15 @@
                         </div>
                         <div class="write_case">
                             <div id="fileUpload_2">
-                                <input type="text" name="product_title" class="write_content" placeholder="제품 명을 입력해주세요.">
+                                <input type="text" name="productName" class="write_content" placeholder="제품 명을 입력해주세요.">
                                 <input type="text" name="price" id="price" class="write_content" placeholder="가격을 입력해주세요.">
                             </div>
+                        </div>
+                    </div>
+                    <div id="title_link">
+                        <div id="write_title" class="write_case">
+                            <div class="write_case_head">관련 링크</div>
+                            <input type="text" id="enroll_link" class="" name="link">
                         </div>
                     </div>
                     <div>
