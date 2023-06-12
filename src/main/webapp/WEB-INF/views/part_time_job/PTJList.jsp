@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="pi" value="${map.pi}" />
-<c:set var="list" value="${map.list}" />
-<c:set var="currentTab" value="${map.tab}" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,70 +61,64 @@
             </div>
             <div id="body-right">
                 <div id="ptj-header">
-					<h1>최신 대타 / 알바 게시글</h1>	
+					<c:choose>
+                		<c:when test="${filter.scNo eq null or filter.scNo eq '' }">
+		                    <div id="body-right-title"><h1>[대타 / 심부름]</h1></div>
+                		</c:when>
+                		<c:otherwise>
+                			<c:forEach var="location" items="${locationList}">
+                				<c:if test="${location.locationNo eq filter.lNo}">
+	                				<div id="body-right-title">[${subCategory.categorySName}]</div>                				
+                				</c:if>
+                			</c:forEach>
+                		</c:otherwise>
+                	</c:choose>
                 </div>
                 <div style="width:100%; height:50px;" id="write-board">
-                	<p>메인 > 심부름/대타 </p><button id="write-btn">게시글 작성하기</button>
+                	<p>메인 > 심부름/대타 </p>
+                	<c:if test="${loginUser != null }">
+	                	<button id="write-btn">게시글 작성하기</button>
+                	</c:if>
                 </div>
                 <hr style="width: 100%;  margin-top: 15px;">
                 <div id="ptj-allBody" style="height: 1000px;">
                 <!-- <input type="hidden" name="boardNo"> -->
-                	<c:forEach var="ptjList" items="${pList }" begin="0" end="8" step="1" >
-               			<div style="width: 200px; height: 300px;" class="list-detail" onclick="a(${ptjList.boardNo})">
-               				<img src="${contextPath }${webPath }${ptjList.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>
-       						<p style="display: none;">${ptjList.board.boardNo }</p>
-       						<p style="text-align: center;">제목 :${ptjList.board.title }</p>
-       						<p style="text-align: center;">${ptjList.board.content }</p>
-           				</div>
+                	<c:forEach var="ptj"  items="${list}" >
+	                	
+	                			<div style="width: 200px; height: 300px;" class="list-detail" onclick="location.href = '${contextPath}/ptj/ptjDetail?bNo=${ptj.boardNo }'">
+		               				<img src="${contextPath }/${ptj.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>
+		       						<p style="display: none;">${ptj.boardNo }</p>
+		       						<p style="text-align: center;">제목 :${ptj.board.title }</p>
+		       						<p style="text-align: center;">${ptj.board.content }</p>
+		       						<p style="text-align: center;">${ptj.location.locationName }</p>
+		           				</div>  
+
+	                	
        				</c:forEach>
                 </div>
-                
-                <div class="row">
-					<div class="col-sm-12 col-md-7">
-						<div class="dataTables_paginate paging_simple_numbers">
-							<ul class="pagination">
-								<c:choose>
-									<c:when test="${pi.currentPage eq 1}">
-										<li class="paginate_button page-item previous disabled">
-											<a href="ptjList?tab=${currentTab}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
-										</li>
-									</c:when>
-									<c:otherwise>
-										<li class="paginate_button page-item previous">
-											<a href="ptjList?tab=${currentTab}&currentPage=${pi.currentPage-1}" class="page-link">Previous</a>
-										</li>
-									</c:otherwise>
-								</c:choose>
-								<c:forEach var="item" begin="${pi.startPage}" end="${pi.endPage}">
-									<c:choose>
-										<c:when test="${pi.currentPage == item}">
-											<li class="paginate_button page-item active">
-												<a href="ptjList?tab=${currentTab}&currentPage=${item}" class="page-link">${item}</a>
-											</li>
-										</c:when>
-										<c:otherwise>
-											<li class="paginate_button page-item">
-												<a href="ptjList?tab=${currentTab}&currentPage=${item}" class="page-link">${item}</a>
-											</li>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-								<c:choose>
-									<c:when test="${pi.currentPage eq pi.maxPage}">
-										<li class="paginate_button page-item next disabled">
-											<a href="ptjList?tab=${currentTab}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
-										</li>
-									</c:when>
-									<c:otherwise>
-										<li class="paginate_button page-item next">
-											<a href="ptjList?tab=${currentTab}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
-										</li>
-									</c:otherwise>
-								</c:choose>
-							</ul>
-						</div>
-					</div>
-			</div>
+                <div id="body-right-footer">
+                    <div id="paging-btns">
+                    	<c:choose>
+		                  <c:when test="${ pi.currentPage eq 1 }">
+		                     <div>&lt;</div>
+		                  </c:when>
+		                  <c:otherwise>
+		                     <div><a href="/thrifty/ptj/ptjList?currPage=${filter.currPage-1}&scNo=${filter.scNo}&location=${filter.lNo}">&lt;</a></div>
+		                  </c:otherwise>               
+		               </c:choose>
+		               <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
+	                  	<div><a href="/thrifty/ptj/ptjList?currPage=${item}&scNo=${filter.scNo}&location=${filter.lNo}">${item}</a></div>
+	               		</c:forEach>
+	               		<c:choose>
+		                  <c:when test="${ pi.currentPage eq pi.maxPage }">
+		                     <div style="display: none;">&gt;</div>
+		                  </c:when>
+		                  <c:otherwise>
+		                     <div><a href="/thrifty/ptj/ptjList?currPage=${filter.currPage+1}&scNo=${filter.scNo}&location=${filter.lNo}">&gt;</a></div>
+		                  </c:otherwise>
+		                </c:choose>	               
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -139,9 +131,9 @@
         location.href = "<%= request.getContextPath() %>/ptj/ptjEnrollForm";
    	})
    	
-   	function a(boardNo) {
+   	/* function a(boardNo) {
 	   		location.href = "${contextPath}/ptj/ptjDetail/"+boardNo;
-   	}
+   	} */
    	
 
 </script>

@@ -16,59 +16,53 @@ import com.ace.thrifty.ptj.model.vo.Ptj;
 
 @Repository
 public class PtjDao {
-	
+
 	@Autowired
 	SqlSession sqlSession;
-	
-	public Ptj selectPtjDetail(int boardNo) {
-		return sqlSession.selectOne("ptjMapper.selectPtjDetail" , boardNo);
+
+	public Ptj selectPtjDetail(int bNo) {
+		return sqlSession.selectOne("ptjMapper.selectPtjDetail", bNo);
 	}
-	
-	public List<Ptj> selectPtj(String categorySNo) {
-		return sqlSession.selectList("ptjMapper.selectPtj", categorySNo);
+
+	public List<Ptj> selectPtj() {
+		return sqlSession.selectList("ptjMapper.selectPtj");
 	}
-	
-	
-	public List<Ptj> selectPtjAll() { 
-		return sqlSession.selectList("ptjMapper.selectPtjAll"); 
-	}
-	 
-	
+
+	/*
+	 * public List<Ptj> selectPtjAll() { return
+	 * sqlSession.selectList("ptjMapper.selectPtjAll"); }
+	 */
+
 	public int insertPtj(Ptj p) {
-		return sqlSession.insert("ptjMapper.insertPtj" , p);
+		return sqlSession.insert("ptjMapper.insertPtj", p);
 	}
-	
+
 	public Ptj updateFormPtj(int boardNo) {
-		return sqlSession.selectOne("ptjMapper.updateFormPtj" , boardNo);
+		return sqlSession.selectOne("ptjMapper.updateFormPtj", boardNo);
 	}
-	
+
 	public int updatePtj(Ptj p) {
-		return sqlSession.update("ptjMapper.updatePtj" , p);
+		return sqlSession.update("ptjMapper.updatePtj", p);
 	}
-	
+
 	public int workEnd(Ptj p) {
-		return sqlSession.update("ptjMapper.workEnd" , p);
+		return sqlSession.update("ptjMapper.workEnd", p);
 	}
-	
+
 	public int deleteImage(Board b) {
 		return sqlSession.update("ptjMapper.deleteImage", b);
 	}
+
+	public int selectPtjCount(Map<String, Object> queryString) {
+		return sqlSession.selectOne("ptjMapper.selectPtjCount" , queryString);
+	}
 	
-	/*
-	 * public int selectPtjBoardListCount(Map<String, Object> paramMap) { return
-	 * sqlSession.selectOne("ptjMapper.selectPtjBoardListCount", paramMap); }
-	 */
-	
-	/*
-	 * public List<Ptj> selectPtjAll(PageInfo pi, Map<String, Object> paramMap) {
-	 * 
-	 * int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit(); int limit =
-	 * pi.getBoardLimit();
-	 * 
-	 * RowBounds rowBounds = new RowBounds(offset, limit);
-	 * 
-	 * return sqlSession.selectList("pjtMapper.selectPtjAll", paramMap, rowBounds);
-	 * }
-	 */
+	public List<Ptj> selectPtjAll(PageInfo pi, Map<String, Object> queryString) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit(); 
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return sqlSession.selectList("ptjMapper.selectPtjAll", queryString , rowBounds);
+	}
+	 
 
 }

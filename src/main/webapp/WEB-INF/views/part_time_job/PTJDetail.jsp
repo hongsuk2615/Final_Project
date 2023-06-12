@@ -66,11 +66,14 @@
                     <div style="width: 500px;">
                         <h1>${p.subCategory.categorySName } 게시글</h1>
                     </div>
-                    <div id="enroll-update">
-                        <button style="border: 0;" id="update-btn">수정하기</button>
-                        <button style="border: 0;" id="delete-btn" bNo="${p.board.boardNo }" url="ptj/ptjList">삭제하기</button>
-                        <button style="border: 0;" id="work-end-btn" bNo="${p.board.boardNo }" url="ptj/workEnd">구인완료</button>
-                    </div>
+                    <c:if test="${loginUser.userNo eq p.board.userNo or loginUser.authority eq 0}">
+	                    <div id="enroll-update">	
+	                        <button style="border: 0;" id="update-btn" >수정하기</button>
+	                        <%-- <input type="hidden" name="boardNo" value="${p.boardNo }"> --%>
+	                        <button style="border: 0;" id="delete-btn" bNo="${p.board.boardNo }" url="ptj/ptjList">삭제하기</button>
+	                        <button style="border: 0;" id="work-end-btn" bNo="${p.board.boardNo }" url="ptj/workEnd">구인완료</button>
+	                    </div>
+	                </c:if>
                 </div>
                 <hr>
                 <div id="enroll">
@@ -191,7 +194,7 @@
 	}) */
 	
 	document.getElementById('update-btn').addEventListener("click",function(){
-    	location.href = "${contextPath}/ptj/ptjUpdate/${boardNo}";
+    	location.href = "${contextPath}/ptj/ptjUpdate?bNo=${p.board.boardNo}";
 	})
 	
 </script>

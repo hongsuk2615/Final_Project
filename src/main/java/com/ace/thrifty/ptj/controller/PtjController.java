@@ -34,45 +34,51 @@ public class PtjController {
 	@Autowired
 	private PtjService ptjService;
 
-	@Autowired
-	private BoardService boardService;
 //		private static final Logger logger = LoggerFactory.getLogger(PtjController.class);
 
 	@GetMapping("/ptj")
 	public String ptjMain(Model model) {
-		List<Ptj> p = ptjService.selectPtjAll();
+		List<Ptj> p = ptjService.selectPtj();
 		model.addAttribute("p" , p);
 		String webPath = "/resources/upfiles/ptj/";
 		model.addAttribute("webPath" , webPath);
-		System.out.println(p);
+		/* System.out.println(p); */
 		return "part_time_job/PTJMain";
-		
 	}
 
 	
 	 @GetMapping("/ptj/ptjList") 
-	 public String ptjList(Model model) {
-	 
-		 List<Ptj> pList = ptjService.selectPtjAll();
-		 model.addAttribute("pList",pList); 
-		 String webPath = "/resources/upfiles/ptj/";
-		 model.addAttribute("webPath" , webPath);
-		 
+	 public String ptjList(Model model , @RequestParam Map<String, Object> queryString) {
+		 if(!queryString.containsKey("currPage")) {
+				queryString.put("currPage", "1");
+		 }
+		 ptjService.selectPtjAll(queryString);
+		 if(queryString.containsKey("lNo")) {
+			model.addAttribute("lNo", queryString.get("lNo"));			
+		 }
+		 model.addAttribute("filter", queryString.get("filter"));
+		 System.out.println(queryString.get("filter"));
+		 model.addAttribute("list", queryString.get("list"));
+		 model.addAttribute("pi", queryString.get("pi"));
 		 return "part_time_job/PTJList"; 
 	 
 	 }
 	
 
-	@GetMapping("/ptj/ptjDetail/{boardNo}")
-	public String selectPtjDetail(Model model, @PathVariable("boardNo") int boardNo) {
+	@GetMapping("/ptj/ptjDetail")
+	public String selectPtjDetail(Model model, int bNo) {
 //			System.out.println(boardNo);
 
-		Ptj p = ptjService.selectPtjDetail(boardNo);
-		/* System.out.println(p); */
-		model.addAttribute("p", p);
-		String webPath = "/resources/upfiles/ptj/";
-		model.addAttribute("webPath" , webPath);
-		return "part_time_job/PTJDetail";
+		Ptj p = ptjService.selectPtjDetail(bNo);
+		if(p != null) {
+			/* System.out.println(p); */
+			model.addAttribute("p", p);
+			String webPath = "/resources/upfiles/ptj/";
+			model.addAttribute("webPath" , webPath);
+			return "part_time_job/PTJDetail";	
+		} else {
+			return "redirect:/thrifty/ptj/ptjList";
+		}
 
 	}
 
@@ -139,16 +145,13 @@ public class PtjController {
 	 * boardService.deleteBoard(board); } }
 	 */
 	
-	@GetMapping("/ptj/ptjUpdate/{boardNo}")
-	public String updatePtj(
-							@PathVariable("boardNo")int boardNo ,
+	@GetMapping("/ptj/ptjUpdate")
+	public String updatePtj(@RequestParam(value="bNo" , required = false)int boardNo ,
 							Model model) {
 		Ptj p = ptjService.updateFormPtj(boardNo);
-		if(boardNo > 0) {
-			model.addAttribute("p" , p);
-			/* System.out.println(p); */
-		}
-		return "part_time_job/PTJUpdateForm";			
+		model.addAttribute("p" , p);
+		System.out.println(p);
+		return "part_time_job/PTJUpdateForm";		
 	}
 	
 	@PostMapping("/ptj/ptjUpdate")

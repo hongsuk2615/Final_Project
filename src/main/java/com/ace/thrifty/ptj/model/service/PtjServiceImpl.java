@@ -20,6 +20,7 @@ import com.ace.thrifty.common.template.Pagination;
 import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.ptj.model.dao.PtjDao;
 import com.ace.thrifty.ptj.model.vo.Ptj;
+import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 
 @Service
 public class PtjServiceImpl implements PtjService {
@@ -29,27 +30,39 @@ public class PtjServiceImpl implements PtjService {
 	
 	@Autowired
 	BoardDao boardDao;
-
-	private Pagination pageination;
+	
+	@Autowired
+	private Pagination pagination;
 	
 	@Override
-	public Ptj selectPtjDetail(int boardNo) {
+	public Ptj selectPtjDetail(int bNo) {
 		
-		return ptjDao.selectPtjDetail(boardNo);
-		
+		Ptj p =  ptjDao.selectPtjDetail(bNo);
+		if(p != null) {
+			boardDao.increaseReadCount(bNo);
+			p.getBoard().setReadCount(p.getBoard().getReadCount()+1);
+		}
+		return p;
 	}
 	
 
-	/*
-	 * public List<Ptj> selectPtj(String categorySNo) {
-	 * 
-	 * return ptjDao.selectPtj(categorySNo); }
-	 */
-	
-	
-	 @Override public List<Ptj> selectPtjAll() {
+	@Override
+	 public List<Ptj> selectPtj() {
+		 return ptjDao.selectPtj();
+	 }
 	 
-		 return ptjDao.selectPtjAll();
+	
+	
+	 @Override 
+	 public void selectPtjAll(Map<String, Object> queryString) {
+		int listCount = ptjDao.selectPtjCount(queryString);
+		int pageLimit = 10;
+		int boardLimit = 9;
+		PageInfo pi = pagination.getPageInfo(listCount, Integer.parseInt((String)(queryString.get("currPage"))), pageLimit, boardLimit);
+		List<Ptj> list = ptjDao.selectPtjAll(pi, queryString);
+		
+		queryString.put("pi", pi);
+		queryString.put("list", list);
 	  
 	 }
 	 

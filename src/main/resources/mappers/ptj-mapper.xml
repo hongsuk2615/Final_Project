@@ -10,10 +10,29 @@
 	<result column="IS_END" property="isEnd" />
 	<result column="IMG_PATH" property="imgPath" />
 	<result column="LOCATION_COORDINATE" property="locationCoordinate" />
-	<collection property="board" resultMap="boardResultSet"/>
+	<association property="board" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Board">
+			<id column="BOARD_NO" property="boardNo"/>			
+			<result column="CATEGORY_S_NO"  property="categorySNo"/>
+			<result column="CONTENT"  property="content"/>
+			<result column="CREATE_DATE"  property="createDate"/>
+			<result column="READ_COUNT"  property="readCount"/>
+			<result column="REPORT_COUNT"  property="reportCount"/>
+			<result column="TITLE"  property="title"/>
+			<result column="USER_NO"  property="userNo"/>
+			<result column="WISH_COUNT"  property="wishCount"/>
+			<result column="STATUS" property="status" />
+		</association>
 	<collection property="location" resultMap="locationResultSet"/> <!-- 집가서 ㄱㄱ -->
 	<collection property="member" resultMap="memberResultSet" />
 	<collection property="subCategory" resultMap="subCategoryResultSet" />
+	<collection property="imageList" column="BOARD_NO" javaType="java.util.ArrayList" ofType="com.ace.thrifty.board.model.vo.Image">
+		<id column="IMG_NO" property="imgNo"/>
+		<result column="BOARD_NO" property="boardNo"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="STATUS" property="status"/>
+	</collection>
 </resultMap> 
 
 <resultMap type="location" id="locationResultSet">
@@ -27,7 +46,7 @@
 	<result column="CATEGORY_U_NO" property="categoryUNo" />
 </resultMap>
 
-<resultMap type="board" id="boardResultSet">
+<!-- <resultMap type="board" id="boardResultSet">
 		<id column="BOARD_NO" property="boardNo"/>
 		<result column="CATEGORY_S_NO"  property="categorySNo"/>
 		<result column="CONTENT"  property="content"/>
@@ -38,7 +57,7 @@
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
 		<result column="STATUS" property="status" />
-</resultMap>
+</resultMap> -->
 
 <resultMap type="member" id="memberResultSet">
 	<result column="PHONE" property="phone" />
@@ -72,7 +91,7 @@
 	LEFT JOIN thrifty.IMAGE I ON B.BOARD_NO = I.BOARD_NO
 	LEFT JOIN MEMBER M ON B.USER_NO = M.USER_NO
 	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
-	WHERE P.BOARD_NO = #{boardNo} AND B.STATUS = 'Y' AND I.STATUS = 'Y'
+	WHERE P.BOARD_NO = #{bNo} AND B.STATUS = 'Y' AND I.STATUS = 'Y'
 </select>
 
 <select id="selectPtj" resultMap="ptjDetailResultSet">
@@ -88,16 +107,24 @@
 		B.CONTENT,
 		B.WISH_COUNT,
 		L.LOCATION_NAME,
-		I.CHANGE_NAME AS IMG_PATH
+		P.LOCATION_NO,
+		CONCAT('/resources/upfiles/ptj/', CHANGE_NAME) AS IMG_PATH,
+		B.STATUS
 	FROM thrifty.PART_TIME_JOB P
 	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
 	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
 	LEFT JOIN thrifty.SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 	LEFT JOIN thrifty.IMAGE I ON B.BOARD_NO = I.BOARD_NO
-	WHERE SC.CATEGORY_S_NO = #{categorySNo} AND B.STATUS = 'Y' AND I.STATUS = 'Y'
+	WHERE B.STATUS = 'Y' AND I.STATUS = 'Y'
+		<!-- <if test= 'scNo!= null and scNo !="" '>
+		 	AND CATEGORY_S_NO = #{scNo}
+		</if>
+		<if test='location != null and location!= ""'>
+	 		AND LOCATION_NO = #{location}
+	 	</if> -->
 </select>
 
-<select id="selectPtjAll" resultMap="ptjDetailResultSet">
+<select id="selectPtjAll" parameterType="map" resultMap="ptjDetailResultSet">
 	SELECT
 		P.BOARD_NO,
 		P.LOCATION_NO,
@@ -110,14 +137,21 @@
 		B.CONTENT,
 		B.WISH_COUNT,
 		L.LOCATION_NAME,
-		I.CHANGE_NAME AS IMG_PATH,
+		P.LOCATION_NO,
+		CONCAT('/resources/upfiles/ptj/', CHANGE_NAME) AS IMG_PATH,
 		B.STATUS
-	FROM thrifty.PART_TIME_JOB P
-	LEFT JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
-	LEFT JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
-	LEFT JOIN thrifty.IMAGE I ON B.BOARD_NO = I.BOARD_NO
-	LEFT JOIN thrifty.UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
+	FROM PART_TIME_JOB P
+	LEFT JOIN BOARD B ON B.BOARD_NO = P.BOARD_NO
+	LEFT JOIN LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
+	LEFT JOIN IMAGE I ON B.BOARD_NO = I.BOARD_NO
+	LEFT JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
 	WHERE UC.CATEGORY_U_NO = 5 AND B.STATUS = 'Y' AND I.STATUS = 'Y'
+		<if test= 'scNo!= null and scNo !="" '>
+		 	AND B.CATEGORY_S_NO = #{scNo}
+		</if>
+		<if test='lNo != null and lNo!= ""'>
+	 		AND P.LOCATION_NO = #{lNo}
+	 	</if>
 </select>
 
 <insert id="insertPtj" parameterType="ptj">
@@ -178,10 +212,18 @@
 	WHERE BOARD_NO = #{boardNo}
 </update>
 
-<select id="selectPtjBoardListCount" resultType="int">
-	SELECT COUNT(*) FROM PART_TIME_JOB P
-	JOIN BOARD B ON B.BOARD_NO = P.BOARD_NO
-	LEFT JOIN thrifty.UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
-	WHERE B.STATUS = 'Y' AND  UC.CATEGORY_U_NO = 5
+<select id="selectPtjCount" parameterType="map" resultType="_int">
+	SELECT COUNT(*) 
+	FROM PART_TIME_JOB
+	JOIN LOCATION USING(LOCATION_NO)
+	JOIN BOARD B USING(BOARD_NO)
+	JOIN IMAGE USING(BOARD_NO)
+	WHERE B.STATUS = 'Y'
+		<if test= 'scNo!= null and scNo !="" '>
+	 		AND CATEGORY_S_NO = #{scNo}
+	 	</if>
+	 	<if test='lNo != null and lNo != ""'>
+	 		AND LOCATION_NO = #{lNo}
+	 	</if>
 </select>
 </mapper>

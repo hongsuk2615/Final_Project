@@ -1,6 +1,7 @@
 package com.ace.thrifty.carpool.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,10 +27,17 @@ public class CarPoolController {
 	}
 	
 	@RequestMapping("/drive")
-	public String driveList(Model model) {
-		
-		List<CarPool> cList = carPoolService.driveList();
-		model.addAttribute("cList" , cList);
+	public String driveList(Model model , @RequestParam Map<String, Object> queryString) {
+		if(!queryString.containsKey("currPage")) {
+			queryString.put("currPage", "1");
+		}
+		carPoolService.driveList(queryString);
+		if(queryString.containsKey("lNo")) {
+			model.addAttribute("lNo", queryString.get("lNo"));			
+		}
+		model.addAttribute("filter", queryString.get("filter"));
+		model.addAttribute("list", queryString.get("list"));
+		model.addAttribute("pi", queryString.get("pi"));
 		
 		return "car_pool/carPoolDriveList";
 	}
@@ -43,10 +51,6 @@ public class CarPoolController {
 		return "car_pool/carPoolDetail";
 	}
 	
-	@RequestMapping("/occupant")
-	public String occupantList() {
-		return "car_pool/carPoolOccupantList";
-	}
 //	
 //	@RequestMapping("/home/carPoolDetail")
 //	public String carPoolDetail() {

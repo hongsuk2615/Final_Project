@@ -68,59 +68,47 @@
                 <div style="width:100%; display: flex; align-items: center; justify-content: space-between;">
                 	<p>메인 > 카풀 > 태워주세요</p>
                     <div>
-                        <button id="write-btn">글 작성하기</button>
+                    	<c:if test="${loginUser != null }">
+                        	<button id="write-btn">글 작성하기</button>
+                        </c:if>
                     </div>
                 </div>
                 <hr style="width: 100%;">
-                <form action="/thrifty/carPool/detail?bno="method="get">
+                <form action="/thrifty/carPool/detail?bno=${cList.boardNo }"method="post">
 	                <div id="ptj-allBody" style="height: 1000px;">
-	                	<div id="ptj-body1">
-	                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-	                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;"/>
-	                        <p style="text-align: center;">사당 ~ 역삼 8시 구해요 ㅠ</p>
-	                    </div>
-	                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-	                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-	                        <p style="text-align: center;">역삼 ~ 강남 카풀 해주실 천사~</p>
-	                    </div>
-	                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-	                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-	                        <p style="text-align: center;">메롱</p>
-	                    </div>
-	                </div>
-	                <div id="ptj-body2">
-	                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-	                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-	                        <p style="text-align: center;">메롱</p>
-	                    </div>
-	                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-	                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-	                        <p style="text-align: center;">메롱</p>
-	                    </div>
-	                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-	                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-	                        <p style="text-align: center;">메롱</p>
-	                    </div>
-	                </div>
-	                <div id="ptj-body3">
-	                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-	                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-	                        <p style="text-align: center;">메롱</p>
-	                    </div>
-	                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-	                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-	                        <p style="text-align: center;">메롱</p>
-	                    </div>
-	                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-	                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-	                        <p style="text-align: center;">메롱</p>
-	                    </div>
-	                    <input type="hidden" name="boardNo" value="">
-	                </div>
+	                	<c:forEach var="cList" items="${cList }" begin="0" end="8" step="1">
+		                    <div style="width: 200px; height: 170px; border: 1px gray;" onclick="location.href='${contextPath}/carPool/detail?bNo=${carPool.boardNo }'">
+		                        <img src="/${contextPath }/${carPool.imgPath}" style="height: 170px; width: 210px;"/>
+		                        <p style="text-align: center;">제목 : ${cList.board.title }</p>
+		                        <p style="text-align: center;">내용 : ${cList.board.content }</p>
+		                    </div>
+	                	</c:forEach>
 	                </div>
 				</form>
-                <div id="paging">
-                    <p style="text-align: center;">< 1 2 3 4 ></p>
+				
+				
+                <div id="body-right-footer">
+                    <div id="paging-btns">
+                    	<c:choose>
+		                  <c:when test="${ pi.currentPage eq 1 }">
+		                     <div>&lt;</div>
+		                  </c:when>
+		                  <c:otherwise>
+		                     <div><a href="/thrifty/carPool/drive?currPage=${filter.currPage-1}&scNo=${filter.scNo}&location=${filter.lNo}">&lt;</a></div>
+		                  </c:otherwise>               
+		               </c:choose>
+		               <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
+	                  	<div><a href="/thrifty/carPool/drive?currPage=${item}&scNo=${filter.scNo}&location=${filter.lNo}">${item}</a></div>
+	               		</c:forEach>
+	               		<c:choose>
+		                  <c:when test="${ pi.currentPage eq pi.maxPage }">
+		                     <div>&gt;</div>
+		                  </c:when>
+		                  <c:otherwise>
+		                     <div><a href="/thrifty/carPool/drive?currPage=${filter.currPage+1}&scNo=${filter.scNo}&location=${filter.lNo}">&gt;</a></div>
+		                  </c:otherwise>               
+		               </c:choose>
+                    </div>
                 </div>
             </div>
         </div>
