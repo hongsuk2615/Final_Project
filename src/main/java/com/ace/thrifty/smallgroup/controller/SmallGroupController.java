@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.service.BoardService;
 import com.ace.thrifty.board.model.vo.Board;
@@ -71,16 +72,21 @@ public class SmallGroupController {
 	public String sgInsertBoard(
 			Model model,
 			SmallGroup sg,
-			Board b, HttpSession session) {
+			Board b, HttpSession session)
+			{
+		
+		
+		
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		b.setUserNo(userNo);
 	
 		int result3 = smallgroupService.sgInsertBoard(b, sg);
 		
+		
 		if(result3>0){
 		
 		
-//		model.addAttribute("alertMsg", "성공");
+
 		
 		
 	}
@@ -102,6 +108,8 @@ public class SmallGroupController {
 		
 		model.addAttribute("sg", detail);
 		
+		System.out.println(detail);
+		
 		return "myPage/smallgroupdetail";
 	}
 	
@@ -117,6 +125,7 @@ public class SmallGroupController {
 		
 		if(result3>0) {
 			
+		
 
 			model.addAttribute("alertMsg", "성공 ");	
 		}

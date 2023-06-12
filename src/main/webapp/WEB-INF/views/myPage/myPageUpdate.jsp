@@ -80,7 +80,7 @@
         float: left;
         width: 30%;
         height: 100%;
-        border-radius: 100%;
+        border-radius: 10%;
         overflow: hidden;
         
     }
@@ -220,7 +220,7 @@ input:focus { outline: none; }
 </style>
 </head>
 <body>
-<form  action ="${pageContext.request.contextPath}/mypage/myUpdate" method="post">
+
     <div id="wrapper">
         <div id="header">
             <jsp:include page="../common/header.jsp"/>
@@ -239,11 +239,14 @@ input:focus { outline: none; }
               
                 <div id="body-right-header">
                     <div class="profile-pic">
-                        <img src="resources/images/myPage/defaultProfile.png" width="100%" height="100%" style="object-fit: cover;">
+                        <img src="${contextPath}/resources/images/myPage/${loginUser.changeName}"  width="100%" height="100%" style="object-fit: cover;">
                     </div>
                     <div class="profile-title">
-                        <h2>프로필 변경</h2>
-                        <button>변경</button>
+                        <h4>프로필 변경</h4>
+                        <form  action ="${pageContext.request.contextPath}/mypage/insertProfile.do" enctype="multipart/form-data" method="post">
+                        <input type="file" name="images">
+                        <button type="submit">제출</button>
+                        </form>
                     </div>
                     
 
@@ -257,7 +260,7 @@ input:focus { outline: none; }
                         <h2>회원정보 수정</h2>
                         </div>
                     <div class="personinfoborder">
-
+						<form  action ="${pageContext.request.contextPath}/mypage/myUpdate" method="post">
                         <div class="classa">
                             <input type="text" required class="inputa" name="userId">
                             
@@ -310,6 +313,7 @@ input:focus { outline: none; }
 
                         <button type="submit" class="btn btn-primary" id="button_modify">수정하기</button>
                         <button type="button" class="btn btn-secondary" id="button_cancel">취소</button>
+                        </form>
                     </div>
                     
                    
@@ -339,11 +343,13 @@ input:focus { outline: none; }
 
         </div>
     </div>
-   </form>
+   
 
 <script>
     AOS.init();
 </script>
+
+
 
 
 
