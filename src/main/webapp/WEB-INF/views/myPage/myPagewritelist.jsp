@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,66 +118,66 @@
             <div id="body-right">
               
                 <div id="body-right-header">
-                    <div class="profile-pic">프로필 사진</div>
-                    <div class="profile-title">프로필 변경</div>
+                    <div class="profile-pic">íë¡í ì¬ì§</div>
+                    <div class="profile-title">íë¡í ë³ê²½</div>
                
 
                 </div>
 
-               <div id="body-right-middle">공백</div>
+               <div id="body-right-middle">ê³µë°±</div>
                <div id="body-right-body">
                 <div id="body-right-body-table">
-                <h2>내가 쓴 글 조회</h2>
+                <h2>ë´ê° ì´ ê¸ ì¡°í</h2>
                 <table>
                     <tr>
-                        <th>카테고리</th>
-                        <th>제목</th>
-                        <th>닉네임</th>
+                        <th>ì¹´íê³ ë¦¬</th>
+                        <th>ì ëª©</th>
+                        <th>ëë¤ì</th>
                     </tr>
                     <tr>
-                        <td>카테</td>
-                        <td>제목</td>
-                        <td>닉네임</td>
+                        <td>ì¹´í</td>
+                        <td>ì ëª©</td>
+                        <td>ëë¤ì</td>
                     </tr>
                     <tr>
-                        <td>카테</td>
-                        <td>제목</td>
-                        <td>닉네임</td>
+                        <td>ì¹´í</td>
+                        <td>ì ëª©</td>
+                        <td>ëë¤ì</td>
                     </tr>
                     <tr>
-                        <td>카테</td>
-                        <td>제목</td>
-                        <td>닉네임</td>
+                        <td>ì¹´í</td>
+                        <td>ì ëª©</td>
+                        <td>ëë¤ì</td>
                     </tr>
                     <tr>
-                        <td>카테</td>
-                        <td>제목</td>
-                        <td>닉네임</td>
+                        <td>ì¹´í</td>
+                        <td>ì ëª©</td>
+                        <td>ëë¤ì</td>
                     </tr>
                     <tr>
-                        <td>카테</td>
-                        <td>제목</td>
-                        <td>닉네임</td>
+                        <td>ì¹´í</td>
+                        <td>ì ëª©</td>
+                        <td>ëë¤ì</td>
                     </tr>
                     <tr>
-                        <td>카테</td>
-                        <td>제목</td>
-                        <td>닉네임</td>
+                        <td>ì¹´í</td>
+                        <td>ì ëª©</td>
+                        <td>ëë¤ì</td>
                     </tr>
                     <tr>
-                        <td>카테</td>
-                        <td>제목</td>
-                        <td>닉네임</td>
+                        <td>ì¹´í</td>
+                        <td>ì ëª©</td>
+                        <td>ëë¤ì</td>
                     </tr>
                     <tr>
-                        <td>카테</td>
-                        <td>제목</td>
-                        <td>닉네임</td>
+                        <td>ì¹´í</td>
+                        <td>ì ëª©</td>
+                        <td>ëë¤ì</td>
                     </tr>
                     <tr>
-                        <td>카테</td>
-                        <td>제목</td>
-                        <td>닉네임</td>
+                        <td>ì¹´í</td>
+                        <td>ì ëª©</td>
+                        <td>ëë¤ì</td>
                     </tr>
                     
 

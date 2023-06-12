@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pi" value="${ map.pi }"/>
+<c:set var="list" value="${ map.list }"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/thrifty/resources/css/co_purchase/purchaseMain.css">
+    <link rel="stylesheet" href="${ contextPath }/resources/css/co_purchase/purchaseMain.css">
 
 <style>
     *{
@@ -55,41 +58,47 @@
                 <div id="cat_title">공동구매</div>
 				<table>
                     <tbody>        
-                        <tr>
-                            <td class="flex">
-                                <div class="detail_img">
-                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
-                                </div>
-                                <div class="detail">
+                    	<c:if test="${ empty list }">
+							<td colspan="6"> 게시글이 없습니다.</td>
+						</c:if>
+						<c:forEach items="${ list }" var="b">
+							<tr>
+								<td class="flex">
+									<div class="detail_img">
+                                    	<img src="${ contextPath }/${ b.thumbNail }" alt="" class="detail_img_1">
+                                    </div>
+                                    <div class="detail">
                                     <div class="detail_top">
                                         <div class="detail_top_recruiting">
                                             모집중
                                         </div>
                                     </div>
-                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
+                                    <a href="${ contextPath }/co_purchase/detail?bNo=${ list.get(i).boardNo }">
+                                        <div class="detail_middle">${ b.title }</div>
+                                    </a>
                                     <div class="detail_bottom flex">
                                         <div class="flex align">
                                             <div>가격</div>
-                                            <div class="detail_bottom_price">20,000</div>
+                                            <div class="detail_bottom_price">${ b.price }</div>
                                         </div>
                                         <div class="detail_bottom_2 flex align">
                                             <div>
-                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                                <img src="${ contextPath }/resources/hong.png" alt="" class="detail_bottom_img">
                                             </div>
                                             <div class="detail_bottom_nickname">김김훙훙숙숙</div>
                                             <span>|</span>
-                                            <div>24</div>
+                                            <div>${ b.readCount }</div>
                                             <span>|</span>
-                                            <div>06:24</div>
+                                            <div>${ b.createDate }</div>
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
+							</tr>		
+						</c:forEach>	
+                        <!-- <tr>
                             <td class="flex">
                                 <div class="detail_img">
-                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
+                                    <img src="${ contextPath }/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
                                 </div>
                                 <div class="detail">
                                     <div class="detail_top">
@@ -97,69 +106,7 @@
                                             모집중
                                         </div>
                                     </div>
-                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
-                                    <div class="detail_bottom flex">
-                                        <div class="flex align">
-                                            <div>가격</div>
-                                            <div class="detail_bottom_price">20,000</div>
-                                        </div>
-                                        <div class="detail_bottom_2 flex align">
-                                            <div>
-                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
-                                            </div>
-                                            <div class="detail_bottom_nickname">김김훙훙숙숙</div>
-                                            <span>|</span>
-                                            <div>24</div>
-                                            <span>|</span>
-                                            <div>06:24</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="flex">
-                                <div class="detail_img">
-                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
-                                </div>
-                                <div class="detail">
-                                    <div class="detail_top">
-                                        <div class="detail_top_recruiting">
-                                            모집중
-                                        </div>
-                                    </div>
-                                    <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
-                                    <div class="detail_bottom flex">
-                                        <div class="flex align">
-                                            <div>가격</div>
-                                            <div class="detail_bottom_price">20,000</div>
-                                        </div>
-                                        <div class="detail_bottom_2 flex align">
-                                            <div>
-                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
-                                            </div>
-                                            <div class="detail_bottom_nickname">김김훙훙숙숙</div>
-                                            <span>|</span>
-                                            <div>24</div>
-                                            <span>|</span>
-                                            <div>06:24</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="flex">
-                                <div class="detail_img">
-                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
-                                </div>
-                                <div class="detail">
-                                    <div class="detail_top">
-                                        <div class="detail_top_recruiting">
-                                            모집중
-                                        </div>
-                                    </div>
-                                    <a href="/thrifty/co_purchase/detail">
+                                    <a href="${ contextPath }/co_purchase/detail">
                                         <div class="detail_middle">[단독] 옥수수 공동구매 합니다</div>
                                     </a>
                                     <div class="detail_bottom flex">
@@ -169,7 +116,7 @@
                                         </div>
                                         <div class="detail_bottom_2 flex align">
                                             <div>
-                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                                <img src="${ contextPath }/resources/hong.png" alt="" class="detail_bottom_img">
                                             </div>
                                             <div class="detail_bottom_nickname">김김훙훙숙숙</div>
                                             <span>|</span>
@@ -184,7 +131,7 @@
                         <tr>
                             <td class="flex">
                                 <div class="detail_img">
-                                    <img src="/thrifty/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
+                                    <img src="${ contextPath }/resources/images/main/oksusu.jpg" alt="" class="detail_img_1">
                                 </div>
                                 <div class="detail">
                                     <div class="detail_top">
@@ -200,7 +147,7 @@
                                         </div>
                                         <div class="detail_bottom_2 flex align">
                                             <div>
-                                                <img src="/thrifty/resources/hong.png" alt="" class="detail_bottom_img">
+                                                <img src="${ contextPath }/resources/hong.png" alt="" class="detail_bottom_img">
                                             </div>
                                             <div class="detail_bottom_nickname">김김훙훙숙숙</div>
                                             <span>|</span>
@@ -211,7 +158,7 @@
                                     </div>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 <div id="pagingbar"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
@@ -230,15 +177,17 @@
                         <a href="" id="search_submit">검색</a>
                         <!-- <input type="submit" value="검색" id="search_submit"> -->
                     </div>
-                    <div>
-                        <a href="/thrifty/co_purchase/enroll" id="write_content">글쓰기</a>
-                        <!-- <input type="submit" value="글쓰기" id="write_content"> -->
-                    </div>
+	                <div>
+	                    <c:if test="${loginUser != null}">
+	                        <a href="${ contextPath }/co_purchase/enroll" id="write_content">글쓰기</a>
+	                        <!-- <input type="submit" value="글쓰기" id="write_content"> -->
+	                    </c:if>
+	                </div>
                 </div>
             </div>
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
-    <script src="/thrifty/resources/js/co_purchase/main.js"></script>
+    <script src="${ contextPath }/resources/js/co_purchase/main.js"></script>
 </body>
 </html>

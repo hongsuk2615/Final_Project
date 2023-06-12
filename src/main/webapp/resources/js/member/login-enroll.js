@@ -22,3 +22,7 @@ function insertMember(){
 function logout(){
     location.href="/thrifty/member/logout";
 }
+
+function myPage(){
+	location.href="/thrifty/mypage/myPageMain";
+}

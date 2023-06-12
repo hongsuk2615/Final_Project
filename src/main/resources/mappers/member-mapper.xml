@@ -15,6 +15,7 @@
 		<result column="REPORT_COUNT" property="reportCount"/>
 		<result column="CURRENT_LOGIN" property="currentLogin"/>
 		<result column="JOIN_DATE" property="joinDate"/>
+		<result column="LOGIN_METHOD" property="loginMethod"/>
 	</resultMap>
 	
 	<select id="selectMember" resultMap="memberResultSet">
@@ -24,8 +25,8 @@
 	</select>
 	
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER(USER_NAME, NICK_NAME, GENDER, USER_ID, USER_PWD, PHONE, EMAIL)
-		     VALUES(#{userName}, #{nickName}, #{gender}, #{userId}, #{userPwd}, #{phone}, #{email})
+		INSERT INTO MEMBER(USER_NAME, NICK_NAME, GENDER, USER_ID, USER_PWD, PHONE, EMAIL, LOGIN_METHOD, CHANGE_NAME, ORIGIN_NAME)
+		     VALUES(#{userName}, #{nickName}, #{gender}, #{userId}, #{userPwd}, #{phone}, #{email}, #{loginMethod}, #{changeName}, #{originName})
 	</insert>
 	
 	
@@ -53,5 +54,35 @@
 		SELECT *
 		  FROM MEMBER
 		 WHERE NICK_NAME = #{nickName}
+	</select>
+	
+	<update id="myPageUpdate">
+		UPDATE MEMBER
+		SET  USER_NAME = #{userName},
+			 USER_ID = #{userId},
+			 USER_PWD = #{userPwd},
+			 PHONE = #{phone},
+			 EMAIL = #{email},
+			 NICK_NAME = #{nickName}
+	   WHERE USER_NO = #{userNo}
+		
+	</update>
+	
+	<select id="myPageUpdateSelectM" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_NO = #{userNo} AND STATUS='Y'
+	</select>
+	
+	<!-- <update id="changeProfile">
+		UPDATE MEMBER
+		SET USER_
+	</update> -->
+	
+	<select id="selectByKakaoId" parameterType="string" resultMap="memberResultSet">
+		SELECT *
+		  FROM MEMBER
+		 WHERE LOGIN_METHOD = 'K'
+		   AND USER_ID = #{kakaoId}
 	</select>
 </mapper>

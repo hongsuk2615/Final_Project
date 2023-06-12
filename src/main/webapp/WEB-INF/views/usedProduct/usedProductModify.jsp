@@ -73,6 +73,12 @@
                             <input type="text" name="title" placeholder="제목을 입력하세요" value="${board.title}">
                         </td>
                     </tr>
+                    <tr>
+                        <th>상품명</th>
+                        <td colspan="4">
+                            <input type="text" name="productName" placeholder="상품명을 입력하세요" value="${usedProduct.productName }"required>
+                        </td>
+                    </tr>
                     <tr id="categoryAndLocation">
                         <th>카테고리</th>
                         <td>
@@ -120,10 +126,33 @@
                     <tr id="images">
                     <input type="file" name="images" multiple style="opacity : 0;" onchange="imagePreview(this);">
                         <th>이미지<br>(최대4장)<br><button type="button" onclick="insertImage();">이미지 첨부</button></th>
-                        <td id="image0"></td>
-                        <td id="image1"></td>
-                        <td id="image2"></td>
-                        <td id="image3"></td>
+                        <c:forEach var="image" items="${imageList}">
+                        	<c:choose>
+								<c:when test="${image.fileLevel == 0 }">
+									<c:set var="img0" value="/thrifty/resources/upfiles/usedProduct/${image.changeName }"/>
+								</c:when>
+								<c:when test="${image.fileLevel == 1 }">
+									<c:set var="img1" value="/thrifty/resources/upfiles/usedProduct/${image.changeName }"/>
+								</c:when>
+								<c:when test="${image.fileLevel == 2 }">
+									<c:set var="img2" value="/thrifty/resources/upfiles/usedProduct/${image.changeName }"/>
+								</c:when>
+								<c:when test="${image.fileLevel == 3 }">
+									<c:set var="img3" value="/thrifty/resources/upfiles/usedProduct/${image.changeName }"/>
+								</c:when>
+							</c:choose>
+                        </c:forEach>
+                        <td id="image0" class="images"><img src="${img0}"></td>
+                        <td id="image1" class="images"><img src="${img1}"></td>
+                        <td id="image2" class="images"><img src="${img2}"></td>
+                        <td id="image3" class="images"><img src="${img3}"></td>
+                    </tr>
+                    <tr>
+                    	<td></td>
+                    	<th>${img0 != null ? '삭제' :'' }</th>
+                    	<th>${img1 != null ? '삭제' :'' }</th>
+                    	<th>${img2 != null ? '삭제' :'' }</th>
+                    	<th>${img3 != null ? '삭제' :''}</th>
                     </tr>
                     <tr id="boardContent">
                         <th>내용</th>
@@ -147,6 +176,9 @@
 
         </div>
         <script type="text/javascript">
+        	const deleteImage = document.getElementsByClassName("delete-image");
+        
+        
         	function insertImage(){
         		document.getElementsByName('images')[0].click();
         	}

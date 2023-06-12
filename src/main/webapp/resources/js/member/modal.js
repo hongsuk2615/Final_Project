@@ -27,7 +27,7 @@ function login(){
                 <fieldset>
                     <legend>또는</legend>    
                 </fieldset>
-                <div id="kakao-login-btn">
+                <div id="kakao-login-btn" onclick="kakaoLogin();">
                     <img src="/thrifty/resources/images/login/kakao/kakao_login_large_wide.png" alt="카카오 로그인 이미지" width="310" height="60">
                 </div>
                 <div onclick="googleLogin();">
@@ -264,4 +264,8 @@ function enroll(){
         showConfirmButton: false
     });
 
+}
+
+function kakaoLogin(){
+    location.href = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=812fa162a908f2e0e2a8addf2bbd6869&redirect_uri=http://localhost:8081/thrifty/member/kakaoLogin";
 }
