@@ -58,6 +58,8 @@
 		<result column="NICK_NAME" property="nickName"/>
 		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
 	</resultMap>
+	
+<!-- 	<resultMap type="reportCategory" id="reportCategoryResultSet"></resultMap>  reportCategory별칭지정-->
 
 	<select id="loginAdmin" parameterType="member" resultMap="memberResultSet">
 		SELECT * 
@@ -174,7 +176,7 @@
         JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 		WHERE  B.CATEGORY_U_NO = 1
 		<if test="catSNo != 0">
-			AND SC.CATEGORY_S_NO = #{catUNo}
+			AND SC.CATEGORY_S_NO = #{catSNo}
 		</if>
 	 	<if test="search != null">
 		 	<bind name="searchPattern" value="'%'+search+'%'"/>
@@ -188,7 +190,7 @@
         JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 		WHERE  B.CATEGORY_U_NO = 9
 		<if test="catSNo != 0">
-			AND SC.CATEGORY_S_NO = #{catUNo}
+			AND SC.CATEGORY_S_NO = #{catSNo}
 		</if>
 	 	<if test="search != null">
 		 	<bind name="searchPattern" value="'%'+search+'%'"/>
@@ -254,5 +256,10 @@
 		SELECT *
 		FROM BOARD
 		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	<select id="reportList" resultMap="reportCategoryResultSet">
+		SELECT *
+		FROM REPORT_CATEGORY;
 	</select>
 </mapper>

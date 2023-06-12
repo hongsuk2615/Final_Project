@@ -89,7 +89,9 @@
 														<td>${list.createDate}</td>
 														<td>${list.readCount}</td>
 														<td>${list.status}</td>
-														<td><a class="btn btn-warning btn-sm" href="${contextPath}/admin/enrollForm/update/notice?catUNo=${catUNo}&boardNo=${list.boardNo}">수정</a></td>
+														<td>
+															<a class="btn btn-warning btn-sm" href="${contextPath}/admin/enrollForm/update/notice?catUNo=${catUNo}&boardNo=${list.boardNo}">수정</a>
+														</td>
 														<td>
 															<div class="btn-group">
 																<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
@@ -152,7 +154,7 @@
 													</c:when>
 													<c:otherwise>
 														<li class="paginate_button page-item next">
-															<a href="notice?tab=${catSNo}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
+															<a href="notice?catSNo=${catSNo}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
 														</li>
 													</c:otherwise>
 												</c:choose>

@@ -7,12 +7,22 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="row col-sm-6">
-                        <h1>공지사항 작성</h1>
+                    	<c:if test="${enroll eq 'notice'}">
+	                        <h1>공지사항 작성</h1>
+                    	</c:if>
+                    	<c:if test="${enroll eq 'faq'}">
+                    	    <h1>FAQ 작성</h1>
+                    	</c:if>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">공지사항 작성</li>
+                       	<c:if test="${enroll eq 'notice'}">
+	                        <li class="breadcrumb-item active">공지사항 작성</li>
+                    	</c:if>
+                    	<c:if test="${enroll eq 'faq'}">
+                    	    <li class="breadcrumb-item active">FAQ 작성</li>
+                    	</c:if>
                         </ol>
                     </div>
                 </div>
@@ -59,10 +69,10 @@
 										<div class="col-sm-12 col-md-6 text-right">
 											<c:choose>
 												<c:when test="${empty b}">
-													<button type="submit" sclass="btn btn-primary">등록</button>
+													<button type="submit" class="btn btn-primary">등록</button>
 												</c:when>
 												<c:otherwise>
-<!-- 													<input type="hidden" name="boardNo" value="b.boardNo"> -->
+													<input type="hidden" name="boardNo" value="${b.boardNo}">
 													<button type="submit" class="btn btn-warning">수정</button>
 												</c:otherwise>
 											</c:choose>

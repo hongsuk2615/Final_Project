@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ace.thrifty.admin.model.service.AdminService;
+import com.ace.thrifty.admin.model.vo.ReportCategory;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
@@ -33,7 +34,7 @@ import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/admin")
-@SessionAttributes({"loginAdmin"})
+@SessionAttributes({"loginUser"})
 public class AdminController {
 	
 	private AdminService adminService;
@@ -51,10 +52,10 @@ public class AdminController {
 	@PostMapping("/login")
 	public String adminLogin(Model model, HttpSession session, Member m) {
 		
-		Member loginAdmin = adminService.loginAdmin(m);
+		Member loginUser = adminService.loginAdmin(m);
 		
-		if(loginAdmin != null) {
-			model.addAttribute("loginAdmin", loginAdmin);
+		if(loginUser != null) {
+			model.addAttribute("loginUser", loginUser);
 			
 			return "redirect:/admin";
 			
@@ -150,6 +151,8 @@ public class AdminController {
 			model.addAttribute("contents", "notice");
 			model.addAttribute("map", map);
 			
+			System.out.println(map);
+			
 			return "admin/adminPage";
 	}
 	
@@ -189,7 +192,7 @@ public class AdminController {
 	@PostMapping("/enrollForm/{enroll}") //insert
 	public String adminEnrollFormInsert(Board b, HttpSession session, @PathVariable("enroll") String enroll) {
 		
-		int userNo = ((Member)session.getAttribute("loginAdmin")).getUserNo();
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 	
 		b.setUserNo(userNo);
 		String returnVal = "";
@@ -232,7 +235,7 @@ public class AdminController {
 	@PostMapping("/enrollForm/update/{enroll}") //update
 	public String adminEnrollFormUpdate(Board b, HttpSession session, @PathVariable("enroll") String enroll) {
 		
-		int userNo = ((Member)session.getAttribute("loginAdmin")).getUserNo();
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 	
 		b.setUserNo(userNo);
 		String returnVal = "";
@@ -248,9 +251,8 @@ public class AdminController {
 			
 			returnVal = "redirect:/admin/"+enroll+"?catSNo=0&currentPage=1";
 		}else {
-//			alert = "수정에 실패하였습니다.";
-			System.out.println("실패");
-//			returnVal = "redirect:/admin/enrollForm/update/"+enroll;
+			alert = "수정에 실패하였습니다.";
+			returnVal = "redirect:/admin/enrollForm/update/"+enroll;
 		}
 		
 		session.setAttribute("alert", alert);
@@ -284,6 +286,15 @@ public class AdminController {
 	public String logOut(SessionStatus status) {
 		status.setComplete();
 		return "redirect:/admin/login";
+	}
+	
+	@GetMapping("/report/list")
+	@ResponseBody
+	public String reportList() {
+		
+		List<ReportCategory> list = adminService.reportList();
+		
+		return new Gson().toJson(list);
 	}
 
 }

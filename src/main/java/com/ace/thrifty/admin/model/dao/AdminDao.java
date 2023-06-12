@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ace.thrifty.admin.model.vo.Notice;
+import com.ace.thrifty.admin.model.vo.ReportCategory;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.common.model.vo.PageInfo;
@@ -108,5 +109,9 @@ public class AdminDao {
 	
 	public Board enrollSelect(int boardNo) {
 		return sqlSession.selectOne("adminMapper.enrollSelect", boardNo);
+	}
+	
+	public List<ReportCategory> reportList(){
+		return sqlSession.selectList("adminMapper.reportList");
 	}
 }

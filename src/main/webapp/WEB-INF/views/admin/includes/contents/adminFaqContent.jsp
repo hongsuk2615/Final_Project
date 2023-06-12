@@ -74,6 +74,7 @@
 													<th rowspan="1" colspan="1">생성일</th>
 													<th rowspan="1" colspan="1">조회수</th>
 													<th rowspan="1" colspan="1">상태</th>
+													<th rowspan="1" colspan="1">수정</th>
 													<th rowspan="1" colspan="1">관리</th>
 												</tr>
 											</thead>
@@ -88,6 +89,9 @@
 														<td>${list.createDate}</td>
 														<td>${list.readCount}</td>
 														<td>${list.status}</td>
+														<td>
+															<a class="btn btn-warning btn-sm" href="${contextPath}/admin/enrollForm/update/faq?catUNo=${catUNo}&boardNo=${list.boardNo}">수정</a>
+														</td>
 														<td>
 															<div class="btn-group">
 																<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
@@ -150,7 +154,7 @@
 													</c:when>
 													<c:otherwise>
 														<li class="paginate_button page-item next">
-															<a href="faq?tab=${catSNo}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
+															<a href="faq?catSNo=${catSNo}&currentPage=${pi.currentPage+1}" class="page-link">Next</a>
 														</li>
 													</c:otherwise>
 												</c:choose>
