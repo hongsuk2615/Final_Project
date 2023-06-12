@@ -32,6 +32,9 @@ public class Co_purchase {
 	private int wishCount;
 	private int readCount;
 	private String thumbNail;
+	private String nickName;
+	private String changeName;
+	private String changeName2;
 	
 	private Board board;
 	private Member seller;

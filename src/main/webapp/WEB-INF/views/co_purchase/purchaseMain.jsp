@@ -83,9 +83,9 @@
                                         </div>
                                         <div class="detail_bottom_2 flex align">
                                             <div>
-                                                <img src="${ contextPath }/resources/hong.png" alt="" class="detail_bottom_img">
+                                                <img src="${ contextPath }/resources/images/myPage/${ b.changeName }" alt="" class="detail_bottom_img">
                                             </div>
-                                            <div class="detail_bottom_nickname">김김훙훙숙숙</div>
+                                            <div class="detail_bottom_nickname">${ b.nickName }</div>
                                             <span>|</span>
                                             <div>${ b.readCount }</div>
                                             <span>|</span>

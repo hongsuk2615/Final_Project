@@ -50,7 +50,6 @@ public class co_purchaseController {
 		coService.selectCoPurchaseList(currentPage, map);
 		
 		model.addAttribute("map", map);
-		
 		return "co_purchase/purchaseMain";
 	}
 	
@@ -66,7 +65,9 @@ public class co_purchaseController {
 		System.out.println("controller"+co);
 		
 		if(co != null) {
+			System.out.println("co :"+co);
 			model.addAttribute("co_purchase", co);
+			model.addAttribute("seller", co.getSeller());
 			model.addAttribute("board", co.getBoard());
 			model.addAttribute("imageList", co.getImageList());
 			model.addAttribute("seller", co.getSeller());
@@ -105,6 +106,7 @@ public class co_purchaseController {
 
 		if(co != null) {
 			model.addAttribute("co_purchase", co);
+			model.addAttribute("seller", co.getSeller());
 			model.addAttribute("subcategory", co.getSubCategory());
 			model.addAttribute("board", co.getBoard());
 			model.addAttribute("imageList", co.getImageList());
@@ -114,6 +116,21 @@ public class co_purchaseController {
 			String referer = request.getHeader("Referer");	
 			return "redirect:" + referer;
 		}
+	}
+	
+	@PostMapping("/modify")
+	public String updateBoard2(
+							HttpSession session,
+							Board b,
+							Co_purchase cp,
+							@RequestParam(value = "image", required = false ) List<MultipartFile> imgList
+							) throws Exception {
+		String webPath = "/resources/upfiles/co_purchase/";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		
+		coService.updateBoard(b, cp, imgList, webPath, serverFolderPath);
+		
+		return "redirect:/co_purchase";
 	}
 
 }

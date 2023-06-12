@@ -16,4 +16,7 @@ public interface Co_purchaseService {
 
 	public Co_purchase selectCoPurchase(int bNo);
 
+	public int updateBoard(Board b, Co_purchase cp, List<MultipartFile> imgList, String webPath,
+			String serverFolderPath) throws Exception;
+
 }

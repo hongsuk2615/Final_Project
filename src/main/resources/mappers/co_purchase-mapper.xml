@@ -32,6 +32,9 @@
 		<result column="CREATE_DATE" property="createDate"/>
 		<result column="PRODUCT_NAME" property="productName"/>
 		<result column="LINK" property="link"/>
+		<result column="NICK_NAME" property="nickName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="CHANGE_NAME2" property="changeName2"/>
 		
 		<association property="board" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Board">
 			<id column="BOARD_NO" property="boardNo"/>			
@@ -47,6 +50,7 @@
 		<association property="seller" column="BOARD_NO" javaType="com.ace.thrifty.member.model.vo.Member">
 			<id column="USED_NO" property="userNo"/>
 			<result column="NICK_NAME" property="nickName"/>
+			<result column="CHANGE_NAME" property="changeName"/>
 		</association>
 		<association  property="imageList" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Image">
 			<id column="IMG_NO" property="imgNo"/>
@@ -82,9 +86,12 @@
 			, CREATE_DATE
 			, WISH_COUNT
 			, READ_COUNT
-			, CONCAT('/resources/upfiles/co_purchase/', CHANGE_NAME) AS THUMB_NAIL
+			, NICK_NAME
+			, M.CHANGE_NAME
+			, CONCAT('/resources/upfiles/co_purchase/', I.CHANGE_NAME) AS THUMB_NAIL
 		FROM CO_PURCHASE
 		JOIN BOARD B USING(BOARD_NO)
+		JOIN MEMBER M USING(USER_NO)
 		JOIN IMAGE I USING(BOARD_NO)
 		WHERE B.STATUS = 'Y'
 		GROUP BY BOARD_NO
@@ -97,13 +104,17 @@
 	</insert>
 	
 	<select id="selectBoardDetail" resultMap="coPurchaseResultSet">
-		SELECT *
+		SELECT USER_NO, CATEGORY_S_NO, BOARD_NO, RECRUITS_NUM, RECRUITS_CURR, PRICE, DEAD_LINE, IS_END, PRODUCT_NAME, LINK, TITLE, CONTENT, CREATE_DATE, M.REPORT_COUNT, WISH_COUNT, READ_COUNT, M.STATUS, SC.CATEGORY_U_NO, IMG_NO, I.ORIGIN_NAME, I.CHANGE_NAME, FILE_LEVEL, B.CATEGORY_U_NO, CATEGORY_S_NAME, USER_NAME, NICK_NAME, GENDER, USER_ID, USER_PWD, PHONE, PWD_UPDATE_DATE, IS_BANNED, AUTHORITY, EMAIL, CURRENT_LOGIN, JOIN_DATE, M.CHANGE_NAME AS CHANGE_NAME2, M.ORIGIN_NAME, LOGIN_METHOD
 		FROM CO_PURCHASE
 		JOIN BOARD B USING(BOARD_NO)
-		JOIN IMAGE USING(BOARD_NO)
-		JOIN SUB_CATEGORY USING(CATEGORY_S_NO)
-		JOIN MEMBER USING(USER_NO)
-		WHERE BOARD_NO = ${bNo}
+		JOIN IMAGE I USING(BOARD_NO)
+		JOIN SUB_CATEGORY SC USING(CATEGORY_S_NO)
+		JOIN MEMBER M USING(USER_NO)
+		WHERE BOARD_NO = #{bNo}
 		AND B.STATUS = 'Y'
 	</select>
+	
+	<update id="updateCo_purchase">
+		
+	</update>
 </mapper>

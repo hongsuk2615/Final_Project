@@ -69,4 +69,12 @@ public class BoardDao {
 	public int deleteBoard(Board b) {
 		return sqlSession.update("boardMapper.deleteBoard", b);
 	}
+
+	public int updateBoard(Board b) {
+		return sqlSession.update("boardMapper.updateBoard", b);
+	}
+
+	public int updateImageList(List<Image> imageList) {
+		return sqlSession.update("boardMapper.updateImageList", imageList);
+	}
 }

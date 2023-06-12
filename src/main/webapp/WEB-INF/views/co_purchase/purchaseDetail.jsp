@@ -71,9 +71,9 @@
                     <div id="profile" class="flex">
                         <div id="profile_1" class="flex">
                             <div id="profile_img">
-                                <img src="${ contextPath }/resources/hong.png" alt="" style="width: 40px; height: 40px; border-radius: 100px;">
+                                <img src="${ contextPath }/resources/images/myPage/${ co_purchase.changeName2 }" alt="" style="width: 40px; height: 40px; border-radius: 100px;">
                             </div> <!-- 프로필 -->
-                            <div id="nickname">김김홍홍석석</div>
+                            <div id="nickname">${ seller.nickName }</div>
                         </div>
                         <div class="flex">
                             <div id="recruit_1">모집 인원</div>
