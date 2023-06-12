@@ -26,6 +26,7 @@ public class MemberController {
 	
 	@GetMapping("/enroll")
 	public String enroll() {
+		
 		return "member/enrollForm";
 	}
 	

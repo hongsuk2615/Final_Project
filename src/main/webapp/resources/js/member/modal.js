@@ -27,7 +27,7 @@ function login(){
                 <fieldset>
                     <legend>또는</legend>    
                 </fieldset>
-                <div id="kakao-login-btn">
+                <div id="kakao-login-btn" onclick="kakaoLogin();">
                     <img src="/thrifty/resources/images/login/kakao/kakao_login_large_wide.png" alt="카카오 로그인 이미지" width="310" height="60">
                 </div>
                 <div onclick="googleLogin();">
