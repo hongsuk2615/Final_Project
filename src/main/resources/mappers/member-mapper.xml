@@ -28,7 +28,7 @@
 	
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER(USER_NAME, NICK_NAME, GENDER, USER_ID, USER_PWD, PHONE, EMAIL, LOGIN_METHOD, CHANGE_NAME, ORIGIN_NAME)
-		     VALUES(#{userName}, #{nickName}, #{gender}, #{userId}, #{userPwd}, #{phone}, #{email}, #{loginMethod}, #{changeName}, #{originName})
+		     VALUES(#{userName}, #{nickName}, #{gender}, #{userId}, #{userPwd}, #{phone}, #{email}, IFNULL(#{loginMethod},'N'), #{changeName}, #{originName})
 	</insert>
 	
 	
@@ -36,7 +36,6 @@
 		SELECT *
 		  FROM MEMBER
 		 WHERE USER_ID = #{userId}
-		   AND USER_PWD = #{userPwd}
 		   AND STATUS = 'Y'
 	</select>
 	
@@ -98,5 +97,24 @@
 		WHERE USER_NO = #{userNo}
 	
 	
+	<select id="findId" parameterType="member" resultType="string">
+		SELECT USER_ID
+		  FROM MEMBER
+		 WHERE USER_NAME = #{userName}
+		   AND EMAIL = #{email} 
+	</select>
+	
+	<select id="findPwd" parameterType="member" resultMap="memberResultSet">
+		SELECT * 
+		  FROM MEMBER
+		 WHERE USER_ID = #{userId}
+		   AND EMAIL = #{email}
+	</select>
+	
+	<update id="changeRandomPwd" parameterType="String">
+		UPDATE MEMBER
+		   SET USER_PWD = #{userPwd}
+		 WHERE USER_ID = #{userId}
+		   AND EMAIL = #{email}
 	</update>
 </mapper>
