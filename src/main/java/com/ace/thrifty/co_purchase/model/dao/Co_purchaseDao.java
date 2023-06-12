@@ -36,5 +36,9 @@ public class Co_purchaseDao {
 		return (ArrayList)sqlSession.selectList("co_purchaseMapper.selectCoPurchaseList", rowBounds);
 	}
 
+	public Co_purchase selectBoardDetail(int bNo) {
+		return sqlSession.selectOne("co_purchaseMapper.selectBoardDetail", bNo);
+	}
+
 	
 }
