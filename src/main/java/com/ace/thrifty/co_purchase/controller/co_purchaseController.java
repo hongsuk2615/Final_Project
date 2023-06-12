@@ -24,6 +24,7 @@ import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.co_purchase.model.service.Co_purchaseService;
 import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
 import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 
 @Controller
 @RequestMapping("/co_purchase")
@@ -49,7 +50,6 @@ public class co_purchaseController {
 		coService.selectCoPurchaseList(currentPage, map);
 		
 		model.addAttribute("map", map);
-		
 		return "co_purchase/purchaseMain";
 	}
 	
@@ -62,10 +62,12 @@ public class co_purchaseController {
 	@GetMapping("/detail")
 	public String selectDetail(int bNo, Model model) {
 		Co_purchase co = coService.selectCoPurchase(bNo);
-		System.out.println(bNo);
+		System.out.println("controller"+co);
 		
 		if(co != null) {
+			System.out.println("co :"+co);
 			model.addAttribute("co_purchase", co);
+			model.addAttribute("seller", co.getSeller());
 			model.addAttribute("board", co.getBoard());
 			model.addAttribute("imageList", co.getImageList());
 			model.addAttribute("seller", co.getSeller());
@@ -94,6 +96,39 @@ public class co_purchaseController {
 		System.out.println(b);
 		
 		coService.insertBoard(b, cp, imgList, webPath, serverFolderPath);
+		
+		return "redirect:/co_purchase";
+	}
+	
+	@GetMapping("/modify")
+	public String updateBoard(int bNo, Model model, HttpServletRequest request) {
+		Co_purchase co = coService.selectCoPurchase(bNo);
+
+		if(co != null) {
+			model.addAttribute("co_purchase", co);
+			model.addAttribute("seller", co.getSeller());
+			model.addAttribute("subcategory", co.getSubCategory());
+			model.addAttribute("board", co.getBoard());
+			model.addAttribute("imageList", co.getImageList());
+
+			return "co_purchase/purchaseEnrollModify";
+		}else {
+			String referer = request.getHeader("Referer");	
+			return "redirect:" + referer;
+		}
+	}
+	
+	@PostMapping("/modify")
+	public String updateBoard2(
+							HttpSession session,
+							Board b,
+							Co_purchase cp,
+							@RequestParam(value = "image", required = false ) List<MultipartFile> imgList
+							) throws Exception {
+		String webPath = "/resources/upfiles/co_purchase/";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		
+		coService.updateBoard(b, cp, imgList, webPath, serverFolderPath);
 		
 		return "redirect:/co_purchase";
 	}
