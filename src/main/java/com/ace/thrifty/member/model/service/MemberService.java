@@ -14,4 +14,6 @@ public interface MemberService {
 	public Member selectByEmail(String email);
 	
 	public Member selectByNickName(String nickName);
+	
+	public Member selectByKakaoId(String kakaoId);
 }
