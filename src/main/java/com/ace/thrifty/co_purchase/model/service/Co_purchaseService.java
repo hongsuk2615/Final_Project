@@ -14,4 +14,6 @@ public interface Co_purchaseService {
 	
 	public void selectCoPurchaseList(int currentPage, Map<String, Object> map);
 
+	public Co_purchase selectCoPurchase(int bNo);
+
 }

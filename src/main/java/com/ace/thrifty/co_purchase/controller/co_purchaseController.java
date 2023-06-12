@@ -33,6 +33,7 @@ public class co_purchaseController {
 	@Autowired
 	private Co_purchaseService coService;
 
+	// 게시글 목록 조회
 	@GetMapping("")
 	public String selectCoPurchaseList( 
 							@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
@@ -57,11 +58,26 @@ public class co_purchaseController {
 		return "co_purchase/purchaseEnrollForm";
 	}
 	
+	// 게시글 상세 조회
 	@GetMapping("/detail")
-	public String selectDetail() {
-		return "co_purchase/purchaseDetail";
+	public String selectDetail(int bNo, Model model) {
+		Co_purchase co = coService.selectCoPurchase(bNo);
+		System.out.println(bNo);
+		
+		if(co != null) {
+			model.addAttribute("co_purchase", co);
+			model.addAttribute("board", co.getBoard());
+			model.addAttribute("imageList", co.getImageList());
+			model.addAttribute("seller", co.getSeller());
+			
+			return "co_purchase/purchaseDetail";
+		}else {
+			return "redirect:/thrifty/co_purchase";
+		}
 	}
 	
+	
+	// 게시글 삽입
 	@PostMapping("/insert")
 	public String insertBoard(
 						HttpSession session,
@@ -81,5 +97,5 @@ public class co_purchaseController {
 		
 		return "redirect:/co_purchase";
 	}
-	
+
 }

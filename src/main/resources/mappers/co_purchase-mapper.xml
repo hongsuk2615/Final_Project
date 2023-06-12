@@ -38,7 +38,7 @@
 			<id column="USED_NO" property="userNo"/>
 			<result column="NICK_NAME" property="nickName"/>
 		</association>
-		<association property="image" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Image">
+		<association property="imageList" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Image">
 			<id column="IMG_NO" property="imgNo"/>
 			<result column="BOARD_NO" property="boardNo"/>
 			<result column="ORIGIN_NAME" property="originName"/>
@@ -77,8 +77,18 @@
 	</select>
 	
 	<insert id="insertCo_purchase" parameterType="co_purchase">
-		INSERT INTO CO_PURCHASE(BOARD_NO, RECRUITS_CURR, RECRUITS_NUM, PRICE, DEAD_LINE)
-					VALUES (#{boardNo}, #{ recruitsCurr }, #{ recruitsNum }, #{ price }, #{ deadLine })
+		INSERT INTO CO_PURCHASE(BOARD_NO, RECRUITS_CURR, RECRUITS_NUM, PRICE, DEAD_LINE, PRODUCT_NAME, LINK)
+					VALUES (#{boardNo}, #{ recruitsCurr }, #{ recruitsNum }, #{ price }, #{ deadLine }, #{ productName }, #{ link })
 	</insert>
 	
+	<select id="selectBoardDetail" resultMap="coPurchaseResultSet">
+		SELECT *
+		FROM CO_PURCHASE
+		JOIN BOARD B USING(BOARD_NO)
+		JOIN IMAGE USING(BOARD_NO)
+		JOIN SUB_CATEGORY USING(CATEGORY_S_NO)
+		JOIN MEMBER USING(USER_NO)
+		WHERE BOARD_NO = ${bNo}
+		AND B.STATUS = 'Y'
+	</select>
 </mapper>

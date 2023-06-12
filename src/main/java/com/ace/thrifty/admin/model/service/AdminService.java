@@ -3,6 +3,7 @@ package com.ace.thrifty.admin.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.ace.thrifty.admin.model.vo.ReportCategory;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.member.model.vo.Member;
@@ -26,5 +27,13 @@ public interface AdminService {
 	int StatusUpdate(String location, Map<String, Object> paramMap);
 	
 	int enrollInsert(Board b);
+	
+	int enrollUpdate(Board b);
+	
+	List<SubCategory> subCatList(int catUNo);
+	
+	Board enrollSelect(int boardNo);
+	
+	List<ReportCategory> reportList();
 	
 }

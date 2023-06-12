@@ -38,6 +38,14 @@ document.getElementById('wish-btn').addEventListener('click', function(){
         }
     })
 })
+function reportCatList(){
+    $.ajax({
+        url: '/thrifty/admin/report/list',
+        success(data){
+            console.log(data);
+        }
+    });
+}
 
 document.getElementById('report-btn').addEventListener('click', function(){
     let bNo=$(this).attr("bNo");

@@ -1,3 +1,6 @@
+ const pathName = window.location.pathname;
+ const rootPathName = pathName.substring(1, pathName.indexOf('/',2)); 
+ 
  // This sample still does not showcase all CKEditor 5 features (!)
             // Visit https://ckeditor.com/docs/ckeditor5/latest/features/index.html to browse all the features.
             CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
@@ -29,7 +32,7 @@
                     }
                 },
                 ckfinder: {
-                	uploadUrl: 'preview'
+                	uploadUrl: '/'+rootPathName+'/admin/enrollForm/preview'
             	},
                 // https://ckeditor.com/docs/ckeditor5/latest/features/headings.html#configuration
                 heading: {
