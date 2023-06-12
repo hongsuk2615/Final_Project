@@ -15,6 +15,8 @@
 		<result column="REPORT_COUNT" property="reportCount"/>
 		<result column="CURRENT_LOGIN" property="currentLogin"/>
 		<result column="JOIN_DATE" property="joinDate"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
 		<result column="LOGIN_METHOD" property="loginMethod"/>
 	</resultMap>
 	
@@ -74,10 +76,14 @@
 		WHERE USER_NO = #{userNo} AND STATUS='Y'
 	</select>
 	
-	<!-- <update id="changeProfile">
+	
+	<update id="changeProfile">
 		UPDATE MEMBER
-		SET USER_
-	</update> -->
+		SET CHANGE_NAME = #{changeName},
+			ORIGIN_NAME= #{originName}
+		WHERE USER_NO = #{userNo}
+	</update>
+		
 	
 	<select id="selectByKakaoId" parameterType="string" resultMap="memberResultSet">
 		SELECT *
@@ -85,4 +91,12 @@
 		 WHERE LOGIN_METHOD = 'K'
 		   AND USER_ID = #{kakaoId}
 	</select>
+	
+	<update id="selfban">
+		UPDATE MEMBER
+		SET STATUS = 'N'
+		WHERE USER_NO = #{userNo}
+	
+	
+	</update>
 </mapper>
