@@ -10,7 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쉐어하우스 상세조회</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="/thrifty/resources/css/house/houseModal.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <style>
@@ -224,14 +225,13 @@
     </style>
 </head>
 <body>
-
-  <%--   <jsp:include page="../common/header.jsp"></jsp:include> --%>
+  <%--  <jsp:include page="../common/header.jsp"></jsp:include>  --%>
     <div class="wrap">
     <div id="sharetitle"><h1>${b.title }</h1></div>
     <div class="img-bx">
 		<c:forEach var="rimg" items="${h.roomList[0].imgList }">
       		<div>
-          	  <img src="/thrifty/resources/images/house/\${rimg.changeName}">
+          	  <img src="/thrifty/resources/images/house/${rimg.changeName}">
         	</div>
        	</c:forEach>
     </div>
@@ -267,7 +267,7 @@
 		            <tr>
 		                <td>
 		                   <c:if test="${r.recruitsNum > r.recruitsCurr}">
-		                   <button>투어신청</button>
+		                   <button roomNo="${r.roomNo }" roomName="${r.division }" onclick="tour(this);">투어신청</button>
 		                	</c:if>
 		                	 <c:if test="${r.recruitsNum == r.recruitsCurr}">
 		                   <button disabled>입주완료</button>
@@ -284,10 +284,8 @@
 		            </tr>
               </c:forEach>
         </table>
-
     </div>
     <div id="information">
-
         <div>${h.information }</div>
     </div>
     <div id="location">위치
@@ -342,6 +340,9 @@
 
     </div>
     <div id="back">
+    	<c:if test="${loginUser.userNo == b.userNo }">
+    	<div onclick="location.href='/thrifty/sharehouse/updateHouse?boardNo=${b.boardNo}'" style="cursor:pointer;"><p>수정하기</p></div>
+    	</c:if>
         <div onclick="location.href='/thrifty/sharehouse/';" style="cursor:pointer;"><p>전체지점보기</p></div>
     </div>
     </div>
@@ -349,7 +350,7 @@
     <div>footer</div>
 
     <script>
-        $(document).ready(function(){
+    $(document).ready(function(){
             $('.img-bx').slick({
                 dots: true,
                 dotsClass: 'dots_custom',
@@ -379,10 +380,17 @@
 					$('.img-bx').slick('refresh');
 				}
 			}) 
-		
+        }
+        
+        function tour(e){
+        	let hName =$('#sharetitle').text();
+        	let rName = $(e).attr('roomName');
+        	let roomNo = $(e).attr('roomNo');
+        	appform(hName, rName, roomNo);
         }
       </script>
-
+      <jsp:include page="houseModal.jsp"></jsp:include>
+<script src="/thrifty/resources/js/house/houseModal.js"></script>
 </body>
 
 
