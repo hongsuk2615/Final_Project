@@ -22,6 +22,15 @@ public class Co_purchase {
 	private int price;
 	private Date deadLine;
 	private String isEnd;
+	private String productName;
+	private String link;
+	
+	private String title;
+	private String content;
+	private Date createDate;
+	private int wishCount;
+	private int readCount;
+	private String thumbNail;
 	
 	private Board board;
 	private Member seller;

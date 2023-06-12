@@ -17,6 +17,7 @@
 		<result column="JOIN_DATE" property="joinDate"/>
 		<result column="ORIGIN_NAME" property="originName"/>
 		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="LOGIN_METHOD" property="loginMethod"/>
 	</resultMap>
 	
 	<select id="selectMember" resultMap="memberResultSet">
@@ -26,8 +27,8 @@
 	</select>
 	
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER(USER_NAME, NICK_NAME, GENDER, USER_ID, USER_PWD, PHONE, EMAIL)
-		     VALUES(#{userName}, #{nickName}, #{gender}, #{userId}, #{userPwd}, #{phone}, #{email})
+		INSERT INTO MEMBER(USER_NAME, NICK_NAME, GENDER, USER_ID, USER_PWD, PHONE, EMAIL, LOGIN_METHOD, CHANGE_NAME, ORIGIN_NAME)
+		     VALUES(#{userName}, #{nickName}, #{gender}, #{userId}, #{userPwd}, #{phone}, #{email}, #{loginMethod}, #{changeName}, #{originName})
 	</insert>
 	
 	
@@ -82,4 +83,12 @@
 			ORIGIN_NAME= #{originName}
 		WHERE USER_NO = #{userNo}
 	</update>
+		
+	
+	<select id="selectByKakaoId" parameterType="string" resultMap="memberResultSet">
+		SELECT *
+		  FROM MEMBER
+		 WHERE LOGIN_METHOD = 'K'
+		   AND USER_ID = #{kakaoId}
+	</select>
 </mapper>

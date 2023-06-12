@@ -12,6 +12,7 @@
 		<result column="DEAD_LINE" property="deadLine"/>
 		<result column="IS_END" property="isEnd"/>
 		<result column="THUMB_NAIL" property="thumbNail"/>
+		<result column="CREATE_DATE" property="createDate"/>
 	</resultMap>
 	
 	<resultMap type="co_purchase" id="coPurchaseResultSet">
@@ -37,7 +38,7 @@
 			<id column="USED_NO" property="userNo"/>
 			<result column="NICK_NAME" property="nickName"/>
 		</association>
-		<association property="image" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Image">
+		<association property="imageList" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Image">
 			<id column="IMG_NO" property="imgNo"/>
 			<result column="BOARD_NO" property="boardNo"/>
 			<result column="ORIGIN_NAME" property="originName"/>
@@ -50,34 +51,44 @@
 	<select id="selectBoardListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM BOARD
-		JOIN SUB_CATEGOTY USING(CATEGORY_S_NO)
-		JOIN UPPER_CATEGORY USING(CATRGORY_U_NO)
 		WHERE STATUS = 'Y'
-		AND CATEGORY_PATH = #{ categoryPath }
+		AND CATEGORY_U_NO = 6
 	</select>
 	
-<!-- 	<select id="selectImgList" resultMap=""> -->
-<!-- 		SELECT * -->
-<!-- 		FROM IMAGE -->
-<!-- 		JOIN BOARD USING(BOARD_NO) -->
-<!-- 		JOIN CO_PURCHASE USING(BOARD_NO) -->
-<!-- 	</select> -->
-	
-<!-- 	<select id="selectCoList" resultMap=""> -->
-<!-- 		SELECT * -->
-<!-- 		FROM CO_PURCHASE -->
-<!-- 		JOIN BOARD USING(BOARD_NO) -->
-<!-- 	</select> -->
-	
-	<select id="selectCoPurchase" resultMap="coPurchaseResultSet">
-		SELECT *
+	<select id="selectCoPurchaseList" parameterType="map" resultMap="coPurchaseListResultSet">
+		SELECT BOARD_NO
+			, RECRUITS_NUM
+			, RECRUITS_CURR
+			, PRICE
+			, DEAD_LINE
+			, IS_END
+			, TITLE
+			, CONTENT
+			, CREATE_DATE
+			, WISH_COUNT
+			, READ_COUNT
+			, CONCAT('/resources/upfiles/co_purchase/', CHANGE_NAME) AS THUMB_NAIL
 		FROM CO_PURCHASE
-		WHERE BOARD_NO = #{ boardNo }
+		JOIN BOARD B USING(BOARD_NO)
+		JOIN IMAGE I USING(BOARD_NO)
+		WHERE B.STATUS = 'Y'
+		GROUP BY BOARD_NO
+		ORDER BY BOARD_NO DESC
 	</select>
 	
 	<insert id="insertCo_purchase" parameterType="co_purchase">
-		INSERT INTO CO_PURCHASE(BOARD_NO, RECRUITS_CURR, RECRUITS_NUM, PRICE, DEAD_LINE)
-					VALUES (#{boardNo}, #{ recruitsCurr }, #{ recruitsNum }, #{ price }, #{ deadLine })
+		INSERT INTO CO_PURCHASE(BOARD_NO, RECRUITS_CURR, RECRUITS_NUM, PRICE, DEAD_LINE, PRODUCT_NAME, LINK)
+					VALUES (#{boardNo}, #{ recruitsCurr }, #{ recruitsNum }, #{ price }, #{ deadLine }, #{ productName }, #{ link })
 	</insert>
 	
+	<select id="selectBoardDetail" resultMap="coPurchaseResultSet">
+		SELECT *
+		FROM CO_PURCHASE
+		JOIN BOARD B USING(BOARD_NO)
+		JOIN IMAGE USING(BOARD_NO)
+		JOIN SUB_CATEGORY USING(CATEGORY_S_NO)
+		JOIN MEMBER USING(USER_NO)
+		WHERE BOARD_NO = ${bNo}
+		AND B.STATUS = 'Y'
+	</select>
 </mapper>

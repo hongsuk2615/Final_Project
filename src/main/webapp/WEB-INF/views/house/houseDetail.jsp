@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="b" value="${house[0] }" />
+<c:set var="h" value="${house.get(1) }" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -222,19 +225,21 @@
 </head>
 <body>
 
-    <jsp:include page="../common/header.jsp"></jsp:include>
+  <%--   <jsp:include page="../common/header.jsp"></jsp:include> --%>
     <div class="wrap">
-    <div id="sharetitle"><h1>house이름^_^</h1></div>
+    <div id="sharetitle"><h1>${b.title }</h1></div>
     <div class="img-bx">
-        <div>
-            <img src="f1.jpg">
-        </div>
-
+		<c:forEach var="rimg" items="${h.roomList[0].imgList }">
+      		<div>
+          	  <img src="/thrifty/resources/images/house/\${rimg.changeName}">
+        	</div>
+       	</c:forEach>
     </div>
 
     <div id="img-select">
-        <div>개인방</div>
-        <div>공용방</div>
+       <c:forEach var="r" items="${h.roomList }">
+       <div><button roomNo="${r.roomNo }" onclick="selectRoom(this);">${r.division }</button></div>
+       </c:forEach>
     </div>
 
     <div id="nav">
@@ -257,23 +262,33 @@
                 <th>관리비</th>
                 <th>계약종료일</th>
             </tr>
-            <tr>
-                <td>입주신청</td>
-                <td>구분</td>
-                <td>성별</td>
-                <td>타입</td>
-                <td>면적</td>
-                <td>보증금</td>
-                <td>월임대료</td>
-                <td>관리비</td>
-                <td>계약종료일</td>
-            </tr>
+            
+             <c:forEach var="r" items="${h.roomList }">
+		            <tr>
+		                <td>
+		                   <c:if test="${r.recruitsNum > r.recruitsCurr}">
+		                   <button>투어신청</button>
+		                	</c:if>
+		                	 <c:if test="${r.recruitsNum == r.recruitsCurr}">
+		                   <button disabled>입주완료</button>
+		                	</c:if>
+		                </td>
+		                <td>${r.division }</td>
+		                <td>${r.gender }</td>
+		                <td>${r.type }</td>
+		                <td>${r.area }</td>
+		                <td>${r.deposit }</td>
+		                <td>${r.rent }</td>
+		                <td>${r.cost }</td>
+		                <td>${r.contrat }</td>
+		            </tr>
+              </c:forEach>
         </table>
 
     </div>
-    <div id="information">지점소개
+    <div id="information">
 
-        <div>dd</div>
+        <div>${h.information }</div>
     </div>
     <div id="location">위치
         <div>map</div>
@@ -327,7 +342,7 @@
 
     </div>
     <div id="back">
-        <div><p>전체지점보기</p></div>
+        <div onclick="location.href='/thrifty/sharehouse/';" style="cursor:pointer;"><p>전체지점보기</p></div>
     </div>
     </div>
 
@@ -343,6 +358,29 @@
                 
             });
         });
+        
+        function selectRoom(e){
+    		let roomNo = $(e).attr('roomNo');
+	        $.ajax({
+				url : "/thrifty/sharehouse/selectRoomImg?roomNo="+roomNo,
+				dataType : 'json',
+				success : function(result){
+					console.log(result);
+					let imgList = "";
+					result.forEach(function(ri){
+						imgList += `
+							<div>
+				            <img src="/thrifty/resources/images/house/\${ri.changeName}">
+				        	</div>
+				        `;
+					})
+					$('.img-bx').slick('slickRemove', null, null, true);
+					$('.img-bx').html(imgList);
+					$('.img-bx').slick('refresh');
+				}
+			}) 
+		
+        }
       </script>
 
 </body>

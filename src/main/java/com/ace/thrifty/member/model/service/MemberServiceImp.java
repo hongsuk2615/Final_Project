@@ -42,6 +42,11 @@ public class MemberServiceImp implements MemberService{
 	public Member selectByNickName(String nickName) {
 		return memberDao.selectByNickName(nickName);
 	}
+
+	@Override
+	public Member selectByKakaoId(String kakaoId) {
+		return memberDao.selectByKakaoId(kakaoId);
+	}
 	
 	
 	

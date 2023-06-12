@@ -12,6 +12,8 @@ public interface Co_purchaseService {
 	
 	public int insertBoard(Board b, Co_purchase co, List<MultipartFile> imgList, String webPath, String serverFolderPath) throws Exception;
 	
-	public void selectBoardList(int currentPage, String categoryPath, Map<String, Object> map);
+	public void selectCoPurchaseList(int currentPage, Map<String, Object> map);
+
+	public Co_purchase selectCoPurchase(int bNo);
 
 }

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="/thrifty/resources/css/co_purchase/purchaseEnrollForm.css">
+    <link rel="stylesheet" href="${ contextPath }/resources/css/co_purchase/purchaseEnrollForm.css">
     <style>
         *{
             /* border: 1px solid blue !important; */
@@ -99,9 +99,15 @@
                         </div>
                         <div class="write_case">
                             <div id="fileUpload_2">
-                                <input type="text" name="product_title" class="write_content" placeholder="제품 명을 입력해주세요.">
+                                <input type="text" name="productName" class="write_content" placeholder="제품 명을 입력해주세요.">
                                 <input type="text" name="price" id="price" class="write_content" placeholder="가격을 입력해주세요.">
                             </div>
+                        </div>
+                    </div>
+                    <div id="title_link">
+                        <div id="write_title" class="write_case">
+                            <div class="write_case_head">관련 링크</div>
+                            <input type="text" id="enroll_link" class="" name="link">
                         </div>
                     </div>
                     <div>
@@ -115,6 +121,6 @@
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
-    <script type="text/javascript" src="/thrifty/resources/js/co_purchase/enrollForm.js"></script>
+    <script type="text/javascript" src="${ contextPath }/resources/js/co_purchase/enrollForm.js"></script>
 </body>
 </html>
