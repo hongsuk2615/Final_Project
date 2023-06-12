@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쉐어하우스 상세조회</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <style>
@@ -225,13 +225,13 @@
 </head>
 <body>
 
-  <%--   <jsp:include page="../common/header.jsp"></jsp:include> --%>
+  <%--  <jsp:include page="../common/header.jsp"></jsp:include>  --%>
     <div class="wrap">
     <div id="sharetitle"><h1>${b.title }</h1></div>
     <div class="img-bx">
 		<c:forEach var="rimg" items="${h.roomList[0].imgList }">
       		<div>
-          	  <img src="/thrifty/resources/images/house/\${rimg.changeName}">
+          	  <img src="/thrifty/resources/images/house/${rimg.changeName}">
         	</div>
        	</c:forEach>
     </div>
@@ -349,7 +349,7 @@
     <div>footer</div>
 
     <script>
-        $(document).ready(function(){
+    $(document).ready(function(){
             $('.img-bx').slick({
                 dots: true,
                 dotsClass: 'dots_custom',

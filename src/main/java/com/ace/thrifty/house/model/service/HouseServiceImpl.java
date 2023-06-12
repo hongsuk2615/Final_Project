@@ -17,21 +17,25 @@ import com.ace.thrifty.house.model.dao.HouseDao;
 import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
 import com.ace.thrifty.house.model.vo.RoomImg;
+import com.ace.thrifty.wishList.model.dao.WishListDao;
+import com.ace.thrifty.wishList.model.vo.WishList;
 
 @Service
 public class HouseServiceImpl implements HouseService{
 	
 	private final HouseDao houseDao;
 	private final BoardDao boardDao;
+	private final WishListDao wishListDao;
 
-	public HouseServiceImpl(HouseDao houseDao, BoardDao boardDao) {
+	public HouseServiceImpl(HouseDao houseDao, BoardDao boardDao, WishListDao wishListDao) {
 		this.houseDao = houseDao;
 		this.boardDao = boardDao;
+		this.wishListDao = wishListDao;
 	}
 
 	@Override
 	public int insertHouse(Board b, House h, List<Room> rooms, Map<String, List<MultipartFile>> roomImgs, String webPath, String serverFolderPath) throws Exception {
-		
+		System.out.println("service");
 		boardDao.insertBoard(b);
 		int boardNo =b.getBoardNo();
 		h.setBoardNo(boardNo);
@@ -82,18 +86,48 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public List<Object> selectHouseList() {
-		return houseDao.selectHouseList();
+	public List<Object> selectHouseList(int userNo) {
+		return houseDao.selectHouseList(userNo);
 	}
 	
 	@Override
-	public List<Object> selectLocation(Coordinate c) {
-		return houseDao.selectLocation(c);
+	public List<Object> selectLocation(Coordinate c, int userNo) {
+		return houseDao.selectLocation(c, userNo);
 	}
 
 	@Override
 	public List<Object> selectRoomImg(int roomNo) {
 		return houseDao.selectRoomImg(roomNo);
+	}
+
+	@Override
+	public int scrapHouse(int userNo, int boardNo) {
+		
+		WishList wL = new WishList();	
+		wL.setBoardNo(boardNo);
+		wL.setUserNo(userNo);
+		
+		wishListDao.insertWishList(wL);
+		boardDao.scrapBoard(boardNo);
+		
+		return 0;
+	}
+	@Override
+	public int scrapCancle(int userNo, int boardNo) {
+		
+		WishList wL = new WishList();	
+		wL.setBoardNo(boardNo);
+		wL.setUserNo(userNo);
+		
+		wishListDao.deleteWishList(wL);
+		boardDao.scrapCancle(boardNo);
+		
+		return 0;
+	}
+
+	@Override
+	public List<Object> searchHouse(String keyword, int userNo) {
+		return houseDao.searchHouse(keyword, userNo);
 	}
 
 

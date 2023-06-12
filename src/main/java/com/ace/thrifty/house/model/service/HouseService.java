@@ -20,11 +20,17 @@ public interface HouseService {
 	
 	Map<String, Object> selectBoard(Board b);
 
-	List<Object> selectHouseList();
+	List<Object> selectHouseList(int userNo);
 
-	List<Object> selectLocation(Coordinate c);
+	List<Object> selectLocation(Coordinate c, int userNo);
 	
 	List<Object> selectRoomImg(int roomNo);
+	
+	int scrapHouse(int userNo, int boardNo);
+
+	int scrapCancle(int userNo, int boardNo);
+	
+	List<Object> searchHouse(String keyword, int userNo);
 	
 	
 }

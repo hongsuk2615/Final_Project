@@ -12,7 +12,7 @@
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
-		<association property="member" resultMap="memberResultSet"/>
+		<!-- <association property="member" resultMap="memberResultSet"/> -->
 	</resultMap>
 	
 	<resultMap type="upperCategory" id="upperCategoryResultSet">
@@ -111,6 +111,18 @@
 		  <if test="userNo != null and userNo != 0">
 		  	AND USER_NO = #{userNo}
 		  </if>
+	</update>
+	
+	<update id="scrapBoard">
+		UPDATE BOARD
+		 SET WISH_COUNT = WISH_COUNT + 1
+		 WHERE BOARD_NO = #{bNo}
+	</update>
+	
+	<update id="scrapCancle">
+		UPDATE BOARD
+		 SET WISH_COUNT = WISH_COUNT - 1
+		 WHERE BOARD_NO = #{bNo}
 	</update>
 	
 </mapper>

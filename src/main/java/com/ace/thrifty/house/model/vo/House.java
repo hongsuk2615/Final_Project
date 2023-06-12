@@ -20,6 +20,8 @@ public class House {
 	private String houseLatitude;
 	private String information;
 	private String thumbnail;
+	private int minAmount;
+	private int wish;
 	
 	private ArrayList<Room> roomList;
 	private Board board;

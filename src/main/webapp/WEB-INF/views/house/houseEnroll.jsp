@@ -129,13 +129,7 @@
             <br><br>
             <div>
                 <table id="tableA">
-                    <tr> <!-- 반복문 돌려서 목록 가져오기 -->
-                     <c:forEach var="subCategory" items="${subCategoryList }">
-                 		 <c:if test="${subCategory.categorySNo == 9}">
-                         	  <h1>최신 ${subCategory.categorySName } 게시글</h1>   
-                		</c:if>
-              		 </c:forEach>
-                    
+					<tr>                    
                         <th>입주신청</th>
                         <th>구분</th>
                         <th>성별</th>
@@ -213,7 +207,7 @@
                     <input type="number" name="cost" required>
                 </td>
                 <td>
-                    <input type="number" name="contrat" required>
+                    <input type="date" name="contrat" required>
                 </td>
             </tr>
            `

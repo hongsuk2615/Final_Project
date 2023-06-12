@@ -57,20 +57,21 @@ body{
 .house {
     width: 32%;
     /* border: 1px solid red; */
-    cursor: pointer;
+   /*  cursor: pointer; */
     margin-right: 7px;
 }
 
-.house img {
+.houseImg {
     width: 100%;
+    cursor: pointer;
 }
 
-.house:hover img{
+.houseImg:hover{
     transform:scale(1.1);
     transition: 0.5s ease-out;
 }
 
-.house:not(:hover) img{
+.houseImg:not(:hover){
     transition: 0.5s ease-out;
 }
 
@@ -79,6 +80,7 @@ body{
     margin: 8px 0px;
     overflow: hidden;
 }
+
 .house> * {
     overflow-y: hidden;
 }
@@ -134,6 +136,19 @@ body{
     overflow: hidden;
 }
 
+.house div:last-child{
+	display:flex;
+	justify-content: space-between;
+	padding-right: 7px;
+}
+
+.scrapImg{
+	cursor: pointer;
+	width: 25px;
+
+}
+
+
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button,
 input::-webkit-search-results-button,
@@ -183,7 +198,7 @@ input::-webkit-search-results-decoration{
         <div id="left-top">
             <div id="searchDiv">
                 <input type="search" id="hSearch" name="hSearch">
-                <button id="searchbtn">
+                <button id="searchbtn" onclick="searchHouse();">
                     <img src="g1.jpg">
                 </button>
             </div>
@@ -192,18 +207,30 @@ input::-webkit-search-results-decoration{
             </div>
         </div>
         <div class="scrollbar" id="housewrap">
-
-            <div class="house">
-                <div><img src="e.jpg"></div>
-                <h3>${board.title }</h3>
-                <p>쉐어하우스 가격</p>
-                <p>쉐어하우스 입주가능날짜</p>
-            </div>  
-           
-
+				
+	 			<c:forEach var="h" items="${house }">
+	 			
+		 			<div class="house" >
+		                <div ><img class="houseImg" src="/thrifty/${h.thumbnail}" boardNo="${h.boardNo}" onclick="selectHouse(this);"></div>
+		                <h3>${h.board.title }</h3>
+		                <div>
+		                 <span>월 ${h.minAmount }만원 ~</span>
+		                  <c:choose>
+			                 <c:when test="${h.wish == 0}">
+			                 	<span><img class="scrapImg" src="/thrifty/resources/images/house/heart.png" boardNo="${h.boardNo}" onclick="scrapHouse(this);" scrap="x"></span>
+			                 </c:when>
+			                 <c:otherwise>
+			                 	<span><img class="scrapImg" src="/thrifty/resources/images/house/heart2.png" boardNo="${h.boardNo}" onclick="scrapHouse(this);" scrap="o"></span>
+			                 </c:otherwise>
+		                 </c:choose>
+		                 <div style="display:none" class="lat">${h.houseLatitude }</div>
+		                 <div style="display:none" class="lng">${h.houseLongitude }</div>
+		                </div>
+		             
+	           		 </div>  
+	           		 
+              	</c:forEach>
         </div>
-
-
         
     </div>
 <div id="map"></div>
@@ -224,25 +251,14 @@ input::-webkit-search-results-decoration{
 		};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
+		
 		// 마커를 표시할 위치와 title 객체 배열입니다 
-		var positions = [ {
-			title : '카카오',
-			latlng : new kakao.maps.LatLng(33.450705, 126.570677)
-		}, {
-			title : '생태연못',
-			latlng : new kakao.maps.LatLng(33.450936, 126.569477)
-		}, {
-			title : '텃밭',
-			latlng : new kakao.maps.LatLng(33.450879, 126.569940)
-		}, {
-			title : '근린공원',
-			latlng : new kakao.maps.LatLng(33.451393, 126.570738)
-		} ];
+		var positions = [];
 
 		// 마커 이미지의 이미지 주소입니다
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-
+		
+		function sign(positions){
 		for (var i = 0; i < positions.length; i++) {
 
 			// 마커 이미지의 이미지 크기 입니다
@@ -257,7 +273,8 @@ input::-webkit-search-results-decoration{
 				position : positions[i].latlng, // 마커를 표시할 위치
 				image : markerImage
 			// 마커 이미지 
-			});
+				});
+			}
 		}
 			// 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
 			 kakao.maps.event.addListener(map, 'dragend', function() {        
@@ -331,17 +348,29 @@ input::-webkit-search-results-decoration{
 			success: function(result){ 
 				let house = "";
 				
-			  result.forEach(function(shareHouse){
+			  result.forEach(function(h){
 			  		house += `
-			  		<div class="house" boardNo="\${shareHouse.boardNo}" onclick="selectHouse(this);">
-	                <div><img src="/thrifty/\${shareHouse.thumbnail}"></div>
-	                <h3>\${shareHouse.board.title}</h3>
-	                <p>쉐어하우스 가격</p>
-	                <p>쉐어하우스 입주가능날짜</p>
-	            	</div>`	
+			  			<div class="house" >
+		                <div ><img class="houseImg" src="/thrifty/\${h.thumbnail}" boardNo="\${h.boardNo}" onclick="selectHouse(this);"></div>
+		                <h3>\${h.board.title }</h3>
+		                <div>
+		                 <span>월 \${h.minAmount }만원 ~</span>`;
+		                 if(h.wish == 0){
+		                	 house += `	<span>
+		                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart.png" 
+		                	 boardNo="\${h.boardNo}" onclick="scrapHouse(this);" scrap="x">
+		                	 </span> </div></div>`;
+		                 }else{
+		                	 house += `	<span>
+			                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart2.png" 
+			                	 boardNo="\${h.boardNo}" onclick="scrapHouse(this);" scrap="o">
+			                	 </span> </div></div>`;
+		                 }
+		                 
 			 	}) 
              	
 			  		$('#housewrap').html(house);
+			 		 marker();
 			}
 			}) 
 		}
@@ -350,6 +379,91 @@ input::-webkit-search-results-decoration{
 		let boardNo = $(e).attr('boardNo');
 		location.href="/thrifty/sharehouse/detail?boardNo="+boardNo;
 	}
+	
+	function scrapHouse(e){
+		let boardNo = $(e).attr('boardNo');
+		if($(e).attr('scrap') == 'o'){
+			$.ajax({
+				url : '${contextPath}/sharehouse/scrapCancle',
+				data : {
+					boardNo
+				},
+				dataType : 'json',
+				success: function(result){ 
+				
+					$(e).attr('src', '/thrifty/resources/images/house/heart.png');
+					$(e).attr('scrap', 'x');
+				}
+			}) 
+		}else{
+			
+			$.ajax({
+				url : '${contextPath}/sharehouse/scrapHouse',
+				data : {
+					boardNo
+				},
+				dataType : 'json',
+				success: function(result){ 
+				
+					$(e).attr('src', '/thrifty/resources/images/house/heart2.png');
+					$(e).attr('scrap', 'o');
+				}
+			}) 
+		
+		}
+			
+	}
+	
+	function searchHouse(){
+		let keyword = $('#hSearch').val();
+		$.ajax({
+			url : '${contextPath}/sharehouse/searchHouse',
+			data : {
+				keyword
+			},
+			dataType : 'json',
+			success: function(result){ 
+				let house = "";
+				
+				  result.forEach(function(h){
+				  		house += `
+				  			<div class="house" >
+			                <div ><img class="houseImg" src="/thrifty/\${h.thumbnail}" boardNo="\${h.boardNo}" onclick="selectHouse(this);"></div>
+			                <h3>\${h.board.title }</h3>
+			                <div>
+			                 <span>월 \${h.minAmount }만원 ~</span>`;
+			                 if(h.wish == 0){
+			                	 house += `	<span>
+			                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart.png" 
+			                	 boardNo="\${h.boardNo}" onclick="scrapHouse(this);" scrap="x">
+			                	 </span> </div></div>`;
+			                 }else{
+			                	 house += `	<span>
+				                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart2.png" 
+				                	 boardNo="\${h.boardNo}" onclick="scrapHouse(this);" scrap="o">
+				                	 </span> </div></div>`;
+			                 }
+			                 
+				 	}) 
+	             	
+				  		$('#housewrap').html(house);
+				  		marker();
+			}
+		}) 
+		
+	}
+	
+	function marker(){
+		positions.length = 0;
+		$('.house').forEach(function(h){
+			positions.push({
+						title : '카카오',
+						latlng : new kakao.maps.LatLng($('.lat').val(), $('.lng').val())
+					})
+			})
+		}
+	
+	
 	</script>
 </body>
 </html>

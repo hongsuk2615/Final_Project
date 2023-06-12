@@ -8,6 +8,8 @@
 		<result column="HOUSE_LATITUDE"  property="houseLatitude"/>
 		<result column="INFORMATION"  property="information"/>
 		<result column="THUMBNAIL"  property="thumbnail"/>
+		<result column="MIN_AMOUNT"  property="minAmount"/>
+		<result column="WISH"  property="wish"/>
 			<collection property="roomList" javaType="java.util.ArrayList" ofType="room"
 			select="selectRoomList" column="BOARD_NO" />
 			<collection property="board" resultMap="boardResultSet"/>
@@ -86,14 +88,29 @@
 	</select>
 	
 	 
-	<select id="selectLocation"  parameterType="coordinate" resultMap="houseResultSet">
-		SELECT BOARD.BOARD_NO, USER_NO, TITLE, HOUSE_LATITUDE, HOUSE_LONGITUDE, THUMBNAIL
+	<select id="searchHouse"  resultMap="houseResultSet">
+		SELECT BOARD.BOARD_NO, USER_NO, TITLE, HOUSE_LATITUDE, HOUSE_LONGITUDE, THUMBNAIL,
+				(SELECT MIN(RENT)
+					FROM ROOM
+					WHERE BOARD_NO = BOARD.BOARD_NO
+				) MIN_AMOUNT,
+				(SELECT COUNT(*)
+					FROM WISH_LIST
+					WHERE BOARD_NO = BOARD.BOARD_NO
+						AND USER_NO = #{userNo}) WISH
 			FROM BOARD
 		    LEFT JOIN SHARE_HOUSE ON SHARE_HOUSE.BOARD_NO = BOARD.BOARD_NO
 		    WHERE CATEGORY_U_NO = '2'
 				AND STATUS = 'Y'
-				AND HOUSE_LATITUDE BETWEEN #{swLat} AND #{neLat}
-				AND HOUSE_LONGITUDE BETWEEN #{swLng} AND #{neLng}
+				<choose>
+					<when test="C != null">
+						AND HOUSE_LATITUDE BETWEEN #{C.swLat} AND #{C.neLat}
+						AND HOUSE_LONGITUDE BETWEEN #{C.swLng} AND #{C.neLng}
+					</when>
+					<otherwise>
+						AND BOARD.TITLE LIKE #{keyword}
+					</otherwise>
+				</choose>
 			ORDER BY CREATE_DATE
 	</select>
 	
@@ -111,12 +128,21 @@
 	</select>
 	
 	<select id="selectHouseList" resultMap="houseResultSet">
-		SELECT BOARD.BOARD_NO, USER_NO, TITLE, HOUSE_LATITUDE, HOUSE_LONGITUDE, THUMBNAIL
+		SELECT BOARD.BOARD_NO, USER_NO, TITLE, HOUSE_LATITUDE, HOUSE_LONGITUDE, THUMBNAIL, 
+				(SELECT MIN(RENT)
+					FROM ROOM
+					WHERE BOARD_NO = BOARD.BOARD_NO
+				) MIN_AMOUNT,
+				(SELECT COUNT(*)
+					FROM WISH_LIST
+					WHERE BOARD_NO = BOARD.BOARD_NO
+						AND USER_NO = #{userNo}) WISH
 			FROM BOARD
 		    LEFT JOIN SHARE_HOUSE ON SHARE_HOUSE.BOARD_NO = BOARD.BOARD_NO
 		    WHERE CATEGORY_U_NO = '2'
 				AND STATUS = 'Y'
 			ORDER BY CREATE_DATE
 	</select>
+	
 	
 </mapper>

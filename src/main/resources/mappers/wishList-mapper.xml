@@ -17,6 +17,14 @@
 		   AND BOARD_NO = #{boardNo}
 	</select>
 	
+	<delete id="deleteWishList">
+		DELETE
+		FROM WISH_LIST
+		WHERE BOARD_NO = #{boardNo}
+			AND USER_NO = #{userNo}
+	</delete>
+	
+	
 	
 	
 	
