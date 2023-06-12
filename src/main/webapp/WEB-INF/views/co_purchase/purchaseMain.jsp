@@ -73,7 +73,7 @@
                                             모집중
                                         </div>
                                     </div>
-                                    <a href="${ contextPath }/co_purchase/detail?bNo=${ list.get(i).boardNo }">
+                                    <a href="${ contextPath }/co_purchase/detail?bNo=${ b.boardNo }">
                                         <div class="detail_middle">${ b.title }</div>
                                     </a>
                                     <div class="detail_bottom flex">

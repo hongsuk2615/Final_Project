@@ -10,18 +10,28 @@
 		<result column="RECRUITS_CURR" property="recruitsCurr"/>
 		<result column="PRICE" property="price"/>
 		<result column="DEAD_LINE" property="deadLine"/>
+		<result column="READ_COUNT"  property="readCount"/>
 		<result column="IS_END" property="isEnd"/>
 		<result column="THUMB_NAIL" property="thumbNail"/>
 		<result column="CREATE_DATE" property="createDate"/>
+		<result column="PRODUCT_NAME" property="productName"/>
+		<result column="LINK" property="link"/>
 	</resultMap>
 	
 	<resultMap type="co_purchase" id="coPurchaseResultSet">
 		<id column="BOARD_NO" property="boardNo"/>
+		<result column="TITLE" property="title"/>
+		<result column="PRICE" property="price"/>
 		<result column="RECRUITS_NUM" property="recruitsNum"/>
 		<result column="RECRUITS_CURR" property="recruitsCurr"/>
 		<result column="PRICE" property="price"/>
 		<result column="DEAD_LINE" property="deadLine"/>
+		<result column="READ_COUNT"  property="readCount"/>
 		<result column="IS_END" property="isEnd"/>
+		<result column="THUMB_NAIL" property="thumbNail"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="PRODUCT_NAME" property="productName"/>
+		<result column="LINK" property="link"/>
 		
 		<association property="board" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Board">
 			<id column="BOARD_NO" property="boardNo"/>			
@@ -38,13 +48,18 @@
 			<id column="USED_NO" property="userNo"/>
 			<result column="NICK_NAME" property="nickName"/>
 		</association>
-		<association property="imageList" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Image">
+		<association  property="imageList" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Image">
 			<id column="IMG_NO" property="imgNo"/>
 			<result column="BOARD_NO" property="boardNo"/>
 			<result column="ORIGIN_NAME" property="originName"/>
 			<result column="CHANGE_NAME" property="changeName"/>
 			<result column="FILE_LEVEL" property="fileLevel"/>
 			<result column="STATUS" property="status"/>
+		</association>
+		<association property="subCategory" column="CATEGORY_S_NO" javaType="com.ace.thrifty.board.model.vo.SubCategory">
+			<id column="CATEGORY_S_NO" property="categorySNo"/>
+			<result column="CATEGORY_U_NO" property="categoryUNo"/>
+			<result column="CATEGORY_S_NAME" property="categorySName"/>
 		</association>
 	</resultMap>
 	
@@ -55,7 +70,7 @@
 		AND CATEGORY_U_NO = 6
 	</select>
 	
-	<select id="selectCoPurchaseList" parameterType="map" resultMap="coPurchaseListResultSet">
+	<select id="selectCoPurchaseList" parameterType="map" resultMap="coPurchaseResultSet">
 		SELECT BOARD_NO
 			, RECRUITS_NUM
 			, RECRUITS_CURR

@@ -55,15 +55,15 @@
                 	<div id="cat_title_1">게시글 상세</div>
                 	<c:if test="${loginUser.userNo eq board.userNo or loginUser.authority eq 0}">
 	                	<div>
-	                		<input id="edit" type="button" value="수정">
-	                		<input type="button" value="삭제">
+	                		<div id="modify-btn" bNo ="${board.boardNo}" type="button">수정</div>
+	                		<div id="delete-btn" bNo ="${board.boardNo}" type="button" url="co_purchase">삭제</div>
 	                	</div>
                 	</c:if>
                 </div>
                 <div id="detail_header">
                     <div id="detail_header_1">
                         <div id="detail_header_1_title">${ board.title }</div> <!-- 글 제목 -->
-                        <div class="flex">
+                        <div id="report-btn" class="flex" bNo="${board.boardNo}">
                             <img src="${ contextPath }/resources/images/main/icon/alarm.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;">
                             <div>신고</div>
                         </div>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="flex">
                             <div id="recruit_1">모집 인원</div>
-                            <div id="recruit_2">${ co_purchase.recruits_num }</div>
+                            <div id="recruit_2">${ co_purchase.recruitsNum }</div>
                         </div>
                     </div>
                     <div class="flex justify align">
@@ -90,25 +90,28 @@
                         </div>
                         <div class="flex align">
                             <div id="end_date">마감</div>
-                            <div class="header_text">${ co_purchase.isEnd }</div>
+                            <div class="header_text">${ co_purchase.deadLine }</div>
                         </div>
                     </div>
                 </div>
                 <div id="detail_body">
                     <div id="body_description" class="flex">
                         <div id="body_description_1">
-                            <img src="${ contextPath }/resources/upfiles/co_purchase/${ image.changeName }" id="body_img" alt="">
+                            <img src="${ contextPath }/resources/upfiles/co_purchase/${ imageList.changeName }" id="body_img" alt="">
                         </div>
                         <div id="body_description_2">
                             <div id="body_description_content">
                                 <div id="body_description_title">
                                     <div class="body_text">${ co_purchase.productName }</div>
-                                    <div class="body_text">${ co_purchase.pricd }원</div>
+                                    <div class="body_text">${ co_purchase.price }원</div>
                                 </div>
-                                <div id="body_description_chatting">문의 쪽지</div>
+                                <div class="flex">
+	                                <div id="inquiry-btn" class="body_description_chatting" uNo = "${board.userNo}" seller="${seller.nickName}">문의 쪽지</div>
+	                                <div id="wish-btn" class="body_description_wish" bNo="${board.boardNo}">찜하기</div>
+                                </div>
+                                <!-- id="body_description_chatting" -->
                                 <div id="body_description_link" class="flex">
-                                    <div id="link">관련 링크 :&nbsp;</div>
-                                    <a href="${ co_purchase.link }">${ co_purchase.link }</a>
+                                    <a href="${ co_purchase.link }">관련 링크 : ${ co_purchase.link }</a>
                                 </div>
                             </div>
                         </div>
@@ -121,5 +124,14 @@
         </div>
         <jsp:include page="../common/footer.jsp"/>
     </div>
+        <script src="/thrifty/resources/js/common/commonModal.js"></script>
+        <script>
+            
+            document.getElementById('modify-btn').addEventListener('click',function(){  
+                let bNo = $(this).attr("bNo");
+                location.href="/thrifty/co_purchase/modify?bNo="+bNo;
+            })       
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 </body>
 </html>
