@@ -2,6 +2,7 @@ package com.ace.thrifty.board.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,5 +75,23 @@ public class BoardDao {
 	
 	public int deleteBoard(Board b) {
 		return sqlSession.update("boardMapper.deleteBoard", b);
+	}
+
+	
+	public int scrapBoard(int bNo) {
+		return sqlSession.update("boardMapper.scrapBoard", bNo);
+	}
+	
+	public int scrapCancle(int bNo) {
+		return sqlSession.update("boardMapper.scrapBoard", bNo);
+
+
+	public int updateBoard(Board b) {
+		return sqlSession.update("boardMapper.updateBoard", b);
+	}
+
+	public int updateImageList(List<Image> imageList) {
+		return sqlSession.update("boardMapper.updateImageList", imageList);
+
 	}
 }
