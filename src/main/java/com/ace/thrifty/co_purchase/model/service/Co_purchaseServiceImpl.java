@@ -81,4 +81,14 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 		map.put("list", list);
 		
 	}
+	
+	@Override
+	public Co_purchase selectCoPurchase(int bNo) {
+		Co_purchase co = coDao.selectBoardDetail(bNo);
+		if(co != null) {
+			boardDao.increaseReadCount(bNo);
+			co.getBoard().setReadCount(co.getBoard().getReadCount()+1);
+		}
+		return co;
+	}
 }

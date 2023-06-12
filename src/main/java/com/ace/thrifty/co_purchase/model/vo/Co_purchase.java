@@ -22,6 +22,8 @@ public class Co_purchase {
 	private int price;
 	private Date deadLine;
 	private String isEnd;
+	private String productName;
+	private String link;
 	
 	private String title;
 	private String content;

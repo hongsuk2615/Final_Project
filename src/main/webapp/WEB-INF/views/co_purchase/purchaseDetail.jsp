@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,10 +51,18 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeftCo_purchase.jsp"/>
             <div id="body-right">
-                <div id="cat_title_1">게시글 상세</div>
+                <div id="cat_title_box">
+                	<div id="cat_title_1">게시글 상세</div>
+                	<c:if test="${loginUser.userNo eq board.userNo or loginUser.authority eq 0}">
+	                	<div>
+	                		<input id="edit" type="button" value="수정">
+	                		<input type="button" value="삭제">
+	                	</div>
+                	</c:if>
+                </div>
                 <div id="detail_header">
                     <div id="detail_header_1">
-                        <div id="detail_header_1_title">넷플릭스 패밀리 2명 구합니다</div> <!-- 글 제목 -->
+                        <div id="detail_header_1_title">${ board.title }</div> <!-- 글 제목 -->
                         <div class="flex">
                             <img src="${ contextPath }/resources/images/main/icon/alarm.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;">
                             <div>신고</div>
@@ -68,44 +77,44 @@
                         </div>
                         <div class="flex">
                             <div id="recruit_1">모집 인원</div>
-                            <div id="recruit_2">2</div>
+                            <div id="recruit_2">${ co_purchase.recruits_num }</div>
                         </div>
                     </div>
                     <div class="flex justify align">
                         <div class="flex">
-                            <div class="header_text">2023.05.23. 22:10</div> <!-- 작성일 -->
+                            <div class="header_text">${ board.createDate }<!-- 2023.05.23. 22:10 --></div> <!-- 작성일 -->
                             <div class="flex">
                                 <div id="views" class="header_text">조회</div>
-                                <div class="header_text">24</div>
+                                <div class="header_text">${ board.readCount }</div>
                             </div>
                         </div>
                         <div class="flex align">
                             <div id="end_date">마감</div>
-                            <div class="header_text">2023.06.24</div>
+                            <div class="header_text">${ co_purchase.isEnd }</div>
                         </div>
                     </div>
                 </div>
                 <div id="detail_body">
                     <div id="body_description" class="flex">
                         <div id="body_description_1">
-                            <img src="${ contextPath }/resources/NETFLIX.png" id="body_img" alt="">
+                            <img src="${ contextPath }/resources/upfiles/co_purchase/${ image.changeName }" id="body_img" alt="">
                         </div>
                         <div id="body_description_2">
                             <div id="body_description_content">
                                 <div id="body_description_title">
-                                    <div class="body_text">넷플릭스 구독권</div>
-                                    <div class="body_text">10,000원</div>
+                                    <div class="body_text">${ co_purchase.productName }</div>
+                                    <div class="body_text">${ co_purchase.pricd }원</div>
                                 </div>
                                 <div id="body_description_chatting">문의 쪽지</div>
                                 <div id="body_description_link" class="flex">
                                     <div id="link">관련 링크 :&nbsp;</div>
-                                    <a href="https://www.netflix.com/kr/">https://www.netflix.com/kr/</a>
+                                    <a href="${ co_purchase.link }">${ co_purchase.link }</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div id="body_text">
-                        김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 김김홍홍석석괴바보 
+                         ${ board.content }
                     </div>
                 </div>
             </div>

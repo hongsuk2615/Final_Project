@@ -35,4 +35,8 @@ public class MemberDao {
 	public Member selectByNickName(String nickName) {
 		return sqlSession.selectOne("memberMapper.selectByNickName", nickName);
 	}
+	
+	public Member selectByKakaoId(String kakaoId) {
+		return sqlSession.selectOne("memberMapper.selectByKakaoId", kakaoId);
+	}
 }

@@ -17,8 +17,12 @@
     <title>Document</title>
     <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <script>
+        Kakao.init('812fa162a908f2e0e2a8addf2bbd6869'); // 사용하려는 앱의 JavaScript 키 입력
+      </script>
     <div id="header" class="background_basic">
         <div id="header_1">
             <div id="header_1_1">
@@ -34,7 +38,15 @@
             	</c:when>
             	<c:otherwise>
 	                <div class="content_white change_content" onclick="myPage();" >내정보</div>
-	                <div class="content_white change_content" onclick="logout();">로그아웃</div>
+	                <c:choose>
+						<c:when test="${loginUser.loginMethod eq 'K' }">
+							<div class="content_white change_content" onclick="kakaoLogout();">로그아웃</div>
+						</c:when>	                
+						<c:otherwise>
+							<div class="content_white change_content" onclick="logout();">로그아웃</div>
+						</c:otherwise>
+		                
+	                </c:choose>
             	</c:otherwise>
             </c:choose>
 	                <div id="header_search" class="search_img_white"> </div>            	
@@ -89,6 +101,11 @@
         </ul>
 
     </div>
+    <script>
+        function kakaoLogout() {
+            location.href="https://kauth.kakao.com/oauth/logout?client_id=17596a7a342e703f12c332dec822a955&logout_redirect_uri=http://localhost:8081/thrifty/member/logout";
+        }
+    </script>    
     <script src="/thrifty/resources/js/member/modal.js"></script>
     <script src="/thrifty/resources/js/member/login-enroll.js"> </script>
     <script src="/thrifty/resources/js/member/validate.js"></script>
