@@ -24,7 +24,7 @@ document.getElementById('wish-btn').addEventListener('click', function(){
                 }).then(()=>{
                     login();
                 })
-                
+
 
             }else if(result == 2){
                 Swal.fire({
@@ -54,7 +54,7 @@ $.ajax({
 function reportAjax(bNo, catNo){
         $.ajax({
         url : "/thrifty/report/insert",
-        data : { 
+        data : {
             reportCategoryNo : catNo,
             bNo : bNo
         },
@@ -99,7 +99,7 @@ document.getElementById('inquiry-btn').addEventListener('click', async function(
                                                     if (!content) {
                                                     return '빈메세지는 전송하지 않습니다.';
                                                     }else{
-                                                        
+
                                                         $.ajax({
                                                             url : "/thrifty/message/insert",
                                                             data : {content, receiver},
@@ -143,7 +143,7 @@ document.getElementById('inquiry-btn').addEventListener('click', async function(
                                                 confirmButtonText: '쪽지보내기',
                                                 cancelButtonText: '취소'
                                             });
-                                            
+
 })
 
 document.getElementById('delete-btn').addEventListener('click', function(){
@@ -172,7 +172,7 @@ document.getElementById('delete-btn').addEventListener('click', function(){
                                     showConfirmButton: false,
                                     timer: 1000
                                 }).then(()=>{
-                                    location.href="/thrifty/"+url; 
+                                    location.href="/thrifty/"+url;
                                 })
                             }else if(result == -1){
                                 Swal.fire({
@@ -208,5 +208,5 @@ document.getElementById('delete-btn').addEventListener('click', function(){
                     })
                 }
             })
-    
+
 })
