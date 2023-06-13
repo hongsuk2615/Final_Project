@@ -165,4 +165,16 @@
 		  </if>
 	</update>
 	
+	<update id="scrapBoard">
+		UPDATE BOARD
+		 SET WISH_COUNT = WISH_COUNT + 1
+		 WHERE BOARD_NO = #{bNo}
+	</update>
+	
+	<update id="scrapCancle">
+		UPDATE BOARD
+		 SET WISH_COUNT = WISH_COUNT - 1
+		 WHERE BOARD_NO = #{bNo}
+	</update>
+	
 </mapper>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
+import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.member.model.vo.Member;
 
 import lombok.AllArgsConstructor;
@@ -31,8 +32,13 @@ public class Co_purchase {
 	private int wishCount;
 	private int readCount;
 	private String thumbNail;
+	private String nickName;
+	private String changeName;
+	private String changeName2;
 	
 	private Board board;
 	private Member seller;
-	private ArrayList<Image> imageList;
+//	private ArrayList<Image> imageList;
+	private Image imageList;
+	private SubCategory subCategory;
 }
