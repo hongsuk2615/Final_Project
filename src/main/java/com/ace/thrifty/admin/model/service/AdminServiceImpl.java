@@ -10,9 +10,11 @@ import com.ace.thrifty.admin.model.dao.AdminDao;
 import com.ace.thrifty.admin.model.vo.Notice;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
+import com.ace.thrifty.board.model.vo.UpperCategory;
 import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.common.template.Pagination;
 import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.report.model.vo.Report;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -62,6 +64,22 @@ public class AdminServiceImpl implements AdminService{
 			return adminDao.boardStatusUpdate(paramMap);
 		}
 	}
+	
+	@Override
+	public void reportList(Map<String, Object> map, Map<String, Object> paramMap) {
+		
+		int listCount = adminDao.selectReportListCount(paramMap);
+		Integer currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<Report> list = adminDao.ReportList(pi, paramMap);
+		
+		map.put("pi", pi);
+		map.put("list", list);
+	}
 
 	@Override
 	public void noticeList(Map<String, Object> map, Map<String, Object> paramMap) {
@@ -94,7 +112,11 @@ public class AdminServiceImpl implements AdminService{
 		map.put("list", list);
 	}
 
-
+	@Override
+	public List<UpperCategory> upperCatList() {
+		return adminDao.upperCatList();
+	}
+	
 	@Override
 	public List<SubCategory> noticeSubCatList() {
 		return adminDao.noticeSubCatList();
@@ -129,5 +151,10 @@ public class AdminServiceImpl implements AdminService{
 	public int enrollUpdate(Board b) {
 		return adminDao.enrollUpdate(b);
 	}
+
+
+
+
+
 
 }

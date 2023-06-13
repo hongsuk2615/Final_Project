@@ -1,4 +1,4 @@
-package com.ace.thrifty.common.model.service;
+package com.ace.thrifty.report.model.service;
 
 import java.util.List;
 import java.util.Map;
@@ -6,8 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ace.thrifty.common.model.dao.ReportDao;
-import com.ace.thrifty.common.model.vo.ReportCategory;
+import com.ace.thrifty.report.model.dao.ReportDao;
+import com.ace.thrifty.report.model.vo.ReportCategory;
+
 
 @Service
 public class ReportServiceImpl implements ReportService{
@@ -30,8 +31,12 @@ public class ReportServiceImpl implements ReportService{
 		int check = reportDao.reportCheck(paramMap);
 		int result1 = 0;
 		int result2 = 0;
-
-		if(check == 0 ) {
+		
+		if(paramMap. containsValue("")) {
+			return -2; //잘못된 리폿카테고리 번호
+		}
+		
+		if(check == 0) {
 			result1 = reportDao.reportInsert(paramMap);
 			
 			if(result1 > 0) {

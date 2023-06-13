@@ -57,6 +57,17 @@
 		<result column="CATEGORY_U_NO"  property="categoryUNo"/>
 		<result column="NICK_NAME" property="nickName"/>
 		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
+	
+	<resultMap type="report" id="reportResultSet">
+		<result column="BOARD_NO" property="boardNo"/>
+		<result column="REPLY_NO" property="replyNo"/>
+		<result column="R_CATEGORY_NO" property="rcategoryNo"/>
+		<result column="REPORT_USER_NO" property="reportUserNo"/>
+		<association property="board" resultMap="boardResultSet"/>
+		<association property="member" resultMap="memberResultSet"/>
+		<association property="upperCategory" resultMap="upperCategoryResultSet"/>
 	</resultMap>
 
 	<select id="loginAdmin" parameterType="member" resultMap="memberResultSet">
@@ -168,6 +179,19 @@
 		WHERE CATEGORY_U_NO = 9
 	</select>
 	
+	<select id="selectReportListCount" resultType="int">
+		SELECT count(*)
+		<if test="type == 'board'">
+			FROM REPORT R JOIN BOARD B USING(BOARD_NO)
+		</if>
+		JOIN MEMBER M USING(USER_NO)
+		JOIN UPPER_CATEGORY UC USING (CATEGORY_U_NO)
+		WHERE B.REPORT_COUNT > 0
+		<if test="catUNo != 0">
+			AND B.CATEGORY_U_NO = #{catUNo}
+		</if>
+	</select>
+	
 	<select id="selectNoticeListCount" resultType="int">
 		SELECT COUNT(*)
 		FROM BOARD B
@@ -193,6 +217,17 @@
 	 	<if test="search != null">
 		 	<bind name="searchPattern" value="'%'+search+'%'"/>
 		 	AND B.TITLE LIKE #{searchPattern}
+		</if>
+	</select>
+	
+	<select id="reportList" parameterType="map" resultMap="reportResultSet">
+		SELECT CATEGORY_U_NAME, TITLE, B.REPORT_COUNT, NICK_NAME, B.STATUS
+		FROM REPORT R JOIN BOARD B USING(BOARD_NO)
+		JOIN MEMBER M USING(USER_NO)
+		JOIN UPPER_CATEGORY UC USING (CATEGORY_U_NO)
+		WHERE B.REPORT_COUNT > 0
+		<if test="catUNo != 0">
+			AND B.CATEGORY_U_NO = #{catUNo}
 		</if>
 	</select>
 	
@@ -243,6 +278,12 @@
 			USER_NO = #{userNo}
 		WHERE BOARD_NO = #{boardNo}
 	</update>
+	
+	<select id="upperCatList" resultMap="upperCategoryResultSet">
+		SELECT *
+		FROM UPPER_CATEGORY
+		WHERE CATEGORY_U_NO != 9
+	</select>
 	
 	<select id="subCatList" resultMap="subCategoryResultSet">
 		SELECT *

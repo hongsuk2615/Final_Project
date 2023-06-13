@@ -1,4 +1,4 @@
-package com.ace.thrifty.common.model.dao;
+package com.ace.thrifty.report.model.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ace.thrifty.common.model.vo.ReportCategory;
+import com.ace.thrifty.report.model.vo.ReportCategory;
 
 @Repository
 public class ReportDao {

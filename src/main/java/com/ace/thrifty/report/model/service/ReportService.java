@@ -1,10 +1,9 @@
-package com.ace.thrifty.common.model.service;
+package com.ace.thrifty.report.model.service;
 
 import java.util.List;
 import java.util.Map;
 
-import com.ace.thrifty.common.model.vo.ReportCategory;
-
+import com.ace.thrifty.report.model.vo.ReportCategory;
 
 public interface ReportService {
 	List<ReportCategory> reportList();

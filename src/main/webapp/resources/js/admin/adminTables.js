@@ -3,6 +3,12 @@ const urlParams = new URL(location.href).searchParams;
 const urlPath = new URL(location.href).pathname;
 const lasturlPath = urlPath.substring(urlPath.lastIndexOf('/')+1);
 
+let currTabParam = "";
+if(urlParams.get('catSNo') != null){
+    currTabParam = urlParams.get('catSNo')
+}else{
+    currTabParam =  urlParams.get('catUNo')
+}
 let currentTab = "";
 
 //검색 후 페이징 처리
@@ -70,7 +76,7 @@ if(lasturlPath == 'member'){
     
     $.each($(tabArr), function(index, item){
         let tabId = $(item).attr('id');
-        if(tabId == urlParams.get('catSNo')){
+        if(tabId == currTabParam){
             currentTab = tabId;
         };
     });

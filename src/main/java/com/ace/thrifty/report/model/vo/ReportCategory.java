@@ -1,4 +1,4 @@
-package com.ace.thrifty.common.model.vo;
+package com.ace.thrifty.report.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

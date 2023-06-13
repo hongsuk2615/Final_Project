@@ -34,7 +34,7 @@
           </li>
           
           <li class="nav-item sidebar-report">
-            <a href="${contextPath}/admin/report" class="nav-link">
+            <a href="${contextPath}/admin/report?catUNo=0&type=board&currentPage=1" class="nav-link">
               <i class="nav-icon fas fa-exclamation-triangle"></i>
               <p>
                 신고

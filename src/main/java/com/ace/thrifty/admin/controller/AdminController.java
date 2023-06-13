@@ -1,12 +1,10 @@
 package com.ace.thrifty.admin.controller;
 
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,7 @@ import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
 import com.ace.thrifty.common.Utils;
 import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.report.model.vo.Report;
 import com.google.gson.Gson;
 
 @Controller
@@ -122,8 +121,21 @@ public class AdminController {
 	@GetMapping("/report")
 	public String adminReport(Model model, @RequestParam Map<String, Object> paramMap) {
 		
-			model.addAttribute("contents", "report");
-			return "admin/adminPage";
+		Map<String, Object> map = new LinkedHashMap<>();
+		
+		List<UpperCategory> tabList = adminService.upperCatList();
+		
+		map.put("type", paramMap.get("type"));
+		map.put("catUNo", paramMap.get("catUNo"));
+		map.put("tabList", tabList);
+		
+		adminService.reportList(map, paramMap);
+		
+		System.out.println(paramMap);
+		System.out.println(map);
+		model.addAttribute("contents", "report");
+		model.addAttribute("map", map);
+		return "admin/adminPage";
 	}
 	
 	@GetMapping("/board")

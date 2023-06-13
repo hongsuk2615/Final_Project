@@ -39,14 +39,13 @@
 	<select id="reportCheck" parameterType="map" resultType="int">
 		SELECT COUNT(*)
 		FROM REPORT
-		WHERE REPORT_USER_NO = #{userNo},
-		  AND R_CATEGORY_NO = #{reportCategoryNo},
+		WHERE REPORT_USER_NO = #{userNo}
 		  <choose>
 		  	<when test="bno != null">
 		  		AND BOARD_NO = #{bNo}
 		  	</when>
 		  	<when test="rno != null">
-				AND REPLY_NO = #{rNo}		  	
+				AND REPLY_NO = #{rNo}
 		  	</when>
 		  </choose>
 	</select>

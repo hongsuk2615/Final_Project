@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
+import com.ace.thrifty.board.model.vo.UpperCategory;
 import com.ace.thrifty.member.model.vo.Member;
 
 public interface AdminService {
@@ -17,6 +18,8 @@ public interface AdminService {
 	
 	List<SubCategory> faqSubCatList();
 	
+	void reportList(Map<String, Object> map, Map<String, Object> paramMap);
+	
 	void noticeList(Map<String, Object> map, Map<String, Object> paramMap);
 	
 	void faqList(Map<String, Object> map, Map<String, Object> paramMap);
@@ -28,6 +31,8 @@ public interface AdminService {
 	int enrollInsert(Board b);
 	
 	int enrollUpdate(Board b);
+	
+	List<UpperCategory> upperCatList();
 	
 	List<SubCategory> subCatList(int catUNo);
 	

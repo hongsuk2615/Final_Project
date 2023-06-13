@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 import com.ace.thrifty.admin.model.vo.Notice;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
+import com.ace.thrifty.board.model.vo.UpperCategory;
 import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.report.model.vo.Report;
 
 @Repository
 public class AdminDao {
@@ -36,6 +38,10 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.selectMemberListCount", paramMap);
 	}
 	
+	public int selectReportListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("adminMapper.selectReportListCount", paramMap);
+	}
+	
 	public int selectNoticeListCount(Map<String, Object> paramMap) {
 		return sqlSession.selectOne("adminMapper.selectNoticeListCount", paramMap);
 	}
@@ -54,6 +60,16 @@ public class AdminDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return sqlSession.selectList("adminMapper.memberList", paramMap, rowBounds);
+	}
+	
+	public List<Report> ReportList(PageInfo pi, Map<String, Object> paramMap) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return sqlSession.selectList("adminMapper.reportList", paramMap, rowBounds);
 	}
 	
 	public List<Notice> noticeList(PageInfo pi, Map<String, Object> paramMap) {
@@ -84,7 +100,9 @@ public class AdminDao {
 		return sqlSession.update("adminMapper.boardStatusUpdate", paramMap);
 	}
 	
-	
+	public List<UpperCategory> upperCatList() {
+		return sqlSession.selectList("adminMapper.upperCatList");
+	}
 
 	public List<SubCategory> noticeSubCatList(){
 		return sqlSession.selectList("adminMapper.noticeSubCatList");
@@ -109,5 +127,8 @@ public class AdminDao {
 	public Board enrollSelect(int boardNo) {
 		return sqlSession.selectOne("adminMapper.enrollSelect", boardNo);
 	}
+
+
+
 	
 }

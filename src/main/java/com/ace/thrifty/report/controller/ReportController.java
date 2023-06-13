@@ -1,4 +1,4 @@
-package com.ace.thrifty.common.controller;
+package com.ace.thrifty.report.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ace.thrifty.common.model.service.ReportService;
-import com.ace.thrifty.common.model.vo.ReportCategory;
 import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.report.model.service.ReportService;
+import com.ace.thrifty.report.model.vo.ReportCategory;
 import com.google.gson.Gson;
 
 
@@ -48,12 +48,13 @@ public class ReportController {
 		int result = reportService.reportInsert(paramMap);
 		String returnVal = "";
 		
+		
 		if(result>0) {
 			returnVal = "신고 접수가 되었습니다.";
 		}else if(result == -1){
 			returnVal = "이미 신고한 게시물입니다.";
 		}else {
-			returnVal = "신고 접수 문제가 발생했습니다.";
+			returnVal = "다시 선택해서 신고해주세요.";
 		}
 		
 		return returnVal;
