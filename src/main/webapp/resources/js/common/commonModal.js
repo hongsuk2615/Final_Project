@@ -45,7 +45,6 @@ document.getElementById('report-btn').addEventListener('click', function(){
         title: '신고항목을 고르세요',
         input: 'select',
         inputOptions: {
-            
         },
         inputPlaceholder: '신고항목',
         showCancelButton: true,
