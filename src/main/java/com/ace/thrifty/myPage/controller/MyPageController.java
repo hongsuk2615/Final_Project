@@ -29,13 +29,14 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 	
+	//메인
 	@GetMapping("/myPageMain")
 	public String Main() {
 		return "myPage/myPageMain";
 				
 	}
 	
-	
+	//수정하기 기능 
 	@GetMapping("/myWrite")
 	public String MyPageSelectList(
 								Model model, 
@@ -50,7 +51,7 @@ public class MyPageController {
 		return "myPage/myPageSelectWrite";
 	}
 	
-	
+	//수정하기 폼 
 	@GetMapping("/myUpdateForm")
 	public String MyPageUpdateForm() {
 		

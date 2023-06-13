@@ -126,6 +126,13 @@
     border-bottom: 3px solid #787c80;
     }
 
+
+    .body-right-body-left{
+        float: left;
+        width: 100%;
+        height: 100%;
+    }
+
     
 
 </style>
@@ -139,7 +146,7 @@
         </div>
         <div id="body">
             <div id="body-left">
-              <jsp:include page="../common/boardBodyLeft.jsp"/>
+              <jsp:include page="../common/boardBodyLeftMyPage.jsp"/>
 
             </div>
 
@@ -150,7 +157,7 @@
                 <div id="body-right-header">
                     <div class="body-right-pic">
                         
-                      <img src="resources/images/myPage/selectwrite2.png" width="100%" height="100%">
+                      <img src="/thrifty/resources/images/myPage/selectwrite2.png" width="100%" height="100%">
                         
                     </div>
                     <div class="body-right-title">

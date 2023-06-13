@@ -14,7 +14,7 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <style>
-        /* *{
+         *{
         border: 1px solid blue !important;
         box-sizing: border-box;
     }      */
@@ -34,12 +34,7 @@
         justify-content: center;
     }
 
-    #body-left{
-        display: inline-block;
-        width: 20%;
-        min-width: 350px;
-        min-height: 900px;
-    }
+  
     #body-right{
         display: inline-block;
         width: 50%;
@@ -132,17 +127,17 @@
    }
 
    #button_modify{
-    position: relative;
+  position: relative;
   width: 500px;
   margin-left: 65px;
-  margin-top: 40px;
+  margin-top: 10px;
    }
    
    #button_cancel{
     position: relative;
   width: 500px;
   margin-left: 65px;
-  margin-top: 40px;
+  margin-top: 10px;
    }
     
     
@@ -229,7 +224,7 @@ input:focus { outline: none; }
         </div>
         <div id="body">
             <div id="body-left">
-                <jsp:include page="../myPage/boardBodyLeftremix.jsp"/>
+                <jsp:include page="../common/boardBodyLeftMyPage.jsp"/>
 		
             </div>
 

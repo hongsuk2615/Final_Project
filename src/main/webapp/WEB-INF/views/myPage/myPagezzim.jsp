@@ -179,6 +179,7 @@
 }
 
 
+
 </style>
 </head>
 <body>
@@ -190,7 +191,7 @@
         </div>
         <div id="body">
             <div id="body-left">
-              <jsp:include page="../common/boardBodyLeft.jsp"/>
+              <jsp:include page="../common/boardBodyLeftMyPage.jsp"/>
 
             </div>
 
@@ -200,7 +201,7 @@
               
                 <div id="body-right-header">
                     <div class="body-right-pic">
-                      <img src="resources/images/myPage/heart.png" width="100%" height="100%">
+                      <img src="/thrifty/resources/images/myPage/heart.png" width="100%" height="100%">
                     </div>
                     <div class="body-right-title">
                       <div class="bdoy-right-title-content">
