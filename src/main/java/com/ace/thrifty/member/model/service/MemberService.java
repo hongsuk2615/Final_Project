@@ -16,4 +16,8 @@ public interface MemberService {
 	public Member selectByNickName(String nickName);
 	
 	public Member selectByKakaoId(String kakaoId);
+	
+	public String findId(Member member);
+	
+	public String findPwd(Member member);
 }
