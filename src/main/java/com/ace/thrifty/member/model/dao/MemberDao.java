@@ -39,4 +39,16 @@ public class MemberDao {
 	public Member selectByKakaoId(String kakaoId) {
 		return sqlSession.selectOne("memberMapper.selectByKakaoId", kakaoId);
 	}
+	
+	public String findId(Member member) {
+		return sqlSession.selectOne("memberMapper.findId", member);
+	}
+	
+	public Member findPwd(Member member) {
+		return sqlSession.selectOne("memberMapper.findPwd", member);
+	}
+	
+	public int changeRandomPwd(Member member) {
+		return sqlSession.update("memberMapper.changeRandomPwd", member);
+	}
 }

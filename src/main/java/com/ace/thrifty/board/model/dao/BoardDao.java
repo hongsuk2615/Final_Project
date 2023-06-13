@@ -86,7 +86,6 @@ public class BoardDao {
 		return sqlSession.update("boardMapper.scrapBoard", bNo);
 	}
 
-
 	public int updateBoard(Board b) {
 		return sqlSession.update("boardMapper.updateBoard", b);
 	}

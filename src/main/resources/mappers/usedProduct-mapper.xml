@@ -36,14 +36,16 @@
 			<result column="WISH_COUNT"  property="wishCount"/>
 		</association>
 		<association property="seller" column="BOARD_NO" javaType="com.ace.thrifty.member.model.vo.Member">
-			<id column="USED_NO" property="userNo"/>
+			<id column="USER_NO" property="userNo"/>
 			<result column="NICK_NAME" property="nickName"/>
+			<result column="LOGIN_METHOD" property = "loginMethod"/>
+			<result column="PROFILE_IMG" property="changeName"/>
 		</association>
 		<collection property="imageList" column="BOARD_NO" javaType="java.util.ArrayList" ofType="com.ace.thrifty.board.model.vo.Image">
 			<id column="IMG_NO" property="imgNo"/>
 			<result column="BOARD_NO" property="boardNo"/>
-			<result column="ORIGIN_NAME" property="originName"/>
-			<result column="CHANGE_NAME" property="changeName"/>
+			<result column="IMG_ORIGIN_NAME" property="originName"/>
+			<result column="IMG_CHANGE_NAME" property="changeName"/>
 			<result column="FILE_LEVEL" property="fileLevel"/>
 			<result column="STATUS" property="status"/>
 		</collection>
@@ -108,15 +110,37 @@
 	
 	
 	<select id="selectUsedProductByBno" resultMap="usedProductResultSet">
-		SELECT *
-		  FROM USED_PRODUCT
-		  JOIN LOCATION USING(LOCATION_NO)
+		SELECT BOARD_NO
+			 , PRODUCT_NAME
+			 , PRICE
+			 , TRADE_METHOD
+			 , IS_SOLDOUT
+			 , LOCATION_NO
+			 , LOCATION_NAME
+			 , CATEGORY_S_NAME
+			 , CATEGORY_S_NO
+			 , CONTENT
+			 , CREATE_DATE
+			 , READ_COUNT
+			 , TITLE
+			 , B.USER_NO
+			 , WISH_COUNT
+			 , NICK_NAME
+			 , LOGIN_METHOD
+			 , M.CHANGE_NAME AS PROFILE_IMG
+			 , IMG_NO
+			 , I.CHANGE_NAME AS IMG_CHANGE_NAME
+			 , I.ORIGIN_NAME AS IMG_ORIGIN_NAME
+			 , FILE_LEVEL
+			 , I.STATUS
+		  FROM USED_PRODUCT U
+		  JOIN LOCATION L USING(LOCATION_NO)
 		  JOIN BOARD B USING(BOARD_NO)
-		  JOIN IMAGE USING(BOARD_NO)
-		  JOIN SUB_CATEGORY USING(CATEGORY_S_NO)
-		  JOIN MEMBER USING (USER_NO)
-		 WHERE BOARD_NO = ${bNo} 
-		   AND B.STATUS = 'Y'	
+		  JOIN IMAGE I USING(BOARD_NO)
+		  JOIN SUB_CATEGORY S USING(CATEGORY_S_NO)
+		  JOIN MEMBER M USING (USER_NO)
+		 WHERE BOARD_NO = ${bNo}
+		   AND B.STATUS = 'Y'
 	</select>
 	<select id="selectUsedProductCount" parameterType="map" resultType="_int">
 		SELECT COUNT(*)

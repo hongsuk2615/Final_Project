@@ -11,6 +11,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
@@ -39,6 +40,8 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@GetMapping("/enroll")
 	public String enroll() {
@@ -50,6 +53,8 @@ public class MemberController {
 	@PostMapping("/enroll")
 	public boolean insertMember(Member m) {
 		System.out.println(m);
+		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(encPwd);
 		return memberService.insertMember(m) == 1 ? true : false;
 	}
 	
@@ -63,12 +68,11 @@ public class MemberController {
 		System.out.println(m);
 		String referer = request.getHeader("Referer");
 		Member loginUser = memberService.loginMember(m);
-		if( loginUser != null) {
+		if( loginUser != null && bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 			model.addAttribute("loginUser", loginUser);
 			
 		}else {
 			model.addAttribute("alertMsg", "로그인 실패");
-		
 		}
 		return "redirect:" + referer;
 	}
@@ -155,13 +159,16 @@ public class MemberController {
 			member.setUserId(kakaoUser.getKakao_account().getEmail()+"_"+kakaoUser.getId());
 			member.setUserName(kakaoUser.getKakao_account().getProfile().getNickname());
 			member.setNickName(kakaoUser.getKakao_account().getProfile().getNickname());
-			member.setEmail(kakaoUser.getKakao_account().getEmail());
-			member.setLoginMethod("K");
-			member.setGender(kakaoUser.getKakao_account().getGender().equals("male")? "M" : "F");
 			member.setChangeName(kakaoUser.getKakao_account().getProfile().is_default_image()? null :kakaoUser.getKakao_account().getProfile().getProfile_image_url());
 			member.setOriginName(kakaoUser.getKakao_account().getProfile().is_default_image()? null :kakaoUser.getKakao_account().getProfile().getProfile_image_url());
+			
+			
+			member.setEmail(kakaoUser.getKakao_account().getEmail());
+			member.setLoginMethod("K");
+			member.setGender(kakaoUser.getKakao_account().getGender().equals("male")? "M" : kakaoUser.getKakao_account().getGender().equals("female")? "F" : "N");
 			UUID uuid = UUID.randomUUID();
-			member.setUserPwd(uuid.toString());
+			String encPwd = bcryptPasswordEncoder.encode(uuid.toString());
+			member.setUserPwd(encPwd);
 			member.setPhone("카카오로그인유저");
 			if(memberService.insertMember(member) > 0) {
 				model.addAttribute("loginUser",member);
@@ -179,6 +186,23 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+	@GetMapping("/findId")
+	@ResponseBody
+	public String findId(Member member) {
+		String id = memberService.findId(member);
+		return id;
+	}
+	
+	@GetMapping("/findPwd")
+	@ResponseBody
+	public String findPwd(Member member) {
+		String result = memberService.findPwd(member);
+		return result;
+	}
+	
+	
+	
 	
 
 }
