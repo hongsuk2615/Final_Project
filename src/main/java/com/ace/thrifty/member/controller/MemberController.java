@@ -159,11 +159,13 @@ public class MemberController {
 			member.setUserId(kakaoUser.getKakao_account().getEmail()+"_"+kakaoUser.getId());
 			member.setUserName(kakaoUser.getKakao_account().getProfile().getNickname());
 			member.setNickName(kakaoUser.getKakao_account().getProfile().getNickname());
-			member.setEmail(kakaoUser.getKakao_account().getEmail());
-			member.setLoginMethod("K");
-			member.setGender(kakaoUser.getKakao_account().getGender().equals("male")? "M" : "F");
 			member.setChangeName(kakaoUser.getKakao_account().getProfile().is_default_image()? null :kakaoUser.getKakao_account().getProfile().getProfile_image_url());
 			member.setOriginName(kakaoUser.getKakao_account().getProfile().is_default_image()? null :kakaoUser.getKakao_account().getProfile().getProfile_image_url());
+			
+			
+			member.setEmail(kakaoUser.getKakao_account().getEmail());
+			member.setLoginMethod("K");
+			member.setGender(kakaoUser.getKakao_account().getGender().equals("male")? "M" : kakaoUser.getKakao_account().getGender().equals("female")? "F" : "N");
 			UUID uuid = UUID.randomUUID();
 			String encPwd = bcryptPasswordEncoder.encode(uuid.toString());
 			member.setUserPwd(encPwd);

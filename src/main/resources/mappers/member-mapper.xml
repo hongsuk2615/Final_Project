@@ -95,7 +95,7 @@
 		UPDATE MEMBER
 		SET STATUS = 'N'
 		WHERE USER_NO = #{userNo}
-	
+	</update>
 	
 	<select id="findId" parameterType="member" resultType="string">
 		SELECT USER_ID

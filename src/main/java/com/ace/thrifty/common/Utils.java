@@ -1,14 +1,10 @@
 package com.ace.thrifty.common;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.nio.charset.Charset;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
-import java.util.Base64;
 import java.util.Date;
 import java.util.Properties;
 
@@ -20,24 +16,28 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.multipart.MultipartFile;
 
+
 public class Utils {
+
 	public static String saveFile(MultipartFile upfile, String savePath) throws IllegalStateException, IOException {
-		
+
 		String originName = upfile.getOriginalFilename();
 		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-		
-		int random = (int)(Math.random() * 90000 + 10000);
-		
+
+		int random = (int) (Math.random() * 90000 + 10000);
+
 		String ext = originName.substring(originName.lastIndexOf("."));
-		String changeName = currentTime+random+ext;
-		
-		upfile.transferTo(new File(savePath+changeName));
-		
+		String changeName = currentTime + random + ext;
+
+		upfile.transferTo(new File(savePath + changeName));
+
 		return changeName;
 	}
-	
+
 	public static void sendNewPwd(String userEmail, String newPwd) {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
@@ -49,16 +49,18 @@ public class Utils {
 		Session session = Session.getInstance(props, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("@gmail.com", "");
+
+				Properties smtpProps = new Properties();
+				return new PasswordAuthentication("hongsuk2615@gmail.com", "lbpnilnfrvlapopb");
 			}
 		});
 
-		String receiver = userEmail; 
+		String receiver = userEmail;
 		String title = "임시 비밀번호입니다";
-		String content = "임시 비밀번호 : "+newPwd;
+		String content = "임시 비밀번호 : " + newPwd;
 		Message message = new MimeMessage(session);
 		try {
-			message.setFrom(new InternetAddress("@gmail.com", "관리자", "utf-8"));
+			message.setFrom(new InternetAddress("hongsuk2615@gmail.com", "관리자", "utf-8"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
 			message.setSubject(title);
 			message.setContent(content, "text/html; charset=utf-8");
@@ -85,8 +87,8 @@ public class Utils {
 
 		return sb.toString();
 	}
-	
-	public static void sendNewCode(String userEmail, String Code ) {
+
+	public static void sendNewCode(String userEmail, String Code) {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
@@ -97,16 +99,16 @@ public class Utils {
 		Session session = Session.getInstance(props, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("", "");
+				return new PasswordAuthentication("hongsuk2615@gmail.com", "lbpnilnfrvlapopb");
 			}
 		});
 
-		String receiver = userEmail; 
+		String receiver = userEmail;
 		String title = "인증코드입니다.";
-		String content = "인증코드 : "+Code;
+		String content = "인증코드 : " + Code;
 		Message message = new MimeMessage(session);
 		try {
-			message.setFrom(new InternetAddress("", "관리자", "utf-8"));
+			message.setFrom(new InternetAddress("hongsuk2615@gmail.com", "관리자", "utf-8"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
 			message.setSubject(title);
 			message.setContent(content, "text/html; charset=utf-8");
@@ -116,5 +118,5 @@ public class Utils {
 			e.printStackTrace();
 		}
 	}
-	
-}	
+
+}
