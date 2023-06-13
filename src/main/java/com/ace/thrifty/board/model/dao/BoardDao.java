@@ -2,10 +2,12 @@ package com.ace.thrifty.board.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
@@ -60,8 +62,13 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertImageList", imageList);
 	}
 	
+	public int insertImage(Image img) {
+		return sqlSession.insert("boardMapper.insertImage", img);
+	}
+	
 	public ArrayList<Board> selectBoardByUserNo(int userNo){
 		return (ArrayList)sqlSession.selectList("boardMapper.selectBoardByUserNo", userNo);}
+	
 	public int increaseReadCount(int bNo) {
 		return sqlSession.update("boardMapper.increaseReadCount", bNo);
 	}
@@ -70,11 +77,21 @@ public class BoardDao {
 		return sqlSession.update("boardMapper.deleteBoard", b);
 	}
 
+	
+	public int scrapBoard(int bNo) {
+		return sqlSession.update("boardMapper.scrapBoard", bNo);
+	}
+	
+	public int scrapCancle(int bNo) {
+		return sqlSession.update("boardMapper.scrapBoard", bNo);
+
+
 	public int updateBoard(Board b) {
 		return sqlSession.update("boardMapper.updateBoard", b);
 	}
 
 	public int updateImageList(List<Image> imageList) {
 		return sqlSession.update("boardMapper.updateImageList", imageList);
+
 	}
 }

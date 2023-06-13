@@ -3,6 +3,7 @@ package com.ace.thrifty.smallgroup.model.vo;
 import java.sql.Date;
 
 import com.ace.thrifty.board.model.vo.Board;
+import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.member.model.vo.Member;
 
 import lombok.AllArgsConstructor;
@@ -18,5 +19,7 @@ public class SmallGroup {
 	private int recruitNo;
 	private Board board;
 	private Member member;
+	private Image image;
+	private String kakaoLink;
 
 }

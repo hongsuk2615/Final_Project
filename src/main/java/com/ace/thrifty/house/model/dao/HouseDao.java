@@ -1,5 +1,6 @@
 package com.ace.thrifty.house.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.ace.thrifty.common.model.vo.Coordinate;
 import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
 import com.ace.thrifty.house.model.vo.RoomImg;
+import com.ace.thrifty.house.model.vo.Tour;
 
 @Repository
 public class HouseDao {
@@ -39,19 +41,32 @@ public class HouseDao {
 		return sqlSession.selectMap("houseMapper.selectBoard" , b, null);
 	}
 	
-	public List<Object> selectHouseList() {
-		return sqlSession.selectList("houseMapper.selectHouseList");
+	public List<Object> selectHouseList(int userNo) {
+		return sqlSession.selectList("houseMapper.selectHouseList", userNo);
 	}
 	
-	public List<Object> selectLocation(Coordinate c) { 
-		return sqlSession.selectList("houseMapper.selectLocation", c);
+	public List<Object> selectLocation(Coordinate c, int userNo) {
+			Map<String, Object> map = new HashMap();
+			map.put("C", c);
+			map.put("userNo", userNo);
+		return sqlSession.selectList("houseMapper.searchHouse", map);
 	}
 	
 	public List<Object> selectRoomImg(int roomNo) {
 		return sqlSession.selectList("houseMapper.selectImgList", roomNo);
 	}
 	
-
+	public List<Object> searchHouse(String keyword, int userNo) {
+		Map<String, Object> map = new HashMap();
+		map.put("keyword", keyword);
+		map.put("userNo", userNo);
+	return sqlSession.selectList("houseMapper.searchHouse", map);
+	}
+	
+	public int tourApply(Tour tour) {
+		return sqlSession.insert("houseMapper.tourApply", tour);
+	}
+	
 
 	
 

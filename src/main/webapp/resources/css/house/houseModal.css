@@ -1,0 +1,265 @@
+
+        /* 모달 */
+.modal-mainBox{
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index:2;
+}
+
+#modal-alert{
+	display: none;
+}
+
+.modal-background{
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.modal-container{
+	 position: relative;
+	background: white;
+	min-width: 400px;
+	height: 110px;
+	border-radius: 6px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#modal-contents, #modal-confirm-content{
+	margin: 0px 16px 16px 16px;
+}
+
+#modal-button{
+	background: skyblue;
+	border-radius: 2px;
+    border: 1px solid skyblue;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 50px;
+    height: 25px;
+    outline : transparent;
+}
+
+#modal-button span{
+	color: white;
+}
+
+#modal-confirm{
+	display: none;
+}
+#modal-yes-button{
+	background: skyblue;
+	border-radius: 2px;
+    border: 1px solid skyblue;
+    position: absolute;
+    right: 65px;
+    bottom: 10px;
+    width: 50px;
+    height: 25px;
+}
+
+#modal-no-button{
+	background: skyblue;
+	border-radius: 2px;
+    border: 1px solid skyblue;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 50px;
+    height: 25px;
+}
+
+#modal-applicationForm .modal-container{
+	 position: relative;
+     top: 100px;
+	background: white;
+	min-width: 400px;
+	height: 610px;
+	border-radius: 6px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	display: flex;
+    flex-direction: column;
+	/* justify-content: center; */
+	/* align-items: center; */
+}
+
+#modal-applicationForm input{
+    width: 90%;
+}
+
+#modal-applicationForm input[type='radio']{
+    width: 5%;
+}
+
+.ex {
+    width: 45% !important;
+    padding: 0px;
+    margin: 0px;
+}
+
+#modal-applicationForm #injung{
+	width: 5%
+}
+
+#modal-applicationForm textarea {
+    width: 90%;
+    height: 6.25em;
+    resize: none;
+}
+
+#modal-applicationForm button{
+        width:100px;
+        margin:auto;
+        display:block;
+    }
+
+	.closeModal{
+		width: 80%;
+		display: flex;
+		justify-content: end;
+		
+	}
+
+	#closebtn{
+		cursor: pointer;
+	}
+
+	#modal-applicationForm, #modal-chat{
+	display: none;
+}
+
+	
+
+
+	#modal-chat .modal-container{
+     top: 8%;
+	background: white;
+	width: 500px;
+	height: 800px;
+	border-radius: 6px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	flex-direction: column;
+    align-items: center;
+    
+}
+
+	#chattingView{
+	background: url(quokka.jfif) no-repeat;
+	background-repeat : no-repeat;
+	background-size : cover;
+	border-radius: 5px;
+	width: 90%;
+	height: 90%;
+	position: relative;
+	}
+
+
+	#chatheader{
+		display: flex;
+		align-items: baseline;
+	}
+
+	#chatheader *{
+		margin: 10px 40px;
+	}
+
+	.input-area textarea{
+		width: 75%;
+		height: 2.25em;
+		resize: none;
+		margin-right: 10px;
+	}
+
+	.input-area{
+		position: absolute;
+		width: 100%;
+		bottom: 3%;
+		margin-left: 5%;
+		display: flex;
+		align-items: center
+	}
+
+	#modal-chat ul, #modal-chat li{
+		margin: 10px 5px;
+		padding: 0;
+		list-style: none;
+	}
+
+	.myChat{
+		text-align: right;
+		
+	}
+
+	.chat{
+		display : inline-block;
+		border-radius : 5px;
+		padding : 5px;
+		background-color : #eee;
+		word-break: break-all;
+		position: relative;
+	}
+
+	.myChat p {
+		background-color : rgb(116, 226, 132);
+	}
+
+	.chatDate{
+		position: absolute;
+		font-size : 10px;
+		bottom: 0px;
+	}
+
+	.myChat .chatDate{
+		left: 2px;
+	}
+
+	.chat-contents .chatDate{
+		bottom: -13px;
+		right: 6px;
+	}
+
+	.chat-profileImg{
+		margin-right: 7px;
+	}
+
+	.chat-profileImg>img{
+		width: 40px;
+		height: 40px;
+	}
+
+	#modal-chat button{
+		cursor: pointer;
+		background: #eee;
+		border: none;
+		border-radius: 5px;
+		width: 60px;
+		height: 30px;
+
+	}
+
+	.chat-div{
+		display: flex;
+	}
+
+	.chat-div p{
+		margin: 3px;
+	}
+
+
+	.chat-contents{
+		max-width: 90%;
+	}
+	.chat-box, .chat-contents{
+		display: inline-block;
+		position: relative;
+	}
