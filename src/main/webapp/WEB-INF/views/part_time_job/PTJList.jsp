@@ -80,7 +80,6 @@
                 </div>
                 <hr style="width: 100%;  margin-top: 15px;">
                 <div id="ptj-allBody" style="height: 1000px;">
-                <!-- <input type="hidden" name="boardNo"> -->
                 	<c:forEach var="ptj"  items="${list}" >
 	                			<div style="width: 200px; height: 300px;" class="list-detail" onclick="location.href = '${contextPath}/ptj/ptjDetail?bNo=${ptj.boardNo }'">
 		               				<c:choose>

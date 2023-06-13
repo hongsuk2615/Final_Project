@@ -34,15 +34,12 @@ public class PtjController {
 	@Autowired
 	private PtjService ptjService;
 
-//		private static final Logger logger = LoggerFactory.getLogger(PtjController.class);
-
 	@GetMapping("/ptj")
 	public String ptjMain(Model model) {
 		List<Ptj> p = ptjService.selectPtj();
 		model.addAttribute("p" , p);
 		String webPath = "/resources/upfiles/ptj/";
 		model.addAttribute("webPath" , webPath);
-		/* System.out.println(p); */
 		return "part_time_job/PTJMain";
 	}
 
@@ -60,17 +57,13 @@ public class PtjController {
 		 model.addAttribute("list", queryString.get("list"));
 		 model.addAttribute("pi", queryString.get("pi"));
 		 return "part_time_job/PTJList"; 
-	 
 	 }
 	
 
 	@GetMapping("/ptj/ptjDetail")
 	public String selectPtjDetail(Model model, int bNo) {
-//			System.out.println(boardNo);
-
 		Ptj p = ptjService.selectPtjDetail(bNo);
 		if(p != null) {
-			/* System.out.println(p); */
 			model.addAttribute("p", p);
 			String webPath = "/resources/upfiles/ptj/";
 			model.addAttribute("webPath" , webPath);
@@ -80,17 +73,6 @@ public class PtjController {
 		}
 
 	}
-
-//		@GetMapping("/ptj/ptjEnrollForm")
-//		public int ptjEnrollForm(
-//				Model model,
-//				@RequestParam(value="enrollTitle" , defaultValue="insert" , required = false) String enrollTitle,
-//				@RequestParam(value="enrollTitle" , defaultValue="insert" , required = false) String enrollContent,
-//				ModelAndView mv ,
-//				HttpSession session , HttpServletRequest req, HttpServletResponse resp
-//				) {
-//		mv.addObject(b.getTitle() , "enrollTitle");
-//		}
 
 	@GetMapping("/ptj/ptjEnrollForm")
 	public String ptjEnrollForm() {
@@ -102,7 +84,6 @@ public class PtjController {
 							Board b,
 							Ptj p,
 							@RequestParam(value="img" , required = false) MultipartFile image) throws Exception {
-		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		b.setCategoryUNo(5);
 		b.setUserNo(loginUser.getUserNo());
@@ -113,36 +94,6 @@ public class PtjController {
 		return "redirect:/ptj/ptjList";
 		
 	}
-	
-//	@GetMapping("/ptj/ptjList")
-//	public String ptjListPaging(Model model , @RequestParam Map<String, Object> paramMap) {
-//		
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("pList", )
-//		List<Ptj> pList = ptjService.selectPtjAll(); 
-//		model.addAttribute("pList", pList); 
-//		String webPath = "/resources/upfiles/ptj/";
-//		model.addAttribute("webPath" , webPath);
-//		ptjService.ptjBoardPaging(map, paramMap);
-//		map.put("pList", pList);
-//		
-//		model.addAttribute("contents", "ptj");
-//		model.addAttribute("map", map);
-//		
-//		return "part_time_job/PTJList";
-//	}
-	
-	/*
-	 * @GetMapping("/ptj/ptjDelete")
-	 * 
-	 * @ResponseBody public int deleteBoard(int bNo, HttpSession session) { Member
-	 * loginUser = (Member) session.getAttribute("loginUser");
-	 * System.out.println(loginUser); if (loginUser == null) { return -1; } else {
-	 * Board board = new Board(); if (loginUser.getAuthority() == 0) {
-	 * board.setBoardNo(bNo); } else { board.setBoardNo(bNo);
-	 * board.setUserNo(loginUser.getUserNo()); } return
-	 * boardService.deleteBoard(board); } }
-	 */
 	
 	@GetMapping("/ptj/ptjUpdate")
 	public String updatePtj(@RequestParam(value="bNo" , required = false)int boardNo ,
@@ -158,9 +109,6 @@ public class PtjController {
 						 Board b,
 						 @RequestParam(value="img" , required = false) MultipartFile image ) throws Exception {
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		/*
-		 * System.out.println(p); System.out.println(b);
-		 */
 		b.setCategoryUNo(5);
 		b.setUserNo(loginUser.getUserNo());
 		String webPath = "/resources/upfiles/ptj/";

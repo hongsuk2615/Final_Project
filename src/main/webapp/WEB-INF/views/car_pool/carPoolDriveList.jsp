@@ -58,18 +58,7 @@
 			<jsp:include page="../common/boardBodyLeftCarPool.jsp"/>
             <div id="body-right">
                 <div id="carpool-header">
-                	<c:choose>
-                		<c:when test="${subCategory.categorySNo == 31 }">
-                			<h1>[태워드려요!]</h1>
-                		</c:when>
-                		<c:when test="${subCategory.categorySNo == 32 }">
-                			<h1>[태워주세요!]</h1>
-                		</c:when>
-                		<c:otherwise>
-                			<h1>[태워드려요! / 태워주세요!]</h1>
-                		</c:otherwise>
-                	</c:choose>
-                    
+                	<h1>[태워드려요! / 태워주세요!]</h1>     
                 </div>
                 <div style="width:100%; display: flex; align-items: center; justify-content: space-between;">
                 	<p><a href="/thrifty">메인</a> > <a href="/thrifty/carPool">카풀</a></p>
@@ -81,7 +70,7 @@
                 </div>
                 <hr style="width: 100%;">
                 <div id="carpool-allBody" style="height: 1000px;">
-                	<c:forEach var="cList" items="${list }" begin="0" end="8" step="1">
+                	<c:forEach var="cList" items="${list }" >
 	                    <div style="width: 200px; height: 170px; border: 1px gray;" onclick="location.href='${contextPath}/carPool/detail?bNo=${cList.boardNo }'">
 	                        <img src="${contextPath }/${cList.imgPath}" style="height: 170px; width: 210px; border-radius: 10px;"/>
 	                        <p style="text-align: center;">${cList.subCategory.categorySName }</p>

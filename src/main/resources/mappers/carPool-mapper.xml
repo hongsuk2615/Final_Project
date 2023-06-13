@@ -128,7 +128,7 @@
 		B.TITLE,
 		B.CONTENT,
 		L.LOCATION_NAME,
-		I.CHANGE_NAME AS IMG_PATH,
+		I.CHANGE_NAME,
 		M.PHONE,
 		M.USER_ID,
 		M.USER_NO,
@@ -141,4 +141,16 @@
 	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 	WHERE C.BOARD_NO = #{bNo} AND B.STATUS = 'Y' AND I.STATUS = 'Y'
 </select>
+
+<update id="deadLine" parameterType="board">
+	UPDATE CARPOOL
+	SET IS_END = 'Y'
+	WHERE BOARD_NO = #{boardNo}
+</update>
+
+<select id="carPoolUpdateForm" resultMap="carPoolResultSet">
+	SELECT *
+	FROM CARPOOL C <!-- 여기서 가보자잉 -->
+</select>
+
 </mapper>

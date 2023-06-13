@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
@@ -41,7 +42,6 @@ public class CarPoolController {
 			model.addAttribute("lNo", queryString.get("lNo"));			
 		}
 		model.addAttribute("filter", queryString);
-		System.out.println(queryString);
 		model.addAttribute("list", queryString.get("list"));
 		model.addAttribute("pi", queryString.get("pi"));
 		return "car_pool/carPoolDriveList";
@@ -52,20 +52,12 @@ public class CarPoolController {
 		CarPool carpool = carPoolService.driveDetail(bNo);
 		if(carpool != null) {
 			model.addAttribute("carpool" , carpool);
-			String webPath = "/resources/upfiles/carPool/";
-			model.addAttribute("webPath" , webPath);
+			model.addAttribute("imageList", carpool.getImageList());
 			return "car_pool/carPoolDetail";	
 		} else {
 			return"redirect:/thrifty/carPool/drive";
 		}
 	}
-	
-//	
-//	@RequestMapping("/home/carPoolDetail")
-//	public String carPoolDetail() {
-//		return "car_pool/carPoolDetail";
-//	}
-//	
 	
 	@GetMapping("/enroll")
 	public String carPoolEnroll() {
@@ -84,6 +76,32 @@ public class CarPoolController {
 		carPoolService.insertCarPool(c, b, imgList, webPath, serverFolderPath);
 		 
 		return "redirect:/carPool/drive";
+	}
+	
+	@ResponseBody
+	@GetMapping("/deadLine")
+	public int deadLine(int bNo , HttpSession session) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			return -1;
+		} else {
+			Board b = new Board();
+			if (loginUser.getAuthority() == 0) {
+				b.setBoardNo(bNo);
+			} else {
+				b.setUserNo(loginUser.getUserNo());
+				b.setBoardNo(bNo);
+			}
+			return carPoolService.deadLine(b);
+		}
+	}
+	
+	@GetMapping("/update")
+	public String carPoolUpdateForm(@RequestParam(value="bNo"  , required = false)int boardNo ,
+								Model model) {
+		CarPool carpool = carPoolService.carPoolUpdateForm(boardNo);
+		model.addAttribute("carpool" , carpool);
+		return "car_pool/carPoolUpdateForm";
 	}
 	
 }

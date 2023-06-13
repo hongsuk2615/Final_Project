@@ -86,4 +86,14 @@ public class CarPoolServiceImpl implements CarPoolService {
 		}
 		return boardNo;
 	}
+	
+	@Override
+	public int deadLine(Board b) {
+		return carPoolDao.deadLine(b);
+	}
+	
+	@Override
+	public CarPool carPoolUpdateForm(int boardNo) {
+		return carPoolDao.carPoolUpdateForm(boardNo);
+	}
 }

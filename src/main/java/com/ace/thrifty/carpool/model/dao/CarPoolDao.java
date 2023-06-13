@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.carpool.model.vo.CarPool;
 import com.ace.thrifty.common.model.vo.PageInfo;
 
@@ -38,5 +39,13 @@ public class CarPoolDao {
 	
 	public int insertCarPool(CarPool c) {
 		return sqlSession.insert("carPoolMapper.insertCarPool" , c);
+	}
+	
+	public int deadLine(Board b) {
+		return sqlSession.update("carPoolMapper.deadLine" , b);
+	}
+	
+	public CarPool carPoolUpdateForm(int boardNo) {
+		return sqlSession.selectOne("carPoolMapper.carPoolUpdateForm" ,boardNo);
 	}
 }

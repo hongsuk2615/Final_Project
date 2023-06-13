@@ -69,7 +69,6 @@
                     <c:if test="${loginUser.userNo eq p.board.userNo or loginUser.authority eq 0}">
 	                    <div id="enroll-update">	
 	                        <button style="border: 0;" id="update-btn" >수정하기</button>
-
 	                        <button style="border: 0;" id="delete-btn" bNo="${p.board.boardNo }" url="ptj/ptjList">삭제하기</button>
 	                        <c:choose>
 	                        	<c:when test="${p.isEnd eq 'N' }">
@@ -104,7 +103,6 @@
                         <hr>
                         <div id="enroll-body">
                         	<h3>작성자 아이디 : ${p.member.userId }</h3>
-                            <h3>연락처 : &nbsp;${p.member.phone }</h3>
                             <hr>
                             <h3>알바 카테고리 : ${p.subCategory.categorySName }</h3>
                             <hr>
@@ -132,12 +130,11 @@
                             <button id="back-btn" style="border: 0;">뒤로가기</button>
                         </div>
                 </div>
-                <!-- div id="map" style="width:100%;height:350px;"></div> -->
             </div>
         </div>
-        <!-- <div id="footer">
+        <div id="footer">
         
-        </div> -->
+        </div>
         
     </div>
 

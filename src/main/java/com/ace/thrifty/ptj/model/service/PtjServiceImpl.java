@@ -130,23 +130,4 @@ public class PtjServiceImpl implements PtjService {
 	public int workEnd(Board b) {
 		return ptjDao.workEnd(b);
 	}
-	
-	/*
-	 * @Override public void ptjBoardPaging(Map<String, Object> map, Map<String,
-	 * Object> paramMap) {
-	 * 
-	 * int listCount = ptjDao.selectPtjBoardListCount(paramMap); Integer currentPage
-	 * = Integer.parseInt((String)paramMap.get("currentPage")); int pageLimit = 5;
-	 * int boardLimit = 9;
-	 * 
-	 * PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit,
-	 * boardLimit);
-	 * 
-	 * List<Ptj> list = ptjDao.selectPtjAll(pi, paramMap);
-	 * 
-	 * map.put("pi", pi); map.put("list", list);
-	 * 
-	 * }
-	 */
-	
 }

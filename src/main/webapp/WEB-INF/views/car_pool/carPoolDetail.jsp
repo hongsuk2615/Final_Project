@@ -63,18 +63,18 @@
             <div id="body-right">
                 <div id="enroll-category">
                     <div style="width: 50%;">
-                        <h1>${c.subCategory.categorySName } 게시글</h1>
+                        <h1>${carpool.subCategory.categorySName }</h1>
                     </div>
-                     <c:if test="${loginUser.userNo eq p.board.userNo or loginUser.authority eq 0}">
+                     <c:if test="${loginUser.userNo eq carpool.board.userNo or loginUser.authority eq 0}">
 	                    <div id="enroll-update">	
 	                        <button style="border: 0;" id="update-btn" >수정하기</button>
-	                        <button style="border: 0;" id="delete-btn" bNo="${carpool.board.boardNo }" url="ptj/ptjList">삭제하기</button>
+	                        <button style="border: 0;" id="delete-btn" bNo="${carpool.board.boardNo }" url="carPool/drive">삭제하기</button>
 	                        <c:choose>
 	                        	<c:when test="${carpool.isEnd eq 'N' }">
-			                        <button style="border: 0;" id="work-end-btn" bNo="${carpool.boardNo }" url="carPool/drive">구인완료</button>
+			                        <button style="border: 0;" id="dead-line-btn" bNo="${carpool.boardNo }" url="carPool/drive">구인완료</button>
 	                        	</c:when>
 	                        	<c:otherwise>
-	                        		<button style="border: 0; display:none;" id="work-end-btn" bNo="${carpool.boardNo }" url="carPool/drive">구인완료</button>
+	                        		<button style="border: 0; display:none;" id="dead-line-btn" bNo="${carpool.boardNo }" url="carPool/drive"></button>
 	                        	</c:otherwise>
 	                        </c:choose>
 	                    </div>
@@ -86,7 +86,10 @@
                         <div id="enroll-header">
                             <div style="display: flex;">
                                 <div>
-                                    <h2>제목 : &nbsp;${carpool.board.title }</h2>
+                                <c:forEach var="image" items="${imageList }" begin="0" end="3" step="1">
+                                	<img src="${contextPath }/resources/upfiles/carPool/${image.changeName}" style="height: 200px; width: 300px; border-radius: 10px;" >                                	
+                                </c:forEach>
+                                <h2>제목 : &nbsp;${carpool.board.title }</h2>
                                 </div>
                                 <c:if test="${p.isEnd eq 'Y' }">
                                     <p style="color: red;"><b>모집인원이 마감 되었습니다.</b></p>
@@ -100,12 +103,12 @@
                         <hr>
                         <div id="enroll-body">
                             <h3>작성자 아이디 : ${carpool.member.userId }</h3>
-                            <h3>작성자 연락처 : &nbsp;${carpool.member.phone }</h3>
                             <h3>작성자 성별 : ${carpool.member.gender }</h3>
                             <hr>
                             <div id="item-btns">
-                                <div id="inquiry-btn">쪽지 보내기</div>
-                                <div id="wish-btn">찜</div>
+                                <div id="inquiry-btn" uNo="${carpool.board.userNo }" seller="${carpool.member.userId }">쪽지 보내기</div>
+                                <div id="report-btn" bNo="${p.board.boardNo }">신고하기</div>
+                                <div id="wish-btn" bNo="${carpool.board.boardNo }">찜</div>
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
                             <hr>
@@ -115,7 +118,7 @@
                             <h3>카풀비 : </h3><p><b style="color: red; font-size: 30px;">${carpool.price }</b> 원</p>
                             <hr>
                             <h3>시간 : </h3>
-                            출발 시간 : ${carpool.startTime } &nbsp;&nbsp;
+                            출발 시간 : ${carpool.startTime }<br>
                             도착 시간 : ${carpool.endTime }
                             <hr>
                             <div id="enroll-map">
@@ -128,17 +131,15 @@
                         </div>
                     </form>
                 </div>
-                <!-- <div id="map" style="width:100%;height:350px;"></div> -->
             </div>
         </div>
         <div id="footer">
         
         </div>
     </div>
-<script type="text/javascript" src="/thrifty/resources/js/common/btn_event.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 <script type="text/javascript" src="/thrifty/resources/js/common/commonModal.js"></script>
-<script type="text/javascript" src="/thrifty/resources/js/ptj/ptj_work_end.js"></script>
+<script type="text/javascript" src="/thrifty/resources/js/carpool/car_pool_dead_line.js"></script>
 <script>
 	let origin = "${carpool.origin}";
 	let destination = "${carpool.destination}";
@@ -226,9 +227,17 @@
    
 </script>
 <script>
-document.getElementById('back-btn').addEventListener("click",function(){
-	location.href = "${contextPath}/carPool/drive";
-})
+	document.getElementById('back-btn').addEventListener("click",function(){
+		location.href = "${contextPath}/carPool/drive";
+	})
+	
+	document.getElementById('update-btn').addEventListener("click",function(){
+		location.href = "${contextPath}/carPool/update?bNo=${carpool.board.boardNo}";
+	})
+	
+	/* document.getElementById('delete-btn').addEventListener("click",function(){
+		location.href = "${contextPath}/carPool/drive;
+	}) */
 </script>
 </body>
 </html>

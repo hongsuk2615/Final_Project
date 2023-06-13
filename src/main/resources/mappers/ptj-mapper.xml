@@ -198,8 +198,8 @@
 </select>
 
 <update id="workEnd" parameterType="board">
-	UPDATE PART_TIME_JOB P
-	SET P.IS_END = 'Y'
+	UPDATE PART_TIME_JOB
+	SET IS_END = 'Y'
 	WHERE BOARD_NO = #{boardNo}
 </update>
 
