@@ -94,6 +94,9 @@
 		JOIN MEMBER M USING(USER_NO)
 		JOIN IMAGE I USING(BOARD_NO)
 		WHERE B.STATUS = 'Y'
+			<if test= 'scNo!= null and scNo !="" '>
+		 		AND CATEGORY_S_NO = #{scNo}
+		 	</if>
 		GROUP BY BOARD_NO
 		ORDER BY BOARD_NO DESC
 	</select>

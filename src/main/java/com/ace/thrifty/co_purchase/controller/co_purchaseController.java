@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +23,6 @@ import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.co_purchase.model.service.Co_purchaseService;
 import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
 import com.ace.thrifty.member.model.vo.Member;
-import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 
 @Controller
 @RequestMapping("/co_purchase")
@@ -42,14 +40,19 @@ public class co_purchaseController {
 							Board b,
 							@RequestParam Map<String, Object> paramMap,
 							HttpServletRequest req) {
-		System.out.println(req.getServletPath());
+		System.out.println(paramMap);
+//		if(!paramMap.containsKey("currPage")) {
+//			paramMap.put("currPage", "1");
+//		}
+//		String categoryPath = "co_purchase";
+//		Map<String, Object> map = new HashMap();
 		
-		String categoryPath = "co_purchase";
-		Map<String, Object> map = new HashMap();
+		coService.selectCoPurchaseList(currentPage, paramMap);
+//		if(paramMap.containsKey("scNo")) {
+//			model.addAttribute("scNo", paramMap.get("scNo"));			
+//		}
 		
-		coService.selectCoPurchaseList(currentPage, map);
-		
-		model.addAttribute("map", map);
+		model.addAttribute("map", paramMap);
 		return "co_purchase/purchaseMain";
 	}
 	
