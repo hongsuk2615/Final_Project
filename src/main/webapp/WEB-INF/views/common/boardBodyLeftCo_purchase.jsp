@@ -22,7 +22,7 @@
 	        <ul class="scrollbar">
 	        <c:forEach var="subCategory" items="${subCategoryList}">
 	        	<c:if test="${subCategory.categoryUNo eq 6}">
-	            <li onclick="location.href = '${ contextPath }/co_purchase?scNo=${ subCategory.categorySNo }'">${subCategory.categorySName}</li>
+	            <li onclick="location.href = '${ contextPath }/co_purchase?scNo=${ subCategory.categorySNo }'" class="subCategoryName">${subCategory.categorySName}</li>
 	            </c:if>
 	        </c:forEach>    
 	        </ul>

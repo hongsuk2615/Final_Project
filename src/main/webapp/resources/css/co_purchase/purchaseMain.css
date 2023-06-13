@@ -172,8 +172,12 @@ select option{
 }
 
 #pagingbar{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
     text-align: center;
     padding-top: 30px;
+    margin: auto;
     font-size: 0.5cm;   
 }
 

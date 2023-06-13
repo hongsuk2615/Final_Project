@@ -70,6 +70,10 @@
     margin: 20px 0;
 }
 
+.subCategoryName{
+    cursor: pointer;
+}
+
 #filter{
     height: 300px;
     width: 270px;

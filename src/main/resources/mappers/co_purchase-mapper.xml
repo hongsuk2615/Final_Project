@@ -101,6 +101,44 @@
 		ORDER BY BOARD_NO DESC
 	</select>
 	
+	<select id="selectSearchCoPurchaseList" parameterType="map" resultMap="coPurchaseResultSet">
+		SELECT BOARD_NO
+			, RECRUITS_NUM
+			, RECRUITS_CURR
+			, PRICE
+			, DEAD_LINE
+			, IS_END
+			, TITLE
+			, CONTENT
+			, CREATE_DATE
+			, WISH_COUNT
+			, READ_COUNT
+			, NICK_NAME
+			, M.CHANGE_NAME
+			, CONCAT('/resources/upfiles/co_purchase/', I.CHANGE_NAME) AS THUMB_NAIL
+		FROM CO_PURCHASE
+		JOIN BOARD B USING(BOARD_NO)
+		JOIN MEMBER M USING(USER_NO)
+		JOIN IMAGE I USING(BOARD_NO)
+		WHERE B.STATUS = 'Y'
+			<if test= 'scNo!= null'>
+		 		AND CATEGORY_S_NO = #{scNo}
+		 	</if>
+		 	<choose>
+				<when test="condition == 'writer'">
+					AND NICK_NAME LIKE #{keyword}
+				</when>
+				<when test="condition == 'title'">
+					AND TITLE LIKE #{keyword}
+				</when>
+				<when test="condition == 'content'">
+					AND CONTENT LIKE #{keyword}
+				</when>
+			</choose>
+		GROUP BY BOARD_NO
+		ORDER BY BOARD_NO DESC
+	</select>
+	
 	<insert id="insertCo_purchase" parameterType="co_purchase">
 		INSERT INTO CO_PURCHASE(BOARD_NO, RECRUITS_CURR, RECRUITS_NUM, PRICE, DEAD_LINE, PRODUCT_NAME, LINK)
 					VALUES (#{boardNo}, #{ recruitsCurr }, #{ recruitsNum }, #{ price }, #{ deadLine }, #{ productName }, #{ link })

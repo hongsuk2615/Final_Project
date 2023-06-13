@@ -34,7 +34,7 @@ public class Co_purchaseDao {
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("co_purchaseMapper.selectCoPurchaseList", map);
+		return (ArrayList)sqlSession.selectList("co_purchaseMapper.selectCoPurchaseList", map ,rowBounds);
 	}
 
 	public Co_purchase selectBoardDetail(int bNo) {
@@ -43,6 +43,16 @@ public class Co_purchaseDao {
 
 	public int updateCo_purchase(Co_purchase co) {
 		return sqlSession.update("co_purchaseMapper.updateCo_purchase", co);
+	}
+
+	public ArrayList<Board> selectSearchCoPurchaseList(PageInfo pi, Map<String, Object> map) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("co_purchaseMapper.selectSearchCoPurchaseList", map, rowBounds);
 	}
 
 	

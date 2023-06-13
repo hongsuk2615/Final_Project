@@ -35,24 +35,35 @@ public class co_purchaseController {
 	// 게시글 목록 조회
 	@GetMapping("")
 	public String selectCoPurchaseList( 
-							@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 							Model model,
 							Board b,
 							@RequestParam Map<String, Object> paramMap,
 							HttpServletRequest req) {
 		System.out.println(paramMap);
-//		if(!paramMap.containsKey("currPage")) {
-//			paramMap.put("currPage", "1");
-//		}
-//		String categoryPath = "co_purchase";
-//		Map<String, Object> map = new HashMap();
+		Map<String, Object> map = new HashMap(); 
+		if(!paramMap.containsKey("currPage")) {
+			paramMap.put("currPage", "1");
+		}
 		
-		coService.selectCoPurchaseList(currentPage, paramMap);
-//		if(paramMap.containsKey("scNo")) {
-//			model.addAttribute("scNo", paramMap.get("scNo"));			
-//		}
+		System.out.println(paramMap.get("condition"));
+		if(paramMap.get("condition") == null) {
+			coService.selectCoPurchaseList(paramMap);			
+		}else {
+			
+			map.put("condition", paramMap.get("condition"));
+			map.put("keyword", "%"+paramMap.get("keyword")+"%");
+			System.out.println(map);
+			coService.selectSearchCoPurchaseList(map);
+		}
 		
+		if(paramMap.containsKey("scNo")) {
+			model.addAttribute("scNo", paramMap.get("scNo"));
+			System.out.println(paramMap);
+		}
+		model.addAttribute("b", b);
 		model.addAttribute("map", paramMap);
+		//model.addAttribute("list", paramMap.get("list"));
+		model.addAttribute("pi", paramMap.get("pi"));
 		return "co_purchase/purchaseMain";
 	}
 	

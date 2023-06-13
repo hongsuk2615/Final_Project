@@ -68,11 +68,13 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 	}
 	
 	@Override
-	public void selectCoPurchaseList(int currentPage, Map<String, Object> map) {
+	public void selectCoPurchaseList(Map<String, Object> map) {
 		
+		int currentPage = Integer.parseInt((String)map.get("currPage"));
 		int listCount = coDao.selectBoardListCount();
 		int pageLimit = 10;
 		int boardLimit = 5;
+		
 		PageInfo pi = pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
 		
 		ArrayList<Board> list = coDao.selectCoPurchaseList(pi, map);
@@ -129,4 +131,21 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 		}
 		return boardNo;
 	}
+	
+	public void selectSearchCoPurchaseList(Map<String, Object> map) {
+		
+		int currentPage = Integer.parseInt((String)map.get("currPage"));
+		int listCount = coDao.selectBoardListCount();
+		int pageLimit = 10;
+		int boardLimit = 5;
+		
+		PageInfo pi = pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		ArrayList<Board> list = coDao.selectSearchCoPurchaseList(pi, map);
+		System.out.println(list);
+		map.put("pi", pi);
+		map.put("list", list);
+		
+	}
+
 }
