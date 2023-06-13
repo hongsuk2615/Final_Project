@@ -113,9 +113,6 @@ public class HouseController {
 			roomImgs.put("roomImg"+i, mtfRequest.getFiles("roomImg"+i));
 			}
 		}
-		System.out.println("controller");
-		System.out.println("h"+h);
-		
 		String webPath = "/resources/images/house/";
 		String serverFolderPath = s.getServletContext().getRealPath(webPath);
 		int result = houseService.insertHouse(b, h, rooms, roomImgs, webPath, serverFolderPath);
