@@ -1,6 +1,7 @@
 package com.ace.thrifty.common.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,27 @@ public class ReportServiceImpl implements ReportService{
 	}
 	
 	@Override
-	public List<Object> reportList() {
+	public List<ReportCategory> reportList() {
 		return reportDao.reportList();
+	}
+
+	@Override
+	public int reportInsert(Map<String, Object> paramMap) {
+		
+		int check = reportDao.reportCheck(paramMap);
+		int result1 = 0;
+		int result2 = 0;
+
+		if(check == 0 ) {
+			result1 = reportDao.reportInsert(paramMap);
+			
+			if(result1 > 0) {
+				result2 = reportDao.reportCount(paramMap);
+			}
+		}else {
+			return -1; //중복
+		}
+		
+		return result1*result2;
 	}
 }

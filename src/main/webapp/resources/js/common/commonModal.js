@@ -39,27 +39,40 @@ document.getElementById('wish-btn').addEventListener('click', function(){
     })
 })
 
-var a = {};
+var catList = {};
 $.ajax({
     url: "/thrifty/report/list",
     dataType : 'json',
     contentType: 'application/json; charset=utf-8',
     success(data){
         for(cat of data){
-            a.cat;
+            catList[cat.reportCategoryNo] = cat.reportCategoyName;
         }
     }
 });
 
+function reportAjax(bNo, catNo){
+        $.ajax({
+        url : "/thrifty/report/insert",
+        data : { 
+            reportCategoryNo : catNo,
+            bNo : bNo
+        },
+        contentType: 'application/json; charset=utf-8',
+        success(result){
+            console.log('성공');
+            alert(result);
+        }
+    });
+}
+
 
 document.getElementById('report-btn').addEventListener('click', function(){
-    let bNo=$(this).attr("bNo");
-    const fruit = Swal.fire({
+    let bNo=$(this).attr("bno");
+    const { value: fruit } = Swal.fire({
         title: '신고항목을 고르세요',
         input: 'select',
-        inputOptions: {
-			1:1
-        },
+        inputOptions: catList,
         inputPlaceholder: '신고항목',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -67,13 +80,7 @@ document.getElementById('report-btn').addEventListener('click', function(){
         confirmButtonText: '신고하기',
         cancelButtonText: '취소',
         inputValidator: (value) => {
-            return new Promise((resolve) => {
-            if (value === 'oranges') {
-                resolve()
-            } else {
-                resolve('You need to select oranges :)')
-            }
-            })
+            reportAjax(bNo, value);
         }
     })
 })

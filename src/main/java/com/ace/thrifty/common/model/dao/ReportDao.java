@@ -1,6 +1,7 @@
 package com.ace.thrifty.common.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,19 @@ public class ReportDao {
 		this.sqlSession = sqlSession;
 	}
 	
-	public List<Object> reportList(){
+	public List<ReportCategory> reportList(){
 		return sqlSession.selectList("reportMapper.reportList");
+	}
+	
+	public int reportInsert(Map<String, Object> paramMap) {
+		return sqlSession.insert("reportMapper.reportInsert", paramMap);
+	}
+	
+	public int reportCount(Map<String, Object> paramMap) {
+		return sqlSession.update("reportMapper.reportCount", paramMap);
+	}
+
+	public int reportCheck(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("reportMapper.reportCheck", paramMap);
 	}
 }
