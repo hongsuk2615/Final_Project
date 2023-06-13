@@ -38,22 +38,27 @@ document.getElementById('wish-btn').addEventListener('click', function(){
         }
     })
 })
-function reportCatList(){
-    $.ajax({
-        url: '/thrifty/admin/report/list',
-        success(data){
-            console.log(data);
+
+var a = {};
+$.ajax({
+    url: "/thrifty/report/list",
+    dataType : 'json',
+    contentType: 'application/json; charset=utf-8',
+    success(data){
+        for(cat of data){
+            a.cat;
         }
-    });
-}
+    }
+});
+
 
 document.getElementById('report-btn').addEventListener('click', function(){
     let bNo=$(this).attr("bNo");
-    const { value: fruit } = Swal.fire({
+    const fruit = Swal.fire({
         title: '신고항목을 고르세요',
         input: 'select',
         inputOptions: {
-            
+			1:1
         },
         inputPlaceholder: '신고항목',
         showCancelButton: true,
@@ -134,8 +139,7 @@ document.getElementById('inquiry-btn').addEventListener('click', async function(
                                             
 })
 
-document.getElementById('delete-btn').addEventListener('click',function(){
-    
+document.getElementById('delete-btn').addEventListener('click', function(){
     Swal.fire({
             title: '정말삭제하시겠습니까?',
             icon: 'warning',

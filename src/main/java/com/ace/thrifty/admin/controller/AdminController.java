@@ -24,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ace.thrifty.admin.model.service.AdminService;
-import com.ace.thrifty.admin.model.vo.ReportCategory;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
@@ -288,13 +287,5 @@ public class AdminController {
 		return "redirect:/admin/login";
 	}
 	
-	@GetMapping("/report/list")
-	@ResponseBody
-	public String reportList() {
-		
-		List<ReportCategory> list = adminService.reportList();
-		
-		return new Gson().toJson(list);
-	}
 
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.ace.thrifty.admin.model.dao.AdminDao;
 import com.ace.thrifty.admin.model.vo.Notice;
-import com.ace.thrifty.admin.model.vo.ReportCategory;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.common.model.vo.PageInfo;
@@ -129,12 +128,6 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int enrollUpdate(Board b) {
 		return adminDao.enrollUpdate(b);
-	}
-
-
-	@Override
-	public List<ReportCategory> reportList() {
-		return adminDao.reportList();
 	}
 
 }

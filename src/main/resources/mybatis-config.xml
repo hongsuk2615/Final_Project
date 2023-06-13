@@ -26,7 +26,7 @@
 		<typeAlias type="com.ace.thrifty.admin.model.vo.Notice" alias="notice"/>
 		<typeAlias type="com.ace.thrifty.wishList.model.vo.WishList" alias="wishList"/>
 		<typeAlias type="com.ace.thrifty.message.model.vo.Message" alias="message"/>
-		<typeAlias type="com.ace.thrifty.admin.model.vo.ReportCategory" alias="reportCategory"/>
+		<typeAlias type="com.ace.thrifty.common.model.vo.ReportCategory" alias="reportCategory"/>
 		<typeAlias type="com.ace.thrifty.house.model.vo.Tour" alias="tour"/>
 	</typeAliases>
 	
@@ -48,6 +48,8 @@
 		<mapper resource="/mappers/usedProduct-mapper.xml"/>
 		<mapper resource="/mappers/wishList-mapper.xml"/>
 		<mapper resource="/mappers/message-mapper.xml"/>
+		
+		<mapper resource="/mappers/report-mapper.xml"/>
 	</mappers>
 
 </configuration>

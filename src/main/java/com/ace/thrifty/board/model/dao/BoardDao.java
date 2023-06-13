@@ -84,6 +84,7 @@ public class BoardDao {
 	
 	public int scrapCancle(int bNo) {
 		return sqlSession.update("boardMapper.scrapBoard", bNo);
+	}
 
 
 	public int updateBoard(Board b) {

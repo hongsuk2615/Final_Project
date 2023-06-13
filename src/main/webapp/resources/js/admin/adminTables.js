@@ -47,26 +47,6 @@ $(".dropdown-item").on('click', function(){
         });
     });
 
-// $(".notice-status-dropdown").on('click', function(){
-
-//     const statusVal  = $(this).val();
-//     const boardNo = $(this).parents('tr').$(this).parents('tr').children('input[type=hidden]').val();
-
-//     $.ajax({
-//         url: "member/status/update",
-//         data: {
-//                 statusVal,
-//                 userNo
-//             },
-//         dataType: "text", 
-//         success: function(result){
-//             console.log(result);
-//             alert(result);
-//             // location.reload();
-//         }
-//     });
-// });
-
 if(lasturlPath == 'member'){
     const urlParamTab = urlParams.get('tab');
 
