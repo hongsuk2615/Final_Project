@@ -116,7 +116,7 @@
                             <div id="item-location">${usedProduct.locationName}</div>
                             <div>판매자</div>
                             <div id="item-seller">
-                                <img src="" width="60" height="60" alt="프로필사진">
+                                <img src="${seller.loginMethod eq 'N' ? '/thrifty/resources/upfiles/myPage/'+= seller.changeName : seller.changeName }" width="60" height="60" style="border-radius:50px" alt="프로필사진">
                                 <div>${seller.nickName}</div>
                             </div>
                             <div id="item-btns">
@@ -124,7 +124,7 @@
                                 <div id="wish-btn" bNo ="${board.boardNo}">찜</div>
                                 <div id="report-btn" bNo="${board.boardNo}">신고</div>
                             </div>
-                        </div>
+          0              </div>
                     </div>
                     <div id="body-right-content">
                     	${board.content }

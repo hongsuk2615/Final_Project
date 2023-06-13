@@ -51,6 +51,7 @@ public class UsedProductController {
 	public String usedProductDetail(int bNo, Model model) {
 		UsedProduct uP = usedProductService.selectUsedProductByBno(bNo);
 		if(uP != null) {
+			System.out.println(uP);
 			model.addAttribute("usedProduct", uP);
 			model.addAttribute("board", uP.getBoard());
 			model.addAttribute("imageList", uP.getImageList());

@@ -1,8 +1,10 @@
 package com.ace.thrifty.member.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.ace.thrifty.common.Utils;
 import com.ace.thrifty.member.model.dao.MemberDao;
 import com.ace.thrifty.member.model.vo.Member;
 
@@ -11,6 +13,9 @@ public class MemberServiceImp implements MemberService{
 
 	@Autowired
 	MemberDao memberDao;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@Override
 	public Member selectMember() {
@@ -46,6 +51,26 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public Member selectByKakaoId(String kakaoId) {
 		return memberDao.selectByKakaoId(kakaoId);
+	}
+
+	@Override
+	public String findId(Member member) {
+		return memberDao.findId(member);
+	}
+
+	@Override
+	public String findPwd(Member member) {
+		String result ="";
+		if(memberDao.findPwd(member) != null) {
+			String changePwd = Utils.getRamdomPassword(13);
+			System.out.println(changePwd);
+			Utils.sendNewPwd(member.getEmail(), changePwd);
+			member.setUserPwd(bcryptPasswordEncoder.encode(changePwd));
+			if(memberDao.changeRandomPwd(member)>0) {
+				result = member.getEmail();				
+			};
+		}
+		return result;
 	}
 	
 	
