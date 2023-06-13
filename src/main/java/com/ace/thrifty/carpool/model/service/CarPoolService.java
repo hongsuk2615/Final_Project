@@ -12,7 +12,7 @@ public interface CarPoolService {
 	
 	public void driveList(Map<String, Object> queryString);
 	
-	public CarPool driveDetail(int boardNo);
+	public CarPool driveDetail(int bNo);
 	
-	public int insertCarPool(Board b, CarPool c, List<MultipartFile> imgList, String webPath, String serverFolderPath) throws Exception;
+	public int insertCarPool(CarPool c, Board b, List<MultipartFile> imgList, String webPath, String serverFolderPath) throws Exception;
 }

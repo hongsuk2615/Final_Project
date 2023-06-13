@@ -69,9 +69,16 @@
                     <c:if test="${loginUser.userNo eq p.board.userNo or loginUser.authority eq 0}">
 	                    <div id="enroll-update">	
 	                        <button style="border: 0;" id="update-btn" >수정하기</button>
-	                        <%-- <input type="hidden" name="boardNo" value="${p.boardNo }"> --%>
+
 	                        <button style="border: 0;" id="delete-btn" bNo="${p.board.boardNo }" url="ptj/ptjList">삭제하기</button>
-	                        <button style="border: 0;" id="work-end-btn" bNo="${p.board.boardNo }" url="ptj/workEnd">구인완료</button>
+	                        <c:choose>
+	                        	<c:when test="${p.isEnd eq 'N' }">
+			                        <button style="border: 0;" id="work-end-btn" bNo="${p.boardNo }" url="ptj/ptjList">구인완료</button>
+	                        	</c:when>
+	                        	<c:otherwise>
+	                        		<button style="border: 0; display:none;" id="work-end-btn" bNo="${p.boardNo }" url="ptj/ptjList">구인완료</button>
+	                        	</c:otherwise>
+	                        </c:choose>
 	                    </div>
 	                </c:if>
                 </div>
@@ -84,14 +91,15 @@
                                 </div>
                                 <div>
                                     <h2>제목 : &nbsp;${p.board.title }</h2>
-                                    <!-- <input type="hidden" name="boardNo"> -->
+                                    <c:if test="${p.isEnd eq 'Y' }">
+                                    	<p style="color: red;"><b>모집인원이 마감 되었습니다.</b></p>
+                                    </c:if>
                                 </div>
                             </div>
                             <br>
                             <div>
                                 <h3 id="enroll-content">내용 :  </h3><p>${p.board.content }</p>
                             </div>
-                            <!-- <div id="좌표"></div> -->
                         </div>
                         <hr>
                         <div id="enroll-body">
@@ -197,6 +205,10 @@
     	location.href = "${contextPath}/ptj/ptjUpdate?bNo=${p.board.boardNo}";
 	})
 	
+	/* document.getElementById('work-end-btn').addEventListener("click",function(){
+    	location.href = "${contextPath}/ptj/workEnd?bNo=${p.board.boardNo}";
+	})
+	 */
 </script>
 
 </body>

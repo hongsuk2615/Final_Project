@@ -9,6 +9,7 @@
 	<result column="START_TIME" property="startTime" />
 	<result column="END_TIME" property="endTime" />
 	<result column="IS_END" property="isEnd" />
+	<result column="PRICE" property="price" />
 	<result column="LOCATION_NO" property="locationNo" />
 	<result column="IMG_PATH" property="imgPath" />
 	<result column="ORIGIN" property="origin" />
@@ -36,6 +37,14 @@
 			<id column="CATEGORY_S_NO" property="categorySNo"/>
 			<result column="CATEGORY_U_NO" property="categoryUNo"/>
 			<result column="CATEGORY_S_NAME" property="categorySName"/>
+	</collection>
+	<collection property="member" javaType="com.ace.thrifty.member.model.vo.Member">
+			<id column="USER_NO" property="userNo"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="NICK_NAME" property="nickName"/>
+			<result column="GENDER" property="gender" />
+			<result column="USER_ID" property="userId" />
+			<result column="PHONE" property="phone" />
 	</collection>
 </resultMap>
 
@@ -101,4 +110,35 @@
 	INSERT INTO CARPOOL(BOARD_NO , RECRUITS_NUM , RECRUITS_CURR , LOCATION_NO , PRICE , START_TIME , END_TIME , ORIGIN , DESTINATION)
 				 VALUES(#{boardNo} , #{recruitsNum} , #{recruitsCurr} , #{locationNo} , #{price} , #{startTime} , #{endTime} , #{origin} , #{destination})
 </insert>
+
+<select id="driveDetail" resultMap="carPoolResultSet">
+	SELECT
+		C.BOARD_NO ,
+		C.RECRUITS_NUM,
+		C.RECRUITS_CURR,
+		C.IS_END,
+		C.LOCATION_NO,
+		C.PRICE,
+		C.START_TIME,
+		C.END_TIME,
+		C.ORIGIN,
+		C.DESTINATION,
+		SC.CATEGORY_S_NAME,
+		B.CATEGORY_S_NO,
+		B.TITLE,
+		B.CONTENT,
+		L.LOCATION_NAME,
+		I.CHANGE_NAME AS IMG_PATH,
+		M.PHONE,
+		M.USER_ID,
+		M.USER_NO,
+		M.GENDER
+	FROM CARPOOL C
+	LEFT JOIN BOARD B USING(BOARD_NO)
+	LEFT JOIN LOCATION L USING(LOCATION_NO)
+	LEFT JOIN IMAGE I USING(BOARD_NO)
+	JOIN MEMBER M ON B.USER_NO = M.USER_NO
+	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+	WHERE C.BOARD_NO = #{bNo} AND B.STATUS = 'Y' AND I.STATUS = 'Y'
+</select>
 </mapper>

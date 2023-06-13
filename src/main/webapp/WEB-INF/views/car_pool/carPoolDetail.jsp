@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,13 +63,22 @@
             <div id="body-right">
                 <div id="enroll-category">
                     <div style="width: 50%;">
-                        <h1>카테고리명(태워주세요 , 타세요)</h1>
+                        <h1>${c.subCategory.categorySName } 게시글</h1>
                     </div>
-                    <div style="width: 55%;" id="enroll-update">
-                        <button>수정하기</button>
-                        <button>삭제하기</button>
-                        <button>구인완료</button>
-                    </div>
+                     <c:if test="${loginUser.userNo eq p.board.userNo or loginUser.authority eq 0}">
+	                    <div id="enroll-update">	
+	                        <button style="border: 0;" id="update-btn" >수정하기</button>
+	                        <button style="border: 0;" id="delete-btn" bNo="${carpool.board.boardNo }" url="ptj/ptjList">삭제하기</button>
+	                        <c:choose>
+	                        	<c:when test="${carpool.isEnd eq 'N' }">
+			                        <button style="border: 0;" id="work-end-btn" bNo="${carpool.boardNo }" url="carPool/drive">구인완료</button>
+	                        	</c:when>
+	                        	<c:otherwise>
+	                        		<button style="border: 0; display:none;" id="work-end-btn" bNo="${carpool.boardNo }" url="carPool/drive">구인완료</button>
+	                        	</c:otherwise>
+	                        </c:choose>
+	                    </div>
+	                </c:if>
                 </div>
                 <hr>
                 <div id="enroll">
@@ -76,18 +86,22 @@
                         <div id="enroll-header">
                             <div style="display: flex;">
                                 <div>
-                                    <h2>제목 : &nbsp;응애애애애애</h2>
+                                    <h2>제목 : &nbsp;${carpool.board.title }</h2>
                                 </div>
+                                <c:if test="${p.isEnd eq 'Y' }">
+                                    <p style="color: red;"><b>모집인원이 마감 되었습니다.</b></p>
+                                </c:if>
                             </div>
                             <br>
                             <div>
-                                <h3 id="enroll-content">내용 :  </h3><p>응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애응애애애애애애애애</p>
+                                <h3 id="enroll-content">내용 :  </h3><p>${carpool.board.content }</p>
                             </div>
-                            <!-- <div id="좌표"></div> -->
                         </div>
                         <hr>
                         <div id="enroll-body">
-                            <h3>연락처 : &nbsp;010 - 1234 - 5678</h3>
+                            <h3>작성자 아이디 : ${carpool.member.userId }</h3>
+                            <h3>작성자 연락처 : &nbsp;${carpool.member.phone }</h3>
+                            <h3>작성자 성별 : ${carpool.member.gender }</h3>
                             <hr>
                             <div id="item-btns">
                                 <div id="inquiry-btn">쪽지 보내기</div>
@@ -95,13 +109,14 @@
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
                             <hr>
-                            <h3>모집 인원 : 2명</h3>
+                            <h3>모집 인원 : ${carpool.recruitsNum }</h3>
+                            <h3>현재 인원 : ${carpool.recruitsCurr }</h3>
                             <hr>
-                            <h3>카풀비 : </h3><p><b style="color: red; font-size: 30px;">2000</b> 원</p>
+                            <h3>카풀비 : </h3><p><b style="color: red; font-size: 30px;">${carpool.price }</b> 원</p>
                             <hr>
                             <h3>시간 : </h3>
-                            출발 시간 : 08:00 &nbsp;&nbsp;
-                            도착 시간 : 09:00
+                            출발 시간 : ${carpool.startTime } &nbsp;&nbsp;
+                            도착 시간 : ${carpool.endTime }
                             <hr>
                             <div id="enroll-map">
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
@@ -109,7 +124,7 @@
                             </div>
                         </div>
                         <div id="enroll-footer">
-                            <button id="enroll-btn">뒤로가기</button>
+                            <button type="button" id="back-btn" style="border: 0;">뒤로가기</button>
                         </div>
                     </form>
                 </div>
@@ -122,29 +137,98 @@
     </div>
 <script type="text/javascript" src="/thrifty/resources/js/common/btn_event.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
+<script type="text/javascript" src="/thrifty/resources/js/common/commonModal.js"></script>
+<script type="text/javascript" src="/thrifty/resources/js/ptj/ptj_work_end.js"></script>
 <script>
-    function mapDetail(y, x) {
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	let origin = "${carpool.origin}";
+	let destination = "${carpool.destination}";
+	$(function(){
+		drowPath(origin,destination);		
+	})
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(y, x), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(37.74600180458021 , 127.095508519265), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
+	
+	function drowPath(origin, destination){
+	    $.ajax({
+	        url : "https://apis-navi.kakaomobility.com/v1/directions?origin="+ origin + "&destination=" + destination + "&waypoints=&priority=RECOMMEND&car_fuel=GASOLINE&car_hipass=false&alternatives=false&road_details=false",
+	        method : "GET",
+	        headers: {Authorization : "KakaoAK a0a349702051ef8d9fc1b66062f09c70"},    
+	        success : function(arg){
+	            map = new kakao.maps.Map(mapContainer, mapOption);
+	                let bound = arg.routes[0].sections[0].bound;
+	                console.log(bound.min_x);
+	                let roads = arg.routes[0].sections[0].roads;
+	                console.log(roads);
+	                if(arg.routes[0].sections[0]){
 
-    var map = new kakao.maps.Map(mapContainer, mapOption);
-    var coordinate;
+	                    let detailRoads = [];
 
-    // 마커가 표시될 위치입니다 
-    var markerPosition  = new kakao.maps.LatLng(y, x); 
+	                    for(let i=0;i < roads.length;i++){
+	                        let arg = roads[i];
+	                        let mini = arg.vertexes;
+	                        let cursor = 0;
+	                        while(cursor < mini.length){
+	                            let obj = new kakao.maps.LatLng(mini[cursor+1], mini[cursor]);
+	                            detailRoads.push(obj);
+	                            cursor = cursor + 2;
+	                            if(cursor >= 1000000) break;
+	                        }                             
+	                    }
 
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        position: markerPosition
-    });
+	                    let polyline = new kakao.maps.Polyline({
+	                        //path: arrays.map( arg=> arg.position), // 선을 구성하는 좌표배열 입니다
+	                        path : detailRoads,
+	                        strokeWeight: 4, // 선의 두께 입니다
+	                        strokeColor: 'red', // 선의 색깔입니다
+	                        strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	                        strokeStyle: 'solid' // 선의 스타일입니다
+	                    });
+	                    var bounds = new kakao.maps.LatLngBounds(); 
+	                    bounds.extend(new kakao.maps.LatLng(bound.min_y, bound.min_x));
+	                    // bounds.extend(new kakao.maps.LatLng(bound.min_y, bound.max_x));
+	                    bounds.extend(new kakao.maps.LatLng(bound.max_y, bound.max_x));
+	                    // bounds.extend(new kakao.maps.LatLng(bound.max_y, bound.min_x));
 
-    // 마커가 지도 위에 표시되도록 설정합니다
-    marker.setMap(map);
-    }
+	                    // 지도에 선을 표시합니다 
+	                    map.setBounds(bounds);
+	                    map.setLevel(map.getLevel()+1);
+	                    polyline.setMap(map);
+	            }
+
+	        }
+	    })
+	}
+	
+	function displayMarker(place) {
+	    
+	    // 마커를 생성하고 지도에 표시합니다
+	    var marker = new kakao.maps.Marker({
+	        map: map,
+	        position: new kakao.maps.LatLng(place.y, place.x) 
+	    });
+	    markers.push(marker);
+	    // 마커에 클릭이벤트를 등록합니다
+	    kakao.maps.event.addListener(marker, 'click', function() {
+	        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+	        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+	        infowindow.open(map, marker);
+	        console.log(marker.getPosition());
+	        map.setLevel(1);
+	        setCenter(marker.getPosition().Ma , marker.getPosition().La);
+	        coordinate = marker.getPosition().La + "," + marker.getPosition().Ma;
+	        document.getElementById('좌표').innerHTML="작은거 : "  + document.getElementById("origin").value + " 큰거 : " + document.getElementById("destination").value;
+	    });
+	}
+	
+   
 </script>
-
+<script>
+document.getElementById('back-btn').addEventListener("click",function(){
+	location.href = "${contextPath}/carPool/drive";
+})
+</script>
 </body>
 </html>

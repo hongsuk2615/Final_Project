@@ -177,31 +177,21 @@ public class PtjController {
 		return "redirect:/ptj/ptjList";
 	}
 	
-	@GetMapping("/ptj/workEnd")
 	@ResponseBody
+	@GetMapping("/ptj/workEnd")
 	public int workEnd(int bNo, HttpSession session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		if (loginUser == null) {
 			return -1;
 		} else {
-			Ptj p = new Ptj();
+			Board b = new Board();
 			if (loginUser.getAuthority() == 0) {
-				p.setBoardNo(bNo);
+				b.setBoardNo(bNo);
 			} else {
-				p.setBoardNo(bNo);
-				p.getBoard().setUserNo(loginUser.getUserNo());
+				b.setUserNo(loginUser.getUserNo());
+				b.setBoardNo(bNo);
 			}
-			return ptjService.workEnd(p);
+			return ptjService.workEnd(b);
 		}
 	}
-	
-/*	@GetMapping("/ptj/ptjList") 페이징 처리는 내일.;;;;
-	public String paging(Model model,
-						 @RequestParam(value="page" , required = false , defaultValue = "1") int page) {
-		// 해당 페이지에 보여줄 글 목록
-		List<Ptj> pList = ptjService.selectPtjAll(page);
-		return "part_time_job/PTJList";
-	}*/
-						
-	
 }

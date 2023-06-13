@@ -127,8 +127,8 @@ public class PtjServiceImpl implements PtjService {
 		
 	
 	@Override
-	public int workEnd(Ptj p) {
-		return ptjDao.workEnd(p);
+	public int workEnd(Board b) {
+		return ptjDao.workEnd(b);
 	}
 	
 	/*

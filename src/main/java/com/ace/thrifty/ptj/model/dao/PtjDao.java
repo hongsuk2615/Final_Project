@@ -45,8 +45,8 @@ public class PtjDao {
 		return sqlSession.update("ptjMapper.updatePtj", p);
 	}
 
-	public int workEnd(Ptj p) {
-		return sqlSession.update("ptjMapper.workEnd", p);
+	public int workEnd(Board b) {
+		return sqlSession.update("ptjMapper.workEnd", b);
 	}
 
 	public int deleteImage(Board b) {

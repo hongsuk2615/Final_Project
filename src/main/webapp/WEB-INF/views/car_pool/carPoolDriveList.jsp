@@ -84,7 +84,7 @@
                 	<c:forEach var="cList" items="${list }" begin="0" end="8" step="1">
 	                    <div style="width: 200px; height: 170px; border: 1px gray;" onclick="location.href='${contextPath}/carPool/detail?bNo=${cList.boardNo }'">
 	                        <img src="${contextPath }/${cList.imgPath}" style="height: 170px; width: 210px; border-radius: 10px;"/>
-	                        <p style="text-align: center;">카테고리 : ${cList.subCategory.categorySName }</p>
+	                        <p style="text-align: center;">${cList.subCategory.categorySName }</p>
 	                        <p style="text-align: center;">제목 : ${cList.board.title }</p>
 	                        <p style="text-align: center;">카풀비 : ${cList.price }</p>
 	                    </div>

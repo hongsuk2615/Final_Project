@@ -44,13 +44,13 @@ public class CarPoolServiceImpl implements CarPoolService {
 	}
 	
 	@Override
-	public CarPool driveDetail(int boardNo) {
-		return carPoolDao.driveDetail(boardNo);
+	public CarPool driveDetail(int bNo) {
+		return carPoolDao.driveDetail(bNo);
 	}
 	
 	@Transactional(rollbackFor = { Exception.class })
 	@Override
-	public int insertCarPool(Board b , CarPool c, List<MultipartFile>imgList, String webPath, 
+	public int insertCarPool(CarPool c, Board b, List<MultipartFile>imgList, String webPath, 
 			String serverFolderPath) throws Exception {
 		boardDao.insertBoard(b);
 		int boardNo = b.getBoardNo();

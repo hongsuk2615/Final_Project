@@ -197,13 +197,10 @@
 	WHERE UC.CATEGORY_U_NO = 5 AND P.BOARD_NO = #{boardNo} AND B.STATUS = 'Y' AND I.STATUS = 'Y'
 </select>
 
-<update id="workEnd" parameterType="ptj">
-	UPDATE PART_TIME_JOB
-	SET IS_END = 'Y'
+<update id="workEnd" parameterType="board">
+	UPDATE PART_TIME_JOB P
+	SET P.IS_END = 'Y'
 	WHERE BOARD_NO = #{boardNo}
-	<if test="userNo != null and userNo != 0">
-		AND USER_NO = #{userNo}
-	</if>
 </update>
 
 <update id="deleteImage" parameterType="board">

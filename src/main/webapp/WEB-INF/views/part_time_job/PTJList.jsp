@@ -83,7 +83,14 @@
                 <!-- <input type="hidden" name="boardNo"> -->
                 	<c:forEach var="ptj"  items="${list}" >
 	                			<div style="width: 200px; height: 300px;" class="list-detail" onclick="location.href = '${contextPath}/ptj/ptjDetail?bNo=${ptj.boardNo }'">
-		               				<img src="${contextPath }/${ptj.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>
+		               				<c:choose>
+		               					<c:when test="${ptj.isEnd eq 'N' }">
+				               				<img src="${contextPath }/${ptj.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>		               						
+		               					</c:when>
+		               					<c:otherwise>
+		               						<img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 200px; border-radius: 10px;"/>
+		               					</c:otherwise>
+		               				</c:choose>
 		       						<p style="display: none;">${ptj.boardNo }</p>
 		       						<p style="text-align: center;">제목 :${ptj.board.title }</p>
 		       						<p style="text-align: center;">내용 :${ptj.board.content }</p>

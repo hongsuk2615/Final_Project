@@ -48,12 +48,16 @@ public class CarPoolController {
 	}
 	
 	@GetMapping("/detail")
-	public String driveDetail(Model model , @RequestParam(value="boardNo" , required = false)int boardNo ) {
-		CarPool c = carPoolService.driveDetail(boardNo);
-		model.addAttribute("c" , c);
-		String webPath = "/resources/upfiles/carPool/";
-		model.addAttribute("webPath" , webPath);
-		return "car_pool/carPoolDetail";
+	public String driveDetail(Model model , int bNo) {
+		CarPool carpool = carPoolService.driveDetail(bNo);
+		if(carpool != null) {
+			model.addAttribute("carpool" , carpool);
+			String webPath = "/resources/upfiles/carPool/";
+			model.addAttribute("webPath" , webPath);
+			return "car_pool/carPoolDetail";	
+		} else {
+			return"redirect:/thrifty/carPool/drive";
+		}
 	}
 	
 //	
@@ -77,7 +81,7 @@ public class CarPoolController {
 		b.setCategoryUNo(3); b.setUserNo(loginUser.getUserNo()); 
 		String webPath = "/resources/upfiles/carPool/"; 
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
-		carPoolService.insertCarPool(b, c, imgList, webPath, serverFolderPath);
+		carPoolService.insertCarPool(c, b, imgList, webPath, serverFolderPath);
 		 
 		return "redirect:/carPool/drive";
 	}

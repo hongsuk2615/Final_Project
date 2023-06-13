@@ -21,8 +21,8 @@ public class CarPoolDao {
 		return sqlSession.selectList("carPoolMapper.driveList");
 	}
 	
-	public CarPool driveDetail(int boardNo) {
-		return sqlSession.selectOne("carPoolMapper.driveDetail" , boardNo);
+	public CarPool driveDetail(int bNo) {
+		return sqlSession.selectOne("carPoolMapper.driveDetail" , bNo);
 	}
 	
 	public int selectDriveListCount(Map<String, Object> queryString) {
