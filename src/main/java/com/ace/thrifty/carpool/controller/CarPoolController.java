@@ -42,7 +42,7 @@ public class CarPoolController {
 			model.addAttribute("lNo", queryString.get("lNo"));			
 		}
 		model.addAttribute("filter", queryString);
-		System.out.println(queryString.get("filter"));
+		System.out.println(queryString);
 		model.addAttribute("list", queryString.get("list"));
 		model.addAttribute("pi", queryString.get("pi"));
 		return "car_pool/carPoolDriveList";

@@ -85,10 +85,8 @@
                             			<input type="radio" class="category" name="categorySNo" id="get-in-car" value="${categorySName.categorySNo }">${categorySName.categorySName }
                             		</c:if>
                             	</c:forEach>
-                                <!-- <input type="radio" class="category" name="categorySNo" id="get-in-car" value="31">태워드려요!
-                                <input type="radio" class="category" name="categorySNo" id="i-want-car" value="32">태워주세요! -->
                                 <table>
-                                	<tr id="images" style='display:none;'>
+                                	<tr id="images">
 				                        <th>이미지<br>(최대4장)<br><button type="button" onclick="insertImage();">이미지 첨부</button></th>
 				                        <td id="image0"></td>
 				                        <td id="image1"></td>
@@ -156,7 +154,6 @@
                     </form>
                 </div>
             </div>
-            <!-- <div id="map" style="width:100%;height:350px;"></div> -->
         </div>
         <div id="footer">
         
@@ -186,7 +183,7 @@
             $("#arrival-keyword").css("background" , "white");
             $("#start-keyword").css("background" , "white");
         })
-        $("#get-in-car").click(function(){
+        /* $("#get-in-car").click(function(){
             alert("차 번호판이 보이는 사진을 올려주세요.");
             $("#images").css("display" , "");
         })
@@ -198,7 +195,7 @@
         })
         $("#i-want-car").click(function(){
         	$("#thumbnail").css("display" , "none");
-        })
+        }) */
     })
 
 

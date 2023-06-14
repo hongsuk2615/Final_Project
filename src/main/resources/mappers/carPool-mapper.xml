@@ -100,13 +100,13 @@
 	LEFT JOIN IMAGE I ON C.BOARD_NO = I.BOARD_NO
 	JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 	WHERE B.STATUS = 'Y'
-    GROUP BY B.BOARD_NO
 		<if test= 'scNo!= null and scNo !="" '>
 		 	AND B.CATEGORY_S_NO = #{scNo}
 	 	</if>
-	 	<if test='location != null and location!= ""'>
-	 		AND LOCATION_NO = #{location}
+	 	<if test='lNo != null and lNo!= ""'>
+	 		AND C.LOCATION_NO = #{lNo}
 	 	</if>
+    GROUP BY B.BOARD_NO
 </select>
 
 <insert id="insertCarPool" parameterType="carPool">
@@ -152,8 +152,34 @@
 </update>
 
 <select id="carPoolUpdateForm" resultMap="carPoolResultSet">
-	SELECT *
-	FROM CARPOOL C <!-- 여기서 가보자잉 -->
+	SELECT
+		C.BOARD_NO ,
+		C.RECRUITS_NUM,
+		C.RECRUITS_CURR,
+		C.IS_END,
+		C.LOCATION_NO,
+		C.PRICE,
+		C.START_TIME,
+		C.END_TIME,
+		C.ORIGIN,
+		C.DESTINATION,
+		SC.CATEGORY_S_NAME,
+		B.CATEGORY_S_NO,
+		B.TITLE,
+		B.CONTENT,
+		L.LOCATION_NAME,
+		I.CHANGE_NAME AS IMG_PATH ,
+		M.PHONE,
+		M.USER_ID,
+		M.USER_NO,
+		M.GENDER
+	FROM CARPOOL C
+	LEFT JOIN BOARD B USING(BOARD_NO)
+	LEFT JOIN LOCATION L USING(LOCATION_NO)
+	LEFT JOIN IMAGE I USING(BOARD_NO)
+	JOIN MEMBER M ON B.USER_NO = M.USER_NO
+	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+	WHERE C.BOARD_NO = #{bNo} AND B.STATUS = 'Y'
 </select>
 
 </mapper>

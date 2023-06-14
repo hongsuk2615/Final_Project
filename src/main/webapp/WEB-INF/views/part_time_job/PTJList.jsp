@@ -81,7 +81,7 @@
                 <hr style="width: 100%;  margin-top: 15px;">
                 <div id="ptj-allBody" style="height: 1000px;">
                 	<c:forEach var="ptj"  items="${list}" >
-	                			<div style="width: 200px; height: 300px;" class="list-detail" onclick="location.href = '${contextPath}/ptj/ptjDetail?bNo=${ptj.boardNo }'">
+	                			<div style="width: 200px; height: 300px;" class="list-detail" onclick="location.href = '${contextPath}/ptj/detail?bNo=${ptj.boardNo }'">
 		               				<c:choose>
 		               					<c:when test="${ptj.isEnd eq 'N' }">
 				               				<img src="${contextPath }/${ptj.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>		               						

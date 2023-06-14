@@ -60,7 +60,7 @@ public class PtjController {
 	 }
 	
 
-	@GetMapping("/ptj/ptjDetail")
+	@GetMapping("/ptj/detail")
 	public String selectPtjDetail(Model model, int bNo) {
 		Ptj p = ptjService.selectPtjDetail(bNo);
 		if(p != null) {

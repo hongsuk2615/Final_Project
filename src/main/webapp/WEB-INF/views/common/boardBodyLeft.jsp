@@ -51,7 +51,6 @@
                             <label for="filter-parcel">택배</label>
                             <input type="radio" name="fTradeMethod" id="filter-both" value="B" ${filter.tradeMethod eq 'B'? "checked":""}>
                             <label for="filter-both">둘다</label>
-
                         </li>
                         <li style="display: flex; justify-content: flex-end; padding-right:15px ;"><button onclick="resetFilter();">필터초기화</button><button onclick="filter();">필터적용</button></li>
                     </ul>

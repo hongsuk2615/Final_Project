@@ -67,7 +67,7 @@
                     </div>
                      <c:if test="${loginUser.userNo eq carpool.board.userNo or loginUser.authority eq 0}">
 	                    <div id="enroll-update">	
-	                        <button style="border: 0;" id="update-btn" >수정하기</button>
+	                        <button style="border: 0;" id="update-btn" url="carPool/update">수정하기</button>
 	                        <button style="border: 0;" id="delete-btn" bNo="${carpool.board.boardNo }" url="carPool/drive">삭제하기</button>
 	                        <c:choose>
 	                        	<c:when test="${carpool.isEnd eq 'N' }">
