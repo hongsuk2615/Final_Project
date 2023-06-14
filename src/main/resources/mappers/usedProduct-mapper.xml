@@ -141,6 +141,7 @@
 		  JOIN MEMBER M USING (USER_NO)
 		 WHERE BOARD_NO = ${bNo}
 		   AND B.STATUS = 'Y'
+		   AND I.STATUS = 'Y'
 	</select>
 	<select id="selectUsedProductCount" parameterType="map" resultType="_int">
 		SELECT COUNT(*)
@@ -169,5 +170,14 @@
 		 		 OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
 		 	</if>	
 	</select>
+	
+	<update id="modifyUsedProduct" parameterType="usedProduct">
+		UPDATE USED_PRODUCT
+		   SET PRODUCT_NAME = #{productName}
+		     , LOCATION_NO = #{locationNo}
+		     , PRICE = #{price}
+		     , TRADE_METHOD = #{tradeMethod}		     
+		 WHERE BOARD_NO = #{boardNo}
+	</update>
 
 </mapper>

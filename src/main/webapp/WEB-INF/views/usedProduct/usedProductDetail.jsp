@@ -124,10 +124,10 @@
                                 <div id="wish-btn" bNo ="${board.boardNo}">찜</div>
                                 <div id="report-btn" bNo="${board.boardNo}">신고</div>
                             </div>
-          0              </div>
+                       </div>
                     </div>
                     <div id="body-right-content">
-                    	${board.content }
+                    	${board.content}
                     </div>
                     <c:if test="${loginUser.userNo eq board.userNo or loginUser.authority eq 0}">
 	                    <div id="writer-btns">
