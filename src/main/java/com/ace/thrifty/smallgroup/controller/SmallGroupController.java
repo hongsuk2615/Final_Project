@@ -1,6 +1,7 @@
 package com.ace.thrifty.smallgroup.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -30,19 +31,19 @@ public class SmallGroupController {
 	
 	
 	//리스트
-	@GetMapping("")
-	public String sgSelectList(
-								Model model) {
-		
-		ArrayList<SmallGroup> list = smallgroupService.sgSelectList();
-		
-		model.addAttribute("list", list);
-		
-		
-		
-		return "myPage/smallgrouplist";
-	}
-	
+//	@GetMapping("")
+//	public String sgSelectList(
+//								Model model) {
+//		
+//		ArrayList<SmallGroup> list = smallgroupService.sgSelectList();
+//		
+//		model.addAttribute("list", list);
+//		
+//		
+//		
+//		return "myPage/smallgrouplist";
+//	}
+//	
 	
 	
 	
@@ -192,5 +193,21 @@ public class SmallGroupController {
 //	}
 
 	
+	
+	@GetMapping("")
+	public String selectsmallgroup(Model model, @RequestParam Map<String, Object> queryString) {
+		System.out.println(queryString);
+		if(!queryString.containsKey("currPage")) {
+			queryString.put("currPage", "1");
+		}
+		smallgroupService.selectsmallgroup(queryString);
+		System.out.println(queryString);
+		model.addAttribute("filter", queryString);
+		model.addAttribute("list", queryString.get("list"));
+		model.addAttribute("pi", queryString.get("pi"));
+		
+		
+		return "myPage/smallgrouplist";
+	}
 
 }
