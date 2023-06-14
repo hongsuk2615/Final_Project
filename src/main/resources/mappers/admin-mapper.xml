@@ -239,6 +239,13 @@
 		FROM BOARD B
 		JOIN UPPER_CATEGORY UC USING(CATEGORY_U_NO)
 		WHERE CATEGORY_U_NO NOT IN(1, 9)
+		<if test="catUNo != 0">
+			AND B.CATEGORY_U_NO = #{catUNo}
+		</if>
+	 	<if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND B.TITLE LIKE #{searchPattern}
+		</if>
 	</select>
 	
 	<select id="selectNoticeListCount" resultType="int">
@@ -303,7 +310,16 @@
 		SELECT *
 		FROM BOARD B
 		JOIN UPPER_CATEGORY UC USING(CATEGORY_U_NO)
+		JOIN MEMBER M USING(USER_NO)
 		WHERE CATEGORY_U_NO NOT IN(1, 9)
+		<if test="catUNo != 0">
+			AND B.CATEGORY_U_NO = #{catUNo}
+		</if>
+	 	<if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND B.TITLE LIKE #{searchPattern}
+		</if>
+		ORDER BY B.STATUS DESC, B.CREATE_DATE DESC
 	</select>
 	
 	<select id="noticeList" resultMap="noticeResultSet" parameterType="map">
