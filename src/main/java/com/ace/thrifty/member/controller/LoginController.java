@@ -19,18 +19,18 @@ import com.ace.thrifty.member.model.vo.GoogleResponse;
 @RestController
 @CrossOrigin("*")
 public class LoginController {
-    @Value("${google.client.id}")
+    @Value("283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com")
     private String googleClientId;
     @Value("${google.client.pw}")
     private String googleClientPw;
 
-    @RequestMapping(value="/googleLogin", method = RequestMethod.POST)
+    @RequestMapping(value="/api/v1/oauth2/google", method = RequestMethod.POST)
     public String loginUrlGoogle(){
         String reqUrl = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + googleClientId
-                + "&redirect_uri=http://localhost:8081/thrifty/googleLogin&response_type=code&scope=email%20profile%20openid&access_type=offline";
+                + "&redirect_uri=http://localhost:8081/thrifty/api/v1/oauth2/google&response_type=code&scope=email%20profile%20openid&access_type=offline";
         return reqUrl;
     }
-    @RequestMapping(value="/googleLogin", method = RequestMethod.GET)
+    @RequestMapping(value="/api/v1/oauth2/google", method = RequestMethod.GET)
     public String loginGoogle(@RequestParam(value = "code") String authCode){
         RestTemplate restTemplate = new RestTemplate();
         GoogleRequest googleOAuthRequestParam = GoogleRequest
@@ -38,7 +38,7 @@ public class LoginController {
                 .clientId(googleClientId)
                 .clientSecret(googleClientPw)
                 .code(authCode)
-                .redirectUri("http://localhost:8081/thrifty/googleLogin")
+                .redirectUri("http://localhost:8081/api/v1/oauth2/google")
                 .grantType("authorization_code").build();
         ResponseEntity<GoogleResponse> resultEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token",
                 googleOAuthRequestParam, GoogleResponse.class);
