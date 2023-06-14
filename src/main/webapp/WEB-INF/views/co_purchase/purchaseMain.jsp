@@ -197,29 +197,29 @@
                         </c:otherwise>					
                     </c:choose>
 				</div>
-                <div id="searchWrite">
                 <form action="/thrifty/co_purchase">
-                    <div></div>
-                    <div id="search_content">
-                        <div class="selectBox2 ">
-                            <input type="text" class="label" value="제목" name="condition">  <!-- ajax로 label value값 넘겨서 뜨게해야됨 -->
-                            <ul class="optionList">
-                              <li class="optionItem">제목</li>
-                              <li class="optionItem">작성자</li>
-                              <li class="optionItem">내용</li>
-                            </ul>
+                    <div id="searchWrite">
+                        <div></div>
+                        <div id="search_content">
+                            <div class="selectBox2 ">
+                                <input type="text" class="label" value="제목" name="condition">  <!-- ajax로 label value값 넘겨서 뜨게해야됨 -->
+                                <ul class="optionList">
+                                <li class="optionItem">제목</li>
+                                <li class="optionItem">작성자</li>
+                                <li class="optionItem">내용</li>
+                                </ul>
+                            </div>
+                            <input type="text" id="search_box" name="keyword">
+                            <input type="submit" value="검색" id="search_submit">
                         </div>
-                        <input type="text" id="search_box" name="keyword">
-                        <input type="submit" value="검색" id="search_submit">
+                        <div>
+                            <c:if test="${loginUser != null}">
+                                <a href="${ contextPath }/co_purchase/enroll" id="write_content">글쓰기</a>
+                                <!-- <input type="submit" value="글쓰기" id="write_content"> -->
+                            </c:if>
+                        </div>
                     </div>
-	                <div>
-	                    <c:if test="${loginUser != null}">
-	                        <a href="${ contextPath }/co_purchase/enroll" id="write_content">글쓰기</a>
-	                        <!-- <input type="submit" value="글쓰기" id="write_content"> -->
-	                    </c:if>
-	                </div>
-	                </form>
-                </div>
+	            </form>
             </div>
         </div>
         <jsp:include page="../common/footer.jsp"/>

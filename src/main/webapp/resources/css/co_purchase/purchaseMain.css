@@ -135,6 +135,7 @@ select option{
 }
 
 #search_submit{
+	cursor: pointer;
 	font-size: 15px;
     padding-bottom: 5px;
     width: 60px;

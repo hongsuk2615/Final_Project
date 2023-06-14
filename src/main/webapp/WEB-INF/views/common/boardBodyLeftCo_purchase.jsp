@@ -15,7 +15,7 @@
 	    <div id="upper-category">
 	        <div>
 	            <img src="/thrifty/resources/images/main/icon/supply-chain.png" alt="상위 카테고리 이미지">
-	            <div id="upper-category-name">공동구매</div>
+	            <a href="/thrifty/co_purchase/" id="upper-category-name">공동구매</a>
 	        </div>
 	    </div>
 	    <div id="sub-category" >
