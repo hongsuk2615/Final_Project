@@ -42,9 +42,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@RestController
+
 @Controller
-@CrossOrigin("*")
 @RequestMapping("/member")
 @SessionAttributes({"loginUser"})
 public class MemberController {
