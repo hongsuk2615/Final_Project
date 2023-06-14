@@ -65,18 +65,18 @@ function findId(){
             <div>아이디 찾기</div>
         </div>
         <div id="find-form">
-            <form action="/login" method="post">
+            <form action="" method="post">
                 <div>
                     <div>
                         <div>이름</div>
-                        <input type="text" name="userName" placeholder="이름">
+                        <input type="text" name="userName" id="findIdName" placeholder="이름">
                     </div>
                     <div>
                         <div>이메일</div>
-                        <input type="email" name="email" placeholder="이메일">
+                        <input type="email" name="email" id="findIdEmail" placeholder="이메일">
                     </div>
                     <div id="btns">
-                        <button id="findId-btn">확인</button>
+                        <button type="button" id="findId-btn" onclick="findIdAjax();">확인</button>
                         <button type="button" id="findPwd-btn" onclick="findPwd();">비밀번호 찾기</button>
                     </div>
                 </div>
@@ -99,18 +99,18 @@ function findPwd(){
             <div>비밀번호 찾기</div>
         </div>
         <div id="find-form">
-            <form action="/login" method="post">
+            <form action="" method="post">
                 <div>
                     <div>
                         <div>아이디</div>
-                        <input type="text" name="userId" placeholder="아이디">
+                        <input type="text" name="userId" id="findPwdId" placeholder="아이디">
                     </div>
                     <div>
                         <div>이메일</div>
-                        <input type="email" name="email" placeholder="이메일">
+                        <input type="email" name="email" id="findPwdEmail" placeholder="이메일">
                     </div>
                     <div id="btns">
-                        <button id="findPwd-btn">확인</button>
+                        <button type="button" id="findPwd-btn" onclick="findPwdAjax();">확인</button>
                     </div>
                 </div>
                 
@@ -268,4 +268,65 @@ function enroll(){
 
 function kakaoLogin(){
     location.href = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=812fa162a908f2e0e2a8addf2bbd6869&redirect_uri=http://localhost:8081/thrifty/member/kakaoLogin";
+}
+
+
+function findIdAjax(){
+    let userName = document.getElementById('findIdName').value;
+    let email = document.getElementById('findIdEmail').value;
+    $.ajax({
+        url : "/thrifty/member/findId",
+        data : {userName,email},
+        success : function(result){
+            console.log(result);
+            if(result != ''){
+                Swal.fire({
+                    background: "transparent",
+                    html : `<div id="find-content">
+                                <div id="find-title">
+                                    <div><img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="로고이미지" width="60" height="60"></div>
+                                    <div>아이디 찾기</div>
+                                </div>
+                                <div id="find-form">
+                                    <form action="/login" method="post">
+                                        <div>
+                                            <div style="margin-top:50px">아이디 : `+result+ `</div>
+                                        </div>
+                                        <div id="btns">
+                                            <button type="button" id="findPwd-btn" onclick="findPwd();">비밀번호 찾기</button>
+                                        </div>   
+                                    </form>
+                                </div>   
+                            </div>
+                            <button id="loginMenu-btn" onclick="login();">로그인 창으로</button>  `,
+                    showConfirmButton: false
+                });
+            }else{
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'error',
+                    title: '일치하는 계정이 없습니다.',
+                    showConfirmButton: false,
+                    width : 500,
+                    timer: 1000
+                }).then(()=>{
+                        findId();
+                })
+            }
+        }
+
+    })
+
+}
+
+function findPwdAjax(){
+    let userId = document.getElementById('findPwdId').value;
+    let email = document.getElementById('findPwdEmail').value;
+    $.ajax({
+        url : '/thrifty/member/findPwd',
+        data : {userId, email},
+        success : function(result){
+            console.log(result);
+        }
+    })
 }

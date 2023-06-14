@@ -1,6 +1,7 @@
 package com.ace.thrifty.house.model.vo;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +25,7 @@ public class Room {
 	private int deposit; // 보증금
 	private int rent; // 월임대료
 	private int cost; // 관리비
-	private int contrat; // 계약종료일
+	private String contrat; // 계약종료일
 	
 	private ArrayList<RoomImg> imgList;
 	

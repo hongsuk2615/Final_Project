@@ -117,7 +117,8 @@
     padding: 40px 0px;
 }
 
-#body_description_chatting{
+.body_description_chatting{
+	text-align: center;
     width: 110px;
     color: white;
     font-size: 20px;
@@ -125,6 +126,18 @@
     padding: 10px;
     margin: 20px auto;
     background-color: rgb(19, 137, 255);
+    border-radius: 5px;
+}
+
+.body_description_wish{
+	text-align: center;
+    width: 110px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: #fdc467;
     border-radius: 5px;
 }
 

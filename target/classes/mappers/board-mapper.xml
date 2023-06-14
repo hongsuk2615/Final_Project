@@ -120,6 +120,7 @@
 					VALUES(#{originName}, #{changeName}, #{boardNo}, #{fileLevel})
 	</insert>
 	
+	
 	<insert id="insertImageList" parameterType="list">
 		INSERT INTO IMAGE (ORIGIN_NAME, CHANGE_NAME, BOARD_NO, FILE_LEVEL)
 		     SELECT C.* 
@@ -163,6 +164,16 @@
 			   TITLE = #{title},
 			   CONTENT = #{content}
 		WHERE BOARD_NO = #{boardNo}
+	<update id="scrapBoard">
+		UPDATE BOARD
+		 SET WISH_COUNT = WISH_COUNT + 1
+		 WHERE BOARD_NO = #{bNo}
+	</update>
+	
+	<update id="scrapCancle">
+		UPDATE BOARD
+		 SET WISH_COUNT = WISH_COUNT - 1
+		 WHERE BOARD_NO = #{bNo}
 	</update>
 	
 </mapper>

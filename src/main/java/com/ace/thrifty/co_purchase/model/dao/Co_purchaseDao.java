@@ -40,5 +40,9 @@ public class Co_purchaseDao {
 		return sqlSession.selectOne("co_purchaseMapper.selectBoardDetail", bNo);
 	}
 
+	public int updateCo_purchase(Co_purchase co) {
+		return sqlSession.update("co_purchaseMapper.updateCo_purchase", co);
+	}
+
 	
 }

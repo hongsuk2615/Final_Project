@@ -9,8 +9,7 @@ import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.common.model.vo.Coordinate;
 import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
-import com.ace.thrifty.house.model.vo.RoomImg;
-import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.house.model.vo.Tour;
 
 public interface HouseService {
 	
@@ -20,11 +19,19 @@ public interface HouseService {
 	
 	Map<String, Object> selectBoard(Board b);
 
-	List<Object> selectHouseList();
+	List<Object> selectHouseList(int userNo);
 
-	List<Object> selectLocation(Coordinate c);
+	List<Object> selectLocation(Coordinate c, int userNo);
 	
 	List<Object> selectRoomImg(int roomNo);
+	
+	int scrapHouse(int userNo, int boardNo);
+
+	int scrapCancle(int userNo, int boardNo);
+	
+	List<Object> searchHouse(String keyword, int userNo);
+	
+	int tourApply(Tour tour);
 	
 	
 }
