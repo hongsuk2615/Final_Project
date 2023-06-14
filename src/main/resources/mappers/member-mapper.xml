@@ -28,7 +28,7 @@
 	
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER(USER_NAME, NICK_NAME, GENDER, USER_ID, USER_PWD, PHONE, EMAIL, LOGIN_METHOD, CHANGE_NAME, ORIGIN_NAME)
-		     VALUES(#{userName}, #{nickName}, #{gender}, #{userId}, #{userPwd}, #{phone}, #{email}, IFNULL(#{loginMethod},'N'), #{changeName}, #{originName})
+		     VALUES(#{userName}, #{nickName}, #{gender}, #{userId}, #{userPwd}, #{phone}, #{email}, IFNULL(#{loginMethod},'N'), IFNULL(#{changeName},'defaultProfile.png'), IFNULL(#{originName},'defaultProfile.png'))
 	</insert>
 	
 	

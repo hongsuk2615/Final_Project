@@ -165,8 +165,8 @@
         	function imagePreview(arg){
         		if(arg.files.length >4){
         			alert("4개보다 많은 사진첨부 불가능");
-        			console.log(arg.files[i]);
-        			return false;
+        			console.log(arg.files);
+        			arg.value='';
         		}else{
                     console.log(arg.value);
 	        		for(let i = 0; i < arg.files.length; i++){
@@ -178,7 +178,7 @@
 	        				console.log(url);
 	        				$("#image"+i).css('backgroundImage','url('+url+')');
 	        			}
-	        			
+	        			0
 	        			reader.readAsDataURL(arg.files[i]);
 	        			console.log(reader);
 	        			
