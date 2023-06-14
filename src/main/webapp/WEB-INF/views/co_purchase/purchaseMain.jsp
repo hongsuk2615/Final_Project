@@ -210,7 +210,6 @@
                             </ul>
                         </div>
                         <input type="text" id="search_box" name="keyword">
-                        <a href="" id="search_submit">검색</a>
                         <input type="submit" value="검색" id="search_submit">
                     </div>
 	                <div>
