@@ -11,23 +11,14 @@ import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.ptj.model.vo.Ptj;
 
 public interface PtjService {
-
-	public Ptj selectPtjDetail(int boardNo);
-	
-	public List<Ptj> selectPtjAll();
-	
-	
-	public int insertPtj(Board b, Ptj p, List<MultipartFile> image , String webPath , String serverFolderPath) throws Exception;
-	
-	public int deletePtj(int boardNo);
-	
-	public List<Ptj> selectPtj();
-	public Ptj selectPtjDetail(int bNo);
-	public void selectPtjAll(Map<String, Object> queryString);
-	/* public void ptjBoardPaging(Map<String, Object> paramMap); */
-	public int insertPtj(Board b, Ptj p, MultipartFile image , String webPath , String serverFolderPath) throws Exception;
-	public int deleteBoard(Board b);
-	public Ptj updateFormPtj(int boardNo);
-	public int updatePtj(Ptj p , Board b, Image img , String webPath , String serverFolderPath) throws Exception;
-	public int workEnd(Board b);
+   
+   public List<Ptj> selectPtj();
+   public Ptj selectPtjDetail(int bNo);
+   public void selectPtjAll(Map<String, Object> queryString);
+   /* public void ptjBoardPaging(Map<String, Object> paramMap); */
+   public int insertPtj(Board b, Ptj p, MultipartFile image , String webPath , String serverFolderPath) throws Exception;
+   public int deleteBoard(Board b);
+   public Ptj updateFormPtj(int boardNo);
+   public int updatePtj(Ptj p , Board b, Image img , String webPath , String serverFolderPath) throws Exception;
+   public int workEnd(Board b);
 }

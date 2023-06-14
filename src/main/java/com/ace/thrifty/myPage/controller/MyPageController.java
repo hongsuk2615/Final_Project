@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,9 @@ public class MyPageController {
 	
 	@Autowired
 	private SmallGroupService smallgroupService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	//메인
 	@GetMapping("/myPageMain")
@@ -83,9 +87,11 @@ public class MyPageController {
 			) {
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		m.setUserNo(userNo);
+		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(encPwd);
+		
 		int result1 = myPageService.myPageUpdate(m);
-		
-		
+	
 		System.out.println(m);
 		
 		if(result1>0) {
