@@ -18,18 +18,77 @@
     <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js" crossorigin="anonymous"></script>
+    
 </head>
+<style>
+    #dark_icon{
+        position: absolute;
+        top: 0;
+        left: 500px;
+    }
+
+    .toggleSwitch {
+      width: 100px;
+      margin: 30px;
+      height: 50px;
+      display: block;
+      position: relative;
+      border-radius: 30px;
+      background-color: #fff;
+      box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+      cursor: pointer;
+    }
+    
+    .toggleSwitch .toggleButton {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 50%;
+      left: 4px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: #f03d3d;
+    }
+    
+    
+    .toggleSwitch.active .toggleButton {
+      left: calc(100% - 44px);
+      background: #fff !important;
+    }
+    
+    .toggleSwitch, .toggleButton {
+      transition: all 0.2s ease-in;
+    }
+    
+    .toggleSwitch.blue.active {
+      background: #5151e5;
+    }
+    
+    .toggleSwitch.blue .toggleButton {  
+      background: #5151e5;
+    }
+    
+    </style>
 <body>
     <script>
         Kakao.init('812fa162a908f2e0e2a8addf2bbd6869'); // 사용하려는 앱의 JavaScript 키 입력
       </script>
     <div id="header" class="background_basic">
+        
         <div id="header_1">
             <div id="header_1_1">
                 <a href="/thrifty/">
                     <div id="main_logo" class="header_img_white"></div>
                 </a>
             </div>
+            
+            <div id="dark_icon">
+                <label for="toggle" class="toggleSwitch blue">
+                    <span class="toggleButton"></span>
+                </label>
+            </div>
+
+
             <div id="header_1_2">
             <c:choose>
             	<c:when test="${empty loginUser}">
@@ -101,6 +160,40 @@
         </ul>
 
     </div>
+    <script>
+        const toggleList = document.querySelectorAll(".toggleSwitch");
+    
+        toggleList.forEach(($toggle) => {
+        $toggle.onclick = () => {
+        $toggle.classList.toggle('active');
+        if(toggleList[0].classList.contains('active')){
+            dark_mode();
+        }else{
+            light_mode();
+        }
+      }
+      
+    });
+    
+                function dark_mode() {
+                    
+                   
+                  
+                    document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
+                    document.querySelector("body").style.color="white";
+                    document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
+                    document.querySelector("#body").style.color="white";
+                }
+                function light_mode() {
+                 
+    
+                    document.querySelector("body").style.backgroundColor="white"; 
+                    document.querySelector("body").style.color="black";
+                    document.querySelector("#body").style.backgroundColor="white";
+                    document.querySelector("#body").style.color="black";
+                }
+    
+      </script>
     <script>
         function kakaoLogout() {
             location.href="https://kauth.kakao.com/oauth/logout?client_id=17596a7a342e703f12c332dec822a955&logout_redirect_uri=http://localhost:8081/thrifty/member/logout";

@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.ace.thrifty.admin.model.dao.AdminDao;
 import com.ace.thrifty.admin.model.vo.Notice;
+import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
+import com.ace.thrifty.board.model.vo.UpperCategory;
 import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.common.template.Pagination;
 import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.report.model.vo.Report;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -53,8 +56,45 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public int memberStatusUpdate(Map<String, Object> paramMap) {
-		return adminDao.memberStatusUpdate(paramMap);
+	public int StatusUpdate(String location, Map<String, Object> paramMap) {
+		
+		if(location.equals("member")) {
+			return adminDao.memberStatusUpdate(paramMap);
+		}else {
+			return adminDao.boardStatusUpdate(paramMap);
+		}
+	}
+	
+	@Override
+	public void reportList(Map<String, Object> map, Map<String, Object> paramMap) {
+		
+		int listCount = adminDao.selectReportListCount(paramMap);
+		Integer currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<Report> list = adminDao.ReportList(pi, paramMap);
+		
+		map.put("pi", pi);
+		map.put("list", list);
+	}
+	
+	@Override
+	public void BoardList(Map<String, Object> map, Map<String, Object> paramMap) {
+		
+		int listCount = adminDao.selectBoardListCount(paramMap);
+		Integer currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<Board> list = adminDao.BoardList(pi, paramMap);
+		
+		map.put("pi", pi);
+		map.put("list", list);
 	}
 
 	@Override
@@ -72,11 +112,68 @@ public class AdminServiceImpl implements AdminService{
 		map.put("pi", pi);
 		map.put("list", list);
 	}
+	
+	@Override
+	public void faqList(Map<String, Object> map, Map<String, Object> paramMap) {
+		int listCount = adminDao.selectFaqListCount(paramMap);
+		Integer currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<Notice> list = adminDao.faqList(pi, paramMap); 
+		
+		map.put("pi", pi);
+		map.put("list", list);
+	}
+
+	@Override
+	public List<UpperCategory> upperCatList() {
+		return adminDao.upperCatList();
+	}
+	
+	@Override
+	public List<SubCategory> noticeSubCatList() {
+		return adminDao.noticeSubCatList();
+	}
 
 
 	@Override
-	public List<SubCategory> subCatList() {
-		return adminDao.subCatList();
+	public List<SubCategory> faqSubCatList() {
+		return adminDao.faqSubCatList();
 	}
+
+
+	@Override
+	public int enrollInsert(Board b) {
+		return adminDao.enrollInsert(b);
+	}
+
+
+	@Override
+	public List<SubCategory> subCatList(int catUNo) {
+		return adminDao.subCatList(catUNo);
+	}
+
+
+	@Override
+	public Board enrollSelect(int boardNo) {
+		return adminDao.enrollSelect(boardNo);
+	}
+
+
+	@Override
+	public int enrollUpdate(Board b) {
+		return adminDao.enrollUpdate(b);
+	}
+
+
+
+
+
+
+
+
 
 }

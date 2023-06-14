@@ -13,10 +13,10 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <style>
-          *{
+        /* *{
         border: 1px solid blue !important;
         box-sizing: border-box;
-    }        
+    }        */
     body{
         margin: 0;
     }
@@ -148,47 +148,7 @@
    }
    
 
-   
-.toggleSwitch {
-  width: 100px;
-  margin: 30px;
-  height: 50px;
-  display: block;
-  position: relative;
-  border-radius: 30px;
-  background-color: #fff;
-  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
-  cursor: pointer;
-}
-
-.toggleSwitch .toggleButton {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 50%;
-  left: 4px;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  background: #f03d3d;
-}
-
-
-.toggleSwitch.active .toggleButton {
-  left: calc(100% - 44px);
-  background: #fff !important;
-}
-
-.toggleSwitch, .toggleButton {
-  transition: all 0.2s ease-in;
-}
-
-.toggleSwitch.blue.active {
-  background: #5151e5;
-}
-
-.toggleSwitch.blue .toggleButton {  
-  background: #5151e5;
-}
+ 
 /*
    background-color: #fc3441;
                     #ffcb3d;
@@ -211,7 +171,7 @@
         </div>
         <div id="body">
             <div id="body-left">
-                <jsp:include page="../myPage/boardBodyLeftremix.jsp"/>
+                <jsp:include page="../common/boardBodyLeftMyPage.jsp"/>
 		
             </div>
 
@@ -228,9 +188,7 @@
                     <div class="profile-title">
                         <h4>${loginUser.nickName}</h4> <span>님 환영합니다</span>
                      
-                          <label for="toggle" class="toggleSwitch blue">
-                            <span class="toggleButton"></span>
-                          </label>
+                          
                     </div>
                     
 
@@ -317,31 +275,7 @@
         </div>
     </div>
     
-    <script>
-    const toggleList = document.querySelectorAll(".toggleSwitch");
-
-    toggleList.forEach(($toggle) => {
-    $toggle.onclick = () => {
-    $toggle.classList.toggle('active');
-    if(toggleList[0].classList.contains('active')){
-        dark_mode();
-    }else{
-        light_mode();
-    }
-  }
-  
-});
-
-            function dark_mode() {
-                document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)"; 
-                document.querySelector("body").style.color="white";
-            }
-            function light_mode() {
-                document.querySelector("#body").style.backgroundColor="white"; 
-                document.querySelector("body").style.color="black";
-            }
-
-  </script>
+   
 
 <script>
     AOS.init();

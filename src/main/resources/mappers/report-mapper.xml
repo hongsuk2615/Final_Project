@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reportMapper">
+
+	<resultMap type="reportCategory" id="reportCategoryResultSet">
+		<id column="R_CATEGORY_NO" property="reportCategoryNo"/>
+		<result column="R_CATEGORY_NAME" property="reportCategoyName"/>	
+	</resultMap>
+
+	<select id="reportList" resultMap="reportCategoryResultSet">
+		SELECT *
+		FROM REPORT_CATEGORY;
+	</select>
+
+	<insert id="reportInsert" parameterType="map">
+		<if test="bNo != null">
+			INSERT INTO REPORT(BOARD_NO, R_CATEGORY_NO, REPORT_USER_NO)
+			VALUES(#{bNo},#{reportCategoryNo},#{userNo})
+		</if>
+		<if test="rNo != null">
+			INSERT INTO REPORT(REPLY_NO, R_CATEGORY_NO, REPORT_USER_NO)
+			VALUES(#{rNo},#{reportCategoryNo},#{userNo})
+		</if>
+	</insert>
+	
+	<update id="reportCount" parameterType="map">
+		<if test="bNo != null">
+		UPDATE BOARD 
+		SET REPORT_COUNT = REPORT_COUNT+1
+		WHERE BOARD_NO = #{bNo}
+		</if>
+		<if test="rNo != null">
+		UPDATE REPLY 
+		SET REPORT_COUNT = REPORT_COUNT+1
+		WHERE REPLY_NO #{rNo}
+		</if>
+	</update>
+	
+	<select id="reportCheck" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM REPORT
+		WHERE REPORT_USER_NO = #{userNo}
+		  <choose>
+		  	<when test="bno != null">
+		  		AND BOARD_NO = #{bNo}
+		  	</when>
+		  	<when test="rno != null">
+				AND REPLY_NO = #{rNo}
+		  	</when>
+		  </choose>
+	</select>
+</mapper>
