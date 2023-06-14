@@ -165,6 +165,12 @@
 		  </if>
 	</update>
 	
+	<update id="updateBoard" parameterType="board">
+		UPDATE BOARD
+		   SET
+			   TITLE = #{title},
+			   CONTENT = #{content}
+		WHERE BOARD_NO = #{boardNo}
 	<update id="scrapBoard">
 		UPDATE BOARD
 		 SET WISH_COUNT = WISH_COUNT + 1

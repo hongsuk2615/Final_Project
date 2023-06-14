@@ -55,12 +55,10 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"/>
     <div id="wrapper">
-            <jsp:include page="../common/header.jsp"/>
         <div id="body" style="padding-top: 150px;">
-            <div id="body-left">
-                <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
-            </div>
+        <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
 		<form id="ptj-enroll-form" action="${contextPath}/ptj/ptjList/enroll" enctype="multipart/form-data" method="post">
             <div id="body-right">
                 <div id="enroll-category">
@@ -85,19 +83,18 @@
                         <div id="enroll-body">
                             <h3>현재 접속한 아이디의 연락처가 표시 됩니다.</h3><br>
                             <hr>
-                            <h3>급여 : </h3><input type="number" id="enroll-price" required name="price" >&nbsp;원
+                            <h3>급여 : </h3><input type="number" id="enroll-price"  name="price" >&nbsp;원
                             <hr>
                             <h3>시간 : </h3>
                             시작 시간 : <input type="time" name="startTime" class="enroll-date" value="09:00:00" step="2" required>&nbsp;&nbsp;
                             마감 시간 : <input type="time" name="endTime" class="enroll-date" value="18:00:00" step="2" required>
                             <hr>
-							<input type="hidden" name="status" value="Y">
                             <div style="display: flex; align-items: center; " id="location-list">
                                 <h3>시 / 군 / 구 : </h3>
                                 <select style="height:40px; margin-left: 20px;" name="locationNo">
                                     <c:forEach var="location" items="${locationList}">
-                                <option value="${location.locationNo}">${location.locationName}</option>
-                                </c:forEach>
+	                                	<option value="${location.locationNo}">${location.locationName}</option>
+	                                </c:forEach>
                                 </select>
                             </div>
 

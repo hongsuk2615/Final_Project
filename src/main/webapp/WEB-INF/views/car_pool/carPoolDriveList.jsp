@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,70 +53,56 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="header">
-            <jsp:include page="../common/header.jsp" />
-        </div>
+		<jsp:include page="../common/header.jsp" />
         <div id="body">
-            <div id="body-left">
-                <jsp:include page="../common/boardBodyLeftCarPool.jsp"/>
-            </div>
+			<jsp:include page="../common/boardBodyLeftCarPool.jsp"/>
             <div id="body-right">
-                <div id="ptj-header">
-                    <h1>태워주세요!</h1>
+                <div id="carpool-header">
+                	<h1>[태워드려요! / 태워주세요!]</h1>     
                 </div>
                 <div style="width:100%; display: flex; align-items: center; justify-content: space-between;">
-                	<p>메인 > 카풀 > 태워주세요</p>
+                	<p><a href="/thrifty">메인</a> > <a href="/thrifty/carPool">카풀</a></p>
                     <div>
-                        <button id="write-btn">글 작성하기</button>
+                    	<c:if test="${loginUser != null }">
+                        	<button id="write-btn">글 작성하기</button>
+                        </c:if>
                     </div>
                 </div>
                 <hr style="width: 100%;">
-                <div id="ptj-allBody" style="height: 1000px;">
-                	<div id="ptj-body1">
-                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;"/>
-                        <p style="text-align: center;">사당 ~ 역삼 8시 구해요 ㅠ</p>
-                    </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-                        <p style="text-align: center;">역삼 ~ 강남 카풀 해주실 천사~</p>
-                    </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
+                <div id="carpool-allBody" style="height: 1000px;">
+                	<c:forEach var="cList" items="${list }" >
+	                    <div style="width: 200px; height: 170px; border: 1px gray;" onclick="location.href='${contextPath}/carPool/detail?bNo=${cList.boardNo }'">
+	                        <img src="${contextPath }/${cList.imgPath}" style="height: 170px; width: 210px; border-radius: 10px;"/>
+	                        <p style="text-align: center;">${cList.subCategory.categorySName }</p>
+	                        <p style="text-align: center;">제목 : ${cList.board.title }</p>
+	                        <p style="text-align: center;">카풀비 : ${cList.price }</p>
+	                    </div>
+                	</c:forEach>
                 </div>
-                <div id="ptj-body2">
-                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-                        <p style="text-align: center;">메롱</p>
+				
+				
+                <div id="body-right-footer">
+                    <div id="paging-btns">
+                    	<c:choose>
+		                  <c:when test="${ pi.currentPage eq 1 }">
+		                     <div>&lt;</div>
+		                  </c:when>
+		                  <c:otherwise>
+		                     <div><a href="/thrifty/carPool/drive?currPage=${filter.currPage-1}&scNo=${filter.scNo}&location=${filter.lNo}">&lt;</a></div>
+		                  </c:otherwise>               
+		               </c:choose>
+		               <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
+	                  	<div><a href="/thrifty/carPool/drive?currPage=${item}&scNo=${filter.scNo}&location=${filter.lNo}">${item}</a></div>
+	               		</c:forEach>
+	               		<c:choose>
+		                  <c:when test="${ pi.currentPage eq pi.maxPage }">
+		                     <div>&gt;</div>
+		                  </c:when>
+		                  <c:otherwise>
+		                     <div><a href="/thrifty/carPool/drive?currPage=${filter.currPage+1}&scNo=${filter.scNo}&location=${filter.lNo}">&gt;</a></div>
+		                  </c:otherwise>               
+		               </c:choose>
                     </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                </div>
-                <div id="ptj-body3">
-                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                    <div style="width: 200px; height: 170px; border: 1px gray;" >
-                        <img src="/thrifty/resources/images/carpool/carpoollist.png" style="height: 170px; width: 210px;">
-                        <p style="text-align: center;">메롱</p>
-                    </div>
-                </div>
-                </div>
-                <div id="paging">
-                    <p style="text-align: center;">< 1 2 3 4 ></p>
                 </div>
             </div>
         </div>
@@ -126,4 +113,10 @@
     </div>
     
 </body>
+<script>
+	document.getElementById("write-btn").addEventListener("click",function(){
+    	location.href = "${contextPath}/carPool/enroll";
+	})
+</script>
+
 </html>

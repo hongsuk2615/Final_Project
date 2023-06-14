@@ -1,19 +1,26 @@
 package com.ace.thrifty.ptj.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ace.thrifty.admin.model.vo.Notice;
 import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.common.Utils;
+import com.ace.thrifty.common.model.vo.PageInfo;
+import com.ace.thrifty.common.template.Pagination;
+import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.ptj.model.dao.PtjDao;
 import com.ace.thrifty.ptj.model.vo.Ptj;
+import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 
 @Service
 public class PtjServiceImpl implements PtjService {
@@ -23,33 +30,46 @@ public class PtjServiceImpl implements PtjService {
 	
 	@Autowired
 	BoardDao boardDao;
-//	
-//	@Override
-//	public Ptj selectPtj() {
-//		Ptj p = ptjDao.selectPtj();
-//		return p;
-//	}
 	
-	public Ptj selectPtjDetail(int boardNo) {
+	@Autowired
+	private Pagination pagination;
+	
+	@Override
+	public Ptj selectPtjDetail(int bNo) {
 		
-		return ptjDao.selectPtjDetail(boardNo);
-		
+		Ptj p =  ptjDao.selectPtjDetail(bNo);
+		if(p != null) {
+			boardDao.increaseReadCount(bNo);
+			p.getBoard().setReadCount(p.getBoard().getReadCount()+1);
+		}
+		return p;
 	}
 	
-	public List<Ptj> selectPtj(String categorySNo) {
-		
-		return ptjDao.selectPtj(categorySNo);
-	}
+
+	@Override
+	 public List<Ptj> selectPtj() {
+		 return ptjDao.selectPtj();
+	 }
+	 
 	
-	public List<Ptj> selectPtjAll() {
+	
+	 @Override 
+	 public void selectPtjAll(Map<String, Object> queryString) {
+		int listCount = ptjDao.selectPtjCount(queryString);
+		int pageLimit = 10;
+		int boardLimit = 9;
+		PageInfo pi = pagination.getPageInfo(listCount, Integer.parseInt((String)(queryString.get("currPage"))), pageLimit, boardLimit);
+		List<Ptj> list = ptjDao.selectPtjAll(pi, queryString);
 		
-		return ptjDao.selectPtjAll();
-		
-	}
+		queryString.put("pi", pi);
+		queryString.put("list", list);
+	  
+	 }
+	 
 	
 	@Transactional(rollbackFor = {Exception.class})
 	@Override
-	public int insertPtj(Board b , Ptj p , List<MultipartFile> image, String webPath, String serverFolderPath) throws Exception {
+	public int insertPtj(Board b , Ptj p , MultipartFile image, String webPath, String serverFolderPath) throws Exception {
 		boardDao.insertBoard(b);
 		int boardNo = b.getBoardNo();
 		int result = 0;
@@ -57,51 +77,57 @@ public class PtjServiceImpl implements PtjService {
 			p.setBoardNo(boardNo);
 			result = ptjDao.insertPtj(p);
 		}
-		System.out.println(boardNo);
 		
 		if(result > 0 && image != null) {
-			List<Image> imageList = new ArrayList();
-			
-			for(int i = 0; i < image.size(); i++) {
-				if(image.get(i).getSize() > 0 ) {
-					String changeName = Utils.saveFile(image.get(i) , serverFolderPath);
+
+					String changeName = Utils.saveFile(image , serverFolderPath);
 					
 					Image img = new Image();
 					img.setBoardNo(boardNo);
 					img.setFileLevel(0);
-					img.setOriginName(image.get(i).getOriginalFilename());
+					img.setOriginName(image.getOriginalFilename());
 					img.setChangeName(changeName);
-					
-					imageList.add(img);
-				}
-			}			
-			
-//			System.out.println(imageList);
-			
-			if(!imageList.isEmpty()) {
-				result = boardDao.insertImageList(imageList);
-				if(!(result == imageList.size())) {
-					throw new Exception("이미지 등록 예외발생");
-				}
-			}
-			
+					boardDao.insertImage(img);
 		}
 		return boardNo;
 	}
 	
-	public int deletePtj(int boardNo) {
+	@Override
+	public int deleteBoard(Board b) {
 		
-		return ptjDao.deletePtj(boardNo);
+		return boardDao.deleteBoard(b);
 		
 	}
 	
+	@Override
 	public Ptj updateFormPtj(int boardNo) {
 		return ptjDao.updateFormPtj(boardNo);
 	}
 	
-	public int updatePtj(Ptj p) {
-		return ptjDao.updatePtj(p);
+	@Transactional(rollbackFor = {Exception.class})
+	@Override
+	public int updatePtj(Ptj p , Board b , Image img, String webPath, String serverFolderPath) throws Exception{
 		
+		int result = ptjDao.updatePtj(p);
+		int result2 = boardDao.updateBoard(b);
+		p.getImgPath();
+
+		System.out.println(result);
+		System.out.println(result2);
+		if(p.getImgPath() != null) {
+			ptjDao.deleteImage(b);
+		}
+		
+		if(img != null) {
+			boardDao.insertImage(img);
+		}
+		return 0;
 	}
+		
+		
 	
+	@Override
+	public int workEnd(Board b) {
+		return ptjDao.workEnd(b);
+	}
 }

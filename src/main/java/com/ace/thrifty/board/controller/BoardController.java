@@ -23,7 +23,6 @@ public class BoardController {
 	@ResponseBody
 	public int deleteBoard(int bNo, HttpSession session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
-		System.out.println(loginUser);
 		if (loginUser == null) {
 			return -1;
 		} else {
@@ -34,7 +33,6 @@ public class BoardController {
 				board.setBoardNo(bNo);
 				board.setUserNo(loginUser.getUserNo());
 			}
-			System.out.println(boardService.deleteBoard(board));
 			return boardService.deleteBoard(board);
 		}
 	}

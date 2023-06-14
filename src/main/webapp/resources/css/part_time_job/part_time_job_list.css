@@ -40,3 +40,19 @@
 .list-detail:hover {
 	cursor: pointer;
 }
+
+#paging-btns {
+	width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#paging-btns>div{
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    background-color: rgb(244, 244, 244);
+    border-radius: 4px;
+    border: 1px solid transparent;
+}

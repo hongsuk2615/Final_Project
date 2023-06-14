@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Board {
 	private int boardNo;
-	private String categorySNo;
+	private int categorySNo;
 	private int categoryUNo;
 	private String upperCategoryName;
 	private String content;
