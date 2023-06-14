@@ -48,12 +48,13 @@ public class AdminLoginCheckFilter implements Filter {
 		String adminLoginURI = ((HttpServletRequest)request).getContextPath()+"/admin/login";
 
 		HttpSession session = ((HttpServletRequest)request).getSession();
-		Member loginAdmin = (Member) session.getAttribute("loginAdmin");
+//		Member loginAdmin = (Member) session.getAttribute("loginAdmin");
+		Member loginUser = (Member) session.getAttribute("loginUser");
 		
 		if(requestURI.equals(adminLoginURI)) {
 			chain.doFilter(request, response);
 			return;
-		}else if(loginAdmin == null){
+		}else if(loginUser == null || loginUser.getAuthority() != 0 ){
 			((HttpServletResponse)response).sendRedirect(adminLoginURI);
 		}else {
 			chain.doFilter(request, response);
