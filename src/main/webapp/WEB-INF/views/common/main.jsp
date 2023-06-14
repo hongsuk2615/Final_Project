@@ -86,7 +86,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="/thrifty/smallGroup/">
+                    <a href="/thrifty/smallGroup">
                         <img src="/thrifty/resources/images/main/icon/pet-love.png" class="main_menu_icon" alt="">
                         <div class="main_text_icon">소모임</div>
                     </a>

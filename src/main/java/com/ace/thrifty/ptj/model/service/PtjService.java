@@ -14,6 +14,7 @@ public interface PtjService {
 	
 	public List<Ptj> selectPtjAll();
 	
+	
 	public int insertPtj(Board b, Ptj p, List<MultipartFile> image , String webPath , String serverFolderPath) throws Exception;
 	
 	public int deletePtj(int boardNo);
