@@ -80,22 +80,23 @@ function displayMarker(place) {
         map.setLevel(1);
         setCenter(marker.getPosition().Ma , marker.getPosition().La);
         coordinate = marker.getPosition().La + "," + marker.getPosition().Ma;
+        document.getElementById('좌표').innerHTML="작은거 : "  + document.getElementById("origin").value + " 큰거 : " + document.getElementById("destination").value;
     });
 }
 
 function setOrigin(){
     document.getElementById("origin").value = coordinate;
-}
+    console.log(coordinate);
+}s
+
 
 function setDestination(){
     document.getElementById("destination").value = coordinate;
+    console.log(coordinate);
 }
 
-
-
-
-
-
+let a = document.getElementById("origin").value;
+let b = document.getElementById("origin").value;
 
 
 

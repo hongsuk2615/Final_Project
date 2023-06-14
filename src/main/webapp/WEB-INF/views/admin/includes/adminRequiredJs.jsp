@@ -21,4 +21,9 @@
 		});
 	<c:remove var="errorAlert" />
  </c:if>
+ 
+ <c:if test="${not empty alert}">
+	alert("${alert}");
+	<c:remove var="alert" />
+</c:if>
  </script>

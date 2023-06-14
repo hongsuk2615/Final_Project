@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
     pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +20,49 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js" crossorigin="anonymous"></script>
 </head>
+<style>
+.toggleSwitch {
+  width: 100px;
+  margin: 30px;
+  height: 50px;
+  display: block;
+  position: relative;
+  border-radius: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+  cursor: pointer;
+}
+
+.toggleSwitch .toggleButton {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #f03d3d;
+}
+
+
+.toggleSwitch.active .toggleButton {
+  left: calc(100% - 44px);
+  background: #fff !important;
+}
+
+.toggleSwitch, .toggleButton {
+  transition: all 0.2s ease-in;
+}
+
+.toggleSwitch.blue.active {
+  background: #5151e5;
+}
+
+.toggleSwitch.blue .toggleButton {  
+  background: #5151e5;
+}
+
+</style>
 <body>
     <div id="header" class="background_basic" style="height: 90px;">
         <div id="header_1">
@@ -26,6 +70,11 @@
                 <a href="/thrifty/">
                     <div id="main_logo" class="header_img_white"></div>
                 </a>
+            </div>
+            <div class="content_white change_content">
+            <label for="toggle" class="toggleSwitch blue">
+                <span class="toggleButton"></span>
+              </label>
             </div>
             <div id="header_1_2">
             <c:choose>
@@ -65,6 +114,43 @@
             location.href="https://kauth.kakao.com/oauth/logout?client_id=17596a7a342e703f12c332dec822a955&logout_redirect_uri=http://localhost:8081/thrifty/member/logout";
         }
     </script> 
+
+<script>
+    const toggleList = document.querySelectorAll(".toggleSwitch");
+
+    toggleList.forEach(($toggle) => {
+    $toggle.onclick = () => {
+    $toggle.classList.toggle('active');
+    if(toggleList[0].classList.contains('active')){
+        dark_mode();
+    }else{
+        light_mode();
+    }
+  }
+  
+});
+
+            function dark_mode() {
+                
+                let a = document.querySelectorAll(".main_text_icon")
+                for (var i = 0; i<a.length; i++){
+                    a[i].style.color="white";
+                }
+              
+                document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
+                document.querySelector("body").style.color="white";
+            }
+            function light_mode() {
+                let a = document.querySelectorAll(".main_text_icon")
+                for (var i = 0; i<a.length; i++){
+                    a[i].style.color="black";
+                }
+
+                document.querySelector("body").style.backgroundColor="white"; 
+                document.querySelector("body").style.color="black";
+            }
+
+  </script>
     <script src="/thrifty/resources/js/member/modal.js"></script>
     <script src="/thrifty/resources/js/member/login-enroll.js"> </script>
     <script src="/thrifty/resources/js/member/validate.js"></script>

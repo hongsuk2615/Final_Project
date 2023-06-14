@@ -120,6 +120,12 @@
 					VALUES(#{originName}, #{changeName}, #{boardNo}, #{fileLevel})
 	</insert>
 	
+	<update id="updateImage" parameterType="image">
+		UPDATE IMAGE
+		SET CHANGE_NAME 
+	</update>
+	
+	
 	
 	<insert id="insertImageList" parameterType="list">
 		INSERT INTO IMAGE (ORIGIN_NAME, CHANGE_NAME, BOARD_NO, FILE_LEVEL)
@@ -158,6 +164,14 @@
 		  </if>
 	</update>
 	
+	<update id="updateBoard" parameterType="board">
+		UPDATE BOARD
+		   SET
+			   TITLE = #{title},
+			   CONTENT = #{content}
+		WHERE BOARD_NO = #{boardNo}
+		
+	</update>
 	<update id="scrapBoard">
 		UPDATE BOARD
 		 SET WISH_COUNT = WISH_COUNT + 1
@@ -168,6 +182,12 @@
 		UPDATE BOARD
 		 SET WISH_COUNT = WISH_COUNT - 1
 		 WHERE BOARD_NO = #{bNo}
+	</update>
+	
+	<update id="deleteImage" parameterType="string">
+		UPDATE IMAGE
+		   SET STATUS = 'N'
+		 WHERE IMG_NO IN ${deleteImageList}
 	</update>
 	
 </mapper>

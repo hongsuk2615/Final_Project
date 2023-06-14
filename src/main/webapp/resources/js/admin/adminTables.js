@@ -3,11 +3,17 @@ const urlParams = new URL(location.href).searchParams;
 const urlPath = new URL(location.href).pathname;
 const lasturlPath = urlPath.substring(urlPath.lastIndexOf('/')+1);
 
+let currTabParam = "";
+if(urlParams.get('catSNo') != null){
+    currTabParam = urlParams.get('catSNo')
+}else{
+    currTabParam =  urlParams.get('catUNo')
+}
 let currentTab = "";
 
 //검색 후 페이징 처리
 const urlSearchVal = urlParams.get('search');
-if(urlSearchVal != ''){
+if(urlSearchVal != null){
         $.each($('.pagination a'), function(index, item){
                 let paginate_location = $(item).attr('href');
                 $(item).attr('href', paginate_location+"&search="+urlSearchVal);
@@ -18,31 +24,40 @@ if(urlSearchVal != ''){
 $('.table_search_btn').on('click', function(){
     const searchVal = $('input[name=table_search]').val();
 
-    if(searchVal != ''){
+    if(searchVal != null){
         urlParams.set('search', searchVal);
         location.href =  lasturlPath+"?"+urlParams.toString();
     }
 });
 
+
+
 //member 상태변경 ajax
-$(".member-status-dropdown").on('click', function(){
-    
+$(".status-dropdown").on('click', function(){
+    let reportType = urlParams.get('type');
+    let dataParam = {};
+
     const statusVal =  $(this).val();
-    const userNo = $(this).parents('tr').children('input[type=hidden]').val();
+    const priNo = $(this).parents('tr').children('input[type=hidden]').val();
     const userId = $(this).parents('tr').children('.member-userId').html();
 
+    if(reportType == 'reply'){
+        dataParam['statusVal'] = statusVal;
+        dataParam['priNo'] = priNo;
+        dataParam['type'] = reportType;
+    }else{
+        dataParam['statusVal'] = statusVal;
+        dataParam['priNo'] = priNo;
+    }
+
     $.ajax({
-        url: "member/status/update",
-        data: {
-                statusVal,
-                userNo
-            },
+        url: lasturlPath+"/status/update",
+        data: dataParam,
         dataType: "text", 
         success: function(result){
             console.log(result);
-            alert(userId+result);
+            alert(result);
             location.reload();
-            
         }
         });
     });
@@ -70,7 +85,7 @@ if(lasturlPath == 'member'){
     
     $.each($(tabArr), function(index, item){
         let tabId = $(item).attr('id');
-        if(tabId == urlParams.get('catUNo')){
+        if(tabId == currTabParam){
             currentTab = tabId;
         };
     });
