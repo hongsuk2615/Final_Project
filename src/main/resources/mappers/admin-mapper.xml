@@ -27,6 +27,8 @@
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
 		<result column="STATUS" property="status"/>
+		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
+		<result column="CATEGORY_S_NAME" property="subCategoryName"/>
 		<association property="member" resultMap="memberResultSet"/>
 		<association property="upperCategory" resultMap="upperCategoryResultSet"/>
 		<association property="subCategory" resultMap="subCategoryResultSet"/>

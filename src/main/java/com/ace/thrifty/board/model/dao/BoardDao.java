@@ -95,6 +95,5 @@ public class BoardDao {
 
 	public int updateImageList(List<Image> imageList) {
 		return sqlSession.update("boardMapper.updateImageList", imageList);
-
 	}
 }

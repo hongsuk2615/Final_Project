@@ -39,91 +39,72 @@ body {
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 	<div class="wrap">
 		<div id="body">
+			<div class="page_title">FAQ</div>
 			<div id="main_event">
 				<div id="main_menu">
 					<div>
-						<img src="/thrifty/resources/images/main/icon/room-mate.png" class="main_menu_icon" catUNo="2" alt="">
+						<img src="/thrifty/resources/images/main/icon/room-mate.png" class="main_menu_icon" catUNo="24" alt="">
 						<div class="main_text_icon">쉐어 하우스</div>
 					</div>
 					<div>
-						<img src="/thrifty/resources/images/main/icon/car-sharing.png" class="main_menu_icon" catUNo="3" alt="">
+						<img src="/thrifty/resources/images/main/icon/car-sharing.png" class="main_menu_icon" catUNo="25" alt="">
 						<div class="main_text_icon">카풀</div>
 					</div>
 					<div>
-						<img src="/thrifty/resources/images/main/icon/second-hand.png" class="main_menu_icon" catUNo="4" alt="">
+						<img src="/thrifty/resources/images/main/icon/second-hand.png" class="main_menu_icon" catUNo="26" alt="">
 						<div class="main_text_icon">중고 거래</div>
 					</div>
 					<div>
-						<img src="/thrifty/resources/images/main/icon/exchange.png" class="main_menu_icon" catUNo="5" alt="">
+						<img src="/thrifty/resources/images/main/icon/exchange.png" class="main_menu_icon" catUNo="27" alt="">
 						<div class="main_text_icon">심부름 / 알바</div>
 					</div>
 					<div>
-						<img src="/thrifty/resources/images/main/icon/supply-chain.png" class="main_menu_icon" catUNo="6" alt="">
+						<img src="/thrifty/resources/images/main/icon/supply-chain.png" class="main_menu_icon" catUNo="28" alt="">
 						<div class="main_text_icon">공동 구매</div>
 					</div>
 					<div>
-						<img src="/thrifty/resources/images/main/icon/pet-love.png" class="main_menu_icon" catUNo="7" alt="">
+						<img src="/thrifty/resources/images/main/icon/pet-love.png" class="main_menu_icon" catUNo="29" alt="">
 						<div class="main_text_icon">소모임</div>
 					</div>
 				</div>
 			</div>
-			<div class="faq-accordion">
-				<div class="accordion" id="accordionExample">
-					<div class="card">
-						<div class="card-header" id="headingOne">
-							<h2 class="mb-0">
-								<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-									Collapsible Group Item #1
-								</button>
-							</h2>
-						</div>
-						
-						<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-							<div class="card-body">
-								Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header" id="headingTwo">
-							<h2 class="mb-0">
-								<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									Collapsible Group Item #2
-								</button>
-							</h2>
-						</div>
-						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-							<div class="card-body">
-								Some placeholder content for the second accordion panel. This panel is hidden by default.
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header" id="headingThree">
-							<h2 class="mb-0">
-								<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-									Collapsible Group Item #3
-								</button>
-							</h2>
-						</div>
-						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-							<div class="card-body">
-								And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by default.
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="accordion" id="faq-accordion">
 			</div>
-			<jsp:include page="../common/footer.jsp" />
 		</div>
+		<jsp:include page="../common/footer.jsp" />
 	</div>
 	<script>
 		$('.main_menu_icon').on('click', function(){
 			let catUNo = $(this).attr('catUNo');
 
 			$.ajax({
-				url:
-				data: catUNo
+				url: 'faq/selectList',
+				data: { catUNo },
+				dataType: 'json',
+				success: function(result){
+					$('#faq-accordion').empty();
+					console.log(result);
+					let faqList = "";
+					result.forEach((faq, index) => {
+						faqList +=  `<div class="card">
+										<div class="card-header" id="faqTitle-`+(index+1)+`">
+											<h2 class="mb-0">
+											<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#faqContent-`+(index+1)+`" aria-expanded="false" aria-controls="faqContent-`+(index+1)+`">
+												`+faq.title+`
+											</button>
+											</h2>
+										</div>
+								
+										<div id="faqContent-`+(index+1)+`" class="collapse" aria-labelledby="faqTitle-`+(index+1)+`" data-parent="#faq-accordion">
+											<div class="card-body">
+												`+faq.content+`
+											</div>
+										</div>
+									</div>`
+					});
+
+					$('#faq-accordion').html(faqList);
+				}
 			});
 		})
 	</script>

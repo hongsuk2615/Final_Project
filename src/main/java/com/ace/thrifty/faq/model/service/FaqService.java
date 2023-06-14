@@ -1,10 +1,10 @@
 package com.ace.thrifty.faq.model.service;
 
-import java.util.ArrayList;
-
-import com.ace.thrifty.board.model.vo.SubCategory;
+import java.util.List;
+import java.util.Map;
 
 public interface FaqService {
 
-	ArrayList<SubCategory> faqCatList();
+	List<Map<String, String>> faqBoardList(int catUNo);
+
 }

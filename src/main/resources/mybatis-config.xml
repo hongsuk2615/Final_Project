@@ -23,7 +23,6 @@
 		<typeAlias type="com.ace.thrifty.usedProduct.model.vo.UsedProduct" alias="usedProduct"/>
 		<typeAlias type="com.ace.thrifty.co_purchase.model.vo.Co_purchase" alias="co_purchase"/>
 		<typeAlias type="com.ace.thrifty.common.model.vo.Coordinate" alias="coordinate"/>
-		<typeAlias type="com.ace.thrifty.admin.model.vo.Notice" alias="notice"/>
 		<typeAlias type="com.ace.thrifty.wishList.model.vo.WishList" alias="wishList"/>
 		<typeAlias type="com.ace.thrifty.message.model.vo.Message" alias="message"/>
 		<typeAlias type="com.ace.thrifty.carpool.model.vo.CarPool" alias="carPool"/>
@@ -31,6 +30,7 @@
 		<typeAlias type="com.ace.thrifty.report.model.vo.Report" alias="report"/>
 		<typeAlias type="com.ace.thrifty.house.model.vo.Tour" alias="tour"/>
 		<typeAlias type="com.ace.thrifty.reply.model.vo.Reply" alias="reply"/>
+		<typeAlias type="com.ace.thrifty.notice.model.vo.Notice" alias="notice"/>
 	</typeAliases>
 	
 	<!-- 
@@ -53,6 +53,8 @@
 		<mapper resource="/mappers/message-mapper.xml"/>
 		<mapper resource="/mappers/carPool-mapper.xml"/>
 		<mapper resource="/mappers/report-mapper.xml"/>
+		<mapper resource="/mappers/notice-mapper.xml"/>
+		<mapper resource="/mappers/faq-mapper.xml"/>
 	</mappers>
 
 </configuration>
