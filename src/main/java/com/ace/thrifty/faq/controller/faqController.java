@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ace.thrifty.faq.model.service.FaqService;
 
@@ -22,5 +23,15 @@ public class faqController {
 	public String faq() {
 		return "faq/faq";
 	}
+	
+	@GetMapping("/selectList")
+	@ResponseBody
+	public String faqSelectList() {
+		
+		
+		
+		return "";
+	}
+	
 
 }
