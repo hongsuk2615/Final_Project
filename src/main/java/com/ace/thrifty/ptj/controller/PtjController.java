@@ -53,7 +53,7 @@ public class PtjController {
 		 if(queryString.containsKey("lNo")) {
 			model.addAttribute("lNo", queryString.get("lNo"));			
 		 }
-		 model.addAttribute("filter", queryString.get("filter"));
+		 model.addAttribute("filter" , queryString);
 		 model.addAttribute("list", queryString.get("list"));
 		 model.addAttribute("pi", queryString.get("pi"));
 		 return "part_time_job/PTJList"; 

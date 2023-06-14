@@ -58,7 +58,19 @@
 			<jsp:include page="../common/boardBodyLeftCarPool.jsp"/>
             <div id="body-right">
                 <div id="carpool-header">
-                	<h1>[태워드려요! / 태워주세요!]</h1>     
+                	<c:choose>
+                		<c:when test="${filter.scNo eq null or filter.scNo eq '' }">
+                			<h1>[태워드려요! / 태워주세요!]</h1>
+                			<p>${filter.scNo }</p>
+                		</c:when>
+                		<c:otherwise>
+                		<c:forEach var="location" items="${locationList}">
+                				<c:if test="${location.locationNo eq filter.lNo}">
+	                				<div id="body-right-title">[${subCategory.categorySName}]</div>                				
+                				</c:if>
+                			</c:forEach>
+                		</c:otherwise>
+                	</c:choose>
                 </div>
                 <div style="width:100%; display: flex; align-items: center; justify-content: space-between;">
                 	<p><a href="/thrifty">메인</a> > <a href="/thrifty/carPool">카풀</a></p>
@@ -76,9 +88,6 @@
                 					<c:when test="${cList.isEnd eq 'N' }">
 				                        <img src="${contextPath }${cList.imgPath}" style="height: 170px; width: 210px; border-radius: 10px;"/>
                 					</c:when>
-                					<c:otherwise>
-                						<img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 200px; border-radius: 10px;"/>
-                					</c:otherwise>
                 				</c:choose>
 		                        <p style="text-align: center;">${cList.subCategory.categorySName }</p>
 		                        <p style="text-align: center;">제목 : ${cList.board.title }</p>

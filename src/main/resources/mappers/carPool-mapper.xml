@@ -83,7 +83,7 @@
 	 	</if>
 </select>
 
-<select id="selectDriveList" resultMap="carPoolResultSet">
+<select id="selectDriveList" parameterType="map" resultMap="carPoolResultSet">
 	SELECT
 		C.BOARD_NO,
 		C.RECRUITS_NUM,
@@ -91,15 +91,13 @@
 		C.IS_END,
 		B.TITLE,
 		B.CONTENT,
-		B.WISH_COUNT,
 		L.LOCATION_NAME,
-		CONCAT('/resources/upfiles/carPool/', IFNULL(CHANGE_NAME,'NULL')) AS IMG_PATH,
+		CONCAT('/resources/upfiles/carPool/', IFNULL(I.CHANGE_NAME,'NULL')) AS IMG_PATH,
 		SC.CATEGORY_S_NAME
 	FROM BOARD B
 	JOIN CARPOOL C ON B.BOARD_NO = C.BOARD_NO
 	JOIN LOCATION L ON C.LOCATION_NO = L.LOCATION_NO
 	LEFT JOIN IMAGE I ON C.BOARD_NO = I.BOARD_NO
-	JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
 	JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 	WHERE B.STATUS = 'Y'
     GROUP BY B.BOARD_NO
