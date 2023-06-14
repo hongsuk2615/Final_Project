@@ -4,7 +4,7 @@ let options = document.querySelectorAll('.optionItem');
 // 클릭한 옵션의 텍스트를 라벨 안에 넣음
 let handleSelect = function (item) {
     label.innerHTML = item.textContent;
-    label.value = item.value;
+    label.value = item.textContent;
     label.parentNode.classList.remove('active');
 	console.log(label.value);
 }

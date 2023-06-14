@@ -55,7 +55,20 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeftCo_purchase.jsp"/>
             <div id="body-right">
-                <div id="cat_title">공동구매</div>
+                <div id="cat_title">
+					<c:choose>
+                		<c:when test="${map.scNo eq null or map.scNo eq '' }">
+		                    <div id="body-right-title">공동구매</div>
+                		</c:when>
+                		<c:otherwise>
+                			<c:forEach var="subCategory" items="${subCategoryList}">
+                				<c:if test="${subCategory.categorySNo eq map.scNo}">
+	                				<div id="body-right-title">${subCategory.categorySName}</div>                				
+                				</c:if>
+                			</c:forEach>
+                		</c:otherwise>
+                	</c:choose>
+				</div>
 				<table>
                     <tbody>        
                     	<c:if test="${ empty list }">
@@ -161,29 +174,52 @@
                         </tr> -->
                     </tbody>
                 </table>
-                <div id="pagingbar"><< < 1 2 3 4 5 6 7 8 9 10 > >></div>
-                <div id="searchWrite">
-                    <div></div>
-                    <div id="search_content">
-                        <div class="selectBox2 ">
-                            <button class="label">제목</button>  <!-- ajax로 label value값 넘겨서 뜨게해야됨 -->
-                            <ul class="optionList">
-                              <li class="optionItem">제목</li>
-                              <li class="optionItem">작성자</li>
-                              <li class="optionItem">내용</li>
-                            </ul>
+                <div id="pagingbar">
+                    <c:choose>
+                        <c:when test="${ pi.currentPage eq 1 }">
+                            <img src="${ contextPath }/resources/images/main/icon/back-1.png" alt="" style="width: 25px; height: 25px;">
+                        </c:when>
+                        <c:otherwise>
+                            <div class="page-item"><a class="page-link" href="/thrifty/co_purchase?currPage=${map.currPage-1}&scNo=${map.scNo}"><img src="${ contextPath }/resources/images/main/icon/back-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
+                        </c:otherwise>					
+                    </c:choose>
+                    
+                    <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
+                        <div class="page-item"><a class="page-link" href="/thrifty/co_purchase?currPage=${item}&scNo=${map.scNo}">${item }</a></div>
+                    </c:forEach>
+                    
+                    <c:choose>
+                        <c:when test="${ pi.currentPage eq pi.maxPage }">
+                            <img src="${ contextPath }/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;">
+                        </c:when>
+                        <c:otherwise>
+                            <div class="page-item"><a class="page-link" href="/thrifty/co_purchase?currPage=${map.currPage+1}&scNo=${map.scNo}"><img src="${ contextPath }/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
+                        </c:otherwise>					
+                    </c:choose>
+				</div>
+                <form action="/thrifty/co_purchase">
+                    <div id="searchWrite">
+                        <div></div>
+                        <div id="search_content">
+                            <div class="selectBox2 ">
+                                <input type="text" class="label" value="제목" name="condition">  <!-- ajax로 label value값 넘겨서 뜨게해야됨 -->
+                                <ul class="optionList">
+                                <li class="optionItem">제목</li>
+                                <li class="optionItem">작성자</li>
+                                <li class="optionItem">내용</li>
+                                </ul>
+                            </div>
+                            <input type="text" id="search_box" name="keyword">
+                            <input type="submit" value="검색" id="search_submit">
                         </div>
-                        <input type="text" id="search_box">
-                        <a href="" id="search_submit">검색</a>
-                        <!-- <input type="submit" value="검색" id="search_submit"> -->
+                        <div>
+                            <c:if test="${loginUser != null}">
+                                <a href="${ contextPath }/co_purchase/enroll" id="write_content">글쓰기</a>
+                                <!-- <input type="submit" value="글쓰기" id="write_content"> -->
+                            </c:if>
+                        </div>
                     </div>
-	                <div>
-	                    <c:if test="${loginUser != null}">
-	                        <a href="${ contextPath }/co_purchase/enroll" id="write_content">글쓰기</a>
-	                        <!-- <input type="submit" value="글쓰기" id="write_content"> -->
-	                    </c:if>
-	                </div>
-                </div>
+	            </form>
             </div>
         </div>
         <jsp:include page="../common/footer.jsp"/>
