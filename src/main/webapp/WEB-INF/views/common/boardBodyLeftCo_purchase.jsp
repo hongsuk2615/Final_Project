@@ -14,7 +14,7 @@
 	<div id="body-left">
 	    <div id="upper-category">
 	        <div>
-	            <img src="/thrifty/resources/images/main/icon/supply-chain-3.png" alt="상위 카테고리 이미지">
+	            <img src="/thrifty/resources/images/main/icon/supply-chain.png" alt="상위 카테고리 이미지">
 	            <div id="upper-category-name">공동구매</div>
 	        </div>
 	    </div>

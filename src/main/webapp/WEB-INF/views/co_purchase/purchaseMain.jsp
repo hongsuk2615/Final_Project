@@ -198,7 +198,7 @@
                     </c:choose>
 				</div>
                 <div id="searchWrite">
-                <form action="co_purchase">
+                <form action="/thrifty/co_purchase">
                     <div></div>
                     <div id="search_content">
                         <div class="selectBox2 ">

@@ -254,6 +254,8 @@ select option{
 }
 
 .detail_bottom_img{
+	margin-top: 2px;
+    margin-right: 5px;
     width: 30px; 
     height: 30px; 
     border-radius: 100px;

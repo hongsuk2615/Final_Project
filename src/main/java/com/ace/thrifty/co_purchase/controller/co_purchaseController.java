@@ -39,22 +39,12 @@ public class co_purchaseController {
 							Board b,
 							@RequestParam Map<String, Object> paramMap,
 							HttpServletRequest req) {
-		System.out.println(paramMap);
-		Map<String, Object> map = new HashMap(); 
+		System.out.println(paramMap); 
 		if(!paramMap.containsKey("currPage")) {
 			paramMap.put("currPage", "1");
 		}
 		
-		System.out.println(paramMap.get("condition"));
-		if(paramMap.get("condition") == null) {
-			coService.selectCoPurchaseList(paramMap);			
-		}else {
-			
-			map.put("condition", paramMap.get("condition"));
-			map.put("keyword", "%"+paramMap.get("keyword")+"%");
-			System.out.println(map);
-			coService.selectSearchCoPurchaseList(map);
-		}
+		coService.selectSearchCoPurchaseList(paramMap);
 		
 		if(paramMap.containsKey("scNo")) {
 			model.addAttribute("scNo", paramMap.get("scNo"));

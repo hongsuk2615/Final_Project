@@ -121,18 +121,18 @@
 		JOIN MEMBER M USING(USER_NO)
 		JOIN IMAGE I USING(BOARD_NO)
 		WHERE B.STATUS = 'Y'
-			<if test= 'scNo!= null'>
-		 		AND CATEGORY_S_NO = #{scNo}
-		 	</if>
 		 	<choose>
-				<when test="condition == 'writer'">
-					AND NICK_NAME LIKE #{keyword}
+		 		<when test='scNo!= null and scNo !=""'>
+		 			AND CATEGORY_S_NO = #{scNo}
+		 		</when>
+				<when test="condition == '작성자'">
+					AND NICK_NAME LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 				</when>
-				<when test="condition == 'title'">
-					AND TITLE LIKE #{keyword}
+				<when test="condition == '제목'">
+					AND TITLE LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 				</when>
-				<when test="condition == 'content'">
-					AND CONTENT LIKE #{keyword}
+				<when test="condition == '내용'">
+					AND CONTENT LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 				</when>
 			</choose>
 		GROUP BY BOARD_NO
