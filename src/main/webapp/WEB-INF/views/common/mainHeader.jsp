@@ -95,7 +95,10 @@
 	                </c:choose>
             	</c:otherwise>
             </c:choose>
-	                <div id="header_search" class="search_img_white"> </div>            	
+	                <div id="header_search" class="search_img_white"> </div>   
+		            <form action="/thrifty/googleLogin/" method="POST">
+		            	<input type="submit" value="post">
+		            </form>    	
             </div>
         </div>
         <ul style="list-style-type: none;">

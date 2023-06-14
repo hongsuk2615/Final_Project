@@ -9,22 +9,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.co_purchase.model.service.Co_purchaseService;
 import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
+import com.ace.thrifty.member.model.vo.GoogleInfResponse;
+import com.ace.thrifty.member.model.vo.GoogleRequest;
+import com.ace.thrifty.member.model.vo.GoogleResponse;
 import com.ace.thrifty.member.model.vo.Member;
-import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 
 @Controller
 @RequestMapping("/co_purchase")
@@ -37,19 +42,25 @@ public class co_purchaseController {
 	// 게시글 목록 조회
 	@GetMapping("")
 	public String selectCoPurchaseList( 
-							@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
 							Model model,
 							Board b,
 							@RequestParam Map<String, Object> paramMap,
 							HttpServletRequest req) {
-		System.out.println(req.getServletPath());
+		System.out.println(paramMap); 
+		if(!paramMap.containsKey("currPage")) {
+			paramMap.put("currPage", "1");
+		}
 		
-		String categoryPath = "co_purchase";
-		Map<String, Object> map = new HashMap();
+		coService.selectSearchCoPurchaseList(paramMap);
 		
-		coService.selectCoPurchaseList(currentPage, map);
-		
-		model.addAttribute("map", map);
+		if(paramMap.containsKey("scNo")) {
+			model.addAttribute("scNo", paramMap.get("scNo"));
+			System.out.println(paramMap);
+		}
+		model.addAttribute("b", b);
+		model.addAttribute("map", paramMap);
+		//model.addAttribute("list", paramMap.get("list"));
+		model.addAttribute("pi", paramMap.get("pi"));
 		return "co_purchase/purchaseMain";
 	}
 	
@@ -132,5 +143,38 @@ public class co_purchaseController {
 		
 		return "redirect:/co_purchase";
 	}
+	
+	@Value("${google.client.id}")
+    private String googleClientId;
+    @Value("${google.client.pw}")
+    private String googleClientPw;
+
+    @RequestMapping(value="/googleLogin", method = RequestMethod.POST)
+    public String loginUrlGoogle(){
+        String reqUrl = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + googleClientId
+                + "&redirect_uri=http://localhost:8081/googleLogin&response_type=code&scope=email%20profile%20openid&access_type=offline";
+        return reqUrl;
+    }
+	
+    @RequestMapping(value="/googleLogin", method = RequestMethod.GET)
+    public String loginGoogle(@RequestParam(value = "code") String authCode){
+        RestTemplate restTemplate = new RestTemplate();
+        GoogleRequest googleOAuthRequestParam = GoogleRequest
+                .builder()
+                .clientId(googleClientId)
+                .clientSecret(googleClientPw)
+                .code(authCode)
+                .redirectUri("http://localhost:8081/googleLogin")
+                .grantType("authorization_code").build();
+        ResponseEntity<GoogleResponse> resultEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token",
+                googleOAuthRequestParam, GoogleResponse.class);
+        String jwtToken=resultEntity.getBody().getId_token();
+        Map<String, String> map=new HashMap<>();
+        map.put("id_token",jwtToken);
+        ResponseEntity<GoogleInfResponse> resultEntity2 = restTemplate.postForEntity("https://oauth2.googleapis.com/tokeninfo",
+                map, GoogleInfResponse.class);
+        String email=resultEntity2.getBody().getEmail();       
+        return email;
+    }
 
 }

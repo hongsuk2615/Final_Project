@@ -109,7 +109,7 @@
 	                </c:choose>
             	</c:otherwise>
             </c:choose>
-	                <div id="header_search" class="search_img_white"> </div>            	
+	                <div id="header_search" class="search_img_white"> </div>
             </div>
         </div>
         <div id="header_2">

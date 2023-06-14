@@ -135,6 +135,9 @@ select option{
 }
 
 #search_submit{
+	cursor: pointer;
+	font-size: 15px;
+    padding-bottom: 5px;
     width: 60px;
     height: 35px;
     background-color: rgb(0, 95, 190);
@@ -172,8 +175,12 @@ select option{
 }
 
 #pagingbar{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
     text-align: center;
     padding-top: 30px;
+    margin: auto;
     font-size: 0.5cm;   
 }
 
@@ -248,6 +255,8 @@ select option{
 }
 
 .detail_bottom_img{
+	margin-top: 2px;
+    margin-right: 5px;
     width: 30px; 
     height: 30px; 
     border-radius: 100px;
