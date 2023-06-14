@@ -1,7 +1,10 @@
 package com.ace.thrifty.smallgroup.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,7 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
+import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
+import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 
 @Repository
 public class SmallGroupDao {
@@ -23,9 +28,9 @@ public class SmallGroupDao {
 	
 	}
 	
-	public ArrayList<SmallGroup> sgSelectList(){
-		return (ArrayList)sqlSession.selectList("smallgroupMapper.sgSelectList");
-	}
+//	public ArrayList<SmallGroup> sgSelectList(){
+//		return (ArrayList)sqlSession.selectList("smallgroupMapper.sgSelectList");
+//	}
 	
 	public SmallGroup selectsgDetail(int boardNo) {
 		return sqlSession.selectOne("smallgroupMapper.selectsgDetail", boardNo);
@@ -39,6 +44,17 @@ public class SmallGroupDao {
 		return sqlSession.update("smallgroupMapper.sgDeleteBoard", b);
 	}
 	
+	public int selectsmallgroupCount(Map<String, Object> queryString) {
+		return sqlSession.selectOne("smallgroupMapper.selectsmallgroupCount", queryString);
+	}
+
+
+	public List<SmallGroup> selectsmallgroup(PageInfo pi, Map<String, Object> queryString) {
+		int offset = (pi.getCurrentPage() - 1 ) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);		
+		return sqlSession.selectList("smallgroupMapper.selectsmallgroup", queryString, rowBounds);
+	}
 	
 	
 }

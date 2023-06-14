@@ -119,6 +119,13 @@
 					VALUES(#{originName}, #{changeName}, #{boardNo}, #{fileLevel})
 	</insert>
 	
+	<update id="updateImage" parameterType="image">
+		UPDATE IMAGE
+		SET CHANGE_NAME 
+	
+	</update>
+	
+	
 	
 	<insert id="insertImageList" parameterType="list">
 		INSERT INTO IMAGE (ORIGIN_NAME, CHANGE_NAME, BOARD_NO, FILE_LEVEL)
