@@ -35,4 +35,8 @@ public class UsedProductDao {
 	public UsedProduct selectUsedProductByBno(int bNo) {
 		return sqlSession.selectOne("usedProductMapper.selectUsedProductByBno", bNo);
 	}
+	
+	public int modifyUsedProduct(UsedProduct uP) {
+		return sqlSession.update("usedProductMapper.modifyUsedProduct", uP);
+	}
 }

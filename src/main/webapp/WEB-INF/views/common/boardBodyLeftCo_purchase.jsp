@@ -14,15 +14,15 @@
 	<div id="body-left">
 	    <div id="upper-category">
 	        <div>
-	            <img src="/thrifty/resources/images/main/icon/supply-chain-3.png" alt="상위 카테고리 이미지">
-	            <div id="upper-category-name">공동구매</div>
+	            <img src="/thrifty/resources/images/main/icon/supply-chain.png" alt="상위 카테고리 이미지">
+	            <a href="/thrifty/co_purchase/" id="upper-category-name">공동구매</a>
 	        </div>
 	    </div>
 	    <div id="sub-category" >
 	        <ul class="scrollbar">
 	        <c:forEach var="subCategory" items="${subCategoryList}">
 	        	<c:if test="${subCategory.categoryUNo eq 6}">
-	            <li>${subCategory.categorySName}</li>
+	            <li onclick="location.href = '${ contextPath }/co_purchase?scNo=${ subCategory.categorySNo }'" class="subCategoryName">${subCategory.categorySName}</li>
 	            </c:if>
 	        </c:forEach>    
 	        </ul>

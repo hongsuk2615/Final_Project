@@ -42,50 +42,32 @@ body {
 			<div id="main_event">
 				<div id="main_menu">
 					<div>
-						<a href="/thrifty/sharehouse/"> <img
-							src="/thrifty/resources/images/main/icon/room-mate.png"
-							class="main_menu_icon" alt="">
-							<div class="main_text_icon">쉐어 하우스</div>
-						</a>
+						<img src="/thrifty/resources/images/main/icon/room-mate.png" class="main_menu_icon" catUNo="2" alt="">
+						<div class="main_text_icon">쉐어 하우스</div>
 					</div>
 					<div>
-						<a href="/thrifty/carPool/"> <img
-							src="/thrifty/resources/images/main/icon/car-sharing.png"
-							class="main_menu_icon" alt="">
-							<div class="main_text_icon">카풀</div>
-						</a>
+						<img src="/thrifty/resources/images/main/icon/car-sharing.png" class="main_menu_icon" catUNo="3" alt="">
+						<div class="main_text_icon">카풀</div>
 					</div>
 					<div>
-						<a href="/thrifty/usedProduct/"> <img
-							src="/thrifty/resources/images/main/icon/second-hand.png"
-							class="main_menu_icon" alt="">
-							<div class="main_text_icon">중고 거래</div>
-						</a>
+						<img src="/thrifty/resources/images/main/icon/second-hand.png" class="main_menu_icon" catUNo="4" alt="">
+						<div class="main_text_icon">중고 거래</div>
 					</div>
 					<div>
-						<a href="/thrifty/ptj/"> <img
-							src="/thrifty/resources/images/main/icon/exchange.png"
-							class="main_menu_icon" alt="">
-							<div class="main_text_icon">심부름 / 알바</div>
-						</a>
+						<img src="/thrifty/resources/images/main/icon/exchange.png" class="main_menu_icon" catUNo="5" alt="">
+						<div class="main_text_icon">심부름 / 알바</div>
 					</div>
 					<div>
-						<a href="/thrifty/co_purchase/"> <img
-							src="/thrifty/resources/images/main/icon/supply-chain.png"
-							class="main_menu_icon" alt="">
-							<div class="main_text_icon">공동 구매</div>
-						</a>
+						<img src="/thrifty/resources/images/main/icon/supply-chain.png" class="main_menu_icon" catUNo="6" alt="">
+						<div class="main_text_icon">공동 구매</div>
 					</div>
 					<div>
-						<a href="/thrifty/smallGroup/"> <img
-							src="/thrifty/resources/images/main/icon/pet-love.png"
-							class="main_menu_icon" alt="">
-							<div class="main_text_icon">소모임</div>
-						</a>
+						<img src="/thrifty/resources/images/main/icon/pet-love.png" class="main_menu_icon" catUNo="7" alt="">
+						<div class="main_text_icon">소모임</div>
 					</div>
 				</div>
 			</div>
-			<div>
+			<div class="faq-accordion">
 				<div class="accordion" id="accordionExample">
 					<div class="card">
 						<div class="card-header" id="headingOne">
@@ -135,5 +117,15 @@ body {
 			<jsp:include page="../common/footer.jsp" />
 		</div>
 	</div>
+	<script>
+		$('.main_menu_icon').on('click', function(){
+			let catUNo = $(this).attr('catUNo');
+
+			$.ajax({
+				url:
+				data: catUNo
+			});
+		})
+	</script>
 </body>
 </html>

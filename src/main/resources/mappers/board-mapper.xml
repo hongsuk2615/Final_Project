@@ -123,7 +123,6 @@
 	<update id="updateImage" parameterType="image">
 		UPDATE IMAGE
 		SET CHANGE_NAME 
-	
 	</update>
 	
 	
@@ -182,6 +181,12 @@
 		UPDATE BOARD
 		 SET WISH_COUNT = WISH_COUNT - 1
 		 WHERE BOARD_NO = #{bNo}
+	</update>
+	
+	<update id="deleteImage" parameterType="string">
+		UPDATE IMAGE
+		   SET STATUS = 'N'
+		 WHERE IMG_NO IN ${deleteImageList}
 	</update>
 	
 </mapper>

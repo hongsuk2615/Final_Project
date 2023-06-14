@@ -12,11 +12,13 @@ public interface Co_purchaseService {
 	
 	public int insertBoard(Board b, Co_purchase co, List<MultipartFile> imgList, String webPath, String serverFolderPath) throws Exception;
 	
-	public void selectCoPurchaseList(int currentPage, Map<String, Object> map);
+	public void selectCoPurchaseList(Map<String, Object> map);
 
 	public Co_purchase selectCoPurchase(int bNo);
 
 	public int updateBoard(Board b, Co_purchase cp, List<MultipartFile> imgList, String webPath,
 			String serverFolderPath) throws Exception;
+
+	public void selectSearchCoPurchaseList(Map<String, Object> map);
 
 }

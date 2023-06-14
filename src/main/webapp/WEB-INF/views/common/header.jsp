@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="text/javascript" src="/thrifty/resources/js/common/header.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/thrifty/resources/css/common/mainHeader.css">
@@ -108,7 +109,7 @@
 	                </c:choose>
             	</c:otherwise>
             </c:choose>
-	                <div id="header_search" class="search_img_white"> </div>            	
+	                <div id="header_search" class="search_img_white"> </div>
             </div>
         </div>
         <div id="header_2">
