@@ -78,7 +78,6 @@
             		queryString += "&maxPrice="+maxPrice;
             		queryString += "&location="+location;
             		queryString += "&tradeMethod="+tradeMethod;
-            		console.log(queryString);
             		let url = "/thrifty/usedProduct"+queryString;
             		window.location.href = url;
             	}

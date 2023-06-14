@@ -92,4 +92,46 @@ public class UsedProductServiceImp implements UsedProductService {
 		return detail;
 	}
 
+	@Override
+	public int modifyUsedProduct(Board b, UsedProduct uP, List<MultipartFile> imgList, String webPath,
+			String serverFolderPath, String removeImgList) throws Exception {
+		int result = 0;
+		result = boardDao.updateBoard(b);
+		if (result > 0) {
+			uP.setBoardNo(b.getBoardNo());
+			System.out.println(uP);
+			result = usedProductDao.modifyUsedProduct(uP);
+		}
+		
+		if(result > 0 && removeImgList.length() > 0 ) {
+			result = boardDao.deleteImage(removeImgList);
+		}
+
+		if (result > 0 && imgList != null) {
+			List<Image> imageList = new ArrayList();
+
+			for (int i = 0; i < imgList.size(); i++) {
+				if (imgList.get(i).getSize() > 0) {
+					String changeName = Utils.saveFile(imgList.get(i), serverFolderPath);
+
+					Image img = new Image();
+					img.setBoardNo(b.getBoardNo());
+					img.setFileLevel(i);
+					img.setOriginName(imgList.get(i).getOriginalFilename());
+					img.setChangeName(changeName);
+
+					imageList.add(img);
+				}
+			}
+
+			if (!imageList.isEmpty()) {
+				result = boardDao.insertImageList(imageList);
+				if (!(result == imageList.size())) {
+					throw new Exception("이미지 등록 예외발생");
+				}
+			}
+		}
+		return result;
+	}
+
 }

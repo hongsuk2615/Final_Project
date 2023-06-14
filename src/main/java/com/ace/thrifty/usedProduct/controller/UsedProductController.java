@@ -94,4 +94,24 @@ public class UsedProductController {
 			return "redirect:" + referer;
 		}
 	}
+	
+	@PostMapping("/modify")
+	public String modifyUsedProduct(HttpSession session, 
+									Board b, 
+									UsedProduct uP,
+									@RequestParam(value = "images", required = false ) List<MultipartFile> imgList,
+									String removeImgList)  throws Exception {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		b.setCategoryUNo(4);
+		b.setUserNo(loginUser.getUserNo());
+		System.out.println(b);
+		System.out.println(uP);
+		System.out.println(imgList);
+		System.out.println(removeImgList);
+		removeImgList = "("+removeImgList+")";
+		String webPath = "/resources/upfiles/usedProduct/";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		usedProductService.modifyUsedProduct(b,	uP, imgList, webPath, serverFolderPath, removeImgList);
+		return "redirect:/usedProduct";
+	}
 }

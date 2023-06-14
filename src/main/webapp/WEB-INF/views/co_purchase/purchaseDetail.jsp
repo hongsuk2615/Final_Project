@@ -65,10 +65,10 @@
                         <div id="detail_header_1_title">${ board.title }</div> <!-- 글 제목 -->
                         <div id="report-btn" class="flex" bNo="${board.boardNo}">
                             <img src="${ contextPath }/resources/images/main/icon/alarm.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;">
-                            <div>신고</div>
+                            <div style="margin-top: 2.5px;">신고</div>
                         </div>
                     </div>
-                    <div id="profile" class="flex">
+                    <div id="profile" class="flex align">
                         <div id="profile_1" class="flex">
                             <div id="profile_img">
                                 <img src="${ contextPath }/resources/images/myPage/${ co_purchase.changeName2 }" alt="" style="width: 40px; height: 40px; border-radius: 100px;">
