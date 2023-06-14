@@ -30,6 +30,7 @@ public class Board {
 	private int wishCount;
 	private String nickName;
 
+
 	
 	private ArrayList<Image> imgList;
 	private ArrayList<Co_purchase> coPurchaseList;
