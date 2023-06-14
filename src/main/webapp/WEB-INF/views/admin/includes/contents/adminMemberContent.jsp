@@ -113,9 +113,9 @@
 																	</c:choose>
 																</button>
 																<div class="dropdown-menu">
-																	<button class="dropdown-item member-status-dropdown" value="active">활성</button>
-																	<button class="dropdown-item member-status-dropdown" value="suspend">정지</button>
-																	<button class="dropdown-item member-status-dropdown" value="banned">탈퇴</button>
+																	<button class="dropdown-item status-dropdown" value="active">활성</button>
+																	<button class="dropdown-item status-dropdown" value="suspend">정지</button>
+																	<button class="dropdown-item status-dropdown" value="banned">탈퇴</button>
 																</div>
 															</div>
 														</td>

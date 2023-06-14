@@ -105,8 +105,8 @@
 																	</c:choose>
 																</button>
 																<div class="dropdown-menu">
-																	<button class="dropdown-item faq-status-dropdown" value="Y">활성</button>
-																	<button class="dropdown-item faq-status-dropdown" value="N">삭제</button>
+																	<button class="dropdown-item status-dropdown" value="Y">활성</button>
+																	<button class="dropdown-item status-dropdown" value="N">삭제</button>
 																</div>
 															</div>
 														</td>

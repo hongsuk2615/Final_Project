@@ -42,6 +42,11 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.selectReportListCount", paramMap);
 	}
 	
+	public int selectBoardListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("adminMapper.selectBoardListCount", paramMap);
+	}
+
+	
 	public int selectNoticeListCount(Map<String, Object> paramMap) {
 		return sqlSession.selectOne("adminMapper.selectNoticeListCount", paramMap);
 	}
@@ -71,6 +76,17 @@ public class AdminDao {
 		
 		return sqlSession.selectList("adminMapper.reportList", paramMap, rowBounds);
 	}
+	
+	public List<Board> BoardList(PageInfo pi, Map<String, Object> paramMap) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return sqlSession.selectList("adminMapper.boardList", paramMap, rowBounds);
+	}
+
 	
 	public List<Notice> noticeList(PageInfo pi, Map<String, Object> paramMap) {
 		
@@ -127,6 +143,8 @@ public class AdminDao {
 	public Board enrollSelect(int boardNo) {
 		return sqlSession.selectOne("adminMapper.enrollSelect", boardNo);
 	}
+
+
 
 
 

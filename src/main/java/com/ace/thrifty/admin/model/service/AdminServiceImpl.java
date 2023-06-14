@@ -80,6 +80,22 @@ public class AdminServiceImpl implements AdminService{
 		map.put("pi", pi);
 		map.put("list", list);
 	}
+	
+	@Override
+	public void BoardList(Map<String, Object> map, Map<String, Object> paramMap) {
+		
+		int listCount = adminDao.selectBoardListCount(paramMap);
+		Integer currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = pageination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<Board> list = adminDao.BoardList(pi, paramMap);
+		
+		map.put("pi", pi);
+		map.put("list", list);
+	}
 
 	@Override
 	public void noticeList(Map<String, Object> map, Map<String, Object> paramMap) {
@@ -151,6 +167,9 @@ public class AdminServiceImpl implements AdminService{
 	public int enrollUpdate(Board b) {
 		return adminDao.enrollUpdate(b);
 	}
+
+
+
 
 
 

@@ -60,6 +60,16 @@
 		<result column="STATUS" property="status"/>
 	</resultMap>
 	
+	<resultMap type="reply" id="replyResultSet">
+		<id column="REPLY_NO" property="replyNo"/>
+		<result column="REF_BNO" property="refBno"/>
+		<result column="CONTENT" property="content"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="STATE" property="state"/>
+		<result column="PARENT_REPLY_NO" property="parentReplyNo"/>
+		<result column="REPORT_COUNT" property="reportCount"/>
+	</resultMap>
+	
 	<resultMap type="report" id="reportResultSet">
 		<result column="BOARD_NO" property="boardNo"/>
 		<result column="REPLY_NO" property="replyNo"/>
@@ -68,6 +78,7 @@
 		<association property="board" resultMap="boardResultSet"/>
 		<association property="member" resultMap="memberResultSet"/>
 		<association property="upperCategory" resultMap="upperCategoryResultSet"/>
+		<association property="reply" resultMap="replyResultSet" />
 	</resultMap>
 
 	<select id="loginAdmin" parameterType="member" resultMap="memberResultSet">
@@ -155,16 +166,37 @@
 	</update>
 	
 	<update id="boardStatusUpdate" parameterType="map">
-		UPDATE BOARD SET
 		<choose>
-			<when test='statusVal == "Y"'>
+			<when test="type == 'reply'">
+				UPDATE REPLY SET	
+			</when>
+			<otherwise>
+				UPDATE BOARD SET
+			</otherwise>
+		</choose>
+		<choose>
+			<when test='statusVal == "Y" and type == "reply"'>
+				STATE = 'Y'
+			</when>
+			<when test='statusVal == "N" and type == "reply"'>
+				STATE = 'N'
+			</when>
+			<when test='statusVal == "Y" and type == null'>
 				STATUS = 'Y'
 			</when>
-			<when test='statusVal == "N"'>
+			<when test='statusVal == "N" and type == null'>
 				STATUS = 'N'
 			</when>
 		</choose>
-		WHERE BOARD_NO = #{priNo}
+		<choose>
+			<when test="type == 'reply'">
+				WHERE REPLY_NO = #{priNo}	
+			</when>
+			<otherwise>
+				WHERE BOARD_NO = #{priNo}
+			</otherwise>
+		</choose>
+		
 	</update>
 	
 	<select id="noticeSubCatList" resultMap="subCategoryResultSet">
@@ -180,16 +212,33 @@
 	</select>
 	
 	<select id="selectReportListCount" resultType="int">
-		SELECT count(*)
+		SELECT COUNT(*)
 		<if test="type == 'board'">
 			FROM REPORT R JOIN BOARD B USING(BOARD_NO)
+			JOIN MEMBER M USING(USER_NO)
+			JOIN UPPER_CATEGORY UC USING (CATEGORY_U_NO)
 		</if>
-		JOIN MEMBER M USING(USER_NO)
-		JOIN UPPER_CATEGORY UC USING (CATEGORY_U_NO)
-		WHERE B.REPORT_COUNT > 0
+		<if test="type == 'reply'">
+			FROM REPORT R JOIN REPLY RE USING(REPLY_NO)
+			JOIN BOARD B ON RE.REF_BNO = B.BOARD_NO
+			JOIN MEMBER M ON R.REPORT_USER_NO = M.USER_NO
+			JOIN UPPER_CATEGORY UC USING(CATEGORY_U_NO)
+		</if>
+			WHERE B.REPORT_COUNT > 0
 		<if test="catUNo != 0">
 			AND B.CATEGORY_U_NO = #{catUNo}
 		</if>
+	 	<if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND B.TITLE LIKE #{searchPattern}
+		</if>
+	</select>
+	
+	<select id="selectBoardListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM BOARD B
+		JOIN UPPER_CATEGORY UC USING(CATEGORY_U_NO)
+		WHERE CATEGORY_U_NO NOT IN(1, 9)
 	</select>
 	
 	<select id="selectNoticeListCount" resultType="int">
@@ -221,14 +270,40 @@
 	</select>
 	
 	<select id="reportList" parameterType="map" resultMap="reportResultSet">
-		SELECT CATEGORY_U_NAME, TITLE, B.REPORT_COUNT, NICK_NAME, B.STATUS
-		FROM REPORT R JOIN BOARD B USING(BOARD_NO)
-		JOIN MEMBER M USING(USER_NO)
-		JOIN UPPER_CATEGORY UC USING (CATEGORY_U_NO)
-		WHERE B.REPORT_COUNT > 0
+		<if test="type == 'board'">
+			SELECT BOARD_NO, CATEGORY_U_NAME, TITLE, B.REPORT_COUNT, NICK_NAME, B.STATUS
+			FROM REPORT R JOIN BOARD B USING(BOARD_NO)
+			JOIN MEMBER M USING(USER_NO)
+			JOIN UPPER_CATEGORY UC USING (CATEGORY_U_NO)
+		</if>
+		<if test="type == 'reply'">
+			SELECT RE.REPLY_NO, UC.CATEGORY_U_NAME, B.TITLE, RE.CONTENT, RE.REPORT_COUNT, M.NICK_NAME, RE.STATE
+			FROM REPORT R JOIN REPLY RE USING(REPLY_NO)
+			JOIN BOARD B ON RE.REF_BNO = B.BOARD_NO
+			JOIN MEMBER M ON R.REPORT_USER_NO = M.USER_NO
+			JOIN UPPER_CATEGORY UC USING(CATEGORY_U_NO)
+		</if>
+			WHERE B.REPORT_COUNT > 0
 		<if test="catUNo != 0">
 			AND B.CATEGORY_U_NO = #{catUNo}
 		</if>
+	 	<if test="search != null">
+		 	<bind name="searchPattern" value="'%'+search+'%'"/>
+		 	AND B.TITLE LIKE #{searchPattern}
+		</if>
+		<if test="type == 'board'">
+			ORDER BY B.STATUS DESC, B.REPORT_COUNT DESC
+		</if>
+		<if test="type == 'reply'">
+			ORDER BY RE.STATE DESC, RE.REPORT_COUNT DESC 
+		</if>
+	</select>
+	
+	<select id="boardList" resultMap="boardResultSet">
+		SELECT *
+		FROM BOARD B
+		JOIN UPPER_CATEGORY UC USING(CATEGORY_U_NO)
+		WHERE CATEGORY_U_NO NOT IN(1, 9)
 	</select>
 	
 	<select id="noticeList" resultMap="noticeResultSet" parameterType="map">

@@ -131,8 +131,6 @@ public class AdminController {
 		
 		adminService.reportList(map, paramMap);
 		
-		System.out.println(paramMap);
-		System.out.println(map);
 		model.addAttribute("contents", "report");
 		model.addAttribute("map", map);
 		return "admin/adminPage";
@@ -141,8 +139,18 @@ public class AdminController {
 	@GetMapping("/board")
 	public String adminBoard(Model model, @RequestParam Map<String, Object> paramMap) {
 		
-			model.addAttribute("contents", "board");
-			return "admin/adminPage";
+		Map<String, Object> map = new LinkedHashMap<>();
+		
+		List<UpperCategory> tabList = adminService.upperCatList();
+		adminService.BoardList(map, paramMap);
+		
+		map.put("catUNo", paramMap.get("catUNo"));
+		map.put("tabList", tabList);
+		
+		model.addAttribute("contents", "board");
+		model.addAttribute("map", map);
+		
+		return "admin/adminPage";
 	}
 	
 	@GetMapping("/notice")
@@ -161,8 +169,6 @@ public class AdminController {
 			
 			model.addAttribute("contents", "notice");
 			model.addAttribute("map", map);
-			
-			System.out.println(map);
 			
 			return "admin/adminPage";
 	}

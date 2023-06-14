@@ -29,6 +29,7 @@
 		<typeAlias type="com.ace.thrifty.report.model.vo.ReportCategory" alias="reportCategory"/>
 		<typeAlias type="com.ace.thrifty.report.model.vo.Report" alias="report"/>
 		<typeAlias type="com.ace.thrifty.house.model.vo.Tour" alias="tour"/>
+		<typeAlias type="com.ace.thrifty.reply.model.vo.Reply" alias="reply"/>
 	</typeAliases>
 	
 	<!-- 

@@ -20,6 +20,8 @@ public interface AdminService {
 	
 	void reportList(Map<String, Object> map, Map<String, Object> paramMap);
 	
+	void BoardList(Map<String, Object> map, Map<String, Object> paramMap);
+	
 	void noticeList(Map<String, Object> map, Map<String, Object> paramMap);
 	
 	void faqList(Map<String, Object> map, Map<String, Object> paramMap);

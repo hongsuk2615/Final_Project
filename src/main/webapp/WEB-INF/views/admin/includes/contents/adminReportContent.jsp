@@ -34,12 +34,12 @@
 						<div class="card-header p-0 pt-1">
 							<ul class="nav nav-tabs" id="report-tabs">
 								<li class="nav-item">
-									<a class="nav-link" id="0" href="report?catUNo=0&type=board&currentPage=1">전체</a>
+									<a class="nav-link" id="0" href="report?catUNo=0&type=${type}&currentPage=1">전체</a>
 								</li>
 								<c:forEach var="list" items="${tab}">
 									<c:if test="${list.categoryUNo ne 1}">
 										<li class="nav-item">
-											<a class="nav-link" id="${list.categoryUNo}" href="report?catUNo=${list.categoryUNo}&type=board&currentPage=1">${list.categoryUName}</a>
+											<a class="nav-link" id="${list.categoryUNo}" href="report?catUNo=${list.categoryUNo}&type=${type}&currentPage=1">${list.categoryUName}</a>
 										</li>
 									</c:if>
 								</c:forEach>
@@ -70,8 +70,8 @@
 										</c:if>
 										</button>
 										<div class="dropdown-menu" aria-labelledby="board_reply">
-										  <a class="dropdown-item" href="report?catUNo=${catUNo}&type=board&currentPage=${pi.currentPage}">게시물</a>
-										  <a class="dropdown-item" href="report?catUNo=${catUNo}&type=reply&currentPage=${pi.currentPage}">댓글</a>
+										  <a class="dropdown-item" href="report?catUNo=${catUNo}&type=board&currentPage=1">게시물</a>
+										  <a class="dropdown-item" href="report?catUNo=${catUNo}&type=reply&currentPage=1">댓글</a>
 										</div>
 									</div>
 								</div>
@@ -80,30 +80,55 @@
 										<table class="table table-striped">
 											<thead>
 												<tr>
-													<th rowspan="1" colspan="1">번호</th>
-													<th rowspan="1" colspan="1">카테고리</th>
-													<th rowspan="1" colspan="1">제목</th>
-													<th rowspan="1" colspan="1">신고된 횟수</th>
-													<th rowspan="1" colspan="1">작성자</th>
-													<th rowspan="1" colspan="1">상태</th>
-													<th rowspan="1" colspan="1">관리</th>
+													<c:if test="${type eq 'board'}">
+														<th rowspan="1" colspan="1">번호</th>
+														<th rowspan="1" colspan="1">카테고리</th>
+														<th rowspan="1" colspan="1">제목</th>
+														<th rowspan="1" colspan="1">신고된 횟수</th>
+														<th rowspan="1" colspan="1">작성자</th>
+														<th rowspan="1" colspan="1">상태</th>
+														<th rowspan="1" colspan="1">관리</th>
+													</c:if>
+													<c:if test="${type eq 'reply'}">
+														<th rowspan="1" colspan="1">번호</th>
+														<th rowspan="1" colspan="1">카테고리</th>
+														<th rowspan="1" colspan="1">게시물</th>
+														<th rowspan="1" colspan="1">댓글 내용</th>
+														<th rowspan="1" colspan="1">신고된 횟수</th>
+														<th rowspan="1" colspan="1">작성자</th>
+														<th rowspan="1" colspan="1">상태</th>
+														<th rowspan="1" colspan="1">관리</th>
+													</c:if>
 												</tr>
 											</thead>
 											<tbody>
 												<c:forEach var="list" items="${map.list}" varStatus="i">
 													<tr class="odd">
-														<input type="hidden" value="${list.boardNo}">
+														<c:if test="${type eq 'board'}">
+															<input type="hidden" value="${list.board.boardNo}">
+														</c:if>
+														<c:if test="${type eq 'reply'}">
+															<input type="hidden" value="${list.reply.replyNo}">
+														</c:if>
 														<td>${i.count}</td>
 														<td>${list.upperCategory.categoryUName}</td>
 														<td>${list.board.title }</td>
-														<td>${list.board.reportCount}</td>
-														<td>${list.member.nickName}</td>
-														<td>${list.board.status}</td>
+														<c:if test="${type eq 'board'}">
+															<td>${list.board.reportCount}</td>
+															<td>${list.member.nickName}</td>
+															<td>${list.board.status}</td>
+														</c:if>
+														<c:if test="${type eq 'reply'}">
+															<td>${list.reply.content}</td>
+															<td>${list.reply.reportCount}</td>
+															<td>${list.member.nickName}</td>
+															<td>${list.reply.state}</td>
+														</c:if>
 														<td>
 															<div class="btn-group">
 																<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
 																	<c:choose>
-																		<c:when test="${list.board.status eq 'Y'}">
+																		<c:when test="${list.board.status eq 'Y' or list.reply.state eq 'Y'}">
 																			활성
 																		</c:when>
 																		<c:otherwise>
@@ -112,8 +137,8 @@
 																	</c:choose>
 																</button>
 																<div class="dropdown-menu">
-																	<button class="dropdown-item report-status-dropdown" value="Y">활성</button>
-																	<button class="dropdown-item report-status-dropdown" value="N">삭제</button>
+																	<button class="dropdown-item status-dropdown" value="Y">활성</button>
+																	<button class="dropdown-item status-dropdown" value="N">삭제</button>
 																</div>
 															</div>
 														</td>

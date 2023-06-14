@@ -43,7 +43,7 @@
           </li>
           
           <li class="nav-item sidebar-board">
-            <a href="${contextPath}/admin/board" class="nav-link">
+            <a href="${contextPath}/admin/board?catUNo=0&currentPage=1" class="nav-link">
               <i class="nav-icon fas fa-clipboard-list"></i>
               <p>
                 게시판 관리

@@ -13,7 +13,6 @@ let currentTab = "";
 
 //검색 후 페이징 처리
 const urlSearchVal = urlParams.get('search');
-console.log(urlSearchVal);
 if(urlSearchVal != null){
         $.each($('.pagination a'), function(index, item){
                 let paginate_location = $(item).attr('href');
@@ -31,19 +30,29 @@ $('.table_search_btn').on('click', function(){
     }
 });
 
+
+
 //member 상태변경 ajax
-$(".dropdown-item").on('click', function(){
-    
+$(".status-dropdown").on('click', function(){
+    let reportType = urlParams.get('type');
+    let dataParam = {};
+
     const statusVal =  $(this).val();
     const priNo = $(this).parents('tr').children('input[type=hidden]').val();
     const userId = $(this).parents('tr').children('.member-userId').html();
 
+    if(reportType == 'reply'){
+        dataParam['statusVal'] = statusVal;
+        dataParam['priNo'] = priNo;
+        dataParam['type'] = reportType;
+    }else{
+        dataParam['statusVal'] = statusVal;
+        dataParam['priNo'] = priNo;
+    }
+
     $.ajax({
         url: lasturlPath+"/status/update",
-        data: {
-                statusVal,
-                priNo
-            },
+        data: dataParam,
         dataType: "text", 
         success: function(result){
             console.log(result);
