@@ -87,7 +87,14 @@
                             <div style="display: flex;">
                                 <div>
                                 <c:forEach var="image" items="${imageList }" begin="0" end="3" step="1">
-                                	<img src="${contextPath }/resources/upfiles/carPool/${image.changeName}" style="height: 200px; width: 300px; border-radius: 10px;" >                                	
+                                <c:choose>
+                                	<c:when test="${image.changeName != null }">
+                                		<img src="${contextPath }/resources/upfiles/carPool/${image.changeName}" style="height: 200px; width: 300px; border-radius: 10px;" />                                	
+                                	</c:when>
+                                	<c:otherwise>
+                                		<img src="${contextPath }/resources/images/carpool/no-image.png" style="height: 200px; width: 300px; border-radius: 10px;" />
+                                	</c:otherwise>
+                                </c:choose>
                                 </c:forEach>
                                 <h2>제목 : &nbsp;${carpool.board.title }</h2>
                                 </div>
@@ -107,7 +114,7 @@
                             <hr>
                             <div id="item-btns">
                                 <div id="inquiry-btn" uNo="${carpool.board.userNo }" seller="${carpool.member.userId }">쪽지 보내기</div>
-                                <div id="report-btn" bNo="${p.board.boardNo }">신고하기</div>
+                                <div id="report-btn" bNo="${carpool.board.boardNo }">신고하기</div>
                                 <div id="wish-btn" bNo="${carpool.board.boardNo }">찜</div>
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
@@ -120,6 +127,8 @@
                             <h3>시간 : </h3>
                             출발 시간 : ${carpool.startTime }<br>
                             도착 시간 : ${carpool.endTime }
+                            <hr>
+                            <h3>시 / 군 / 구 : ${carpool.location.locationName }</h3>
                             <hr>
                             <div id="enroll-map">
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">

@@ -80,9 +80,13 @@
                             <h4>현재 인원(자신포함) : <input type="number" id="carpool-member" name="recruitsCurr"required> 명</h4>
                             <hr>
                             <h3>카테고리 : 
-                            	
-                                <input type="radio" name="categorySNo" id="get-in-car" value="31">태워드려요!
-                                <input type="radio" name="categorySNo" id="i-want-car" value="32">태워주세요!
+                            	<c:forEach var="categorySName" items="${subCategoryList }">
+                            		<c:if test="${categorySName.categoryUNo eq 3 }">
+                            			<input type="radio" class="category" name="categorySNo" id="get-in-car" value="${categorySName.categorySNo }">${categorySName.categorySName }
+                            		</c:if>
+                            	</c:forEach>
+                                <!-- <input type="radio" class="category" name="categorySNo" id="get-in-car" value="31">태워드려요!
+                                <input type="radio" class="category" name="categorySNo" id="i-want-car" value="32">태워주세요! -->
                                 <table>
                                 	<tr id="images" style='display:none;'>
 				                        <th>이미지<br>(최대4장)<br><button type="button" onclick="insertImage();">이미지 첨부</button></th>

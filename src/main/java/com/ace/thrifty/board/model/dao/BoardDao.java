@@ -81,10 +81,6 @@ public class BoardDao {
 	public int updateBoard(Board b) {
 		return sqlSession.update("boardMapper.updateBoard", b);
 	}
-	
-	public int insertImage(Image img) {
-		System.out.println(img);
-		return sqlSession.insert("boardMapper.insertImage" , img);
 
 	
 	public int scrapBoard(int bNo) {

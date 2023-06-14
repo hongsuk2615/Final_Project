@@ -71,12 +71,19 @@
                 <hr style="width: 100%;">
                 <div id="carpool-allBody" style="height: 1000px;">
                 	<c:forEach var="cList" items="${list }" >
-	                    <div style="width: 200px; height: 170px; border: 1px gray;" onclick="location.href='${contextPath}/carPool/detail?bNo=${cList.boardNo }'">
-	                        <img src="${contextPath }/${cList.imgPath}" style="height: 170px; width: 210px; border-radius: 10px;"/>
-	                        <p style="text-align: center;">${cList.subCategory.categorySName }</p>
-	                        <p style="text-align: center;">제목 : ${cList.board.title }</p>
-	                        <p style="text-align: center;">카풀비 : ${cList.price }</p>
-	                    </div>
+                			<div style="width: 200px; height: 170px; border: 1px gray;" onclick="location.href='${contextPath}/carPool/detail?bNo=${cList.boardNo }'">
+                				<c:choose>
+                					<c:when test="${cList.isEnd eq 'N' }">
+				                        <img src="${contextPath }${cList.imgPath}" style="height: 170px; width: 210px; border-radius: 10px;"/>
+                					</c:when>
+                					<c:otherwise>
+                						<img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 200px; border-radius: 10px;"/>
+                					</c:otherwise>
+                				</c:choose>
+		                        <p style="text-align: center;">${cList.subCategory.categorySName }</p>
+		                        <p style="text-align: center;">제목 : ${cList.board.title }</p>
+		                        <p style="text-align: center;">카풀비 : ${cList.price }</p>
+		                    </div>     		
                 	</c:forEach>
                 </div>
 				

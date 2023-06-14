@@ -33,11 +33,6 @@
 			<result column="FILE_LEVEL" property="fileLevel"/>
 			<result column="STATUS" property="status"/>
 	</collection>
-	<collection property="subCategory" javaType="com.ace.thrifty.board.model.vo.SubCategory">
-			<id column="CATEGORY_S_NO" property="categorySNo"/>
-			<result column="CATEGORY_U_NO" property="categoryUNo"/>
-			<result column="CATEGORY_S_NAME" property="categorySName"/>
-	</collection>
 	<collection property="member" javaType="com.ace.thrifty.member.model.vo.Member">
 			<id column="USER_NO" property="userNo"/>
 			<result column="USER_NAME" property="userName"/>
@@ -46,6 +41,19 @@
 			<result column="USER_ID" property="userId" />
 			<result column="PHONE" property="phone" />
 	</collection>
+	<collection property="subCategory" resultMap="subCategoryResultSet" />
+	<collection property="location" resultMap="locationResultSet"/>
+</resultMap>
+
+<resultMap type="location" id="locationResultSet">
+	<result column="LOCATION_NAME" property="locationName" />
+	<result column="LOCATION_NO" property="locationNo" />
+</resultMap>
+
+<resultMap type="subCategory" id="subCategoryResultSet">
+	<result column="CATEGORY_S_NO" property="categorySNo" />
+	<result column="CATEGORY_S_NAME" property="categorySName" />
+	<result column="CATEGORY_U_NO" property="categoryUNo" />
 </resultMap>
 
 <select id="driveList" resultMap="carPoolResultSet">
@@ -78,32 +86,29 @@
 <select id="selectDriveList" resultMap="carPoolResultSet">
 	SELECT
 		C.BOARD_NO,
-		C.LOCATION_NO,
 		C.RECRUITS_NUM,
 		C.RECRUITS_CURR,
 		C.IS_END,
-		B.CATEGORY_S_NO,
 		B.TITLE,
 		B.CONTENT,
 		B.WISH_COUNT,
 		L.LOCATION_NAME,
-		CONCAT('/resources/upfiles/carPool/', CHANGE_NAME) AS IMG_PATH,
-		B.STATUS,
+		CONCAT('/resources/upfiles/carPool/', IFNULL(CHANGE_NAME,'NULL')) AS IMG_PATH,
 		SC.CATEGORY_S_NAME
-	FROM CARPOOL C
-	LEFT JOIN BOARD B ON B.BOARD_NO = C.BOARD_NO
-	LEFT JOIN LOCATION L ON C.LOCATION_NO = L.LOCATION_NO
+	FROM BOARD B
+	JOIN CARPOOL C ON B.BOARD_NO = C.BOARD_NO
+	JOIN LOCATION L ON C.LOCATION_NO = L.LOCATION_NO
 	LEFT JOIN IMAGE I ON C.BOARD_NO = I.BOARD_NO
-	LEFT JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
-	JOIN SUB_CATEGORY SC ON UC.CATEGORY_U_NO = SC.CATEGORY_U_NO
-	WHERE SC.CATEGORY_S_NO = 31 AND B.STATUS = 'Y' AND I.STATUS = 'Y' AND I.FILE_LEVEL = 0
+	JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
+	JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+	WHERE B.STATUS = 'Y'
+    GROUP BY B.BOARD_NO
 		<if test= 'scNo!= null and scNo !="" '>
 		 	AND B.CATEGORY_S_NO = #{scNo}
-		</if>
-		<if test='lNo != null and lNo!= ""'>
-	 		AND C.LOCATION_NO = #{lNo}
 	 	</if>
-		
+	 	<if test='location != null and location!= ""'>
+	 		AND LOCATION_NO = #{location}
+	 	</if>
 </select>
 
 <insert id="insertCarPool" parameterType="carPool">
@@ -139,7 +144,7 @@
 	LEFT JOIN IMAGE I USING(BOARD_NO)
 	JOIN MEMBER M ON B.USER_NO = M.USER_NO
 	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
-	WHERE C.BOARD_NO = #{bNo} AND B.STATUS = 'Y' AND I.STATUS = 'Y'
+	WHERE C.BOARD_NO = #{bNo} AND B.STATUS = 'Y'
 </select>
 
 <update id="deadLine" parameterType="board">

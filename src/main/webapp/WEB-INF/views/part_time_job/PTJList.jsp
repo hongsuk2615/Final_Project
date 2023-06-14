@@ -90,7 +90,6 @@
 		               						<img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 200px; border-radius: 10px;"/>
 		               					</c:otherwise>
 		               				</c:choose>
-		       						<p style="display: none;">${ptj.boardNo }</p>
 		       						<p style="text-align: center;">제목 :${ptj.board.title }</p>
 		       						<p style="text-align: center;">내용 :${ptj.board.content }</p>
 		       						<p style="text-align: center;">지역 :${ptj.location.locationName }</p>
@@ -112,7 +111,7 @@
 	               		</c:forEach>
 	               		<c:choose>
 		                  <c:when test="${ pi.currentPage eq pi.maxPage }">
-		                     <div style="display: none;">&gt;</div>
+		                     <div>&gt;</div>
 		                  </c:when>
 		                  <c:otherwise>
 		                     <div><a href="/thrifty/ptj/ptjList?currPage=${filter.currPage+1}&scNo=${filter.scNo}&location=${filter.lNo}">&gt;</a></div>

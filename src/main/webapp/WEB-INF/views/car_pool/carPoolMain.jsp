@@ -62,15 +62,12 @@
 
                     <div id="car-pool-type">
                         <div id="drive">
-                            <button style="width: 300px; height: 200px;">
-                                <img src="/thrifty/resources/images/carpool/handle.png"><br>
-                                <p style="color: white; font-size: large;">타세요~</p>
-                            </button>
-                        </div>
-                        <div id="occupant">
-                            <button style="width: 300px; height: 200px;">
-                                <img src="/thrifty/resources/images/carpool/chair.png">
-                                <p style="color: white; font-size: large;">태워주세요!</p>
+                            <button style="width: 900px; height: 200px;">
+                            	<div style="display:flex; justify-content: space-evenly; width:300px; margin-left: 300px;">
+	                                <img src="/thrifty/resources/images/carpool/handle.png"><br>
+	                                <img src="/thrifty/resources/images/carpool/chair.png">
+                            	</div>
+                                <p style="color: white; font-size: large;">태워드려요! / 태워주세요!</p>
                             </button>
                         </div>
                     </div>
@@ -174,10 +171,6 @@
 <script>
 	document.getElementById("drive").addEventListener("click",function(){
        location.href = "/thrifty/carPool/drive";
-  	})
-  	
-  	document.getElementById("occupant").addEventListener("click",function(){
-       location.href = "/thrifty/carPool/occupant";
   	})
 </script>
 </body>
