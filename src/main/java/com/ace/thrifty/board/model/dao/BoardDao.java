@@ -50,6 +50,9 @@ public class BoardDao {
 		return sqlSession.selectList("boardMapper.selectLocationList");
 	}
 	
+	public int deleteImage(String deleteImageList) {
+		return sqlSession.update("boardMapper.deleteImage", deleteImageList);
+	}
 
 	public int sgUpdateBoard(Board b) {
 		return sqlSession.update("boardMapper.sgUpdateBoard", b);
@@ -82,10 +85,6 @@ public class BoardDao {
 		return sqlSession.update("boardMapper.updateBoard", b);
 	}
 	
-	public int insertImage(Image img) {
-		System.out.println(img);
-		return sqlSession.insert("boardMapper.insertImage" , img);
-
 	
 	public int scrapBoard(int bNo) {
 		return sqlSession.update("boardMapper.scrapBoard", bNo);
