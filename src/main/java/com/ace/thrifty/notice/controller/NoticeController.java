@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ace.thrifty.notice.model.service.NoticeService;
+import com.ace.thrifty.notice.model.vo.Notice;
 
 @Controller
 @RequestMapping("notice")
@@ -39,11 +40,20 @@ public class NoticeController {
 		
 		noticeService.noticeList(map, paramMap);
 		
-		System.out.println(map);
-		
 		model.addAttribute("map", map);
 		model.addAttribute("noticeCatList", noticeCatList);
 		
 		return "notice/notice";
+	}
+	
+	@GetMapping("/detail")
+	public String noticeDetail(Model model, @RequestParam int bNo) {
+		
+		Notice detail = noticeService.noticeDetail(bNo);
+		
+		model.addAttribute("detail", detail);
+		
+		return "notice/noticeDetail";
+		
 	}
 }

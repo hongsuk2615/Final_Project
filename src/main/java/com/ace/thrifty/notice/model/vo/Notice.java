@@ -3,11 +3,9 @@ package com.ace.thrifty.notice.model.vo;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
-import com.ace.thrifty.co_purchase.model.vo.Co_purchase;
 import com.ace.thrifty.member.model.vo.Member;
 
 import lombok.AllArgsConstructor;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.common.model.vo.PageInfo;
+import com.ace.thrifty.notice.model.vo.Notice;
 
 @Repository
 public class NoticeDao {
@@ -33,6 +34,10 @@ public class NoticeDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return sqlSession.selectList("noticeMapper.noticeList", paramMap, rowBounds);
+	}
+
+	public Notice noticeDetail(int bNo) {
+		return sqlSession.selectOne("noticeMapper.noticeDetail", bNo);
 	}
 
 }

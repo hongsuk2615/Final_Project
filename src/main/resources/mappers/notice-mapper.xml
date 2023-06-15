@@ -49,5 +49,13 @@
 		  <if test="categorySNo != 0">
 		  	AND B.CATEGORY_S_NO = #{categorySNo}
 		  </if>
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="noticeDetail" parameterType="int" resultMap="noticeResultSet">
+		SELECT *
+		FROM BOARD B
+		JOIN SUB_CATEGORY SC USING(CATEGORY_S_NO)
+		WHERE BOARD_NO = #{bNo}
 	</select>
 </mapper>

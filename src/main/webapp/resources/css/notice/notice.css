@@ -43,6 +43,9 @@
     border-top: 1px solid #5c5c5c;
     padding: 25px 10px 15px 10px;
 }
+.noticeBoard:hover{
+    background-color: #F7F7F7;
+}
 .notice_title{
     font-weight: 700;
 }

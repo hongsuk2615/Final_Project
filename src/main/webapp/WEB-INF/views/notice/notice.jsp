@@ -53,7 +53,7 @@
                     <c:forEach var="notice" items="${list}">
                         <li class="noticeBoard">
                             <div>
-                                <a class="notice_title" href="">[${notice.subCategoryName}] ${notice.title}</a>
+                                <a class="notice_title" href="${contextPath}/notice/detail?bNo=${notice.boardNo}">[${notice.subCategoryName}] ${notice.title}</a>
                             </div>
                             <div class="notice_attr_flex">
                                 <span>${notice.createDate}</span>

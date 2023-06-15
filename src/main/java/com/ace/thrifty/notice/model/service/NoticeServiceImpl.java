@@ -10,6 +10,7 @@ import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.common.template.Pagination;
 import com.ace.thrifty.notice.model.dao.NoticeDao;
+import com.ace.thrifty.notice.model.vo.Notice;
 
 @Service
 public class NoticeServiceImpl implements NoticeService{
@@ -42,6 +43,11 @@ public class NoticeServiceImpl implements NoticeService{
 		
 		map.put("pi", pi);
 		map.put("list", list);
+	}
+
+	@Override
+	public Notice noticeDetail(int bNo) {
+		return noticeDao.noticeDetail(bNo);
 	}
 
 }
