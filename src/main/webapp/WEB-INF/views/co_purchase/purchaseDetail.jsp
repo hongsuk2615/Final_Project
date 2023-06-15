@@ -64,14 +64,14 @@
                     <div id="detail_header_1">
                         <div id="detail_header_1_title">${ board.title }</div> <!-- 글 제목 -->
                         <div id="report-btn" class="flex" bNo="${board.boardNo}">
-                            <img src="${ contextPath }/resources/images/main/icon/alarm.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;">
+                            <img src="${ contextPath }/resources/images/main/icon/alarm.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
                             <div>신고</div>
                         </div>
                     </div>
                     <div id="profile" class="flex align">
                         <div id="profile_1" class="flex">
                             <div id="profile_img">
-                                <img src="${ contextPath }/resources/images/myPage/${ co_purchase.changeName2 }" alt="" style="width: 40px; height: 40px; border-radius: 100px;">
+                                <img src="${ contextPath }/resources/images/myPage/${ co_purchase.changeName2 }" alt="" style="width: 40px; height: 40px; border-radius: 100px;" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
                             </div> <!-- 프로필 -->
                             <div id="nickname">${ seller.nickName }</div>
                         </div>
@@ -97,7 +97,7 @@
                 <div id="detail_body">
                     <div id="body_description" class="flex">
                         <div id="body_description_1">
-                            <img src="${ contextPath }/resources/upfiles/co_purchase/${ imageList.changeName }" id="body_img" alt="">
+                            <img src="${ contextPath }/resources/upfiles/co_purchase/${ imageList.changeName }" id="body_img" alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
                         </div>
                         <div id="body_description_2">
                             <div id="body_description_content">
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="flex">
 	                                <div id="inquiry-btn" class="body_description_chatting" uNo = "${board.userNo}" seller="${seller.nickName}">문의 쪽지</div>
-	                                <div id="wish-btn" class="body_description_wish" bNo="${board.boardNo}">찜하기</div>
+	                                <div id="wish-btn" class="body_description_wish" bNo="${board.boardNo}" onclick="함수명(this)">찜하기</div>
                                 </div>
                                 <!-- id="body_description_chatting" -->
                                 <div id="body_description_link" class="flex">

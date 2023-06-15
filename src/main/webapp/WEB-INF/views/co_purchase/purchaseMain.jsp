@@ -78,7 +78,7 @@
 							<tr>
 								<td class="flex">
 									<div class="detail_img">
-                                    	<img src="${ contextPath }/${ b.thumbNail }" alt="" class="detail_img_1">
+                                    	<img src="${ contextPath }/${ b.thumbNail }" alt="" class="detail_img_1" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
                                     </div>
                                     <div class="detail">
                                     <div class="detail_top">
@@ -92,17 +92,33 @@
                                     <div class="detail_bottom flex">
                                         <div class="flex align">
                                             <div>가격</div>
-                                            <div class="detail_bottom_price">${ b.price }</div>
+                                            <div class="detail_bottom_price">${ b.price }원</div>
                                         </div>
-                                        <div class="detail_bottom_2 flex align">
-                                            <div>
-                                                <img src="${ contextPath }/resources/images/myPage/${ b.changeName }" alt="" class="detail_bottom_img">
-                                            </div>
-                                            <div class="detail_bottom_nickname">${ b.nickName }</div>
-                                            <span>|</span>
-                                            <div>${ b.readCount }</div>
-                                            <span>|</span>
-                                            <div>${ b.createDate }</div>
+                                        <div class="detail_bottom_2">
+                                            <table id="profile" style="border: none;">
+                                                <tr>
+                                                    <td>
+                                                        <div>
+                                                            <img src="${ contextPath }/resources/images/myPage/${ b.changeName }" alt="" class="detail_bottom_img" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
+                                                        </div>
+                                                    </td>
+                                                    <td style="width: 25%;">
+                                                        <div class="detail_bottom_nickname">${ b.nickName }</div>
+                                                    </td>
+                                                    <td style="width: 24px;">
+                                                        <span>|</span>
+                                                    </td>
+                                                    <td style="width: 6.5%; text-align: center;">
+                                                        <div>${ b.readCount }</div>
+                                                    </td>
+                                                    <td style="width: 24px;">
+                                                        <span>|</span>
+                                                    </td>
+                                                    <td>
+                                                        <div>${ b.createDate }</div>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

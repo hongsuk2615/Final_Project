@@ -20,6 +20,16 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js" crossorigin="anonymous"></script>
+    <style>
+        @font-face {
+            font-family: "NanumBarun";
+            src: url("/thrifty/resources/font/NanumFontSetup_TTF_BARUNGOTHIC/NanumBarunGothic.ttf") format("truetype");
+        }
+        
+        *{
+            font-family: "NanumBarun";
+        }
+    </style>
 </head>
 <body>
     <div id="header" class="background_basic" style="height: 90px;">

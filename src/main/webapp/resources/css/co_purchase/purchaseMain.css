@@ -171,7 +171,7 @@ select option{
     padding-top: 30px;
     padding-bottom: 50px;
     font-weight: 500;
-    font-size: 3em;
+    font-size: 2.5em;
 }
 
 #pagingbar{
@@ -240,7 +240,7 @@ select option{
 }
 
 .detail_middle{
-    padding-top: 5px;
+    padding-top: 10px;
     font-size: 20px;
 }
 
@@ -265,6 +265,9 @@ select option{
 
 .detail_bottom_nickname{
     padding-top: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 62.5px;
 }
 
 .detail_bottom_2{
@@ -278,4 +281,13 @@ select option{
     width: 24px;
     font-size: 13px;
     text-align: center;
+}
+
+.detail_bottom_2 td{
+    padding: 0;
+    border: none;
+}
+
+#profile{
+    width: 250px;
 }
