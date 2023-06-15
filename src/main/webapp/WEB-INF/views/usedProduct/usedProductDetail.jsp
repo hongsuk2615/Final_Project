@@ -77,7 +77,7 @@
                             thumbs-swiper=".mySwiper2" space-between="10" navigation="true">
                             <c:forEach var="image" items="${imageList}">
 		                		<swiper-slide>
-                              		<img class="main-img" src="${contextPath}/resources/upfiles/usedProduct/${image.changeName}" />
+                              		<img class="main-img" onerror="this.src='/thrifty/resources/images/common/noImage.png'" src="${contextPath}/resources/upfiles/usedProduct/${image.changeName}" />
                             	</swiper-slide>
 		                	</c:forEach> 
                           </swiper-container>
@@ -86,13 +86,13 @@
                             watch-slides-progress="true">
 	                        <c:forEach var="image" items="${imageList}">    
 	                            <swiper-slide>
-	                              <img class="sub-img" src="${contextPath}/resources/upfiles/usedProduct/${image.changeName}" />
+	                              <img class="sub-img" onerror="this.src='/thrifty/resources/images/common/noImage.png'" src="${contextPath}/resources/upfiles/usedProduct/${image.changeName}" />
 	                            </swiper-slide>
 	                        </c:forEach>    
                           </swiper-container>
                         </div>
                         <div id="item-details">
-                            <div id="item-name"> 상품명 : ${usedProduct.productName}</div>
+                            <div id="item-name"> 상품명 : ${usedProduct.productName} ${usedProduct.isSoldOut == 'Y'? '<img onerror="this.src="/thrifty/resources/images/common/noImage.png""src="/thrifty/resources/images/usedProduct/giphy.gif" style="border-radius:10px;"width="60" height="40">':'' }</div>
                             <div>판매가격</div>
                             <div id="item-price">
                                 ${usedProduct.price}
@@ -116,13 +116,13 @@
                             <div id="item-location">${usedProduct.locationName}</div>
                             <div>판매자</div>
                             <div id="item-seller">
-                                <img src="${seller.loginMethod eq 'N' ? '/thrifty/resources/upfiles/myPage/'+= seller.changeName : seller.changeName }" width="60" height="60" style="border-radius:50px" alt="프로필사진">
+                                <img onerror="this.src='/thrifty/resources/images/common/noImage.png'" src="${seller.loginMethod eq 'N' ? '/thrifty/resources/upfiles/myPage/'+= seller.changeName : seller.changeName }" width="60" height="60" style="border-radius:50px" alt="프로필사진">
                                 <div>${seller.nickName}</div>
                             </div>
                             <div id="item-btns">
-                                <div id="inquiry-btn" uNo = "${board.userNo}" seller="${seller.nickName}">구매문의</div>
-                                <div id="wish-btn" bNo ="${board.boardNo}">찜</div>
-                                <div id="report-btn" bNo="${board.boardNo}">신고</div>
+                                <div id="inquiry-btn" uNo = "${board.userNo}" seller="${seller.nickName}" onclick="sendMessage(this);">구매문의</div>
+                                <div id="wish-btn" bNo ="${board.boardNo}" onclick="wishList(this);">찜</div>
+                                <div id="report-btn" bNo="${board.boardNo}" onclick="reportBoard(this);">신고</div>
                             </div>
                        </div>
                     </div>
@@ -131,8 +131,9 @@
                     </div>
                     <c:if test="${loginUser.userNo eq board.userNo or loginUser.authority eq 0}">
 	                    <div id="writer-btns">
-	                        <div id="modify-btn" bNo ="${board.boardNo}">수정</div>
-	                        <div id="delete-btn" bNo ="${board.boardNo}" url="usedProduct">삭제</div>
+	                    	<div id="soldOut-btn" bNo ="${board.boardNo}" onclick="soldOut(this)">판매완료</div>
+	                        <div id="modify-btn" bNo ="${board.boardNo}" onclick="modifyBoard(this)">수정</div>
+	                        <div id="delete-btn" bNo ="${board.boardNo}" url="usedProduct" onclick="deleteBoard(this)">삭제</div>
 	                    </div>                    
                     </c:if>
                 </div>
@@ -146,12 +147,75 @@
 
         </div>
         <script src="/thrifty/resources/js/common/commonModal.js"></script>
-        <script>
-            
-            document.getElementById('modify-btn').addEventListener('click',function(){  
-                let bNo = $(this).attr("bNo");
+        <script>        
+            function modifyBoard(element){  
+                let bNo = $(element).attr("bNo");
                 location.href="/thrifty/usedProduct/modify?bNo="+bNo;
-            })       
+            } 
+            
+            function soldOut(element){
+            	let bNo = $(element).attr("bNo");
+            	Swal.fire({
+                    title: '판매완료처리 하시겠습니까?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '네',
+                    cancelButtonText: '아니오',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            let bNo = $(element).attr("bNo");
+                            $.ajax({
+                                url : "/thrifty/usedProduct/soldOut",
+                                data : {bNo},
+                                success : function(result){
+                                    console.log(result);
+                                    if(result == 1){
+                                        Swal.fire({
+                                            position: 'top-center',
+                                            icon: 'success',
+                                            title: '판매완료',
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        }).then(()=>{
+                                            location.href="/thrifty/usedProduct/detail?bNo="+bNo;
+                                        })
+                                    }else if(result == -1){
+                                        Swal.fire({
+                                            position: 'top-center',
+                                            icon: 'warning',
+                                            title: '비로그인 상태입니다.',
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        }).then(()=>{
+                                                login();
+                                        })
+                                    }else if(result == 0){
+                                        Swal.fire({
+                                                position: 'top-center',
+                                                icon: 'error',
+                                                title: '삭제실패',
+                                                text : '관리자/작성자가 아닙니다.',
+                                                showConfirmButton: false,
+                                                timer: 1000
+                                            })
+                                    }
+                                },
+                                error : function(){
+                                    Swal.fire({
+                                                position: 'top-center',
+                                                icon: 'error',
+                                                title: '실패',
+                                                showConfirmButton: false,
+                                                timer: 1000
+                                            })
+                                }
+
+                            })
+                        }
+                    })
+            }
         </script>
     </div>
 

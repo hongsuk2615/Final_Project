@@ -21,5 +21,10 @@ public class WishListServiceImpl implements WishListService{
 	public WishList selectWishList(WishList wL) {
 		return wishListDao.selectWishList(wL);
 	}
+
+	@Override
+	public int deleteWishList(WishList wL) {
+		return wishListDao.deleteWishList(wL);
+	}
 	
 }
