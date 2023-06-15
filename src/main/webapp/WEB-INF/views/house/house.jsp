@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
             </div>
             <div>
                 <button id="searchbtn" onclick="searchHouse();">
-                    <img src="/thrifty/resources/images/house/search.png">
+                    <img src="/thrifty/resources/images/house/search.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
                 </button>
             </div>
         </div>
@@ -45,20 +46,21 @@
 		house = "";
 		
 		  result.forEach(function(h){
+			   minAmount = h.minAmount.toLocaleString();
 		  		house += `
 		  			<div class="house" >
-	                <div ><img class="houseImg" src="/thrifty/\${h.thumbnail}" boardNo="\${h.boardNo}" onclick="selectHouse(this);"></div>
+	                <div ><img class="houseImg" src="/thrifty/\${h.thumbnail}" boardNo="\${h.boardNo}" onclick="selectHouse(this);" onerror="this.src='/thrifty/resources/images/common/noImage.png'"></div>
 	                <h3>\${h.board.title }</h3>
 	                <div>
-	                 <span>월 \${h.minAmount }만원 ~</span>`;
+	                 <span>월 \${minAmount}원 ~</span>`;
 	                 if(h.wish == 0){
 	                	 house += `	<span>
-	                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart.png" 
+	                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart.png"  onerror="this.src='/thrifty/resources/images/common/noImage.png'" 
 	                	 boardNo="\${h.boardNo}" onclick="scrapHouse(this);" scrap="x">
 	                	 </span> </div></div>`;
 	                 }else{
 	                	 house += `	<span>
-		                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart2.png" 
+		                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart2.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" 
 		                	 boardNo="\${h.boardNo}" onclick="scrapHouse(this);" scrap="o">
 		                	 </span> </div></div>`;
 	                 }
@@ -175,12 +177,12 @@
 	}
 	
 	function scrapHouse(e){
-		let boardNo = $(e).attr('boardNo');
+		let bNo = $(e).attr('boardNo');
 		if($(e).attr('scrap') == 'o'){
 			$.ajax({
 				url : '${contextPath}/sharehouse/scrapCancel',
 				data : {
-					boardNo
+					bNo
 				},
 				dataType : 'json',
 				success: function(result){ 
@@ -194,7 +196,7 @@
 			$.ajax({
 				url : '${contextPath}/sharehouse/scrapHouse',
 				data : {
-					boardNo
+					bNo
 				},
 				dataType : 'json',
 				success: function(result){ 

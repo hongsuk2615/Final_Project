@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="b" value="${house[0] }" />
 <c:set var="h" value="${house.get(1) }" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,22 +23,22 @@
     <div class="img-bx">
 		<c:forEach var="rimg" items="${h.roomList[0].imgList }">
       		<div>
-          	  <img src="/thrifty/resources/images/house/${rimg.changeName}">
+          	  <img src="/thrifty/resources/images/house/${rimg.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
         	</div>
        	</c:forEach>
     </div>
 
     <div id="img-select">
        <c:forEach var="r" items="${h.roomList }">
-       <div><button roomNo="${r.roomNo }" onclick="selectRoom(this);">${r.division }</button></div>
+       <div><button class="roomImgbtn" roomNo="${r.roomNo }" onclick="selectRoom(this);">${r.division }</button></div>
        </c:forEach>
     </div>
 
     <div id="nav">
-        <div><p>방 정보</p></div>
-        <div><p>지점 소개</p></div>
-        <div><p>위치</p></div>
-        <div><p>입주절차</p></div>
+        <div><a class='navbtn' href='#state'><p>방 정보</p></a></div>
+        <div><a class='navbtn' href='#information'><p>지점 소개</p></a></div>
+        <div><a class='navbtn' href='#location'><p>위치</p></a></div>
+        <div><a class='navbtn' href='#procedure'><p>입주절차</p></a></div>
     </div>
     <h3>입주현황</h3>
     <div id="state" class="Htable">
@@ -54,6 +56,7 @@
             </tr>
             
              <c:forEach var="r" items="${h.roomList }">
+            
 		            <tr>
 		                <td>
                             <c:choose>
@@ -68,10 +71,10 @@
 		                <td>${r.division }</td>
 		                <td>${r.gender }</td>
 		                <td>${r.type }</td>
-		                <td>${r.area }</td>
-		                <td>${r.deposit }</td>
-		                <td>${r.rent }</td>
-		                <td>${r.cost }</td>
+		                <td>${r.area }㎡</td>
+		                <td> <fmt:formatNumber type="number" maxFractionDigits="3" value="${r.deposit }" />원</td>
+		                <td> <fmt:formatNumber type="number" maxFractionDigits="3" value="${r.rent }" />원</td>
+		                <td> <fmt:formatNumber type="number" maxFractionDigits="3" value="${r.cost }" />원</td>
 		                <td>${r.contrat }</td>
 		            </tr>
               </c:forEach>
@@ -118,31 +121,31 @@
         <div id="procedure1">
             <div class="circle" id="circle1">
                <div >
-                <img src="/thrifty/resources/images/house/clickImg.png">
+                <img src="/thrifty/resources/images/house/clickImg.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
                 <h3>01</h3>
                 <p>입주 신청</p>
                </div>
             </div>
-            <img class="arrowimg" id="arrow1" src="/thrifty/resources/images/house/right-arrow.png">
+            <img class="arrowimg" id="arrow1" src="/thrifty/resources/images/house/right-arrow.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
             <div class="circle" id="circle2">
                 <div>
-                 <img src="/thrifty/resources/images/house/searchHouseImg.png">
+                 <img src="/thrifty/resources/images/house/searchHouseImg.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
                  <h3>02</h3>
                  <p>지점투어</p>
                 </div>
              </div>
-             <img class="arrowimg" id="arrow2" src="/thrifty/resources/images/house/right-arrow.png">
+             <img class="arrowimg" id="arrow2" src="/thrifty/resources/images/house/right-arrow.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" > 
              <div class="circle" id="circle3">
                 <div>
-                 <img src="/thrifty/resources/images/house/applyImg.png">
+                 <img src="/thrifty/resources/images/house/applyImg.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
                  <h3>03</h3>
                  <p>계약서 작성</p>
                 </div>
              </div>
-             <img class="arrowimg" id="arrow3" src="/thrifty/resources/images/house/right-arrow.png">
+             <img class="arrowimg" id="arrow3" src="/thrifty/resources/images/house/right-arrow.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
              <div class="circle" id="circle4">
                 <div>
-                 <img src="/thrifty/resources/images/house/moveImg.png">
+                 <img src="/thrifty/resources/images/house/moveImg.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
                  <h3>04</h3>
                  <p>입주 완료</p>
                 </div>
@@ -163,10 +166,11 @@
 
     </div>
     <div id="back">
-    	<c:if test="${loginUser.userNo eq b.userNo }">
-    	<div onclick="location.href='/thrifty/sharehouse/updateHouse?boardNo=${b.boardNo}'" style="cursor:pointer;"><p>수정하기</p></div>
+    	<c:if test="${loginUser.userNo eq b.userNo or loginUser.authority eq 0}">
+    	<div onclick="deleteBoard(this);" bNo="${b.boardNo}" url="sharehouse" style="cursor:pointer;"><p>삭제하기</p></div>
+    	<div onclick="location.href='/thrifty/sharehouse/updateHouse?bNo=${b.boardNo}'" style="cursor:pointer;"><p>수정하기</p></div>
     	</c:if>
-        <div onclick="location.href='/thrifty/sharehouse/';" style="cursor:pointer;"><p>전체지점보기</p></div>
+        <div onclick="location.href='/thrifty/sharehouse/'" style="cursor:pointer;"><p>전체지점보기</p></div>
     </div>
     </div>
 
@@ -181,11 +185,14 @@
 				nextArrow : "<button type='button' class='slick-next'><img src='right-arrow.png'></button>"
                 
             });
+            $('.roomImgbtn').eq(0).addClass('btnClick');
         });
     
         
         function selectRoom(e){
     		let roomNo = $(e).attr('roomNo');
+    		$('.roomImgbtn').removeClass('btnClick');
+    		$(e).addClass('btnClick');
 	        $.ajax({
 				url : "/thrifty/sharehouse/selectRoomImg?roomNo="+roomNo,
 				dataType : 'json',
@@ -195,7 +202,7 @@
 					result.forEach(function(ri){
 						imgList += `
 							<div>
-				            <img src="/thrifty/resources/images/house/\${ri.changeName}">
+				            <img src="/thrifty/resources/images/house/\${ri.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
 				        	</div>
 				        `;
 					})
@@ -212,6 +219,77 @@
         	let roomNo = $(e).attr('roomNo');
         	appform(hName, rName, roomNo);
         }
+        
+        $(".navbtn").click(function(event){
+        	x = $(this).attr("href");
+        	var offset = $(x).offset(); 
+        	$("html, body").animate({ scrollTop: offset.top -200 }, 400);
+        });
+        
+        function deleteBoard(element){
+            
+            Swal.fire({
+                    title: '정말삭제하시겠습니까?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '네, 삭제할게요!',
+                    cancelButtonText: '아니오!',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            let bNo = $(element).attr("bNo");
+                            let url = $(element).attr("url");
+                            $.ajax({
+                                url : "/thrifty/board/delete",
+                                data : {bNo},
+                                success : function(result){
+                                    console.log(result);
+                                    if(result == 1){
+                                        Swal.fire({
+                                            position: 'top-center',
+                                            icon: 'success',
+                                            title: '삭제완료',
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        }).then(()=>{
+                                            location.href="/thrifty/"+url; 
+                                        })
+                                    }else if(result == -1){
+                                        Swal.fire({
+                                            position: 'top-center',
+                                            icon: 'warning',
+                                            title: '비로그인 상태입니다.',
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        }).then(()=>{
+                                                login();
+                                        })
+                                    }else if(result == 0){
+                                        Swal.fire({
+                                                position: 'top-center',
+                                                icon: 'error',
+                                                title: '삭제실패',
+                                                text : '관리자/작성자가 아닙니다.',
+                                                showConfirmButton: false,
+                                                timer: 1000
+                                            })
+                                    }
+                                },
+                                error : function(){
+                                    Swal.fire({
+                                                position: 'top-center',
+                                                icon: 'error',
+                                                title: '삭제실패',
+                                                showConfirmButton: false,
+                                                timer: 1000
+                                            })
+                                }
+
+                            })
+                        }
+                    })
+                 }
       </script>
       <jsp:include page="houseModal.jsp"></jsp:include>
 <script src="/thrifty/resources/js/house/houseModal.js"></script>

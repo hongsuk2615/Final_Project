@@ -33,5 +33,7 @@ public interface HouseService {
 	
 	int tourApply(Tour tour);
 	
+	int deleteHouse(int boardNo);
+	
 	
 }

@@ -116,7 +116,7 @@ public class HouseController {
 		String webPath = "/resources/images/house/";
 		String serverFolderPath = s.getServletContext().getRealPath(webPath);
 		int result = houseService.insertHouse(b, h, rooms, roomImgs, webPath, serverFolderPath);
-		model.addAttribute("boardNo", b.getBoardNo());
+		model.addAttribute("bNo", b.getBoardNo());
 		return result > 0 ?  "redirect:/sharehouse/detail" : "redirect:/";
 	}
 	
@@ -131,7 +131,7 @@ public class HouseController {
 	@ResponseBody
 	@GetMapping("/scrapHouse")
 	public int scrapHouse(Model m, HttpSession s,
-			@RequestParam(value="boardNo", required=false) int boardNo) {
+			@RequestParam(value="bNo", required=false) int boardNo) {
 		int userNo = ((Member)s.getAttribute("loginUser")).getUserNo();
 		return houseService.scrapHouse(userNo, boardNo);
 	}
@@ -139,7 +139,7 @@ public class HouseController {
 	@ResponseBody
 	@GetMapping("/scrapCancel")
 	public int scrapCancel(Model m, HttpSession s,
-			@RequestParam(value="boardNo", required=false) int boardNo) {
+			@RequestParam(value="bNo", required=false) int boardNo) {
 		int userNo = ((Member)s.getAttribute("loginUser")).getUserNo();
 		return houseService.scrapCancel(userNo, boardNo);
 	}
@@ -155,7 +155,7 @@ public class HouseController {
 	
 	@GetMapping("/updateHouse")
 	public String updateHouse(Model m, HttpSession s,
-			@RequestParam(value="boardNo", required=false) int boardNo) {
+			@RequestParam(value="bNo", required=false) int boardNo) {
 		List<Object> house = houseService.selectHouse(boardNo);
 		m.addAttribute("house", house);
 		return "house/houseUpdate";
@@ -170,5 +170,13 @@ public class HouseController {
 		int userNo = ((Member) s.getAttribute("loginUser")).getUserNo();
 		Tour tour = Tour.builder().userNo(userNo).roomNo(roomNo).moveIn(moveIn).enquiry(enquiry).build();
 		return new Gson().toJson(houseService.tourApply(tour));
+	}
+	
+	
+	@GetMapping("/deleteHouse")
+	public String deleteHouse(Model m, HttpSession s,
+			@RequestParam(value="bNo", required=false) int boardNo) {
+		int result = houseService.deleteHouse(boardNo);
+		return "house/house";
 	}
 }

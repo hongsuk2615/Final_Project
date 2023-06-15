@@ -25,7 +25,7 @@
 
             <input type="text" placeholder=" *이름" name="userName" id="userName" required value="${loginUser.userName }" disabled> <br>
             <input  type="tel" placeholder=" *연락처" name="phone" id="phone" required value="${loginUser.phone }" disabled> <br>
-             <input type="text" placeholder=" *집 이름" name="title" required> <br>
+             <input type="text" placeholder=" *집 이름" name="title" required  maxlength='15'> <br>
             <button type="button" onclick="addRoom()">방 추가하기</button>
             <span style="font-size: 12px;">* 첫번째 사진이 대표사진으로 설정됩니다.</span> <br>
             <div id="roomAdd">
@@ -81,7 +81,7 @@
             
             let a = `
             <div id="roomImgsection\${count}" > 
-            <input type="text" placeholder="방 이름" name="division" id="division\${count}" onchange="roomName(this.id)" required> 
+            <input type="text" maxlength='8' placeholder="방 이름" name="division" id="division\${count}" onchange="roomName(this.id)" required> 
             <input type="file" style="border: none;" onchange="makeSlick(\${count})" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png" required>
             <button type="button" id="closebtn\${count}"count='\${count}'>X</button>
             </div>

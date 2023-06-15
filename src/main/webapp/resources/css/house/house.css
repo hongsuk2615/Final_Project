@@ -5,7 +5,7 @@
 
 #map{
     width: 127vh;
-    height: 82vh;
+    height: 83vh;
      padding-top : 9px;
 }
 
@@ -184,4 +184,10 @@ input::-webkit-search-results-decoration{
     line-height:22px;
     border-radius:4px;
     padding:0px 10px;
+}
+
+.house h3{
+	white-space : nowrap;
+	overflow : hidden;
+	text-overflow : ellipsis;
 }

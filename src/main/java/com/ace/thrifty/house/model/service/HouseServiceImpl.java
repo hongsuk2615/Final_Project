@@ -136,6 +136,12 @@ public class HouseServiceImpl implements HouseService{
 		return houseDao.tourApply(tour);
 	}
 
+	@Override
+	public int deleteHouse(int boardNo) {
+		boardDao.deleteBoard
+		return 0;
+	}
+
 
 	
 	
