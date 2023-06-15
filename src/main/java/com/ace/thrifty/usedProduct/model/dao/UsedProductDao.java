@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 
@@ -38,5 +39,9 @@ public class UsedProductDao {
 	
 	public int modifyUsedProduct(UsedProduct uP) {
 		return sqlSession.update("usedProductMapper.modifyUsedProduct", uP);
+	}
+	
+	public int soldOut(Board board) {
+		return sqlSession.update("usedProductMapper.soldOut",board);
 	}
 }
