@@ -45,7 +45,7 @@
 		<jsp:include page="./includes/adminFooter.jsp" />
 	</div>
 	<jsp:include page="./includes/adminRequiredJs.jsp" />
-	<script src="${contextPath}/resources/js/admin/adminTables.js"></script>
+<%-- 	<script src="${contextPath}/resources/js/admin/adminTables.js"></script> --%>
 	<c:choose>
 		<c:when test="${contents eq 'home'}">
 			<!-- 홈 차트 생성 스크립트 -->

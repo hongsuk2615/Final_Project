@@ -51,6 +51,8 @@ public class NoticeController {
 		
 		Notice detail = noticeService.noticeDetail(bNo);
 		
+		System.out.println(detail);
+		
 		model.addAttribute("detail", detail);
 		
 		return "notice/noticeDetail";

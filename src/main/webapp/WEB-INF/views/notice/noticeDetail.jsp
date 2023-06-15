@@ -36,21 +36,25 @@
     <jsp:include page="../common/header.jsp" />
     <div class="wrap">
 		<div id="body">
+            <div>
+                <h1>공지사항</h1>
+            </div>
             <div class="board_detail">
-                <div class="notice_info">
-                    <span>${detail.createDate}</span>
-                    <span>관리자1</span>
-                </div>
                 <div class="notice_title">
-                    <h1>${detail.title}</h1>
+                    <h2>[${detail.subCategoryName}] ${detail.title}</h2>
+                </div>
+                <div class="notice_info">
+                    <span>작성일: ${detail.createDate}</span>
                 </div>
                 <div class="notice_content">
                     ${detail.content}
                 </div>
-
-
+            </div>
+            <div class="noticeList_btn_area">
+                <button class="noticeList_btn">목록</button>
             </div>
         </div>
+        <jsp:include page="../common/footer.jsp" />
     </div>
 </body>
 </html>

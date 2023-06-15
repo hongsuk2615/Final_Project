@@ -305,5 +305,12 @@ public class AdminController {
 		return "redirect:/admin/login";
 	}
 	
+	@ResponseBody
+	@GetMapping("/getData")
+	public String getData() {
+		Map<String,Object> dataMap = new HashMap<String, Object>();
+		adminService.getData(dataMap);
+		return new Gson().toJson(dataMap);
+	}
 
 }

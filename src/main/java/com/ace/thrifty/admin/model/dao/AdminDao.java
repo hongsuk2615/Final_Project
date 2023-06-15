@@ -144,6 +144,14 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.enrollSelect", boardNo);
 	}
 
+	public List<Map<String, Object>> getDailyUser(){
+		return sqlSession.selectList("adminMapper.dailyUser");
+	}
+
+	public List<Map<String, Object>> getDailyBoard(){
+		return sqlSession.selectList("adminMapper.dailyBoard");
+	}
+
 
 
 
