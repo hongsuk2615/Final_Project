@@ -46,49 +46,49 @@
                 <div>
                     <a href="/thrifty/noticeBoard/">
                         <img src="/thrifty/resources/images/main/icon/promotion.png" class="main_menu_icon" alt="">
-                        <div>공지사항</div>
+                        <div class="main_text_icon">공지사항</div>
                     </a>
                 </div>
                 <div>
                     <a href="/thrifty/freeBoard/">
                         <img src="/thrifty/resources/images/main/icon/board.png" class="main_menu_icon" alt="">
-                        <div>자유 게시판</div>
+                        <div class="main_text_icon">자유 게시판</div>
                     </a>
                 </div>
                 <div>
                     <a href="/thrifty/sharehouse/">
                         <img src="/thrifty/resources/images/main/icon/room-mate.png" class="main_menu_icon" alt="">
-                        <div>쉐어 하우스</div> 
+                        <div class="main_text_icon">쉐어 하우스</div> 
                     </a>
                 </div>
                 <div>
-                    <a href="/thrifty/carpool/">
+                    <a href="/thrifty/carPool/">
                         <img src="/thrifty/resources/images/main/icon/car-sharing.png" class="main_menu_icon" alt="">
-                        <div>카풀</div>
+                        <div class="main_text_icon">카풀</div>
                     </a>
                 </div>
                 <div>
                     <a href="/thrifty/usedProduct/">
                         <img src="/thrifty/resources/images/main/icon/second-hand.png" class="main_menu_icon" alt="">
-                        <div>중고 거래</div>
+                        <div class="main_text_icon">중고 거래</div>
                     </a>
                 </div>
                 <div>
                     <a href="/thrifty/ptj/">
                         <img src="/thrifty/resources/images/main/icon/exchange.png" class="main_menu_icon" alt="">
-                        <div>심부름 / 알바</div>
+                        <div class="main_text_icon">심부름 / 알바</div>
                     </a>
                 </div>
                 <div>
                     <a href="/thrifty/co_purchase/">
                         <img src="/thrifty/resources/images/main/icon/supply-chain.png" class="main_menu_icon" alt="">
-                        <div>공동 구매</div>
+                        <div class="main_text_icon">공동 구매</div>
                     </a>
                 </div>
                 <div>
-                    <a href="/thrifty/smallGroup/">
+                    <a href="/thrifty/smallGroup">
                         <img src="/thrifty/resources/images/main/icon/pet-love.png" class="main_menu_icon" alt="">
-                        <div>소모임</div>
+                        <div class="main_text_icon">소모임</div>
                     </a>
                 </div>
             </div>

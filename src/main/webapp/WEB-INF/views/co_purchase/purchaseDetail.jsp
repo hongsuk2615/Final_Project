@@ -54,9 +54,9 @@
                 <div id="cat_title_box">
                 	<div id="cat_title_1">게시글 상세</div>
                 	<c:if test="${loginUser.userNo eq board.userNo or loginUser.authority eq 0}">
-	                	<div>
-	                		<div id="modify-btn" bNo ="${board.boardNo}" type="button">수정</div>
-	                		<div id="delete-btn" bNo ="${board.boardNo}" type="button" url="co_purchase">삭제</div>
+	                	<div id="edit_btn" class="flex">
+	                		<div id="modify-btn" class="edit_btn" bNo ="${board.boardNo}" type="button">수정</div>
+	                		<div id="delete-btn" class="edit_btn" bNo ="${board.boardNo}" type="button" url="co_purchase">삭제</div>
 	                	</div>
                 	</c:if>
                 </div>
@@ -68,7 +68,7 @@
                             <div>신고</div>
                         </div>
                     </div>
-                    <div id="profile" class="flex">
+                    <div id="profile" class="flex align">
                         <div id="profile_1" class="flex">
                             <div id="profile_img">
                                 <img src="${ contextPath }/resources/images/myPage/${ co_purchase.changeName2 }" alt="" style="width: 40px; height: 40px; border-radius: 100px;">

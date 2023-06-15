@@ -8,10 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="text/javascript" src="/thrifty/resources/js/common/header.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="/thrifty/resources/css/common/mainHeader.css">
+    <link rel="stylesheet" href="/thrifty/resources/css/common/header.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/login.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/find.css">
     <link rel="stylesheet" href="/thrifty/resources/css/member/enroll.css">
@@ -19,18 +19,21 @@
     <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <script>
         Kakao.init('812fa162a908f2e0e2a8addf2bbd6869'); // 사용하려는 앱의 JavaScript 키 입력
       </script>
     <div id="header" class="background_basic">
+        
         <div id="header_1">
             <div id="header_1_1">
                 <a href="/thrifty/">
                     <div id="main_logo" class="header_img_white"></div>
                 </a>
             </div>
+            
             <div id="header_1_2">
             <c:choose>
             	<c:when test="${empty loginUser}">
@@ -50,7 +53,11 @@
 	                </c:choose>
             	</c:otherwise>
             </c:choose>
-	                <div id="header_search" class="search_img_white"> </div>            	
+                <div id="dark_icon">
+                    <label for="toggle" class="toggleSwitch blue">
+                        <span id="toggleButton"></span>
+                    </label>
+                </div>
             </div>
         </div>
         <div id="header_2">
@@ -102,6 +109,54 @@
         </ul>
 
     </div>
+    <script>
+        const toggleList = document.querySelectorAll(".toggleSwitch");
+        
+      
+        toggleList.forEach(($toggle) => {
+        $toggle.onclick = () => {
+        $toggle.classList.toggle('active');
+        
+       // ative  0 -> darkmode
+       // active x -> lightmode
+
+       //localstorage.(active, darkmode)
+       //localstorage.(nonactive, lightmode)
+        
+
+
+        if(toggleList[0].classList.contains('active')){
+            dark_mode();
+        }else{
+            light_mode();
+        }
+      }
+      
+    });
+            
+                function dark_mode() {
+                    document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/moon.png")';
+                    document.querySelector("body").style.transitionDuration= '0.5s';
+                    document.querySelector("#body").style.transitionDuration= '0.5s';
+                   
+                    document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
+                    document.querySelector("body").style.color="white";
+                    document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
+                    document.querySelector("#body").style.color="white";
+                }
+                function light_mode() {
+                    document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/sun.png")';
+                    document.querySelector("body").style.transitionDuration= '0.5s';
+                    document.querySelector("#body").style.transitionDuration= '0.5s';
+
+                    
+                    document.querySelector("body").style.backgroundColor="white"; 
+                    document.querySelector("body").style.color="black";
+                    document.querySelector("#body").style.backgroundColor="white";
+                    document.querySelector("#body").style.color="black";
+                }
+
+    </script>
     <script>
         function kakaoLogout() {
             location.href="https://kauth.kakao.com/oauth/logout?client_id=17596a7a342e703f12c332dec822a955&logout_redirect_uri=http://localhost:8081/thrifty/member/logout";

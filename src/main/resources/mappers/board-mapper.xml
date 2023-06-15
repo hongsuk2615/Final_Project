@@ -9,6 +9,7 @@
 		<result column="CREATE_DATE"  property="createDate"/>
 		<result column="READ_COUNT"  property="readCount"/>
 		<result column="REPORT_COUNT"  property="reportCount"/>
+		<result column="CATEGORY_PATH"  property="categoryPath"/>
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
@@ -120,6 +121,12 @@
 					VALUES(#{originName}, #{changeName}, #{boardNo}, #{fileLevel})
 	</insert>
 	
+	<update id="updateImage" parameterType="image">
+		UPDATE IMAGE
+		SET CHANGE_NAME 
+	</update>
+	
+	
 	
 	<insert id="insertImageList" parameterType="list">
 		INSERT INTO IMAGE (ORIGIN_NAME, CHANGE_NAME, BOARD_NO, FILE_LEVEL)
@@ -143,6 +150,16 @@
 	  ORDER BY B.BOARD_NO DESC
 
 	</select>
+	
+	<select id="selectMyCount" parameterType="map" resultType="_int">
+		SELECT COUNT(*) 
+	  FROM BOARD B
+	  JOIN MEMBER M USING(USER_NO) 
+	  JOIN UPPER_CATEGORY U USING(CATEGORY_U_NO)
+	  WHERE USER_NO = #{userNo} AND B.STATUS='Y'
+	  ORDER BY B.BOARD_NO DESC
+	
+	</select>
 	<update id="increaseReadCount" parameterType="_int">
 		UPDATE BOARD 
 		   SET READ_COUNT = READ_COUNT + 1
@@ -158,6 +175,14 @@
 		  </if>
 	</update>
 	
+	<update id="updateBoard" parameterType="board">
+		UPDATE BOARD
+		   SET
+			   TITLE = #{title},
+			   CONTENT = #{content}
+		WHERE BOARD_NO = #{boardNo}
+		
+	</update>
 	<update id="scrapBoard">
 		UPDATE BOARD
 		 SET WISH_COUNT = WISH_COUNT + 1
@@ -168,6 +193,12 @@
 		UPDATE BOARD
 		 SET WISH_COUNT = WISH_COUNT - 1
 		 WHERE BOARD_NO = #{bNo}
+	</update>
+	
+	<update id="deleteImage" parameterType="string">
+		UPDATE IMAGE
+		   SET STATUS = 'N'
+		 WHERE IMG_NO IN ${deleteImageList}
 	</update>
 	
 </mapper>

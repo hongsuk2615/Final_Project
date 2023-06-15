@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,19 +56,29 @@
 </head>
 <body>
     <div id="wrapper">
-            <jsp:include page="../common/header.jsp"/>
-        <div id="body">
-            <div id="body-left">
-                <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
-            </div>
+		<jsp:include page="../common/header.jsp"/>
+        <div id="body" style="padding-top: 150px;">
+            <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             <div id="body-right">
-               	<div id="enroll-category">
-               		<h1>${p.subCategory.categorySName} 게시글</h1>
-           		</div>
+               	
                 <div id="enroll">
-                    <form action="${contextPath }/ptj/ptjUpdate" method="post" name="updateForm">
+                    <form action="${contextPath }/ptj/ptjUpdate" method="post" name="updateForm" enctype="multipart/form-data">
+	                    <div id="enroll-category">
+	               			<h1>카테고리를 정해주세요.
+	                    	<select style="margin-left: 10px;" name="categorySNo" id="category-s-name">
+								<c:forEach var="categorySName" items="${subCategoryList }">
+									<c:if test="${categorySName.categoryUNo eq 5 }" >
+										<option value="${categorySName.categorySNo }">${categorySName.categorySName }</option>
+									</c:if>
+								</c:forEach>
+	                    	</select>
+                    </h1>
+	           			</div>
                 		<hr>
                         <div id="enroll-header">
+                        	<div>
+                        		<input type="file" value="${contextPath }${webPath }${p.imgPath }" name="img">
+                        	</div>
                             <h2>제목 : &nbsp;<input name="title" id="enroll-title" required value="${p.board.title }"></h2><br>
                             <h3 id="enroll-content">내용 :  &nbsp;<textarea name="enrollContent" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required value="${p.board.content }"></textarea></h3>
                         </div>
@@ -82,11 +93,21 @@
                             시작 시간 : <input type="time" name="startTime" class="enroll-date" value="${p.startTime }" required>&nbsp;&nbsp;
                             마감 시간 : <input type="time" name="endTime" class="enroll-date" value="${p.endTime }" required>
                             <hr>
+                            <div style="display: flex; align-items: center; " id="location-list">
+                                <h3>시 / 군 / 구 : </h3>
+                                <select style="height:40px; margin-left: 20px;" name="locationNo">
+                                    <c:forEach var="location" items="${locationList}">
+                                <option value="${location.locationNo}">${location.locationName}</option>
+                                </c:forEach>
+                                </select>
+                            </div>
                             <div id="enroll-map">
                                 <div>지역 : <input type="text" name="keyword" id="keyword" placeholder="지점 또는 관련 키워드를 검색 해 주세요!"></div><br>
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
                                 <div id="map" style="width:100%; height:350px;"></div>
                             </div>
+                            <input type="hidden" name="boardNo" value="${p.boardNo }">
+                            <input type="hidden" name="imgPath" value="${p.imgPath }">
                         </div>
                         <div id="enroll-footer">
                             <button id="enroll-btn">게시글 수정하기</button>

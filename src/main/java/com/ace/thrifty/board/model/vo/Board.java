@@ -14,9 +14,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Board {
 	private int boardNo;
-	private String categorySNo;
+	private int categorySNo;
 	private int categoryUNo;
 	private String upperCategoryName;
+	private String categoryPath;
 	private String content;
 	private Date createDate;
 	private int readCount;
@@ -25,6 +26,7 @@ public class Board {
 	private int userNo;
 	private int wishCount;
 	private String nickName;
+
 
 	
 	private ArrayList<Image> imgList;

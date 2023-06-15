@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
     pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="/thrifty/resources/css/member/enroll.css">
     <title>Document</title>
     <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js" crossorigin="anonymous"></script>
 </head>
@@ -47,9 +49,17 @@
 	                </c:choose>
             	</c:otherwise>
             </c:choose>
-	                <div id="header_search" class="search_img_white"> </div>            	
+                <div class="content_white change_content">
+                    <label for="toggle" class="toggleSwitch blue">
+                        <span id="toggleButton"></span>
+                    </label>
+                </div>
             </div>
         </div>
+        <form action="/thrifty/api/v1/oauth2/google" method="POST">
+            <input type="submit" value="post">
+        </form>    	
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
         <ul style="list-style-type: none;">
             <li id="GgCustomLogin">
             </li>
@@ -57,12 +67,52 @@
 
     </div>
     
-    
+    <script>
+    	function onSignIn(googleUser){
+    		console.log("aaa");
+    		let profile = googleUser.getBasicProfile();
+    		console.log('ID: ' + profile.getId());
+    		console.log('Name: ' + profile.getName());
+    		console.log('Image URL: ' + profile.getImageUrl());
+    		console.log('Email: ' + profile.getEmail());
+    	}
+    </script>
     <script>
         function kakaoLogout() {
             location.href="https://kauth.kakao.com/oauth/logout?client_id=17596a7a342e703f12c332dec822a955&logout_redirect_uri=http://localhost:8081/thrifty/member/logout";
         }
     </script> 
+
+    <script>
+        let toggleList = document.querySelectorAll(".toggleSwitch");
+
+        toggleList.forEach(($toggle) => {
+        $toggle.onclick = () => {
+            $toggle.classList.toggle('active');
+                if(toggleList[0].classList.contains('active')){
+                    dark_mode();
+                }else{
+                    light_mode();
+                }
+            }
+        });
+
+        function dark_mode() {
+            document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/moon.png")';
+            document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
+            document.querySelector("body").style.color="white";
+            document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
+            document.querySelector("#body").style.color="white";
+        }
+        function light_mode() {
+            document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/sun.png")';
+            document.querySelector("body").style.backgroundColor="white"; 
+            document.querySelector("body").style.color="black";
+            document.querySelector("#body").style.backgroundColor="white";
+            document.querySelector("#body").style.color="black";
+        }
+
+    </script>
     <script src="/thrifty/resources/js/member/modal.js"></script>
     <script src="/thrifty/resources/js/member/login-enroll.js"> </script>
     <script src="/thrifty/resources/js/member/validate.js"></script>

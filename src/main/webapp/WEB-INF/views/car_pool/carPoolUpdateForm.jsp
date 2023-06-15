@@ -55,13 +55,9 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="header">
-            <jsp:include page="../common/header.jsp"/>
-        </div>
+        <jsp:include page="../common/header.jsp"/>
         <div id="body">
-            <div id="body-left">
-                <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
-            </div>
+            <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             <div id="body-right">
                 <div id="enroll-category">
                     <h1>카테고리명</h1>

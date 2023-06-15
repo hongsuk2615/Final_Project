@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
@@ -37,6 +38,9 @@ public class UsedProductController {
 		if(!queryString.containsKey("currPage")) {
 			queryString.put("currPage", "1");
 		}
+		if(!queryString.containsKey("order")) {
+			queryString.put("order", "0");
+		}
 		usedProductService.selectUsedProduct(queryString);
 		if(queryString.containsKey("scNo")) {
 			model.addAttribute("scNo", queryString.get("scNo"));			
@@ -44,6 +48,7 @@ public class UsedProductController {
 		model.addAttribute("filter", queryString);
 		model.addAttribute("list", queryString.get("list"));
 		model.addAttribute("pi", queryString.get("pi"));
+		System.out.println(queryString.get("pi"));
 		return "usedProduct/usedProduct";
 	}
 	
@@ -92,6 +97,44 @@ public class UsedProductController {
 		}else {
 			String referer = request.getHeader("Referer");	
 			return "redirect:" + referer;
+		}
+	}
+	
+	@PostMapping("/modify")
+	public String modifyUsedProduct(HttpSession session, 
+									Board b, 
+									UsedProduct uP,
+									@RequestParam(value = "images", required = false ) List<MultipartFile> imgList,
+									String removeImgList)  throws Exception {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		b.setCategoryUNo(4);
+		b.setUserNo(loginUser.getUserNo());
+		System.out.println(b);
+		System.out.println(uP);
+		System.out.println(imgList);
+		System.out.println(removeImgList);
+		removeImgList = "("+removeImgList+")";
+		String webPath = "/resources/upfiles/usedProduct/";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		usedProductService.modifyUsedProduct(b,	uP, imgList, webPath, serverFolderPath, removeImgList);
+		return "redirect:/usedProduct/detail?bNo="+b.getBoardNo();
+	}
+	
+	@ResponseBody
+	@GetMapping("/soldOut")
+	public int soldOut(HttpSession session, int bNo) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			return -1;
+		} else {
+			Board board = new Board();
+			if (loginUser.getAuthority() == 0) {
+				board.setBoardNo(bNo);
+			} else {
+				board.setBoardNo(bNo);
+				board.setUserNo(loginUser.getUserNo());
+			}
+			return usedProductService.soldOut(board);
 		}
 	}
 }

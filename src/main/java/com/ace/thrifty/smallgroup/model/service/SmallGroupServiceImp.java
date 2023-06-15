@@ -1,6 +1,8 @@
 package com.ace.thrifty.smallgroup.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +13,12 @@ import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.common.Utils;
+import com.ace.thrifty.common.model.vo.PageInfo;
 import com.ace.thrifty.smallgroup.model.dao.SmallGroupDao;
 import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
+import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
+import com.ace.thrifty.common.model.vo.PageInfo;
+import com.ace.thrifty.common.template.Pagination;
 
 @Service
 public class SmallGroupServiceImp implements SmallGroupService{
@@ -21,6 +27,9 @@ public class SmallGroupServiceImp implements SmallGroupService{
 	SmallGroupDao smallGroupDao;
 	@Autowired
 	BoardDao boardDao;
+	
+	@Autowired
+	Pagination pagination;
 	
 	
 	
@@ -46,15 +55,15 @@ public class SmallGroupServiceImp implements SmallGroupService{
 	
 	}
 	
-	@Override
-	public ArrayList<SmallGroup> sgSelectList() {
-		return smallGroupDao.sgSelectList();
-	}
+//	@Override
+//	public ArrayList<SmallGroup> sgSelectList() {
+//		return smallGroupDao.sgSelectList();
+//	}
 	
 	@Override
-	public SmallGroup selectsgDetail(int boardNo) {
+	public SmallGroup selectsgDetail(int bNo) {
 		
-		return smallGroupDao.selectsgDetail(boardNo);
+		return smallGroupDao.selectsgDetail(bNo);
 	}
 	
 	@Override
@@ -74,6 +83,25 @@ public class SmallGroupServiceImp implements SmallGroupService{
 	@Override
 	public int sgDeleteBoard(Board b) {
 		return smallGroupDao.sgDeleteBoard(b);
+	}
+	
+	
+	@Override
+	public void selectsmallgroup(Map<String, Object> queryString) {
+		int listCount = smallGroupDao.selectsmallgroupCount(queryString);
+		int pageLimit = 10;
+		int boardLimit = 10;
+		PageInfo pi = pagination.getPageInfo(listCount, Integer.parseInt((String)(queryString.get("currPage"))), pageLimit, boardLimit);
+		List<SmallGroup> list = smallGroupDao.selectsmallgroup(pi, queryString);
+		
+		queryString.put("pi", pi);
+		queryString.put("list", list);
+	}
+	
+	@Override
+	public List<SmallGroup> selectSgAll(){
+		
+		return smallGroupDao.selectSgAll();
 	}
 	
 }

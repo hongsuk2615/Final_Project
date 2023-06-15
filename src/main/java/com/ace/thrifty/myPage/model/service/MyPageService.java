@@ -2,6 +2,7 @@ package com.ace.thrifty.myPage.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,7 +13,7 @@ import com.ace.thrifty.wishList.model.vo.WishList;
 public interface MyPageService {
 //	public String selectMyPage();
 	
-	public ArrayList<Board> selectBoardByUserNo(int userNo);
+	public ArrayList<Board> selectBoardByUserNo(int userNo, String currentPage, Map map);
 
 	
 	public int myPageUpdate (Member m);

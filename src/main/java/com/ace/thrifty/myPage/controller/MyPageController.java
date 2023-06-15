@@ -8,19 +8,25 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.myPage.model.service.MyPageService;
+import com.ace.thrifty.ptj.model.service.PtjService;
+import com.ace.thrifty.ptj.model.vo.Ptj;
+import com.ace.thrifty.smallgroup.model.service.SmallGroupService;
 import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
 import com.ace.thrifty.wishList.model.vo.WishList;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/mypage")
@@ -29,28 +35,42 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 	
+	@Autowired
+	private PtjService ptjService;
+	
+	@Autowired
+	private SmallGroupService smallgroupService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	//메인
 	@GetMapping("/myPageMain")
 	public String Main() {
 		return "myPage/myPageMain";
 				
 	}
 	
-	
+	//내가 쓴글 조회  
 	@GetMapping("/myWrite")
 	public String MyPageSelectList(
 								Model model, 
-								HttpSession session) {
+								HttpSession session,
+								@RequestParam(value="currentPage" , defaultValue="1", required=false) String currentPage) {
+	
+		Map map = new HashMap<String, Object>();
 		
-		ArrayList<Board> list = myPageService.selectBoardByUserNo(((Member)session.getAttribute("loginUser")).getUserNo());
+		
+		ArrayList<Board> list = myPageService.selectBoardByUserNo(((Member)session.getAttribute("loginUser")).getUserNo(),currentPage, map);
 		
 		model.addAttribute("list", list);
-		
+		model.addAttribute("pi", map.get("pi"));
 		
 		
 		return "myPage/myPageSelectWrite";
 	}
 	
-	
+	//수정하기 폼 
 	@GetMapping("/myUpdateForm")
 	public String MyPageUpdateForm() {
 		
@@ -67,9 +87,11 @@ public class MyPageController {
 			) {
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		m.setUserNo(userNo);
+		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(encPwd);
+		
 		int result1 = myPageService.myPageUpdate(m);
-		
-		
+	
 		System.out.println(m);
 		
 		if(result1>0) {
@@ -161,6 +183,62 @@ public class MyPageController {
 		return "redirect:/member/logout";
 	}
 	
+	@ResponseBody
+	@GetMapping("/adv")
+	public String adv(){
+	
+		List<Ptj> pList = ptjService.selectPtjAll();  
+		
+		
+	
+		//list 조회 
+		//random -> math.random ()
+		//list 가져온것중에
+		
+		int aaa = (int)(Math.random() * pList.size() );
+		pList.get(aaa);
+		
+		Ptj var = pList.get(aaa);
+		
+		
+		System.out.println(var);
+		
+		
+		
+		String webPath = "/resources/upfiles/ptj/";
+		
+		
+		return new Gson().toJson(var);
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("/advSg")
+	public String advSg() {
+		List<SmallGroup> sgList = smallgroupService.selectSgAll();  
+		
+		
+		
+		//list 조회 
+		//random -> math.random ()
+		//list 가져온것중에
+		
+		int bbb = (int)(Math.random() * sgList.size() );
+		sgList.get(bbb);
+		
+		SmallGroup val = sgList.get(bbb);
+		
+		
+		System.out.println(val);
+		
+		
+		
+		String webPath = "/resources/upfiles/ptj/";
+		
+		
+		return new Gson().toJson(val);
+		
+	}
 	
 	
 }
