@@ -45,7 +45,11 @@ public class CarPoolDao {
 		return sqlSession.update("carPoolMapper.deadLine" , b);
 	}
 	
-	public CarPool carPoolUpdateForm(int boardNo) {
-		return sqlSession.selectOne("carPoolMapper.carPoolUpdateForm" ,boardNo);
+	public CarPool carPoolUpdateForm(int bNo) {
+		return sqlSession.selectOne("carPoolMapper.carPoolUpdateForm" ,bNo);
+	}
+	
+	public int carPoolBoardUpdate(CarPool cP) {
+		return sqlSession.update("carPoolMapper.carPoolBoardUpdate", cP);
 	}
 }

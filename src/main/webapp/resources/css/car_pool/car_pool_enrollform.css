@@ -222,7 +222,6 @@ select {
 #images>td{
 	width: 150px;
     height: 200px;
-    background-color: grey;
     border-radius: 5px;
     background-size: cover;
     background-repeat: no-repeat;

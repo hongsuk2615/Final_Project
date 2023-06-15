@@ -13,5 +13,6 @@ public interface CarPoolService {
 	public CarPool driveDetail(int bNo);
 	public int insertCarPool(CarPool c, Board b, List<MultipartFile> imgList, String webPath, String serverFolderPath) throws Exception;
 	public int deadLine(Board b);
-	public CarPool carPoolUpdateForm(int boardNo);
+	public CarPool carPoolUpdateForm(int bNo);
+	public int carPoolBoardUpdate(Board b, CarPool cP , List<MultipartFile> imgList, String webPath, String serverFolderPath, String removeImgList) throws Exception; 
 }

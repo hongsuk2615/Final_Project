@@ -82,17 +82,16 @@
                 </div>
                 <hr>
                 <div id="enroll">
-                    <form>
                         <div id="enroll-header">
                             <div style="display: flex;">
                                 <div>
                                 <c:forEach var="image" items="${imageList }" begin="0" end="3" step="1">
                                 <c:choose>
                                 	<c:when test="${image.changeName != null }">
-                                		<img src="${contextPath }/resources/upfiles/carPool/${image.changeName}" style="height: 200px; width: 300px; border-radius: 10px;" />                                	
+                                		<img src="${contextPath }/resources/upfiles/carPool/${image.changeName}" style="height: 200px; width: 300px; border-radius: 10px;" onclick = "location.href = '${contextPath}/carPool/detail?bNo=${list.get(i).boardNo}'"/>                                	
                                 	</c:when>
                                 	<c:otherwise>
-                                		<img src="${contextPath }/resources/images/carpool/no-image.png" style="height: 200px; width: 300px; border-radius: 10px;" />
+                                		<img src="${contextPath }/resources/images/carpool/no-image.png" style="height: 200px; width: 300px; border-radius: 10px;" onclick = "location.href = '${contextPath}/carPool/detail?bNo=${list.get(i).boardNo}'"/>
                                 	</c:otherwise>
                                 </c:choose>
                                 </c:forEach>
@@ -138,7 +137,6 @@
                         <div id="enroll-footer">
                             <button type="button" id="back-btn" style="border: 0;">뒤로가기</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -241,12 +239,10 @@
 	})
 	
 	document.getElementById('update-btn').addEventListener("click",function(){
+		
 		location.href = "${contextPath}/carPool/update?bNo=${carpool.board.boardNo}";
 	})
 	
-	/* document.getElementById('delete-btn').addEventListener("click",function(){
-		location.href = "${contextPath}/carPool/drive;
-	}) */
 </script>
 </body>
 </html>

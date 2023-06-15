@@ -42,7 +42,6 @@ public class PtjController {
 		model.addAttribute("webPath" , webPath);
 		return "part_time_job/PTJMain";
 	}
-
 	
 	 @GetMapping("/ptj/ptjList") 
 	 public String ptjList(Model model , @RequestParam Map<String, Object> queryString) {
@@ -51,7 +50,7 @@ public class PtjController {
 		 }
 		 ptjService.selectPtjAll(queryString);
 		 if(queryString.containsKey("lNo")) {
-			model.addAttribute("lNo", queryString.get("lNo"));			
+			model.addAttribute("lNo", queryString.get("lNo"));		
 		 }
 		 model.addAttribute("filter" , queryString);
 		 model.addAttribute("list", queryString.get("list"));
@@ -90,9 +89,7 @@ public class PtjController {
 		String webPath = "/resources/upfiles/ptj/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		ptjService.insertPtj(b, p, image, webPath, serverFolderPath);
-		
 		return "redirect:/ptj/ptjList";
-		
 	}
 	
 	@GetMapping("/ptj/ptjUpdate")
