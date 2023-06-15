@@ -72,7 +72,7 @@
                 <table>
                     <tr>
                         <th colspan="5">
-                            <img src="/thrifty/resources/images/main/icon/second-hand.png" width="35" height="35">
+                            <img onerror="this.src='/thrifty/resources/images/common/noImage.png'" src="/thrifty/resources/images/main/icon/second-hand.png" width="35" height="35">
                             <h1>중고거래 글쓰기</h1>
                         </th>
                     </tr>

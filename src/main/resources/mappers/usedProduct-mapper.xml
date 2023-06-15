@@ -6,7 +6,7 @@
 		<result column="TITLE" property="title"/>
 		<result column="PRICE" property="price"/>
 		<result column="TRADE_METHOD" property="tradeMethod"/>
-		<result column="IS_SOLD_OUT" property="isSoldOut"/>
+		<result column="IS_SOLDOUT" property="isSoldOut"/>
 		<result column="LOCATION_NO" property="locationNo"/>
 		<result column="LOCATION_NAME" property="locationName"/>
 		<result column="THUMB_NAIL" property="thumbNail"/>
@@ -19,7 +19,7 @@
 		<result column="PRODUCT_NAME" property="productName"/>
 		<result column="PRICE" property="price"/>
 		<result column="TRADE_METHOD" property="tradeMethod"/>
-		<result column="IS_SOLD_OUT" property="isSoldOut"/>
+		<result column="IS_SOLDOUT" property="isSoldOut"/>
 		<result column="LOCATION_NO" property="locationNo"/>
 		<result column="LOCATION_NAME" property="locationName"/>
 		<result column="THUMB_NAIL" property="thumbNail"/>
@@ -124,6 +124,7 @@
 			 , READ_COUNT
 			 , TITLE
 			 , B.USER_NO
+			 , IS_SOLDOUT
 			 , WISH_COUNT
 			 , NICK_NAME
 			 , LOGIN_METHOD
@@ -144,7 +145,7 @@
 		   AND I.STATUS = 'Y'
 	</select>
 	<select id="selectUsedProductCount" parameterType="map" resultType="_int">
-		SELECT COUNT(*)
+		SELECT COUNT(DISTINCT BOARD_NO)
 		  FROM USED_PRODUCT
 		  JOIN LOCATION USING(LOCATION_NO)
 		  JOIN BOARD B USING(BOARD_NO)
@@ -168,7 +169,7 @@
 		 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
 		 		AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
 		 		 OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
-		 	</if>	
+		 	</if>
 	</select>
 	
 	<update id="modifyUsedProduct" parameterType="usedProduct">
@@ -197,4 +198,10 @@
 		 WHERE B.STATUS = 'Y'
 	</select>
 
+	<update id="soldOut" parameterType="board">
+		UPDATE USED_PRODUCT
+		   SET IS_SOLDOUT = 'Y'
+		 WHERE BOARD_NO = ${boardNo}
+	
+	</update>
 </mapper>

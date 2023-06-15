@@ -142,4 +142,9 @@ public class UsedProductServiceImp implements UsedProductService {
 	}
 	
 
+	@Override
+	public int soldOut(Board board) {
+		return usedProductDao.soldOut(board);
+	}
+
 }

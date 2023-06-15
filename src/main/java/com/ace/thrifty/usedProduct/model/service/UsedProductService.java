@@ -14,4 +14,5 @@ public interface UsedProductService {
 	public void selectUsedProduct(Map<String, Object> queryString);
 	public UsedProduct selectUsedProductByBno(int bNo);
 	public List<UsedProduct> selectUpAll();
+	public int soldOut(Board board);
 }

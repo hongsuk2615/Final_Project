@@ -17,52 +17,10 @@
     <link rel="stylesheet" href="/thrifty/resources/css/member/enroll.css">
     <title>Document</title>
     <meta name ="google-signin-client_id" content="283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js" crossorigin="anonymous"></script>
 </head>
-<style>
-.toggleSwitch {
-  width: 100px;
-  margin: 30px;
-  height: 50px;
-  display: block;
-  position: relative;
-  border-radius: 30px;
-  background-color: #fff;
-  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
-  cursor: pointer;
-}
-
-.toggleSwitch .toggleButton {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 50%;
-  left: 4px;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  background: #f03d3d;
-}
-
-
-.toggleSwitch.active .toggleButton {
-  left: calc(100% - 44px);
-  background: #fff !important;
-}
-
-.toggleSwitch, .toggleButton {
-  transition: all 0.2s ease-in;
-}
-
-.toggleSwitch.blue.active {
-  background: #5151e5;
-}
-
-.toggleSwitch.blue .toggleButton {  
-  background: #5151e5;
-}
-
-</style>
 <body>
     <div id="header" class="background_basic" style="height: 90px;">
         <div id="header_1">
@@ -70,11 +28,6 @@
                 <a href="/thrifty/">
                     <div id="main_logo" class="header_img_white"></div>
                 </a>
-            </div>
-            <div class="content_white change_content">
-            <label for="toggle" class="toggleSwitch blue">
-                <span class="toggleButton"></span>
-              </label>
             </div>
             <div id="header_1_2">
             <c:choose>
@@ -95,12 +48,17 @@
 	                </c:choose>
             	</c:otherwise>
             </c:choose>
-	                <div id="header_search" class="search_img_white"> </div>   
-		            <form action="/thrifty/googleLogin/" method="POST">
-		            	<input type="submit" value="post">
-		            </form>    	
+                <div class="content_white change_content">
+                    <label for="toggle" class="toggleSwitch blue">
+                        <span id="toggleButton"></span>
+                    </label>
+                </div>
             </div>
         </div>
+        <form action="/thrifty/api/v1/oauth2/google" method="POST">
+            <input type="submit" value="post">
+        </form>    	
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
         <ul style="list-style-type: none;">
             <li id="GgCustomLogin">
             </li>
@@ -108,49 +66,52 @@
 
     </div>
     
-    
+    <script>
+    	function onSignIn(googleUser){
+    		console.log("aaa");
+    		let profile = googleUser.getBasicProfile();
+    		console.log('ID: ' + profile.getId());
+    		console.log('Name: ' + profile.getName());
+    		console.log('Image URL: ' + profile.getImageUrl());
+    		console.log('Email: ' + profile.getEmail());
+    	}
+    </script>
     <script>
         function kakaoLogout() {
             location.href="https://kauth.kakao.com/oauth/logout?client_id=17596a7a342e703f12c332dec822a955&logout_redirect_uri=http://localhost:8081/thrifty/member/logout";
         }
     </script> 
 
-<script>
-    const toggleList = document.querySelectorAll(".toggleSwitch");
+    <script>
+        let toggleList = document.querySelectorAll(".toggleSwitch");
 
-    toggleList.forEach(($toggle) => {
-    $toggle.onclick = () => {
-    $toggle.classList.toggle('active');
-    if(toggleList[0].classList.contains('active')){
-        dark_mode();
-    }else{
-        light_mode();
-    }
-  }
-  
-});
-
-            function dark_mode() {
-                
-                let a = document.querySelectorAll(".main_text_icon")
-                for (var i = 0; i<a.length; i++){
-                    a[i].style.color="white";
+        toggleList.forEach(($toggle) => {
+        $toggle.onclick = () => {
+            $toggle.classList.toggle('active');
+                if(toggleList[0].classList.contains('active')){
+                    dark_mode();
+                }else{
+                    light_mode();
                 }
-              
-                document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
-                document.querySelector("body").style.color="white";
             }
-            function light_mode() {
-                let a = document.querySelectorAll(".main_text_icon")
-                for (var i = 0; i<a.length; i++){
-                    a[i].style.color="black";
-                }
+        });
 
-                document.querySelector("body").style.backgroundColor="white"; 
-                document.querySelector("body").style.color="black";
-            }
+        function dark_mode() {
+            document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/moon.png")';
+            document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
+            document.querySelector("body").style.color="white";
+            document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
+            document.querySelector("#body").style.color="white";
+        }
+        function light_mode() {
+            document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/sun.png")';
+            document.querySelector("body").style.backgroundColor="white"; 
+            document.querySelector("body").style.color="black";
+            document.querySelector("#body").style.backgroundColor="white";
+            document.querySelector("#body").style.color="black";
+        }
 
-  </script>
+    </script>
     <script src="/thrifty/resources/js/member/modal.js"></script>
     <script src="/thrifty/resources/js/member/login-enroll.js"> </script>
     <script src="/thrifty/resources/js/member/validate.js"></script>

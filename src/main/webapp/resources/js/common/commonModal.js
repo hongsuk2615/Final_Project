@@ -1,5 +1,5 @@
-document.getElementById('wish-btn').addEventListener('click', function(){
-	let bNo = $(this).attr('bno');
+function wishList(element){
+    let bNo=$(element).attr("bno");
     console.log(bNo);
     $.ajax({
         url : "/thrifty/wishList/insert",
@@ -37,7 +37,28 @@ document.getElementById('wish-btn').addEventListener('click', function(){
             }
         }
     })
-})
+}
+
+function deleteWishList(element){
+    let bNo=$(element).attr("bno");
+    console.log(bNo);
+    $.ajax({
+        url : "/thrifty/wishList/delete",
+        data : {bNo},
+        success : function(result){
+            console.log(result);
+            if(result == 1){
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: '찜삭제완료',
+                    showConfirmButton: false,
+                    timer: 1000
+                }).then(()=>{location.reload();});
+            }
+        }
+    })
+}
 
 var catList = {};
 $.ajax({
@@ -67,8 +88,8 @@ function reportAjax(bNo, catNo){
 }
 
 
-document.getElementById('report-btn').addEventListener('click', function(){
-    let bNo=$(this).attr("bno");
+function reportBoard(element){
+    let bNo=$(element).attr("bno");
     const { value: fruit } = Swal.fire({
         title: '신고항목을 고르세요',
         input: 'select',
@@ -83,11 +104,11 @@ document.getElementById('report-btn').addEventListener('click', function(){
             reportAjax(bNo, value);
         }
     })
-})
+}
 
-document.getElementById('inquiry-btn').addEventListener('click', async function(){
-    let receiver = $(this).attr("uNo");
-    let seller = $(this).attr("seller");
+async function sendMessage(element){
+    let receiver = $(element).attr("uNo");
+    let seller = $(element).attr("seller");
     const { content: text } = await Swal.fire({
                                                 input: 'textarea',
                                                 title: seller+'에게 메세지 보내기',
@@ -144,9 +165,9 @@ document.getElementById('inquiry-btn').addEventListener('click', async function(
                                                 cancelButtonText: '취소'
                                             });
 
-})
+}
 
-document.getElementById('delete-btn').addEventListener('click', function(){
+function deleteBoard(element){
     Swal.fire({
             title: '정말삭제하시겠습니까?',
             icon: 'warning',
@@ -157,8 +178,8 @@ document.getElementById('delete-btn').addEventListener('click', function(){
             cancelButtonText: '아니오!',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    let bNo = $(this).attr("bNo");
-                    let url = $(this).attr("url");
+                    let bNo = $(element).attr("bNo");
+                    let url = $(element).attr("url");
                     $.ajax({
                         url : "/thrifty/board/delete",
                         data : {bNo},
@@ -209,4 +230,4 @@ document.getElementById('delete-btn').addEventListener('click', function(){
                 }
             })
 
-})
+}
