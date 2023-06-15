@@ -2,6 +2,7 @@ package com.ace.thrifty.myPage.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,8 @@ import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.common.Utils;
+import com.ace.thrifty.common.model.vo.PageInfo;
+import com.ace.thrifty.common.template.Pagination;
 import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.myPage.model.dao.MyPageDao;
 import com.ace.thrifty.wishList.model.vo.WishList;
@@ -24,7 +27,8 @@ public class MyPageServiceImp  implements MyPageService{
 	@Autowired
 	MyPageDao myPageDao;
 	
-	
+	@Autowired
+	Pagination pagination;
 	
 //	public String selectMyPage() {
 //		
@@ -32,8 +36,17 @@ public class MyPageServiceImp  implements MyPageService{
 //	}
 	
 	@Override
-	public ArrayList<Board> selectBoardByUserNo(int userNo){
-		return boardDao.selectBoardByUserNo(userNo);
+	public ArrayList<Board> selectBoardByUserNo(int userNo, String currentPage, Map map){
+		
+		
+		int listCount = boardDao.selectMyCount(userNo);
+		int pageLimit = 10;
+		int boardLimit = 10;
+		
+		PageInfo pi =  pagination.getPageInfo(listCount, Integer.parseInt(currentPage), pageLimit, boardLimit);
+		map.put("pi", pi);
+		return boardDao.selectBoardByUserNo(userNo, pi);
+		
 	}
 	
 	@Override

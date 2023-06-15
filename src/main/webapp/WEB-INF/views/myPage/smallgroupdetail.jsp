@@ -11,6 +11,7 @@
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
          /* *{
         border: 1px solid blue !important;
@@ -245,8 +246,8 @@
                    		
                    		<c:if test="${sg.member.userNo 	!= loginUser.userNo}">
                             <div id="item-btns">
-                                <div id="wish-btn" bNo ="${board.boardNo}">찜</div>
-                                <div id="report-btn" bNo="${board.boardNo}">신고</div>
+                                <div id="wish-btn" bNo ="${sg.board.boardNo}">찜</div>
+                                <div id="report-btn" bNo="${sg.board.boardNo}">신고</div>
                             </div>
                     	</c:if> 
                         <div class="body-right-header-right-qr">
