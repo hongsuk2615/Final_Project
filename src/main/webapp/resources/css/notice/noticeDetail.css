@@ -38,6 +38,8 @@
 .noticeList_btn{
     background-color: #333333;
     color: white;
-    border-radius: 8x;
+    border-radius: 5px;
     font-size: 18px;
+    font-weight: 600;
+    padding: 5px 10px;
 }

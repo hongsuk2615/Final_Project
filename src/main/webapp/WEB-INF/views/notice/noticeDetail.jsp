@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="noticeList_btn_area">
-                <button class="noticeList_btn">목록</button>
+                <a class="noticeList_btn" href="#">목록</a>
             </div>
         </div>
         <jsp:include page="../common/footer.jsp" />

@@ -50,7 +50,7 @@
 									</div>
 									<div class="board_attr">
 										<div>
-											<span>제목</span>
+											<span class="board_title">제목제목제목 제목</span>
 										</div>
 										<div>
 											<span>꿀꾸루</span>

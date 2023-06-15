@@ -28,3 +28,8 @@ border: 1px solid black;
     flex-direction: column;
     justify-content: space-between;
 }
+
+.board_title{
+    font-weight: 700;
+    font-size: 20px;
+}
