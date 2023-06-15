@@ -38,4 +38,17 @@ public class WishListController {
 				}
 			}
 		}
+		
+		@GetMapping("/delete")
+		@ResponseBody
+		public int deleteWishList(int bNo, HttpSession session) {
+			if (session.getAttribute("loginUser") == null) {
+				return -1;
+			} else {
+				int uNo = ((Member) session.getAttribute("loginUser")).getUserNo();
+				WishList wL = new WishList(bNo, uNo);				 
+				return wishListService.deleteWishList(wL);
+				
+			}
+		}
 }

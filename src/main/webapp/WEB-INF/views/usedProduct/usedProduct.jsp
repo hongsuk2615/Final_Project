@@ -77,7 +77,7 @@
                             <div><a href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=3">가격순</a></div>
                         </div>
                         <div id="search">
-                            <img src="/thrifty/resources/images/main/icon/search-1.png" width="25px" height="25px">
+                            <img src="/thrifty/resources/images/main/icon/search-1.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="25px" height="25px">
                             <input type="search" id="keyword">
                         </div>
                     </div>
@@ -89,12 +89,13 @@
 	                    	<c:when test="${i lt list.size()}" >
 			                    <div class="item animate__flipInY animate__animated animate__faster " onclick = "location.href = '${contextPath}/usedProduct/detail?bNo=${list.get(i).boardNo}'">
 			                        <div class="item-img">
-											<img alt="" src='${contextPath}/${list.get(i).thumbNail }'>
+											<img alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'"src='${contextPath }/${list.get(i).isSoldOut == 'Y'? 'resources/images/usedProduct/giphy.gif': list.get(i).thumbNail}'>
 			                        </div>
 			                        <div class="item-info">
 			                        	제목 : ${list.get(i).title} <br>
 										가격 : ${list.get(i).price} <br>
 										지역 : ${list.get(i).locationName}
+										
 			                        </div>     
 			                    </div>                	
 	                    	

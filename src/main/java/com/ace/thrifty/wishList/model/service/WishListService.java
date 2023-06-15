@@ -6,4 +6,5 @@ public interface WishListService {
 	
 	public int insertWishList(WishList wL);
 	public WishList selectWishList(WishList wL);
+	public int deleteWishList(WishList wL);
 }
