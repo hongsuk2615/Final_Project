@@ -20,6 +20,7 @@ public class Board {
 	private int categorySNo;
 	private int categoryUNo;
 	private String upperCategoryName;
+	private String categoryPath;
 	private String content;
 	private Date createDate;
 	private int readCount;

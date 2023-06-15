@@ -241,7 +241,7 @@
     </div>
     <script>
     	function movePage(boardNo){
-    		location.href= '${pageContext.request.contextPath}/smallGroup/detail/'+boardNo;
+    		location.href= '${pageContext.request.contextPath}/smallGroup/detail?bNo='+boardNo;
     	}
     </script>
 </body>

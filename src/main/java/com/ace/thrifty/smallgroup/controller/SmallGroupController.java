@@ -100,12 +100,12 @@ public class SmallGroupController {
 	
 	
 	//게시글 상세조회
-	@GetMapping("/detail/{boardNo}")
-	public String sgDetail(@PathVariable("boardNo") int boardNo,
+	@GetMapping("/detail")
+	public String sgDetail(int bNo,
 							Model model
 							) {
 		
-		SmallGroup detail = smallgroupService.selectsgDetail(boardNo);
+		SmallGroup detail = smallgroupService.selectsgDetail(bNo);
 		
 		model.addAttribute("sg", detail);
 		

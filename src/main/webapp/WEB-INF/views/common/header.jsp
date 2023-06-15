@@ -110,34 +110,52 @@
 
     </div>
     <script>
-        let toggleList = document.querySelectorAll(".toggleSwitch");
-
+        const toggleList = document.querySelectorAll(".toggleSwitch");
+        
+      
         toggleList.forEach(($toggle) => {
         $toggle.onclick = () => {
-            $toggle.classList.toggle('active');
-                if(toggleList[0].classList.contains('active')){
-                    dark_mode();
-                }else{
-                    light_mode();
+        $toggle.classList.toggle('active');
+        
+       // ative  0 -> darkmode
+       // active x -> lightmode
+
+       //localstorage.(active, darkmode)
+       //localstorage.(nonactive, lightmode)
+        
+
+
+        if(toggleList[0].classList.contains('active')){
+            dark_mode();
+        }else{
+            light_mode();
+        }
+      }
+      
+    });
+            
+                function dark_mode() {
+                    document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/moon.png")';
+                    document.querySelector("body").style.transitionDuration= '0.5s';
+                    document.querySelector("#body").style.transitionDuration= '0.5s';
+                   
+                    document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
+                    document.querySelector("body").style.color="white";
+                    document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
+                    document.querySelector("#body").style.color="white";
                 }
-            }
-        });
-    
-        function dark_mode() {
-            document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/moon.png")';
-            document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
-            document.querySelector("body").style.color="white";
-            document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
-            document.querySelector("#body").style.color="white";
-        }
-        function light_mode() {
-            document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/sun.png")';
-            document.querySelector("body").style.backgroundColor="white"; 
-            document.querySelector("body").style.color="black";
-            document.querySelector("#body").style.backgroundColor="white";
-            document.querySelector("#body").style.color="black";
-        }
-    
+                function light_mode() {
+                    document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/sun.png")';
+                    document.querySelector("body").style.transitionDuration= '0.5s';
+                    document.querySelector("#body").style.transitionDuration= '0.5s';
+
+                    
+                    document.querySelector("body").style.backgroundColor="white"; 
+                    document.querySelector("body").style.color="black";
+                    document.querySelector("#body").style.backgroundColor="white";
+                    document.querySelector("#body").style.color="black";
+                }
+
     </script>
     <script>
         function kakaoLogout() {

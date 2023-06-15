@@ -32,8 +32,8 @@ public class SmallGroupDao {
 //		return (ArrayList)sqlSession.selectList("smallgroupMapper.sgSelectList");
 //	}
 	
-	public SmallGroup selectsgDetail(int boardNo) {
-		return sqlSession.selectOne("smallgroupMapper.selectsgDetail", boardNo);
+	public SmallGroup selectsgDetail(int bNo) {
+		return sqlSession.selectOne("smallgroupMapper.selectsgDetail", bNo);
 	}
 	
 	public int sgUpdateBoard2(SmallGroup sg){
@@ -54,6 +54,11 @@ public class SmallGroupDao {
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);		
 		return sqlSession.selectList("smallgroupMapper.selectsmallgroup", queryString, rowBounds);
+	}
+	
+	
+	public List<SmallGroup> selectSgAll(){
+		return sqlSession.selectList("smallgroupMapper.selectSgAll");
 	}
 	
 	

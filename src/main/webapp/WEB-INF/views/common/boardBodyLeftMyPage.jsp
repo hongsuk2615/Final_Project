@@ -28,17 +28,12 @@
                         <li><a href="/thrifty/mypage/myPageMain" class="upper_a">마이페이지</a></li>
                         <li><a href="/thrifty/mypage/zzimselect" class="upper_a">찜 목록</a></li>
                         <li><a href="/thrifty/mypage/myWrite" class="upper_a">내가 쓴 글</a></li>
-                        <li>쉐어하우스 수락/거절</li>
-        
-                       
-                   
-                    </ul>
-                </div>
-                <div id="filter">
+                        
+        		<div id="sgAdv">
                     <ul class="scrollbar">
-                        <div class="alert alert-danger">
-                            <span id="num">10</span>초 후에 없어짐
-                            <p>광고</p>
+                        <div class="alert alert-warning">
+                            <span id="num1">20</span>초 후에 없어짐
+                            <p></p>
                             <p>광고</p>
                             <p>광고</p>
                             <p>광고</p>
@@ -47,6 +42,24 @@
                             <p>광고</p>
 
                         </div>
+                   </ul>
+                 </div>
+                    </ul>
+                </div>
+                <div id="ptjAdv">
+                    <ul class="scrollbar">
+                        <div class="alert alert-warning">
+                            <span id="num">20</span>초 후에 없어짐
+                            <p></p>
+                            <p>광고</p>
+                            <p>광고</p>
+                            <p>광고</p>
+                            <p>광고</p>
+                            <p>광고</p>
+                            <p>광고</p>
+
+                        </div>
+                        
 
                     </ul>
                     
@@ -59,7 +72,7 @@
 </body>
 
 <script>
-    var count = 10;
+    var count = 20;
 
     setInterval(function(){
      count -= 1;
@@ -73,8 +86,82 @@
     },1000);
 
 
+    var count1 = 20;
+
+    setInterval(function(){
+     count1 -= 1;
+     if(count1>=0){
+         document.querySelector('#num1').innerHTML = count1;
+         
+     }else if(count1== -1){
+         $('.alert').hide();
+     }
+     
+    },1000);
+
     
-    
+ </script>
+ <script>
+ adAjax();
+  	function adAjax(){
+ 		$.ajax({
+ 			url : "/thrifty/mypage/adv",
+ 			dataType : 'json',
+ 			success : function(result){
+ 				console.log(result);
+ 				console.log('ajax');
+ 				abc = "";
+ 				abc += `
+ 					<ul class="scrollbar">
+                    <div class="alert alert-warning">
+                        <span id="num">20</span>초 후에 없어짐
+                        <p>제목 :\${result.board.title}</p>
+                        <img src="/thrifty/resources/upfiles/ptj/\${result.imgPath}" width="200px" height="120px">
+                        <p>시작 시간 :\${result.startTime}</p>
+                        <p>종료 시간 :\${result.endTime}</p>
+                        <p>지역 :\${result.location.locationName}</p>
+                        <p>일당 :\${result.price}</p>
+                        
+
+                    </div>
+                    
+
+                </ul>`
+			$('#ptjAdv').html(abc);
+ 			}
+ 		})
+  		
+ 	} 
+ </script>
+ 
+ <script>
+ adAjax1();
+	function adAjax1(){
+		$.ajax({
+			url : "/thrifty/mypage/advSg",
+			dataType : 'json',
+			success : function(result){
+				console.log(result);
+				console.log('ajax1');
+				def = "";
+				def += `
+					 <div class="alert alert-warning">
+                    <span id="num1">20</span>초 후에 없어짐
+                    <img src="https:chart.apis.google.com/chart?cht=qr&chs=300x300&chl=\${result.kakaoLink}" width="120px" height="120px">
+                    
+                    <p>제목 : \${result.board.title}</p>
+                    <p>닉네임 : \${result.member.nickName}</p>
+                    <p>모집인원 : \${result.recruitNo}명</p>
+                    <p>모집지역 : \${result.smallLocation}</p>
+                    
+
+                </div>`
+			$('#sgAdv').html(def);
+			}
+		})
+		
+	} 
+ 
  </script>
 
 </html>
