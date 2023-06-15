@@ -163,10 +163,20 @@
     </div>
     <script>
         const toggleList = document.querySelectorAll(".toggleSwitch");
-    
+        
+      
         toggleList.forEach(($toggle) => {
         $toggle.onclick = () => {
         $toggle.classList.toggle('active');
+        
+       // ative  0 -> darkmode
+       // active x -> lightmode
+
+       //localstorage.(active, darkmode)
+       //localstorage.(nonactive, lightmode)
+        
+
+
         if(toggleList[0].classList.contains('active')){
             dark_mode();
         }else{
@@ -175,11 +185,12 @@
       }
       
     });
-    
+            
                 function dark_mode() {
                     
+                    document.querySelector("body").style.transitionDuration= '0.5s';
+                    document.querySelector("#body").style.transitionDuration= '0.5s';
                    
-                  
                     document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
                     document.querySelector("body").style.color="white";
                     document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
@@ -187,7 +198,10 @@
                 }
                 function light_mode() {
                  
-    
+                    document.querySelector("body").style.transitionDuration= '0.5s';
+                    document.querySelector("#body").style.transitionDuration= '0.5s';
+
+                    
                     document.querySelector("body").style.backgroundColor="white"; 
                     document.querySelector("body").style.color="black";
                     document.querySelector("#body").style.backgroundColor="white";

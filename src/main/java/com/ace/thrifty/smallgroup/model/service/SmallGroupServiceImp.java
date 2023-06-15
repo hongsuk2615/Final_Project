@@ -61,9 +61,9 @@ public class SmallGroupServiceImp implements SmallGroupService{
 //	}
 	
 	@Override
-	public SmallGroup selectsgDetail(int boardNo) {
+	public SmallGroup selectsgDetail(int bNo) {
 		
-		return smallGroupDao.selectsgDetail(boardNo);
+		return smallGroupDao.selectsgDetail(bNo);
 	}
 	
 	@Override
@@ -96,6 +96,12 @@ public class SmallGroupServiceImp implements SmallGroupService{
 		
 		queryString.put("pi", pi);
 		queryString.put("list", list);
+	}
+	
+	@Override
+	public List<SmallGroup> selectSgAll(){
+		
+		return smallGroupDao.selectSgAll();
 	}
 	
 }
