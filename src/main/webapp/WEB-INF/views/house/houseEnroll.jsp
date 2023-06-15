@@ -51,7 +51,7 @@
             <input type="text"  placeholder="위치" name="houseAddress" id="houseAddress" onchange="getLocation()" required readonly>
             <input type="hidden" name="houseLongitude" id="houseLongitude">
             <input type="hidden" name="houseLatitude" id="houseLatitude">
-            <div style="position:absolute; right: 45px; top: 16px;">
+            <div style="position:absolute; right: 40px; top: 8px;">
             <button type="button" id="Addressbtn" onclick="insertDaumPostcodeBtn();" >주소검색</button>
             </div>
             </div>
@@ -165,7 +165,7 @@
 			        	reader.readAsDataURL(file);
 			        	reader.onload = function(e){
 			        		let url = e.target.result;
-			        		$('.rImg'+item).slick('slickAdd',"<div><img id='newImg"+item+"' src='"+url+"'></div>");
+			        		$('.rImg'+item).slick('slickAdd',`<div ><img onclick='alert(this.id);' id='newImg\${item}' src='\${url}'></div>`);
 			        		$('.rImg'+item).slick('refresh');
 			        		}
 	        	}
@@ -259,11 +259,6 @@
             }).open();
     	}
             
-    	
-    /* 	function insertHouse(){
-    		let formData = new FormData();
-    }	
-     */	
    </script>
         <script>
         function getLocation(){

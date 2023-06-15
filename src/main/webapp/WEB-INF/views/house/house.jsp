@@ -171,14 +171,14 @@
 	
 	function selectHouse(e){
 		let boardNo = $(e).attr('boardNo');
-		location.href="/thrifty/sharehouse/detail?boardNo="+boardNo;
+		location.href="/thrifty/sharehouse/detail?bNo="+boardNo;
 	}
 	
 	function scrapHouse(e){
 		let boardNo = $(e).attr('boardNo');
 		if($(e).attr('scrap') == 'o'){
 			$.ajax({
-				url : '${contextPath}/sharehouse/scrapCancle',
+				url : '${contextPath}/sharehouse/scrapCancel',
 				data : {
 					boardNo
 				},

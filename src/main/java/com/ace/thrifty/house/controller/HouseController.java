@@ -58,7 +58,7 @@ public class HouseController {
 	
 	@GetMapping("/detail") // 쉐어하우스 메인화면의 방 하나 클릭 시
 	public String houseDetail(Model m,
-			@RequestParam(value="boardNo", required=false) int boardNo) {
+			@RequestParam(value="bNo", required=false) int boardNo) {
 		List<Object> house = houseService.selectHouse(boardNo);
 		System.out.println("house:"+house);
 		m.addAttribute("house", house);
@@ -137,11 +137,11 @@ public class HouseController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/scrapCancle")
-	public int scrapCancle(Model m, HttpSession s,
+	@GetMapping("/scrapCancel")
+	public int scrapCancel(Model m, HttpSession s,
 			@RequestParam(value="boardNo", required=false) int boardNo) {
 		int userNo = ((Member)s.getAttribute("loginUser")).getUserNo();
-		return houseService.scrapCancle(userNo, boardNo);
+		return houseService.scrapCancel(userNo, boardNo);
 	}
 	
 	@ResponseBody

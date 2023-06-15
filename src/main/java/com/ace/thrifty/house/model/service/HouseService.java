@@ -27,7 +27,7 @@ public interface HouseService {
 	
 	int scrapHouse(int userNo, int boardNo);
 
-	int scrapCancle(int userNo, int boardNo);
+	int scrapCancel(int userNo, int boardNo);
 	
 	List<Object> searchHouse(String keyword, int userNo);
 	

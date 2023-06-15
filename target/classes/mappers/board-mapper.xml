@@ -164,7 +164,7 @@
 		 WHERE BOARD_NO = #{bNo}
 	</update>
 	
-	<update id="scrapCancle">
+	<update id="scrapCancel">
 		UPDATE BOARD
 		 SET WISH_COUNT = WISH_COUNT - 1
 		 WHERE BOARD_NO = #{bNo}

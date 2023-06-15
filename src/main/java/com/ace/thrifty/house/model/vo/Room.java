@@ -17,7 +17,6 @@ public class Room {
 	private int boardNo;
 	private int roomNo;
 	private int recruitsNum; // 모집인원
-	private int recruitsCurr; // 현재모집인원
 	private String division; // 방이름
 	private String gender; // 성별
 	private String type; // 타입

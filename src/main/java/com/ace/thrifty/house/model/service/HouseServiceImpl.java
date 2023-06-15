@@ -114,14 +114,14 @@ public class HouseServiceImpl implements HouseService{
 		return 0;
 	}
 	@Override
-	public int scrapCancle(int userNo, int boardNo) {
+	public int scrapCancel(int userNo, int boardNo) {
 		
 		WishList wL = new WishList();	
 		wL.setBoardNo(boardNo);
 		wL.setUserNo(userNo);
 		
 		wishListDao.deleteWishList(wL);
-		boardDao.scrapCancle(boardNo);
+		boardDao.scrapCancel(boardNo);
 		
 		return 0;
 	}

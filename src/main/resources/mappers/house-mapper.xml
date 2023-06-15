@@ -19,7 +19,6 @@
 		<id column="ROOM_NO" property="roomNo"/>
 		<result column="BOARD_NO" property="boardNo"/>
 		<result column="RECRUITS_NUM"  property="recruitsNum"/>
-		<result column="RECRUITS_CURR"  property="recruitsCurr"/>
 		<result column="DIVISION"  property="division"/>
 		<result column="GENDER"  property="gender"/>
 		<result column="TYPE"  property="type"/>
@@ -67,8 +66,8 @@
 	</insert>
 	
 	<insert id="insertRoom" useGeneratedKeys="true" parameterType="house" keyProperty="roomNo">
-		INSERT INTO ROOM (ROOM_NO, BOARD_NO, RECRUITS_NUM, RECRUITS_CURR, DIVISION, GENDER, TYPE, AREA, DEPOSIT, RENT, COST, CONTRAT)
-		VALUES ( default , #{boardNo}, #{recruitsNum}, #{recruitsCurr}, #{division}
+		INSERT INTO ROOM (ROOM_NO, BOARD_NO, RECRUITS_NUM, DIVISION, GENDER, TYPE, AREA, DEPOSIT, RENT, COST, CONTRAT)
+		VALUES ( default , #{boardNo}, #{recruitsNum}, #{division}
 		, #{gender}, #{type}, #{area}, #{deposit}
 		, #{rent}, #{cost}, #{contrat})
 	</insert>
