@@ -1,5 +1,5 @@
 document.getElementById('wish-btn').addEventListener('click', function(){
-
+	let bNo = $(this).attr('bno');
     console.log(bNo);
     $.ajax({
         url : "/thrifty/wishList/insert",

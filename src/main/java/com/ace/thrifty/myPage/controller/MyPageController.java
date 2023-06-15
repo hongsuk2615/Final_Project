@@ -25,6 +25,8 @@ import com.ace.thrifty.ptj.model.service.PtjService;
 import com.ace.thrifty.ptj.model.vo.Ptj;
 import com.ace.thrifty.smallgroup.model.service.SmallGroupService;
 import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
+import com.ace.thrifty.usedProduct.model.service.UsedProductService;
+import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 import com.ace.thrifty.wishList.model.vo.WishList;
 import com.google.gson.Gson;
 
@@ -40,6 +42,10 @@ public class MyPageController {
 	
 	@Autowired
 	private SmallGroupService smallgroupService;
+	
+	@Autowired
+	private UsedProductService usedProductService;
+	
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -187,7 +193,7 @@ public class MyPageController {
 	@GetMapping("/adv")
 	public String adv(){
 	
-		List<Ptj> pList = ptjService.selectPtjAll();  
+		List<Ptj> pList = ptjService.advptjAll();  
 		
 		
 	
@@ -239,6 +245,8 @@ public class MyPageController {
 		return new Gson().toJson(val);
 		
 	}
+	
+	
 	
 	
 }
