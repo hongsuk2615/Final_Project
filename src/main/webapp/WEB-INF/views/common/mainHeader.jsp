@@ -20,6 +20,18 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js" crossorigin="anonymous"></script>
+    <style>
+    	@font-face {
+		    font-family: 'GangwonEdu_OTFBoldA';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		body *{
+			font-family: 'GangwonEdu_OTFBoldA';
+		}
+
+    </style>
 </head>
 <body>
     <div id="header" class="background_basic" style="height: 90px;">
