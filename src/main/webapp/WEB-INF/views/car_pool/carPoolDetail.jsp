@@ -112,7 +112,7 @@
                             <h3>작성자 성별 : ${carpool.member.gender }</h3>
                             <hr>
                             <div id="item-btns">
-                                <div id="inquiry-btn" uNo="${carpool.board.userNo }" seller="${carpool.member.userId }">쪽지 보내기</div>
+                                <div id="inquiry-btn" uNo="${carpool.board.userNo }" seller="${carpool.member.userId }" onclick ="">쪽지 보내기</div>
                                 <div id="report-btn" bNo="${carpool.board.boardNo }">신고하기</div>
                                 <div id="wish-btn" bNo="${carpool.board.boardNo }">찜</div>
                             </div>

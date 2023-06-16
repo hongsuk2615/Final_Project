@@ -62,7 +62,7 @@
 <body>
     <div id="wrapper">
 			<jsp:include page="../common/header.jsp" />
-        <div id="body" style="padding-top: 150px;">
+        <div id="body" style="padding-top: 100px;">
             <div id="body-search">
                 <swiper-container class="mySwiper" navigation="true" style="border-radius: 30px; --swiper-navigation-color: white;">
                     <swiper-slide><img src="/thrifty/resources/images/ptj/ptj.jpg"></swiper-slide>
@@ -116,9 +116,19 @@
             <div id="alba-board">
             	<c:forEach var="p" items="${p }" begin="0" end="3" step="1">
 	                <div>
-	                    <img src="${contextPath }${webPath }${p.imgPath }" style="width: 230px; height: 180px;">
-	                    <p>${p.isEnd == "N" ? "모집중" : "모집 완료" }</p>
-	                    <p>${p.board.content }</p>
+	                	<c:choose>
+	                		<c:when test="${p.isEnd == 'N' }">
+			                    <img src="${contextPath }${webPath }${p.imgPath }" style="width: 230px; height: 180px;">	                		
+			                    <p>${p.isEnd == "N" ? "모집중" : "모집 완료" }</p>
+	                   			<p>${p.board.content }</p>
+	                		</c:when>
+	                		<c:otherwise>
+	                			<img src="">
+	                			<p></p>
+	                			<p></p>
+	                		</c:otherwise>
+	                	</c:choose>
+	                    
 	                </div>
             	</c:forEach>
             </div> 

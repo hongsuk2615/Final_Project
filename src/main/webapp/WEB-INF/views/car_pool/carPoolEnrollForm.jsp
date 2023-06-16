@@ -145,7 +145,6 @@
                                     <input type="hidden" name="destination" id="destination" >
                                     <button type="button" onclick="removeLine();" class="draw-btn" id="redraw">다시 그리기</button>
                                 </div>
-                                <!-- <div id="좌표"></div> -->
                             </div>
                         </div>
                         <div id="enroll-footer">
