@@ -89,7 +89,6 @@ public class BoardDao {
 		return sqlSession.update("boardMapper.updateBoard", b);
 	}
 	
-	
 	public int scrapBoard(int bNo) {
 		return sqlSession.update("boardMapper.scrapBoard", bNo);
 	}
@@ -100,7 +99,6 @@ public class BoardDao {
 
 	public int updateImageList(List<Image> imageList) {
 		return sqlSession.update("boardMapper.updateImageList", imageList);
-
 	}
 	
 	public int selectMyCount(int userNo) {

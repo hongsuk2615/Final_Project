@@ -9,7 +9,6 @@
 		<result column="CREATE_DATE"  property="createDate"/>
 		<result column="READ_COUNT"  property="readCount"/>
 		<result column="REPORT_COUNT"  property="reportCount"/>
-		<result column="CATEGORY_PATH"  property="categoryPath"/>
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
@@ -150,16 +149,6 @@
 	  ORDER BY B.BOARD_NO DESC
 
 	</select>
-	
-	<select id="selectMyCount" parameterType="map" resultType="_int">
-		SELECT COUNT(*) 
-	  FROM BOARD B
-	  JOIN MEMBER M USING(USER_NO) 
-	  JOIN UPPER_CATEGORY U USING(CATEGORY_U_NO)
-	  WHERE USER_NO = #{userNo} AND B.STATUS='Y'
-	  ORDER BY B.BOARD_NO DESC
-	
-	</select>
 	<update id="increaseReadCount" parameterType="_int">
 		UPDATE BOARD 
 		   SET READ_COUNT = READ_COUNT + 1
@@ -181,7 +170,6 @@
 			   TITLE = #{title},
 			   CONTENT = #{content}
 		WHERE BOARD_NO = #{boardNo}
-		
 	</update>
 	<update id="scrapBoard">
 		UPDATE BOARD
@@ -189,7 +177,7 @@
 		 WHERE BOARD_NO = #{bNo}
 	</update>
 	
-	<update id="scrapCancel">
+	<update id="scrapCancle">
 		UPDATE BOARD
 		 SET WISH_COUNT = WISH_COUNT - 1
 		 WHERE BOARD_NO = #{bNo}

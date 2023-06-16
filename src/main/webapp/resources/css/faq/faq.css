@@ -1,0 +1,50 @@
+.page_title{
+    border-bottom: 5px solid black;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+#main_event{
+    display: flex;
+    justify-content: center;
+}
+
+#main_event a{
+    display: flex;
+    justify-content: center;
+}
+
+#main_event_img{
+    width: 95%;
+}
+
+#main_menu{
+    padding-top: 50px;
+    display: grid;
+    margin: auto;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: 200px 200px 200px;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
+    place-items: center;
+    text-align: center;
+}
+
+.main_menu_icon{
+    width: 80px;
+    height: 80px;
+}
+
+#main_menu a div{
+    color: black;
+    font-size: 18px;
+    color: rgba(0,0,0,0.56);
+    text-align: center;
+    padding-top: 10px;
+    font-weight: 900;
+}
+
+#faq-accordion{
+    height: 500px;
+    margin: 50px 0px;
+}

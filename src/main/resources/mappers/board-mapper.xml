@@ -181,7 +181,6 @@
 			   TITLE = #{title},
 			   CONTENT = #{content}
 		WHERE BOARD_NO = #{boardNo}
-		
 	</update>
 	<update id="scrapBoard">
 		UPDATE BOARD

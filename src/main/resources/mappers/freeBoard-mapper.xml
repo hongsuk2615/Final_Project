@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="freeBoardMapper">
+
+	<insert id="insertFreeBoard">
+				INSERT INTO BOARD(CATEGORY_S_NO, CATEGORY_U_NO, TITLE, CONTENT, USER_NO)
+		            VALUES(#{categorySNo}, #{categoryUNo}, #{title}, #{content}, #{userNo})
+	</insert>
+</mapper>
