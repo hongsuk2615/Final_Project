@@ -27,11 +27,15 @@ public interface HouseService {
 	
 	int scrapHouse(int userNo, int boardNo);
 
-	int scrapCancle(int userNo, int boardNo);
+	int scrapCancel(int userNo, int boardNo);
 	
 	List<Object> searchHouse(String keyword, int userNo);
 	
 	int tourApply(Tour tour);
 	
+	int changeRecruitment(Room r);
+	
+	int updateHouse(Board b, House h, List<Room> rooms, Map<String,List<MultipartFile>> roomImgs, String webPath, String serverFolderPath
+			, String deleteImgList, String deleteRoomList) throws Exception;
 	
 }

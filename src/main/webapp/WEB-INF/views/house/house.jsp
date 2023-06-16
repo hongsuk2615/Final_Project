@@ -1,192 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>다른 이미지로 마커 생성하기</title>
-    
-    <style>
-.wrap {
-    display: flex;
-    padding-top: 17vh;
-}
-
-#map{
-    width: 127vh;
-    height: 82vh;
-     padding-top : 9px;
-}
-
-#left{
-    margin-left: 20px;
-    padding-top : 30px;
-    width: 50%;
-}
-
-.scrollbar::-webkit-scrollbar {
-    width: 10px;  
-}
-
-.scrollbar::-webkit-scrollbar-thumb {
-    background: rgb(149, 156, 159); /* 스크롤바 색상 */
-    border-radius: 10px; /* 스크롤바 둥근 테두리 */
-}
-
-.scrollbar::-webkit-scrollbar-track {
-    background: rgb(224, 224, 224);  /*스크롤바 뒷 배경 색상*/
-    border-radius: 10px;
-}
-
-body{
-	padding: 0;
-	margin: 0;
-	overflow: hidden;
-}
-
-#housewrap{
-    display: flex;
-    width: 98%;
-    height: 70vh;
-    flex-wrap: wrap;
-    overflow:scroll;
-    overflow-x: hidden;
-}
-
-.house {
-    width: 32%;
-    /* border: 1px solid red; */
-   /*  cursor: pointer; */
-    margin-right: 7px;
-}
-
-.houseImg {
-    width: 100%;
-    cursor: pointer;
-}
-
-.houseImg:hover{
-    transform:scale(1.1);
-    transition: 0.5s ease-out;
-}
-
-.houseImg:not(:hover){
-    transition: 0.5s ease-out;
-}
-
-
-.house p {
-    margin: 8px 0px;
-    overflow: hidden;
-}
-
-.house> * {
-    overflow-y: hidden;
-}
-
-#hSearch {
-    width: 100%;
-    font-size: 40px;
-    border: 0px;
-}
-
-#hSearch:focus {
-    outline: none;
-}
-
-#searchDiv{
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-}
-
-#searchbtn{
-    border: 0px;
-    background: none;
-    background-image: "h1.jpg";
-    width: 10%;
-}
-
-#searchbtn img{
-   width: 100%;
-}
-
-#filterbtn{
-    width: 70%;
-}
-
-#left-top{
-    width: 100%;
-    display:flex;
-    margin-bottom: 10px;
-}
-
-#left-top div:nth-child(2){
-   width: 10%;
-}
-
-.house div:nth-child(1){
-    width: 100%;
-    height: 10vw;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.house div:last-child{
-	display:flex;
-	justify-content: space-between;
-	padding-right: 7px;
-}
-
-.scrapImg{
-	cursor: pointer;
-	width: 25px;
-
-}
-
-
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button,
-input::-webkit-search-results-button,
-input::-webkit-search-results-decoration{
-    display:none;
-}
-
-#enrolldiv{
-	position: fixed;
-	right: 30px;
-	bottom : 30px;
-	z-index: 10;
-}
-
-#enrolldiv button{
-	cursor: pointer;
-	border-radius: 2.25em;
-	font-size: 18px;
-	background: white;
-	border: 2px solid blue;
-	height: 50px;
-	width: 230px;
-	color: blue;
-	font-weight: bold;
-	box-shadow: 0px 1px 5px 0px gray;
-}
-
-#enrolldiv button:hover{
-	background: blue;
-	color: white;
-}
-
-#enrolldiv a{
-	color: inherit;
-  text-decoration: none;
-}
-
-    </style>
+    <link rel="stylesheet" href="/thrifty/resources/css/house/house.css">
 </head>
 <body>
    	<jsp:include page="../common/header.jsp"></jsp:include>
@@ -198,12 +19,12 @@ input::-webkit-search-results-decoration{
         <div id="left-top">
             <div id="searchDiv">
                 <input type="search" id="hSearch" name="hSearch">
-                <button id="searchbtn" onclick="searchHouse();">
-                    <img src="g1.jpg">
-                </button>
+                
             </div>
             <div>
-                <img id="filterbtn" src="f1.jpg">
+                <button id="searchbtn" onclick="searchHouse();">
+                    <img src="/thrifty/resources/images/house/search.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
+                </button>
             </div>
         </div>
         <div class="scrollbar" id="housewrap">
@@ -218,31 +39,31 @@ input::-webkit-search-results-decoration{
 </div>
 
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5381ed5b2d19ab0d65e938e3cce6e687"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 	<script>
 	
 	function selectHouseAjax(result){
 		house = "";
 		
 		  result.forEach(function(h){
+			   minAmount = h.minAmount.toLocaleString();
 		  		house += `
 		  			<div class="house" >
-	                <div ><img class="houseImg" src="/thrifty/\${h.thumbnail}" boardNo="\${h.boardNo}" onclick="selectHouse(this);"></div>
+	                <div ><img class="houseImg" src="/thrifty/\${h.thumbnail}" boardNo="\${h.boardNo}" onclick="selectHouse(this);" onerror="this.src='/thrifty/resources/images/common/noImage.png'"></div>
 	                <h3>\${h.board.title }</h3>
 	                <div>
-	                 <span>월 \${h.minAmount }만원 ~</span>`;
+	                 <span>월 \${minAmount}원 ~</span>`;
 	                 if(h.wish == 0){
 	                	 house += `	<span>
-	                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart.png" 
+	                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart.png"  onerror="this.src='/thrifty/resources/images/common/noImage.png'" 
 	                	 boardNo="\${h.boardNo}" onclick="scrapHouse(this);" scrap="x">
 	                	 </span> </div></div>`;
 	                 }else{
 	                	 house += `	<span>
-		                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart2.png" 
+		                	 <img class="scrapImg" src="/thrifty/resources/images/house/heart2.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" 
 		                	 boardNo="\${h.boardNo}" onclick="scrapHouse(this);" scrap="o">
 		                	 </span> </div></div>`;
 	                 }
-	                 
 		 	})
 		 	
 		 	$('#housewrap').html(house);
@@ -258,29 +79,68 @@ input::-webkit-search-results-decoration{
 				}) 
 		 })
 		
-		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+		var imageSrc = "/thrifty/resources/images/house/home.png";
 		
 		for (var i = 0; i < positions.length; i++) {
 
 			// 마커 이미지의 이미지 크기 입니다
-			var imageSize = new kakao.maps.Size(24, 35);
+			var imageSize = new kakao.maps.Size(60, 60);
 
 			// 마커 이미지를 생성합니다    
 			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
 			// 마커를 생성합니다
 			var marker = new kakao.maps.Marker({
-				title : positions[i].boardNo, 
 				map : map, // 마커를 표시할 지도
 				position : positions[i].latlng, // 마커를 표시할 위치
 				image : markerImage
 			// 마커 이미지 
 				});
+			marker.id = positions[i].boardNo;
+			marker.title = positions[i].title;
+		 kakao.maps.event.addListener(marker, 'click', function() {
+			 console.log('dd');
+			 console.log(this);
+			 /* var position = this.getPosition();
+			    console.log(position); */
+			location.href="/thrifty/sharehouse/detail?boardNo="+this.id;
+		}); 
+		 
+		// 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
+		 var infowindow;
+		 // 마커에 마우스오버 이벤트를 등록합니다
+
+		 kakao.maps.event.addListener(marker, 'mouseover', function() {
+			 infowindow = new kakao.maps.InfoWindow({
+			        content: '<div class="markerInfo"><span>' + this.title + '</span><div>'
+			 })
+		   // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+		     infowindow.open(map, this);
+			 var markerInfo = document.querySelectorAll('.markerInfo');
+				markerInfo.forEach(function(e) {
+				    var w = e.offsetWidth + 10;
+				    var ml = w/2;
+				    e.parentElement.style.top = "100px";
+				    e.parentElement.style.left = "50%";
+				    e.parentElement.style.marginLeft = -ml+"px";
+				    e.parentElement.style.width = w+"px";
+				    e.parentElement.previousSibling.style.display = "none";
+				    e.parentElement.parentElement.style.border = "0px";
+				    e.parentElement.parentElement.style.background = "unset";
+				});
+			 
+		 });
+
+		 // 마커에 마우스아웃 이벤트를 등록합니다
+		 kakao.maps.event.addListener(marker, 'mouseout', function() {
+		     // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+		     infowindow.close();
+		 });
 		}
 		
-		 kakao.maps.event.addListener(marker, 'click', function() {
-			location.href="/thrifty/sharehouse/detail?boardNo="+this.getTitle();
-		}); 
+		
+		
+	
 	}
 	
 	function shareHouse(){ //ALL
@@ -313,16 +173,16 @@ input::-webkit-search-results-decoration{
 	
 	function selectHouse(e){
 		let boardNo = $(e).attr('boardNo');
-		location.href="/thrifty/sharehouse/detail?boardNo="+boardNo;
+		location.href="/thrifty/sharehouse/detail?bNo="+boardNo;
 	}
 	
 	function scrapHouse(e){
-		let boardNo = $(e).attr('boardNo');
+		let bNo = $(e).attr('boardNo');
 		if($(e).attr('scrap') == 'o'){
 			$.ajax({
-				url : '${contextPath}/sharehouse/scrapCancle',
+				url : '${contextPath}/sharehouse/scrapCancel',
 				data : {
-					boardNo
+					bNo
 				},
 				dataType : 'json',
 				success: function(result){ 
@@ -336,7 +196,7 @@ input::-webkit-search-results-decoration{
 			$.ajax({
 				url : '${contextPath}/sharehouse/scrapHouse',
 				data : {
-					boardNo
+					bNo
 				},
 				dataType : 'json',
 				success: function(result){ 
