@@ -25,7 +25,7 @@ public class Room {
 	private int rent; // 월임대료
 	private int cost; // 관리비
 	private String contrat; // 계약종료일
-	
+	private String symbol;
 	private ArrayList<RoomImg> imgList;
 	
 }

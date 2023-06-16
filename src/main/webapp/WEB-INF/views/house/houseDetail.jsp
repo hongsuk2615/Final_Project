@@ -44,7 +44,14 @@
     <div id="state" class="Htable">
         <table >
             <tr>
-                <th>입주신청</th>
+             <c:choose>
+                 <c:when test="${loginUser.userNo eq b.userNo}">
+                      <th>모집인원</th>
+                 </c:when>
+                 <c:otherwise>
+                      <th>입주신청</th>
+                 </c:otherwise>
+             </c:choose>
                 <th>구분</th>
                 <th>성별</th>
                 <th>타입</th>
@@ -56,25 +63,35 @@
             </tr>
             
              <c:forEach var="r" items="${h.roomList }">
-            
 		            <tr>
-		                <td>
-                            <c:choose>
-                                <c:when test="${r.recruitsNum ne 0}">
-                                    <button roomNo="${r.roomNo }" roomName="${r.division }" onclick="tour(this);">투어신청</button>
-                                </c:when>
-                                <c:otherwise>
-                                    <button disabled>입주완료</button>
-                                </c:otherwise>
-                            </c:choose>
-		                </td>
+		                
+		                <c:choose>
+			                 <c:when test="${loginUser.userNo eq b.userNo}">
+			                      <td id="" style="color:black; display:flex; justify-content: space-evenly; padding: 13px;">
+			                      <div onclick='change(this)' roomNo='${r.roomNo}' symbol='minus' style="cursor:pointer;">-</div>
+			                      <div id="recruitsNum${r.roomNo}">${r.recruitsNum}</div>
+			                      <div onclick='change(this)' roomNo='${r.roomNo}' symbol='plus' style="cursor:pointer;">+</div>
+			                      </td>
+			                 </c:when>
+			                 <c:otherwise>
+			                       <c:choose>
+		                                <c:when test="${r.recruitsNum ne 0}">
+		                                    <td><button roomNo="${r.roomNo }" roomName="${r.division }" onclick="tour(this);">투어신청</button></td>
+		                                </c:when>
+		                                <c:otherwise>
+		                                    <td><button class="compl" disabled>입주완료</button></td>
+		                                </c:otherwise>
+		                            </c:choose>
+			                 </c:otherwise>
+			             </c:choose>
+		                
 		                <td>${r.division }</td>
 		                <td>${r.gender }</td>
 		                <td>${r.type }</td>
 		                <td>${r.area }㎡</td>
-		                <td> <fmt:formatNumber type="number" maxFractionDigits="3" value="${r.deposit }" />원</td>
-		                <td> <fmt:formatNumber type="number" maxFractionDigits="3" value="${r.rent }" />원</td>
-		                <td> <fmt:formatNumber type="number" maxFractionDigits="3" value="${r.cost }" />원</td>
+		                <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${r.deposit }" />원</td>
+		                <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${r.rent }" />원</td>
+		                <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${r.cost }" />원</td>
 		                <td>${r.contrat }</td>
 		            </tr>
               </c:forEach>
@@ -178,6 +195,8 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
     <script>
     $(document).ready(function(){
+    		let rooms = '${h.roomList}'
+    		console.log(rooms);
             $('.img-bx').slick({
                 dots: true,
                 dotsClass: 'dots_custom',
@@ -225,6 +244,30 @@
         	var offset = $(x).offset(); 
         	$("html, body").animate({ scrollTop: offset.top -200 }, 400);
         });
+        
+        
+        function change(e){
+        	symbol = $(e).attr('symbol');
+        	roomNo =  $(e).attr('roomNo');
+        	recruitsNum = $('#recruitsNum'+roomNo);
+        	$.ajax({
+        		url: '/thrifty/sharehouse/changeRecruitment',
+        		data : {roomNo, symbol },
+        	 	beforeSend : function(){
+        			if(recruitsNum.text() == 0 && symbol == 'minus'){
+        				alert('모집인원은 음수가 될 수 없습니다.');
+        				return false;
+        			}
+        		},
+        		success : function(result){
+        			if(symbol == 'plus'){
+        				recruitsNum.html(recruitsNum.html()*1+1);	
+        			}else{
+        				recruitsNum.html(recruitsNum.html()*1-1);	
+        			}
+        		}
+        	})
+        }
         
         function deleteBoard(element){
             

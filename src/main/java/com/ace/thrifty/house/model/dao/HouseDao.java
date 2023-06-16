@@ -67,7 +67,27 @@ public class HouseDao {
 		return sqlSession.insert("houseMapper.tourApply", tour);
 	}
 	
+	public int changeRecruitment(Room r) {
+		return sqlSession.update("houseMapper.changeRecruitment", r);
+	}
+	
+	public int updateHouse(House h) { 
+		return sqlSession.update("houseMapper.updateHouse" , h);
+	}
 
+	public int deleteImage(String deleteImgList) { 
+		return sqlSession.update("houseMapper.deleteImage" , deleteImgList);
+	}
+
+	public int deleteRoom(String deleteRoomList) { 
+		return sqlSession.update("houseMapper.deleteRoom" , deleteRoomList);
+	}
+	
+	public int updateRoom(Room r) { 
+		return sqlSession.update("houseMapper.updateRoom" , r);
+	}
+
+	
 	
 
 }

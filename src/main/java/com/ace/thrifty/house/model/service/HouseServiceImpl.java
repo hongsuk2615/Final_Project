@@ -36,7 +36,6 @@ public class HouseServiceImpl implements HouseService{
 
 	@Override
 	public int insertHouse(Board b, House h, List<Room> rooms, Map<String, List<MultipartFile>> roomImgs, String webPath, String serverFolderPath) throws Exception {
-		System.out.println("service");
 		boardDao.insertBoard(b);
 		int boardNo =b.getBoardNo();
 		h.setBoardNo(boardNo);
@@ -137,13 +136,72 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public int deleteHouse(int boardNo) {
-		boardDao.deleteBoard
-		return 0;
+	public int changeRecruitment(Room r) {
+		return houseDao.changeRecruitment(r);
 	}
 
-
+	@Override
+	public int updateHouse(Board b, House h, List<Room> rooms, Map<String, List<MultipartFile>> roomImgs,
+			String webPath, String serverFolderPath, String deleteImgList, String deleteRoomList) throws Exception {
+			boardDao.updateBoard(b);
+			if(deleteImgList.length() > 2 ) {
+			houseDao.deleteImage(deleteImgList);
+			}
+			if(deleteRoomList.length() > 2 ) {
+			houseDao.deleteRoom(deleteRoomList);
+			}
+			List<List<MultipartFile>> roomImgsV = new ArrayList();
+			List<RoomImg> roomImgList = new ArrayList();
+			Iterator<String> keys = roomImgs.keySet().iterator();
+			while (keys.hasNext()) {
+				String key = keys.next();
+				roomImgsV.add(roomImgs.get(key));
+			}
+			System.out.println("roomImgsV"+roomImgsV);
+			for (int i = 0; i < rooms.size(); i++) {
+				if(rooms.get(i).getRoomNo() == 0) {
+					houseDao.insertRoom(rooms.get(i));
+					int roomNo = rooms.get(i).getRoomNo();
+					for(int j = 0; j < roomImgsV.get(i).size(); j++) {
+						MultipartFile file = roomImgsV.get(i).get(j);
+						if(roomImgsV.get(i).get(j).getSize() != 0) {
+						String changeName = Utils.saveFile(file, serverFolderPath);
+						RoomImg roomImg = RoomImg
+								.builder()
+								.roomNo(roomNo)
+								.originName(file.getOriginalFilename())
+								.changeName(changeName)
+								.imgLevel(j)
+								.build();
+						roomImgList.add(roomImg);
+						}
+					}
+				}else {
+					houseDao.updateRoom(rooms.get(i));
+					
+					for(int k = 0; k < roomImgsV.get(i).size(); k++) {
+						MultipartFile file = roomImgsV.get(i).get(k);
+						if(roomImgsV.get(i).get(k).getSize() != 0) {
+						String changeName = Utils.saveFile(file, serverFolderPath);
+						RoomImg roomImg = RoomImg
+								.builder()
+								.roomNo(rooms.get(i).getRoomNo())
+								.originName(file.getOriginalFilename())
+								.changeName(changeName)
+								.imgLevel(k+100)
+								.build();
+						roomImgList.add(roomImg);
+				}}
+				}
+				
+			}
+			if(!roomImgList.isEmpty()) {
+				String thumbnail = webPath + roomImgList.get(0).getChangeName();
+				h.setThumbnail(thumbnail);
+				houseDao.insertRoomImg(roomImgList);
+			}
+			int result = houseDao.updateHouse(h);
 	
-	
-	
+			return result;
+		}
 }

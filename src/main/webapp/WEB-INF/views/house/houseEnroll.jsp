@@ -51,7 +51,7 @@
             <input type="text"  placeholder="위치" name="houseAddress" id="houseAddress" onchange="getLocation()" required readonly>
             <input type="hidden" name="houseLongitude" id="houseLongitude">
             <input type="hidden" name="houseLatitude" id="houseLatitude">
-            <div style="position:absolute; right: 40px; top: 8px;">
+            <div style="position:absolute; right: 40px; top: 17px;">
             <button type="button" id="Addressbtn" onclick="insertDaumPostcodeBtn();" >주소검색</button>
             </div>
             </div>
@@ -82,7 +82,8 @@
             let a = `
             <div id="roomImgsection\${count}" > 
             <input type="text" maxlength='8' placeholder="방 이름" name="division" id="division\${count}" onchange="roomName(this.id)" required> 
-            <input type="file" style="border: none;" onchange="makeSlick(\${count})" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png" required>
+            <button type="button" onclick="insertImage(\${count});">파일 첨부(8개까지 가능)</button>
+            <input type="file" onchange="makeSlick(\${count})" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png" required>
             <button type="button" id="closebtn\${count}"count='\${count}'>X</button>
             </div>
             
@@ -128,14 +129,15 @@
 
            document.getElementById("closebtn"+count).addEventListener('click', function(){
                 let c = $(this).attr('count')
-               if($('#rImg'+c).find('img').length != 0) {
+               
+                if($('input[name=contrat]').length == 1){
+                	alert("하나의 방은 존재해야합니다.")
+                }else{
+                	if($('#rImg'+c).find('img').length != 0) {
 		        		$('.rImg'+c).slick('slickRemove', null, null, true);
 		        		$('.rImg'+c).slick('unslick');
 		        		$('#rImg'+c).remove();
 		        	}
-                if($('input[name=contrat]').length == 1){
-                	alert("하나의 방은 존재해야합니다.")
-                }else{
                 $('#roomImgsection'+c).remove();
                 $('#rImg'+c).remove();
                 $("#tb"+c).remove();
@@ -144,6 +146,30 @@
             inputCheck();
         }addRoom();
         
+        function deleteImg(e){
+        	cnt = $(e).attr('cnt');
+        	console.log(cnt);
+        	const files = Array.from(document.getElementsByName('roomImg'+cnt)[0].files);
+            console.log(files);
+            const dataTransfer = new DataTransfer();
+            files.filter(file=>file.lastModified!=$(e).attr('lastModified')).forEach(file=>{
+                dataTransfer.items.add(file);
+            })
+            document.getElementsByName('roomImg'+cnt)[0].files = dataTransfer.files;
+
+            let arr = $('.rImg'+cnt+' .slick-track').children('div').filter(function(i, item){
+                return !$(item).hasClass('slick-cloned');
+            });
+            let index = -1;
+            arr.each(function(i, item){
+                console.log($(item).attr('index'));
+                if($(item).attr('index')==$(e).attr('index')){
+                    index = i;
+                }
+            })
+            $('.rImg'+cnt).slick('slickRemove',index);
+    	}
+        
         
         function makeSlick(item){
         	if($('#rImg'+item).find('img').length != 0) {
@@ -151,7 +177,7 @@
         	}
         	let el = $('input[name=roomImg'+item+']').get(0);
         	filelength = el.files.length;
-        	if(filelength > 9){
+        	if(filelength > 8){
         		alert("사진첨부는 8개까지 가능합니다.");
         		el.value = "";
         		return 0;
@@ -165,7 +191,8 @@
 			        	reader.readAsDataURL(file);
 			        	reader.onload = function(e){
 			        		let url = e.target.result;
-			        		$('.rImg'+item).slick('slickAdd',`<div ><img onclick='alert(this.id);' id='newImg\${item}' src='\${url}'></div>`);
+			        		let lastModified = file.lastModified;
+			        		$('.rImg'+item).slick('slickAdd',`<div class="slickDiv" onclick='deleteImg(this);' index=\${j} cnt=\${item} lastModified=\${lastModified} style='border-radius: 10px; background-image: url(\${url}); background-size:cover; width:140px; height:140px;';><img class='deleteImg' id='newImg\${item}' src='/thrifty/resources/images/house/deleteImg.png'></div>`);
 			        		$('.rImg'+item).slick('refresh');
 			        		}
 	        	}
@@ -181,6 +208,10 @@
 	            });
 	          	
         }
+        
+        function insertImage(len){
+    		$('input[name=roomImg'+len+']')[0].click();
+    	}
         
         function roomName(id){
         	$('input[name='+id+']').val($('#'+id).val());

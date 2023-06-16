@@ -33,7 +33,9 @@ public interface HouseService {
 	
 	int tourApply(Tour tour);
 	
-	int deleteHouse(int boardNo);
+	int changeRecruitment(Room r);
 	
+	int updateHouse(Board b, House h, List<Room> rooms, Map<String,List<MultipartFile>> roomImgs, String webPath, String serverFolderPath
+			, String deleteImgList, String deleteRoomList) throws Exception;
 	
 }
