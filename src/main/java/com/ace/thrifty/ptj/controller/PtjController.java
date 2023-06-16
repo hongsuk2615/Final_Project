@@ -49,8 +49,8 @@ public class PtjController {
 				queryString.put("currPage", "1");
 		 }
 		 ptjService.selectPtjAll(queryString);
-		 if(queryString.containsKey("lNo")) {
-			model.addAttribute("lNo", queryString.get("lNo"));		
+		 if(queryString.containsKey("scNo")) {
+			model.addAttribute("scNo", queryString.get("scNo"));		
 		 }
 		 model.addAttribute("filter" , queryString);
 		 model.addAttribute("list", queryString.get("list"));

@@ -80,20 +80,20 @@
                 </div>
                 <hr style="width: 100%;  margin-top: 15px;">
                 <div id="ptj-allBody" style="height: 1000px;">
-                	<c:forEach var="i" begin="0" end="8" step="1">
-               			<div style="width: 200px; height: 300px;" class="list-detail" onclick="location.href = '${contextPath}/ptj/detail?bNo=${list.get(i).boardNo }'">
+                	<c:forEach var="list" items="${list }" begin="0" end="8" step="1">
+               			<div style="width: 200px; height: 300px;" class="list-detail" onclick="location.href = '${contextPath}/ptj/detail?bNo=${list.boardNo }'">
                				<c:choose>
-               					<c:when test="${list.get(i).isEnd eq 'N' }">
-		               				<img src="${contextPath }/${list.get(i).imgPath }" style="height: 170px; width: 100%; border-radius: 3px;"/>		               						
+               					<c:when test="${list.isEnd eq 'N' }">
+		               				<img src="${contextPath }/${list.imgPath }" style="height: 170px; width: 100%; border-radius: 3px;"/>		               						
                					</c:when>
                					<c:otherwise>
                						<img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 100%; border-radius: 3px;"/>
                					</c:otherwise>
                				</c:choose>
                				<div id="ptj-content">
-	       						<p>제목 :${list.get(i).board.title }</p>
-	       						<p id="board-content">내용 :${list.get(i).board.content }</p>
-	       						<p>지역 :${list.get(i).location.locationName }</p>
+	       						<p>제목 :${list.board.title }</p>
+	       						<p id="board-content">내용 :${list.board.content }</p>
+	       						<p>지역 :${list.location.locationName }</p>
                				</div>
            				</div>
        				</c:forEach>

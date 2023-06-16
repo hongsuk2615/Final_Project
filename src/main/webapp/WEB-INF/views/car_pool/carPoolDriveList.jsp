@@ -28,7 +28,6 @@
         display: flex;
         justify-content: center;
     }
-
     #body-left{
         display: inline-block;
         width: 20%;
@@ -43,7 +42,6 @@
         min-width: 700px;
         min-height: 950px;
     }
-
     #footer{
         
     }

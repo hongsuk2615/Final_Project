@@ -11,7 +11,6 @@
     <title>Document</title>
 </head>
 <body>
-
             <div id="body-left">
                 <div id="upper-category">
                     <div>

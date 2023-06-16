@@ -38,8 +38,8 @@ public class CarPoolController {
 			queryString.put("currPage", "1");
 		}
 		carPoolService.selectDriveList(queryString);
-		if(queryString.containsKey("lNo")) {
-			model.addAttribute("lNo", queryString.get("lNo"));			
+		if(queryString.containsKey("scNo")) {
+			model.addAttribute("scNo", queryString.get("scNo"));			
 		}
 		model.addAttribute("filter", queryString);
 		model.addAttribute("list", queryString.get("list"));
@@ -70,7 +70,8 @@ public class CarPoolController {
 								Board b ,
 								@RequestParam(value="images" , required = false) List<MultipartFile> imgList) throws Exception{
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		b.setCategoryUNo(3); b.setUserNo(loginUser.getUserNo()); 
+		b.setCategoryUNo(3); 
+		b.setUserNo(loginUser.getUserNo()); 
 		String webPath = "/resources/upfiles/carPool/"; 
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		carPoolService.insertCarPool(c, b, imgList, webPath, serverFolderPath);
