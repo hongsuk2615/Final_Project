@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/thrifty/resources/css/usedProduct/usedProduct.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
     <title>Document</title>
 <style>
     *{
@@ -71,10 +72,10 @@
 
                     <div id="body-right-filter">
                         <div id="order-list">
-                            <div><a href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=0">최신순</a></div>
-                            <div><a href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=1">찜순</a></div>
-                            <div><a href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=2">조회순</a></div>
-                            <div><a href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=3">가격순</a></div>
+                            <div><a style="${filter.order eq 0 or filter.order eq null? 'font-weight:bold;text-decoration : underline; text-decoration-thickness: 3px; color: black; text-underline-offset : 5px;':''}" href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=0">최신순</a></div>
+                            <div><a style="${filter.order eq 1 ? 'font-weight:bold;text-decoration : underline; color: black; text-decoration-thickness: 3px; text-underline-offset : 5px;':''}" href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=1">찜순</a></div>
+                            <div><a style="${filter.order eq 2 ? 'font-weight:bold;text-decoration : underline; color: black; text-decoration-thickness: 3px; text-underline-offset : 5px;':''}"href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=2">조회순</a></div>
+                            <div><a style="${filter.order eq 3 ? 'font-weight:bold;text-decoration : underline; color: black; text-decoration-thickness: 3px; text-underline-offset : 5px;':''}" href="/thrifty/usedProduct?scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&keyword=${filter.keyword}&order=3">가격순</a></div>
                         </div>
                         <div id="search">
                             <img src="/thrifty/resources/images/main/icon/search-1.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="25px" height="25px">
@@ -84,7 +85,12 @@
                     
                 </div>
                 <div id="body-right-list">
-                	<c:forEach var="i"  begin="0" end="7" step="1">
+                <c:choose>
+                	<c:when test="${list.size() eq 0 }">
+                	<img width="200" height="200" src="/thrifty/resources/images/usedProduct/not-found.png">
+                	</c:when>
+                	<c:otherwise>
+                		<c:forEach var="i"  begin="0" end="7" step="1">
 	                    <c:choose>
 	                    	<c:when test="${i lt list.size()}" >
 			                    <div class="item animate__flipInY animate__animated animate__faster " onclick = "location.href = '${contextPath}/usedProduct/detail?bNo=${list.get(i).boardNo}'">
@@ -92,9 +98,9 @@
 											<img alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'"src='${contextPath }/${list.get(i).isSoldOut == 'Y'? 'resources/images/usedProduct/giphy.gif': list.get(i).thumbNail}'>
 			                        </div>
 			                        <div class="item-info">
-			                        	제목 : ${list.get(i).title} <br>
-										가격 : ${list.get(i).price} <br>
-										지역 : ${list.get(i).locationName}
+			                        	<div class="item-info-title">${list.get(i).title}</div>
+										<div class="item-info-price">${list.get(i).price}원</div> 
+										<div class="item-info-locationName">${list.get(i).locationName}</div>
 										
 			                        </div>     
 			                    </div>                	
@@ -102,11 +108,11 @@
 	                    	
 	                    	</c:when>
 							<c:otherwise>
-								<div class="item animate__flipInY animate__animated">
-			                        <div class="item-img">
+								<div class="item animate__flipInY animate__animated" style="box-shadow : none;">
+			                        <div class="item-img" style="background:transparent">
 											
 			                        </div>
-			                        <div class="item-info">
+			                        <div class="item-info" style="background:transparent; border:none;">
 											
 			
 			                        </div>     
@@ -115,6 +121,12 @@
 	                    </c:choose>
                     
                 	</c:forEach>
+                	
+                	
+                	</c:otherwise>
+                </c:choose>
+                
+                	
 
                 </div>
                 <div id="body-right-footer">
@@ -124,25 +136,49 @@
                         </c:if>
                     </div>
                     <div id="paging-btns">
+                    <c:if test="${list.size() gt 0 }">
                     	<c:choose>
 		                  <c:when test="${ pi.currentPage eq 1 }">
-		                     <div>&lt;</div>
+		                     
+		                     <lord-icon
+								    src="https://cdn.lordicon.com/xdakhdsq.json"
+								    trigger="hover"
+								    colors="primary:gray"
+								    style="width:30px;height:30px;  transform:rotate(-90deg);">
+								</lord-icon>
+							
 		                  </c:when>
 		                  <c:otherwise>
-		                     <div><a href="/thrifty/usedProduct?currPage=${filter.currPage-1}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}">&lt;</a></div>
+		                     <a href="/thrifty/usedProduct?currPage=${filter.currPage-1}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}"><lord-icon
+								    src="https://cdn.lordicon.com/xdakhdsq.json"
+								    trigger="hover"
+								    colors="primary:#3498db"
+								    style="width:30px;height:30px; cursor:pointer; transform:rotate(-90deg);">
+								</lord-icon></a>
 		                  </c:otherwise>               
 		               </c:choose>
 		               <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
-	                  	<div><a href="/thrifty/usedProduct?currPage=${item}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}">${item}</a></div>
+	                  	<div style="${item eq pi.currentPage? 'background:rgb(0, 60, 120);':''}"><a style="color:white; font-size: 15px; font-weight: bold;" href="/thrifty/usedProduct?currPage=${item}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}">${item}</a></div>
 	               		</c:forEach>
 	               		<c:choose>
 		                  <c:when test="${ pi.currentPage eq pi.maxPage }">
-		                     <div>&gt;</div>
+		                     <lord-icon
+								    src="https://cdn.lordicon.com/xdakhdsq.json"
+								    trigger="hover"
+								    colors="primary:gray"
+								    style="width:30px;height:30px;  transform:rotate(90deg);">
+								</lord-icon>
 		                  </c:when>
 		                  <c:otherwise>
-		                     <div><a href="/thrifty/usedProduct?currPage=${filter.currPage+1}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}">&gt;</a></div>
+		                     <a href="/thrifty/usedProduct?currPage=${filter.currPage+1}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}"><lord-icon
+								    src="https://cdn.lordicon.com/xdakhdsq.json"
+								    trigger="hover"
+								    colors="primary:#3498db"
+								    style="width:30px;height:30px; cursor:pointer; transform:rotate(90deg);">
+								</lord-icon></a>
 		                  </c:otherwise>               
 		               </c:choose>
+		              </c:if>
                     </div>
                     
                 </div>
