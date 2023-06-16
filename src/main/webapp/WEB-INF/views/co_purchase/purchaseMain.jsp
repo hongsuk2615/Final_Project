@@ -82,9 +82,18 @@
                                     </div>
                                     <div class="detail">
                                     <div class="detail_top">
-                                        <div class="detail_top_recruiting">
-                                            모집중
-                                        </div>
+                                    	<c:choose>
+                                    		<c:when test="${ b.isEnd eq 'Y' }">
+                                    			<div class="detail_top_close">
+		                                            마감
+		                                        </div>
+                                    		</c:when>
+                                    		<c:otherwise>
+		                                        <div class="detail_top_recruiting">
+		                                            모집중
+		                                        </div>                            		
+                                    		</c:otherwise>
+                                    	</c:choose>
                                     </div>
                                     <a href="${ contextPath }/co_purchase/detail?bNo=${ b.boardNo }">
                                         <div class="detail_middle">${ b.title }</div>

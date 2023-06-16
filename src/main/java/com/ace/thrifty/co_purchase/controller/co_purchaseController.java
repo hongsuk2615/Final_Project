@@ -46,7 +46,6 @@ public class co_purchaseController {
 							Board b,
 							@RequestParam Map<String, Object> paramMap,
 							HttpServletRequest req) {
-		System.out.println(paramMap); 
 		if(!paramMap.containsKey("currPage")) {
 			paramMap.put("currPage", "1");
 		}
@@ -73,7 +72,6 @@ public class co_purchaseController {
 	@GetMapping("/detail")
 	public String selectDetail(int bNo, Model model) {
 		Co_purchase co = coService.selectCoPurchase(bNo);
-		System.out.println("controller"+co);
 		
 		if(co != null) {
 			System.out.println("co :"+co);
@@ -103,8 +101,6 @@ public class co_purchaseController {
 		b.setUserNo(loginUser.getUserNo());
 		String webPath = "/resources/upfiles/co_purchase/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
-		System.out.println(cp);
-		System.out.println(b);
 		
 		coService.insertBoard(b, cp, imgList, webPath, serverFolderPath);
 		
@@ -121,7 +117,6 @@ public class co_purchaseController {
 			model.addAttribute("subcategory", co.getSubCategory());
 			model.addAttribute("board", co.getBoard());
 			model.addAttribute("imageList", co.getImageList());
-
 			return "co_purchase/purchaseEnrollModify";
 		}else {
 			String referer = request.getHeader("Referer");	
@@ -134,14 +129,18 @@ public class co_purchaseController {
 							HttpSession session,
 							Board b,
 							Co_purchase cp,
-							@RequestParam(value = "image", required = false ) List<MultipartFile> imgList
+							@RequestParam(value = "image", required = false ) MultipartFile imgList
 							) throws Exception {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		b.setCategoryUNo(6);
+		b.setUserNo(loginUser.getUserNo());
+		
 		String webPath = "/resources/upfiles/co_purchase/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		
 		coService.updateBoard(b, cp, imgList, webPath, serverFolderPath);
 		
-		return "redirect:/co_purchase";
+		return "redirect:/co_purchase/detail?bNo="+b.getBoardNo();
 	}
 	
 

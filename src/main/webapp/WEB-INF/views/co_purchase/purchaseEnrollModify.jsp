@@ -56,9 +56,18 @@
                         <input type="submit" id="submit_button" value="등록">
                     </div>
                     <div id="title_main">
-                        <div id="write_title" class="write_case">
+                        <div id="write_title" class="write_case" style="width: 80%;">
                             <div class="write_case_head" style="width: 93px;">제목</div>
                             <input type="text" id="enroll_title" class="" name="title" value="${ board.title }">
+                        </div>
+                        <div class="write_case" style="width: 18%;">
+                        	<div>
+                        		<div id="isend">마감</div>
+                        	</div>
+                        	<div id="check_box">
+                        		<img alt="" src="${ contextPath }/resources/images/main/icon/checkbox-bordernone.png" style="width: 30px; height: 30px;" id="check_box_img">
+                        	</div>
+                        	<input id="check_box_value" type="hidden" name="isEnd" value="Y">
                         </div>
                     </div>
                     <div id="invite_info">
@@ -77,7 +86,7 @@
 <!--                             <input type="hidden" name="categorySNo" value="123"> -->
                             <div class="selectBox2 ">
                                 <input type="text" id="categorySNo" class="label" value="${ subcategory.categorySName }">
-                                <input type="hidden" name="categorySNo" class="label2">
+                                <input type="hidden" name="categorySNo" class="label2" value="${ board.categorySNo }">
                                 <ul class="optionList" style="display: none;">
                                     <c:forEach var="subCategory" items="${subCategoryList}">
                                         <c:if test="${subCategory.categoryUNo eq 6}">
@@ -113,6 +122,7 @@
                     <div>
                         <textarea name="content" placeholder="내용을 입력해주세요.">${ board.content }</textarea>
                     </div>
+                    <input type="hidden" name="boardNo" value="${ board.boardNo }">
                 </form>
                 
 				

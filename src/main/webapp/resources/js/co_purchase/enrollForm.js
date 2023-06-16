@@ -29,3 +29,15 @@ label.addEventListener('click', function () {
         document.querySelector('.optionList').style.display = 'block';
     }
 });
+
+$("#check_box").click(function() {
+
+  $("#check_box_img").toggle();
+  
+  if ($("#check_box_img").is(':visible')) {
+    $("#check_box_value").val('Y');
+  } else {
+    $("#check_box_value").val('N');
+  }
+  
+});
