@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,39 +116,63 @@
     /* border-bottom: .3rem solid black; */
     
    .classtitle{
+    height: 10%;
     display: flex;
     justify-content: center;
     padding: 20px 20px;
     
    }
    
-   .personinfoborder{
-    display: flex;
-    justify-content: center;
+   
+
+   #personinfoborder{
+    
+    height: 70%;
     padding: 20px 40px;
    
    }
 
-   #button_modify{
-    position: relative;
-  width: 200px;
-  margin-left: 65px;
-  margin-top: 40px;
-   }
-   
-   #button_cancel{
-    position: relative;
-  width: 200px;
-  margin-left: 65px;
-  margin-top: 40px;
-   }
     
     
    .tablecolor{
     background-color: rgba(0,0,0,.05);
    }
    
+   
+   .info-element{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0px 10px 0px;
+   }
 
+   .info-element>label{
+    
+   flex: 11 40%;
+    border-bottom: solid black;
+   }
+
+   #btnsss{
+    
+    display: flex;
+    justify-content: space-evenly;
+   }
+   
+   #btnself{
+    display: flex;
+    justify-content: right;
+   }
+
+   #button_modify{
+    width: 200px;
+    height: 40px;
+   }
+
+   #button_cancel{
+    width: 200px;
+    height: 40px;
+   }
+ 
+  
  
 /*
    background-color: #fc3441;
@@ -182,7 +207,13 @@
                 <div id="body-right-header">
                     
                     <div class="profile-pic">
+                    <c:if test="${loginUser.loginMethod != 'K'}">    
                        <img src="${contextPath}/resources/images/myPage/${loginUser.changeName}"  width="100%" height="100%" style="object-fit: cover;">
+                    </c:if>
+                    
+                    <c:if test="${loginUser.loginMethod == 'K'}">
+                    	<img src="${loginUser.changeName}">
+                    </c:if>
                     </div>
 
                     <div class="profile-title">
@@ -201,53 +232,59 @@
                         <div class="classtitle">
                         <h2> 회원정보</h2>
                         </div>
-                    <div class="personinfoborder" data-aos="fade-up-right">
-                        <table border="1" width="600" height="200">
-                            <tr>
-                                <td width="100" class="tablecolor">회원 이름</td>
-                                <td width="300">${loginUser.userName}</td>
-                                
-                            </tr>
+                    <div class="personinfoborder" data-aos="fade-up-right" id="personinfoborder">
+                        
+                        <div class="info-element">
+                            <label>회원 이름 </label>
+                            <label>${loginUser.userName}</label>
+                        </div>
 
-                            <tr>
-                                <td width="100" class="tablecolor">회원 아이디 </td>
-                                <td>${loginUser.userId}</td>
-                                
-                            </tr>
+                        <div class="info-element">
+                            <label>회원 아이디 </label>
+                            <label>${loginUser.userId}</label>
+                        </div>     
+                        
+                        <div class="info-element">
+                            <label>닉네임</label>
+                            <label>${loginUser.nickName}</label>
+                        </div>    
 
+                        <div class="info-element">
+                            <label>핸드폰</label>
+                            <label>${loginUser.phone}</label>
+                        </div>
 
-                            <tr>
-                                <td width="100" class="tablecolor">닉네임</td>
-                                <td>${loginUser.nickName}</td>
-                                
-                            </tr>
-
-
-                            <tr>
-                                <td width="100" class="tablecolor">핸드폰</td>
-                                <td>${loginUser.phone}</td>
-                                
-                            </tr>
-
-                            <tr>
-                                <td width="100" class="tablecolor">이메일</td>
-                                <td>${loginUser.email}</td>
-                                
-                            </tr>
+                        <div class="info-element">
                             
+                            <label>닉네임</label>
+                            <label>${loginUser.nickName}</label>
+                        
+                        </div>
 
+                        <div class="info-element">
+                            <label>이메일</label>
+                            <label>${loginUser.email}</label>
+                        </div>
+                        
+                        <div class="info-element">
+                            <label>성별</label>
+                            <label>${loginUser.gender}</label>
+                        </div>
 
-                        </table>
+                        
                         
 
                       
                     </div>
+                    <div id="btnsss">
                     <a  class="btn btn-primary" id="button_modify" href="${pageContext.request.contextPath}/mypage/myUpdateForm">수정하기</a>
                     <button type="button" class="btn btn-secondary" id="button_cancel">취소</button>
-                   
-                    <div>
-                        
-                        <a href="/thrifty/mypage/selfban" class="btn btn-danger">회원 탈퇴</a>
+                    </div>
+                    
+                    <div id="btncover">
+                        <div id="btnself">
+                        <a href="/thrifty/mypage/selfban" class="btn btn-danger" >회원 탈퇴</a>
+                        </div>
                     </div>
                 </div>
                     

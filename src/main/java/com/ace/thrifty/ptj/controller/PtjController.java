@@ -31,8 +31,8 @@ import com.ace.thrifty.ptj.model.vo.Ptj;
 @Controller
 public class PtjController {
 
-	@Autowired
-	private PtjService ptjService;
+   @Autowired
+   private PtjService ptjService;
 
 	@GetMapping("/ptj")
 	public String ptjMain(Model model) {
@@ -72,7 +72,7 @@ public class PtjController {
 			return "redirect:/thrifty/ptj/ptjList";
 		}
 
-	}
+   }
 
 	@GetMapping("/ptj/ptjEnrollForm")
 	public String ptjEnrollForm() {

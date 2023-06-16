@@ -147,3 +147,47 @@ li{
     width: 560px;
     /* background-color: transparent; */
 }
+
+#dark_icon{
+    top: 0;
+    left: 500px;
+}
+
+.toggleSwitch {
+    width: 60px;
+    height: 30px;
+    display: block;
+    position: relative;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+    cursor: pointer;
+}
+
+.toggleSwitch #toggleButton {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+}
+
+.toggleSwitch.active #toggleButton {
+    left: calc(100% - 28px);
+}
+
+.toggleSwitch, #toggleButton {
+    transition: all 0.2s ease-in;
+}
+
+.toggleSwitch.blue.active {
+    background: #5151e5;
+}
+
+.toggleSwitch.blue #toggleButton {
+    background-image: url("/thrifty/resources/images/main/icon/sun.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}

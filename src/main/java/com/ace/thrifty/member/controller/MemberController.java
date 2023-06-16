@@ -23,18 +23,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.RestTemplate;
 
 import com.ace.thrifty.member.model.service.MemberService;
-import com.ace.thrifty.member.model.vo.GoogleInfResponse;
-import com.ace.thrifty.member.model.vo.GoogleRequest;
-import com.ace.thrifty.member.model.vo.GoogleResponse;
 import com.ace.thrifty.member.model.vo.KakaoOathToken;
 import com.ace.thrifty.member.model.vo.KakaoUser;
 import com.ace.thrifty.member.model.vo.Member;

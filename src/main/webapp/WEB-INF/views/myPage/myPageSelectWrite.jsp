@@ -133,7 +133,20 @@
         height: 100%;
     }
 
-    
+        #paging-btns{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#paging-btns>div{
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    background-color: rgb(244, 244, 244);
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
 
 </style>
 </head>
@@ -183,7 +196,7 @@
                         <th>작성 날짜</th>
                       </tr>
                     <c:forEach items="${list}" var="b">
-                      <tr>
+                      <tr onclick="location.href='/thrifty/${b.categoryPath}/detail?bNo=${b.boardNo}'">
                         <td>${b.upperCategoryName}</td>
                         <td>${b.title}</td>
                         <td>${b.nickName}</td>
@@ -200,7 +213,27 @@
                 </div>
                 <div id="body-right-bodyfooterbw"></div>
                 <div id="body-right-footer"> 
-                    페이징 처리 하는곳 footer
+                    <div id="paging-btns">
+                    	<c:choose>
+		                  <c:when test="${ pi.currentPage eq 1 }">
+		                     <div>&lt;</div>
+		                  </c:when>
+		                  <c:otherwise>
+		                     <div><a href="/thrifty/mypage/myWrite?currentPage=${filter.currPage-1}">&lt;</a></div>
+		                  </c:otherwise>               
+		               </c:choose>
+		               <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
+	                  	<div><a href="/thrifty/mypage/myWrite?currentPage=${item}">${item}</a></div>
+	               		</c:forEach>
+	               		<c:choose>
+		                  <c:when test="${ pi.currentPage eq pi.maxPage }">
+		                     <div>&gt;</div>
+		                  </c:when>
+		                  <c:otherwise>
+		                     <div><a href="/thrifty/mypage/myWrite?currentPage=${filter.currPage+1}}">&gt;</a></div>
+		                  </c:otherwise>               
+		               </c:choose>
+                    </div>
 
                 </div>
                 
@@ -210,7 +243,7 @@
         </div>
 
         <div id="footer">
-
+			
 
 
 
