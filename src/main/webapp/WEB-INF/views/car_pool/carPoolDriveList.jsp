@@ -11,7 +11,6 @@
     <link href="/thrifty/resources/css/car_pool/car_pool_list.css" rel="stylesheet">
 <style>
     *{
-        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -81,25 +80,23 @@
                 <hr style="width: 100%;">
                 <div id="carpool-allBody" style="height: 1000px;">
                 	<c:forEach var="cList" items="${list }" >
-                			<div style="width: 200px; height: 170px; border: 1px gray;" onclick="location.href='${contextPath}/carPool/detail?bNo=${cList.boardNo }'">
+                			<div style="width: 200px; height: 300px;" onclick="location.href='${contextPath}/carPool/detail?bNo=${cList.boardNo }'">
                 				<c:choose>
                						<c:when test="${cList.isEnd eq 'N' }">
-               							<img src="${contextPath }/${cList.imgPath}"  style="height: 170px; width: 200px; border-radius: 10px;"/>
+               							<img src="${contextPath }/${cList.imgPath}"  style="height: 170px; width: 100%; border-radius: 3px;"/>
                						</c:when>
                						<c:otherwise>
-               							<img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 200px; border-radius: 10px;"/>
+               							<img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 100%; border-radius: 3px;"/>
                						</c:otherwise>
                 				</c:choose>
-                				<%-- <c:if test="${filter.scNo eq 32 }">
-                					<img src="${contextPath }/resources/images/carpool/no-image.png" style="height: 170px; width: 200px; border-radius: 10px;"/>
-                				</c:if> --%>
-		                        <p style="text-align: center;">${cList.subCategory.categorySName }</p>
-		                        <p style="text-align: center;">제목 : ${cList.board.title }</p>
-		                        <p style="text-align: center;">카풀비 : ${cList.price }</p>
+                				<div id="drive-content">
+			                        <p style="text-align: center;">${cList.subCategory.categorySName }</p>
+			                        <p style="text-align: center;">제목 : ${cList.board.title }</p>
+			                        <p style="text-align: center;">카풀비 : ${cList.price }</p>
+                				</div>
 		                    </div>     		
                 	</c:forEach>
                 </div>
-				
 				
                 <div id="body-right-footer">
                     <div id="paging-btns">
@@ -108,18 +105,18 @@
 		                     <div>&lt;</div>
 		                  </c:when>
 		                  <c:otherwise>
-		                     <div><a href="/thrifty/carPool/drive?currPage=${filter.currPage-1}&scNo=${filter.scNo}&location=${filter.lNo}">&lt;</a></div>
+		                     <div><a href="/thrifty/carPool/drive?currPage=${filter.currPage-1}&scNo=${filter.scNo}&location=${filter.location}">&lt;</a></div>
 		                  </c:otherwise>               
 		               </c:choose>
 		               <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
-	                  	<div><a href="/thrifty/carPool/drive?currPage=${item}&scNo=${filter.scNo}&location=${filter.lNo}">${item}</a></div>
+	                  	<div><a href="/thrifty/carPool/drive?currPage=${item}&scNo=${filter.scNo}&location=${filter.location}">${item}</a></div>
 	               		</c:forEach>
 	               		<c:choose>
 		                  <c:when test="${ pi.currentPage eq pi.maxPage }">
 		                     <div>&gt;</div>
 		                  </c:when>
 		                  <c:otherwise>
-		                     <div><a href="/thrifty/carPool/drive?currPage=${filter.currPage+1}&scNo=${filter.scNo}&location=${filter.lNo}">&gt;</a></div>
+		                     <div><a href="/thrifty/carPool/drive?currPage=${filter.currPage+1}&scNo=${filter.scNo}&location=${filter.location}">&gt;</a></div>
 		                  </c:otherwise>               
 		               </c:choose>
                     </div>

@@ -135,9 +135,7 @@
         <div id="footer">
         
         </div>
-        
     </div>
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 <script type="text/javascript" src="/thrifty/resources/js/common/commonModal.js"></script>
 <script type="text/javascript" src="/thrifty/resources/js/ptj/ptj_work_end.js"></script>

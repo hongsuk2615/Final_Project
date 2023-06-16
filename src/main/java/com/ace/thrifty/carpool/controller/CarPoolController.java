@@ -33,11 +33,11 @@ public class CarPoolController {
 	}
 	
 	@RequestMapping("/drive")
-	public String driveList(Model model , @RequestParam Map<String, Object> queryString) {
+	public String selectDriveList(Model model , @RequestParam Map<String, Object> queryString) {
 		if(!queryString.containsKey("currPage")) {
 			queryString.put("currPage", "1");
 		}
-		carPoolService.driveList(queryString);
+		carPoolService.selectDriveList(queryString);
 		if(queryString.containsKey("lNo")) {
 			model.addAttribute("lNo", queryString.get("lNo"));			
 		}
@@ -53,7 +53,6 @@ public class CarPoolController {
 		if(carpool != null) {
 			model.addAttribute("carpool" , carpool);
 			model.addAttribute("imageList", carpool.getImageList());
-			System.out.println(carpool);
 			return "car_pool/carPoolDetail";	
 		} else {
 			return"car_pool/carPoolDetail";

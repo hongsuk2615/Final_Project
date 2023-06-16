@@ -78,8 +78,8 @@
 		<if test= 'scNo!= null and scNo !="" '>
 	 		AND CATEGORY_S_NO = #{scNo}
 	 	</if>
-	 	<if test='lNo != null and lNo != ""'>
-	 		AND LOCATION_NO = #{lNo}
+	 	<if test='location != null and location != ""'>
+	 		AND LOCATION_NO = #{location}
 	 	</if>
 </select>
 
@@ -103,8 +103,8 @@
 		<if test= 'scNo!= null and scNo !="" '>
 		 	AND B.CATEGORY_S_NO = #{scNo}
 	 	</if>
-	 	<if test='lNo != null and lNo!= ""'>
-	 		AND C.LOCATION_NO = #{lNo}
+	 	<if test='location != null and location!= ""'>
+	 		AND C.LOCATION_NO = #{location}
 	 	</if>
     GROUP BY B.BOARD_NO
 </select>
@@ -202,6 +202,5 @@
 	       DESTINATION = #{destination}
 	WHERE BOARD_NO = #{boardNo}
 </update>
-
 
 </mapper>

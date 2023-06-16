@@ -22,7 +22,6 @@
 }
 
 #body-right{
-    /* background-color: lightgray; */
     border: solid 2px lightgray;
     border-color: lightgray;
     border-radius: 10px;
@@ -45,17 +44,6 @@
     height: 250px;
 }
 
-/* input {
-    width: 500px;
-    height: 35px;
-    font-size: 15px;
-    border: 0;
-    border-radius: 8px;
-    outline: none;
-    padding-left: 10px;
-    background-color: rgb(255, 255, 255);
-    margin-bottom: 10px;
-    } */
 #enroll-title:hover ,
 #enroll-textarea:hover , 
 #enroll-contact:hover ,
@@ -179,8 +167,7 @@
     width: 100px;
     background-color: rgb(0, 60, 120);
     border-radius: 10px;
-    color: white;
-    
+    color: white;   
     align-items: center;
 }
 

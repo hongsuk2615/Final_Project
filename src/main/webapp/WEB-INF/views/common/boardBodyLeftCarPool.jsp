@@ -15,7 +15,6 @@
             <div id="body-left">
                 <div id="upper-category">
                     <div>
-                        <!-- <img src="/thrifty/resources/images/shopping-cart.png" alt="상위 카테고리 이미지"> -->
                         <div id="upper-category-name">지역별 카테고리</div>
                     </div>
                 </div>
@@ -35,7 +34,6 @@
 							</c:if>                        
 						</c:forEach>
                     </ul>
-					<!-- <li style="display: flex; justify-content: flex-end; padding-right:15px ;"><button onclick="resetFilter();">필터초기화</button><button onclick="filter();">필터적용</button></li> -->
                 </div>
             </div>
             <c:if test="${scNo != null}">

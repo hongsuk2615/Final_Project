@@ -33,7 +33,7 @@
     #footer{
         
     }
-
+	
 </style>
 </head>
 <body>
@@ -45,10 +45,6 @@
                         <div id="bg">
                             <div id="car-pool-service">
                                 <p style="color: white; height: auto;">카풀 서비스</p>
-                            </div>
-                            <div id="car-pool-search">
-                                <!-- <input type="text" name="carPoolSearch" id="car-pool-search-input" placeholder="지역이나 키워드를 입력 해 주세요."> -->
-                                <!-- <img src="/thrifty/resources/images/main/icon/search-3.png"> -->
                             </div>
                         </div>
                     </div>
@@ -102,11 +98,7 @@
 
         <div id="footer">
 
-
-
-
         </div>
-
 <script>
     $("#location-search-btn").click(function(){
         if($("#location-btn").css("display") == 'none'){
@@ -122,7 +114,6 @@
 <script>
     AOS.init();
 </script>
-
 <script>
 	document.getElementById("drive").addEventListener("click",function(){
        location.href = "/thrifty/carPool/drive";

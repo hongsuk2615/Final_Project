@@ -32,13 +32,12 @@ public class CarPoolServiceImpl implements CarPoolService {
 	private Pagination pagination;
 	
 	@Override
-	public void driveList(Map<String, Object> queryString) {
+	public void selectDriveList(Map<String, Object> queryString) {
 		int listCount = carPoolDao.selectDriveListCount(queryString);
 		int pageLimit = 10;
 		int boardLimit = 9;
 		PageInfo pi = pagination.getPageInfo(listCount, Integer.parseInt((String)(queryString.get("currPage"))), pageLimit, boardLimit);
 		List<CarPool> list = carPoolDao.selectDriveList(pi, queryString);
-		
 		queryString.put("pi", pi);
 		queryString.put("list", list);
 	}
@@ -64,24 +63,19 @@ public class CarPoolServiceImpl implements CarPoolService {
 			c.setBoardNo(boardNo);
 			result = carPoolDao.insertCarPool(c);
 		}
-		
 		if(result > 0 && imgList != null) {
 			List<Image> imageList = new ArrayList();
-			
 			for(int i = 0; i < imgList.size(); i++) {
 				if(imgList.get(i).getSize() >0) {
 					String changeName = Utils.saveFile(imgList.get(i), serverFolderPath);
-					
 					Image img = new Image();
 					img.setBoardNo(boardNo);
 					img.setFileLevel(i);
 					img.setOriginName(imgList.get(i).getOriginalFilename());
 					img.setChangeName(changeName);
-
 					imageList.add(img);
 				}
 			}
-			
 			if (!imageList.isEmpty()) {
 				result = boardDao.insertImageList(imageList);
 				if (!(result == imageList.size())) {
@@ -104,35 +98,29 @@ public class CarPoolServiceImpl implements CarPoolService {
 	
 	@Override
 	public int carPoolBoardUpdate(Board b, CarPool cP , List<MultipartFile> imgList, String webPath,
-							 String serverFolderPath, String removeImgList) throws Exception {
+							      String serverFolderPath, String removeImgList) throws Exception {
 		int result = 0;
 		result = boardDao.updateBoard(b);
 		if(result > 0) {
 			cP.setBoardNo(b.getBoardNo());
 			result = carPoolDao.carPoolBoardUpdate(cP);
 		}
-		
 		if(result > 0 && removeImgList.length() > 0 ) {
 			result = boardDao.deleteImage(removeImgList);
 		}
-		
 		if(result > 0 && imgList != null) {
 			List<Image> imageList = new ArrayList();
-			
 			for(int i = 0; i < imgList.size(); i++) {
 				if(imgList.get(i).getSize() > 0) {
 					String changeName = Utils.saveFile(imgList.get(i), serverFolderPath);
-
 					Image img = new Image();
 					img.setBoardNo(b.getBoardNo());
 					img.setFileLevel(i);
 					img.setOriginName(imgList.get(i).getOriginalFilename());
 					img.setChangeName(changeName);
-
 					imageList.add(img);
 				}
 			}
-			
 			if(!imageList.isEmpty()) {
 				result = boardDao.insertImageList(imageList);
 				if(!(result == imageList.size())) {

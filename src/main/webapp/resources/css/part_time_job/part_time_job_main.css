@@ -3,10 +3,12 @@
     display: flex;
 }
 
-#simburum button:hover , #alba button:hover {
+#simburum button:hover {
     transition: all 0.15s linear;
     transform: translateY(-10px);
     cursor: pointer;
+    box-shadow: 5px 5px 5px gray;
+    background-color: rgb(0, 70, 150);
 }
 
 #simburum button {
@@ -53,8 +55,8 @@ swiper-slide img {
     height: 340px; 
     align-items: center;
     border-radius: 30px;
-    width: 1200px;
-    margin-left: 150px;
+    width: 80%; 
+    margin-left: 10%;
 }
 
 #alba-board img {

@@ -22,7 +22,6 @@
 }
 
 #body-right{
-    /* background-color: lightgray; */
     border: solid 2px lightgray;
     border-color: lightgray;
     border-radius: 10px;
@@ -45,17 +44,6 @@
     height: 250px;
 }
 
-/* input {
-    width: 500px;
-    height: 35px;
-    font-size: 15px;
-    border: 0;
-    border-radius: 8px;
-    outline: none;
-    padding-left: 10px;
-    background-color: rgb(255, 255, 255);
-    margin-bottom: 10px;
-    } */
 #enroll-title:hover ,
 #enroll-textarea:hover , 
 #enroll-contact:hover ,
@@ -163,7 +151,6 @@
     outline: none;
     padding-left: 10px;
     background-color: rgb(255, 255, 255);
-    /* color: rgb(255, 255, 255); */
 }
 
 
@@ -210,7 +197,6 @@ select {
     height: 40px;
     border-radius: 5px;
     border: 2.5px solid rgb(0, 60, 120);
-    /* border-color: rgb(0, 60, 120); */
     background-color: white;
     color: rgb(0, 60, 120);
 }

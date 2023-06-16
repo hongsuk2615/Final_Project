@@ -18,7 +18,6 @@
     justify-content: space-evenly;
     align-items: center;
     padding: 0 40px;
-    
 }
 
 #car-pool-search-input {
@@ -106,17 +105,20 @@
     transition: all 0.15s linear;
     transform: translateY(-10px);
     cursor: pointer;
+    box-shadow: 5px 5px 5px gray;
+    background-color: rgb(0, 70, 150);
 }
 
-#drive button , #occupant button {
+#drive button {
     background-color: rgb(0, 60, 120);
     border-radius: 10px;
+    border:none;
 }
 
 #car-pool-type {
     display: flex;
     justify-content: space-evenly;
-    height: 300px;
+    height: 250px;
     padding: 50px;
 }
 

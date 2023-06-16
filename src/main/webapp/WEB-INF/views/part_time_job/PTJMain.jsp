@@ -43,7 +43,7 @@
         display: flex;
         width: 50%;
         min-width: 900px;
-        min-height: 380px;
+        min-height: 200px;
         margin-top: 50px;
     }
 
@@ -78,7 +78,7 @@
             </div>
             <div id="body1">
 				<div id="simburum">
-                    <button style="width: 900px; height: 200px; border: 0;" id="simburum-btn">
+                    <button style="width: 900px; height: 150px; border: 0;" id="simburum-btn">
                     	<div style="width: 500px;" id="simburum-img">
     	                   	<img src="/thrifty/resources/images/ptj/house.png" style="width: 64px; height: 64px;">
 	                        <img src="/thrifty/resources/images/ptj/part-time.png"><br>
@@ -112,7 +112,7 @@
             </div>
         </div>
         <div style="height: 450px">
-            <h2 style="margin-left: 250px;">최신 심부름 / 알바 게시글</h2>
+            <h2 style="margin-left: 10%;">최신 심부름 / 알바 게시글</h2>
             <div id="alba-board">
             	<c:forEach var="p" items="${p }" begin="0" end="3" step="1">
 	                <div>
@@ -120,7 +120,7 @@
 	                		<c:when test="${p.isEnd == 'N' }">
 			                    <img src="${contextPath }${webPath }${p.imgPath }" style="width: 230px; height: 180px;">	                		
 			                    <p>${p.isEnd == "N" ? "모집중" : "모집 완료" }</p>
-	                   			<p>${p.board.content }</p>
+	                   			<p>${p.board.title }</p>
 	                		</c:when>
 	                		<c:otherwise>
 	                			<img src="">
@@ -145,11 +145,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     <script>
         document.getElementById("simburum-btn").addEventListener("click",function(){
-   	        location.href = "<%= request.getContextPath() %>/ptj/ptjList";
-   	   	})
-   	   	
-   	   	document.getElementById("alba-btn").addEventListener("click",function(){
-   	        location.href = "<%= request.getContextPath() %>/ptj/ptjList";
+   	        location.href = "${contextPath}/ptj/ptjList";
    	   	})
     </script>
 </body>

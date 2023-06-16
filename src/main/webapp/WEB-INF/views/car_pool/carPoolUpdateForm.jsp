@@ -196,9 +196,6 @@
             $("#start-keyword").css("background" , "white");
         })
     })
-
-
-
 </script>
 <script>
 function insertImage(){
@@ -224,14 +221,10 @@ function imagePreview(arg){
 				// console.log("image"+i+":");
                 let lastModified = document.getElementsByName('images')[0].files[i].lastModified;
 				 console.log(e);
-			$("#image-slick").slick('slickAdd',"<div onclick='deleteImg(this);' lastModified='"+lastModified+"'index="+i+" style='background-image: url("+url+"); background-size:cover; width:140px; height:200px;'><img class='deleteImg' src='/thrifty/resources/images/common/trash.gif' style='width:100%; height:100%;'></div>");//
-               // $("#image-slick").children('div').eq(i).css({'backgroundImage':'url('+url+')', 'backgroundSize':'cover', 'width':'140px', 'height' : '200px'});
+				$("#image-slick").slick('slickAdd',"<div onclick='deleteImg(this);' lastModified='"+lastModified+"'index="+i+" style='background-image: url("+url+"); background-size:cover; width:140px; height:200px;'><img class='deleteImg' src='/thrifty/resources/images/common/trash.gif' style='width:100%; height:100%;'></div>");//
 			}
 			reader.readAsDataURL(arg.files[i]);
 			console.log(reader);
-			
-				
-			// document.getElementById('image'+i).src = e.
 		}
 		for(let i = arg.files.length; i < 10 ; i++){
 			$("#image"+i).css('backgroundImage','none');
@@ -257,7 +250,6 @@ function deleteOriginImg(e){
     removeImgList.push($(e).attr('imgNo'));
     $('[name="removeImgList"]').val(removeImgList);
     originFileLength--;
-
 }
 
 function deleteImg(e){
@@ -280,7 +272,6 @@ function deleteImg(e){
         }
     })
     $("#image-slick").slick('slickRemove',index);
-
 }
 
 function clearSlick(){
@@ -293,8 +284,6 @@ function clearSlick(){
         $("#image-slick").slick('slickRemove',originFileLength);
     }
 }
-
-
 
 function makeSlick(){
     $('#image-slick').slick({
@@ -334,6 +323,5 @@ function makeSlick(){
 	});
 }
 </script>
-
 </body>
 </html>

@@ -182,23 +182,7 @@
             $("#arrival-keyword").css("background" , "white");
             $("#start-keyword").css("background" , "white");
         })
-        /* $("#get-in-car").click(function(){
-            alert("차 번호판이 보이는 사진을 올려주세요.");
-            $("#images").css("display" , "");
-        })
-        $("#get-in-car").click(function(){
-        	$("#thumbnail").css("display" , "");
-        })
-        $("#i-want-car").click(function(){
-            $("#images").css("display" , "none");
-        })
-        $("#i-want-car").click(function(){
-        	$("#thumbnail").css("display" , "none");
-        }) */
     })
-
-
-
 </script>
 <script type="text/javascript">
         	function insertImage(){
@@ -223,16 +207,12 @@
 	        			}
 	        			
 	        			reader.readAsDataURL(arg.files[i]);
-	        			console.log(reader);
-	        			
-	        				
-	        			// document.getElementById('image'+i).src = e.
+	        			console.log(reader);	        				
 	        		}
 	        		for(let i = arg.files.length; i < 4 ; i++){
 	        			$("#image"+i).css('backgroundImage','none');
 	        		}
         		}
-        		
         	}
 </script>
 </body>

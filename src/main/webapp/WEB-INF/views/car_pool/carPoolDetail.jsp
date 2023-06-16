@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     *{
-        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -230,7 +229,6 @@
 	        document.getElementById('좌표').innerHTML="작은거 : "  + document.getElementById("origin").value + " 큰거 : " + document.getElementById("destination").value;
 	    });
 	}
-	
    
 </script>
 <script>
@@ -239,10 +237,8 @@
 	})
 	
 	document.getElementById('update-btn').addEventListener("click",function(){
-		
 		location.href = "${contextPath}/carPool/update?bNo=${carpool.board.boardNo}";
 	})
-	
 </script>
 </body>
 </html>

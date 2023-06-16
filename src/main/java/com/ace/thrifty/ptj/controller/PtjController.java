@@ -38,7 +38,6 @@ public class PtjController {
 	public String ptjMain(Model model) {
 		List<Ptj> p = ptjService.selectPtj();
 		model.addAttribute("p" , p);
-		System.out.println(p);
 		String webPath = "/resources/upfiles/ptj/";
 		model.addAttribute("webPath" , webPath);
 		return "part_time_job/PTJMain";
@@ -58,8 +57,7 @@ public class PtjController {
 		 model.addAttribute("pi", queryString.get("pi"));
 		 return "part_time_job/PTJList"; 
 	 }
-	
-
+	 
 	@GetMapping("/ptj/detail")
 	public String selectPtjDetail(Model model, int bNo) {
 		Ptj p = ptjService.selectPtjDetail(bNo);
@@ -71,7 +69,6 @@ public class PtjController {
 		} else {
 			return "redirect:/thrifty/ptj/ptjList";
 		}
-
    }
 
 	@GetMapping("/ptj/ptjEnrollForm")
