@@ -187,7 +187,6 @@
 			   TITLE = #{title},
 			   CONTENT = #{content}
 		WHERE BOARD_NO = #{boardNo}
-		
 	</update>
 	<update id="updateCoBoard" parameterType="board">
 		UPDATE BOARD
@@ -203,7 +202,7 @@
 		 WHERE BOARD_NO = #{bNo}
 	</update>
 	
-	<update id="scrapCancle">
+	<update id="scrapCancel">
 		UPDATE BOARD
 		 SET WISH_COUNT = WISH_COUNT - 1
 		 WHERE BOARD_NO = #{bNo}

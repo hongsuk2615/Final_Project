@@ -44,7 +44,7 @@
             </div>
             <div id="main_menu">
                 <div>
-                    <a href="/thrifty/noticeBoard/">
+                    <a href="/thrifty/notice/">
                         <img src="/thrifty/resources/images/main/icon/promotion.png" class="main_menu_icon" alt="">
                         <div class="main_text_icon">공지사항</div>
                     </a>

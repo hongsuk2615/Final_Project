@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ace.thrifty.admin.model.vo.Notice;
+import com.ace.thrifty.notice.model.vo.Notice;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.SubCategory;
 import com.ace.thrifty.board.model.vo.UpperCategory;
@@ -142,6 +142,14 @@ public class AdminDao {
 	
 	public Board enrollSelect(int boardNo) {
 		return sqlSession.selectOne("adminMapper.enrollSelect", boardNo);
+	}
+
+	public List<Map<String, Object>> getDailyUser(){
+		return sqlSession.selectList("adminMapper.dailyUser");
+	}
+
+	public List<Map<String, Object>> getDailyBoard(){
+		return sqlSession.selectList("adminMapper.dailyBoard");
 	}
 
 

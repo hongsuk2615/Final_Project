@@ -1,4 +1,4 @@
-package com.ace.thrifty.admin.model.vo;
+package com.ace.thrifty.notice.model.vo;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -19,6 +19,8 @@ public class Notice {
 	private int boardNo;
 	private int categorySNo;
 	private int categoryUNo;
+	private String upperCategoryName;
+	private String subCategoryName;
 	private String content;
 	private Date createDate;
 	private int readCount;
@@ -26,8 +28,9 @@ public class Notice {
 	private String title;
 	private int userNo;
 	private int wishCount;
+	private String nickName;
 	private String status;
-
+	
 	private Member member;
 	private UpperCategory upperCategory;
 	private SubCategory subCategory;

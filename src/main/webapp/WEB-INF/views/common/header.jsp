@@ -3,10 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="${contextPath}/resources/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="${contextPath}/resources/favicon.ico" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="text/javascript" src="/thrifty/resources/js/common/header.js"></script>
@@ -20,14 +22,16 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js" crossorigin="anonymous"></script>
     <style>
-        @font-face {
-            font-family: "NanumBarun";
-            src: url("/thrifty/resources/font/NanumFontSetup_TTF_BARUNGOTHIC/NanumBarunGothic.ttf") format("truetype");
-        }
-        
-        *{
-            font-family: "NanumBarun";
-        }
+    	@font-face {
+		    font-family: 'GangwonEdu_OTFBoldA';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		body *{
+			font-family: 'GangwonEdu_OTFBoldA';
+		}
+
     </style>
 </head>
 <body>
@@ -146,23 +150,24 @@
                 function dark_mode() {
                     document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/moon.png")';
                     document.querySelector("body").style.transitionDuration= '0.5s';
-                    document.querySelector("#body").style.transitionDuration= '0.5s';
+                /*     document.querySelector("#body").style.transitionDuration= '0.5s'; */
                    
                     document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
                     document.querySelector("body").style.color="white";
-                    document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
-                    document.querySelector("#body").style.color="white";
+                   /*  document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
+                    document.querySelector("#body").style.color="white"; */
+                    
                 }
                 function light_mode() {
                     document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/sun.png")';
                     document.querySelector("body").style.transitionDuration= '0.5s';
-                    document.querySelector("#body").style.transitionDuration= '0.5s';
+                    /* document.querySelector("#body").style.transitionDuration= '0.5s'; */
 
                     
                     document.querySelector("body").style.backgroundColor="white"; 
                     document.querySelector("body").style.color="black";
-                    document.querySelector("#body").style.backgroundColor="white";
-                    document.querySelector("#body").style.color="black";
+                  /*   document.querySelector("#body").style.backgroundColor="white";
+                    document.querySelector("#body").style.color="black"; */
                 }
 
     </script>
