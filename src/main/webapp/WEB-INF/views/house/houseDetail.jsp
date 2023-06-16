@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="b" value="${house[0] }" />
 <c:set var="h" value="${house.get(1) }" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,248 +13,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쉐어하우스 상세조회</title>
     <link rel="stylesheet" href="/thrifty/resources/css/house/houseModal.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="/thrifty/resources/css/house/houseDetail.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <style>
-
-		.wrap{
-		 padding-top: 155px;
-		}
-        
-        #sharetitle{
-            text-align: center;
-        }
-
-        .img-bx{
-            width: 100%;
-        }
-
-        .img-bx > div{
-            border: 1px solid black;
-            border-radius: 5px;
-            width: 100%;
-            height: 700px;
-        }
-
-        .img-bx img{
-            width: 100%;
-            height: 700px;
-        }
-
-        .slick-prev, .slick-next{
-            border: none;
-            background-color: transparent;
-            position: absolute;
-            z-index: 1;
-            
-        }
-        .slick-prev img, .slick-next img{
-            width: 10px;
-            height: 10px;
-        }
-
-        .slick-prev{
-            top: 50%;
-            left: 2%;
-        }
-
-        .slick-next{
-            bottom: 50%;
-            right: 2%;
-        }
-
-        /* slick.css */
-
-        .dots_custom {
-        position : absolute;
-        margin: auto 0;
-        padding: 0;
-        bottom: 2%;
-        left: 50%;
-        }
-
-        .dots_custom li {
-        list-style: none;
-        cursor: pointer;
-        display: inline-block;
-        margin: 0 6px;
-        padding: 0;
-        }
-
-        .dots_custom li button {
-        border: none;
-        background: #d1d1d1;
-        color: transparent;
-        cursor: pointer;
-        display: block;
-        height: 8px;
-        width: 8px;
-        border-radius: 100%;
-        padding: 0;
-        }
-
-        .dots_custom li.slick-active button {
-        background-color: #08c1ce;
-
-        }
-
-        #img-select{
-            display: flex;
-        }
-
-        #nav {
-            display: flex;
-            border-bottom: 1px solid #999;
-        }
-
-        #nav>div{
-            width: 100%;
-            cursor: pointer;
-        }
-        #nav p{
-            text-align: center;
-            color: #999;
-            font-size: 20px;
-        }
-        #state {
-            display: flex;
-            justify-content: center;
-        }
-
-        #state table, td, th{
-            border : 1px solid black;
-            border-collapse : collapse;
-        }
-
-        #information>div, #service>div, #location>div, #procedure {
-            border: 1px solid #999;
-            border-radius: 5px;
-        }
-
-        #back{
-            display: flex;
-            justify-content: flex-end
-        }
-
-        #back>div{
-            width: 130px;
-            height: 50px;
-            color: white;
-            background: #08c1ce;
-            margin-right: 5%;
-            border-radius: 5%;
-            display: flex;
-            align-items: center;
-        }
-
-        #back p{
-            width: 100%;
-            text-align: center;
-        }
-      
-        .circle > div{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .circle h3{
-            text-align: center;
-        }
-
-        #procedure1{
-            border: 1px solid rgb(205, 145, 145);
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-around;
-            position: relative;
-            align-items: center;
-
-        }
-
-        #procedure2{
-            border: 1px solid rgb(106, 75, 246);
-            border-radius: 5px;
-            margin: 20px;
-            display: flex;
-            justify-content: space-around;
-            padding: 0px 20px;
-        }
-
-        #procedure2 > div {
-            width: 40%;
-        }
-
-        .circle{
-           background: rgb(200, 237, 243);
-           border-radius: 100%;
-            top: 0;
-            left: 0;
-            width: 13vw;
-            height: 13vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-       }
-
-       .circle img{
-            width: 5vw;
-            height: 5vw;
-            
-       }
-       .circle p, .circle h3{
-        font-size: 1vw;
-        margin: 0;
-       }
-
-        .arrowimg{
-            width: 3vw;
-            height: 3vw;
-        }
-
-        .wrap{
-            margin: 0px 10vw;
-        }
-
-        .wrap>div{
-            margin: 10px 0px;
-        }
-        body{
-			padding: 0;
-			margin: 0;
-		}
-    </style>
 </head>
 <body>
-  <%--  <jsp:include page="../common/header.jsp"></jsp:include>  --%>
+  <jsp:include page="../common/header.jsp"></jsp:include> 
     <div class="wrap">
     <div id="sharetitle"><h1>${b.title }</h1></div>
     <div class="img-bx">
 		<c:forEach var="rimg" items="${h.roomList[0].imgList }">
       		<div>
-          	  <img src="/thrifty/resources/images/house/${rimg.changeName}">
+          	  <img src="/thrifty/resources/images/house/${rimg.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
         	</div>
        	</c:forEach>
     </div>
 
     <div id="img-select">
        <c:forEach var="r" items="${h.roomList }">
-       <div><button roomNo="${r.roomNo }" onclick="selectRoom(this);">${r.division }</button></div>
+       <div><button class="roomImgbtn" roomNo="${r.roomNo }" onclick="selectRoom(this);">${r.division }</button></div>
        </c:forEach>
     </div>
 
     <div id="nav">
-        <div><p>방 정보</p></div>
-        <div><p>지점 소개</p></div>
-        <div><p>제공 서비스</p></div>
-        <div><p>입주절차</p></div>
+        <div><a class='navbtn' href='#state'><p>방 정보</p></a></div>
+        <div><a class='navbtn' href='#information'><p>지점 소개</p></a></div>
+        <div><a class='navbtn' href='#location'><p>위치</p></a></div>
+        <div><a class='navbtn' href='#procedure'><p>입주절차</p></a></div>
     </div>
-
-    <div id="state">
+    <h3>입주현황</h3>
+    <div id="state" class="Htable">
         <table >
             <tr>
-                <th>입주신청</th>
+             <c:choose>
+                 <c:when test="${loginUser.userNo eq b.userNo}">
+                      <th>모집인원</th>
+                 </c:when>
+                 <c:otherwise>
+                      <th>입주신청</th>
+                 </c:otherwise>
+             </c:choose>
                 <th>구분</th>
                 <th>성별</th>
                 <th>타입</th>
@@ -265,61 +64,105 @@
             
              <c:forEach var="r" items="${h.roomList }">
 		            <tr>
-		                <td>
-		                   <c:if test="${r.recruitsNum > r.recruitsCurr}">
-		                   <button roomNo="${r.roomNo }" roomName="${r.division }" onclick="tour(this);">투어신청</button>
-		                	</c:if>
-		                	 <c:if test="${r.recruitsNum == r.recruitsCurr}">
-		                   <button disabled>입주완료</button>
-		                	</c:if>
-		                </td>
+		                
+		                <c:choose>
+			                 <c:when test="${loginUser.userNo eq b.userNo}">
+			                      <td id="" style="color:black; display:flex; justify-content: space-evenly; padding: 13px;">
+			                      <div onclick='change(this)' roomNo='${r.roomNo}' symbol='minus' style="cursor:pointer;">-</div>
+			                      <div id="recruitsNum${r.roomNo}">${r.recruitsNum}</div>
+			                      <div onclick='change(this)' roomNo='${r.roomNo}' symbol='plus' style="cursor:pointer;">+</div>
+			                      </td>
+			                 </c:when>
+			                 <c:otherwise>
+			                       <c:choose>
+		                                <c:when test="${r.recruitsNum ne 0}">
+		                                    <td><button roomNo="${r.roomNo }" roomName="${r.division }" onclick="tour(this);">투어신청</button></td>
+		                                </c:when>
+		                                <c:otherwise>
+		                                    <td><button class="compl" disabled>입주완료</button></td>
+		                                </c:otherwise>
+		                            </c:choose>
+			                 </c:otherwise>
+			             </c:choose>
+		                
 		                <td>${r.division }</td>
 		                <td>${r.gender }</td>
 		                <td>${r.type }</td>
-		                <td>${r.area }</td>
-		                <td>${r.deposit }</td>
-		                <td>${r.rent }</td>
-		                <td>${r.cost }</td>
+		                <td>${r.area }㎡</td>
+		                <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${r.deposit }" />원</td>
+		                <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${r.rent }" />원</td>
+		                <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${r.cost }" />원</td>
 		                <td>${r.contrat }</td>
 		            </tr>
               </c:forEach>
         </table>
     </div>
     <div id="information">
+        <h3>지점 소개</h3>
         <div>${h.information }</div>
     </div>
-    <div id="location">위치
-        <div>map</div>
+    <div id="location">
+        <h3>위치</h3>
+        <div class="map_wrap">
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    <ul id="category">
+        <li id="BK9" data-order="0"> 
+            <span class="category_bg bank"></span>
+            은행
+        </li>       
+        <li id="MT1" data-order="1"> 
+            <span class="category_bg mart"></span>
+            마트
+        </li>  
+        <li id="PM9" data-order="2"> 
+            <span class="category_bg pharmacy"></span>
+            약국
+        </li>  
+        <li id="OL7" data-order="3"> 
+            <span class="category_bg oil"></span>
+            주유소
+        </li>  
+        <li id="CE7" data-order="4"> 
+            <span class="category_bg cafe"></span>
+            카페
+        </li>  
+        <li id="CS2" data-order="5"> 
+            <span class="category_bg store"></span>
+            편의점
+        </li>      
+    </ul>
+</div>
     </div>
-    <div id="procedure">입주절차
+    <h3>입주절차</h3>
+    <div id="procedure">
         <div id="procedure1">
             <div class="circle" id="circle1">
                <div >
-                <img src="e.jpg">
+                <img src="/thrifty/resources/images/house/clickImg.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
                 <h3>01</h3>
                 <p>입주 신청</p>
                </div>
             </div>
-            <img class="arrowimg" id="arrow1" src="right-arrow.png">
+            <img class="arrowimg" id="arrow1" src="/thrifty/resources/images/house/right-arrow.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
             <div class="circle" id="circle2">
                 <div>
-                 <img src="e.jpg">
+                 <img src="/thrifty/resources/images/house/searchHouseImg.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
                  <h3>02</h3>
                  <p>지점투어</p>
                 </div>
              </div>
-             <img class="arrowimg" id="arrow2" src="right-arrow.png">
+             <img class="arrowimg" id="arrow2" src="/thrifty/resources/images/house/right-arrow.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" > 
              <div class="circle" id="circle3">
                 <div>
-                 <img src="e.jpg">
+                 <img src="/thrifty/resources/images/house/applyImg.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
                  <h3>03</h3>
                  <p>계약서 작성</p>
                 </div>
              </div>
-             <img class="arrowimg" id="arrow3" src="right-arrow.png">
+             <img class="arrowimg" id="arrow3" src="/thrifty/resources/images/house/right-arrow.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
              <div class="circle" id="circle4">
                 <div>
-                 <img src="e.jpg">
+                 <img src="/thrifty/resources/images/house/moveImg.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
                  <h3>04</h3>
                  <p>입주 완료</p>
                 </div>
@@ -327,30 +170,33 @@
         </div>
         <div id="procedure2">
             <div>
-                <span>tq</span><br>
-                <span>tq</span><br>
-                <span>tq</span>
+                <span>· 투어신청은 현재 공실이거나 계약종료 한달 전인 방의 신청만 받습니다.</span><br>
+                <span>· 계약시 중개수수료는 일체 받지 않습니다.</span><br>
+                <span>· 계약금으로 보증금을 수령하며, 계약종료 후 퇴실시 반환됩니다.</span>
             </div>
             <div>
-                <span>tq</span><br>
-                <span>tq</span><br>
-                <span>tq</span>
+                <span>· 월 임대료 및 추가비용은 입주 2일 전까지 납부하셔야 합니다.</span><br>
+                <span>· 보증금 납부 후 입주를 취소하실 경우, 보증금의 50%만 반환됩니다.</span><br>
+                <span>· 계약기간 만료 이전에 중도퇴실할 경우, 절차에 따라 위약금이 발생됩니다.</span>
             </div>
         </div>
 
     </div>
     <div id="back">
-    	<c:if test="${loginUser.userNo == b.userNo }">
-    	<div onclick="location.href='/thrifty/sharehouse/updateHouse?boardNo=${b.boardNo}'" style="cursor:pointer;"><p>수정하기</p></div>
+    	<c:if test="${loginUser.userNo eq b.userNo or loginUser.authority eq 0}">
+    	<div onclick="deleteBoard(this);" bNo="${b.boardNo}" url="sharehouse" style="cursor:pointer;"><p>삭제하기</p></div>
+    	<div onclick="location.href='/thrifty/sharehouse/updateHouse?bNo=${b.boardNo}'" style="cursor:pointer;"><p>수정하기</p></div>
     	</c:if>
-        <div onclick="location.href='/thrifty/sharehouse/';" style="cursor:pointer;"><p>전체지점보기</p></div>
+        <div onclick="location.href='/thrifty/sharehouse/'" style="cursor:pointer;"><p>전체지점보기</p></div>
     </div>
     </div>
 
     <div>footer</div>
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
     <script>
     $(document).ready(function(){
+    		let rooms = '${h.roomList}'
+    		console.log(rooms);
             $('.img-bx').slick({
                 dots: true,
                 dotsClass: 'dots_custom',
@@ -358,10 +204,14 @@
 				nextArrow : "<button type='button' class='slick-next'><img src='right-arrow.png'></button>"
                 
             });
+            $('.roomImgbtn').eq(0).addClass('btnClick');
         });
+    
         
         function selectRoom(e){
     		let roomNo = $(e).attr('roomNo');
+    		$('.roomImgbtn').removeClass('btnClick');
+    		$(e).addClass('btnClick');
 	        $.ajax({
 				url : "/thrifty/sharehouse/selectRoomImg?roomNo="+roomNo,
 				dataType : 'json',
@@ -371,7 +221,7 @@
 					result.forEach(function(ri){
 						imgList += `
 							<div>
-				            <img src="/thrifty/resources/images/house/\${ri.changeName}">
+				            <img src="/thrifty/resources/images/house/\${ri.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
 				        	</div>
 				        `;
 					})
@@ -388,9 +238,316 @@
         	let roomNo = $(e).attr('roomNo');
         	appform(hName, rName, roomNo);
         }
+        
+        $(".navbtn").click(function(event){
+        	x = $(this).attr("href");
+        	var offset = $(x).offset(); 
+        	$("html, body").animate({ scrollTop: offset.top -200 }, 400);
+        });
+        
+        
+        function change(e){
+        	symbol = $(e).attr('symbol');
+        	roomNo =  $(e).attr('roomNo');
+        	recruitsNum = $('#recruitsNum'+roomNo);
+        	$.ajax({
+        		url: '/thrifty/sharehouse/changeRecruitment',
+        		data : {roomNo, symbol },
+        	 	beforeSend : function(){
+        			if(recruitsNum.text() == 0 && symbol == 'minus'){
+        				alert('모집인원은 음수가 될 수 없습니다.');
+        				return false;
+        			}
+        		},
+        		success : function(result){
+        			if(symbol == 'plus'){
+        				recruitsNum.html(recruitsNum.html()*1+1);	
+        			}else{
+        				recruitsNum.html(recruitsNum.html()*1-1);	
+        			}
+        		}
+        	})
+        }
+        
+        function deleteBoard(element){
+            
+            Swal.fire({
+                    title: '정말삭제하시겠습니까?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '네, 삭제할게요!',
+                    cancelButtonText: '아니오!',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            let bNo = $(element).attr("bNo");
+                            let url = $(element).attr("url");
+                            $.ajax({
+                                url : "/thrifty/board/delete",
+                                data : {bNo},
+                                success : function(result){
+                                    console.log(result);
+                                    if(result == 1){
+                                        Swal.fire({
+                                            position: 'top-center',
+                                            icon: 'success',
+                                            title: '삭제완료',
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        }).then(()=>{
+                                            location.href="/thrifty/"+url; 
+                                        })
+                                    }else if(result == -1){
+                                        Swal.fire({
+                                            position: 'top-center',
+                                            icon: 'warning',
+                                            title: '비로그인 상태입니다.',
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        }).then(()=>{
+                                                login();
+                                        })
+                                    }else if(result == 0){
+                                        Swal.fire({
+                                                position: 'top-center',
+                                                icon: 'error',
+                                                title: '삭제실패',
+                                                text : '관리자/작성자가 아닙니다.',
+                                                showConfirmButton: false,
+                                                timer: 1000
+                                            })
+                                    }
+                                },
+                                error : function(){
+                                    Swal.fire({
+                                                position: 'top-center',
+                                                icon: 'error',
+                                                title: '삭제실패',
+                                                showConfirmButton: false,
+                                                timer: 1000
+                                            })
+                                }
+
+                            })
+                        }
+                    })
+                 }
       </script>
       <jsp:include page="houseModal.jsp"></jsp:include>
 <script src="/thrifty/resources/js/house/houseModal.js"></script>
+
+<script>
+//마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
+    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+    markers = [], // 마커를 담을 배열입니다
+    currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+ 
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(${h.houseLatitude}, ${h.houseLongitude}), // 지도의 중심좌표
+        level: 5 // 지도의 확대 레벨
+    };  
+//지도를 생성합니다   
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+var imageSrc = '/thrifty/resources/images/house/home.png', // 마커이미지의 주소입니다    
+imageSize = new kakao.maps.Size(60, 60), // 마커이미지의 크기입니다
+imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+  
+//마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+markerPosition = new kakao.maps.LatLng(${h.houseLatitude}, ${h.houseLongitude}); // 마커가 표시될 위치입니다
+
+//마커를 생성합니다
+var marker = new kakao.maps.Marker({
+position: markerPosition, 
+image: markerImage // 마커이미지 설정 
+});
+
+//마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);  
+ 
+
+
+// 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places(map); 
+
+// 지도에 idle 이벤트를 등록합니다
+kakao.maps.event.addListener(map, 'idle', searchPlaces);
+
+// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
+contentNode.className = 'placeinfo_wrap';
+
+// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
+// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
+addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
+addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
+
+// 커스텀 오버레이 컨텐츠를 설정합니다
+placeOverlay.setContent(contentNode);  
+
+// 각 카테고리에 클릭 이벤트를 등록합니다
+addCategoryClickEvent();
+
+// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
+function addEventHandle(target, type, callback) {
+    if (target.addEventListener) {
+        target.addEventListener(type, callback);
+    } else {
+        target.attachEvent('on' + type, callback);
+    }
+}
+
+// 카테고리 검색을 요청하는 함수입니다
+function searchPlaces() {
+    if (!currCategory) {
+        return;
+    }
+    
+    // 커스텀 오버레이를 숨깁니다 
+    placeOverlay.setMap(null);
+
+    // 지도에 표시되고 있는 마커를 제거합니다
+    removeMarker();
+    
+    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
+}
+
+// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+function placesSearchCB(data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+
+        // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
+        displayPlaces(data);
+    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+        // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
+
+    } else if (status === kakao.maps.services.Status.ERROR) {
+        // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
+        
+    }
+}
+
+// 지도에 마커를 표출하는 함수입니다
+function displayPlaces(places) {
+
+    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
+    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
+    var order = document.getElementById(currCategory).getAttribute('data-order');
+
+    
+
+    for ( var i=0; i<places.length; i++ ) {
+
+            // 마커를 생성하고 지도에 표시합니다
+            var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
+
+            // 마커와 검색결과 항목을 클릭 했을 때
+            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
+            (function(marker, place) {
+                kakao.maps.event.addListener(marker, 'click', function() {
+                    displayPlaceInfo(place);
+                });
+            })(marker, places[i]);
+    }
+}
+
+// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+function addMarker(position, order) {
+    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+        imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
+        imgOptions =  {
+            spriteSize : new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
+            spriteOrigin : new kakao.maps.Point(46, (order*36)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+            offset: new kakao.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+        },
+        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+            marker = new kakao.maps.Marker({
+            position: position, // 마커의 위치
+            image: markerImage 
+        });
+
+    marker.setMap(map); // 지도 위에 마커를 표출합니다
+    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+
+    return marker;
+}
+
+// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+function removeMarker() {
+    for ( var i = 0; i < markers.length; i++ ) {
+        markers[i].setMap(null);
+    }   
+    markers = [];
+}
+
+// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
+function displayPlaceInfo (place) {
+    var content = '<div class="placeinfo">' +
+                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+
+    if (place.road_address_name) {
+        content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
+                    '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
+    }  else {
+        content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
+    }                
+   
+    content += '    <span class="tel">' + place.phone + '</span>' + 
+                '</div>' + 
+                '<div class="after"></div>';
+
+    contentNode.innerHTML = content;
+    placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
+    placeOverlay.setMap(map);  
+}
+
+
+// 각 카테고리에 클릭 이벤트를 등록합니다
+function addCategoryClickEvent() {
+    var category = document.getElementById('category'),
+        children = category.children;
+
+    for (var i=0; i<children.length; i++) {
+        children[i].onclick = onClickCategory;
+    }
+}
+
+// 카테고리를 클릭했을 때 호출되는 함수입니다
+function onClickCategory() {
+    var id = this.id,
+        className = this.className;
+
+    placeOverlay.setMap(null);
+
+    if (className === 'on') {
+        currCategory = '';
+        changeCategoryClass();
+        removeMarker();
+    } else {
+        currCategory = id;
+        changeCategoryClass(this);
+        searchPlaces();
+    }
+}
+
+// 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
+function changeCategoryClass(el) {
+    var category = document.getElementById('category'),
+        children = category.children,
+        i;
+
+    for ( i=0; i<children.length; i++ ) {
+        children[i].className = '';
+    }
+
+    if (el) {
+        el.className = 'on';
+    } 
+} 
+</script>
 </body>
 
 
