@@ -276,28 +276,6 @@ public class AdminController {
 		
 		return returnVal;
 	}
-
-	@PostMapping("/enrollForm/preview")
-	@ResponseBody
-	public String adminEnrollFormPrivew(HttpSession session, MultipartHttpServletRequest request)throws Exception {
-		
-		MultipartFile previewImg = request.getFile("upload");
-		String privewPath = "/resources/images/admin/";
-
-		String ServerPriviewPath = session.getServletContext().getRealPath(privewPath);
-		
-		String changeName = Utils.saveFile(previewImg, ServerPriviewPath);
-
-		String url = request.getContextPath()+privewPath+changeName;
-		
-		Map<String, Object> preview = new HashMap<>();
-		
-		preview.put("url", url);
-		preview.put("uploaded", true);
-		
-		
-		return new Gson().toJson(preview);
-	}
 	
 	@GetMapping("/logout")
 	public String logOut(SessionStatus status) {

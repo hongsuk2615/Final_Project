@@ -55,6 +55,7 @@
 		<mapper resource="/mappers/report-mapper.xml"/>
 		<mapper resource="/mappers/notice-mapper.xml"/>
 		<mapper resource="/mappers/faq-mapper.xml"/>
+		<mapper resource="/mappers/freeBoard-mapper.xml"/>
 	</mappers>
 
 </configuration>

@@ -39,6 +39,7 @@
 			<div class="freeBoard_mapper">
 				<div class="freeBoard_top">
 					<h2>자유 게시판</h2>
+					<a href="${contextPath}/freeBoard/enroll">글 작성</a>
 				</div>
 				<div>
 					<ul>
@@ -71,8 +72,13 @@
 				</div>
 			</div>
 		</div>
+		<jsp:include page="../common/footer.jsp" />
 	</div>
-	<jsp:include page="../common/footer.jsp" />
-	</div>
+	<script>
+		 <c:if test="${not empty alert}">
+			alert("${alert}");
+			<c:remove var="alert" />
+		</c:if>
+	</script>
 </body>
 </html>
