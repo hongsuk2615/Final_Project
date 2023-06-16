@@ -92,7 +92,7 @@
                           </swiper-container>
                         </div>
                         <div id="item-details">
-                            <div id="item-name"> 상품명 : ${usedProduct.productName} ${usedProduct.isSoldOut == 'Y'? '<img onerror="this.src="/thrifty/resources/images/common/noImage.png""src="/thrifty/resources/images/usedProduct/giphy.gif" style="border-radius:10px;"width="60" height="40">':'' }</div>
+                            <div id="item-name"> 상품명 : ${usedProduct.productName} ${usedProduct.isSoldOut == 'Y'? '<img onerror="this.src=/thrifty/resources/images/common/noImage.png"src="/thrifty/resources/images/usedProduct/giphy.gif" style="border-radius:10px;"width="60" height="40">':'' }</div>
                             <div>판매가격</div>
                             <div id="item-price">
                                 ${usedProduct.price}
