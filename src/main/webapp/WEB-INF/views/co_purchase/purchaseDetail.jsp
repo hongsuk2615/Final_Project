@@ -65,7 +65,7 @@
                         <div id="detail_header_1_title">${ board.title }</div> <!-- 글 제목 -->
                         <div id="report-btn" class="flex" bNo="${board.boardNo}">
                             <img src="${ contextPath }/resources/images/main/icon/alarm.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
-                            <div>신고</div>
+                            <div style="padding-top: 4px;">신고</div>
                         </div>
                     </div>
                     <div id="profile" class="flex align">
