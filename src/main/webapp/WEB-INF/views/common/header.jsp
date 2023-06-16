@@ -150,23 +150,24 @@
                 function dark_mode() {
                     document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/moon.png")';
                     document.querySelector("body").style.transitionDuration= '0.5s';
-                    document.querySelector("#body").style.transitionDuration= '0.5s';
+                /*     document.querySelector("#body").style.transitionDuration= '0.5s'; */
                    
                     document.querySelector("body").style.backgroundColor="rgb(47, 52, 55)"; 
                     document.querySelector("body").style.color="white";
-                    document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
-                    document.querySelector("#body").style.color="white";
+                   /*  document.querySelector("#body").style.backgroundColor="rgb(47, 52, 55)";
+                    document.querySelector("#body").style.color="white"; */
+                    
                 }
                 function light_mode() {
                     document.getElementById("toggleButton").style.backgroundImage = 'url("/thrifty/resources/images/main/icon/sun.png")';
                     document.querySelector("body").style.transitionDuration= '0.5s';
-                    document.querySelector("#body").style.transitionDuration= '0.5s';
+                    /* document.querySelector("#body").style.transitionDuration= '0.5s'; */
 
                     
                     document.querySelector("body").style.backgroundColor="white"; 
                     document.querySelector("body").style.color="black";
-                    document.querySelector("#body").style.backgroundColor="white";
-                    document.querySelector("#body").style.color="black";
+                  /*   document.querySelector("#body").style.backgroundColor="white";
+                    document.querySelector("#body").style.color="black"; */
                 }
 
     </script>

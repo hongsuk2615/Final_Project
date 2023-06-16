@@ -7,130 +7,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Document</title>
-    <style>
+     <link rel="stylesheet" href="/thrifty/resources/css/house/houseEnroll.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     
-    	body{
-    		margin: 0;
-    		padding: 0;
-    	}
-        .wrap{
-            margin: 0px 10vw;
-            padding-top: 155px;
-            padding-bottom: 30px;
-        }
-
-        #ask{
-            display: flex;
-            justify-content: center;
-            text-align: center;
-        }
-        #homecontent>div{
-            width: 100%;
-        }
-        #sharetitle{
-            text-align: center;
-        }
-
-        #homecontent{
-            border: 1px solid #999;
-            border-radius: 5px;
-            margin: 0px 280px;
-        }
-
-        #apply{
-        width:100px;
-        margin:auto;
-        display:block;
-    }
-
-    #ask>div{
-        margin: 0px 45px;
-    }
-
-    #ask button{
-        cursor: pointer;
-		background: #eee;
-		border: none;
-		border-radius: 5px;
-		width: fit-content;
-		height: 30px;
-    }
-
-    #ask input {
-        width: 70%;
-        font-size: 16px;
-        border-radius: 5px;
-        border: 1px solid #999;
-    }
-
-    #ask table{
-    width: 100%;
-    border-top: 1px solid #999;
-    border-collapse: collapse;
-    }
-
-    #ask th{
-        border-bottom: 1px solid #999;
-        border-left: 1px solid #999;
-        padding: 10px;
-    }
-
-    #ask td {
-        border-bottom: 1px solid #999;
-        border-left: 1px solid #999;
-    }
-
-   
-    #ask th:first-child,  #ask td:first-child {
-        border-left: none;
-    }
-
-    #ask table input {
-        width: 90%;
-         border: none; 
-    }
-
-    #ask input:focus {
-    outline: none;
-}
-
-    #roomAdd input{
-        width: 30%;
-    }
-
-    #information{
-        width: 80%;
-        height: 6.25em;
-        resize: none;
-    }
-
-    </style>
 </head>
 <body>
-     <jsp:include page="../common/header.jsp"></jsp:include>
+     <jsp:include page="../common/header.jsp"></jsp:include> 
     <div class="wrap">
         <div id="homecontent">
     <div id="sharetitle">
-        <h2>임대관리 폼</h2>
+        <h1>임대관리 폼</h1>
     </div>
     <div id="ask">
         <div>
         <form method="post" action="/thrifty/sharehouse/enroll" enctype="multipart/form-data">
 
-            <input type="text" placeholder="이름" name="userName" id="userName" required value="${loginUser.userName }" disabled> <br><br>
-            <input  type="tel" placeholder="연락처" name="phone" id="phone" required value="${loginUser.phone }" disabled> <br><br>
-             <input type="text" placeholder="집 이름" name="title" required> <br><br>
+            <input type="text" placeholder=" *이름" name="userName" id="userName" required value="${loginUser.userName }" disabled> <br>
+            <input  type="tel" placeholder=" *연락처" name="phone" id="phone" required value="${loginUser.phone }" disabled> <br>
+             <input type="text" placeholder=" *집 이름" name="title" required  maxlength='15'> <br>
             <button type="button" onclick="addRoom()">방 추가하기</button>
-            * 첫번째 사진이 대표사진으로 설정됩니다. <br><br>
+            <span style="font-size: 12px;">* 첫번째 사진이 대표사진으로 설정됩니다.</span> <br>
             <div id="roomAdd">
             </div>
-            <br><br>
+            <br>
             <div>
                 <table id="tableA">
 					<tr>                    
-                        <th>입주신청</th>
+                        <th>모집인원</th>
                         <th>구분</th>
                         <th>성별</th>
                         <th>타입</th>
@@ -143,40 +47,49 @@
                 </table>
             </div>
             <br>
-            
+            <div style="position:relative;">
             <input type="text"  placeholder="위치" name="houseAddress" id="houseAddress" onchange="getLocation()" required readonly>
             <input type="hidden" name="houseLongitude" id="houseLongitude">
             <input type="hidden" name="houseLatitude" id="houseLatitude">
-            <button type="button" onclick="insertDaumPostcodeBtn();" >주소검색</button>
-            <br>
+            <div style="position:absolute; right: 40px; top: 17px;">
+            <button type="button" id="Addressbtn" onclick="insertDaumPostcodeBtn();" >주소검색</button>
+            </div>
+            </div>
+           
 
             <textarea type="text" placeholder="지점소개" name="information" id="information" required></textarea> <br>
   
-                <input type="checkbox" name="injung" id="injung"  style="width: 10px;">
+                <input type="checkbox" name="injung" id="injung" >
             <label for="injung">개인정보수집에 동의합니다.</label> <br><br>
 
-                <button id="apply" disabled>신청하기</button><br>
+                <button id="apply" disabled >신청하기</button><br>
         </form>
     </div>
     </div>
     </div>
 </div>
 <div id="map"></div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5381ed5b2d19ab0d65e938e3cce6e687&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
     <script>
 
         let count = -1;
-
+        const dataTransfer = new DataTransfer();
+        let fileArr = new Array();
         function addRoom(){ // 방 추가
           	$('#apply').attr("disabled", true);
             count++;
             
             let a = `
             <div id="roomImgsection\${count}" > 
-            <input type="text" placeholder="방 이름" name="division" id="division\${count}" onchange="roomName(this.id)" required> 
-            <input type="file" style="border: none;" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png" required>
+            <input type="text" maxlength='8' placeholder="방 이름" name="division" id="division\${count}" onchange="roomName(this.id)" required> 
+            <button type="button" onclick="insertImage(\${count});">파일 첨부(8개까지 가능)</button>
+            <input type="file" onchange="makeSlick(\${count})" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png" required>
             <button type="button" id="closebtn\${count}"count='\${count}'>X</button>
             </div>
+            
+            <div class="rImg\${count} slickRoomImgDiv" id="rImg\${count}">
+            
+        	</div>
             `
            $('#roomAdd').append(a);
 
@@ -216,15 +129,89 @@
 
            document.getElementById("closebtn"+count).addEventListener('click', function(){
                 let c = $(this).attr('count')
+               
                 if($('input[name=contrat]').length == 1){
                 	alert("하나의 방은 존재해야합니다.")
                 }else{
+                	if($('#rImg'+c).find('img').length != 0) {
+		        		$('.rImg'+c).slick('slickRemove', null, null, true);
+		        		$('.rImg'+c).slick('unslick');
+		        		$('#rImg'+c).remove();
+		        	}
                 $('#roomImgsection'+c).remove();
+                $('#rImg'+c).remove();
                 $("#tb"+c).remove();
                 }
             });
             inputCheck();
         }addRoom();
+        
+        function deleteImg(e){
+        	cnt = $(e).attr('cnt');
+        	console.log(cnt);
+        	const files = Array.from(document.getElementsByName('roomImg'+cnt)[0].files);
+            console.log(files);
+            const dataTransfer = new DataTransfer();
+            files.filter(file=>file.lastModified!=$(e).attr('lastModified')).forEach(file=>{
+                dataTransfer.items.add(file);
+            })
+            document.getElementsByName('roomImg'+cnt)[0].files = dataTransfer.files;
+
+            let arr = $('.rImg'+cnt+' .slick-track').children('div').filter(function(i, item){
+                return !$(item).hasClass('slick-cloned');
+            });
+            let index = -1;
+            arr.each(function(i, item){
+                console.log($(item).attr('index'));
+                if($(item).attr('index')==$(e).attr('index')){
+                    index = i;
+                }
+            })
+            $('.rImg'+cnt).slick('slickRemove',index);
+    	}
+        
+        
+        function makeSlick(item){
+        	if($('#rImg'+item).find('img').length != 0) {
+        		$('.rImg'+item).slick('slickRemove', null, null, true);
+        	}
+        	let el = $('input[name=roomImg'+item+']').get(0);
+        	filelength = el.files.length;
+        	if(filelength > 8){
+        		alert("사진첨부는 8개까지 가능합니다.");
+        		el.value = "";
+        		return 0;
+        	}
+        	let files = el.files;
+        	$('.rImg'+item).html('');
+	        	for(let j = 0; j < filelength; j++){
+		        	let file = el.files[j];
+		       		 //formData.append("upfile"+ item + j , file);
+		        	 let reader = new FileReader();
+			        	reader.readAsDataURL(file);
+			        	reader.onload = function(e){
+			        		let url = e.target.result;
+			        		let lastModified = file.lastModified;
+			        		$('.rImg'+item).slick('slickAdd',`<div class="slickDiv" onclick='deleteImg(this);' index=\${j} cnt=\${item} lastModified=\${lastModified} style='border-radius: 10px; background-image: url(\${url}); background-size:cover; width:140px; height:140px;';><img class='deleteImg' id='newImg\${item}' src='/thrifty/resources/images/house/deleteImg.png'></div>`);
+			        		$('.rImg'+item).slick('refresh');
+			        		}
+	        	}
+	        	
+	          	$('.rImg'+item).slick({
+	                dots: false,
+	                slidesToShow: 5,
+	                infinite : true,
+	                autoplay : false,
+	                prevArrow : "<button type='button' class='slick-prev slickBtn'><img src='/thrifty/resources/images/house/left-arrow.png'></button>",
+					nextArrow : "<button type='button' class='slick-next slickBtn'><img src='/thrifty/resources/images/house/right-arrow.png'></button>"
+	                
+	            });
+	          	
+        }
+        
+        function insertImage(len){
+    		$('input[name=roomImg'+len+']')[0].click();
+    	}
         
         function roomName(id){
         	$('input[name='+id+']').val($('#'+id).val());
@@ -301,7 +288,8 @@
                     getLocation();
                 }
             }).open();
-}
+    	}
+            
    </script>
         <script>
         function getLocation(){
@@ -331,6 +319,7 @@
         }
         
     </script>
+    
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>

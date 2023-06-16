@@ -93,8 +93,8 @@ public class BoardDao {
 		return sqlSession.update("boardMapper.scrapBoard", bNo);
 	}
 	
-	public int scrapCancle(int bNo) {
-		return sqlSession.update("boardMapper.scrapBoard", bNo);
+	public int scrapCancel(int bNo) {
+		return sqlSession.update("boardMapper.scrapCancel", bNo);
 	}
 
 	public int updateImageList(List<Image> imageList) {

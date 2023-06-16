@@ -103,7 +103,7 @@ public class UsedProductServiceImp implements UsedProductService {
 			result = usedProductDao.modifyUsedProduct(uP);
 		}
 		
-		if(result > 0 && removeImgList.length() > 0 ) {
+		if(result > 0 && removeImgList.length() > 2 ) {
 			result = boardDao.deleteImage(removeImgList);
 		}
 
