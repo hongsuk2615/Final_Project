@@ -68,7 +68,7 @@
         <div id="body">
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
-                <form action="/thrifty/usedProduct/enroll" method="post" enctype="multipart/form-data">
+                <form id="enrollForm"action="/thrifty/usedProduct/enroll" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <th colspan="5">
@@ -99,7 +99,7 @@
                              	</c:forEach>
                             </select>
                         </td>
-                        <th>지역</th>
+                        <td style="text-align:center; font-weight: bold;">지역</td>
                         <td>
                             <select name="locationNo" id="">
                             	<c:forEach var="location" items="${locationList}">
@@ -134,7 +134,7 @@
                     </tr>
                     <tr>
                         
-                        <th>이미지<br>(최대10장)<br><button type="button" onclick="insertImage();">이미지 첨부</button></th>
+                        <th>이미지<br>(최대10장)<br><button id="insertImg-btn"type="button" onclick="insertImage();">이미지 첨부</button></th>
                         <td colspan="4" style="padding : 10px 50px;">
                         	<div id="image-slick" style="width: 620px; height:200px"></div>
                         
@@ -156,9 +156,9 @@
                         </td>
                     </tr>
                 </table>
-                <div id="btns">
-                    <div id="cancel-btn">취소</div>
-                    <button id="complete-btn">작성완료</button>
+                <div id="buttons">
+                    <button type="button" id="cancel-btn" onclick="location.href='/thrifty/usedProduct/'">취소</button>
+                    <button id="complete-btn" >작성완료</button>
                 </div>
                 </form>
             </div>
@@ -244,20 +244,15 @@
             function makeSlick(){
                 $('#image-slick').slick({
                 	slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
-    				infinite : true, 	//무한 반복 옵션	 
+    				infinite : false, 	//무한 반복 옵션	 
     				slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
-    				slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-    				speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+    				slidesToScroll : 4,		//스크롤 한번에 움직일 컨텐츠 개수
+    				speed : 1000,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
     				arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-    				dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
-    				autoplay : true,			// 자동 스크롤 사용 여부
-    				autoplaySpeed : 10000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
-    				pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
-    				vertical : false,		// 세로 방향 슬라이드 옵션
+    				dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
     				prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
     				nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
     				dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
-    				draggable : true, 	//드래그 가능 여부 
     				
     				responsive: [ // 반응형 웹 구현 옵션
     					{  

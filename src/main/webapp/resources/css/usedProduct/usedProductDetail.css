@@ -112,6 +112,7 @@
     text-align: center;
     font-size: 15px;
     cursor: pointer;
+    line-height: 1.7;
 }
 
 #inquiry-btn{
@@ -119,14 +120,15 @@
 }
 
 #wish-btn{
-    background-color: rgb(52, 152, 219);
+    background-color: #3498db;
 }
 #report-btn{
     background-color: red;
 }
 
 #body-right-content{
-    background-color: lightgray;
+    background-color: rgb(181 198 215);
+    padding: 20px;
 }
 #writer-btns{
     display: flex;
@@ -143,13 +145,14 @@
     text-align: center;
     font-size: 15px;
     cursor: pointer;
+    line-height: 1.7;
 }
 #delete-btn{
     background-color: black;
 }
 #modify-btn{
     background-color: rgb(52, 152, 219);
-
+}
 
 
 

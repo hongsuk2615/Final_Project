@@ -25,7 +25,7 @@ function login(){
             </div>
             <div id="sns-login">
                 <fieldset>
-                    <legend>또는</legend>    
+                    <legend style="width: initial; height : 10px; margin: initial;font-size: initial;line-height: initial;white-space: initial;">또는</legend>    
                 </fieldset>
                 <div id="kakao-login-btn" onclick="kakaoLogin();">
                     <img src="/thrifty/resources/images/login/kakao/kakao_login_large_wide.png" alt="카카오 로그인 이미지" width="310" height="60">
