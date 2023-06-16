@@ -9,7 +9,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/thrifty/resources/css/common/body-left.css">
+    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
     <title>Document</title>
+    <style>
+    	.sub-category{
+    		border-radius : 5px;
+    		cursor : pointer;
+    		padding : 10px;
+    		width : 180px;
+    	}
+    	.sub-category:hover{
+    		background : lightgray;
+    		color : black;
+    	}
+    	.sub-category-selected{
+    		background : lightgray;
+    		color : black;
+    	}
+    
+    </style>
 </head>
 <body>
 
@@ -24,7 +42,7 @@
                     <ul class="scrollbar">
                     <c:forEach var="subCategory" items="${subCategoryList}">
                     	<c:if test="${subCategory.categoryUNo eq 4}">
-                        <li onclick="location.href = '${contextPath}/usedProduct?scNo=${subCategory.categorySNo }'">${subCategory.categorySName}</li>
+                        <li class="sub-category ${scNo eq subCategory.categorySNo? 'sub-category-selected':'' }" onclick="location.href = '${contextPath}/usedProduct?scNo=${subCategory.categorySNo }'">${subCategory.categorySName}</li>
                         </c:if>
                     </c:forEach>    
                     </ul>
@@ -32,10 +50,10 @@
                 <div id="filter">
                     <ul class="scrollbar">
                         <li>가격</li>
-                        <li><input type="number" name="minPrice" value="${filter.minPrice}"> ~ <input type="number" name="maxPrice" value="${filter.maxPrice}"> </li>
+                        <li><input style="width:90px; cursor:pointer; border-radius:5px;"type="number" name="minPrice" min="0" value="${filter.minPrice}"> ~ <input style="width:90px; border-radius:5px; cursor:pointer;" type="number" name="maxPrice" min="0" value="${filter.maxPrice}"> </li>
                         <li>지역</li>
                         <li>
-                            <select name="flocation" id="">
+                            <select name="flocation" id="" style="cursor:pointer; border-radius:5px;">
                                 <option id="default-location" value="" selected>지역</option>
                          		<c:forEach var="location" items="${locationList}">
                             		<option  value="${location.locationNo}" ${filter.location eq location.locationNo ? "selected":"" }>${location.locationName}</option>
@@ -45,14 +63,28 @@
 
                         <li>거래방법</li>
                         <li>
-                            <input type="radio" name="fTradeMethod" id="filter-direct" value="D" ${filter.tradeMethod eq 'D'? "checked":""}>
-                            <label for="filter-direct">직거래</label>
-                            <input type="radio" name="fTradeMethod" id="filter-parcel" value="P" ${filter.tradeMethod eq 'P'? "checked":""}>
-                            <label for="filter-parcel">택배</label>
-                            <input type="radio" name="fTradeMethod" id="filter-both" value="B" ${filter.tradeMethod eq 'B'? "checked":""}>
-                            <label for="filter-both">둘다</label>
+                            <input style="cursor:pointer;" type="radio" name="fTradeMethod" id="filter-direct" value="D" ${filter.tradeMethod eq 'D'? "checked":""}>
+                            <label style="cursor:pointer;" for="filter-direct">직거래</label>
+                            <input style="cursor:pointer;" type="radio" name="fTradeMethod" id="filter-parcel" value="P" ${filter.tradeMethod eq 'P'? "checked":""}>
+                            <label style="cursor:pointer;" for="filter-parcel">택배</label>
+                            <input style="cursor:pointer;" type="radio" name="fTradeMethod" id="filter-both" value="B" ${filter.tradeMethod eq 'B'? "checked":""}>
+                            <label style="cursor:pointer;" for="filter-both">둘다</label>
+
                         </li>
-                        <li style="display: flex; justify-content: flex-end; padding-right:15px ;"><button onclick="resetFilter();">필터초기화</button><button onclick="filter();">필터적용</button></li>
+                        <li style="display: flex; justify-content: flex-end; padding-right:15px ;">
+							<lord-icon onclick="resetFilter();"
+							    src="https://cdn.lordicon.com/nxooksci.json"
+							    trigger="hover"
+							    colors="primary:white"
+							    style="width:40px;height:40px; cursor:pointer;">
+							</lord-icon>
+							<lord-icon onclick="filter();"
+							    src="https://cdn.lordicon.com/yqzmiobz.json"
+							    trigger="hover"
+							    colors="primary:white"
+							    style="width:40px;height:40px; cursor:pointer;">
+							</lord-icon>
+						</li>
                     </ul>
                     
                 </div>
@@ -85,8 +117,10 @@
             		$('[name="minPrice"]').val('');
             		$('[name="maxPrice"]').val('');
             		$('[name="flocation"]>option:selected').removeAttr("selected");
-            		$('#default-location').select();
+            		$('#default-location').removeAttr("selected");
+            		$('#default-location').attr('selected',true);
             		$('[name="fTradeMethod"]:checked').removeAttr("checked");
+            		$('[name="fTradeMethod"]').prop("checked", false);
             	}
 
             
