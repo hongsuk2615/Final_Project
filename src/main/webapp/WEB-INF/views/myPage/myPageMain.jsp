@@ -252,13 +252,13 @@
 
                         <div class="info-element">
                             <label>핸드폰</label>
-                            <label>${loginUser.phone}</label>
+                            <label>${loginUser.loginMethod == 'K' ? '카카오 로그인 유저는 정보수정이 불가능합니다.' : loginUser.phone}</label>
                         </div>
 
                         <div class="info-element">
                             
-                            <label>닉네임</label>
-                            <label>${loginUser.nickName}</label>
+                            <label>로그인 방법</label>
+                            <label>${loginUser.loginMethod =='K'? 'Kakao' : '알뜰살뜰'}</label>
                         
                         </div>
 
@@ -278,8 +278,10 @@
                       
                     </div>
                     <div id="btnsss">
+                      <c:if test="${loginUser.loginMethod != 'K' }">
                     <a  class="btn btn-primary" id="button_modify" href="${pageContext.request.contextPath}/mypage/myUpdateForm">수정하기</a>
-                    <button type="button" class="btn btn-secondary" id="button_cancel">취소</button>
+                    </c:if>
+                    
                     </div>
                     
                     <div id="btncover">
@@ -312,7 +314,18 @@
 
         </div>
     </div>
-    
+    <c:if test="${loginUser.loginMethod == 'K' }">
+    	<script>
+    	Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: '카카오 로그인 유저는 정보수정이 불가능합니다.',
+            showConfirmButton: false,
+            timer: 1000
+        })
+    	
+    	</script>
+    </c:if>
    
 
 <script>

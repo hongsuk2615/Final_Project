@@ -64,6 +64,7 @@ public class PtjServiceImpl implements PtjService {
       queryString.put("pi", pi);
       queryString.put("list", list);
      
+      
     }
     
    
@@ -130,4 +131,11 @@ public class PtjServiceImpl implements PtjService {
    public int workEnd(Board b) {
       return ptjDao.workEnd(b);
    }
+   
+   @Override
+   public List<Ptj> advptjAll(){
+	   return ptjDao.advptjAll();
+   }
+   
+   
 }

@@ -133,6 +133,14 @@ public class UsedProductServiceImp implements UsedProductService {
 		}
 		return result;
 	}
+	
+	@Override 
+	public List<UsedProduct> selectUpAll(){
+		
+		return usedProductDao.selectUpAll();
+		
+	}
+	
 
 	@Override
 	public int soldOut(Board board) {
