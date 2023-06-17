@@ -123,9 +123,15 @@
 	
 	<update id="updateImage" parameterType="image">
 		UPDATE IMAGE
-		SET CHANGE_NAME 
+		SET CHANGE_NAME
 	</update>
 	
+	<update id="updateCoImage" parameterType="image">
+		UPDATE IMAGE
+		SET CHANGE_NAME = #{changeName}
+		  , ORIGIN_NAME = #{originName}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
 	
 	
 	<insert id="insertImageList" parameterType="list">
@@ -181,7 +187,14 @@
 			   TITLE = #{title},
 			   CONTENT = #{content}
 		WHERE BOARD_NO = #{boardNo}
-		
+	</update>
+	<update id="updateCoBoard" parameterType="board">
+		UPDATE BOARD
+		   SET
+			   TITLE = #{title},
+			   CONTENT = #{content},
+			   CATEGORY_S_NO = #{categorySNo}
+		WHERE BOARD_NO = #{boardNo}
 	</update>
 	<update id="scrapBoard">
 		UPDATE BOARD

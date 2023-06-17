@@ -1,6 +1,7 @@
 package com.ace.thrifty.smallgroup.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ace.thrifty.board.model.service.BoardService;
@@ -20,6 +22,9 @@ import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.smallgroup.model.service.SmallGroupService;
 import com.ace.thrifty.smallgroup.model.vo.SmallGroup;
+import com.ace.thrifty.usedProduct.model.service.UsedProductService;
+import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
+import com.google.gson.Gson;
 
 
 @Controller
@@ -28,6 +33,9 @@ public class SmallGroupController {
 	
 	@Autowired
 	private SmallGroupService smallgroupService;
+	
+	@Autowired
+	private UsedProductService usedProductService;
 	
 	
 	//리스트
@@ -208,6 +216,30 @@ public class SmallGroupController {
 		
 		
 		return "myPage/smallgrouplist";
+	}
+	
+	@ResponseBody
+	@GetMapping("/advUp")
+	public String advUp() {
+		List<UsedProduct> upList = usedProductService.selectUpAll();
+		
+		
+		int ccc = (int)(Math.random() * upList.size() );
+		upList.get(ccc);
+		
+		UsedProduct var = upList.get(ccc);
+		
+		
+		System.out.println(var);
+		
+		
+		
+		String webPath = "/resources/upfiles/usedProduct/";
+		
+		
+		return new Gson().toJson(var);
+		
+		
 	}
 
 }

@@ -188,7 +188,7 @@
         </div>
         <div id="body">
             <div id="body-left">
-				<jsp:include page="../common/boardBodyLeft.jsp"/>
+				<jsp:include page="../common/boardBodyLeftSmallGroup.jsp"/>
 
             </div>
 

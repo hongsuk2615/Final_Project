@@ -155,7 +155,14 @@
 		AND B.STATUS = 'Y'
 	</select>
 	
-	<update id="updateCo_purchase">
-		
+	<update id="updateCo_purchase" parameterType="co_purchase">
+		UPDATE CO_PURCHASE
+		   SET PRODUCT_NAME = #{productName}
+		     , PRICE = #{price}
+		     , RECRUITS_NUM = #{recruitsNum}
+		     , DEAD_LINE = #{deadLine}
+		     , LINK = #{link}    
+		     , IS_END = #{isEnd}
+		 WHERE BOARD_NO = #{boardNo}
 	</update>
 </mapper>
