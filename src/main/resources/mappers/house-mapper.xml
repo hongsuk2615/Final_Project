@@ -19,7 +19,6 @@
 		<id column="ROOM_NO" property="roomNo"/>
 		<result column="BOARD_NO" property="boardNo"/>
 		<result column="RECRUITS_NUM"  property="recruitsNum"/>
-		<result column="RECRUITS_CURR"  property="recruitsCurr"/>
 		<result column="DIVISION"  property="division"/>
 		<result column="GENDER"  property="gender"/>
 		<result column="TYPE"  property="type"/>
@@ -28,6 +27,7 @@
 		<result column="RENT"  property="rent"/>
 		<result column="COST"  property="cost"/>
 		<result column="CONTRAT"  property="contrat"/>
+		<result column="SYMBOL"  property="symbol"/>
 		<collection property="imgList" javaType="java.util.ArrayList" ofType="roomImg"
 		select="selectImgList" column="ROOM_NO" />
 	</resultMap>
@@ -67,8 +67,8 @@
 	</insert>
 	
 	<insert id="insertRoom" useGeneratedKeys="true" parameterType="house" keyProperty="roomNo">
-		INSERT INTO ROOM (ROOM_NO, BOARD_NO, RECRUITS_NUM, RECRUITS_CURR, DIVISION, GENDER, TYPE, AREA, DEPOSIT, RENT, COST, CONTRAT)
-		VALUES ( default , #{boardNo}, #{recruitsNum}, #{recruitsCurr}, #{division}
+		INSERT INTO ROOM (ROOM_NO, BOARD_NO, RECRUITS_NUM, DIVISION, GENDER, TYPE, AREA, DEPOSIT, RENT, COST, CONTRAT)
+		VALUES ( default , #{boardNo}, #{recruitsNum}, #{division}
 		, #{gender}, #{type}, #{area}, #{deposit}
 		, #{rent}, #{cost}, #{contrat})
 	</insert>
@@ -125,17 +125,20 @@
 	SELECT *
 	FROM ROOM
 	WHERE BOARD_NO = #{boardNo}
+		AND STATUS = 'Y'
 	</select> 
 	
 	<select id="selectImgList" resultMap="roomImgResultSet">
 	SELECT *
 	FROM ROOM_IMAGE
 	WHERE ROOM_NO = #{roomNo}
+		AND STATUS = 'Y'
 	ORDER BY FILE_LEVEL
+		
 	</select>
 	
 	<select id="selectHouseList" resultMap="houseResultSet">
-		SELECT BOARD.BOARD_NO, USER_NO, TITLE, HOUSE_LATITUDE, HOUSE_LONGITUDE, THUMBNAIL, 
+		SELECT BOARD.BOARD_NO, USER_NO, TITLE, HOUSE_LATITUDE, HOUSE_LONGITUDE, THUMBNAIL, HOUSE_ADDRESS,
 				(SELECT MIN(RENT)
 					FROM ROOM
 					WHERE BOARD_NO = BOARD.BOARD_NO
@@ -155,6 +158,61 @@
 		INSERT INTO TOUR (ROOM_NO, USER_NO, MOVE_IN, ENQUIRY)
 		VALUES (#{roomNo}, #{userNo},  #{moveIn}, #{enquiry})
 	</insert>
+	
+	<update id="changeRecruitment"  parameterType="room" useGeneratedKeys="true" keyProperty="recruitsNum">
+		<choose>
+			<when test="symbol == 'plus'">
+				UPDATE ROOM
+				SET RECRUITS_NUM = RECRUITS_NUM + 1
+					WHERE ROOM_NO = #{roomNo}
+			</when>
+			<otherwise>
+				UPDATE ROOM
+				SET RECRUITS_NUM = RECRUITS_NUM - 1
+					WHERE ROOM_NO = #{roomNo}
+			</otherwise>
+		</choose>
+		
+	</update>
+	
+	<update id="updateHouse" parameterType="house">
+		UPDATE SHARE_HOUSE SET 
+			HOUSE_ADDRESS = #{houseAddress},
+			HOUSE_LATITUDE =  #{houseLatitude},
+			HOUSE_LONGITUDE =  #{houseLongitude},
+			
+			<if test="thumbnail != null">
+			THUMBNAIL = #{thumbnail},
+			</if>
+			INFORMATION =  #{information}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<update id="deleteImage" parameterType="string">
+		UPDATE ROOM_IMAGE
+		   SET STATUS = 'N'
+		 WHERE IMG_NO IN ${deleteImgList}
+	</update>
+	
+	<update id="deleteRoom" parameterType="string">
+		UPDATE ROOM
+		   SET STATUS = 'N'
+		 WHERE ROOM_NO IN ${deleteRoomList}
+	</update>
+	
+	<update id="updateRoom">
+		UPDATE ROOM 
+			SET RECRUITS_NUM = #{recruitsNum},
+			DIVISION = #{division}, 
+			GENDER =  #{gender},
+			TYPE = #{type},
+			AREA = #{area},
+			DEPOSIT =  #{deposit},
+			RENT = #{rent},
+			COST = #{cost},
+			CONTRAT = #{contrat}
+		WHERE ROOM_NO = #{roomNo}
+	</update>
 	
 	
 </mapper>

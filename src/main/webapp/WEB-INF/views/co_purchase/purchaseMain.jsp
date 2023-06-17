@@ -78,13 +78,22 @@
 							<tr>
 								<td class="flex">
 									<div class="detail_img">
-                                    	<img src="${ contextPath }/${ b.thumbNail }" alt="" class="detail_img_1">
+                                    	<img src="${ contextPath }/${ b.thumbNail }" alt="" class="detail_img_1" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
                                     </div>
                                     <div class="detail">
                                     <div class="detail_top">
-                                        <div class="detail_top_recruiting">
-                                            모집중
-                                        </div>
+                                    	<c:choose>
+                                    		<c:when test="${ b.isEnd eq 'Y' }">
+                                    			<div class="detail_top_close">
+		                                            마감
+		                                        </div>
+                                    		</c:when>
+                                    		<c:otherwise>
+		                                        <div class="detail_top_recruiting">
+		                                            모집중
+		                                        </div>                            		
+                                    		</c:otherwise>
+                                    	</c:choose>
                                     </div>
                                     <a href="${ contextPath }/co_purchase/detail?bNo=${ b.boardNo }">
                                         <div class="detail_middle">${ b.title }</div>
@@ -92,17 +101,33 @@
                                     <div class="detail_bottom flex">
                                         <div class="flex align">
                                             <div>가격</div>
-                                            <div class="detail_bottom_price">${ b.price }</div>
+                                            <div class="detail_bottom_price">${ b.price }원</div>
                                         </div>
-                                        <div class="detail_bottom_2 flex align">
-                                            <div>
-                                                <img src="${ contextPath }/resources/images/myPage/${ b.changeName }" alt="" class="detail_bottom_img">
-                                            </div>
-                                            <div class="detail_bottom_nickname">${ b.nickName }</div>
-                                            <span>|</span>
-                                            <div>${ b.readCount }</div>
-                                            <span>|</span>
-                                            <div>${ b.createDate }</div>
+                                        <div class="detail_bottom_2">
+                                            <table id="profile" style="border: none;">
+                                                <tr>
+                                                    <td>
+                                                        <div>
+                                                            <img src="${ contextPath }/resources/images/myPage/${ b.changeName }" alt="" class="detail_bottom_img" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
+                                                        </div>
+                                                    </td>
+                                                    <td style="width: 25%;">
+                                                        <div class="detail_bottom_nickname">${ b.nickName }</div>
+                                                    </td>
+                                                    <td style="width: 24px;">
+                                                        <span>|</span>
+                                                    </td>
+                                                    <td style="width: 6.5%; text-align: center;">
+                                                        <div>${ b.readCount }</div>
+                                                    </td>
+                                                    <td style="width: 24px;">
+                                                        <span>|</span>
+                                                    </td>
+                                                    <td>
+                                                        <div>${ b.createDate }</div>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -185,7 +210,7 @@
                     </c:choose>
                     
                     <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
-                        <div class="page-item"><a class="page-link" href="/thrifty/co_purchase?currPage=${item}&scNo=${map.scNo}">${item }</a></div>
+                        <div class="page-item pagingbar_count"><a class="page-link" href="/thrifty/co_purchase?currPage=${item}&scNo=${map.scNo}">${item }</a></div>
                     </c:forEach>
                     
                     <c:choose>

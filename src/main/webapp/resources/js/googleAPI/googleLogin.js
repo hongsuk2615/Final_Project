@@ -40,14 +40,14 @@ function googleLogin(){
 function handleCredentialResponse(response) {
   console.log("Encoded JWT ID token: " + response.credential);
 }
-window.onload = function () {
-  google.accounts.id.initialize({
-    client_id: "283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com",
-    callback: handleCredentialResponse
-  });
-  google.accounts.id.renderButton(
-    document.getElementById("buttonDiv"),
-    { theme: "outline", size: "large" }  // customization attributes
-  );
-  google.accounts.id.prompt(); // also display the One Tap dialog
-}
+// window.onload = function () {
+//   google.accounts.id.initialize({
+//     client_id: "283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com",
+//     callback: handleCredentialResponse
+//   });
+//   google.accounts.id.renderButton(
+//     document.getElementById("buttonDiv"),
+//     { theme: "outline", size: "large" }  // customization attributes
+//   );
+//   google.accounts.id.prompt(); // also display the One Tap dialog
+// }

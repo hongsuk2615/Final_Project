@@ -15,6 +15,9 @@ li{
 #body{
     padding-top: 180px;
 }
+font{
+	padding-top: 5px;
+}
 
 #header{
     width: 100%;
@@ -59,6 +62,7 @@ li{
     justify-content: space-evenly;
     width: 300px;
     font-weight: 900;
+    font-size: 18px;
 }
 
 #header_1_2>div{
@@ -82,7 +86,7 @@ li{
     justify-content: space-between;
     padding-top: 20px;
     padding-bottom: 10px;
-    font-size: larger;
+    font-size: 22px;
     font-weight: 900;
 }
 
@@ -121,11 +125,11 @@ li{
 }
     
 .header_img_basic{
-    background-image: url("/thrifty/resources/images/main/icon/logo2.1.png");
+    background-image: url("/thrifty/resources/images/main/icon/logo2.2.png");
 }
 
 .header_img_white{
-    background-image: url("/thrifty/resources/images/main/icon/logo1.1.png");
+    background-image: url("/thrifty/resources/images/main/icon/logo1.2.png");
 }
 
 .content_basic{

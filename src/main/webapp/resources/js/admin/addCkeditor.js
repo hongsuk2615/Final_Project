@@ -1,5 +1,12 @@
  const pathName = window.location.pathname;
  const rootPathName = pathName.substring(1, pathName.indexOf('/',2)); 
+ let boardCat = pathName.substring(pathName.indexOf('/',2)+1,pathName.lastIndexOf('/'));
+ let adminBool = boardCat.substring(0, boardCat.lastIndexOf('/'));
+
+ if(adminBool == 'admin'){
+    boardCat = pathName.substring(pathName.lastIndexOf('/')+1);
+ }
+ 
  
  // This sample still does not showcase all CKEditor 5 features (!)
             // Visit https://ckeditor.com/docs/ckeditor5/latest/features/index.html to browse all the features.
@@ -32,7 +39,7 @@
                     }
                 },
                 ckfinder: {
-                	uploadUrl: '/'+rootPathName+'/admin/enrollForm/preview'
+                	uploadUrl: '/'+rootPathName+'/board/enrollForm/'+boardCat+'/preview'
             	},
                 // https://ckeditor.com/docs/ckeditor5/latest/features/headings.html#configuration
                 heading: {
