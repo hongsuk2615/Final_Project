@@ -36,8 +36,9 @@
 	</resultMap>
 	
 	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
-		SELECT *
+		SELECT *, NICK_NAME
 		  FROM BOARD
+		  JOIN MEMBER M USING (USER_NO)
 		 WHERE BOARD_NO = #{boardNo}
 	</select>
 	
