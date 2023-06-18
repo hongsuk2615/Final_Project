@@ -274,7 +274,7 @@
                 let container = $('#message_content_right');
                 container.html('');
                 for(message of result){
-                    if(result.userNo == userNo){ // 받은 메세지
+                    if(message.receiver != userNo){ // 받은 메세지
                         container.append(`
                            <div class="messages-wrapper receive-message"> 
                             <div class="receive-message-wrapper">\${message.content}</div>
