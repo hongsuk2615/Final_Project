@@ -258,11 +258,11 @@ input:focus { outline: none; }
               
                 <div id="body-right-header">
                     <div class="profile-pic">
-                        <img src="${contextPath}/resources/images/myPage/${loginUser.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="100%" height="100%" style="object-fit: cover;">
+                        <img src="${contextPath}/resources/upfiles/myPage/${loginUser.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="100%" height="100%" style="object-fit: cover;">
                     </div>
                     <div class="profile-title">
                         <h4>프로필 변경</h4>
-                        <form  action ="${pageContext.request.contextPath}/mypage/insertProfile.do" enctype="multipart/form-data" method="post">
+                        <form action ="${pageContext.request.contextPath}/mypage/insertProfile.do" enctype="multipart/form-data" method="post">
                         <input type="file" name="images">
                         <button type="submit">제출</button>
                         </form>

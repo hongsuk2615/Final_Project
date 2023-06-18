@@ -78,7 +78,7 @@
         float: left;
         width: 30%;
         height: 100%;
-        border-radius: 100%;
+        border-radius: 2rem;
         overflow: hidden;
         
     }
@@ -209,11 +209,11 @@
                     
                     <div class="profile-pic">
                     <c:if test="${loginUser.loginMethod != 'K'}">    
-                       <img src="${contextPath}/resources/images/myPage/${loginUser.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="100%" height="100%" style="object-fit: cover;">
+                       <img src="${contextPath}/resources/upfiles/myPage/${loginUser.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="100%" height="100%" style="object-fit: cover;">
                     </c:if>
                     
                     <c:if test="${loginUser.loginMethod == 'K'}">
-                    	<img src="${loginUser.changeName}">
+                    	<img src="${loginUser.changeName}" width="100%" height="100%">
                     </c:if>
                     </div>
 
@@ -231,7 +231,7 @@
                     
                         
                         <div class="classtitle">
-                        <h2> 회원정보</h2>
+                            <img src="/thrifty/resources/images/myPage/team.png" id="message-profile-img" height="40px">  <h2> 회원정보</h2>
                         </div>
                     <div class="personinfoborder" data-aos="fade-up-right" id="personinfoborder">
                         

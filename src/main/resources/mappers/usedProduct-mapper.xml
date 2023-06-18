@@ -195,7 +195,7 @@
 		  JOIN LOCATION USING(LOCATION_NO)
 		  JOIN BOARD B USING(BOARD_NO)
 		  JOIN IMAGE USING(BOARD_NO)
-		 WHERE B.STATUS = 'Y'
+		 WHERE B.STATUS = 'Y' AND IS_SOLDOUT = 'N'
 	</select>
 
 	<update id="soldOut" parameterType="board">

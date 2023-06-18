@@ -123,7 +123,7 @@
             <div id="message_header">
             <img src="/thrifty/resources/images/myPage/send-mail.png">
             <h3 style="margin-left: 20px; margin-right: 30px; line-height: 1.6;">쪽지함</h3>
-            <img src="/thrifty/resources/images/myPage/cancelz.png" id="close" style="margin-left: 250px"> 
+            <img src="/thrifty/resources/images/myPage/cancelz.png" id="close" style="margin-left: 250px; width:30px; height: 30px; margin-top: 12px;"> 
             </div>
             <div id="message_content">
                 <div id="message_content_left"> 
