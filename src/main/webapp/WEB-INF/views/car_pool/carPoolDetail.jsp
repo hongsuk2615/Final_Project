@@ -150,8 +150,10 @@
 	let origin = "${carpool.origin}";
 	let destination = "${carpool.destination}";
 	$(function(){
-		drowPath(origin,destination);		
+		drowPath(origin,destination);
+		displayMarker(origin,destination);
 	})
+	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(37.74600180458021 , 127.095508519265), // 지도의 중심좌표
@@ -203,33 +205,117 @@
 	                    map.setBounds(bounds);
 	                    map.setLevel(map.getLevel()+1);
 	                    polyline.setMap(map);
+	                    
+	                    let originObj = {};
+	                    originObj.x = origin.split(',')[0];
+	                    originObj.y = origin.split(',')[1];
+	                    let destinationObj = {};
+	                    destinationObj.x = destination.split(',')[0];
+	                    destinationObj.y = destination.split(',')[1];
+	                    console.log(originObj);
+	                    console.log(destinationObj);
+	                    displayMarkers(originObj,destinationObj);
 	            }
 
 	        }
 	    })
 	}
 	
+	/* // 지도에 마커를 표시하는 함수입니다
 	function displayMarker(place) {
+
+	    var imageSrc = '/thrifty/resources/images/carpool/car2.png'; // 마커이미지의 주소입니다    
+	    imageSize = new kakao.maps.Size(40, 40); // 마커이미지의 크기입니다
+	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
 	    
-	    // 마커를 생성하고 지도에 표시합니다
-	    var marker = new kakao.maps.Marker({
-	        map: map,
-	        position: new kakao.maps.LatLng(place.y, place.x) 
-	    });
-	    markers.push(marker);
-	    // 마커에 클릭이벤트를 등록합니다
-	    kakao.maps.event.addListener(marker, 'click', function() {
-	        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-	        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-	        infowindow.open(map, marker);
-	        console.log(marker.getPosition());
-	        map.setLevel(1);
-	        setCenter(marker.getPosition().Ma , marker.getPosition().La);
-	        coordinate = marker.getPosition().La + "," + marker.getPosition().Ma;
-	        document.getElementById('좌표').innerHTML="작은거 : "  + document.getElementById("origin").value + " 큰거 : " + document.getElementById("destination").value;
-	    });
-	}
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+	    // markerPosition = new kakao.maps.LatLng(place.y, place.x); //마커가 표시될 위치입니다
+
+	    var positions = [
+	        {
+	            title: '출발지', 
+	            latlng: new kakao.maps.LatLng(place.y,place.x)
+	        },
+	        {
+	            title: '도착지', 
+	            latlng: new kakao.maps.LatLng(place.y,place.x)
+	        }
+	    ];
+
+	        
+	    for (var i = 0; i < positions.length; i ++) {
+	        
+	        // 마커 이미지의 이미지 크기 입니다
+	        var imageSize = new kakao.maps.Size(40, 40); 
+	        
+	        // 마커 이미지를 생성합니다    
+	        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+	        
+	        // 마커를 생성합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map, // 마커를 표시할 지도
+	            position: positions[i].latlng, // 마커를 표시할 위치
+	            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	            image : markerImage // 마커 이미지 
+	        });
+	    } */
    
+	    function displayMarkers(origin , destination) {
+
+		    var imageSrc = '/thrifty/resources/images/carpool/car2.png'; // 마커이미지의 주소입니다    
+		    imageSize = new kakao.maps.Size(40, 40); // 마커이미지의 크기입니다
+		    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+		    
+		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+		    // markerPosition = new kakao.maps.LatLng(place.y, place.x); //마커가 표시될 위치입니다
+
+		    var positions = [
+		        {
+		            title: '출발지', 
+		            latlng: new kakao.maps.LatLng(origin.y , origin.x)
+		        },
+		        {
+		            title: '도착지', 
+		            latlng: new kakao.maps.LatLng(destination.y , destination.x)
+		        }
+		    ];
+
+		        
+		    for (var i = 0; i < positions.length; i ++) {
+		        
+		        // 마커 이미지의 이미지 크기 입니다
+		        var imageSize = new kakao.maps.Size(40, 40); 
+		        // 마커 이미지를 생성합니다    
+		        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+		            iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+		        // 마커를 생성합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map, // 마커를 표시할 지도
+		            position: positions[i].latlng, // 마커를 표시할 위치
+		            image : markerImage, // 마커 이미지 
+		            clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+		        });
+		        var infowindow = new kakao.maps.InfoWindow({
+		            map: map,
+		            position: positions[i].latlng,
+		            content : positions[i].title
+		            });
+		            
+		            infowindow.open(map, marker);
+
+		    }
+		        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+		    function makeOverListener(map, marker, infowindow) {
+		        return function() {
+		            infowindow.open(map, marker);
+		        };
+		    }
+		}
+	    
 </script>
 <script>
 	document.getElementById('back-btn').addEventListener("click",function(){

@@ -192,7 +192,9 @@ function displayMarkers(o , d) {
             position: positions[i].latlng,
             content : positions[i].title
             });
-        
+            
+            infowindow.open(map, marker);
+
     }
         // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
     function makeOverListener(map, marker, infowindow) {
@@ -208,7 +210,6 @@ function displayMarkers(o , d) {
         //     infowindow.setContent('<div style="padding:5px;font-size:12px;">' + marker.getTitle() + '</div>');
         //     infowindow.open(map, marker);
         // });
-
 }
 
 

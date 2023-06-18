@@ -77,20 +77,17 @@
                 </div>
                 <hr style="width: 100%;">
                 <div id="carpool-allBody" style="height: 1000px;">
-                	<c:forEach var="cList" items="${list }" >
+                	<c:forEach var="cList" items="${list }" begin="0" end="8" step="1">
                 			<div style="width: 200px; height: 300px;" onclick="location.href='${contextPath}/carPool/detail?bNo=${cList.boardNo }'">
-                				<c:choose>
-               						<c:when test="${cList.isEnd eq 'N' }">
                							<img src="${contextPath }/${cList.imgPath}"  style="height: 170px; width: 100%; border-radius: 3px;"/>
-               						</c:when>
-               						<c:otherwise>
-               							<img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 100%; border-radius: 3px;"/>
-               						</c:otherwise>
-                				</c:choose>
+
+
+               							<%-- <img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 100%; border-radius: 3px;"/> --%>
+
                 				<div id="drive-content">
-			                        <p style="text-align: center;">${cList.subCategory.categorySName }</p>
-			                        <p style="text-align: center;">제목 : ${cList.board.title }</p>
-			                        <p style="text-align: center;">카풀비 : ${cList.price }</p>
+			                        <p>${cList.subCategory.categorySName }</p>
+			                        <p>제목 : ${cList.board.title }</p>
+			                        <p>카풀비 : ${cList.price }</p>
                 				</div>
 		                    </div>     		
                 	</c:forEach>

@@ -19,7 +19,8 @@
 #carpool-allBody{
 	display: flex;
 	justify-content: space-around;
-	margin-bottom: 100px;
+	padding: 10px;
+	border-radius: 5px;
 	flex-wrap: wrap;
 	background-color: rgb(181, 198, 215);
 }
