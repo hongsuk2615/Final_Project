@@ -57,7 +57,7 @@
 		SELECT * 
 		  FROM MESSAGE
 		 WHERE SENDER = #{loginUser} AND RECEIVER = #{opponent}
-		    OR RECEIVER = #{loginUser} AND RECEIVER = #{opponent}
+		    OR RECEIVER = #{loginUser} AND SENDER = #{opponent}
 		 ORDER BY MESSAGE_NO
 	</select>
 	
