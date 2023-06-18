@@ -101,7 +101,15 @@ public class BoardDao {
 		return sqlSession.update("boardMapper.updateImageList", imageList);
 	}
 	
+	public int updateCoImageList(Image imageList) {
+		return sqlSession.update("boardMapper.updateCoImage", imageList);
+	}
+	
 	public int selectMyCount(int userNo) {
 		return sqlSession.selectOne("boardMapper.selectMyCount", userNo);
+	}
+
+	public int updateCoBoard(Board b) {
+		return sqlSession.update("boardMapper.updateCoBoard", b);
 	}
 }

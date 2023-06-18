@@ -8,19 +8,20 @@
 }
 
 #main_menu{
-    padding-top: 50px;
+    width: 900px;
+    padding-top: 80px;
     display: grid;
     margin: auto;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: 50px;
+    grid-column-gap: 10px;
     grid-row-gap: 50px;
     place-items: center;
     text-align: center;
 }
 
 .main_menu_icon{
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
 }
 
 #main_menu a div{
@@ -30,4 +31,5 @@
     text-align: center;
     padding-top: 10px;
     font-weight: 900;
+    font-size: 24px;
 }

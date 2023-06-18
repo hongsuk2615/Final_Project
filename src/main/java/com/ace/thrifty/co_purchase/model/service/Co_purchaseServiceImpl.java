@@ -42,7 +42,6 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 		
 		if (result > 0 && imgList != null) {
 			List<Image> imageList = new ArrayList();
-			System.out.println(imgList);
 			for (int i = 0; i < imgList.size(); i++) {
 				if (imgList.get(i).getSize() > 0) {
 					String changeName = Utils.saveFile(imgList.get(i), serverFolderPath);
@@ -78,7 +77,6 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 		PageInfo pi = pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
 		
 		ArrayList<Board> list = coDao.selectCoPurchaseList(pi, map);
-		System.out.println(list);
 		map.put("pi", pi);
 		map.put("list", list);
 		
@@ -95,42 +93,35 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 	}
 	
 	@Override
-	public int updateBoard(Board b, Co_purchase co, List<MultipartFile> imgList, String webPath,
+	public int updateBoard(Board b, Co_purchase co, MultipartFile imgList, String webPath,
 			String serverFolderPath) throws Exception{
-		boardDao.updateBoard(b);
-		int boardNo = b.getBoardNo();
 		int result = 0;
-		if(boardNo > 0) {
-			co.setBoardNo(boardNo);
+		result = boardDao.updateCoBoard(b);
+		if (result > 0) {
+			co.setBoardNo(b.getBoardNo());
 			result = coDao.updateCo_purchase(co);
 		}
 		
-		if (result > 0 && imgList != null) {
-			List<Image> imageList = new ArrayList();
-			System.out.println(imgList);
-			for (int i = 0; i < imgList.size(); i++) {
-				if (imgList.get(i).getSize() > 0) {
-					String changeName = Utils.saveFile(imgList.get(i), serverFolderPath);
-
-					Image img = new Image();
-					img.setBoardNo(boardNo);
-					img.setFileLevel(i);
-					img.setOriginName(imgList.get(i).getOriginalFilename());
-					img.setChangeName(changeName);
-
-					imageList.add(img);
-				}
-			}
-
-			if (!imageList.isEmpty()) {
-				result = boardDao.updateImageList(imageList);
-				if (!(result == imageList.size())) {
-					throw new Exception("이미지 등록 예외발생");
-				}
+		if (result > 0 && !imgList.isEmpty()) {
+			String changeName = Utils.saveFile(imgList, serverFolderPath);
+			
+			Image img = new Image();
+			img.setBoardNo(b.getBoardNo());
+			img.setFileLevel(1);
+			img.setOriginName(imgList.getOriginalFilename());
+			img.setChangeName(changeName);
+					
+					
+			result = boardDao.updateCoImageList(img);
+			if (result < 0) {
+				throw new Exception("이미지 등록 예외발생");
 			}
 		}
-		return boardNo;
+			
+		return result;
+
 	}
+	
 	
 	public void selectSearchCoPurchaseList(Map<String, Object> map) {
 		
@@ -142,7 +133,6 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 		PageInfo pi = pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
 		
 		ArrayList<Board> list = coDao.selectSearchCoPurchaseList(pi, map);
-		System.out.println(list);
 		map.put("pi", pi);
 		map.put("list", list);
 		

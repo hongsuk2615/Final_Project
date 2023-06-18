@@ -235,13 +235,15 @@
                               <div class="card-list">
 				
 							<c:forEach items= "${list}" var="b">
-                                <div class="card">
-                                    <img src="${contextPath}/resources/images/myPage/${m.changeName}" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>${b.nickName} </b></h4>
-                                      <p>${b.title}</p>
-                                    </div>
-                                  </div> 
+								<c:if test="${b.categoryUNo == 2 }">
+	                                <div class="card" >
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <div class="container">
+	                                      <h4><b>${b.nickName} </b></h4>
+	                                      <p>${b.title}</p>
+	                                    </div>
+	                                  </div> 
+                                 </c:if>
                             </c:forEach>
                             
                                   
@@ -265,48 +267,18 @@
                             
                               <div class="card-list">
 								
-                                <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>임재원</b></h4>
-                                      <p>중고물품 삽니다 </p>
-                                    </div>
-                                  </div> 
-                                  <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>김홍석</b></h4>
-                                      <p>전역합니다  </p>
-                                    </div>
-                                  </div>
-                                  <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>김홍석</b></h4>
-                                      <p>전역합니다  </p>
-                                    </div>
-                                  </div>
-                                  <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>김홍석</b></h4>
-                                      <p>전역합니다  </p>
-                                    </div>
-                                  </div>
-                                  <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>김홍석</b></h4>
-                                      <p>전역합니다  </p>
-                                    </div>
-                                  </div>
-                                  <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>김홍석</b></h4>
-                                      <p>전역합니다  </p>
-                                    </div>
-                                  </div>
+                                <c:forEach items= "${list}" var="b">
+								<c:if test="${b.categoryUNo == 4 }">
+	                                <div class="card" >
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <div class="container">
+	                                      <h4><b>${b.nickName} </b></h4>
+	                                      <p>${b.title}</p>
+	                                    </div>
+	                                  </div> 
+                                 </c:if>
+                            </c:forEach>
+ 
 
                                 </div>
 
@@ -325,20 +297,17 @@
                              
                               <div class="card-list">
 
-                                <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>임재원</b></h4>
-                                      <p>중고물품 삽니다 </p>
-                                    </div>
-                                  </div> 
-                                  <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>김홍석</b></h4>
-                                      <p>전역합니다  </p>
-                                    </div>
-                                  </div>
+                                 <c:forEach items= "${list}" var="b">
+								<c:if test="${b.categoryUNo == 7 }">
+	                                <div class="card" >
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <div class="container">
+	                                      <h4><b>${b.nickName} </b></h4>
+	                                      <p>${b.title}</p>
+	                                    </div>
+	                                  </div> 
+                                 </c:if>
+                            </c:forEach>
 
                                 </div>
 
@@ -363,27 +332,17 @@
                             
                               <div class="card-list">
 
-                                <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>임재원</b></h4>
-                                      <p>중고물품 삽니다 </p>
-                                    </div>
-                                  </div> 
-                                  <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>김홍석</b></h4>
-                                      <p>전역합니다  </p>
-                                    </div>
-                                  </div>
-                                  <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>김홍석</b></h4>
-                                      <p>전역합니다  </p>
-                                    </div>
-                                  </div>
+                                <c:forEach items= "${list}" var="b">
+								<c:if test="${b.categoryUNo == 3 }">
+	                                <div class="card" >
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <div class="container">
+	                                      <h4><b>${b.nickName} </b></h4>
+	                                      <p>${b.title}</p>
+	                                    </div>
+	                                  </div> 
+                                 </c:if>
+                            </c:forEach>
                             
 
                                 </div>
@@ -406,27 +365,17 @@
                             
                               <div class="card-list">
 
-                                <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>임재원</b></h4>
-                                      <p>중고물품 삽니다 </p>
-                                    </div>
-                                  </div> 
-                                  <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>김홍석</b></h4>
-                                      <p>전역합니다  </p>
-                                    </div>
-                                  </div>
-                                  <div class="card">
-                                    <img src="resources/images/myPage/defaultProfile.png" alt="Avatar" style="width:100%">
-                                    <div class="container">
-                                      <h4><b>김홍석</b></h4>
-                                      <p>전역합니다  </p>
-                                    </div>
-                                  </div>
+                                 <c:forEach items= "${list}" var="b">
+								<c:if test="${b.categoryUNo == 6 }">
+	                                <div class="card" >
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <div class="container">
+	                                      <h4><b>${b.nickName} </b></h4>
+	                                      <p>${b.title}</p>
+	                                    </div>
+	                                  </div> 
+                                 </c:if>
+                            </c:forEach>
                             
 
                                 </div>
@@ -435,6 +384,38 @@
                             </div>
                           </div>
                         </div>
+                        
+                         <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                              심부름/알바
+                            </button>
+                          </h2>
+                          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            
+                              <div class="card-list">
+								
+                                <c:forEach items= "${list}" var="b">
+								<c:if test="${b.categoryUNo == 5 }">
+	                                <div class="card" >
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <div class="container">
+	                                      <h4><b>${b.nickName} </b></h4>
+	                                      <p>${b.title}</p>
+	                                    </div>
+	                                  </div> 
+                                 </c:if>
+                            </c:forEach>
+ 
+
+                                </div>
+
+
+                            </div>
+                          </div>
+                        </div>
+                        
 
 
 

@@ -10,7 +10,7 @@
 	<resultMap type="board" id="boardResultSet">
 		<id column="BOARD_NO" property="boardNo"/>
 		<result column="CATEGORY_S_NO"  property="categorySNo"/>
-		<result column="CONTENT"  property="content"/>
+		<result column="CHANGE_NAME"  property="content"/>
 		<result column="CREATE_DATE"  property="createDate"/>
 		<result column="READ_COUNT"  property="readCount"/>
 		<result column="REPORT_COUNT"  property="reportCount"/>
@@ -19,7 +19,7 @@
 		<result column="WISH_COUNT"  property="wishCount"/>
 		<result column="CATEGORY_U_NO"  property="categoryUNo"/>
 		<result column="NICK_NAME" property="nickName"/>
-		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
+		<result column="LOGIN_METHOD" property="upperCategoryName"/>
 	</resultMap>
 	
 	
@@ -47,11 +47,11 @@
 	
 	
 	<select id="zzimSelect" resultMap="boardResultSet">
-	SELECT M.NICK_NAME,B.BOARD_NO, TITLE, M.CHANGE_NAME, CATEGORY_U_NO 
+	SELECT M.NICK_NAME,B.BOARD_NO, TITLE, M.CHANGE_NAME, CATEGORY_U_NO ,CATEGORY_PATH, M.LOGIN_METHOD
 		FROM WISH_LIST W
 		JOIN BOARD B USING(BOARD_NO)
 		JOIN MEMBER M ON(B.USER_NO = M.USER_NO)
-		LEFT JOIN IMAGE I USING(BOARD_NO)
+		JOIN UPPER_CATEGORY USING(CATEGORY_U_NO)
 		WHERE W.USER_NO= #{userNo} AND B.STATUS='Y'
 	</select>
 	
