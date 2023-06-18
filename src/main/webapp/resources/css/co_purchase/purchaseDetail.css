@@ -7,7 +7,7 @@
 
 #cat_title_1{
     font-weight: 500;
-    font-size: 3em;
+    font-size: 30px;
 }
 
 #edit_btn{
@@ -41,7 +41,7 @@
 }
 
 #detail_header_1_title{
-    font-size: 30px;
+    font-size: 40px;
 }
 
 #profile{
@@ -60,8 +60,14 @@
 }
 
 #nickname{
+    padding-top: 5px;
     padding-left: 10px;
     font-weight: 900;
+    font-size: 19px;
+}
+
+#recruit_1{
+	padding-top: 4px;
 }
 
 #recruit_2{
@@ -73,10 +79,12 @@
     border-radius: 100px;
     text-align: center;
     font-weight: 900;
+    padding-top: 4px;
+    padding-left: 3px;
 }
 
 .header_text{
-    font-size: 12px;
+    font-size: 16px;
     color: rgb(160, 160, 160);
 }
 
@@ -87,7 +95,7 @@
 
 #end_date{
     margin-right: 5px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 #body_description{
@@ -140,9 +148,10 @@
     font-size: 20px;
     font-weight: 600;
     padding: 10px;
-    margin: 20px auto;
+    margin: 20px 20px;
     background-color: rgb(19, 137, 255);
     border-radius: 5px;
+    padding-top: 16px;
 }
 
 .body_description_wish{
@@ -155,6 +164,7 @@
     margin: 20px auto;
     background-color: #fdc467;
     border-radius: 5px;
+    padding-top: 16px;
 }
 
 #body_description_link{

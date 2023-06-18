@@ -46,7 +46,6 @@ public class co_purchaseController {
 							Board b,
 							@RequestParam Map<String, Object> paramMap,
 							HttpServletRequest req) {
-		System.out.println(paramMap); 
 		if(!paramMap.containsKey("currPage")) {
 			paramMap.put("currPage", "1");
 		}
@@ -73,7 +72,6 @@ public class co_purchaseController {
 	@GetMapping("/detail")
 	public String selectDetail(int bNo, Model model) {
 		Co_purchase co = coService.selectCoPurchase(bNo);
-		System.out.println("controller"+co);
 		
 		if(co != null) {
 			System.out.println("co :"+co);
@@ -103,8 +101,6 @@ public class co_purchaseController {
 		b.setUserNo(loginUser.getUserNo());
 		String webPath = "/resources/upfiles/co_purchase/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
-		System.out.println(cp);
-		System.out.println(b);
 		
 		coService.insertBoard(b, cp, imgList, webPath, serverFolderPath);
 		
@@ -121,7 +117,6 @@ public class co_purchaseController {
 			model.addAttribute("subcategory", co.getSubCategory());
 			model.addAttribute("board", co.getBoard());
 			model.addAttribute("imageList", co.getImageList());
-
 			return "co_purchase/purchaseEnrollModify";
 		}else {
 			String referer = request.getHeader("Referer");	
@@ -134,47 +129,19 @@ public class co_purchaseController {
 							HttpSession session,
 							Board b,
 							Co_purchase cp,
-							@RequestParam(value = "image", required = false ) List<MultipartFile> imgList
+							@RequestParam(value = "image", required = false ) MultipartFile imgList
 							) throws Exception {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		b.setCategoryUNo(6);
+		b.setUserNo(loginUser.getUserNo());
+		
 		String webPath = "/resources/upfiles/co_purchase/";
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		
 		coService.updateBoard(b, cp, imgList, webPath, serverFolderPath);
 		
-		return "redirect:/co_purchase";
+		return "redirect:/co_purchase/detail?bNo="+b.getBoardNo();
 	}
 	
-	@Value("${google.client.id}")
-    private String googleClientId;
-    @Value("${google.client.pw}")
-    private String googleClientPw;
-
-    @RequestMapping(value="/googleLogin", method = RequestMethod.POST)
-    public String loginUrlGoogle(){
-        String reqUrl = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + googleClientId
-                + "&redirect_uri=http://localhost:8081/googleLogin&response_type=code&scope=email%20profile%20openid&access_type=offline";
-        return reqUrl;
-    }
-	
-    @RequestMapping(value="/googleLogin", method = RequestMethod.GET)
-    public String loginGoogle(@RequestParam(value = "code") String authCode){
-        RestTemplate restTemplate = new RestTemplate();
-        GoogleRequest googleOAuthRequestParam = GoogleRequest
-                .builder()
-                .clientId(googleClientId)
-                .clientSecret(googleClientPw)
-                .code(authCode)
-                .redirectUri("http://localhost:8081/googleLogin")
-                .grantType("authorization_code").build();
-        ResponseEntity<GoogleResponse> resultEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token",
-                googleOAuthRequestParam, GoogleResponse.class);
-        String jwtToken=resultEntity.getBody().getId_token();
-        Map<String, String> map=new HashMap<>();
-        map.put("id_token",jwtToken);
-        ResponseEntity<GoogleInfResponse> resultEntity2 = restTemplate.postForEntity("https://oauth2.googleapis.com/tokeninfo",
-                map, GoogleInfResponse.class);
-        String email=resultEntity2.getBody().getEmail();       
-        return email;
-    }
 
 }

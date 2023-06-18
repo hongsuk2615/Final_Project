@@ -89,21 +89,27 @@ public class BoardDao {
 		return sqlSession.update("boardMapper.updateBoard", b);
 	}
 	
-	
 	public int scrapBoard(int bNo) {
 		return sqlSession.update("boardMapper.scrapBoard", bNo);
 	}
 	
-	public int scrapCancle(int bNo) {
-		return sqlSession.update("boardMapper.scrapBoard", bNo);
+	public int scrapCancel(int bNo) {
+		return sqlSession.update("boardMapper.scrapCancel", bNo);
 	}
 
 	public int updateImageList(List<Image> imageList) {
 		return sqlSession.update("boardMapper.updateImageList", imageList);
-
+	}
+	
+	public int updateCoImageList(Image imageList) {
+		return sqlSession.update("boardMapper.updateCoImage", imageList);
 	}
 	
 	public int selectMyCount(int userNo) {
 		return sqlSession.selectOne("boardMapper.selectMyCount", userNo);
+	}
+
+	public int updateCoBoard(Board b) {
+		return sqlSession.update("boardMapper.updateCoBoard", b);
 	}
 }

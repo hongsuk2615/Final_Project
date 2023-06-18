@@ -37,9 +37,9 @@
 									<a class="nav-link" id="0" href="notice?catSNo=0&currentPage=1">전체</a>
 								</li>
 								<c:forEach var="list" items="${tab}">
-										<li class="nav-item">
-											<a class="nav-link" id="${list.categorySNo}" href="notice?catSNo=${list.categorySNo}&currentPage=1">${list.categorySName}</a>
-										</li>
+									<li class="nav-item">
+										<a class="nav-link" id="${list.categorySNo}" href="notice?catSNo=${list.categorySNo}&currentPage=1">${list.categorySName}</a>
+									</li>
 								</c:forEach>
 								<li class="nav-item" style="margin-left: auto;">
 									<div class="card-tools">

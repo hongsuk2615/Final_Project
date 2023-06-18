@@ -27,6 +27,8 @@
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
 		<result column="STATUS" property="status"/>
+		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
+		<result column="CATEGORY_S_NAME" property="subCategoryName"/>
 		<association property="member" resultMap="memberResultSet"/>
 		<association property="upperCategory" resultMap="upperCategoryResultSet"/>
 		<association property="subCategory" resultMap="subCategoryResultSet"/>
@@ -387,4 +389,20 @@
 		FROM BOARD
 		WHERE BOARD_NO = #{boardNo}
 	</select>
+	
+	<select id="dailyUser" resultType="map">
+		SELECT JOIN_DATE AS joinDate, COUNT(*) AS number
+		  FROM MEMBER
+		 GROUP BY JOIN_DATE
+	</select>
+	
+	<select id="dailyBoard" resultType="map">
+	 	SELECT UC.CATEGORY_U_NAME AS category, COUNT(*) AS number
+		FROM BOARD B
+		JOIN UPPER_CATEGORY UC USING(CATEGORY_U_NO)
+		WHERE CREATE_DATE = CURDATE()
+		GROUP BY UC.CATEGORY_U_NAME;
+	</select>
+	
+	
 </mapper>

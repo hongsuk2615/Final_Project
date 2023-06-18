@@ -76,8 +76,7 @@ select option{
   height: inherit;
   border: 0 none;
   outline: 0 none;
-  padding-left: 15px;
-  padding-bottom: 5px;
+  padding: 5px 0px 5px 15px;
   background: transparent;
   cursor: pointer;
 }
@@ -147,7 +146,7 @@ select option{
     color: white;
     display: block;
     text-align: center;
-    padding-top: 6.5px;
+    padding-top: 8px;
 }
 
 #write_content{
@@ -160,7 +159,7 @@ select option{
     color: white;
     display: block;
     text-align: center;
-    padding-top: 6.5px;
+    padding-top: 11px;
 }
 
 #list_head{
@@ -171,7 +170,7 @@ select option{
     padding-top: 30px;
     padding-bottom: 50px;
     font-weight: 500;
-    font-size: 3em;
+    font-size: 2.5em;
 }
 
 #pagingbar{
@@ -182,6 +181,10 @@ select option{
     padding-top: 30px;
     margin: auto;
     font-size: 0.5cm;   
+}
+
+.pagingbar_count {
+	padding-top: 6px;
 }
 
 #searchWrite{
@@ -226,6 +229,7 @@ select option{
     border-radius: 5px;
     display: inline-block;
     padding: 5px;
+    padding-top: 8px;
     box-shadow: 0px 1px 1px 0px gray;
 }
 
@@ -236,11 +240,12 @@ select option{
     border-radius: 5px;
     display: inline-block;
     padding: 5px;
+    padding-top: 8px;
     box-shadow: 0px 1px 1px 0px gray;
 }
 
 .detail_middle{
-    padding-top: 5px;
+    padding-top: 18px;
     font-size: 20px;
 }
 
@@ -265,6 +270,9 @@ select option{
 
 .detail_bottom_nickname{
     padding-top: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 62.5px;
 }
 
 .detail_bottom_2{
@@ -278,4 +286,13 @@ select option{
     width: 24px;
     font-size: 13px;
     text-align: center;
+}
+
+.detail_bottom_2 td{
+    padding: 0;
+    border: none;
+}
+
+#profile{
+    width: 250px;
 }

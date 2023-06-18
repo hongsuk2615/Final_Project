@@ -1,13 +1,38 @@
+ let boardCategory = [];
+ 	let boardDailyNumber = [];
+ 	let joinDates = [];
+ 	let userNumbers = [];
  $(function () {
+ 	
+ 	$.ajax({
+ 		url : '/thrifty/admin/getData',
+ 		dataType : 'json',
+ 		success : function(result){
+ 			let jsonData = result;
+ 			console.log(jsonData);
+ 			jsonData.dailyBoard.forEach(function(item){
+				    boardCategory.push(item.category);
+				    boardDailyNumber.push(item.number);
+				})
+			jsonData.dailyUser.forEach(function(item){
+				    joinDates.push(item.joinDate);
+				    userNumbers.push(item.number);
+				})
+				makeChart();		
+ 		}
+ 		
+ 	});
+ 	
+ 	function makeChart(){
 		    var areaChartData = {
-		      labels  : ['5/18', '05/19', '05/20', '05/21', '05/22', '05/23', '05/24', '05/25'],
+		      labels  : joinDates,
 		      datasets: [
 		        {
 				  lineTension		  :  0,
 		          backgroundColor     : 'rgba(60,141,188,0.9)',
 		          borderColor         : 'rgba(60,141,188,0.8)',
 		          pointColor          : '#3b8bba',
-		          data                : [28, 15, 32, 19, 30, 27, 20, 18]
+		          data                : userNumbers
 		        }
 		      ]
 		    }
@@ -67,18 +92,10 @@
     // Get context with jQuery - using jQuery's .get() method.
 	var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
-      labels: [
-          '쉐어하우스',
-          '카풀',
-          '중고거래',
-          '심부름/알바',
-          '공동구매',
-          '소모임',
-          '자유게시판',
-      ],
+      labels: boardCategory,
       datasets: [
         {
-          data: [700,500,400,600,300,800,60],
+          data: boardDailyNumber,
           backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#000000'],
         }
       ]
@@ -97,4 +114,5 @@
       data: donutData,
       options: donutOptions
     });
+    }
 });
