@@ -2,14 +2,11 @@ package com.ace.thrifty.member.controller;
 
 
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ace.thrifty.member.model.service.MemberService;
 import com.ace.thrifty.member.model.vo.KakaoOathToken;
@@ -72,12 +69,12 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login")
-	public String loginMember(Member m, Model model, HttpServletRequest request) {
+	public String loginMember(Member m, Model model, HttpServletRequest request, RedirectAttributes ra) {
 		System.out.println(m);
 		String referer = request.getHeader("Referer");
 		Member loginUser = memberService.loginMember(m);
 		if( loginUser != null && bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
-			
+			ra.addFlashAttribute("alertMsg", "로그인 성공");
 			model.addAttribute("loginUser", loginUser);
 			
 			if(loginUser.getAuthority() == 1 && loginUser.getTodayLogin().equals("N")) { //오늘 처음 로그인할 경우 LOGIN_TODAY 값 변경
@@ -85,7 +82,7 @@ public class MemberController {
 			}
 			
 		}else {
-			model.addAttribute("alertMsg", "로그인 실패");
+			ra.addFlashAttribute("alertMsg", "로그인 실패");
 		}
 		return "redirect:" + referer;
 	}
@@ -115,7 +112,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/kakaoLogin")
-	public String kakaoLogin(String code, Model model, HttpServletRequest request) {
+	public String kakaoLogin(String code, Model model, HttpServletRequest request, RedirectAttributes ra) {
 		String referer = request.getHeader("Referer");
 		//POST 방식으로 key, value데이터를 요청
 		RestTemplate rt = new RestTemplate();
@@ -184,11 +181,13 @@ public class MemberController {
 			member.setUserPwd(encPwd);
 			member.setPhone("카카오로그인유저");
 			if(memberService.insertMember(member) > 0) {
+				ra.addFlashAttribute("alertMsg", "로그인 성공");
 				model.addAttribute("loginUser",member);
 			}else {
-				model.addAttribute("errorMsg","로그인 실패");
+				ra.addFlashAttribute("alertMsg", "로그인 실패");
 			}
 		}else {
+			ra.addFlashAttribute("alertMsg", "로그인 성공");
 			model.addAttribute("loginUser",member);
 		}
 		System.out.println("아이디: " + kakaoUser.getId());

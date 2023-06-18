@@ -2,12 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="messageMapper">
 	
+	<resultMap type="member" id="memberResultSet">
+		<id column="USER_NO" property="userNo"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="NICK_NAME" property="nickName"/>
+		<result column="GENDER" property="gender"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="PHONE" property="phone"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PWD_UPDATE_DATE" property="pwdUpdateDate"/>
+		<result column="IS_BANNED" property="isBanned"/>
+		<result column="REPORT_COUNT" property="reportCount"/>
+		<result column="CURRENT_LOGIN" property="currentLogin"/>
+		<result column="JOIN_DATE" property="joinDate"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="LOGIN_METHOD" property="loginMethod"/>
+	</resultMap>
+	
+	<resultMap type="message" id="messageResultSet">
+		<id column="MESSAGE_NO" property="messageNo"/>
+		<result column="SENDER" property="sender"/>
+		<result column="RECEIVER" property="receiver"/>
+		<result column="CONTENT" property="content"/>
+		<result column="SEND_DATE" property="sendDate"/>
+	
+	
+	</resultMap>
 	
 	<insert id="insertMessage" parameterType="message">
 		INSERT INTO MESSAGE (SENDER, RECEIVER, CONTENT) 
 					   VALUES (#{sender}, #{receiver},#{content})
 	</insert>
 	
+	<select id="selectUsers" parameterType="_int" resultMap="memberResultSet">
+		SELECT USER_NO
+			 , NICK_NAME
+			 , CHANGE_NAME
+			 , LOGIN_METHOD
+	      FROM MEMBER
+	     WHERE USER_NO IN (SELECT DISTINCT SENDER 
+	     					 FROM MESSAGE
+						     JOIN MEMBER ON(SENDER = USER_NO OR RECEIVER = USER_NO)
+							WHERE (RECEIVER = #{userNo} and SENDER !=${userNo})
+							UNION 
+						   SELECT DISTINCT RECEIVER
+						     FROM MESSAGE
+							 JOIN MEMBER ON(SENDER = USER_NO OR RECEIVER = USER_NO)
+							WHERE (SENDER = #{userNo} and RECEIVER != #{userNo}));
+	</select>
+	
+	<select id="selectMessage" parameterType="map" resultMap="messageResultSet">
+		SELECT * 
+		  FROM MESSAGE
+		 WHERE SENDER = #{loginUser} AND RECEIVER = #{opponent}
+		    OR RECEIVER = #{loginUser} AND SENDER = #{opponent}
+		 ORDER BY MESSAGE_NO
+	</select>
 	
 	
 	
