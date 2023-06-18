@@ -112,7 +112,7 @@
 														</c:if>
 														<td>${i.count}</td>
 														<td>${list.upperCategory.categoryUName}</td>
-														<td>${list.board.title }</td>
+														<td><a href="${contextPath}/${list.upperCategory.categoryPath}/detail?bNo=${list.boardNo}" target="_blank" rel="noopener noreferrer">${list.board.title}</a></td>
 														<c:if test="${type eq 'board'}">
 															<td>${list.board.reportCount}</td>
 															<td>${list.member.nickName}</td>

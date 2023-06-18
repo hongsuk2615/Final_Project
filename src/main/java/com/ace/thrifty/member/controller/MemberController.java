@@ -77,7 +77,12 @@ public class MemberController {
 		String referer = request.getHeader("Referer");
 		Member loginUser = memberService.loginMember(m);
 		if( loginUser != null && bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
+			
 			model.addAttribute("loginUser", loginUser);
+			
+			if(loginUser.getAuthority() == 1 && loginUser.getTodayLogin().equals("N")) { //오늘 처음 로그인할 경우 LOGIN_TODAY 값 변경
+				memberService.todayLogin(loginUser.getUserNo());
+			}
 			
 		}else {
 			model.addAttribute("alertMsg", "로그인 실패");

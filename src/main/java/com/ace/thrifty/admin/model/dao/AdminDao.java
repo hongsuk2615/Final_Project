@@ -152,6 +152,14 @@ public class AdminDao {
 		return sqlSession.selectList("adminMapper.dailyBoard");
 	}
 
+	public int todayLoginCount() {
+		return sqlSession.insert("adminMapper.todayLoginCount");
+	}
+
+	public void todayLoginReset() {
+		sqlSession.update("adminMapper.todayLoginReset");
+	}
+
 
 
 

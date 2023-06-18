@@ -10,14 +10,13 @@ let userNumbers = [];
  		dataType : 'json',
  		success : function(result){
  			let jsonData = result;
- 			console.log(jsonData);
  			jsonData.dailyBoard.forEach(function(item){
 				    boardCategory.push(item.category);
 				    boardDailyNumber.push(item.number);
 				})
 			jsonData.dailyUser.forEach(function(item){
-				    joinDates.push(item.joinDate);
-				    userNumbers.push(item.number);
+				    joinDates.push(item.today);
+				    userNumbers.push(item.todayCount);
 				})
 				makeChart();		
  		}
@@ -58,7 +57,11 @@ let userNumbers = [];
 		        yAxes: [{
 		          gridLines : {
 		            display : true,
-		          }
+		          },
+				  ticks: {
+					beginAtZero: true
+				  }
+				  
 		        }]
 		      }
 		    }

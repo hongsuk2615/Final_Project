@@ -60,6 +60,7 @@
 		<result column="NICK_NAME" property="nickName"/>
 		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
 		<result column="STATUS" property="status"/>
+		<result column="CATEGORY_PATH" property="categoryPath"/>
 	</resultMap>
 	
 	<resultMap type="reply" id="replyResultSet">
@@ -279,7 +280,7 @@
 	
 	<select id="reportList" parameterType="map" resultMap="reportResultSet">
 		<if test="type == 'board'">
-			SELECT BOARD_NO, CATEGORY_U_NAME, TITLE, B.REPORT_COUNT, NICK_NAME, B.STATUS
+			SELECT BOARD_NO, CATEGORY_U_NAME, TITLE, B.REPORT_COUNT, NICK_NAME, B.STATUS, CATEGORY_PATH
 			FROM REPORT R JOIN BOARD B USING(BOARD_NO)
 			JOIN MEMBER M USING(USER_NO)
 			JOIN UPPER_CATEGORY UC USING (CATEGORY_U_NO)
@@ -390,9 +391,9 @@
 	</select>
 	
 	<select id="dailyUser" resultType="map">
-		SELECT JOIN_DATE AS joinDate, COUNT(*) AS number
-		  FROM MEMBER
-		 GROUP BY JOIN_DATE
+		SELECT DATE_FORMAT(TODAY, "%m/%d") AS today, TODAY_COUNT AS todayCount
+		FROM TODAY_LOGIN
+		WHERE DAY(TODAY) BETWEEN DAY(CURDATE())-7 AND DAY(CURDATE())-1;
 	</select>
 	
 	<select id="dailyBoard" resultType="map">
@@ -407,5 +408,15 @@
        	GROUP BY UC.CATEGORY_U_NAME;
 	</select>
 	
+	<insert id="todayLoginCount">
+		INSERT INTO TODAY_LOGIN
+			SELECT CURDATE() AS TODAY, COUNT(TODAY_LOGIN) AS TODAY_COUNT
+			FROM MEMBER
+			WHERE TODAY_LOGIN = 'Y';
+	</insert>
 	
+	<update id="todayLoginReset">
+	UPDATE MEMBER
+	SET TODAY_LOGIN = 'N';
+	</update>
 </mapper>

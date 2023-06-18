@@ -174,8 +174,6 @@ public class AdminServiceImpl implements AdminService{
 	public void getData(Map<String, Object> dataMap) {
 		List<Map<String,Object>>  dailyUser = adminDao.getDailyUser();
 		List<Map<String,Object>> dailyBoard = adminDao.getDailyBoard();
-		System.out.println(dailyUser);
-		System.out.println(dailyBoard);
 		dataMap.put("dailyUser", dailyUser);
 		dataMap.put("dailyBoard", dailyBoard);
 		

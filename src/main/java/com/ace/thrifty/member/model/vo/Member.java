@@ -27,6 +27,7 @@ public class Member {
 	private int authority;
 	private String status;
 	private String loginMethod;
+	private String todayLogin;
 	
 	private String originName;
 	private String changeName;
