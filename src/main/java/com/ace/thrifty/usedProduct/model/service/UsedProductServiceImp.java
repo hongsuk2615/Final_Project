@@ -103,7 +103,7 @@ public class UsedProductServiceImp implements UsedProductService {
 			result = usedProductDao.modifyUsedProduct(uP);
 		}
 		
-		if(result > 0 && removeImgList.length() > 0 ) {
+		if(result > 0 && removeImgList.length() > 2 ) {
 			result = boardDao.deleteImage(removeImgList);
 		}
 
@@ -133,6 +133,14 @@ public class UsedProductServiceImp implements UsedProductService {
 		}
 		return result;
 	}
+	
+	@Override 
+	public List<UsedProduct> selectUpAll(){
+		
+		return usedProductDao.selectUpAll();
+		
+	}
+	
 
 	@Override
 	public int soldOut(Board board) {

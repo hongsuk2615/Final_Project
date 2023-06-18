@@ -181,7 +181,7 @@
 	<form action="${pageContext.request.contextPath}/smallGroup/insert" method="post" >
     <div id="wrapper">
         <div id="header">
-			<jsp:include page="../common/header.jsp"/>
+			<jsp:include page="../common/boardBodyLeftSmallGroup.jsp"/>
 			
 
 

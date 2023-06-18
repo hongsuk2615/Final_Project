@@ -59,8 +59,9 @@ public class PtjServiceImpl implements PtjService {
       List<Ptj> list = ptjDao.selectPtjAll(pi, queryString);    
       queryString.put("pi", pi);
       queryString.put("list", list);
-    }
-    
+      
+   }
+   
    @Transactional(rollbackFor = {Exception.class})
    @Override
    public int insertPtj(Board b , Ptj p , MultipartFile image, String webPath, String serverFolderPath) throws Exception {
@@ -114,4 +115,11 @@ public class PtjServiceImpl implements PtjService {
    public int workEnd(Board b) {
       return ptjDao.workEnd(b);
    }
+   
+   @Override
+   public List<Ptj> advptjAll(){
+	   return ptjDao.advptjAll();
+   }
+   
+   
 }

@@ -41,6 +41,11 @@ public class UsedProductDao {
 		return sqlSession.update("usedProductMapper.modifyUsedProduct", uP);
 	}
 	
+	public List<UsedProduct> selectUpAll(){
+		return sqlSession.selectList("usedProductMapper.selectUpAll");
+		
+	}
+	
 	public int soldOut(Board board) {
 		return sqlSession.update("usedProductMapper.soldOut",board);
 	}

@@ -42,7 +42,7 @@
                     <span>|</span>
                 </li>
                 <li>
-                    <a href="">HOTEL 알뜰살뜰</a>
+                    <a href="${contextPath}/faq">FAQ</a>
                     <span>|</span>
                 </li>
                 <li>
@@ -51,7 +51,7 @@
             </ul>
             <p>
                 <b>고객행복센터 1670-6250</b>
-                <span>3교대 24시간 운영 (상담사 홍성빈, 임재원, 황수환)</span>
+                <span>3교대 24시간 운영 (상담사 홍성빈, 임재원, 김민재)</span>
             </p>
             <address>
                 <span>(주) 알뜰살뜰컴퍼니</span>

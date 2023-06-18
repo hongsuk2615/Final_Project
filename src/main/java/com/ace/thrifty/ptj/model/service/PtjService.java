@@ -20,4 +20,6 @@ public interface PtjService {
    public Ptj updateFormPtj(int boardNo);
    public int updatePtj(Ptj p , Board b, Image img , String webPath , String serverFolderPath) throws Exception;
    public int workEnd(Board b);
+   public List<Ptj> advptjAll();
+   
 }

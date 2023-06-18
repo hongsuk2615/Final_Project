@@ -1,0 +1,188 @@
+ 
+    	body{
+    		margin: 0;
+    		padding: 0;
+    	}
+        .wrap{
+            margin: 0px 10vw;
+            padding-top: 155px;
+            padding-bottom: 30px;
+        }
+
+        #ask{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+        #homecontent>div{
+            width: 100%;
+        }
+        #sharetitle{
+            text-align: center;
+        }
+
+        #homecontent{
+            border: 1px solid #999;
+            border-radius: 5px;
+            margin: 0px 280px;
+        }
+
+        #apply{
+        width:100px;
+        margin:auto !important;
+        display:block;
+    }
+
+    #ask>div{
+        margin: 0px 45px;
+    }
+
+    #ask button{
+        cursor: pointer;
+		background: #eee;
+		border: none;
+		border-radius: 5px;
+		width: fit-content;
+		padding: 10px;
+		margin: 5px;
+    }
+
+    #ask input {
+        width: 90%;
+        height: 55px;
+        font-size: 16px;
+        border-radius: 15px;
+        border: 1px solid #999;
+        padding: 8px 10px; 
+        margin: 15px;
+    }
+    
+    input[name ^='roomImg']{
+    	width: 0px !important;
+    	height: 0px !important;
+    	margin : 0 !important;
+    	padding: 0 !important;
+    	border : none !important;
+    }
+    
+     #ask input:focus, #information:focus{
+     	  outline: 1px solid  rgb(0, 60, 120);
+     }
+     
+    #ask table{
+    width: 100%;
+    border-top: 1px solid #999;
+    border-collapse: collapse;
+    }
+
+    #ask th{
+        border-bottom: 1px solid #999;
+        border-left: 1px solid #999;
+        padding: 10px 0px;
+    }
+
+    #ask td {
+        border-bottom: 1px solid #999;
+        border-left: 1px solid #999;
+        padding: 0px;
+    }
+
+   
+    #ask th:first-child,  #ask td:first-child {
+        border-left: none;
+    }
+
+    #ask table input {
+    	width: 90%;
+        height: 30px;
+        font-size: 16px;
+        border-radius: 0px;
+        padding: 6px 3px;
+        border: none; 
+        margin: 0px;
+    }
+
+    #roomAdd input{
+        width: 40%;
+    }
+
+    #information{
+        width: 90%;
+        height: 6.25em;
+        resize: none;
+        border-radius: 15px;
+        padding: 8px 10px; 
+        margin: 5px;
+    }
+    
+    #ask button:hover{
+    	background: rgb(0, 60, 120);
+    	color: white;
+    }
+    
+     .slickRoomImgDiv{
+     	padding: 10px 0px;
+        width: 91vh;
+        position: relative;
+        margin: 0px 2px;
+        }
+
+     .slickRoomImgDiv > div{
+        border: none;
+        width: 100%;
+        height: 100%;
+ }
+ 
+ 	.slickRoomImgDiv img{
+ 		width: 140px;
+ 		height: 140px;
+ 		border-radius: 5px;
+ 	}
+ 	
+ 	#injung{
+ 		width: 10px !important;
+ 		height: 10px !important;
+ 	}
+ 	
+ 	#injung:focus{
+ 		outline: none !important;
+ 	}
+ 	
+ 	input[type='file']{
+ 		outline: none !important;
+ 	}
+ 	
+ 	.slickBtn{
+ 		position: absolute;
+ 		width:10px;
+ 		height: 10px;
+ 		background-color: transparent !important;
+ 	}
+ 	
+ 	.slickBtn>img{
+ 		width:10px;
+ 		height: 10px;
+ 		border: none !important;
+ 	}
+ 	
+ 	.slick-prev{
+ 		left: -35px;
+    	top: 60px;
+ 	}
+ 	
+ 	.slick-next{
+ 	right: -35px;
+    	top: 60px;
+ 		
+ 	
+ 	}
+ 	 .deleteImg{
+        cursor: pointer;
+    	opacity : 0;
+    }
+    .deleteImg:hover{
+        opacity: 1;
+    }
+    .slickDiv:hover{
+    opacity: 0.8;
+    }
