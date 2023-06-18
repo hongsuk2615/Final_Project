@@ -31,7 +31,4 @@ public class ReportDao {
 		return sqlSession.update("reportMapper.reportCount", paramMap);
 	}
 
-	public int reportCheck(Map<String, Object> paramMap) {
-		return sqlSession.selectOne("reportMapper.reportCheck", paramMap);
-	}
 }

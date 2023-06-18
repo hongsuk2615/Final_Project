@@ -157,7 +157,6 @@ public class HouseServiceImpl implements HouseService{
 				String key = keys.next();
 				roomImgsV.add(roomImgs.get(key));
 			}
-			System.out.println("roomImgsV"+roomImgsV);
 			for (int i = 0; i < rooms.size(); i++) {
 				if(rooms.get(i).getRoomNo() == 0) {
 					houseDao.insertRoom(rooms.get(i));
@@ -178,7 +177,7 @@ public class HouseServiceImpl implements HouseService{
 					}
 				}else {
 					houseDao.updateRoom(rooms.get(i));
-					
+					int level = houseDao.ImageLevel(rooms.get(i).getRoomNo());
 					for(int k = 0; k < roomImgsV.get(i).size(); k++) {
 						MultipartFile file = roomImgsV.get(i).get(k);
 						if(roomImgsV.get(i).get(k).getSize() != 0) {
@@ -188,7 +187,7 @@ public class HouseServiceImpl implements HouseService{
 								.roomNo(rooms.get(i).getRoomNo())
 								.originName(file.getOriginalFilename())
 								.changeName(changeName)
-								.imgLevel(k+100)
+								.imgLevel(k+level)
 								.build();
 						roomImgList.add(roomImg);
 				}}
@@ -196,10 +195,10 @@ public class HouseServiceImpl implements HouseService{
 				
 			}
 			if(!roomImgList.isEmpty()) {
-				String thumbnail = webPath + roomImgList.get(0).getChangeName();
-				h.setThumbnail(thumbnail);
-				houseDao.insertRoomImg(roomImgList);
+			houseDao.insertRoomImg(roomImgList);
 			}
+			String thumbnail = webPath + houseDao.setThumbnail(b.getBoardNo());
+				h.setThumbnail(thumbnail);
 			int result = houseDao.updateHouse(h);
 	
 			return result;

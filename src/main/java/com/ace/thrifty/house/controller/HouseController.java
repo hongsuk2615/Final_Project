@@ -41,6 +41,7 @@ public class HouseController {
 	@PostMapping("") // 헤더의 쉐어하우스 클릭 시 
 	public String shareHouse(HttpSession s) {
 		int userNo = ((Member)s.getAttribute("loginUser")).getUserNo();
+		System.out.println((Member)s.getAttribute("loginUser"));
 		return new Gson().toJson(houseService.selectHouseList(userNo));
 	}
 	
@@ -110,7 +111,7 @@ public class HouseController {
 			roomImgs.put("roomImg"+i, mtfRequest.getFiles("roomImg"+i));
 			}
 		}
-		String webPath = "/resources/images/house/";
+		String webPath = "/resources/images/upfiles/house/";
 		String serverFolderPath = s.getServletContext().getRealPath(webPath);
 		int result = houseService.insertHouse(b, h, rooms, roomImgs, webPath, serverFolderPath);
 		model.addAttribute("bNo", b.getBoardNo());
@@ -197,19 +198,6 @@ public class HouseController {
 			@RequestParam(value="deleteImgList", required=false) String deleteImgList
 			) throws Exception {
 		
-		// board sharehouse room
-		// board 랑 sharehouse 무조건 update
-		// room은 삭제 또는 업데이트 또는 insert
-		// deleteImg status - > n
-		// if deleteRoomList > 룸 삭제 status -> n
-		
-		
-		
-		System.out.println(roomNo);
-		// else {
-		// if( roomNo = 있으면 업데이트 if( 사진 insert있으면 추가)
-		// else{ roomNo = 없으면 insert and 사진 insert)
-		
 		b.setUserNo((((Member)s.getAttribute("loginUser")).getUserNo()));
 		b.setCategoryUNo(2);
 		b.setContent("");
@@ -218,9 +206,6 @@ public class HouseController {
 		
 		deleteImgList = "("+deleteImgList+")";
 		deleteRoomList = "("+deleteRoomList+")";
-		
-		System.out.println("deleteImgList길이" + deleteImgList.length());
-		System.out.println("deleteRoomList" + deleteRoomList);
 		
 		List<Room> rooms = new ArrayList();
 		Map<String, List<MultipartFile>> roomImgs = new LinkedHashMap();
@@ -240,22 +225,16 @@ public class HouseController {
 					.build();
 			rooms.add(room);
 		}
-		System.out.println("rooms"+rooms);
 		for(int i = 0; i < 10; i++) {
 			if(!mtfRequest.getFiles("roomImg"+i).isEmpty()) {
 			roomImgs.put("roomImg"+i, mtfRequest.getFiles("roomImg"+i));
 			}
 		}
-		System.out.println("roomImgs"+roomImgs);
-		String webPath = "/resources/images/house/";
+		String webPath = "/resources/images/upfiles/house/";
 		String serverFolderPath = s.getServletContext().getRealPath(webPath);
 		int result = houseService.updateHouse(b, h, rooms, roomImgs, webPath, serverFolderPath, deleteImgList, deleteRoomList);
 		model.addAttribute("bNo", b.getBoardNo());
 		return result > 0 ?  "redirect:/sharehouse/detail" : "redirect:/";
 	}
 
-	private int parseInt(String string) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

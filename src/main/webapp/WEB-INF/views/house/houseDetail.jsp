@@ -19,11 +19,15 @@
 <body>
   <jsp:include page="../common/header.jsp"></jsp:include> 
     <div class="wrap">
-    <div id="sharetitle"><h1>${b.title }</h1></div>
+    <div id="sharetitle">
+    <div id="sharetitle1"><h1>${b.title }</h1>
+   	  <div id="inquiry-btn" uNo = "${b.userNo}" seller="${b.nickName}" onclick="sendMessage(this);">쪽지</div>
+      <div id="report-btn" bno="${b.boardNo}" onclick="reportBoard(this);">신고</div></div>
+    </div>
     <div class="img-bx">
 		<c:forEach var="rimg" items="${h.roomList[0].imgList }">
       		<div>
-          	  <img src="/thrifty/resources/images/house/${rimg.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
+          	  <img src="/thrifty/resources/images/upfiles/house/${rimg.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
         	</div>
        	</c:forEach>
     </div>
@@ -40,7 +44,12 @@
         <div><a class='navbtn' href='#location'><p>위치</p></a></div>
         <div><a class='navbtn' href='#procedure'><p>입주절차</p></a></div>
     </div>
-    <h3>입주현황</h3>
+    <div style="display:flex; align-items: baseline;">
+    <h2 style="display:inline-block; margin:0;">입주현황</h2>
+    <c:if test="${loginUser.userNo eq b.userNo and h.applyCount ne 0}">
+    	<img style="width:30px; height:30px; margin-left: 10px; cursor:pointer;" src='/thrifty/resources/images/house/notice.png' onclick="checkApply()">
+    </c:if>
+    </div>
     <div id="state" class="Htable">
         <table >
             <tr>
@@ -98,11 +107,11 @@
         </table>
     </div>
     <div id="information">
-        <h3>지점 소개</h3>
-        <div>${h.information }</div>
+        <h2>지점 소개</h2>
+        <div><pre>${h.information }</pre></div>
     </div>
     <div id="location">
-        <h3>위치</h3>
+        <h2>위치</h2>
         <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
     <ul id="category">
@@ -133,7 +142,7 @@
     </ul>
 </div>
     </div>
-    <h3>입주절차</h3>
+    <h2>입주절차</h2>
     <div id="procedure">
         <div id="procedure1">
             <div class="circle" id="circle1">
@@ -191,12 +200,11 @@
     </div>
     </div>
 
-    <div>footer</div>
+     <jsp:include page="../common/footer.jsp"></jsp:include> 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
     <script>
     $(document).ready(function(){
     		let rooms = '${h.roomList}'
-    		console.log(rooms);
             $('.img-bx').slick({
                 dots: true,
                 dotsClass: 'dots_custom',
@@ -221,7 +229,7 @@
 					result.forEach(function(ri){
 						imgList += `
 							<div>
-				            <img src="/thrifty/resources/images/house/\${ri.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
+				            <img src="/thrifty/resources/images/upfiles/house/\${ri.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
 				        	</div>
 				        `;
 					})
@@ -233,10 +241,11 @@
         }
         
         function tour(e){
-        	let hName =$('#sharetitle').text();
+        	let hName =$('#sharetitle h1').text();
         	let rName = $(e).attr('roomName');
         	let roomNo = $(e).attr('roomNo');
-        	appform(hName, rName, roomNo);
+        	let gender = '${loginUser.gender}' == 'F' ? "여자" : "남자";
+        	appform(hName, rName, roomNo, gender);
         }
         
         $(".navbtn").click(function(event){
@@ -333,10 +342,22 @@
                         }
                     })
                  }
+        
+        function checkApply(){
+        	$.ajax({
+        		url : '/thrifty/sharehouse/checkApply',
+        		data : { bNo },
+        		success : {
+        			
+        		}
+        		
+        	})
+        	
+        }
       </script>
       <jsp:include page="houseModal.jsp"></jsp:include>
 <script src="/thrifty/resources/js/house/houseModal.js"></script>
-
+<script src="/thrifty/resources/js/common/commonModal.js"></script>
 <script>
 //마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
