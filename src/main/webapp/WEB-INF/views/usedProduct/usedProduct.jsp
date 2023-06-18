@@ -19,9 +19,11 @@
     body{
         margin: 0;
     }
+    footer {
+        margin: 0;
+    }
     #wrapper{
         min-width: 1180px;
-        padding-bottom: 70px;
     }
 
     #header{
@@ -186,12 +188,7 @@
             </div>
         </div>
 
-        <div id="footer">
-
-
-
-
-        </div>
+        <jsp:include page="../common/footer.jsp"/>
     </div>
     <script type="text/javascript">
     

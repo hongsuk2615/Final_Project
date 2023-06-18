@@ -30,7 +30,7 @@
     display: inline-block;
     width: 15%;
     min-width: 290px;
-    min-height: 900px;
+    min-height: 1000px;
     background-color: rgb(0, 60, 120);
     margin-right: 10px;
     box-shadow: 1px 1px 5px 0px;
@@ -80,8 +80,8 @@
 
 
 #filter ul{
-    height: 280px;
-    overflow-y: scroll;
+    height: 340px;
+    margin: 30px 0px;
 }
 
 #filter li{

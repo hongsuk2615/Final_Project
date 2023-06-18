@@ -20,6 +20,9 @@
     body{
         margin: 0;
     }
+    footer {
+        margin: 0;
+    }
     #wrapper{
         min-width: 1180px;
     }
@@ -164,12 +167,7 @@
             </div>
         </div>
 
-        <div id="footer">
-
-
-
-
-        </div>
+        <jsp:include page="../common/footer.jsp"/>
         <script type="text/javascript">
         	function insertImage(){
         		document.getElementsByName('images')[0].click();

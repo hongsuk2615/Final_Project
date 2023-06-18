@@ -20,6 +20,9 @@
     body{
         margin: 0;
     }
+    footer {
+        margin: 0;
+    }
     #wrapper{
         min-width: 1180px;
     }
@@ -79,13 +82,13 @@
                     <tr>
                         <th>글제목</th>
                         <td colspan="4">
-                            <input type="text" name="title" placeholder="제목을 입력하세요" required>
+                            <input type="text" maxlength='30' name="title" placeholder="제목을 입력하세요" required>
                         </td>
                     </tr>
                     <tr>
                         <th>상품명</th>
                         <td colspan="4">
-                            <input type="text" name="productName" placeholder="상품명을 입력하세요" required>
+                            <input type="text" maxlength='10' name="productName" placeholder="상품명을 입력하세요" required>
                         </td>
                     </tr>
                     <tr id="categoryAndLocation">
@@ -164,12 +167,7 @@
             </div>
         </div>
 
-        <div id="footer">
-
-
-
-
-        </div>
+        <jsp:include page="../common/footer.jsp"/>
         <script type="text/javascript">
         	function insertImage(){
         		document.getElementsByName('images')[0].click();

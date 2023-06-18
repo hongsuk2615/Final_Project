@@ -18,10 +18,12 @@
     body{
         margin: 0;
     }
+    footer {
+        margin: 0;
+    }
 
     #wrapper{
         min-width: 1180px;
-        padding-bottom: 70px;
     }
 
     #header{
@@ -59,7 +61,7 @@
             <jsp:include page="../common/boardBodyLeft.jsp"/>
             <div id="body-right">
                 <div id="body-right-header">
-                    <div id="body-right-category">[중고거래 ${usedProduct.categoryName}]</div>
+                    <div id="body-right-category">[중고거래 ${usedProduct.categoryName}]${usedProduct.isSoldOut == 'Y'? '<img onerror="this.src=/thrifty/resources/images/common/noImage.png"src="/thrifty/resources/images/usedProduct/giphy.gif" style="border-radius:10px;"width="60" height="40">':'' }</div>
                     <div class="flex-spacebetween">
                         <div id="body-right-title">
                             ${board.title}
@@ -73,7 +75,7 @@
                 <div id="body-right-body">
                     <div id="item-info">
                         <div id="item-imgs">
-                            <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
+                            <swiper-container style="--swiper-navigation-color: #3498db; --swiper-pagination-color: #3498db;" class="mySwiper"
                             thumbs-swiper=".mySwiper2" space-between="10" navigation="true">
                             <c:forEach var="image" items="${imageList}">
 		                		<swiper-slide>
@@ -92,10 +94,10 @@
                           </swiper-container>
                         </div>
                         <div id="item-details">
-                            <div id="item-name"> 상품명 : ${usedProduct.productName} ${usedProduct.isSoldOut == 'Y'? '<img onerror="this.src=/thrifty/resources/images/common/noImage.png"src="/thrifty/resources/images/usedProduct/giphy.gif" style="border-radius:10px;"width="60" height="40">':'' }</div>
+                            <div id="item-name"> 상품명 : ${usedProduct.productName} </div>
                             <div>판매가격</div>
                             <div id="item-price">
-                                ${usedProduct.price}
+                                ${usedProduct.price}원
                             </div>
                             <div>거래수단</div>
                             <div id="item-tradeMethod">
@@ -117,7 +119,10 @@
                             <div>판매자</div>
                             <div id="item-seller">
                                 <img onerror="this.src='/thrifty/resources/images/common/noImage.png'" src="${seller.loginMethod eq 'N' ? '/thrifty/resources/upfiles/myPage/'+= seller.changeName : seller.changeName }" width="60" height="60" style="border-radius:50px" alt="프로필사진">
-                                <div>${seller.nickName}</div>
+                                <div id="seller-info" style="margin-bottom: 0;">
+                                    <div>${seller.userId}</div>
+                                    <div>${seller.nickName}</div>
+                                </div>
                             </div>
                             <div id="item-btns">
                                 <div id="inquiry-btn" uNo = "${board.userNo}" seller="${seller.nickName}" onclick="sendMessage(this);">구매문의</div>
@@ -140,12 +145,7 @@
             </div>
         </div>
 
-        <div id="footer">
-
-
-
-
-        </div>
+        <jsp:include page="../common/footer.jsp"/>
         <script src="/thrifty/resources/js/common/commonModal.js"></script>
         <script>        
             function modifyBoard(element){  
