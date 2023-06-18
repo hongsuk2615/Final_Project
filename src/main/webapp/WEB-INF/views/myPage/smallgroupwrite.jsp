@@ -130,7 +130,9 @@
         border: solid 2px;
         text-align: center;
     }
-    
+    .imga{
+    	border: solid 2px;
+    }
   
     .body-right-body-content{
         width:100%;
@@ -188,7 +190,7 @@
         </div>
         <div id="body">
             <div id="body-left">
-				<jsp:include page="../common/boardBodyLeft.jsp"/>
+				<jsp:include page="../common/boardBodyLeftSmallGroup.jsp"/>
 
             </div>
 
@@ -224,7 +226,7 @@
                         </div>
                         <div class="body-right-header-right-qr">
                             <div class="square">
-                            <img src="resources/images/myPage/opentalkroom.png" width="100%" height="100%">
+                            <img src="resources/images/myPage/opentalkroom.png"onerror="this.src='/thrifty/resources/images/common/noImage.png'" class="imga"width="100%" height="100%">
                             </div>
                         </div>
                         

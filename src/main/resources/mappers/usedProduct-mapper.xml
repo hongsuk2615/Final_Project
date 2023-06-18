@@ -180,6 +180,23 @@
 		     , TRADE_METHOD = #{tradeMethod}		     
 		 WHERE BOARD_NO = #{boardNo}
 	</update>
+	
+	<select id="selectUpAll" parameterType="map" resultMap="usedProductListResultSet">
+			SELECT BOARD_NO
+			 , TITLE
+			 , PRICE
+			 , TRADE_METHOD
+			 , IS_SOLDOUT
+			 , LOCATION_NAME
+			 , TITLE
+			 , PRODUCT_NAME
+			 , CONCAT('/resources/upfiles/usedProduct/', CHANGE_NAME) AS THUMB_NAIL
+		  FROM USED_PRODUCT
+		  JOIN LOCATION USING(LOCATION_NO)
+		  JOIN BOARD B USING(BOARD_NO)
+		  JOIN IMAGE USING(BOARD_NO)
+		 WHERE B.STATUS = 'Y'
+	</select>
 
 	<update id="soldOut" parameterType="board">
 		UPDATE USED_PRODUCT

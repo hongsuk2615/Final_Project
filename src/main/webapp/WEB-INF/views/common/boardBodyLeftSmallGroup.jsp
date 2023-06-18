@@ -35,10 +35,10 @@
                    
                     </ul>
                 </div>
-                <div id="filter">
+                <div id="upAdv">
                     <ul class="scrollbar">
                         <div class="alert alert-danger">
-                            <span id="num">10</span>초 후에 없어짐
+                            <span id="num">20</span>초 후에 없어짐
                             <p>광고</p>
                             <p>광고</p>
                             <p>광고</p>
@@ -60,7 +60,7 @@
 </body>
 
 <script>
-    var count = 10;
+    var count = 20;
 
     setInterval(function(){
      count -= 1;
@@ -76,6 +76,40 @@
 
     
     
+ </script>
+ 
+ <script>
+ adAjax();
+	function adAjax(){
+		$.ajax({
+			url : "/thrifty/smallGroup/advUp",
+			dataType : 'json',
+			success : function(result){
+				console.log(result);
+				console.log('ajax');
+				abc = "";
+				abc += `
+					<ul class="scrollbar">
+                 <div class="alert alert-warning">
+                     <span id="num">20</span>초 후에 없어짐
+                     <p>제목 :\${result.title}</p>
+                     <img src="/thrifty/\${result.thumbNail}"onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="200px" height="120px">
+                     <p>상품 가격 :\${result.price}</p>
+                     <p>거래 지역 :\${result.locationName}</p>
+                     <p>거래 방법 :\${result.tradeMethod== 'D' ? '직거래': '택배'}</p>
+                     <p>가격 :\${result.price}</p>
+                     
+
+                 </div>
+                 
+
+             </ul>`
+			$('#upAdv').html(abc);
+			}
+		})
+		
+	} 
+ 
  </script>
 
 </html>

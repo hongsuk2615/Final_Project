@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+
+	<resultMap type="notice" id="noticeResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="CATEGORY_S_NO"  property="categorySNo"/>
+		<result column="CONTENT"  property="content"/>
+		<result column="CREATE_DATE"  property="createDate"/>
+		<result column="READ_COUNT"  property="readCount"/>
+		<result column="REPORT_COUNT"  property="reportCount"/>
+		<result column="TITLE"  property="title"/>
+		<result column="USER_NO"  property="userNo"/>
+		<result column="WISH_COUNT"  property="wishCount"/>
+		<result column="CATEGORY_U_NO"  property="categoryUNo"/>
+		<result column="NICK_NAME" property="nickName"/>
+		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
+		<result column="CATEGORY_S_NAME" property="subCategoryName"/>
+	</resultMap>
+
+	<resultMap type="map" id="noticeCatListMap">
+		<result column="CATEGORY_S_NO" property="categorySNo"/>
+		<result column="CATEGORY_S_NAME" property="categorySName"/>
+	</resultMap>
+
+	<select id="noticeCatdList" resultMap="noticeCatListMap">
+		SELECT CATEGORY_S_NO, CATEGORY_S_NAME
+		FROM SUB_CATEGORY
+		WHERE CATEGORY_U_NO = 1
+	</select>
+	
+	<select id="selectNoticeListCount" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM BOARD B
+		JOIN SUB_CATEGORY SC USING(CATEGORY_S_NO)
+		WHERE STATUS = 'Y'
+		  AND B.CATEGORY_U_NO = 1
+  		  <if test="categorySNo != 0">
+		  	AND B.CATEGORY_S_NO = #{categorySNo}
+		  </if>
+	</select>
+	
+	<select id="noticeList" parameterType="map" resultMap="noticeResultSet">
+		SELECT BOARD_NO, CATEGORY_S_NAME, TITLE, CREATE_DATE
+		FROM BOARD B
+		JOIN SUB_CATEGORY SC USING(CATEGORY_S_NO)
+		WHERE STATUS = 'Y'
+		  AND B.CATEGORY_U_NO = 1
+		  <if test="categorySNo != 0">
+		  	AND B.CATEGORY_S_NO = #{categorySNo}
+		  </if>
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="noticeDetail" parameterType="int" resultMap="noticeResultSet">
+		SELECT *
+		FROM BOARD B
+		JOIN SUB_CATEGORY SC USING(CATEGORY_S_NO)
+		WHERE BOARD_NO = #{bNo}
+	</select>
+</mapper>

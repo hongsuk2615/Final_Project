@@ -23,7 +23,7 @@
 }
 
 #enroll_title{
-    width: 700px;
+    width: 80%;
     border: none;
 }
 #enroll_title:focus, .info_content:focus{
@@ -46,6 +46,23 @@
     text-align: center;
 }
 
+#isend{
+	border-right: 1px solid #999999;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px 10px 5px 0;
+    text-align: center;
+}
+
+#check_box{
+	width: 30px;
+	height: 30px;
+	display: flex;
+    align-items: center;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
 #fileUpload, #title_main{
     display: flex;
     margin-top: 10px;
@@ -63,6 +80,7 @@
 }
 
 #write_title{
+	height: 37px;
     width: 100%;
     margin-right: 8px;
 }
@@ -138,6 +156,7 @@
 
 #enroll_link{
 	border: none;
+    width: 85%;
 }
 
 .write_content{

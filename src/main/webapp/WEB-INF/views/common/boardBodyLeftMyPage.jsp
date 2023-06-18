@@ -16,7 +16,7 @@
             <div id="body-left">
                 <div id="upper-category">
                     <div>
-                        <img src="/thrifty/resources/images/myPage/mymain.png" alt="상위 카테고리 이미지">
+                        <img src="/thrifty/resources/images/myPage/mymain.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'"alt="상위 카테고리 이미지">
                          <div id="upper-category-name">마이페이지</div>
             
                     </div>
@@ -116,7 +116,7 @@
                     <div class="alert alert-warning">
                         <span id="num">20</span>초 후에 없어짐
                         <p>제목 :\${result.board.title}</p>
-                        <img src="/thrifty/resources/upfiles/ptj/\${result.imgPath}" width="200px" height="120px">
+                        <img src="/thrifty/resources/upfiles/ptj/\${result.imgPath}" onerror="this.src='/thrifty/resources/images/common/noImage.png'"width="200px" height="120px">
                         <p>시작 시간 :\${result.startTime}</p>
                         <p>종료 시간 :\${result.endTime}</p>
                         <p>지역 :\${result.location.locationName}</p>
@@ -147,7 +147,7 @@
 				def += `
 					 <div class="alert alert-warning">
                     <span id="num1">20</span>초 후에 없어짐
-                    <img src="https:chart.apis.google.com/chart?cht=qr&chs=300x300&chl=\${result.kakaoLink}" width="120px" height="120px">
+                    <img src="https:chart.apis.google.com/chart?cht=qr&chs=300x300&chl=\${result.kakaoLink}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="120px" height="120px">
                     
                     <p>제목 : \${result.board.title}</p>
                     <p>닉네임 : \${result.member.nickName}</p>
