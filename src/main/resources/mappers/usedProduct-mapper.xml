@@ -38,6 +38,7 @@
 		<association property="seller" column="BOARD_NO" javaType="com.ace.thrifty.member.model.vo.Member">
 			<id column="USER_NO" property="userNo"/>
 			<result column="NICK_NAME" property="nickName"/>
+			<result column="USER_ID" property="userId"/>
 			<result column="LOGIN_METHOD" property = "loginMethod"/>
 			<result column="PROFILE_IMG" property="changeName"/>
 		</association>
@@ -127,6 +128,7 @@
 			 , IS_SOLDOUT
 			 , WISH_COUNT
 			 , NICK_NAME
+			 , USER_ID
 			 , LOGIN_METHOD
 			 , M.CHANGE_NAME AS PROFILE_IMG
 			 , IMG_NO
