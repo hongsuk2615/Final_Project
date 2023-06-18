@@ -96,9 +96,11 @@ public class MyPageController {
 		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
 		m.setUserPwd(encPwd);
 		
+		System.out.println(m);
+		
 		int result1 = myPageService.myPageUpdate(m);
 	
-		System.out.println(m);
+		
 		
 		if(result1>0) {
 			
@@ -207,7 +209,7 @@ public class MyPageController {
 		Ptj var = pList.get(aaa);
 		
 		
-		System.out.println(var);
+		
 		
 		
 		
@@ -235,7 +237,7 @@ public class MyPageController {
 		SmallGroup val = sgList.get(bbb);
 		
 		
-		System.out.println(val);
+		
 		
 		
 		
