@@ -81,8 +81,36 @@ function reportAjax(bNo, catNo){
         },
         contentType: 'application/json; charset=utf-8',
         success(result){
-            console.log('성공');
-            alert(result);
+            console.log(result);
+            if(result == 1){
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: '신고완료',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            }else if(result == -1){
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: '비로그인 상태입니다.',
+                    showConfirmButton: false,
+                    timer: 1000
+                }).then(()=>{
+                    login();
+                })
+
+
+            }else if(result == 2){
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'error',
+                    title: '이미 신고한 게시글입니다.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            }
         }
     });
 }

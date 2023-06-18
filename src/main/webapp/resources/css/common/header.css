@@ -1,3 +1,17 @@
+.scrollbar2::-webkit-scrollbar {
+    width: 10px;  
+}
+
+.scrollbar2::-webkit-scrollbar-thumb {
+    background: rgb(178, 185, 189); /* �뒪�겕濡ㅻ컮 �깋�긽 */
+    border-radius: 10px; /* �뒪�겕濡ㅻ컮 �뫁洹� �뀒�몢由� */
+}
+
+.scrollbar2::-webkit-scrollbar-track {
+    background: rgba(217, 217, 217, 0);  /*�뒪�겕濡ㅻ컮 �뮮 諛곌꼍 �깋�긽*/
+    border-radius: 3px;
+}
+
 * {
     /* border: 1px solid white !important; */
    	box-sizing : border-box;
