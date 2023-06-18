@@ -60,6 +60,9 @@ public class MemberController {
 		System.out.println(m);
 		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
 		m.setUserPwd(encPwd);
+		
+		
+		System.out.println(encPwd);
 		return memberService.insertMember(m) == 1 ? true : false;
 	}
 	

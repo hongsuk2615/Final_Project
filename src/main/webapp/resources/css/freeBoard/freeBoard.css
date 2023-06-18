@@ -2,6 +2,10 @@
 border: 1px solid black;
 }
 
+.freeBoard_mapper ul{
+    margin: 0;
+}
+
 .freeBoard_top{
     border-bottom: 1px solid black;
 }
@@ -33,3 +37,4 @@ border: 1px solid black;
     font-weight: 700;
     font-size: 20px;
 }
+

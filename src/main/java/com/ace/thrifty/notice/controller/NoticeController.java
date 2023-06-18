@@ -35,8 +35,10 @@ public class NoticeController {
 		Map<String, Object> paramMap = new HashMap<>();
 		Map<String, Object> map = new HashMap<>();
 		
+		map.put("categorySNo", categorySNo);
 		paramMap.put("categorySNo",categorySNo);
 		paramMap.put("currentPage",currentPage);
+		
 		
 		noticeService.noticeList(map, paramMap);
 		
@@ -47,7 +49,7 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/detail")
-	public String noticeDetail(Model model, @RequestParam int bNo) {
+	public String noticeDetail(Model model, int bNo) {
 		
 		Notice detail = noticeService.noticeDetail(bNo);
 		

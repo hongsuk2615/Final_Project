@@ -1,7 +1,8 @@
- let boardCategory = [];
- 	let boardDailyNumber = [];
- 	let joinDates = [];
- 	let userNumbers = [];
+let boardCategory = [];
+let boardDailyNumber = [];
+let joinDates = [];
+let userNumbers = [];
+
  $(function () {
  	
  	$.ajax({
@@ -61,14 +62,6 @@
 		        }]
 		      }
 		    }
-
-// 		    // This will get the first returned node in the jQuery collection.
-// 		    new Chart(areaChartCanvas, {
-// 		      type: 'line',
-// 		      data: areaChartData,
-// 		      options: areaChartOptions
-// 		    })
-	
 	
    //-------------
     //- LINE CHART -
@@ -89,7 +82,6 @@
 	//-------------
     //- DONUT CHART -
     //-------------
-    // Get context with jQuery - using jQuery's .get() method.
 	var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
       labels: boardCategory,
@@ -107,8 +99,7 @@
     	  position: 'right'
       }
     }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
+
     new Chart(donutChartCanvas, {
       type: 'doughnut',
       data: donutData,

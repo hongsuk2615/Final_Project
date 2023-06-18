@@ -57,7 +57,7 @@
         border-right: 0px !important;
     }
 
-    /* 밑에 세 개의 선택자는 에디터 스티키버그 오류때문에 추가함. */
+    /* 밑에 세 개의 선택자는 에디터 스티키버그 오류때문에 추가함. z-index 최고로 주면 되지만 모달이 있을까봐 고민*/
     .ck .ck-sticky-panel .ck-sticky-panel__content_sticky {
         position: static !important;
     }

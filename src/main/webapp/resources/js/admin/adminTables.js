@@ -49,7 +49,7 @@ $(".status-dropdown").on('click', function(){
         dataParam['statusVal'] = statusVal;
         dataParam['priNo'] = priNo;
     }
-
+console.log(lasturlPath);
     $.ajax({
         url: lasturlPath+"/status/update",
         data: dataParam,

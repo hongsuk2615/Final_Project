@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,10 +37,12 @@ import com.google.gson.Gson;
 public class AdminController {
 	
 	private AdminService adminService;
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@Autowired
-	public AdminController(AdminService adminService) {
+	public AdminController(AdminService adminService, BCryptPasswordEncoder bcryptPasswordEncoder) {
 		this.adminService = adminService;
+		this.bcryptPasswordEncoder = bcryptPasswordEncoder;
 	}
 	
 	@GetMapping("/login")
@@ -52,7 +55,9 @@ public class AdminController {
 		
 		Member loginUser = adminService.loginAdmin(m);
 		
-		if(loginUser != null) {
+		
+		
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 			model.addAttribute("loginUser", loginUser);
 			
 			return "redirect:/admin";
@@ -85,8 +90,8 @@ public class AdminController {
 			Map<String, String> tabMap = new LinkedHashMap<String, String>();
 			tabMap.put("all", "전체");
 			tabMap.put("active", "활성");
-			tabMap.put("suspend", "정지");
-			tabMap.put("banned", "탈퇴");
+			tabMap.put("banned", "정지");
+			tabMap.put("suspend", "탈퇴");
 			
 			Map<String, Object> map = new HashMap<>();
 			map.put("tab", paramMap.get("tab"));
@@ -105,8 +110,6 @@ public class AdminController {
 	public String statusUpdate(@PathVariable("location") String location, @RequestParam Map<String, Object> paramMap) {
 		
 		String alert = "";
-		System.out.println(paramMap+" || "+location);
-		
 		int result = adminService.StatusUpdate(location, paramMap);
 		
 		if(result>0) {
@@ -257,8 +260,6 @@ public class AdminController {
 		b.setUserNo(userNo);
 		String returnVal = "";
 		String alert = "";
-		
-		System.out.println("post"+b);
 		
 		int result = adminService.enrollUpdate(b);
 		

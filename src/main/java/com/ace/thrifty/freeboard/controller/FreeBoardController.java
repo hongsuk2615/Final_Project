@@ -56,4 +56,12 @@ public class FreeBoardController {
 		return "redirect:/freeBoard";
 
 	}
+	
+	@GetMapping("/detail") 
+	public String freeBoardDetail(int bNo) {
+		
+		System.out.println(bNo);
+		
+		return "freeBoard/freeBoardDetail";
+	}
 }

@@ -59,7 +59,8 @@ public class AdminServiceImpl implements AdminService{
 	public int StatusUpdate(String location, Map<String, Object> paramMap) {
 		
 		if(location.equals("member")) {
-			return adminDao.memberStatusUpdate(paramMap);
+			int result = adminDao.memberStatusUpdate(paramMap);
+			return result;
 		}else {
 			return adminDao.boardStatusUpdate(paramMap);
 		}

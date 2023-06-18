@@ -87,7 +87,6 @@
 		SELECT * 
 		FROM MEMBER
 		WHERE USER_ID = #{userId}
-		  AND USER_PWD = #{userPwd}
 		  AND AUTHORITY = 0
 		  AND STATUS = 'Y'
 	</select>
@@ -397,11 +396,15 @@
 	</select>
 	
 	<select id="dailyBoard" resultType="map">
-	 	SELECT UC.CATEGORY_U_NAME AS category, COUNT(*) AS number
-		FROM BOARD B
-		JOIN UPPER_CATEGORY UC USING(CATEGORY_U_NO)
-		WHERE CREATE_DATE = CURDATE()
-		GROUP BY UC.CATEGORY_U_NAME;
+		SELECT UC.CATEGORY_U_NAME AS category, COUNT(B.CATEGORY_U_NO) AS number
+		FROM UPPER_CATEGORY UC
+		LEFT JOIN (SELECT CATEGORY_U_NO, COUNT(CATEGORY_U_NO)
+				   FROM BOARD
+                   WHERE CREATE_DATE = CURDATE()
+                   GROUP BY CATEGORY_U_NO) B 
+          ON UC.CATEGORY_U_NO = B.CATEGORY_U_NO
+        WHERE UC.CATEGORY_U_NO NOT IN(1,9)
+       	GROUP BY UC.CATEGORY_U_NAME;
 	</select>
 	
 	

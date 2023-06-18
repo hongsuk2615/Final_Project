@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="pi" value="${map.pi}" />
 <c:set var="list" value="${map.list}" />
+<c:set var="categorySNo" value="${map.categorySNo}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,6 +63,39 @@
                     </c:forEach>
                 </ul>
             </div>
+            <div id="pagingbar">
+                <c:choose>
+                    <c:when test="${pi.currentPage eq 1}">
+                        <img src="/thrifty/resources/images/main/icon/back-1.png" alt="" style="width: 25px; height: 25px;">
+                    </c:when>
+                    <c:otherwise>
+                        <img src="/thrifty/resources/images/main/icon/back-1.png" alt="" style="width: 25px; height: 25px;">
+                    </c:otherwise>
+                </c:choose>
+                <c:forEach var="item" begin="${pi.startPage}" end="${pi.endPage}">
+                    <c:choose>
+                        <c:when test="${pi.currentPage == item}">
+                            <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currPage=${item}">${item}</a></div>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="paginate_button page-item">
+                                <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currPage=${item}">${item}</a></div>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:choose>
+                    <c:when test="${pi.currentPage eq pi.maxPage}">
+                        <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currPage=${item+1}"><img src="/thrifty/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="paginate_button page-item next">
+                            <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currPage=${item+1}"><img src="/thrifty/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
+                        </li>
+                    </c:otherwise>
+                </c:choose>  
+        
+    </div>
         </div>
         <jsp:include page="../common/footer.jsp" />
     </div>
