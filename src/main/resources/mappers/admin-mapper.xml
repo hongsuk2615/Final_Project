@@ -418,5 +418,6 @@
 	<update id="todayLoginReset">
 	UPDATE MEMBER
 	SET TODAY_LOGIN = 'N';
+	WHERE CURRENT_LOGIN != 'Y'; <!-- 테스트 아직 안 해 -->
 	</update>
 </mapper>
