@@ -87,7 +87,13 @@ public class HouseDao {
 		return sqlSession.update("houseMapper.updateRoom" , r);
 	}
 
-	
-	
+	public int ImageLevel(int roomNo) { 
+		return sqlSession.selectOne("houseMapper.ImageLevel" , roomNo);
+	}
 
+	public String setThumbnail(int boardNo) { 
+		return sqlSession.selectOne("houseMapper.setThumbnail" , boardNo);
+	}
+	
+	
 }
