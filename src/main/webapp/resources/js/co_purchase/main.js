@@ -22,3 +22,8 @@ label.addEventListener('click', function () {
         document.querySelector('.optionList').style.display = 'block';
     }
 });
+
+$('.page_number').click(function() {
+    $('.page_number').removeClass('tab');
+    $(this).addClass('tab');
+});

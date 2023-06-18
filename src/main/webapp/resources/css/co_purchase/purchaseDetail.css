@@ -19,7 +19,7 @@
     background-color: gainsboro;
     border-radius: 5px;
     text-align: center;
-    padding: 5px 0px;
+    padding: 10px 0px 5px 0px;
 }
 
 .edit_btn+.edit_btn{

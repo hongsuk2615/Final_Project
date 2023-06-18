@@ -210,7 +210,7 @@
                     </c:choose>
                     
                     <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
-                        <div class="page-item pagingbar_count"><a class="page-link" href="/thrifty/co_purchase?currPage=${item}&scNo=${map.scNo}">${item }</a></div>
+                        <div class="page-item pagingbar_count"><a class="page-link page_number" href="/thrifty/co_purchase?currPage=${item}&scNo=${map.scNo}">${item }</a></div>
                     </c:forEach>
                     
                     <c:choose>

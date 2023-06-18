@@ -68,80 +68,8 @@
                 </div>
             </div>
         </div>
-        <form action="/thrifty/api/v1/oauth2/google" method="POST">
-            <input type="submit" value="post">
-        </form>    	
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <ul style="list-style-type: none;">
-            <li id="GgCustomLogin">
-            </li>
-        </ul>
-        <div id="buttonDiv"></div>
-
     </div>
-    <script>
-        
-        // 구글 로그인 정보 받아서 로그인
-        function handleCredentialResponse(response) {
-           // response.credential == 구글 로그인 토큰
-           // parseJwt(token) = json web token 파싱(디코딩)
-            const responsePayload = parseJwt(response.credential);
-            
-            let snsId = responsePayload.sub;
-            let snsName = responsePayload.name;
-            let snsType = 3;
-            let filePath = responsePayload.picture;
-            
-         $.ajax({
-                 url : "/thrifty/member/googleLogin",
-                 data : {snsId, snsName, snsType, filePath},
-                 method : 'post',
-                 success: function(data){
-                    alertMsg("구글로 정상 로그인되었습니다.");
-                    
-                    setTimeout(()=> location.replace("/thrifty/"), 1500);
-                    
-                    location.replace("/thrifty/");
-                 },
-                 error: function(){
-                    console.log("구글로그인 실패");
-                 }
-              });
-        }
-        
-        // jwt 알아볼수있도록 변환
-        function parseJwt(token) {
-            var base64Url = token.split('.')[1];
-            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
-
-            return JSON.parse(jsonPayload);
-        };
-        
-        // 구글 로그인 버튼 만들기
-        function () {
-          google.accounts.id.initialize({
-            client_id: "283046868248-2c2kr4u1rsvbos5t3g8dpev5mh3sn4hg.apps.googleusercontent.com",
-            callback: handleCredentialResponse
-          });
-          google.accounts.id.renderButton(
-            document.getElementById("buttonDiv"),
-            {theme: "filled_blue", size: "large", shape: "circle", width: "400", logo_alignment: "center" }  // customization attributes
-          );
-        }
-    </script>
-    <script>
-    	function onSignIn(googleUser){
-    		console.log("aaa");
-    		let profile = googleUser.getBasicProfile();
-    		console.log('ID: ' + profile.getId());
-    		console.log('Name: ' + profile.getName());
-    		console.log('Image URL: ' + profile.getImageUrl());
-    		console.log('Email: ' + profile.getEmail());
-    	}
-    </script>
+    
     <script>
         function kakaoLogout() {
             location.href="https://kauth.kakao.com/oauth/logout?client_id=17596a7a342e703f12c332dec822a955&logout_redirect_uri=http://localhost:8081/thrifty/member/logout";
