@@ -10,6 +10,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
        /* *{
         border: 1px solid blue !important;
@@ -144,6 +146,8 @@
 </style>
 </head>
 <body>
+ <jsp:include page="../common/rightside.jsp"/>
+	
     <div id="wrapper">
         <div id="header">
           <jsp:include page="../common/header.jsp"/>
@@ -151,6 +155,7 @@
 
         </div>
         <div id="body">
+        
             <div id="body-left">
               <jsp:include page="../common/boardBodyLeftSmallGroup.jsp"/>
 
@@ -158,8 +163,8 @@
 
 
 
-            <div id="body-right">
-              
+            <div id="body-right" data-aos="flip-left">
+             
                 <div id="body-right-header">
                     <div class="body-right-pic">
                       <img src="resources/images/myPage/partners.png" width="100%" height="100%">
@@ -244,5 +249,8 @@
     		location.href= '${pageContext.request.contextPath}/smallGroup/detail?bNo='+boardNo;
     	}
     </script>
+    <script>
+    AOS.init();
+  </script>
 </body>
 </html>

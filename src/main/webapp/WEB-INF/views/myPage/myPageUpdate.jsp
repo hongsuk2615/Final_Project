@@ -14,10 +14,10 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <style>
-         *{
+         /* *{
         border: 1px solid blue !important;
         box-sizing: border-box;
-    }      */
+    }      */  */
     body{
         margin: 0;
     }
@@ -153,7 +153,7 @@
 
 
 
-    .classa {
+.classa {
   position: relative;
   width: 500px;
   margin-left: 65px;
@@ -176,7 +176,7 @@
 input::placeholder { color: #aaaaaa; }
 input:focus { outline: none; }
 
-.spana {
+.spana, .readOnlyspana{
   display: block;
   position: absolute;
   bottom: 0;
@@ -186,30 +186,54 @@ input:focus { outline: none; }
   height: 2px;
   border-radius: 2px;
   transition: 0.5s;
+  
 }
 
 .labela {
   position: absolute;
-  color: #aaa;
   left: 10px;
-  font-size: 15px;
-  bottom: 8px;
   transition: all .2s;
-}
-
-.inputa:focus ~ .labela, .inputa:valid ~ .labela {
   font-size: 16px;
-  bottom: 40px;
+  bottom: 37px;
+  color: #666;
+  font-weight: bold;
+}
+.readOnly{
+  position: absolute;
+  left: 10px;
+  transition: all .2s;
+  font-size: 16px;
+  bottom: 37px;
   color: #666;
   font-weight: bold;
 }
 
-.inputa:focus ~ .spana, .inputa:valid ~ .spana {
+
+
+
+.inputa:focus ~ .labela, .inputa:valid ~ .labela {
+  font-size: 16px;
+  bottom: 37px;
+  color: #666;
+  font-weight: bold;
+  
+}
+
+.inputa:focus ~ .spana, .inputa:valid ~ .spana, .readOnlyspana{
   width: 100%;
 }
 
 
-    
+#validatebt1{
+    position: absolute;
+    bottom: 300px;
+    left: 600px;
+}
+#validatebt2{
+    position: absolute;
+    bottom: 225px;
+    left: 600px;
+}
     
 
 </style>
@@ -234,7 +258,7 @@ input:focus { outline: none; }
               
                 <div id="body-right-header">
                     <div class="profile-pic">
-                        <img src="${contextPath}/resources/images/myPage/${loginUser.changeName}"  width="100%" height="100%" style="object-fit: cover;">
+                        <img src="${contextPath}/resources/images/myPage/${loginUser.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="100%" height="100%" style="object-fit: cover;">
                     </div>
                     <div class="profile-title">
                         <h4>프로필 변경</h4>
@@ -255,23 +279,29 @@ input:focus { outline: none; }
                         <h2>회원정보 수정</h2>
                         </div>
                     <div class="personinfoborder">
-						<form  action ="${pageContext.request.contextPath}/mypage/myUpdate" method="post">
+						<form  action ="${pageContext.request.contextPath}/mypage/myUpdate" method="post" onsubmit="return validateEnroll()">
                         <div class="classa">
-                            <input type="text" required class="inputa" name="userId">
+                            <input type="text" required class="inputa" name="userId" readonly value="${loginUser.userId }">
                             
-                            <label class="labela">아이디</label>
-                            <span class="spana"></span>
+                            <label class="readOnly">아이디</label>
+                            <span class="readOnlyspana"></span>
                         </div>
+                        
+                        <div class="classa">
+                            <input readOnly type="text" required class="inputa" name="userName" value="${loginUser.userName}">
+                            <label class="readOnly">이름</label>
+                            <span class="readOnlyspana"></span>
+                        </div>
+                        
 
                         <div class="classa">
-                            <input type="password" required class="inputa" name="userPwd">
+                            <input type="password" required class="inputa" id="userPwd" name="userPwd" value="">
                             <label class="labela">비밀번호 변경</label>
                             <span class="spana"></span>
                         </div>
 
                         <div class="classa">
-                            <input type="password" required class="inputa" name="userPwdcheck">
-                 
+                            <input type="password" required class="inputa" id="checkPwd" name="userPwdcheck">
                             <label class="labela">비밀번호 변경 확인</label>
                             <span class="spana"></span>
                         </div>
@@ -280,33 +310,35 @@ input:focus { outline: none; }
                         
 
 
+                        
+
+                            
+               			 
                         <div class="classa">
-                            <input type="text" required class="inputa" name="userName">
-                            <label class="labela">이름</label>
-                            <span class="spana"></span>
-                        </div>
-
-
-                        <div class="classa">
-                            <input type="text" required class="inputa" name="nickName">
-                            <label class="labela">닉네임</label>
-                            <span class="spana"></span>
-                        </div>
-
-
-                        <div class="classa">
-                            <input type="text" required class="inputa" name="phone">
+                            <input type="text" required class="inputa" id="phone" name="phone" value="${loginUser.phone}">
                             <label class="labela">핸드폰</label>
                             <span class="spana"></span>
                         </div>
-                        
+
+                            
                         <div class="classa">
-                            <input type="text" required class="inputa" name="email">
+                            <input type="text" required class="inputa" id="email" name="email" value="${loginUser.email}">
                             <label class="labela">이메일</label>
                             <span class="spana"></span>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" id="button_modify">수정하기</button>
+                     
+                        <button type="button" onclick="validateEmail('on')" id="validatebt1">중복확인</button>
+                        <button type="button" onclick="validateNickName('on')" id="validatebt2">중복확인</button>
+                        
+                        <div class="classa">
+                            <input type="text" required class="inputa" id="nickName" name="nickName" value="${loginUser.nickName}">
+                            <label class="labela">닉네임</label>
+                            <span class="spana"></span>
+                       	 </div>
+                        
+
+                        <button type="submit" class="btn btn-primary" id="button_modify"  onsubmit="return validateEnroll()">수정하기</button>
                         <button type="button" class="btn btn-secondary" id="button_cancel">취소</button>
                         </form>
                     </div>
@@ -344,7 +376,7 @@ input:focus { outline: none; }
     AOS.init();
 </script>
 
-
+<script src="/thrifty/resources/js/member/mypageValidate.js"></script>
 
 
 
