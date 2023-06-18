@@ -47,4 +47,8 @@
     right: 0;
     background-color: #ef6253;
 }
+.board_btn.btn_yellow{
+    margin-left: 15px;
+    background-color: #F2A900;
+}
 

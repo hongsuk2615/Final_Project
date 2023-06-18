@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,10 +84,16 @@
 		<div id="body">
             <h1>자유 게시판</h1>
             <div>
-                <form action="insert" method="post">
+                <c:if test="${b eq null}">
+                    <form action="insert" method="post">
+                </c:if>
+                <c:if test="${b ne null}">
+                    <form action="update" method="post">
+                        <input type="hidden" name="boardNo" value="${b.boardNo}">
+                </c:if>
                     <div class="title_warp">
                         <div>
-                            <select name="categorySNo" id="">
+                            <select name="categorySNo" id="catNoList">
                                 <c:forEach var="list" items="${subCategoryList}">
                                     <c:if test="${list.categoryUNo eq 8}">
                                         <option value="${list.categorySNo}">${list.categorySName}</option>
@@ -95,11 +101,16 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <input type="text" name="title" id="" placeholder="제목을 입력하세요">
+                        <input type="text" name="title" id="freeBoard_title" placeholder="제목을 입력하세요" value="${b.title}" required>
                     </div>
-                    <textarea id="editor" name="content">${b.content}</textarea>
-                    <div>
-                        <button type="submit">글 등록</button>
+                    <textarea id="editor" name="content" required >${b.content}</textarea>
+                    <div class="submit_wapper">
+                        <c:if test="${b eq null}">
+                            <button type="submit" class="submit_btn">글 등록</button>
+                        </c:if>
+                        <c:if test="${b ne null}">
+                            <button type="submit" class="submit_btn submit_btn_yellow">글 수정</button>
+                        </c:if>
                     </div>
                 </form>
             </div>

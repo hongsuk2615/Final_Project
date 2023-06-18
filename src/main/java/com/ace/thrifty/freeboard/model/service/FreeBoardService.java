@@ -6,4 +6,8 @@ public interface FreeBoardService {
 
 	int insertFreeBoard(Board b);
 
+	Board freeBoardDetail(int bNo);
+
+	int updateFreeBoard(Board b);
+
 }

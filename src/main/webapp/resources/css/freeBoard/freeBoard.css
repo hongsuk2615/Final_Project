@@ -38,3 +38,12 @@ border: 1px solid black;
     font-size: 20px;
 }
 
+#pagingbar{
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    padding-top: 30px;
+    margin: auto;
+    font-size: 0.5cm;   
+}

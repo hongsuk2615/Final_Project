@@ -21,4 +21,14 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		return freeBoardDao.insertFreeBoard(b);
 	}
 
+	@Override
+	public Board freeBoardDetail(int bNo) {
+		return freeBoardDao.freeBoardDetail(bNo);
+	}
+
+	@Override
+	public int updateFreeBoard(Board b) {
+		return freeBoardDao.updateFreeBoard(b);
+	}
+
 }

@@ -54,7 +54,7 @@
                     <c:forEach var="notice" items="${list}">
                         <li class="noticeBoard">
                             <div>
-                                <a class="notice_title" href="${contextPath}/notice/detail?bNo=${notice.boardNo}">[${notice.subCategoryName}] ${notice.title}</a>
+                                <a class="notice_title" href="${contextPath}/notice/detail?categorySNo=${categorySNo}&currentPage=${pi.currentPage}&bNo=${notice.boardNo}">[${notice.subCategoryName}] ${notice.title}</a>
                             </div>
                             <div class="notice_attr_flex">
                                 <span>${notice.createDate}</span>
@@ -75,27 +75,26 @@
                 <c:forEach var="item" begin="${pi.startPage}" end="${pi.endPage}">
                     <c:choose>
                         <c:when test="${pi.currentPage == item}">
-                            <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currPage=${item}">${item}</a></div>
+                            <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currentPage=${item}">${item}</a></div>
                         </c:when>
                         <c:otherwise>
                             <li class="paginate_button page-item">
-                                <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currPage=${item}">${item}</a></div>
+                                <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currentPage=${item}">${item}</a></div>
                             </li>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
                 <c:choose>
                     <c:when test="${pi.currentPage eq pi.maxPage}">
-                        <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currPage=${item+1}"><img src="/thrifty/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
+                        <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currentPage=${item+1}"><img src="/thrifty/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
                     </c:when>
                     <c:otherwise>
                         <li class="paginate_button page-item next">
-                            <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currPage=${item+1}"><img src="/thrifty/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
+                            <div class="page-item"><a class="page-link" href="/thrifty/notice?categorySNo=${categorySNo}&currentPage=${item+1}"><img src="/thrifty/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
                         </li>
                     </c:otherwise>
                 </c:choose>  
-        
-    </div>
+            </div>
         </div>
         <jsp:include page="../common/footer.jsp" />
     </div>

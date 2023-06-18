@@ -22,4 +22,6 @@ public interface MemberService {
 	public String findPwd(Member member);
 
 	public int todayLogin(int userNo);
+
+	public int currentLogOut(int userNo);
 }

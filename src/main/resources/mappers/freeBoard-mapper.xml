@@ -6,4 +6,12 @@
 				INSERT INTO BOARD(CATEGORY_S_NO, CATEGORY_U_NO, TITLE, CONTENT, USER_NO)
 		            VALUES(#{categorySNo}, #{categoryUNo}, #{title}, #{content}, #{userNo})
 	</insert>
+	
+	<update id="updateFreeBoard">
+		UPDATE BOARD
+		SET CATEGORY_S_NO = #{categorySNo},
+		    TITLE = #{title},
+		    CONTENT = #{content}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
 </mapper>

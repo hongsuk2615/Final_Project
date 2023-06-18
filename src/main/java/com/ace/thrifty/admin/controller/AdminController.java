@@ -278,6 +278,14 @@ public class AdminController {
 		return returnVal;
 	}
 	
+	@GetMapping("/reportCountDetail")
+	@ResponseBody
+	public String reportCountDetail(int bNo) {
+		List<Map<String, Object>> ReportCountList = adminService.reportCountDetail(bNo);
+		
+		return new Gson().toJson(ReportCountList);
+	}
+	
 	@GetMapping("/logout")
 	public String logOut(SessionStatus status) {
 		status.setComplete();

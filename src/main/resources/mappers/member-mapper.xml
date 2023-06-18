@@ -121,7 +121,14 @@
 	
 	<update id="todayLogin">
 		UPDATE MEMBER
-			SET TODAY_LOGIN = 'Y'
+			SET TODAY_LOGIN = 'Y',
+				CURRENT_LOGIN = 'Y'
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<update id="currentLogOut">
+		UPDATE MEMBER
+		SET CURRENT_LOGIN = 'N'
 		WHERE USER_NO = #{userNo}
 	</update>
 </mapper>

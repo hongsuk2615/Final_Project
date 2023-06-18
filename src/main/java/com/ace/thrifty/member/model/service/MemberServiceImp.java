@@ -77,6 +77,11 @@ public class MemberServiceImp implements MemberService{
 	public int todayLogin(int userNo) {
 		return memberDao.todayLogin(userNo);
 	}
+
+	@Override
+	public int currentLogOut(int userNo) {
+		return memberDao.currentLogOut(userNo);
+	}
 	
 	
 	

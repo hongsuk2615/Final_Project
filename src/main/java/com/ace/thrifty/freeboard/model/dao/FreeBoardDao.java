@@ -21,4 +21,14 @@ public class FreeBoardDao {
 		return sqlSession.insert("boardMapper.insertBoard", b);
 	}
 
+
+	public Board freeBoardDetail(int bNo) {
+		return sqlSession.selectOne("boardMapper.selectBoard", bNo);
+	}
+
+
+	public int updateFreeBoard(Board b) {
+		return sqlSession.update("freeBoardMapper.updateFreeBoard", b);
+	}
+
 }

@@ -49,12 +49,11 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/detail")
-	public String noticeDetail(Model model, int bNo) {
+	public String noticeDetail(Model model, int bNo,  @RequestParam Map<String, Object> paramMap) {
 		
-		Notice detail = noticeService.noticeDetail(bNo);
+		Notice detail = noticeService.noticeDetail(Integer.parseInt((String)paramMap.get("bNo")));
 		
-		System.out.println(detail);
-		
+		model.addAttribute("paramMap",paramMap);
 		model.addAttribute("detail", detail);
 		
 		return "notice/noticeDetail";

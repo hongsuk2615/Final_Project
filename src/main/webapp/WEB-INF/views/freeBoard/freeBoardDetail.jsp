@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,24 +40,30 @@
             <div class="contents_wrap">
                 <div class="contents_top">
                     <div class="contents_title">
-                        <span>[쉐어하우스]</span>
-                        <span>제목제목제목</span>
+                        <c:forEach var="list" items="${subCategoryList}">
+                            <c:if test="${list.categorySNo eq b.categorySNo}">
+                                <span>[${list.categorySName}]</span>
+                            </c:if>
+                        </c:forEach>
+                        <span>${b.title}</span>
                     </div>
-                    <!-- 여기에 신고 버튼 -->
                 </div>
                 <div class="contents_info">
-                    <span>닉네임</span>
+                    <span>${b.nickName}</span>
                     <div class="board_info">
-                        <span>조회수</span>
-                        <span>2010.20.10</span>
+                        <span>${b.readCount}</span>
+                        <span>${b.createDate}</span>
                     </div>
                 </div>
                 <div class="contents_bottom">
-                    <figure class="image image_resized" style="width:34.24%;"><img src="/thrifty/resources/images/freeBoard/2023061618310738864.jpg"></figure><p>ㅎㅅㅎ</p>
+                    ${b.content}
                 </div>
                 <div class="board_btns">
                     <a class="board_btn">목록</a>
-                    <a class="board_btn btn_red" onclick="reportBoard(this)">신고</a>
+                    <c:if test="${loginUser.userNo eq b.userNo}">
+                        <a class="board_btn btn_yellow" href="${contextPath}/freeBoard/enroll?bNo=${b.boardNo}">수정</a>
+                    </c:if>
+                    <a class="board_btn btn_red" bno="${b.boardNo}" onclick="reportBoard(this)">신고</a>
                 </div>
             </div>
         </div>

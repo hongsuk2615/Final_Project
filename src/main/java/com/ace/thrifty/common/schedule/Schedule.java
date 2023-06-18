@@ -14,11 +14,11 @@ public class Schedule {
 	
     @Scheduled(cron="0 0 0 * * *")
     public void todayLoginCount() {
+    	System.out.println("cronTest");
       int result  = adminDao.todayLoginCount();
       
       if(result > 0) {
     	  adminDao.todayLoginReset();
-    	  //회원이 자정일떄도 현재 로그인이 되어 있다면 todayLogin Y
       }
     }
 }

@@ -160,6 +160,10 @@ public class AdminDao {
 		sqlSession.update("adminMapper.todayLoginReset");
 	}
 
+	public List<Map<String, Object>> reportCountDetail(int bNo) {
+		return sqlSession.selectList("adminMapper.reportCountDetail", bNo);
+	}
+
 
 
 

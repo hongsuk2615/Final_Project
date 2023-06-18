@@ -7,6 +7,52 @@
 <c:set var="type" value="${map.type}" />
 <c:set var="tab" value="${map.tabList}" />
 
+<!-- 게시판 신고 상세 Modal -->
+<div class="modal fade" id="boardReportDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalCenterTitle">신고 상세보기</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		</div>
+	  </div>
+	</div>
+  </div>
+  
+<script>
+	$(function(){
+		$('.reportCountDetail').on('click', function(){
+			let bNo = $(this).attr('bNo');
+
+			$.ajax({
+				url: "/thrifty/admin/reportCountDetail",
+				data: {bNo: bNo},
+				dataType : 'json',
+				success(data){
+					console.log(data)
+					let bodyHtml ='<table class="table table-bordered">';
+
+					$.each(data,function (index, item){
+						console.log(item.categoryName);
+						bodyHtml += `<tr>
+										<td>`+item.categoryName+`</td>
+										<td>`+item.count+`</td>
+									</tr>`
+					});
+
+					bodyHtml += "</table>";
+
+					$(".modal-body").html(bodyHtml);
+				}
+			});
+		});
+	});
+
+</script>
 <div class="content-wrapper" style="min-height: 1302.12px;">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
@@ -114,7 +160,7 @@
 														<td>${list.upperCategory.categoryUName}</td>
 														<td><a href="${contextPath}/${list.upperCategory.categoryPath}/detail?bNo=${list.boardNo}" target="_blank" rel="noopener noreferrer">${list.board.title}</a></td>
 														<c:if test="${type eq 'board'}">
-															<td>${list.board.reportCount}</td>
+															<td><a class="reportCountDetail" href="" data-toggle="modal" bNo="${list.board.boardNo}" data-target="#boardReportDetail">${list.board.reportCount}</a></td>
 															<td>${list.member.nickName}</td>
 															<td>${list.board.status}</td>
 														</c:if>

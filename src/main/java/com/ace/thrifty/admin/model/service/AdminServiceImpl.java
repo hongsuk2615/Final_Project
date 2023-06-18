@@ -180,6 +180,12 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 
+	@Override
+	public List<Map<String, Object>> reportCountDetail(int bNo) {
+		return adminDao.reportCountDetail(bNo);
+	}
+
+
 
 
 
