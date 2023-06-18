@@ -95,5 +95,19 @@ public class HouseDao {
 		return sqlSession.selectOne("houseMapper.setThumbnail" , boardNo);
 	}
 	
+	public List<Tour> checkApply(int bNo) {
+	return sqlSession.selectList("houseMapper.checkApply", bNo);
+	}
+	
+	public int checkStatus(Map map) {
+	return sqlSession.update("houseMapper.checkStatus", map);
+	}
+	
+	public Tour selectApply(int rNo, int uNo) {
+		Map<String, Object> map = new HashMap();
+		map.put("rNo", rNo);
+		map.put("uNo", uNo);
+		return sqlSession.selectOne("houseMapper.selectApply", map);
+		}
 	
 }

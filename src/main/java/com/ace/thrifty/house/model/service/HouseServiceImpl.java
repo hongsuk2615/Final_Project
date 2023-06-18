@@ -18,6 +18,8 @@ import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
 import com.ace.thrifty.house.model.vo.RoomImg;
 import com.ace.thrifty.house.model.vo.Tour;
+import com.ace.thrifty.member.model.dao.MemberDao;
+import com.ace.thrifty.member.model.vo.Member;
 import com.ace.thrifty.wishList.model.dao.WishListDao;
 import com.ace.thrifty.wishList.model.vo.WishList;
 
@@ -27,11 +29,13 @@ public class HouseServiceImpl implements HouseService{
 	private final HouseDao houseDao;
 	private final BoardDao boardDao;
 	private final WishListDao wishListDao;
+	private final MemberDao memberDao;
 
-	public HouseServiceImpl(HouseDao houseDao, BoardDao boardDao, WishListDao wishListDao) {
+	public HouseServiceImpl(HouseDao houseDao, BoardDao boardDao, WishListDao wishListDao,  MemberDao memberDao) {
 		this.houseDao = houseDao;
 		this.boardDao = boardDao;
 		this.wishListDao = wishListDao;
+		this.memberDao = memberDao;
 	}
 
 	@Override
@@ -203,4 +207,33 @@ public class HouseServiceImpl implements HouseService{
 	
 			return result;
 		}
+
+	@Override
+	public List<Object> checkApply(int bNo) {
+		List<Object> list = new ArrayList();
+		List<Tour> list2 = houseDao.checkApply(bNo);
+		List<Member> list3 = new ArrayList();
+		list.add(list2);
+		for(int i = 0; i < list2.size(); i++) {
+			int userNo = list2.get(i).getUserNo();
+			list3.add(memberDao.selectUser(userNo));
+		}
+		list.add(list3);
+		
+		return list;
+	}
+	
+	@Override
+	public int checkStatus(Map map) {
+		return houseDao.checkStatus(map);
+	}
+
+	@Override
+	public List<Object> selectApply(int rNo, int uNo) {
+		List<Object> list = new ArrayList();
+		list.add(houseDao.selectApply(rNo, uNo));
+		list.add(memberDao.selectUser(uNo));
+		return list;
+	}
+
 }

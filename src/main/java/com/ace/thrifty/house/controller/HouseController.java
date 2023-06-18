@@ -1,6 +1,7 @@
 package com.ace.thrifty.house.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,6 @@ public class HouseController {
 	@PostMapping("") // 헤더의 쉐어하우스 클릭 시 
 	public String shareHouse(HttpSession s) {
 		int userNo = ((Member)s.getAttribute("loginUser")).getUserNo();
-		System.out.println((Member)s.getAttribute("loginUser"));
 		return new Gson().toJson(houseService.selectHouseList(userNo));
 	}
 	
@@ -61,7 +61,6 @@ public class HouseController {
 	public String houseDetail(Model m,
 			@RequestParam(value="bNo", required=false) int boardNo) {
 		List<Object> house = houseService.selectHouse(boardNo);
-		System.out.println("house:"+house);
 		m.addAttribute("house", house);
 		return "house/houseDetail";
 	}
@@ -111,7 +110,7 @@ public class HouseController {
 			roomImgs.put("roomImg"+i, mtfRequest.getFiles("roomImg"+i));
 			}
 		}
-		String webPath = "/resources/images/upfiles/house/";
+		String webPath = "/resources/upfiles/house/";
 		String serverFolderPath = s.getServletContext().getRealPath(webPath);
 		int result = houseService.insertHouse(b, h, rooms, roomImgs, webPath, serverFolderPath);
 		model.addAttribute("bNo", b.getBoardNo());
@@ -230,11 +229,34 @@ public class HouseController {
 			roomImgs.put("roomImg"+i, mtfRequest.getFiles("roomImg"+i));
 			}
 		}
-		String webPath = "/resources/images/upfiles/house/";
+		String webPath = "/resources/upfiles/house/";
 		String serverFolderPath = s.getServletContext().getRealPath(webPath);
 		int result = houseService.updateHouse(b, h, rooms, roomImgs, webPath, serverFolderPath, deleteImgList, deleteRoomList);
 		model.addAttribute("bNo", b.getBoardNo());
 		return result > 0 ?  "redirect:/sharehouse/detail" : "redirect:/";
 	}
+	
+	@ResponseBody
+	@GetMapping("/checkApply")
+	public String checkApply(@RequestParam(value="bNo", required=false) int bNo) {
+		return new Gson().toJson(houseService.checkApply(bNo));
+	}
+	
+	@ResponseBody
+	@GetMapping("/selectApply")
+	public String selectApply(@RequestParam(value="rNo", required=false) int rNo, @RequestParam(value="uNo", required=false) int uNo) {
+		return new Gson().toJson(houseService.selectApply(rNo, uNo));
+	}
+
+	
+	@ResponseBody
+	@GetMapping("/checkStatus")
+	public String checkStatus(@RequestParam(value="rNo", required=false) int rNo, @RequestParam(value="uNo", required=false) int uNo) {
+		Map<String, Integer> map = new HashMap();
+		map.put("rNo", rNo);
+		map.put("uNo", uNo);
+		return new Gson().toJson(houseService.checkStatus(map));
+	}
+
 
 }

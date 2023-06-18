@@ -69,8 +69,8 @@
 		
 	</update>
 	
-	<select id="myPageUpdateSelectM" resultMap="memberResultSet">
-		SELECT *
+	<select id="selectUser" resultMap="memberResultSet">
+		SELECT USER_NAME, GENDER, PHONE, EMAIL
 		FROM MEMBER
 		WHERE USER_NO = #{userNo} AND STATUS='Y'
 	</select>

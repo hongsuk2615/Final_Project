@@ -1,16 +1,16 @@
 package com.ace.thrifty.chat.model.vo;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
-public class ChatRoom {
+public class ChatMessage {
 	
+	private int cmNo;
+	private String message;
+	private Date createDate;
 	private int chatRoomNo;
-	private String title;
-	private String status;
 	private int userNo;
-
 	private String nickName;
-	private int cnt;
-
 }
