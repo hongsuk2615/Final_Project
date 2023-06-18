@@ -192,7 +192,7 @@ function displayMarkers(o , d) {
             position: positions[i].latlng,
             content : positions[i].title
             });
-            
+            infowindow.setContent('<div style="padding:5px;font-size:12px; border-radius: 3px; text-align: center;">' + place.place_name + '</div>');
             infowindow.open(map, marker);
 
     }

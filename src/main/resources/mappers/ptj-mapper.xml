@@ -13,6 +13,7 @@
    <association property="board" column="BOARD_NO" javaType="com.ace.thrifty.board.model.vo.Board">
          <id column="BOARD_NO" property="boardNo"/>         
          <result column="CATEGORY_S_NO"  property="categorySNo"/>
+         <result column="CATEGORY_U_NO" property="categoryUNo" />
          <result column="CONTENT"  property="content"/>
          <result column="CREATE_DATE"  property="createDate"/>
          <result column="READ_COUNT"  property="readCount"/>
@@ -94,27 +95,11 @@
 </select>
 
 <select id="selectPtj" resultMap="ptjDetailResultSet">
-	SELECT
-		P.BOARD_NO,
-		P.LOCATION_NO,
-		P.PRICE,
-		P.START_TIME,
-		P.END_TIME,
-		P.IS_END,
-		B.CATEGORY_S_NO,
-		B.TITLE,
-		B.CONTENT,
-		B.WISH_COUNT,
-		L.LOCATION_NAME,
-		P.LOCATION_NO,
-		I.CHANGE_NAME AS IMG_PATH,
-		B.STATUS
-	FROM thrifty.PART_TIME_JOB P
-	JOIN thrifty.BOARD B ON B.BOARD_NO = P.BOARD_NO
-	JOIN thrifty.LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
-	LEFT JOIN thrifty.SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
-	LEFT JOIN thrifty.IMAGE I ON B.BOARD_NO = I.BOARD_NO
-	WHERE B.STATUS = 'Y'
+	SELECT *
+	FROM BOARD B
+	LEFT JOIN IMAGE I ON B.BOARD_NO = I.BOARD_NO
+	WHERE B.STATUS = 'Y' AND B.CATEGORY_U_NO IN (5 , 8)
+	ORDER BY B.BOARD_NO DESC;
 </select>
 
 <select id="selectPtjAll" parameterType="map" resultMap="ptjDetailResultSet">

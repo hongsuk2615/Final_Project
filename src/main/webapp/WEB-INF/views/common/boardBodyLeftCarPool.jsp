@@ -3,6 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+<style>
+	.scrollbar > li:hover {
+		cursor: pointer;
+	}
+</style>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,8 +30,8 @@
                     </ul>
                 </div>
                 <div id="filter">
+                    <h3 style="text-align: center;"><b>상세 카테고리</b></h3>
                     <ul class="scrollbar">
-                        <li><b>상세 카테고리</b></li>
 	                    <c:forEach var="subCategory" items="${subCategoryList }">
 							<c:if test="${subCategory.categoryUNo == 3}">
 	                        	<li name="flocation" onclick="location.href = '${contextPath}/carPool/drive?scNo=${subCategory.categorySNo }'">${subCategory.categorySName }</li>						

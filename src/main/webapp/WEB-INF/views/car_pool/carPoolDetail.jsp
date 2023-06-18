@@ -87,10 +87,10 @@
                                 <c:forEach var="image" items="${imageList }" begin="0" end="3" step="1">
                                 <c:choose>
                                 	<c:when test="${image.changeName != null }">
-                                		<img src="${contextPath }/resources/upfiles/carPool/${image.changeName}" style="height: 200px; width: 300px; border-radius: 10px;" onclick = "location.href = '${contextPath}/carPool/detail?bNo=${list.get(i).boardNo}'"/>                                	
+                                		<img src="${contextPath }/resources/upfiles/carPool/${image.changeName}" style="height: 200px; width: 300px; border-radius: 10px;"/>                                	
                                 	</c:when>
                                 	<c:otherwise>
-                                		<img src="${contextPath }/resources/images/carpool/no-image.png" style="height: 200px; width: 300px; border-radius: 10px;" onclick = "location.href = '${contextPath}/carPool/detail?bNo=${list.get(i).boardNo}'"/>
+                                		<img src="${contextPath }/resources/images/carpool/no-image.png" style="height: 200px; width: 300px; border-radius: 10px;"/>
                                 	</c:otherwise>
                                 </c:choose>
                                 </c:forEach>
@@ -111,9 +111,9 @@
                             <h3>작성자 성별 : ${carpool.member.gender }</h3>
                             <hr>
                             <div id="item-btns">
-                                <div id="inquiry-btn" uNo="${carpool.board.userNo }" seller="${carpool.member.userId }" onclick ="">쪽지 보내기</div>
-                                <div id="report-btn" bNo="${carpool.board.boardNo }">신고하기</div>
-                                <div id="wish-btn" bNo="${carpool.board.boardNo }">찜</div>
+                                <div id="inquiry-btn" uNo="${carpool.board.userNo }" seller="${carpool.member.userId }" onclick="sendMessage(this)"><p>쪽지 보내기</p></div>
+                                <div id="report-btn" bNo="${carpool.board.boardNo }" onclick="reportBoard(this)" ><p>신고하기</p></div>
+                                <div id="wish-btn" bNo="${carpool.board.boardNo }" onclick="wishList(this);"><p>찜</p></div>
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
                             <hr>

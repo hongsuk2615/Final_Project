@@ -89,35 +89,25 @@
             </div>
             <h1>알뜰살뜰 자유게시판에 물어보세요!</h1>
             <div id="free-board">
-                <div>
-                    <h4 style="color: #B2B1B0;">카테고리 > 알바 대타</h4>
-                    <h3>알바 어떻게 해야하죠</h3>
-                    <p style="max-width:250px;">대타 구해요~ 역삼역 근처인데 혹시 시간 되시는분 계실까요?</p>
-                </div>
-                <div>
-                    <h4 style="color: #B2B1B0;">카테고리 > 심부름</h4>
-                    <h3>0명 모집중</h3>
-                    <p style="max-width:250px;">왜 이렇게 저를 힘들게 하십니까!!!</p>
-                </div>
-                <div>
-                    <h4 style="color: #B2B1B0;">카테고리 > 알바 대타</h4>
-                    <h3>10명 모집중</h3>
-                    <p style="max-width:250px;">알바생 구해요~ 역삼역 근처</p>
-                </div>
-                <div>
-                    <h4 style="color: #B2B1B0;">카테고리 > 알바 대타</h4>
-                    <h3>3명 모집중</h3>
-                    <p style="max-width:250px;">알바생 구해요~ 역삼역 근처</p>
-                </div>
+            <c:forEach var="pList" items="${p}" begin="0" end="3" step="1">
+           		<c:if test="${pList.board.categoryUNo eq 8 }">
+           			<div>
+	                    <h4 style="color: #B2B1B0;">카테고리 > 자유 게시판</h4>
+	                    <h3>${pList.board.title }</h3>
+	                    <p style="max-width:250px;">${pList.board.content }</p>
+	                </div>
+           		</c:if>
+            </c:forEach>
             </div>
         </div>
         <div style="height: 450px">
             <h2 style="margin-left: 10%;">최신 심부름 / 알바 게시글</h2>
             <div id="alba-board">
             	<c:forEach var="p" items="${p }" begin="0" end="3" step="1">
+            	
 	                <div>
 	                	<c:choose>
-	                		<c:when test="${p.isEnd == 'N' }">
+	                		<c:when test="${p.board.categoryUNo eq 5 }">
 			                    <img src="${contextPath }${webPath }${p.imgPath }" style="width: 230px; height: 180px;">	                		
 			                    <p>${p.isEnd == "N" ? "모집중" : "모집 완료" }</p>
 	                   			<p>${p.board.title }</p>

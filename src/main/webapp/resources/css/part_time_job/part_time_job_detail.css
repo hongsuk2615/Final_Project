@@ -182,3 +182,31 @@ button {
 button:hover {
     cursor: pointer;
 }
+
+#item-btns {
+	display: flex;
+	justify-content: flex-end;
+}
+
+#inquiry-btn , #report-btn, #wish-btn {
+	display: flex;
+	align-items: center;
+	border-radius: 3px;
+	background-color: red;
+	box-shadow: 5px 5px 5px lightgray;
+	color: white;
+	height: 30px;
+	margin-right: 20px;
+	width: 100px;
+	text-align: center;
+}
+
+#inquiry-btn p , #report-btn p , #wish-btn p {
+	text-align:center;
+	width: 100%;
+}
+
+#inquiry-btn:hover , #report-btn:hover , #wish-btn:hover {
+	cursor: pointer;
+	background: #ab0000;
+}
