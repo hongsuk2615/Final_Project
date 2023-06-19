@@ -60,7 +60,6 @@
         <div id="body" style="padding-top: 150px;">
             <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
             <div id="body-right">
-               	
                 <div id="enroll">
                     <form action="${contextPath }/ptj/ptjUpdate" method="post" name="updateForm" enctype="multipart/form-data">
 	                    <div id="enroll-category">
@@ -72,7 +71,7 @@
 									</c:if>
 								</c:forEach>
 	                    	</select>
-                    </h1>
+                    		</h1>
 	           			</div>
                 		<hr>
                         <div id="enroll-header">
@@ -120,7 +119,6 @@
         
         </div>
     </div>
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 <script type="text/javascript" src="/thrifty/resources/js/kakaoAPI/map_search.js"></script>
 <script>
@@ -129,4 +127,5 @@
 	})
 </script>
 </body>
+<jsp:include page="../common/rightside.jsp"/>
 </html>

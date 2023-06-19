@@ -38,4 +38,12 @@ public interface HouseService {
 	int updateHouse(Board b, House h, List<Room> rooms, Map<String,List<MultipartFile>> roomImgs, String webPath, String serverFolderPath
 			, String deleteImgList, String deleteRoomList) throws Exception;
 	
+	List<Object> checkApply(int bNo);
+	
+	int checkStatus(Map map);
+	
+	List<Object> selectApply(int rNo, int uNo);
+	
+	House houseAd();
+	
 }

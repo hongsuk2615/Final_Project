@@ -12,7 +12,6 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <style>
     *{
-        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -55,6 +54,13 @@
         width: 600px;
         height: 300px;
     }
+    
+    #ptj-new-board p {
+	   width: 185px;
+	   text-overflow: ellipsis;
+	   white-space: nowrap;
+	   overflow: hidden;
+	}
 
 
 </style>
@@ -122,11 +128,7 @@
             	</c:forEach>
             </div> 
         </div>
-
         <div id="footer">
-
-
-
 
         </div>
     </div>
@@ -138,7 +140,5 @@
    	   	})
     </script>
 </body>
-
-
-
+<jsp:include page="../common/rightside.jsp"/>
 </html>

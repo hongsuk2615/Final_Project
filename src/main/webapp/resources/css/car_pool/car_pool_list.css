@@ -75,6 +75,14 @@
     border-radius: 0 0 10px 10px;
     background : white;
 }
+
+.item-info p {
+	width: 185px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
 .items{
 	margin : 0px 10px;
 	cursor: pointer;
