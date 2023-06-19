@@ -70,7 +70,7 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 	public void selectCoPurchaseList(Map<String, Object> map) {
 		
 		int currentPage = Integer.parseInt((String)map.get("currPage"));
-		int listCount = coDao.selectBoardListCount();
+		int listCount = coDao.selectBoardListCount(map);
 		int pageLimit = 10;
 		int boardLimit = 5;
 		
@@ -126,7 +126,7 @@ public class Co_purchaseServiceImpl implements Co_purchaseService{
 	public void selectSearchCoPurchaseList(Map<String, Object> map) {
 		
 		int currentPage = Integer.parseInt((String)map.get("currPage"));
-		int listCount = coDao.selectBoardListCount();
+		int listCount = coDao.selectBoardListCount(map);
 		int pageLimit = 10;
 		int boardLimit = 5;
 		

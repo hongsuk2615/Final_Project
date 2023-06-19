@@ -23,8 +23,11 @@ public class Co_purchaseDao {
 		return sqlSession.insert("co_purchaseMapper.insertCo_purchase", co);
 	}
 	
-	public int selectBoardListCount() {
-		return sqlSession.selectOne("co_purchaseMapper.selectBoardListCount");
+	public int selectBoardListCount(Map<String, Object> map) {
+		
+		System.out.println(map);
+		
+		return sqlSession.selectOne("co_purchaseMapper.selectBoardListCount", map);
 	}
 	
 	public ArrayList<Board> selectCoPurchaseList(PageInfo pi, Map<String, Object> map) {

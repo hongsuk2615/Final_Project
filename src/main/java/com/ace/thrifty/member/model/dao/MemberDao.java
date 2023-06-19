@@ -51,4 +51,12 @@ public class MemberDao {
 	public int changeRandomPwd(Member member) {
 		return sqlSession.update("memberMapper.changeRandomPwd", member);
 	}
+
+	public int todayLogin(int userNo) {
+		return sqlSession.update("memberMapper.todayLogin",userNo);
+	}
+
+	public int currentLogOut(int userNo) {
+		return sqlSession.update("memberMapper.currentLogOut",userNo);
+	}
 }

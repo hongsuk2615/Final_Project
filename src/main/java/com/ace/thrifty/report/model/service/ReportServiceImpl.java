@@ -29,9 +29,6 @@ public class ReportServiceImpl implements ReportService{
 	public int reportInsert(Map<String, Object> paramMap) {
 		
 		
-		if(paramMap. containsValue("")) {
-			return -2; //잘못된 리폿카테고리 번호
-		}
 		int result2 = 0;
 		int result1 = reportDao.reportInsert(paramMap);
 		if(result1 > 0) {

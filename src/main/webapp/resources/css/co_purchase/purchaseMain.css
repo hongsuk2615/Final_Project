@@ -168,7 +168,7 @@ select option{
 
 #cat_title{
     padding-top: 30px;
-    padding-bottom: 50px;
+    padding-bottom: 40px;
     font-weight: 500;
     font-size: 2.5em;
 }
@@ -176,7 +176,7 @@ select option{
 #pagingbar{
     width: 500px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     text-align: center;
     padding-top: 30px;
     margin: auto;
@@ -219,7 +219,7 @@ select option{
 }
 
 .detail_top{
-    padding-top: 5px;
+    padding-top: 8px;
 }
 
 .detail_top_recruiting{
@@ -245,7 +245,7 @@ select option{
 }
 
 .detail_middle{
-    padding-top: 18px;
+    padding-top: 14px;
     font-size: 20px;
 }
 
@@ -295,4 +295,13 @@ select option{
 
 #profile{
     width: 250px;
+}
+
+.tab{
+	font-size: 25px;
+    color: rgb(0, 60, 120);
+}
+
+.tab1{
+	padding-top: 4px;
 }
