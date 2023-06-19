@@ -22,6 +22,7 @@ public class House {
 	private String thumbnail;
 	private int minAmount;
 	private int wish;
+	private int applyCount;
 	
 	private ArrayList<Room> roomList;
 	private Board board;

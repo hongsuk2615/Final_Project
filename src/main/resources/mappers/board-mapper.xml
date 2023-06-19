@@ -36,8 +36,9 @@
 	</resultMap>
 	
 	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
-		SELECT *
+		SELECT *, NICK_NAME
 		  FROM BOARD
+		  JOIN MEMBER M USING (USER_NO)
 		 WHERE BOARD_NO = #{boardNo}
 	</select>
 	
@@ -78,7 +79,7 @@
 	<select id="selectUpperCategoryList" resultMap="upperCategoryResultSet">
 		SELECT *
 		  FROM UPPER_CATEGORY
-	  WHERE CATEGORY_U_NO != 9
+	     WHERE CATEGORY_U_NO != 9
 	</select>
 	
 	
@@ -105,7 +106,6 @@
 	SET TITLE = #{title},
 	   CONTENT = #{content}
 	 WHERE BOARD_NO = #{boardNo}
-	  
 	</update>
 	
 	<insert id="insertBoard" parameterType="board" useGeneratedKeys="true" keyProperty="boardNo">
@@ -196,6 +196,7 @@
 			   CATEGORY_S_NO = #{categorySNo}
 		WHERE BOARD_NO = #{boardNo}
 	</update>
+	
 	<update id="scrapBoard">
 		UPDATE BOARD
 		 SET WISH_COUNT = WISH_COUNT + 1

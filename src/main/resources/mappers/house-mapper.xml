@@ -9,6 +9,7 @@
 		<result column="INFORMATION"  property="information"/>
 		<result column="THUMBNAIL"  property="thumbnail"/>
 		<result column="MIN_AMOUNT"  property="minAmount"/>
+		<result column="APPLY_COUNT"  property="applyCount"/>
 		<result column="WISH"  property="wish"/>
 			<collection property="roomList" javaType="java.util.ArrayList" ofType="room"
 			select="selectRoomList" column="BOARD_NO" />
@@ -51,7 +52,7 @@
 		<result column="TITLE"  property="title"/>
 		<result column="USER_NO"  property="userNo"/>
 		<result column="WISH_COUNT"  property="wishCount"/>
-	
+		<result column="NICK_NAME"  property="nickName"/>
 	</resultMap>
 	
 	<resultMap type="tour" id="tourResultSet">
@@ -89,7 +90,7 @@
 </insert>
 
 	<select id="selectHouse" parameterType="_int" resultMap="houseResultSet">
-		SELECT *
+		SELECT *, (SELECT COUNT(*) FROM TOUR WHERE BOARD_NO = #{boardNo}) AS APPLY_COUNT
 		FROM SHARE_HOUSE
 		WHERE BOARD_NO = #{boardNo}
 	</select>
@@ -155,7 +156,7 @@
 	</select>
 	
 	<insert id="tourApply" parameterType="tour">
-		INSERT INTO TOUR (ROOM_NO, USER_NO, MOVE_IN, ENQUIRY)
+		INSERT IGNORE INTO TOUR (ROOM_NO, USER_NO, MOVE_IN, ENQUIRY)
 		VALUES (#{roomNo}, #{userNo},  #{moveIn}, #{enquiry})
 	</insert>
 	
@@ -180,10 +181,7 @@
 			HOUSE_ADDRESS = #{houseAddress},
 			HOUSE_LATITUDE =  #{houseLatitude},
 			HOUSE_LONGITUDE =  #{houseLongitude},
-			
-			<if test="thumbnail != null">
 			THUMBNAIL = #{thumbnail},
-			</if>
 			INFORMATION =  #{information}
 		WHERE BOARD_NO = #{boardNo}
 	</update>
@@ -214,5 +212,19 @@
 		WHERE ROOM_NO = #{roomNo}
 	</update>
 	
+	<select id="ImageLevel" resultType="_int">
+		SELECT MAX(FILE_LEVEL)
+			FROM ROOM_IMAGE
+			WHERE ROOM_NO = #{roomNo}
+	</select>
 	
+	<select id="setThumbnail" resultType="string">
+		SELECT CHANGE_NAME
+			FROM ROOM_IMAGE
+			WHERE ROOM_NO = (
+				SELECT MIN(ROOM_NO) FROM ROOM WHERE BOARD_NO = #{boardNo} AND STATUS = 'Y')
+                AND STATUS = 'Y'
+                ORDER BY FILE_LEVEL
+                LIMIT 1
+	</select>
 </mapper>

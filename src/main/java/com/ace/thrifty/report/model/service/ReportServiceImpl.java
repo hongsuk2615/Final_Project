@@ -28,22 +28,14 @@ public class ReportServiceImpl implements ReportService{
 	@Override
 	public int reportInsert(Map<String, Object> paramMap) {
 		
-		int check = reportDao.reportCheck(paramMap);
-		int result1 = 0;
-		int result2 = 0;
 		
 		if(paramMap. containsValue("")) {
 			return -2; //잘못된 리폿카테고리 번호
 		}
-		
-		if(check == 0) {
-			result1 = reportDao.reportInsert(paramMap);
-			
-			if(result1 > 0) {
-				result2 = reportDao.reportCount(paramMap);
-			}
-		}else {
-			return -1; //중복
+		int result2 = 0;
+		int result1 = reportDao.reportInsert(paramMap);
+		if(result1 > 0) {
+			result2 = reportDao.reportCount(paramMap);
 		}
 		
 		return result1*result2;

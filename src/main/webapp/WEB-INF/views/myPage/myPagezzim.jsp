@@ -210,7 +210,7 @@
                     </div>
                     <div class="body-right-butt">
                       <div class="body-right-butt-content">
-                      <button type="button" class="btn btn-primary">글쓰기</button>
+                      
                       </div>
                     </div>
                 </div>
@@ -237,6 +237,7 @@
 							<c:forEach items= "${list}" var="b">
 								<c:if test="${b.categoryUNo == 2 }">
 	                                <div class="card" >
+	                                	<img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
 	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
 	                                    <div class="container">
 	                                      <h4><b>${b.nickName} </b></h4>
@@ -269,9 +270,11 @@
 								
                                 <c:forEach items= "${list}" var="b">
 								<c:if test="${b.categoryUNo == 4 }">
+								
 	                                <div class="card" >
-	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
-	                                    <div class="container">
+	                                <img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:200px; height: 200px;"  onclick="location.href='/thrifty/usedProduct/detail?bNo=${b.boardNo}'">
+	                                    <div class="container" style="text-overflow: ellipsis; width: 200px; white-space: nowrap; ">
 	                                      <h4><b>${b.nickName} </b></h4>
 	                                      <p>${b.title}</p>
 	                                    </div>
@@ -300,6 +303,7 @@
                                  <c:forEach items= "${list}" var="b">
 								<c:if test="${b.categoryUNo == 7 }">
 	                                <div class="card" >
+	                                <img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
 	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
 	                                    <div class="container">
 	                                      <h4><b>${b.nickName} </b></h4>
@@ -335,6 +339,7 @@
                                 <c:forEach items= "${list}" var="b">
 								<c:if test="${b.categoryUNo == 3 }">
 	                                <div class="card" >
+	                                <img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
 	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
 	                                    <div class="container">
 	                                      <h4><b>${b.nickName} </b></h4>
@@ -368,6 +373,7 @@
                                  <c:forEach items= "${list}" var="b">
 								<c:if test="${b.categoryUNo == 6 }">
 	                                <div class="card" >
+	                                	<img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
 	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
 	                                    <div class="container">
 	                                      <h4><b>${b.nickName} </b></h4>
@@ -399,6 +405,7 @@
                                 <c:forEach items= "${list}" var="b">
 								<c:if test="${b.categoryUNo == 5 }">
 	                                <div class="card" >
+	                                	<img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
 	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
 	                                    <div class="container">
 	                                      <h4><b>${b.nickName} </b></h4>
@@ -474,6 +481,27 @@
 
         </div>
     </div>
-    
+    <script>
+    function deleteWishList(element){
+        let bNo=$(element).attr("bno");
+        console.log(bNo);
+        $.ajax({
+            url : "/thrifty/wishList/delete",
+            data : {bNo},
+            success : function(result){
+                console.log(result);
+                if(result == 1){
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: '찜삭제완료',
+                        showConfirmButton: false,
+                        timer: 1000
+                    }).then(()=>{location.reload();});
+                }
+            }
+        })
+    }
+    </script>
 </body>
 </html>
