@@ -12,6 +12,7 @@
 
 #edit_btn{
     align-items: end;
+    cursor: pointer;
 }
 
 .edit_btn{
@@ -80,7 +81,6 @@
     text-align: center;
     font-weight: 900;
     padding-top: 4px;
-    padding-left: 3px;
 }
 
 .header_text{
