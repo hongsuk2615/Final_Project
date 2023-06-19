@@ -2,12 +2,17 @@ package com.ace.thrifty.freeboard.controller;
 
 import javax.servlet.http.HttpSession;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.freeboard.model.service.FreeBoardService;
@@ -25,13 +30,35 @@ public class FreeBoardController {
 	}
 	
 	@GetMapping("")
-	public String freeBoard() {
+	public String freeBoard(Model model,
+							@RequestParam(defaultValue = "0") int categorySNo,
+							@RequestParam(defaultValue = "1") int currentPage) {
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("categorySNo", categorySNo);
+		paramMap.put("categorySNo",categorySNo);
+		paramMap.put("currentPage",currentPage);
+		
+		
+		freeBoardService.freeBoardList(map, paramMap);
+		
+		System.out.println(map);
+		
+		model.addAttribute("map", map);
 		
 		return "freeBoard/freeBoard";
 	}
 	
 	@GetMapping("/enroll")
-	public String freeBoardEnrollForm() {
+	public String freeBoardEnrollForm(Model model, @RequestParam(value="bNo", required = false) Integer bNo) {
+		
+		if(bNo != null) {
+			Board b = freeBoardService.freeBoardDetail(bNo);
+			
+			model.addAttribute("b", b);
+		}
 		
 		return "freeBoard/freeBoardEnrollForm";
 	}
@@ -55,5 +82,38 @@ public class FreeBoardController {
 		
 		return "redirect:/freeBoard";
 
+	}
+	
+	@PostMapping("/update")
+	public String freeBoardUpdate(Board b, Model model) {
+		
+		System.out.println(b);
+		
+		String alert = "";
+		
+		int result = freeBoardService.updateFreeBoard(b);
+		
+		if(result>0) {
+			alert = "게시물이 수정되었습니다.";
+		}else {
+			alert = "게시물이 수정에 실패했습니다.";
+		}
+		
+		model.addAttribute("alert", alert);
+		
+		
+		return "redirect:/freeBoard/detail?bNo="+b.getBoardNo();
+		
+	}
+	
+	@GetMapping("/detail") 
+	public String freeBoardDetail(Model model, int bNo) {
+		
+		Board b = freeBoardService.freeBoardDetail(bNo);
+		
+		model.addAttribute("b",b);
+		
+		
+		return "freeBoard/freeBoardDetail";
 	}
 }

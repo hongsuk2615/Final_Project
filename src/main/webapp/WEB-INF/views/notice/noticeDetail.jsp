@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="noticeList_btn_area">
-                <a class="noticeList_btn" href="#">목록</a>
+                <a class="noticeList_btn" href="${contextPath}/notice?categorySNo=${paramMap.categorySNo}&currentPage=${paramMap.currentPage}">목록</a>
             </div>
         </div>
         <jsp:include page="../common/footer.jsp" />
