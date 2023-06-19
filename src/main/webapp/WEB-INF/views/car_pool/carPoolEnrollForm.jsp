@@ -221,4 +221,5 @@
         	}
 </script>
 </body>
+<jsp:include page="../common/rightside.jsp"/>
 </html>

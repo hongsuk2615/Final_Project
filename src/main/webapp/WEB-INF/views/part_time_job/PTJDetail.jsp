@@ -111,7 +111,14 @@
                                 <div id="report-btn" bNo="${p.board.boardNo }" onclick="reportBoard(this);"><p>신고하기</p></div>
                                 <div id="wish-btn" bNo="${p.board.boardNo }" onclick="wishList(this);"><p>찜하기</p></div>
                             </div>
-                            아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
+                            	<c:choose>
+                            		<c:when test="${p.isEnd eq 'N' }">
+                            			아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled>구했어요!<input type="radio" name="isEnd" disabled>
+                            		</c:when>
+                            		<c:otherwise>
+                            			아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd" disabled>구했어요!<input type="radio" name="isEnd" checked disabled>
+                            		</c:otherwise>
+                            	</c:choose>
                             <hr>
                             <h3>급여 : </h3><p><b style="color: red; font-size: 30px;">${p.price }</b> 원</p>
                             <hr>
@@ -169,7 +176,6 @@
 
     // 마커가 지도 위에 표시되도록 설정합니다
     marker.setMap(map);
-
         kakao.maps.event.addListener(marker, 'click', function() {
         // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
         // let place = "교회";
@@ -180,31 +186,16 @@
         console.log(marker.getPosition());
         map.setLevel(1);
     });
-
-        // setCenter(marker.getPosition().Ma , marker.getPosition().La);
-        // document.getElementById('좌표').innerHTML="작은거 : "  + marker.getPosition().Ma+ " 큰거 : " + marker.getPosition().La;
-        // document.getElementById('locationCoordinate').value = marker.getPosition().Ma + "," + marker.getPosition().La;
-
     }
 </script>
 <script>
 	document.getElementById('back-btn').addEventListener("click",function(){
     	location.href = "${contextPath}/ptj/ptjList";
 	})
-	
-	/* document.getElementById('delete-btn').addEventListener("click",function(){
-    	location.href = "${contextPath}/ptj/ptjDelete";
-	}) */
-	
 	document.getElementById('update-btn').addEventListener("click",function(){
     	location.href = "${contextPath}/ptj/ptjUpdate?bNo=${p.board.boardNo}";
 	})
-	
-	/* document.getElementById('work-end-btn').addEventListener("click",function(){
-    	location.href = "${contextPath}/ptj/workEnd?bNo=${p.board.boardNo}";
-	})
-	 */
 </script>
-
 </body>
+<jsp:include page="../common/rightside.jsp"/>
 </html>

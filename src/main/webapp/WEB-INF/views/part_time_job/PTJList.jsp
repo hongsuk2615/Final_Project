@@ -12,7 +12,6 @@
     <link href="/thrifty/resources/css/part_time_job/part_time_job_list.css" rel="stylesheet">
 <style>
     *{
-        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -94,10 +93,10 @@
 	                    	<c:when test="${i lt list.size()}" >
 			                    <div class="items" onclick = "location.href = '${contextPath}/ptj/detail?bNo=${list.get(i).boardNo}'" >
 			                        <div class="item-img" style="width: 185px; height: 170px;">
-										<img style="width: 100%; height: 100%;" alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'" src='${contextPath }/${list.get(i).isEnd == 'Y'? 'resources/images/ptj/end.jpg': list.get(i).imgPath}'>
+										<img style="width: 100%; height: 100%;" alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'" src='${contextPath }${webPath }/${list.get(i).isEnd == 'Y'? 'resources/images/ptj/end.jpg': list.get(i).imgPath}'>
 			                        </div>
 			                        <div class="item-info">
-			                        	<p style="text-align: center;">${list.get(i).subCategory.categorySName }</p>
+			                        	<p style="text-align: center;"><b>${list.get(i).subCategory.categorySName }</b></p>
 				                        <p>제목 : ${list.get(i).board.title }</p>
 				                        <p>카풀비 : ${list.get(i).price }</p>
 			                        </div>     
@@ -153,8 +152,6 @@
    	document.getElementById('write-btn').addEventListener("click",function(){
         location.href = "<%= request.getContextPath() %>/ptj/ptjEnrollForm";
    	})
-   	
-   	
 </script>
 <script>
 document.getElementById('keyword').addEventListener('keyup',function(){
@@ -165,4 +162,5 @@ document.getElementById('keyword').addEventListener('keyup',function(){
 })
 </script>
 </body>
+<jsp:include page="../common/rightside.jsp"/>
 </html>
