@@ -110,6 +110,14 @@ function reportAjax(bNo, catNo){
                     showConfirmButton: false,
                     timer: 1000
                 })
+            }else if(result ==3){
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: '신고항목을 선택하세요.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
             }
         }
     });

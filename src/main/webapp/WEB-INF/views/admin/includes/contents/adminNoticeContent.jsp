@@ -84,7 +84,7 @@
 														<input type="hidden" value="${list.boardNo}">
 														<td>${i.count}</td>
 														<td>${list.subCategory.categorySName}</td>
-														<td>${list.title }</td>
+														<td><a href="${contextPath}/notice/detail?bNo=${list.boardNo}" target="_blank" rel="noopener noreferrer">${list.title}</a></td>
 														<td>${list.member.nickName}</td>
 														<td>${list.createDate}</td>
 														<td>${list.readCount}</td>

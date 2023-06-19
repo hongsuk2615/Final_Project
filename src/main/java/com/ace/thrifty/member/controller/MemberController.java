@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.RestTemplate;
@@ -57,6 +58,9 @@ public class MemberController {
 		System.out.println(m);
 		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
 		m.setUserPwd(encPwd);
+		
+		
+		System.out.println(encPwd);
 		return memberService.insertMember(m) == 1 ? true : false;
 	}
 	
@@ -74,6 +78,10 @@ public class MemberController {
 			ra.addFlashAttribute("alertMsg", "로그인 성공");
 			model.addAttribute("loginUser", loginUser);
 			
+			if(loginUser.getAuthority() == 1) { //오늘 처음 로그인할 경우 LOGIN_TODAY 값 변경
+				memberService.todayLogin(loginUser.getUserNo());
+			}
+			
 		}else {
 			ra.addFlashAttribute("alertMsg", "로그인 실패");
 		}
@@ -81,7 +89,9 @@ public class MemberController {
 	}
 	
 	@GetMapping("/logout")
-	public String logOut(SessionStatus status) {
+	public String logOut(@SessionAttribute("loginUser") Member loginUser, SessionStatus status) {
+		
+		memberService.currentLogOut(loginUser.getUserNo());
 		status.setComplete();
 		return "redirect:/";
 	}

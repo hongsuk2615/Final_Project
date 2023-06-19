@@ -90,10 +90,10 @@
 															<c:when test="${list.status eq 'Y' && list.isBanned eq 'N'}">
 																<td>활성</td>
 															</c:when>
-															<c:when test="${list.status eq 'N' && list.isBanned eq 'N'}">
+															<c:when test="${list.isBanned eq 'Y'}">
 																<td>정지</td>
 															</c:when>
-															<c:when test="${list.isBanned eq 'Y'}">
+															<c:when test="${list.status eq 'N' && list.isBanned eq 'N'}">
 																<td>탈퇴</td>
 															</c:when>
 														</c:choose>
@@ -104,18 +104,18 @@
 																		<c:when test="${list.status eq 'Y' && list.isBanned eq 'N'}">
 																			활성
 																		</c:when>
-																		<c:when test="${list.status eq 'N' && list.isBanned eq 'N'}">
+																		<c:when test="${list.isBanned eq 'Y'}">
 																			정지
 																		</c:when>
-																		<c:when test="${list.isBanned eq 'Y'}">
+																		<c:when test="${list.status eq 'N' && list.isBanned eq 'N'}">
 																			탈퇴
 																		</c:when>
 																	</c:choose>
 																</button>
 																<div class="dropdown-menu">
 																	<button class="dropdown-item status-dropdown" value="active">활성</button>
-																	<button class="dropdown-item status-dropdown" value="suspend">정지</button>
-																	<button class="dropdown-item status-dropdown" value="banned">탈퇴</button>
+																	<button class="dropdown-item status-dropdown" value="banned">정지</button>
+																	<button class="dropdown-item status-dropdown" value="suspend">탈퇴</button>
 																</div>
 															</div>
 														</td>
