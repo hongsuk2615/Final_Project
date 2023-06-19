@@ -153,6 +153,7 @@ input::-webkit-search-results-decoration{
 }
 
 #enrolldiv button{
+	    line-height: 50px;
 	cursor: pointer;
 	border-radius: 2.25em;
 	font-size: 18px;

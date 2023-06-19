@@ -26,6 +26,7 @@
 		    font-family: 'GangwonEdu_OTFBoldA';
 		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
 		    font-weight: normal;
+		    line-height : 1.7;
 		    font-style: normal;
 		}
 		body *{
@@ -38,6 +39,28 @@
     <script>
         Kakao.init('812fa162a908f2e0e2a8addf2bbd6869'); // 사용하려는 앱의 JavaScript 키 입력
       </script>
+      <c:if test="${alertMsg == '로그인 성공'}">
+      	<script>
+      	Swal.fire({
+      	  position: 'top-center',
+      	  icon: 'success',
+      	  title: '로그인성공',
+      	  showConfirmButton: false,
+      	  timer: 1000
+      	})
+      	</script>
+      </c:if>
+      <c:if test="${alertMsg == '로그인 실패'}">
+      	<script>
+      	Swal.fire({
+      	  position: 'top-center',
+      	  icon: 'error',
+      	  title: '로그인실패',
+      	  showConfirmButton: false,
+      	  timer: 1000
+      	})
+      	</script>
+      </c:if>
     <div id="header" class="background_basic">
         
         <div id="header_1">

@@ -44,14 +44,13 @@ public class ReportController {
 				@RequestParam Map<String, Object> paramMap) {
 		
 		paramMap.put("userNo", ((Member)session.getAttribute("loginUser")).getUserNo());
-		
 		int result = reportService.reportInsert(paramMap);
 		String returnVal = "";
 		
 		
 		if(result>0) {
 			returnVal = "신고 접수가 되었습니다.";
-		}else if(result == -1){
+		}else if(result == 0){
 			returnVal = "이미 신고한 게시물입니다.";
 		}else {
 			returnVal = "다시 선택해서 신고해주세요.";

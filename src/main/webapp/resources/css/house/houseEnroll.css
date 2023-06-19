@@ -108,7 +108,7 @@
 
     #information{
         width: 90%;
-        height: 6.25em;
+        height: 15.25em;
         resize: none;
         border-radius: 15px;
         padding: 8px 10px; 
@@ -186,3 +186,18 @@
     .slickDiv:hover{
     opacity: 0.8;
     }
+    
+    .scrollbar::-webkit-scrollbar {
+     width: 10px;  
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(149, 156, 159); /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background: transparent;  /*스크롤바 뒷 배경 색상*/
+    border-radius: 10px;
+}
+    

@@ -35,6 +35,28 @@
     </style>
 </head>
 <body>
+	<c:if test="${alertMsg == '로그인 성공'}">
+      	<script>
+      	Swal.fire({
+      	  position: 'top-center',
+      	  icon: 'success',
+      	  title: '로그인성공',
+      	  showConfirmButton: false,
+      	  timer: 1000
+      	})
+      	</script>
+      </c:if>
+      <c:if test="${alertMsg == '로그인 실패'}">
+      	<script>
+      	Swal.fire({
+      	  position: 'top-center',
+      	  icon: 'error',
+      	  title: '로그인실패',
+      	  showConfirmButton: false,
+      	  timer: 1000
+      	})
+      	</script>
+      </c:if>
     <div id="header" class="background_basic" style="height: 90px;">
         <div id="header_1">
             <div id="header_1_1">

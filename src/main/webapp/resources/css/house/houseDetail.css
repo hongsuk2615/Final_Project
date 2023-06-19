@@ -4,7 +4,24 @@
 		}
         
         #sharetitle{
+        	position: relative;
             text-align: center;
+        }
+        #sharetitle1{
+        	width: 100%;
+        }
+        #report-btn{
+        	cursor: pointer;
+        	position: absolute;
+        	right: 5px;
+    		top: 50%;
+        }
+        
+         #inquiry-btn{
+        	cursor: pointer;
+        	position: absolute;
+        	right: 40px;
+    		top: 50%;
         }
 
         .img-bx{

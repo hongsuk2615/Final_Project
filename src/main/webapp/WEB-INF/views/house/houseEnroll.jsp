@@ -57,7 +57,7 @@
             </div>
            
 
-            <textarea type="text" placeholder="지점소개" name="information" id="information" required></textarea> <br>
+            <textarea class="scrollbar" wrap="hard" type="text" placeholder="지점소개" name="information" id="information" required></textarea> <br>
   
                 <input type="checkbox" name="injung" id="injung" >
             <label for="injung">개인정보수집에 동의합니다.</label> <br><br>
@@ -261,7 +261,7 @@
         inputCheck();
         
     	document.getElementById('houseAddress').addEventListener('click', function(){
-    		alert('주소검색버튼을 통해 입력바랍니다.');
+    		alert('주소 검색버튼을 통해 입력바랍니다.');
     	})
         
         function insertDaumPostcodeBtn(){
