@@ -94,7 +94,7 @@
     
     <script>
         function kakaoLogout() {
-            location.href="https://kauth.kakao.com/oauth/logout?client_id=17596a7a342e703f12c332dec822a955&logout_redirect_uri=http://localhost:8081/thrifty/member/logout";
+            location.href="https://kauth.kakao.com/oauth/logout?client_id=17596a7a342e703f12c332dec822a955&logout_redirect_uri=http://3.38.209.77/thrifty/member/logout";
         }
     </script> 
 

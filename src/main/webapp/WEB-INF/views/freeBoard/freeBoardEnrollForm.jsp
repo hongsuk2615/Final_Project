@@ -117,7 +117,7 @@
         </div>
         <jsp:include page="../common/footer.jsp" />
     </div>
-
+	<jsp:include page="../common/rightside.jsp"/>
 <!-- ckeditor CDN -->
 <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/super-build/ckeditor.js"></script>
 

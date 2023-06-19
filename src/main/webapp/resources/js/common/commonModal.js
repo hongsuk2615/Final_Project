@@ -72,13 +72,10 @@ $.ajax({
     }
 });
 
-function reportAjax(bNo, catNo){
+function reportAjax(param){
         $.ajax({
         url : "/thrifty/report/insert",
-        data : {
-            reportCategoryNo : catNo,
-            bNo : bNo
-        },
+        data : param,
         contentType: 'application/json; charset=utf-8',
         success(result){
             console.log(result);
@@ -125,7 +122,9 @@ function reportAjax(bNo, catNo){
 
 
 function reportBoard(element){
-    let bNo=$(element).attr("bno");
+    let bNo = $(element).attr("bno");
+    let rNo = $(element).attr("rno");
+    console.log("rNo="+rNo+" | bNo="+bNo);
     const { value: fruit } = Swal.fire({
         title: '신고항목을 고르세요',
         input: 'select',
@@ -137,7 +136,16 @@ function reportBoard(element){
         confirmButtonText: '신고하기',
         cancelButtonText: '취소',
         inputValidator: (value) => {
-            reportAjax(bNo, value);
+            let param = {};
+            param["reportCategoryNo"] = value;
+
+            if(typeof(bNo) == "undefined"){
+                param["rNo"] = rNo;
+            }else{
+                param["bNo"] = bNo;
+            }
+            console.log(param);
+            reportAjax(param);
         }
     })
 }

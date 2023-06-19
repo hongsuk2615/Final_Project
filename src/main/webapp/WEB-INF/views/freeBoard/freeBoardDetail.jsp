@@ -63,12 +63,107 @@
                     <c:if test="${loginUser.userNo eq b.userNo}">
                         <a class="board_btn btn_yellow" href="${contextPath}/freeBoard/enroll?bNo=${b.boardNo}">수정</a>
                     </c:if>
-                    <a class="board_btn btn_red" href="${contextPath}/freeBoard?" bno="${b.boardNo}" onclick="reportBoard(this)">신고</a>
+                    <a class="board_btn btn_red" bno="${b.boardNo}" onclick="reportBoard(this)">신고</a>
+                </div>
+            </div>
+            <div class="reply_container">
+                <div class="reply_enroll_container">
+                    <c:if test="${loginUser ne null}">
+                        <div class="reply_enroll_member">
+                            <img class="reply_enroll_memberProfile" src="${contextPath}/resources/images/admin/adminProfile.jpg" alt="">
+                            <span uNo="${loginUser.userNo}">${loginUser.nickName}</span>
+                        </div>
+                        <div class="reply_enroll_content">
+                            <textarea name="" id="reply_enroll_text" cols="120" rows="5"></textarea>
+                        </div>
+                        <div class="reply_enroll_btn_wrapper">
+                            <button class="reply_enroll_btn" bNo="${b.boardNo}" onclick="replyEnroll(this)">등록</button>
+                        </div>
+                    </c:if>
+                    <c:if test="${loginUser eq null}">
+                        <div class="reply_enroll_content">
+                            <textarea name="" id="reply_enroll_text_disabled" cols="120" rows="5" placeholder="로그인이 필요합니다." readonly></textarea>
+                        </div>
+                        <div class="reply_enroll_btn_wrapper">
+                            <button class="reply_enroll_btn" disabled >등록</button>
+                        </div>
+                    </c:if>
+                </div>
+                <div class="replyList_container">
+                    <ul>
+                        <c:forEach var="list" items="${rList}">
+                            <li class="replyList_wrapper">
+                                <div class="replyList_top">
+                                    <span class="replyList_nickName">${list.nickName}</span>
+                                    <span class="replyList_createDate">${list.createDate}</span>
+                                    <c:if test="${loginUser.userNo eq list.userNo}">
+                                        <span class="replyList_del" rNo="${list.replyNo}" onclick="replyDel(this)">X</span>
+                                    </c:if>
+                                    <div class="replyList_report" rNo="${list.replyNo}" onclick="reportBoard(this)">
+                                        <img src="/thrifty/resources/images/main/icon/alarm.png" alt="" style="width: 15px; height: 15px; margin-right: 5px;" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
+                                    </div>
+                                </div>
+                                <div class="replyList_bottom">
+                                    <span class="replyList_content">${list.content}</span>
+                                </div>
+                            </li>
+                        </c:forEach>
+                    </ul>
                 </div>
             </div>
         </div>
         <jsp:include page="../common/footer.jsp" />
     </div>
+    <jsp:include page="../common/rightside.jsp"/>
     <script src="/thrifty/resources/js/common/commonModal.js"></script>
+    <script>
+        function replyEnroll(element){
+            let bNo = $(element).attr("bNo");
+            let replyContent = $('#reply_enroll_text').val();
+
+            $.ajax({
+                url: "${contextPath}/reply/insert",
+                data: {
+                    bNo: bNo,
+                    replyContent : replyContent
+                },
+                success(result){
+                    if(result == 1){
+                        Swal.fire({
+                            position: 'top-center',
+                            icon: 'success',
+                            title: '댓글 등록',
+                            showConfirmButton: false,
+                            timer: 1000
+                        }).then(()=>{location.reload();});
+                    }
+                }
+            });
+        }
+
+        function replyDel(element){
+            let rNo = $(element).attr("rNo");
+
+            $.ajax({
+                url: "${contextPath}/reply/delete",
+                data: {
+                    rNo: rNo
+                },
+                success(result){
+                    if(result == 1){
+                        Swal.fire({
+                            position: 'top-center',
+                            icon: 'success',
+                            title: '댓글 삭제',
+                            showConfirmButton: false,
+                            timer: 1000
+                        }).then(()=>{location.reload();});
+                    }
+                }
+            });
+        }
+
+
+    </script>
 </body>
 </html>

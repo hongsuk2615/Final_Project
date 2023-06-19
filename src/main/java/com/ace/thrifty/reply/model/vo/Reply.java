@@ -17,4 +17,7 @@ public class Reply {
 	private String state;
 	private int parentReplyNo;
 	private int reportCount;
+	private int userNo;
+	
+	private String nickName;
 }

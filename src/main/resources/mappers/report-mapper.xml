@@ -18,7 +18,7 @@
 			VALUES(#{bNo},#{reportCategoryNo},#{userNo})
 		</if>
 		<if test="rNo != null">
-			INSERT INTO REPORT(REPLY_NO, R_CATEGORY_NO, REPORT_USER_NO)
+			INSERT IGNORE INTO REPORT(REPLY_NO, R_CATEGORY_NO, REPORT_USER_NO)
 			VALUES(#{rNo},#{reportCategoryNo},#{userNo})
 		</if>
 	</insert>
@@ -32,7 +32,7 @@
 		<if test="rNo != null">
 		UPDATE REPLY 
 		SET REPORT_COUNT = REPORT_COUNT+1
-		WHERE REPLY_NO #{rNo}
+		WHERE REPLY_NO = #{rNo}
 		</if>
 	</update>
 </mapper>

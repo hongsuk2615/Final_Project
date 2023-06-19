@@ -1,7 +1,5 @@
 package com.ace.thrifty.member.controller;
 
-
-
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -125,7 +123,8 @@ public class MemberController {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("grant_type","authorization_code");
 		params.add("client_id","17596a7a342e703f12c332dec822a955");
-		params.add("redirect_uri", "http://localhost:8081/thrifty/member/kakaoLogin");
+//		params.add("redirect_uri", "http://localhost:8081/thrifty/member/kakaoLogin"); //localhost
+		params.add("redirect_uri", "http://3.38.209.77/thrifty/member/kakaoLogin");
 		params.add("code", code);
 		
 		HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest =
@@ -186,12 +185,16 @@ public class MemberController {
 			if(memberService.insertMember(member) > 0) {
 				ra.addFlashAttribute("alertMsg", "로그인 성공");
 				model.addAttribute("loginUser",member);
+				memberService.todayLogin(member.getUserNo()); //오늘 처음 로그인할 경우 LOGIN_TODAY 값 변경
 			}else {
 				ra.addFlashAttribute("alertMsg", "로그인 실패");
 			}
 		}else {
 			ra.addFlashAttribute("alertMsg", "로그인 성공");
 			model.addAttribute("loginUser",member);
+			if(member.getAuthority() == 1) { //오늘 처음 로그인할 경우 LOGIN_TODAY 값 변경
+				memberService.todayLogin(member.getUserNo());
+			}
 		}
 		System.out.println("아이디: " + kakaoUser.getId());
 		System.out.println("이름: " + kakaoUser.getKakao_account().getProfile().getNickname());

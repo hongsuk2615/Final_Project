@@ -478,7 +478,7 @@ function enroll(){
 }
 
 function kakaoLogin(){
-    location.href = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=812fa162a908f2e0e2a8addf2bbd6869&redirect_uri=http://localhost:8081/thrifty/member/kakaoLogin";
+    location.href = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=812fa162a908f2e0e2a8addf2bbd6869&redirect_uri=http://3.38.209.77/thrifty/member/kakaoLogin";
 }
 
 

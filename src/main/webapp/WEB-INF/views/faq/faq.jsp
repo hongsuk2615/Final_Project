@@ -74,6 +74,7 @@ body {
 		</div>
 		<jsp:include page="../common/footer.jsp" />
 	</div>
+	<jsp:include page="../common/rightside.jsp"/>
 	<script>
 		$('.main_menu_icon').on('click', function(){
 			let catUNo = $(this).attr('catUNo');
