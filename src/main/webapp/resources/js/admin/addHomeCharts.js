@@ -1,7 +1,8 @@
- let boardCategory = [];
- 	let boardDailyNumber = [];
- 	let joinDates = [];
- 	let userNumbers = [];
+let boardCategory = [];
+let boardDailyNumber = [];
+let joinDates = [];
+let userNumbers = [];
+
  $(function () {
  	
  	$.ajax({
@@ -9,14 +10,13 @@
  		dataType : 'json',
  		success : function(result){
  			let jsonData = result;
- 			console.log(jsonData);
  			jsonData.dailyBoard.forEach(function(item){
 				    boardCategory.push(item.category);
 				    boardDailyNumber.push(item.number);
 				})
 			jsonData.dailyUser.forEach(function(item){
-				    joinDates.push(item.joinDate);
-				    userNumbers.push(item.number);
+				    joinDates.push(item.today);
+				    userNumbers.push(item.todayCount);
 				})
 				makeChart();		
  		}
@@ -57,18 +57,14 @@
 		        yAxes: [{
 		          gridLines : {
 		            display : true,
-		          }
+		          },
+				  ticks: {
+					beginAtZero: true
+				  }
+				  
 		        }]
 		      }
 		    }
-
-// 		    // This will get the first returned node in the jQuery collection.
-// 		    new Chart(areaChartCanvas, {
-// 		      type: 'line',
-// 		      data: areaChartData,
-// 		      options: areaChartOptions
-// 		    })
-	
 	
    //-------------
     //- LINE CHART -
@@ -89,7 +85,6 @@
 	//-------------
     //- DONUT CHART -
     //-------------
-    // Get context with jQuery - using jQuery's .get() method.
 	var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
       labels: boardCategory,
@@ -107,8 +102,7 @@
     	  position: 'right'
       }
     }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
+
     new Chart(donutChartCanvas, {
       type: 'doughnut',
       data: donutData,

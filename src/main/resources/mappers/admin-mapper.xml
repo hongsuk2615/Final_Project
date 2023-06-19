@@ -60,6 +60,7 @@
 		<result column="NICK_NAME" property="nickName"/>
 		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
 		<result column="STATUS" property="status"/>
+		<result column="CATEGORY_PATH" property="categoryPath"/>
 	</resultMap>
 	
 	<resultMap type="reply" id="replyResultSet">
@@ -87,7 +88,6 @@
 		SELECT * 
 		FROM MEMBER
 		WHERE USER_ID = #{userId}
-		  AND USER_PWD = #{userPwd}
 		  AND AUTHORITY = 0
 		  AND STATUS = 'Y'
 	</select>
@@ -280,7 +280,7 @@
 	
 	<select id="reportList" parameterType="map" resultMap="reportResultSet">
 		<if test="type == 'board'">
-			SELECT BOARD_NO, CATEGORY_U_NAME, TITLE, B.REPORT_COUNT, NICK_NAME, B.STATUS
+			SELECT BOARD_NO, CATEGORY_U_NAME, TITLE, B.REPORT_COUNT, NICK_NAME, B.STATUS, CATEGORY_PATH
 			FROM REPORT R JOIN BOARD B USING(BOARD_NO)
 			JOIN MEMBER M USING(USER_NO)
 			JOIN UPPER_CATEGORY UC USING (CATEGORY_U_NO)
@@ -391,18 +391,44 @@
 	</select>
 	
 	<select id="dailyUser" resultType="map">
-		SELECT JOIN_DATE AS joinDate, COUNT(*) AS number
-		  FROM MEMBER
-		 GROUP BY JOIN_DATE
+		SELECT DATE_FORMAT(TODAY, "%m/%d") AS today, TODAY_COUNT AS todayCount
+		FROM TODAY_LOGIN
+		WHERE DAY(TODAY) BETWEEN DAY(CURDATE())-7 AND DAY(CURDATE())-1;
 	</select>
 	
 	<select id="dailyBoard" resultType="map">
-	 	SELECT UC.CATEGORY_U_NAME AS category, COUNT(*) AS number
-		FROM BOARD B
-		JOIN UPPER_CATEGORY UC USING(CATEGORY_U_NO)
-		WHERE CREATE_DATE = CURDATE()
-		GROUP BY UC.CATEGORY_U_NAME;
+		SELECT UC.CATEGORY_U_NAME AS category, COUNT(B.CATEGORY_U_NO) AS number
+		FROM UPPER_CATEGORY UC
+		LEFT JOIN (SELECT CATEGORY_U_NO, COUNT(CATEGORY_U_NO)
+				   FROM BOARD
+                   WHERE CREATE_DATE = CURDATE()
+                   GROUP BY CATEGORY_U_NO) B 
+          ON UC.CATEGORY_U_NO = B.CATEGORY_U_NO
+        WHERE UC.CATEGORY_U_NO NOT IN(1,9)
+       	GROUP BY UC.CATEGORY_U_NAME;
 	</select>
 	
+	<insert id="todayLoginCount">
+		INSERT INTO TODAY_LOGIN
+			SELECT DATE_ADD(CURDATE(), INTERVAL -1 DAY) AS TODAY, COUNT(TODAY_LOGIN) AS TODAY_COUNT
+			FROM MEMBER
+			WHERE TODAY_LOGIN = 'Y';
+	</insert>
 	
+	<update id="todayLoginReset">
+		UPDATE MEMBER
+		SET TODAY_LOGIN = 'N'
+		WHERE CURRENT_LOGIN = 'N';
+	</update>
+	
+	<select id="reportCountDetail" parameterType="int" resultType="map">
+		SELECT RC.R_CATEGORY_NO as categoryNo, RC.R_CATEGORY_NAME as categoryName, IFNULL(R.COUNT, 0) AS count
+		FROM REPORT_CATEGORY RC
+		LEFT JOIN (SELECT R_CATEGORY_NO, R_CATEGORY_NAME, COUNT(R_CATEGORY_NO) AS COUNT
+		   FROM REPORT R
+		   JOIN REPORT_CATEGORY RC USING(R_CATEGORY_NO)
+		   WHERE BOARD_NO = #{bNo}
+		   GROUP BY R_CATEGORY_NO) R 
+  		ON RC.R_CATEGORY_NO = R.R_CATEGORY_NO;
+	</select>
 </mapper>

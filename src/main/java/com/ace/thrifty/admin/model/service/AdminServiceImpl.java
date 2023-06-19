@@ -59,7 +59,8 @@ public class AdminServiceImpl implements AdminService{
 	public int StatusUpdate(String location, Map<String, Object> paramMap) {
 		
 		if(location.equals("member")) {
-			return adminDao.memberStatusUpdate(paramMap);
+			int result = adminDao.memberStatusUpdate(paramMap);
+			return result;
 		}else {
 			return adminDao.boardStatusUpdate(paramMap);
 		}
@@ -173,11 +174,15 @@ public class AdminServiceImpl implements AdminService{
 	public void getData(Map<String, Object> dataMap) {
 		List<Map<String,Object>>  dailyUser = adminDao.getDailyUser();
 		List<Map<String,Object>> dailyBoard = adminDao.getDailyBoard();
-		System.out.println(dailyUser);
-		System.out.println(dailyBoard);
 		dataMap.put("dailyUser", dailyUser);
 		dataMap.put("dailyBoard", dailyBoard);
 		
+	}
+
+
+	@Override
+	public List<Map<String, Object>> reportCountDetail(int bNo) {
+		return adminDao.reportCountDetail(bNo);
 	}
 
 
