@@ -160,6 +160,10 @@ font{
     margin-top: 3px;
 }
 
+.content_padding{
+	padding-top: 7px;
+}
+
 .search_img_basic{
     background-image: url("/thrifty/resources/images/main/icon/search-1.png");
 }

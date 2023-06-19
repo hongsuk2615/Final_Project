@@ -131,6 +131,7 @@ select option{
     height: 35px;
     border-radius: 4px;
     border: 2px solid rgb(0, 60, 120);
+    padding-top: 6px;
 }
 
 #search_submit{
