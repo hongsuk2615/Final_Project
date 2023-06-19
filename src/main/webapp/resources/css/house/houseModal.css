@@ -149,6 +149,7 @@
 
 	#closebtn{
 		cursor: pointer;
+		margin: 20px;
 	}
 
 	#modal-applicationForm, #modal-chat, #modal-applicationForm2{

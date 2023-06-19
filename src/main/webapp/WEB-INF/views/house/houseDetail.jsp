@@ -264,7 +264,13 @@
         		data : {roomNo, symbol },
         	 	beforeSend : function(){
         			if(recruitsNum.text() == 0 && symbol == 'minus'){
-        				alert('모집인원은 음수가 될 수 없습니다.');
+        				Swal.fire({
+                            position: 'top-center',
+                            icon: 'error',
+                            title: '모집인원은 음수가 될 수 없습니다.',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
         				return false;
         			}
         		},
@@ -404,9 +410,6 @@
           		}
           		
           	}) 
-          	
-          	
-          	
          }
       </script>
       <jsp:include page="houseModal.jsp"></jsp:include>

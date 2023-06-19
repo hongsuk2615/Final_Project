@@ -154,7 +154,7 @@
 		    LEFT JOIN SHARE_HOUSE ON SHARE_HOUSE.BOARD_NO = BOARD.BOARD_NO
 		    WHERE CATEGORY_U_NO = '2'
 				AND STATUS = 'Y'
-			ORDER BY CREATE_DATE
+			ORDER BY CREATE_DATE DESC
 	</select>
 	
 	<insert id="tourApply" parameterType="tour">

@@ -41,7 +41,10 @@ public class HouseController {
 	@ResponseBody
 	@PostMapping("") // 헤더의 쉐어하우스 클릭 시 
 	public String shareHouse(HttpSession s) {
-		int userNo = ((Member)s.getAttribute("loginUser")).getUserNo();
+		int userNo = -1;
+		if(s.getAttribute("loginUser") != null) {
+			userNo = ((Member)s.getAttribute("loginUser")).getUserNo();
+		}
 		return new Gson().toJson(houseService.selectHouseList(userNo));
 	}
 	
