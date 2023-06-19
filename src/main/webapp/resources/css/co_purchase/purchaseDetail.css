@@ -189,3 +189,7 @@
 .align{
     align-items: center;
 }
+
+#report-btn, #inquiry-btn, #wish-btn{
+	cursor: pointer;
+}

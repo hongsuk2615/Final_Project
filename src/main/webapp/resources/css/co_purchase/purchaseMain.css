@@ -176,7 +176,7 @@ select option{
 #pagingbar{
     width: 500px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     text-align: center;
     padding-top: 30px;
     margin: auto;
@@ -300,4 +300,8 @@ select option{
 .tab{
 	font-size: 25px;
     color: rgb(0, 60, 120);
+}
+
+.tab1{
+	padding-top: 4px;
 }

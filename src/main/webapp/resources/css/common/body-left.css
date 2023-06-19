@@ -46,10 +46,15 @@
     height: 60px;
     margin-right: 10px;
 }
+
+#upper-category-name{
+    padding-top: 15px;	
+}
+
 #upper-category-name > a{
-    font-size: 28px;
-    text-decoration : none;
-    color : white;
+    color: white;
+   	font-size: 40px;
+    text-decoration: none;
 }
 
 #sub-category{
@@ -69,6 +74,10 @@
 #sub-category li{
     list-style-type: none;
     margin: 20px 0;
+    font-size: 20px;
+    width: 80%;
+    border-radius: 8px;
+    padding: 10px 0px 4px 8px;
 }
 
 #filter{
