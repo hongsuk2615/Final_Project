@@ -67,11 +67,28 @@
 		</association>
 	</resultMap>
 	
-	<select id="selectBoardListCount" resultType="_int">
+	<select id="selectBoardListCount" parameterType="map" resultType="_int">
 		SELECT COUNT(*)
-		FROM BOARD
-		WHERE STATUS = 'Y'
+		FROM BOARD B
+		JOIN CO_PURCHASE C USING(BOARD_NO)
+		JOIN MEMBER M USING(USER_NO)
+		JOIN IMAGE I USING(BOARD_NO)
+		WHERE B.STATUS = 'Y'
 		AND CATEGORY_U_NO = 6
+		<choose>
+	 		<when test='scNo!= null and scNo !=""'>
+	 			AND CATEGORY_S_NO = #{scNo}
+	 		</when>
+			<when test="condition == '작성자'">
+				AND NICK_NAME LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</when>
+			<when test="condition == '제목'">
+				AND TITLE LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</when>
+			<when test="condition == '내용'">
+				AND CONTENT LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</when>
+		</choose>
 	</select>
 	
 	<select id="selectCoPurchaseList" parameterType="map" resultMap="coPurchaseResultSet">
