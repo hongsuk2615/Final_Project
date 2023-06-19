@@ -106,8 +106,6 @@
 				                        </c:choose>
 			                        </div>     
 			                    </div>                	
-	                    	
-	                    	
 	                    	</c:when>
 							<c:otherwise>
 								<div class="items"  style="opacity:0; height: 200px; cursor:initial;">
@@ -122,10 +120,7 @@
 			                    </div>              
 							</c:otherwise>		                    
 	                    </c:choose>
-                    
                 	</c:forEach>
-                	
-                	
                 	</c:otherwise>
                 </c:choose>
                 </div>
