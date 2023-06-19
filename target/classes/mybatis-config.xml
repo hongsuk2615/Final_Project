@@ -31,6 +31,7 @@
 		<typeAlias type="com.ace.thrifty.house.model.vo.Tour" alias="tour"/>
 		<typeAlias type="com.ace.thrifty.reply.model.vo.Reply" alias="reply"/>
 		<typeAlias type="com.ace.thrifty.notice.model.vo.Notice" alias="notice"/>
+		<typeAlias type="com.ace.thrifty.freeboard.model.vo.FreeBoard" alias="freeBoard"/>
 	</typeAliases>
 	
 	<!-- 

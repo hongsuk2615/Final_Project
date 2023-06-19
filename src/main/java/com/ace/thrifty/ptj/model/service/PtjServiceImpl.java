@@ -58,7 +58,6 @@ public class PtjServiceImpl implements PtjService {
       List<Ptj> list = ptjDao.selectPtjAll(pi, queryString);    
       queryString.put("pi", pi);
       queryString.put("list", list);
-      
    }
    
    @Transactional(rollbackFor = {Exception.class})
@@ -119,6 +118,4 @@ public class PtjServiceImpl implements PtjService {
    public List<Ptj> advptjAll(){
 	   return ptjDao.advptjAll();
    }
-   
-   
 }
