@@ -64,7 +64,7 @@
                     <div id="invite_info">
                         <div class="write_case invite_info_1">
                             <div class="write_case_head">모집 인원</div>
-                            <input type="text" id="" class="info_content" name="recruitsNum" placeholder="숫자만 입력" required>
+                            <input type="text" id="" class="info_content" onchange="validateNumber(this)" onkeyup="validateNumber(this)" name="recruitsNum" placeholder="숫자만 입력" required>
                         </div>
                         <div class="write_case invite_info_1">
                             <div class="write_case_head">마감 기한</div>
@@ -100,7 +100,7 @@
                         <div class="write_case">
                             <div id="fileUpload_2">
                                 <input type="text" name="productName" class="write_content" placeholder="제품 명을 입력해주세요." required>
-                                <input type="text" name="price" id="price" class="write_content" placeholder="가격을 입력해주세요." required>
+                                <input type="text" name="price" id="price" class="write_content" onchange="validateNumber(this)" onkeyup="validateNumber(this)" placeholder="가격을 입력해주세요." required>
                             </div>
                         </div>
                     </div>
@@ -122,5 +122,16 @@
         <jsp:include page="../common/footer.jsp"/>
     </div>
     <script type="text/javascript" src="${ contextPath }/resources/js/co_purchase/enrollForm.js"></script>
+    <script>
+    	function validateNumber(element){
+    		
+    		let inputVal = $(element).val();
+    		console.log(inputVal);
+    		let reg = /^[0-9]+$/;
+    		if(!reg.test(inputVal)){
+    			$(element).val('');
+    		}
+    	}
+    </script>
 </body>
 </html>
