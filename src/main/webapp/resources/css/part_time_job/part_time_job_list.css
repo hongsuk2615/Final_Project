@@ -19,8 +19,26 @@
 #ptj-allBody{
 	display: flex;
 	justify-content: space-around;
-	margin-bottom: 100px;
+	border-radius: 10px;
 	flex-wrap: wrap;
+	padding: 10px;
+	background-color: rgb(181, 198, 215);
+}
+
+#ptj-allBody > div {
+	border: solid #3f668f 7px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+#ptj-allBody > div:hover {
+	box-shadow: 5px 5px 5px gray;
+}
+
+#ptj-allBody > p {
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	white-space: nowrap;
 }
 
 #write-board {
@@ -55,4 +73,14 @@
     background-color: rgb(244, 244, 244);
     border-radius: 4px;
     border: 1px solid transparent;
+}
+
+#board-content {
+	font-size : xx-small;
+}
+
+#ptj-content {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }

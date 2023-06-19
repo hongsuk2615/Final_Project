@@ -55,8 +55,8 @@
                 	<div id="cat_title_1">게시글 상세</div>
                 	<c:if test="${loginUser.userNo eq board.userNo or loginUser.authority eq 0}">
 	                	<div id="edit_btn" class="flex">
-	                		<div id="modify-btn" class="edit_btn" bNo ="${board.boardNo}" type="button">수정</div>
-	                		<div id="delete-btn" class="edit_btn" bNo ="${board.boardNo}" type="button" url="co_purchase">삭제</div>
+	                		<div id="modify-btn" class="edit_btn" bNo ="${board.boardNo}" onclick="modifyBoard(this)">수정</div>
+	                		<div id="delete-btn" class="edit_btn" bNo ="${board.boardNo}" onclick="deleteBoard(this)" url="co_purchase">삭제</div>
 	                	</div>
                 	</c:if>
                 </div>
