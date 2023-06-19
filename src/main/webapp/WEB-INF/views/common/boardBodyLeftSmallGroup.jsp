@@ -37,7 +37,7 @@
                 </div>
                 <div id="upAdv">
                     <ul class="scrollbar">
-                        <div class="alert alert-danger">
+                        <div class="advall">
                             <span id="num">20</span>초 후에 없어짐
                             <p>광고</p>
                             <p>광고</p>
