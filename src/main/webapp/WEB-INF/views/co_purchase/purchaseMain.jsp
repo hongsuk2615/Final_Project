@@ -78,7 +78,9 @@
 							<tr>
 								<td class="flex">
 									<div class="detail_img">
-                                    	<img src="${ contextPath }/${ b.thumbNail }" alt="" class="detail_img_1" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
+										<a href="${ contextPath }/co_purchase/detail?bNo=${ b.boardNo }">
+	                                    	<img src="${ contextPath }/${ b.thumbNail }" alt="" class="detail_img_1" onerror="this.src='/thrifty/resources/images/common/noImage.png'">									
+										</a>
                                     </div>
                                     <div class="detail">
                                     <div class="detail_top">
@@ -205,7 +207,7 @@
                             <img src="${ contextPath }/resources/images/main/icon/back-1.png" alt="" style="width: 25px; height: 25px;">
                         </c:when>
                         <c:otherwise>
-                            <div class="page-item"><a class="page-link" href="/thrifty/co_purchase?currPage=${map.currPage-1}&scNo=${map.scNo}"><img src="${ contextPath }/resources/images/main/icon/back-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
+                            <div class="page-item"><a class="page-link" href="/thrifty/co_purchase?currPage=${map.currPage-1}&scNo=${scNo}&condition=${map.condition}&keyword=${map.keyword}"><img src="${ contextPath }/resources/images/main/icon/back-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
                         </c:otherwise>					
                     </c:choose>
                     
@@ -218,7 +220,7 @@
                             <img src="${ contextPath }/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;">
                         </c:when>
                         <c:otherwise>
-                            <div class="page-item"><a class="page-link" href="/thrifty/co_purchase?currPage=${map.currPage+1}&scNo=${map.scNo}"><img src="${ contextPath }/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
+                            <div class="page-item"><a class="page-link" href="/thrifty/co_purchase?currPage=${map.currPage+1}&scNo=${scNo}&condition=${map.condition}&keyword=${map.keyword}"><img src="${ contextPath }/resources/images/main/icon/next-1.png" alt="" style="width: 25px; height: 25px;"></a></div>
                         </c:otherwise>					
                     </c:choose>
 				</div>

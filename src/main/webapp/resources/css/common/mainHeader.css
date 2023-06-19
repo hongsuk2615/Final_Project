@@ -87,6 +87,10 @@ li{
     font-weight: 900;
 }
 
+.content_padding{
+	padding-top: 7px;
+}
+
 .main_category{
     height: 30px;
     cursor: pointer;
