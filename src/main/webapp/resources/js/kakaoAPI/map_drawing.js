@@ -192,16 +192,47 @@ function displayMarkers(o , d) {
             position: positions[i].latlng,
             content : positions[i].title
             });
-            infowindow.setContent('<div style="padding:5px;font-size:12px; border-radius: 3px; text-align: center;">' + place.place_name + '</div>');
+            // infowindow.setContent('<div class="makerInfo">' + content[i] + '</div>');
             infowindow.open(map, marker);
 
     }
+    
+    // var markerInfo = document.querySelectorAll('.markerInfo');
+    //         markerInfo.forEach(function(e) {
+    //             var w = e.offsetWidth + 10;
+    //             var ml = w/2;
+    //             e.parentElement.style.top = "100px";
+    //             e.parentElement.style.left = "50%";
+    //             e.parentElement.style.marginLeft = -ml+"px";
+    //             e.parentElement.style.width = w+"px";
+    //             e.parentElement.previousSibling.style.display = "none";
+    //             e.parentElement.parentElement.style.border = "0px";
+    //             e.parentElement.parentElement.style.background = "unset";
+    //         });
+    
+
+
         // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-    function makeOverListener(map, marker, infowindow) {
-        return function() {
-            infowindow.open(map, marker);
-        };
-    }
+    // function makeOverListener(map, marker, infowindow) {
+    //     return function() {
+    //         infowindow.open(map, marker);
+    //         var markerInfo = document.querySelectorAll('.markerInfo');
+    //         markerInfo.forEach(function(e) {
+    //             var w = e.offsetWidth + 10;
+    //             var ml = w/2;
+    //             e.parentElement.style.top = "30px";
+    //             e.parentElement.style.left = "50%";
+    //             e.parentElement.style.marginLeft = -ml+"px";
+    //             e.parentElement.style.width = w+"px";
+    //             e.parentElement.previousSibling.style.display = "none";
+    //             e.parentElement.parentElement.style.border = "0px";
+    //             e.parentElement.parentElement.style.background = "unset";
+    //         });
+    //     };
+    // }
+
+    
+    
 
 
 

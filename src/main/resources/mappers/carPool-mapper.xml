@@ -81,6 +81,10 @@
 	 	<if test='location != null and location != ""'>
 	 		AND LOCATION_NO = #{location}
 	 	</if>
+	 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+ 		    AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+ 		    OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+	    </if>
 </select>
 
 <select id="selectDriveList" parameterType="map" resultMap="carPoolResultSet">
@@ -89,6 +93,8 @@
 		C.RECRUITS_NUM,
 		C.RECRUITS_CURR,
 		C.IS_END,
+		C.PRICE,
+		SC.CATEGORY_S_NAME,
 		B.TITLE,
 		L.LOCATION_NAME,
 		CONCAT('/resources/upfiles/carPool/', IFNULL(I.CHANGE_NAME,'NULL')) AS IMG_PATH
@@ -96,6 +102,7 @@
 	LEFT JOIN BOARD B ON B.BOARD_NO = C.BOARD_NO
 	LEFT JOIN LOCATION L ON C.LOCATION_NO = L.LOCATION_NO
 	LEFT JOIN IMAGE I ON C.BOARD_NO = I.BOARD_NO
+	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 	LEFT JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
 	WHERE UC.CATEGORY_U_NO = 3 AND B.STATUS = 'Y' AND I.STATUS = 'Y'
 		<if test= 'scNo!= null and scNo !="" '>
@@ -104,7 +111,11 @@
 	 	<if test='location != null and location!= ""'>
 	 		AND C.LOCATION_NO = #{location}
 	 	</if>
-    <!-- GROUP BY B.BOARD_NO -->
+	 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+ 		    AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+ 		    OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+	   	</if>
+    GROUP BY B.BOARD_NO
 </select>
 
 <insert id="insertCarPool" parameterType="carPool">

@@ -51,6 +51,11 @@
     #footer{
         
     }
+    /* .markerInfo{
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+    } */
 
 </style>
 </head>
