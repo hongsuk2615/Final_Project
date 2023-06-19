@@ -21,31 +21,28 @@ public class CarPoolDao {
 	public List<CarPool> driveList() {
 		return sqlSession.selectList("carPoolMapper.driveList");
 	}
-	
 	public CarPool driveDetail(int bNo) {
 		return sqlSession.selectOne("carPoolMapper.driveDetail" , bNo);
 	}
-	
 	public int selectDriveListCount(Map<String, Object> queryString) {
 		return sqlSession.selectOne("carPoolMapper.selectDriveListCount" , queryString);
 	}
-	
 	public List<CarPool> selectDriveList(PageInfo pi, Map<String, Object> queryString) {
 		int offset = (pi.getCurrentPage() - 1 ) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);		
 		return sqlSession.selectList("carPoolMapper.selectDriveList", queryString, rowBounds);
 	}
-	
 	public int insertCarPool(CarPool c) {
 		return sqlSession.insert("carPoolMapper.insertCarPool" , c);
 	}
-	
 	public int deadLine(Board b) {
 		return sqlSession.update("carPoolMapper.deadLine" , b);
 	}
-	
-	public CarPool carPoolUpdateForm(int boardNo) {
-		return sqlSession.selectOne("carPoolMapper.carPoolUpdateForm" ,boardNo);
+	public CarPool carPoolUpdateForm(int bNo) {
+		return sqlSession.selectOne("carPoolMapper.carPoolUpdateForm" ,bNo);
+	}
+	public int carPoolBoardUpdate(CarPool cP) {
+		return sqlSession.update("carPoolMapper.carPoolBoardUpdate", cP);
 	}
 }
