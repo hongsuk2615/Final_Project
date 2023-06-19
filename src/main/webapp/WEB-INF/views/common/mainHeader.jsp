@@ -67,17 +67,17 @@
             <div id="header_1_2">
             <c:choose>
             	<c:when test="${empty loginUser}">
-	                <div  class="content_white change_content" onclick="login();">로그인</div>
-	                <div  class="content_white change_content" onclick="enroll();">회원가입</div>        	
+	                <div  class="content_white change_content content_padding" onclick="login();">로그인</div>
+	                <div  class="content_white change_content content_padding" onclick="enroll();">회원가입</div>        	
             	</c:when>
             	<c:otherwise>
-	                <div class="content_white change_content" onclick="myPage()">내정보</div>
+	                <div class="content_white change_content content_padding" onclick="myPage()">내정보</div>
 	                <c:choose>
 						<c:when test="${loginUser.loginMethod eq 'K' }">
-							<div class="content_white change_content" onclick="kakaoLogout();">로그아웃</div>
+							<div class="content_white change_content content_padding" onclick="kakaoLogout();">로그아웃</div>
 						</c:when>	                
 						<c:otherwise>
-							<div class="content_white change_content" onclick="logout();">로그아웃</div>
+							<div class="content_white change_content content_padding" onclick="logout();">로그아웃</div>
 						</c:otherwise>
 		                
 	                </c:choose>
@@ -90,27 +90,8 @@
                 </div>
             </div>
         </div>
-        <form action="/thrifty/api/v1/oauth2/google" method="POST">
-            <input type="submit" value="post">
-        </form>    	
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <ul style="list-style-type: none;">
-            <li id="GgCustomLogin">
-            </li>
-        </ul>
-
     </div>
     
-    <script>
-    	function onSignIn(googleUser){
-    		console.log("aaa");
-    		let profile = googleUser.getBasicProfile();
-    		console.log('ID: ' + profile.getId());
-    		console.log('Name: ' + profile.getName());
-    		console.log('Image URL: ' + profile.getImageUrl());
-    		console.log('Email: ' + profile.getEmail());
-    	}
-    </script>
     <script>
         function kakaoLogout() {
             location.href="https://kauth.kakao.com/oauth/logout?client_id=17596a7a342e703f12c332dec822a955&logout_redirect_uri=http://localhost:8081/thrifty/member/logout";

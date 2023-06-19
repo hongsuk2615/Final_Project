@@ -43,7 +43,7 @@
         display: flex;
         width: 50%;
         min-width: 900px;
-        min-height: 380px;
+        min-height: 200px;
         margin-top: 50px;
     }
 
@@ -62,7 +62,7 @@
 <body>
     <div id="wrapper">
 			<jsp:include page="../common/header.jsp" />
-        <div id="body" style="padding-top: 150px;">
+        <div id="body" style="padding-top: 100px;">
             <div id="body-search">
                 <swiper-container class="mySwiper" navigation="true" style="border-radius: 30px; --swiper-navigation-color: white;">
                     <swiper-slide><img src="/thrifty/resources/images/ptj/ptj.jpg"></swiper-slide>
@@ -78,7 +78,7 @@
             </div>
             <div id="body1">
 				<div id="simburum">
-                    <button style="width: 900px; height: 200px; border: 0;" id="simburum-btn">
+                    <button style="width: 900px; height: 150px; border: 0;" id="simburum-btn">
                     	<div style="width: 500px;" id="simburum-img">
     	                   	<img src="/thrifty/resources/images/ptj/house.png" style="width: 64px; height: 64px;">
 	                        <img src="/thrifty/resources/images/ptj/part-time.png"><br>
@@ -89,36 +89,35 @@
             </div>
             <h1>알뜰살뜰 자유게시판에 물어보세요!</h1>
             <div id="free-board">
-                <div>
-                    <h4 style="color: #B2B1B0;">카테고리 > 알바 대타</h4>
-                    <h3>알바 어떻게 해야하죠</h3>
-                    <p style="max-width:250px;">대타 구해요~ 역삼역 근처인데 혹시 시간 되시는분 계실까요?</p>
-                </div>
-                <div>
-                    <h4 style="color: #B2B1B0;">카테고리 > 심부름</h4>
-                    <h3>0명 모집중</h3>
-                    <p style="max-width:250px;">왜 이렇게 저를 힘들게 하십니까!!!</p>
-                </div>
-                <div>
-                    <h4 style="color: #B2B1B0;">카테고리 > 알바 대타</h4>
-                    <h3>10명 모집중</h3>
-                    <p style="max-width:250px;">알바생 구해요~ 역삼역 근처</p>
-                </div>
-                <div>
-                    <h4 style="color: #B2B1B0;">카테고리 > 알바 대타</h4>
-                    <h3>3명 모집중</h3>
-                    <p style="max-width:250px;">알바생 구해요~ 역삼역 근처</p>
-                </div>
+            <c:forEach var="pList" items="${p}" begin="0" end="3" step="1">
+           		<c:if test="${pList.board.categoryUNo eq 8 }">
+           			<div id="free-board-div">
+	                    <h4 style="color: #B2B1B0;">카테고리 > 자유 게시판</h4>
+	                    <h3>${pList.board.title }</h3>
+	                    <p id="free-board-content" style="max-width:250px;">${pList.board.content }</p>
+	                </div>
+           		</c:if>
+            </c:forEach>
             </div>
         </div>
         <div style="height: 450px">
-            <h2 style="margin-left: 250px;">최신 심부름 / 알바 게시글</h2>
-            <div id="alba-board">
-            	<c:forEach var="p" items="${p }" begin="0" end="3" step="1">
-	                <div>
-	                    <img src="${contextPath }${webPath }${p.imgPath }" style="width: 230px; height: 180px;">
-	                    <p>${p.isEnd == "N" ? "모집중" : "모집 완료" }</p>
-	                    <p>${p.board.content }</p>
+            <h2 style="margin-left: 10%;">최신 심부름 / 알바 게시글</h2>
+            <div id="alba-board" style="padding: 30px;">
+            	<c:forEach var="pList" items="${p }" begin="0" end="3" step="1">
+	                <div id="ptj-new-board" onclick="location.href = '${contextPath}/ptj/detail?bNo=${pList.boardNo }'">
+	                	<c:choose>
+	                		<c:when test="${pList.board.categoryUNo eq 5 }">
+			                    <img src="${contextPath }${webPath }${pList.imageList.get(0).changeName }" style="width: 200px; height: 160px;">	                		
+			                    <p>${pList.isEnd == "N" ? "모집중" : "모집 완료" }</p>
+	                   			<p>${pList.board.title }</p>
+	                		</c:when>
+	                		<c:otherwise>
+	                			<img src="${contextPath }/resources/images/ptj/end.jpg" style="width: 200px; height: 160px;">
+	                			<p>게시글이 삭제되거나</p>
+	                			<p>구인이 완료되었습니다.</p>
+	                		</c:otherwise>
+	                	</c:choose>
+	                    
 	                </div>
             	</c:forEach>
             </div> 
@@ -135,11 +134,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     <script>
         document.getElementById("simburum-btn").addEventListener("click",function(){
-   	        location.href = "<%= request.getContextPath() %>/ptj/ptjList";
-   	   	})
-   	   	
-   	   	document.getElementById("alba-btn").addEventListener("click",function(){
-   	        location.href = "<%= request.getContextPath() %>/ptj/ptjList";
+   	        location.href = "${contextPath}/ptj/ptjList";
    	   	})
     </script>
 </body>

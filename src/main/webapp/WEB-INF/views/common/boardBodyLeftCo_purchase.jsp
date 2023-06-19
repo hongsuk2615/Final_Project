@@ -9,6 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/thrifty/resources/css/common/body-left-co.css">
     <title>Document</title>
+    <style>
+    	.sub-category:hover{
+			background : lightgray;
+			color : black;
+		}
+		.sub-category-selected{
+			background : lightgray;
+			color : black;
+		}
+    </style>
 </head>
 <body>
 	<div id="body-left">
@@ -22,7 +32,7 @@
 	        <ul class="scrollbar">
 	        <c:forEach var="subCategory" items="${subCategoryList}">
 	        	<c:if test="${subCategory.categoryUNo eq 6}">
-	            <li onclick="location.href = '${ contextPath }/co_purchase?scNo=${ subCategory.categorySNo }'" class="subCategoryName">${subCategory.categorySName}</li>
+	            <li class="sub-category ${scNo eq subCategory.categorySNo? 'sub-category-selected':'' }" onclick="location.href = '${contextPath}/co_purchase?scNo=${subCategory.categorySNo }'">${subCategory.categorySName}</li>
 	            </c:if>
 	        </c:forEach>    
 	        </ul>

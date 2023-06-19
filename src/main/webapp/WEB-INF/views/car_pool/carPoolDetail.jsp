@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     *{
-        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -67,7 +66,7 @@
                     </div>
                      <c:if test="${loginUser.userNo eq carpool.board.userNo or loginUser.authority eq 0}">
 	                    <div id="enroll-update">	
-	                        <button style="border: 0;" id="update-btn" >수정하기</button>
+	                        <button style="border: 0;" id="update-btn" url="carPool/update">수정하기</button>
 	                        <button style="border: 0;" id="delete-btn" bNo="${carpool.board.boardNo }" url="carPool/drive">삭제하기</button>
 	                        <c:choose>
 	                        	<c:when test="${carpool.isEnd eq 'N' }">
@@ -82,19 +81,25 @@
                 </div>
                 <hr>
                 <div id="enroll">
-                    <form>
                         <div id="enroll-header">
                             <div style="display: flex;">
                                 <div>
                                 <c:forEach var="image" items="${imageList }" begin="0" end="3" step="1">
-                                	<img src="${contextPath }/resources/upfiles/carPool/${image.changeName}" style="height: 200px; width: 300px; border-radius: 10px;" >                                	
+                                <c:choose>
+                                	<c:when test="${image.changeName != null }">
+                                		<img src="${contextPath }/resources/upfiles/carPool/${image.changeName}" style="height: 200px; width: 300px; border-radius: 10px;"/>                                	
+                                	</c:when>
+                                	<c:otherwise>
+                                		<img src="${contextPath }/resources/images/carpool/no-image.png" style="height: 200px; width: 300px; border-radius: 10px;"/>
+                                	</c:otherwise>
+                                </c:choose>
                                 </c:forEach>
                                 <h2>제목 : &nbsp;${carpool.board.title }</h2>
                                 </div>
-                                <c:if test="${p.isEnd eq 'Y' }">
-                                    <p style="color: red;"><b>모집인원이 마감 되었습니다.</b></p>
-                                </c:if>
                             </div>
+                            <c:if test="${carpool.isEnd eq 'Y' }">
+                                <h2 style="color: red;"><b>모집인원이 마감 되었습니다.</b></h2>
+                            </c:if>
                             <br>
                             <div>
                                 <h3 id="enroll-content">내용 :  </h3><p>${carpool.board.content }</p>
@@ -106,9 +111,9 @@
                             <h3>작성자 성별 : ${carpool.member.gender }</h3>
                             <hr>
                             <div id="item-btns">
-                                <div id="inquiry-btn" uNo="${carpool.board.userNo }" seller="${carpool.member.userId }">쪽지 보내기</div>
-                                <div id="report-btn" bNo="${p.board.boardNo }">신고하기</div>
-                                <div id="wish-btn" bNo="${carpool.board.boardNo }">찜</div>
+                                <div id="inquiry-btn" uNo="${carpool.board.userNo }" seller="${carpool.member.userId }" onclick="sendMessage(this)"><p>쪽지 보내기</p></div>
+                                <div id="report-btn" bNo="${carpool.board.boardNo }" onclick="reportBoard(this)" ><p>신고하기</p></div>
+                                <div id="wish-btn" bNo="${carpool.board.boardNo }" onclick="wishList(this);"><p>찜</p></div>
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
                             <hr>
@@ -121,6 +126,8 @@
                             출발 시간 : ${carpool.startTime }<br>
                             도착 시간 : ${carpool.endTime }
                             <hr>
+                            <h3>시 / 군 / 구 : ${carpool.location.locationName }</h3>
+                            <hr>
                             <div id="enroll-map">
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
                                 <div id="map" style="width:100%; height:350px; border-radius: 5px;"></div>
@@ -129,7 +136,6 @@
                         <div id="enroll-footer">
                             <button type="button" id="back-btn" style="border: 0;">뒤로가기</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -144,8 +150,10 @@
 	let origin = "${carpool.origin}";
 	let destination = "${carpool.destination}";
 	$(function(){
-		drowPath(origin,destination);		
+		drowPath(origin,destination);
+		displayMarker(origin,destination);
 	})
+	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(37.74600180458021 , 127.095508519265), // 지도의 중심좌표
@@ -197,34 +205,117 @@
 	                    map.setBounds(bounds);
 	                    map.setLevel(map.getLevel()+1);
 	                    polyline.setMap(map);
+	                    
+	                    let originObj = {};
+	                    originObj.x = origin.split(',')[0];
+	                    originObj.y = origin.split(',')[1];
+	                    let destinationObj = {};
+	                    destinationObj.x = destination.split(',')[0];
+	                    destinationObj.y = destination.split(',')[1];
+	                    console.log(originObj);
+	                    console.log(destinationObj);
+	                    displayMarkers(originObj,destinationObj);
 	            }
 
 	        }
 	    })
 	}
 	
+	/* // 지도에 마커를 표시하는 함수입니다
 	function displayMarker(place) {
+
+	    var imageSrc = '/thrifty/resources/images/carpool/car2.png'; // 마커이미지의 주소입니다    
+	    imageSize = new kakao.maps.Size(40, 40); // 마커이미지의 크기입니다
+	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
 	    
-	    // 마커를 생성하고 지도에 표시합니다
-	    var marker = new kakao.maps.Marker({
-	        map: map,
-	        position: new kakao.maps.LatLng(place.y, place.x) 
-	    });
-	    markers.push(marker);
-	    // 마커에 클릭이벤트를 등록합니다
-	    kakao.maps.event.addListener(marker, 'click', function() {
-	        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-	        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-	        infowindow.open(map, marker);
-	        console.log(marker.getPosition());
-	        map.setLevel(1);
-	        setCenter(marker.getPosition().Ma , marker.getPosition().La);
-	        coordinate = marker.getPosition().La + "," + marker.getPosition().Ma;
-	        document.getElementById('좌표').innerHTML="작은거 : "  + document.getElementById("origin").value + " 큰거 : " + document.getElementById("destination").value;
-	    });
-	}
-	
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+	    // markerPosition = new kakao.maps.LatLng(place.y, place.x); //마커가 표시될 위치입니다
+
+	    var positions = [
+	        {
+	            title: '출발지', 
+	            latlng: new kakao.maps.LatLng(place.y,place.x)
+	        },
+	        {
+	            title: '도착지', 
+	            latlng: new kakao.maps.LatLng(place.y,place.x)
+	        }
+	    ];
+
+	        
+	    for (var i = 0; i < positions.length; i ++) {
+	        
+	        // 마커 이미지의 이미지 크기 입니다
+	        var imageSize = new kakao.maps.Size(40, 40); 
+	        
+	        // 마커 이미지를 생성합니다    
+	        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+	        
+	        // 마커를 생성합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map, // 마커를 표시할 지도
+	            position: positions[i].latlng, // 마커를 표시할 위치
+	            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	            image : markerImage // 마커 이미지 
+	        });
+	    } */
    
+	    function displayMarkers(origin , destination) {
+
+		    var imageSrc = '/thrifty/resources/images/carpool/car2.png'; // 마커이미지의 주소입니다    
+		    imageSize = new kakao.maps.Size(40, 40); // 마커이미지의 크기입니다
+		    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+		    
+		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+		    // markerPosition = new kakao.maps.LatLng(place.y, place.x); //마커가 표시될 위치입니다
+
+		    var positions = [
+		        {
+		            title: '출발지', 
+		            latlng: new kakao.maps.LatLng(origin.y , origin.x)
+		        },
+		        {
+		            title: '도착지', 
+		            latlng: new kakao.maps.LatLng(destination.y , destination.x)
+		        }
+		    ];
+
+		        
+		    for (var i = 0; i < positions.length; i ++) {
+		        
+		        // 마커 이미지의 이미지 크기 입니다
+		        var imageSize = new kakao.maps.Size(40, 40); 
+		        // 마커 이미지를 생성합니다    
+		        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+		            iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+		        // 마커를 생성합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map, // 마커를 표시할 지도
+		            position: positions[i].latlng, // 마커를 표시할 위치
+		            image : markerImage, // 마커 이미지 
+		            clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+		        });
+		        var infowindow = new kakao.maps.InfoWindow({
+		            map: map,
+		            position: positions[i].latlng,
+		            content : positions[i].title
+		            });
+		            
+		            infowindow.open(map, marker);
+
+		    }
+		        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+		    function makeOverListener(map, marker, infowindow) {
+		        return function() {
+		            infowindow.open(map, marker);
+		        };
+		    }
+		}
+	    
 </script>
 <script>
 	document.getElementById('back-btn').addEventListener("click",function(){
@@ -234,10 +325,6 @@
 	document.getElementById('update-btn').addEventListener("click",function(){
 		location.href = "${contextPath}/carPool/update?bNo=${carpool.board.boardNo}";
 	})
-	
-	/* document.getElementById('delete-btn').addEventListener("click",function(){
-		location.href = "${contextPath}/carPool/drive;
-	}) */
 </script>
 </body>
 </html>

@@ -51,6 +51,11 @@
     #footer{
         
     }
+    /* .markerInfo{
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+    } */
 
 </style>
 </head>
@@ -80,11 +85,13 @@
                             <h4>현재 인원(자신포함) : <input type="number" id="carpool-member" name="recruitsCurr"required> 명</h4>
                             <hr>
                             <h3>카테고리 : 
-                            	
-                                <input type="radio" name="categorySNo" id="get-in-car" value="31">태워드려요!
-                                <input type="radio" name="categorySNo" id="i-want-car" value="32">태워주세요!
+                            	<c:forEach var="categorySName" items="${subCategoryList }">
+                            		<c:if test="${categorySName.categoryUNo eq 3 }">
+                            			<input type="radio" class="category" name="categorySNo" id="get-in-car" value="${categorySName.categorySNo }">${categorySName.categorySName }
+                            		</c:if>
+                            	</c:forEach>
                                 <table>
-                                	<tr id="images" style='display:none;'>
+                                	<tr id="images">
 				                        <th>이미지<br>(최대4장)<br><button type="button" onclick="insertImage();">이미지 첨부</button></th>
 				                        <td id="image0"></td>
 				                        <td id="image1"></td>
@@ -143,7 +150,6 @@
                                     <input type="hidden" name="destination" id="destination" >
                                     <button type="button" onclick="removeLine();" class="draw-btn" id="redraw">다시 그리기</button>
                                 </div>
-                                <!-- <div id="좌표"></div> -->
                             </div>
                         </div>
                         <div id="enroll-footer">
@@ -152,7 +158,6 @@
                     </form>
                 </div>
             </div>
-            <!-- <div id="map" style="width:100%;height:350px;"></div> -->
         </div>
         <div id="footer">
         
@@ -182,23 +187,7 @@
             $("#arrival-keyword").css("background" , "white");
             $("#start-keyword").css("background" , "white");
         })
-        $("#get-in-car").click(function(){
-            alert("차 번호판이 보이는 사진을 올려주세요.");
-            $("#images").css("display" , "");
-        })
-        $("#get-in-car").click(function(){
-        	$("#thumbnail").css("display" , "");
-        })
-        $("#i-want-car").click(function(){
-            $("#images").css("display" , "none");
-        })
-        $("#i-want-car").click(function(){
-        	$("#thumbnail").css("display" , "none");
-        })
     })
-
-
-
 </script>
 <script type="text/javascript">
         	function insertImage(){
@@ -223,16 +212,12 @@
 	        			}
 	        			
 	        			reader.readAsDataURL(arg.files[i]);
-	        			console.log(reader);
-	        			
-	        				
-	        			// document.getElementById('image'+i).src = e.
+	        			console.log(reader);	        				
 	        		}
 	        		for(let i = arg.files.length; i < 4 ; i++){
 	        			$("#image"+i).css('backgroundImage','none');
 	        		}
         		}
-        		
         	}
 </script>
 </body>

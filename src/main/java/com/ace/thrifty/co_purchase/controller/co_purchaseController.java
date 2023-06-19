@@ -50,12 +50,13 @@ public class co_purchaseController {
 			paramMap.put("currPage", "1");
 		}
 		
-		coService.selectSearchCoPurchaseList(paramMap);
-		
 		if(paramMap.containsKey("scNo")) {
 			model.addAttribute("scNo", paramMap.get("scNo"));
 			System.out.println(paramMap);
 		}
+		
+		coService.selectSearchCoPurchaseList(paramMap);
+		
 		model.addAttribute("b", b);
 		model.addAttribute("map", paramMap);
 		//model.addAttribute("list", paramMap.get("list"));
@@ -131,6 +132,7 @@ public class co_purchaseController {
 							Co_purchase cp,
 							@RequestParam(value = "image", required = false ) MultipartFile imgList
 							) throws Exception {
+		System.out.println("11");
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		b.setCategoryUNo(6);
 		b.setUserNo(loginUser.getUserNo());

@@ -34,112 +34,107 @@ public class PtjController {
    @Autowired
    private PtjService ptjService;
 
-   @GetMapping("/ptj")
-   public String ptjMain(Model model) {
-      List<Ptj> p = ptjService.selectPtj();
-      model.addAttribute("p" , p);
-      String webPath = "/resources/upfiles/ptj/";
-      model.addAttribute("webPath" , webPath);
-      return "part_time_job/PTJMain";
+	@GetMapping("/ptj")
+	public String ptjMain(Model model) {
+		List<Ptj> p = ptjService.selectPtj();
+		model.addAttribute("p" , p);
+		String webPath = "/resources/upfiles/ptj/";
+		model.addAttribute("webPath" , webPath);
+		return "part_time_job/PTJMain";
+	}
+	
+	 @GetMapping("/ptj/ptjList") 
+	 public String ptjList(Model model , @RequestParam Map<String, Object> queryString) {
+		 if(!queryString.containsKey("currPage")) {
+				queryString.put("currPage", "1");
+		 }
+		 ptjService.selectPtjAll(queryString);
+		 if(queryString.containsKey("scNo")) {
+			model.addAttribute("scNo", queryString.get("scNo"));		
+		 }
+		 model.addAttribute("filter" , queryString);
+		 model.addAttribute("list", queryString.get("list"));
+		 model.addAttribute("pi", queryString.get("pi"));
+		 return "part_time_job/PTJList"; 
+	 }
+	 
+	@GetMapping("/ptj/detail")
+	public String selectPtjDetail(Model model, int bNo) {
+		Ptj p = ptjService.selectPtjDetail(bNo);
+		if(p != null) {
+			model.addAttribute("p", p);
+			String webPath = "/resources/upfiles/ptj/";
+			model.addAttribute("webPath" , webPath);
+			return "part_time_job/PTJDetail";	
+		} else {
+			return "redirect:/thrifty/ptj/ptjList";
+		}
    }
 
-   
-    @GetMapping("/ptj/ptjList") 
-    public String ptjList(Model model , @RequestParam Map<String, Object> queryString) {
-       if(!queryString.containsKey("currPage")) {
-            queryString.put("currPage", "1");
-       }
-       ptjService.selectPtjAll(queryString);
-       if(queryString.containsKey("lNo")) {
-         model.addAttribute("lNo", queryString.get("lNo"));         
-       }
-       model.addAttribute("filter" , queryString);
-       model.addAttribute("list", queryString.get("list"));
-       model.addAttribute("pi", queryString.get("pi"));
-       return "part_time_job/PTJList"; 
-    }
-   
-
-   @GetMapping("/ptj/detail")
-   public String selectPtjDetail(Model model, int bNo) {
-      Ptj p = ptjService.selectPtjDetail(bNo);
-      if(p != null) {
-         model.addAttribute("p", p);
-         String webPath = "/resources/upfiles/ptj/";
-         model.addAttribute("webPath" , webPath);
-         return "part_time_job/PTJDetail";   
-      } else {
-         return "redirect:/thrifty/ptj/ptjList";
-      }
-
-   }
-
-   @GetMapping("/ptj/ptjEnrollForm")
-   public String ptjEnrollForm() {
-      return "part_time_job/PTJEnrollForm";
-   }
-   
-   @PostMapping("/ptj/ptjList/enroll")
-   public String insertPtj(HttpSession session,
-                     Board b,
-                     Ptj p,
-                     @RequestParam(value="img" , required = false) MultipartFile image) throws Exception {
-      Member loginUser = (Member)session.getAttribute("loginUser");
-      b.setCategoryUNo(5);
-      b.setUserNo(loginUser.getUserNo());
-      String webPath = "/resources/upfiles/ptj/";
-      String serverFolderPath = session.getServletContext().getRealPath(webPath);
-      ptjService.insertPtj(b, p, image, webPath, serverFolderPath);
-      
-      return "redirect:/ptj/ptjList";
-      
-   }
-   
-   @GetMapping("/ptj/ptjUpdate")
-   public String updatePtj(@RequestParam(value="bNo" , required = false)int boardNo ,
-                     Model model) {
-      Ptj p = ptjService.updateFormPtj(boardNo);
-      model.addAttribute("p" , p);
-      return "part_time_job/PTJUpdateForm";      
-   }
-   
-   @PostMapping("/ptj/ptjUpdate")
-   public String update(HttpSession session,
-                   Ptj p ,
-                   Board b,
-                   @RequestParam(value="img" , required = false) MultipartFile image ) throws Exception {
-      Member loginUser = (Member)session.getAttribute("loginUser");
-      b.setCategoryUNo(5);
-      b.setUserNo(loginUser.getUserNo());
-      String webPath = "/resources/upfiles/ptj/";
-      String serverFolderPath = session.getServletContext().getRealPath(webPath);
-      Image img = new Image();
-      if(!image.isEmpty()) {
-         String changeName = Utils.saveFile(image, serverFolderPath);
-         img.setOriginName(image.getOriginalFilename());
-         img.setChangeName(changeName);
-         img.setFileLevel(0);
-         img.setBoardNo(p.getBoardNo());
-      }
-      ptjService.updatePtj(p, b, img, webPath, serverFolderPath);
-      return "redirect:/ptj/ptjList";
-   }
-   
-   @ResponseBody
-   @GetMapping("/ptj/workEnd")
-   public int workEnd(int bNo, HttpSession session) {
-      Member loginUser = (Member) session.getAttribute("loginUser");
-      if (loginUser == null) {
-         return -1;
-      } else {
-         Board b = new Board();
-         if (loginUser.getAuthority() == 0) {
-            b.setBoardNo(bNo);
-         } else {
-            b.setUserNo(loginUser.getUserNo());
-            b.setBoardNo(bNo);
-         }
-         return ptjService.workEnd(b);
-      }
-   }
+	@GetMapping("/ptj/ptjEnrollForm")
+	public String ptjEnrollForm() {
+		return "part_time_job/PTJEnrollForm";
+	}
+	
+	@PostMapping("/ptj/ptjList/enroll")
+	public String insertPtj(HttpSession session,
+							Board b,
+							Ptj p,
+							@RequestParam(value="img" , required = false) MultipartFile image) throws Exception {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		b.setCategoryUNo(5);
+		b.setUserNo(loginUser.getUserNo());
+		String webPath = "/resources/upfiles/ptj/";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		ptjService.insertPtj(b, p, image, webPath, serverFolderPath);
+		return "redirect:/ptj/ptjList";
+	}
+	
+	@GetMapping("/ptj/ptjUpdate")
+	public String updatePtj(@RequestParam(value="bNo" , required = false)int boardNo ,
+							Model model) {
+		Ptj p = ptjService.updateFormPtj(boardNo);
+		model.addAttribute("p" , p);
+		return "part_time_job/PTJUpdateForm";		
+	}
+	
+	@PostMapping("/ptj/ptjUpdate")
+	public String update(HttpSession session,
+						 Ptj p ,
+						 Board b,
+						 @RequestParam(value="img" , required = false) MultipartFile image ) throws Exception {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		b.setCategoryUNo(5);
+		b.setUserNo(loginUser.getUserNo());
+		String webPath = "/resources/upfiles/ptj/";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		Image img = new Image();
+		if(!image.isEmpty()) {
+			String changeName = Utils.saveFile(image, serverFolderPath);
+			img.setOriginName(image.getOriginalFilename());
+			img.setChangeName(changeName);
+			img.setFileLevel(0);
+			img.setBoardNo(p.getBoardNo());
+		}
+		ptjService.updatePtj(p, b, img, webPath, serverFolderPath);
+		return "redirect:/ptj/ptjList";
+	}
+	
+	@ResponseBody
+	@GetMapping("/ptj/workEnd")
+	public int workEnd(int bNo, HttpSession session) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			return -1;
+		} else {
+			Board b = new Board();
+			if (loginUser.getAuthority() == 0) {
+				b.setBoardNo(bNo);
+			} else {
+				b.setUserNo(loginUser.getUserNo());
+				b.setBoardNo(bNo);
+			}
+			return ptjService.workEnd(b);
+		}
+	}
 }

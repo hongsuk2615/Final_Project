@@ -61,6 +61,19 @@
     display: inline-block;
 }
 
+.sub-category{
+	cursor: pointer;
+}
+
+.sub-category:hover{
+	background : lightgray;
+	color : black;
+}
+.sub-category-selected{
+	background : lightgray;
+	color : black;
+}
+
 #sub-category ul{
     height: 470px;
 /*     overflow-y: scroll; */
@@ -70,7 +83,10 @@
 #sub-category li{
     list-style-type: none;
     margin: 20px 0;
-    font-size: 25px;
+    font-size: 20px;
+    width: 80%;
+    border-radius: 8px;
+    padding: 10px 0px 4px 8px;
 }
 
 .subCategoryName{

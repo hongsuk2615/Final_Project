@@ -18,6 +18,7 @@
 		<result column="ORIGIN_NAME" property="originName"/>
 		<result column="CHANGE_NAME" property="changeName"/>
 		<result column="LOGIN_METHOD" property="loginMethod"/>
+		<result column="TODAY_LOGIN" property="todayLogin"/>
 	</resultMap>
 	
 	<select id="selectMember" resultMap="memberResultSet">
@@ -116,5 +117,18 @@
 		   SET USER_PWD = #{userPwd}
 		 WHERE USER_ID = #{userId}
 		   AND EMAIL = #{email}
+	</update>
+	
+	<update id="todayLogin">
+		UPDATE MEMBER
+			SET TODAY_LOGIN = 'Y',
+				CURRENT_LOGIN = 'Y'
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<update id="currentLogOut">
+		UPDATE MEMBER
+		SET CURRENT_LOGIN = 'N'
+		WHERE USER_NO = #{userNo}
 	</update>
 </mapper>

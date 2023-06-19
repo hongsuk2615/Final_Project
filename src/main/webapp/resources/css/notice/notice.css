@@ -55,3 +55,13 @@
     font-size: 12px;
     font-weight: 700;
 }
+
+#pagingbar{
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    padding-top: 30px;
+    margin: auto;
+    font-size: 0.5cm;   
+}

@@ -33,11 +33,6 @@
 			<result column="FILE_LEVEL" property="fileLevel"/>
 			<result column="STATUS" property="status"/>
 	</collection>
-	<collection property="subCategory" javaType="com.ace.thrifty.board.model.vo.SubCategory">
-			<id column="CATEGORY_S_NO" property="categorySNo"/>
-			<result column="CATEGORY_U_NO" property="categoryUNo"/>
-			<result column="CATEGORY_S_NAME" property="categorySName"/>
-	</collection>
 	<collection property="member" javaType="com.ace.thrifty.member.model.vo.Member">
 			<id column="USER_NO" property="userNo"/>
 			<result column="USER_NAME" property="userName"/>
@@ -46,6 +41,19 @@
 			<result column="USER_ID" property="userId" />
 			<result column="PHONE" property="phone" />
 	</collection>
+	<collection property="subCategory" resultMap="subCategoryResultSet" />
+	<collection property="location" resultMap="locationResultSet"/>
+</resultMap>
+
+<resultMap type="location" id="locationResultSet">
+	<result column="LOCATION_NAME" property="locationName" />
+	<result column="LOCATION_NO" property="locationNo" />
+</resultMap>
+
+<resultMap type="subCategory" id="subCategoryResultSet">
+	<result column="CATEGORY_S_NO" property="categorySNo" />
+	<result column="CATEGORY_S_NAME" property="categorySName" />
+	<result column="CATEGORY_U_NO" property="categoryUNo" />
 </resultMap>
 
 <select id="driveList" resultMap="carPoolResultSet">
@@ -53,7 +61,8 @@
 		C.LOCATION_NO,
 		B.TITLE ,
 		C.RECRUITS_NUM ,
-		C.RECRUITS_CURR
+		C.RECRUITS_CURR,
+		C.IS_END
 	FROM CARPOOL C
 	JOIN BOARD B ON C.BOARD_NO = B.BOARD_NO
 	JOIN UPPER_CATEGORY UC ON UC.CATEGORY_U_NO = B.CATEGORY_U_NO
@@ -65,45 +74,48 @@
 	FROM CARPOOL
 	JOIN LOCATION USING(LOCATION_NO)
 	JOIN BOARD B USING(BOARD_NO)
-	JOIN IMAGE USING(BOARD_NO)
 	WHERE B.STATUS = 'Y'
 		<if test= 'scNo!= null and scNo !="" '>
 	 		AND CATEGORY_S_NO = #{scNo}
 	 	</if>
-	 	<if test='lNo != null and lNo != ""'>
-	 		AND LOCATION_NO = #{lNo}
+	 	<if test='location != null and location != ""'>
+	 		AND LOCATION_NO = #{location}
 	 	</if>
+	 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+ 		    AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+ 		    OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+	    </if>
 </select>
 
-<select id="selectDriveList" resultMap="carPoolResultSet">
+<select id="selectDriveList" parameterType="map" resultMap="carPoolResultSet">
 	SELECT
 		C.BOARD_NO,
-		C.LOCATION_NO,
 		C.RECRUITS_NUM,
 		C.RECRUITS_CURR,
 		C.IS_END,
-		B.CATEGORY_S_NO,
+		C.PRICE,
+		SC.CATEGORY_S_NAME,
 		B.TITLE,
-		B.CONTENT,
-		B.WISH_COUNT,
 		L.LOCATION_NAME,
-		CONCAT('/resources/upfiles/carPool/', CHANGE_NAME) AS IMG_PATH,
-		B.STATUS,
-		SC.CATEGORY_S_NAME
+		CONCAT('/resources/upfiles/carPool/', IFNULL(I.CHANGE_NAME,'NULL')) AS IMG_PATH
 	FROM CARPOOL C
 	LEFT JOIN BOARD B ON B.BOARD_NO = C.BOARD_NO
 	LEFT JOIN LOCATION L ON C.LOCATION_NO = L.LOCATION_NO
 	LEFT JOIN IMAGE I ON C.BOARD_NO = I.BOARD_NO
+	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 	LEFT JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
-	JOIN SUB_CATEGORY SC ON UC.CATEGORY_U_NO = SC.CATEGORY_U_NO
-	WHERE SC.CATEGORY_S_NO = 31 AND B.STATUS = 'Y' AND I.STATUS = 'Y' AND I.FILE_LEVEL = 0
+	WHERE UC.CATEGORY_U_NO = 3 AND B.STATUS = 'Y' AND I.STATUS = 'Y'
 		<if test= 'scNo!= null and scNo !="" '>
 		 	AND B.CATEGORY_S_NO = #{scNo}
-		</if>
-		<if test='lNo != null and lNo!= ""'>
-	 		AND C.LOCATION_NO = #{lNo}
 	 	</if>
-		
+	 	<if test='location != null and location!= ""'>
+	 		AND C.LOCATION_NO = #{location}
+	 	</if>
+	 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+ 		    AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+ 		    OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+	   	</if>
+    GROUP BY B.BOARD_NO
 </select>
 
 <insert id="insertCarPool" parameterType="carPool">
@@ -112,6 +124,48 @@
 </insert>
 
 <select id="driveDetail" resultMap="carPoolResultSet">
+	SELECT
+		C.BOARD_NO ,
+		RECRUITS_NUM,
+		RECRUITS_CURR,
+		IS_END,
+		C.LOCATION_NO,
+		PRICE,
+		START_TIME,
+		END_TIME,
+		ORIGIN,
+		DESTINATION,
+		SC.CATEGORY_S_NAME,
+		B.CATEGORY_S_NO,
+		B.TITLE,
+		B.CONTENT,
+		L.LOCATION_NAME,
+		I.CHANGE_NAME,
+		IMG_NO,
+		FILE_LEVEL,
+		I.STATUS,
+		M.PHONE,
+		M.USER_ID,
+		M.USER_NO,
+		M.GENDER
+	FROM CARPOOL C
+	JOIN BOARD B USING(BOARD_NO)
+	JOIN LOCATION L USING(LOCATION_NO)
+	JOIN IMAGE I USING(BOARD_NO)
+	JOIN MEMBER M USING (USER_NO)
+	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
+	WHERE C.BOARD_NO = #{bNo} 
+	AND B.STATUS = 'Y'
+	AND I.STATUS = 'Y'
+</select>
+
+<update id="deadLine" parameterType="board">
+	UPDATE CARPOOL
+	SET IS_END = 'Y'
+	WHERE BOARD_NO = #{boardNo}
+</update>
+
+<select id="carPoolUpdateForm" resultMap="carPoolResultSet">
 	SELECT
 		C.BOARD_NO ,
 		C.RECRUITS_NUM,
@@ -124,33 +178,38 @@
 		C.ORIGIN,
 		C.DESTINATION,
 		SC.CATEGORY_S_NAME,
-		B.CATEGORY_S_NO,
+		SC.CATEGORY_S_NO,
 		B.TITLE,
 		B.CONTENT,
 		L.LOCATION_NAME,
 		I.CHANGE_NAME,
+		I.IMG_NO,
+		I.FILE_LEVEL,
+		I.STATUS,
 		M.PHONE,
 		M.USER_ID,
 		M.USER_NO,
 		M.GENDER
 	FROM CARPOOL C
-	LEFT JOIN BOARD B USING(BOARD_NO)
-	LEFT JOIN LOCATION L USING(LOCATION_NO)
-	LEFT JOIN IMAGE I USING(BOARD_NO)
-	JOIN MEMBER M ON B.USER_NO = M.USER_NO
+	JOIN BOARD B USING(BOARD_NO)
+	JOIN LOCATION L USING(LOCATION_NO)
+	JOIN IMAGE I USING(BOARD_NO)
+	JOIN MEMBER M USING(USER_NO)
 	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
-	WHERE C.BOARD_NO = #{bNo} AND B.STATUS = 'Y' AND I.STATUS = 'Y'
+	WHERE C.BOARD_NO = #{bNo} 
+	  AND B.STATUS = 'Y'
+	  AND I.STATUS = 'Y'
 </select>
 
-<update id="deadLine" parameterType="board">
+<update id="carPoolBoardUpdate" parameterType="carPool">
 	UPDATE CARPOOL
-	SET IS_END = 'Y'
+	   SET PRICE = #{price},
+	       START_TIME = #{startTime},
+	       END_TIME = #{endTime},
+	       LOCATION_NO = #{locationNo},
+	       ORIGIN = #{origin},
+	       DESTINATION = #{destination}
 	WHERE BOARD_NO = #{boardNo}
 </update>
-
-<select id="carPoolUpdateForm" resultMap="carPoolResultSet">
-	SELECT *
-	FROM CARPOOL C <!-- 여기서 가보자잉 -->
-</select>
 
 </mapper>

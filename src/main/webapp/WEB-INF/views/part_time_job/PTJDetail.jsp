@@ -107,9 +107,9 @@
                             <h3>알바 카테고리 : ${p.subCategory.categorySName }</h3>
                             <hr>
                             <div id="item-btns">
-                                <div id="inquiry-btn" uNo="${p.board.userNo }" seller="${p.member.userId }">쪽지 보내기</div>
-                                <div id="report-btn" bNo="${p.board.boardNo }">신고하기</div>
-                                <div id="wish-btn" bNo="${p.board.boardNo }" >찜하기</div>
+                                <div id="inquiry-btn" uNo="${p.board.userNo }" seller="${p.member.userId }" onclick="sendMessage(this);"><p>쪽지 보내기</p></div>
+                                <div id="report-btn" bNo="${p.board.boardNo }" onclick="reportBoard(this);"><p>신고하기</p></div>
+                                <div id="wish-btn" bNo="${p.board.boardNo }" onclick="wishList(this);"><p>찜하기</p></div>
                             </div>
                             아직 못구했어요 ㅠㅠ<input type="radio" name="isEnd"checked disabled> 구했어요!<input type="radio" name="isEnd" disabled>
                             <hr>
@@ -135,9 +135,7 @@
         <div id="footer">
         
         </div>
-        
     </div>
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
 <script type="text/javascript" src="/thrifty/resources/js/common/commonModal.js"></script>
 <script type="text/javascript" src="/thrifty/resources/js/ptj/ptj_work_end.js"></script>

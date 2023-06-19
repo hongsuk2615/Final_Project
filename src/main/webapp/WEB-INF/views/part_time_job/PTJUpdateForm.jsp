@@ -80,7 +80,7 @@
                         		<input type="file" value="${contextPath }${webPath }${p.imgPath }" name="img">
                         	</div>
                             <h2>제목 : &nbsp;<input name="title" id="enroll-title" required value="${p.board.title }"></h2><br>
-                            <h3 id="enroll-content">내용 :  &nbsp;<textarea name="enrollContent" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required value="${p.board.content }"></textarea></h3>
+                            <h3 id="enroll-content">내용 :  &nbsp;<textarea name="content" id="enroll-textarea" style="resize: none; width: 520px; height: 100px;" required value="${p.board.content }"></textarea></h3>
                         </div>
                         <hr>
                         <div id="enroll-body">
@@ -97,8 +97,8 @@
                                 <h3>시 / 군 / 구 : </h3>
                                 <select style="height:40px; margin-left: 20px;" name="locationNo">
                                     <c:forEach var="location" items="${locationList}">
-                                <option value="${location.locationNo}">${location.locationName}</option>
-                                </c:forEach>
+                                		<option value="${location.locationNo}">${location.locationName}</option>
+                                	</c:forEach>
                                 </select>
                             </div>
                             <div id="enroll-map">
@@ -115,7 +115,6 @@
                     </form>
                 </div>
             </div>
-            <!-- <div id="map" style="width:100%;height:350px;"></div> -->
         </div>
         <div id="footer">
         

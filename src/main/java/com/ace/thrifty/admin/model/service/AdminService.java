@@ -41,5 +41,7 @@ public interface AdminService {
 	Board enrollSelect(int boardNo);
 	
 	public void getData(Map<String,Object> dataMap);
+
+	List<Map<String, Object>> reportCountDetail(int bNo);
 	
 }

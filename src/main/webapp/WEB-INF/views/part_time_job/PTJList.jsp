@@ -74,52 +74,73 @@
                 </div>
                 <div style="width:100%; height:50px;" id="write-board">
                 	<p>메인 > 심부름/대타 </p>
+                	<div id="search">
+	                	<img src="/thrifty/resources/images/main/icon/search-1.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="25px" height="25px">
+	                	<input type="search" id="keyword">
+                	</div>
                 	<c:if test="${loginUser != null }">
 	                	<button id="write-btn">게시글 작성하기</button>
                 	</c:if>
                 </div>
                 <hr style="width: 100%;  margin-top: 15px;">
                 <div id="ptj-allBody" style="height: 1000px;">
-                	<c:forEach var="ptj"  items="${list}" >
-	                			<div style="width: 200px; height: 300px;" class="list-detail" onclick="location.href = '${contextPath}/ptj/ptjDetail?bNo=${ptj.boardNo }'">
-		               				<c:choose>
-		               					<c:when test="${ptj.isEnd eq 'N' }">
-				               				<img src="${contextPath }/${ptj.imgPath }" style="height: 170px; width: 200px; border-radius: 10px;"/>		               						
-		               					</c:when>
-		               					<c:otherwise>
-		               						<img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 200px; border-radius: 10px;"/>
-		               					</c:otherwise>
-		               				</c:choose>
-		       						<p style="display: none;">${ptj.boardNo }</p>
-		       						<p style="text-align: center;">제목 :${ptj.board.title }</p>
-		       						<p style="text-align: center;">내용 :${ptj.board.content }</p>
-		       						<p style="text-align: center;">지역 :${ptj.location.locationName }</p>
-		           				</div>
-       				</c:forEach>
+                	<c:choose>
+                	<c:when test="${list.size() eq 0 }">
+                	<img width="170" height="200" src="/thrifty/resources/images/usedProduct/not-found.png">
+                	</c:when>
+                	<c:otherwise>
+                		<c:forEach var="i"  begin="0" end="8" step="1">
+	                    <c:choose>
+	                    	<c:when test="${i lt list.size()}" >
+			                    <div class="items" onclick = "location.href = '${contextPath}/ptj/detail?bNo=${list.get(i).boardNo}'" >
+			                        <div class="item-img" style="width: 185px; height: 170px;">
+										<img style="width: 100%; height: 100%;" alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'" src='${contextPath }/${list.get(i).isEnd == 'Y'? 'resources/images/ptj/end.jpg': list.get(i).imgPath}'>
+			                        </div>
+			                        <div class="item-info">
+			                        	<p style="text-align: center;">${list.get(i).subCategory.categorySName }</p>
+				                        <p>제목 : ${list.get(i).board.title }</p>
+				                        <p>카풀비 : ${list.get(i).price }</p>
+			                        </div>     
+			                    </div>                		
+	                    	</c:when>
+							<c:otherwise>
+								<div class="items"  style="opacity:0; height: 200px; cursor:initial;">
+			                        <div class="item-img" style="width: 170px;  opacity:0;">
+										<img style="width: 100%; height: 100%;" alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'" src=''>
+			                        </div>
+			                        <div class="item-info">
+			                        	<p></p>
+				                        <p></p>
+				                        <p></p>
+			                        </div>     
+			                    </div>              
+							</c:otherwise>		                    
+	                    </c:choose>   
+                	</c:forEach>
+                	</c:otherwise>
+                </c:choose>
                 </div>
-                <div id="body-right-footer">
-                    <div id="paging-btns">
-                    	<c:choose>
-		                  <c:when test="${ pi.currentPage eq 1 }">
-		                     <div>&lt;</div>
-		                  </c:when>
-		                  <c:otherwise>
-		                     <div><a href="/thrifty/ptj/ptjList?currPage=${filter.currPage-1}&scNo=${filter.scNo}&location=${filter.lNo}">&lt;</a></div>
-		                  </c:otherwise>               
-		               </c:choose>
-		               <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
-	                  	<div><a href="/thrifty/ptj/ptjList?currPage=${item}&scNo=${filter.scNo}&location=${filter.lNo}">${item}</a></div>
-	               		</c:forEach>
-	               		<c:choose>
-		                  <c:when test="${ pi.currentPage eq pi.maxPage }">
-		                     <div style="display: none;">&gt;</div>
-		                  </c:when>
-		                  <c:otherwise>
-		                     <div><a href="/thrifty/ptj/ptjList?currPage=${filter.currPage+1}&scNo=${filter.scNo}&location=${filter.lNo}">&gt;</a></div>
-		                  </c:otherwise>
-		                </c:choose>	               
-                    </div>
-                </div>
+                   <div id="paging-btns">
+                   	<c:choose>
+	                  <c:when test="${ pi.currentPage eq 1 }">
+	                     <div>&lt;</div>
+	                  </c:when>
+	                  <c:otherwise>
+	                     <div><a href="/thrifty/ptj/ptjList?currPage=${filter.currPage-1}&scNo=${filter.scNo}&location=${filter.location}&keyword=${filter.keyword}">&lt;</a></div>
+	                  </c:otherwise>               
+	               </c:choose>
+	               <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
+                  	<div><a href="/thrifty/ptj/ptjList?currPage=${item}&scNo=${filter.scNo}&location=${filter.location}&keyword=${filter.keyword}">${item}</a></div>
+               		</c:forEach>
+               		<c:choose>
+	                  <c:when test="${ pi.currentPage eq pi.maxPage }">
+	                     <div>&gt;</div>
+	                  </c:when>
+	                  <c:otherwise>
+	                     <div><a href="/thrifty/ptj/ptjList?currPage=${filter.currPage+1}&scNo=${filter.scNo}&location=${filter.location}&keyword=${filter.keyword}">&gt;</a></div>
+	                  </c:otherwise>
+	                </c:choose>	               
+                   </div>
             </div>
         </div>
 
@@ -127,16 +148,21 @@
 
         </div>
     </div>
-<script>
+<script type="text/javascript">
+
    	document.getElementById('write-btn').addEventListener("click",function(){
         location.href = "<%= request.getContextPath() %>/ptj/ptjEnrollForm";
    	})
    	
-   	/* function a(boardNo) {
-	   		location.href = "${contextPath}/ptj/ptjDetail/"+boardNo;
-   	} */
    	
-
+</script>
+<script>
+document.getElementById('keyword').addEventListener('keyup',function(){
+    console.log(this.value);
+        if (window.event.keyCode == 13) {
+            location.href="/thrifty/ptj/ptjList?keyword="+this.value;
+    }
+})
 </script>
 </body>
 </html>
