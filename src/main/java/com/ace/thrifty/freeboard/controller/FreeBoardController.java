@@ -44,8 +44,6 @@ public class FreeBoardController {
 		
 		freeBoardService.freeBoardList(map, paramMap);
 		
-		System.out.println(map);
-		
 		model.addAttribute("map", map);
 		
 		return "freeBoard/freeBoard";
@@ -107,10 +105,11 @@ public class FreeBoardController {
 	}
 	
 	@GetMapping("/detail") 
-	public String freeBoardDetail(Model model, int bNo) {
+	public String freeBoardDetail(Model model, int bNo,  @RequestParam Map<String, Object> paramMap) {
 		
 		Board b = freeBoardService.freeBoardDetail(bNo);
 		
+		model.addAttribute("map", paramMap);
 		model.addAttribute("b",b);
 		
 		

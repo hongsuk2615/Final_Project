@@ -59,11 +59,11 @@
                     ${b.content}
                 </div>
                 <div class="board_btns">
-                    <a class="board_btn">목록</a>
+                    <a class="board_btn" href="${contextPath}/freeBoard?categorySNo=${map.categorySNo}&currentPage=${map.currentPage}">목록</a>
                     <c:if test="${loginUser.userNo eq b.userNo}">
                         <a class="board_btn btn_yellow" href="${contextPath}/freeBoard/enroll?bNo=${b.boardNo}">수정</a>
                     </c:if>
-                    <a class="board_btn btn_red" bno="${b.boardNo}" onclick="reportBoard(this)">신고</a>
+                    <a class="board_btn btn_red" href="${contextPath}/freeBoard?" bno="${b.boardNo}" onclick="reportBoard(this)">신고</a>
                 </div>
             </div>
         </div>
