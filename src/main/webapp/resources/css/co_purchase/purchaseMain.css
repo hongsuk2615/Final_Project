@@ -246,8 +246,12 @@ select option{
 }
 
 .detail_middle{
+	width: 60%;
     padding-top: 14px;
     font-size: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .detail_bottom{
