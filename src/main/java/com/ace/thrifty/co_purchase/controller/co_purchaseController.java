@@ -132,6 +132,7 @@ public class co_purchaseController {
 							Co_purchase cp,
 							@RequestParam(value = "image", required = false ) MultipartFile imgList
 							) throws Exception {
+		System.out.println("11");
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		b.setCategoryUNo(6);
 		b.setUserNo(loginUser.getUserNo());
