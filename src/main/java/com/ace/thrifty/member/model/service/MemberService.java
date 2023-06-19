@@ -20,4 +20,8 @@ public interface MemberService {
 	public String findId(Member member);
 	
 	public String findPwd(Member member);
+
+	public int todayLogin(int userNo);
+
+	public int currentLogOut(int userNo);
 }

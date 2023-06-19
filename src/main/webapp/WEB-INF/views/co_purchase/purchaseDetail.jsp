@@ -63,7 +63,7 @@
                 <div id="detail_header">
                     <div id="detail_header_1">
                         <div id="detail_header_1_title">${ board.title }</div> <!-- 글 제목 -->
-                        <div id="report-btn" class="flex" bNo="${board.boardNo}">
+                        <div id="report-btn" class="flex" bNo="${board.boardNo}" onclick="reportBoard(this);">
                             <img src="${ contextPath }/resources/images/main/icon/alarm.png" alt="" style="width: 20px; height: 20px; margin-right: 5px;" onerror="this.src='/thrifty/resources/images/common/noImage.png'">
                             <div style="padding-top: 4px;">신고</div>
                         </div>
@@ -102,12 +102,12 @@
                         <div id="body_description_2">
                             <div id="body_description_content">
                                 <div id="body_description_title">
-                                    <div class="body_text">${ co_purchase.productName }</div>
+                                    <div class="body_text" style="font-size: 30px;">${ co_purchase.productName }</div>
                                     <div class="body_text">${ co_purchase.price }원</div>
                                 </div>
                                 <div class="flex">
-	                                <div id="inquiry-btn" class="body_description_chatting" uNo = "${board.userNo}" seller="${seller.nickName}">문의 쪽지</div>
-	                                <div id="wish-btn" class="body_description_wish" bNo="${board.boardNo}" onclick="함수명(this)">찜하기</div>
+	                                <div id="inquiry-btn" class="body_description_chatting" uNo = "${board.userNo}" seller="${seller.nickName}" onclick="sendMessage(this);">문의 쪽지</div>
+	                                <div id="wish-btn" class="body_description_wish" bNo="${board.boardNo}" onclick="wishList(this)">찜하기</div>
                                 </div>
                                 <!-- id="body_description_chatting" -->
                                 <div id="body_description_link" class="flex">

@@ -30,6 +30,7 @@ function login(){
                 <div style="cursor : pointer;"  id="kakao-login-btn" onclick="kakaoLogin();">
                     <img src="/thrifty/resources/images/login/kakao/kakao_login_large_wide.png" alt="카카오 로그인 이미지" width="310" height="60">
                 </div>
+                
             </div>
        </div>
     </div>`,

@@ -2,8 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="freeBoardMapper">
 
+	<resultMap type="freeBoard" id="freeBoardResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="CATEGORY_S_NO"  property="categorySNo"/>
+		<result column="CONTENT"  property="content"/>
+		<result column="CREATE_DATE"  property="createDate"/>
+		<result column="READ_COUNT"  property="readCount"/>
+		<result column="REPORT_COUNT"  property="reportCount"/>
+		<result column="TITLE"  property="title"/>
+		<result column="USER_NO"  property="userNo"/>
+		<result column="WISH_COUNT"  property="wishCount"/>
+		<result column="CATEGORY_U_NO"  property="categoryUNo"/>
+		<result column="NICK_NAME" property="nickName"/>
+		<result column="CATEGORY_U_NAME" property="upperCategoryName"/>
+		<result column="CATEGORY_S_NAME" property="subCategoryName"/>
+	</resultMap>
+
+	
 	<insert id="insertFreeBoard">
 				INSERT INTO BOARD(CATEGORY_S_NO, CATEGORY_U_NO, TITLE, CONTENT, USER_NO)
 		            VALUES(#{categorySNo}, #{categoryUNo}, #{title}, #{content}, #{userNo})
 	</insert>
+	
+	<update id="updateFreeBoard">
+		UPDATE BOARD
+		SET CATEGORY_S_NO = #{categorySNo},
+		    TITLE = #{title},
+		    CONTENT = #{content}
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<select id="freeBoardListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM BOARD B
+		JOIN MEMBER M USING (USER_NO)
+		JOIN SUB_CATEGORY USING(CATEGORY_S_NO)
+		WHERE B.CATEGORY_U_NO = 8
+		  AND B.STATUS = 'Y'
+  		  <if test="categorySNo != null">
+		  	B.categorySNo = #{categorySNo}
+		  </if>
+	</select>
+	
+	<select id="freeBoardList" resultMap="freeBoardResultSet">
+		SELECT BOARD_NO, NICK_NAME, CATEGORY_S_NO, CATEGORY_S_NAME, TITLE, CONTENT, CREATE_DATE, READ_COUNT
+		FROM BOARD B
+		JOIN MEMBER M USING (USER_NO)
+		JOIN SUB_CATEGORY USING(CATEGORY_S_NO)
+		WHERE B.CATEGORY_U_NO = 8
+		  AND B.STATUS = 'Y'
+		  <if test="categorySNo != 0">
+		  	AND B.CATEGORY_S_NO = #{categorySNo}
+		  </if>
+	</select>
+
 </mapper>

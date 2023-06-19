@@ -67,17 +67,17 @@
             <div id="header_1_2">
             <c:choose>
             	<c:when test="${empty loginUser}">
-	                <div  class="content_white change_content" onclick="login();">로그인</div>
-	                <div  class="content_white change_content" onclick="enroll();">회원가입</div>        	
+	                <div  class="content_white change_content content_padding" onclick="login();">로그인</div>
+	                <div  class="content_white change_content content_padding" onclick="enroll();">회원가입</div>        	
             	</c:when>
             	<c:otherwise>
-	                <div class="content_white change_content" onclick="myPage()">내정보</div>
+	                <div class="content_white change_content content_padding" onclick="myPage()">내정보</div>
 	                <c:choose>
 						<c:when test="${loginUser.loginMethod eq 'K' }">
-							<div class="content_white change_content" onclick="kakaoLogout();">로그아웃</div>
+							<div class="content_white change_content content_padding" onclick="kakaoLogout();">로그아웃</div>
 						</c:when>	                
 						<c:otherwise>
-							<div class="content_white change_content" onclick="logout();">로그아웃</div>
+							<div class="content_white change_content content_padding" onclick="logout();">로그아웃</div>
 						</c:otherwise>
 		                
 	                </c:choose>
