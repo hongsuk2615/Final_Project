@@ -14,6 +14,7 @@
       <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 </head>
 <body>
+ <jsp:include page="../common/rightside.jsp"/>
      <jsp:include page="../common/header.jsp"></jsp:include> 
     <div class="wrap">
         <div id="homecontent">
@@ -22,7 +23,7 @@
     </div>
     <div id="ask">
         <div>
-        <form method="post" action="/thrifty/sharehouse/update" enctype="multipart/form-data">
+        <form name="efm" onsubmit="return Hvalidate()" method="post" action="/thrifty/sharehouse/update" enctype="multipart/form-data">
         
         	<input type="hidden" name="boardNo" value="${b.boardNo }"> 
         	<input type="hidden" name="deleteRoomList"> 
@@ -66,7 +67,7 @@
                 <input type="checkbox" name="injung" id="injung" >
             <label for="injung">개인정보수집에 동의합니다.</label> <br><br>
 
-                <button id="apply">신청하기</button><br>
+                <button id="apply">수정하기</button><br>
         </form>
     </div>
     </div>
@@ -149,7 +150,13 @@
                     let c = $(this).attr('count')
                   
                     if($('input[name=contrat]').length == 1){
-                    	alert("하나의 방은 존재해야합니다.")
+                    	Swal.fire({
+                            position: 'top-center',
+                            icon: 'warning',
+                            title: '하나의 방은 존재해야합니다.',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
                     }else{
                     	 if($('#rImg'+c).find('img').length != 0) {
      		        		$('.rImg'+c).slick('slickRemove', null, null, true);
@@ -161,14 +168,12 @@
                     $("#tb"+c).remove();
                     }
                 });
-                //inputCheck();
         	   </c:forEach>
           
         }selectRoom();
         
         
         function addRoom(){ // 방 추가
-          	//$('#apply').attr("disabled", true);
             count++;
             
             let e = `
@@ -224,7 +229,13 @@
                 let f = $(this).attr('count')
                
                 if($('input[name=contrat]').length == 1){
-                	alert("하나의 방은 존재해야합니다.")
+                	Swal.fire({
+                        position: 'top-center',
+                        icon: 'warning',
+                        title: '하나의 방은 존재해야합니다.',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
                 }else{
                 	if($('#rImg'+f).find('img').length != 0) {
 		        		$('.rImg'+f).slick('slickRemove', null, null, true);
@@ -236,7 +247,6 @@
                 $("#tb"+f).remove();
                 }
             });
-            //inputCheck();
         }
         
         function clearSlick(container){
@@ -299,7 +309,13 @@
         	let el = $('input[name=roomImg'+item+']').get(0);
         	filelength = el.files.length;
         	if(filelength + $('#rImg'+item).find('img').length > 8){
-        		alert("사진첨부는 8개까지 가능합니다.");
+        		Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: '사진첨부는 8개까지 가능합니다.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
         		el.value = "";
         		return 0;
         	}
@@ -307,7 +323,6 @@
         	clearSlick(container);
 	        	for(let j = 0; j < filelength; j++){
 		        	let file = el.files[j];
-		       		 //formData.append("upfile"+ item + j , file);
 		        	 let reader = new FileReader();
 			        	reader.readAsDataURL(file);
 			        	reader.onload = function(e){
@@ -358,48 +373,32 @@
         
         function nameAlert(e){
         	if($(e).children(0).val() == ''){
-        		alert("상단의 방 이름을 입력해주세요 ~")
+        		Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: '상단의 방 이름을 입력해주십시오.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
         	}else{
-        		alert("상단의 방 이름을 수정해주세요 ~")
+        		Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: '상단의 방 이름을 수정해주십시오.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
         	}
         }
         
-       /*  function inputCheck(){
-        	document.getElementById('information').addEventListener('change',function(){
-        		 let flag = 1;
-	            	$("input").each(function(index1,item1){
-	            		flag *= (item1.value ==''? 0 :1);
-	            		flag *= ($('#information').val() == ''? 0 :1);
-	            	});
-	            	
-	            	if(flag==1 && $('#injung').is(':checked') && $('#information').val() != ''){
-	            		$('#apply').removeAttr("disabled");
-	            	}else{
-	            		$('#apply').attr("disabled",true);		
-	            	}
-        	})
-        	
-	        $("input").each(function(index,item){
-	            item.addEventListener("change", function(){
-	            	 let flag = 1;
-	            	$("input").each(function(index1,item1){
-	            		flag *= (item1.value ==''? 0 :1);
-	            		flag *= ($('#information').val() == ''? 0 :1);
-	            	});
-	            	
-	            	if(flag==1 && $('#injung').is(':checked') && $('#information').val() != ''){
-	            		$('#apply').removeAttr("disabled");
-	            	}else{
-	            		$('#apply').attr("disabled",true);		
-	            	}
-	            	
-	            });
-	        })
-        }
-        inputCheck(); */
-        
     	document.getElementById('houseAddress').addEventListener('click', function(){
-    		alert('주소검색버튼을 통해 입력바랍니다.');
+    		Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: '주소 검색버튼을 통해 입력바랍니다.',
+                showConfirmButton: false,
+                timer: 1000
+            })
     	})
         
         function insertDaumPostcodeBtn(){
@@ -421,12 +420,71 @@
                         extraRoadAddr = ' ('+extraRoadAddr+')';
                     }
                 
-                    // document.getElementById("postcodeInsert").value = data.zonecode;
                     document.getElementById("houseAddress").value = roadAddr + extraRoadAddr;
                     getLocation();
                 }
             }).open();
     	}
+    	
+    	 function Hvalidate(){
+    	    	if( efm.title.value == "" ) {
+    	    		efm.title.focus();
+    	    		Swal.fire({
+    	                position: 'top-center',
+    	                icon: 'warning',
+    	                title: '쉐어하우스 집 이름을 입력해 주십시오.',
+    	                showConfirmButton: false,
+    	                timer: 1000
+    	            })
+    	            return false;
+    	        }
+    	    	if( efm.houseAddress.value == "" ) {
+    	    		efm.houseAddress.focus();
+    	    		Swal.fire({
+    	                position: 'top-center',
+    	                icon: 'warning',
+    	                title: '집의 위치를 입력해 주십시오.',
+    	                showConfirmButton: false,
+    	                timer: 1000
+    	            })
+    	            return false;
+    	        }
+    	    	if( efm.information.value == "" ) {
+    	    		efm.information.focus();
+    	    		Swal.fire({
+    	                position: 'top-center',
+    	                icon: 'warning',
+    	                title: '지점소개를 입력해 주십시오.',
+    	                showConfirmButton: false,
+    	                timer: 1000
+    	            })
+    	            return false;
+    	        }
+    	    	if( efm.injung.checked == false ) {
+    	    		Swal.fire({
+    	                position: 'top-center',
+    	                icon: 'warning',
+    	                title: '개인정보수집에 동의하여 주십시오.',
+    	                showConfirmButton: false,
+    	                timer: 1000
+    	            })
+    	            return false;
+    	        }
+    	    	for(let valcount = 0; valcount < count+1; valcount++){
+    	    		if( document.getElementsByName('roomImg'+valcount)[0].files.length + $('#rImg'+valcount).find('img').length== 0 ) {
+    	    			Swal.fire({
+    	                    position: 'top-center',
+    	                    icon: 'warning',
+    	                    title: '파일을 첨부해 주십시오.',
+    	                    showConfirmButton: false,
+    	                    timer: 1000
+    	                })
+    	                return false;
+    	            }
+    	    	}
+    	    	return true;
+    	    	
+    	    }
     	
     	
             

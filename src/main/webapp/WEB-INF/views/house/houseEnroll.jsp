@@ -13,6 +13,7 @@
     
 </head>
 <body>
+ <jsp:include page="../common/rightside.jsp"/>
      <jsp:include page="../common/header.jsp"></jsp:include> 
     <div class="wrap">
         <div id="homecontent">
@@ -21,7 +22,7 @@
     </div>
     <div id="ask">
         <div>
-        <form method="post" action="/thrifty/sharehouse/enroll" enctype="multipart/form-data" onsubmit="return Hvalidate();">
+        <form name="efm" method="post" action="/thrifty/sharehouse/enroll" enctype="multipart/form-data" onsubmit="return Hvalidate();">
 
             <input type="text" placeholder=" *이름" name="userName" id="userName" required value="${loginUser.userName }" disabled> <br>
             <input  type="tel" placeholder=" *연락처" name="phone" id="phone" required value="${loginUser.phone }" disabled> <br>
@@ -73,7 +74,62 @@
     <script>
     
     function Hvalidate(){
-    	return false;
+    	if( efm.title.value == "" ) {
+    		efm.title.focus();
+    		Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: '쉐어하우스 집 이름을 입력해 주십시오.',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            return false;
+        }
+    	if( efm.houseAddress.value == "" ) {
+    		efm.houseAddress.focus();
+    		Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: '집의 위치를 입력해 주십시오.',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            return false;
+        }
+    	if( efm.information.value == "" ) {
+    		efm.information.focus();
+    		Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: '지점소개를 입력해 주십시오.',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            return false;
+        }
+    	if( efm.injung.checked == false ) {
+    		Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: '개인정보수집에 동의하여 주십시오.',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            return false;
+        }
+    	for(let valcount = 0; valcount < count+1; valcount++){
+    		if( document.getElementsByName('roomImg'+valcount)[0].files.length == 0 ) {
+    			Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: '파일을 첨부해 주십시오.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                return false;
+            }
+    	}
+    	return true;
     	
     }
 
@@ -87,7 +143,7 @@
             <div id="roomImgsection\${count}" > 
             <input type="text" maxlength='8' placeholder="방 이름" name="division" id="division\${count}" onchange="roomName(this.id)" required> 
             <button type="button" onclick="insertImage(\${count});">파일 첨부(8개까지 가능)</button>
-            <input type="file" onchange="makeSlick(\${count})" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png" required>
+            <input type="file" onchange="makeSlick(\${count})" name="roomImg\${count}" multiple accept="image/gif, image/jpeg, image/png">
             <button type="button" id="closebtn\${count}"count='\${count}'>X</button>
             </div>
             
@@ -135,7 +191,13 @@
                 let c = $(this).attr('count')
                
                 if($('input[name=contrat]').length == 1){
-                	alert("하나의 방은 존재해야합니다.")
+                	Swal.fire({
+                        position: 'top-center',
+                        icon: 'warning',
+                        title: '하나의 방은 존재해야합니다.',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
                 }else{
                 	if($('#rImg'+c).find('img').length != 0) {
 		        		$('.rImg'+c).slick('slickRemove', null, null, true);
@@ -152,9 +214,7 @@
         
         function deleteImg(e){
         	cnt = $(e).attr('cnt');
-        	console.log(cnt);
         	const files = Array.from(document.getElementsByName('roomImg'+cnt)[0].files);
-            console.log(files);
             const dataTransfer = new DataTransfer();
             files.filter(file=>file.lastModified!=$(e).attr('lastModified')).forEach(file=>{
                 dataTransfer.items.add(file);
@@ -182,7 +242,13 @@
         	let el = $('input[name=roomImg'+item+']').get(0);
         	filelength = el.files.length;
         	if(filelength > 8){
-        		alert("사진첨부는 8개까지 가능합니다.");
+        		Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: '사진첨부는 8개까지 가능합니다.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
         		el.value = "";
         		return 0;
         	}
@@ -223,49 +289,32 @@
         
         function nameAlert(e){
         	if($(e).children(0).val() == ''){
-        		alert("상단의 방 이름을 입력해주세요 ~")
+        		Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: '상단의 방 이름을 입력해주십시오.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
         	}else{
-        		alert("상단의 방 이름을 수정해주세요 ~")
+        		Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: '상단의 방 이름을 수정해주십시오.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
         	}
         }
         
-       /*  function inputCheck(){
-        	
-        	document.getElementById('information').addEventListener('change',function(){
-        		 let flag = 1;
-	            	$("input").each(function(index1,item1){
-	            		flag *= (item1.value ==''? 0 :1);
-	            		flag *= ($('#information').val() == ''? 0 :1);
-	            	});
-	            	
-	            	if(flag==1 && $('#injung').is(':checked') && $('#information').val() != ''){
-	            		$('#apply').removeAttr("disabled");
-	            	}else{
-	            		$('#apply').attr("disabled",true);		
-	            	}
-        	})
-        	
-	        $("input").each(function(index,item){
-	            item.addEventListener("change", function(){
-	            	 let flag = 1;
-	            	$("input").each(function(index1,item1){
-	            		flag *= (item1.value ==''? 0 :1);
-	            		flag *= ($('#information').val() == ''? 0 :1);
-	            	});
-	            	
-	            	if(flag==1 && $('#injung').is(':checked') && $('#information').val() != ''){
-	            		$('#apply').removeAttr("disabled");
-	            	}else{
-	            		$('#apply').attr("disabled",true);		
-	            	}
-	            	
-	            });
-	        })
-        }
-        */
-        
     	document.getElementById('houseAddress').addEventListener('click', function(){
-    		alert('주소 검색버튼을 통해 입력바랍니다.');
+    		Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: '주소 검색버튼을 통해 입력바랍니다.',
+                showConfirmButton: false,
+                timer: 1000
+            })
     	})
         
         function insertDaumPostcodeBtn(){
@@ -287,7 +336,6 @@
                         extraRoadAddr = ' ('+extraRoadAddr+')';
                     }
                 
-                    // document.getElementById("postcodeInsert").value = data.zonecode;
                     document.getElementById("houseAddress").value = roadAddr + extraRoadAddr;
                     getLocation();
                 }

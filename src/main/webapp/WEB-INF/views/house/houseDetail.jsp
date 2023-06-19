@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 </head>
 <body>
+ <jsp:include page="../common/rightside.jsp"/>
   <jsp:include page="../common/header.jsp"></jsp:include> 
     <div class="wrap">
     <div id="sharetitle">
@@ -264,7 +265,13 @@
         		data : {roomNo, symbol },
         	 	beforeSend : function(){
         			if(recruitsNum.text() == 0 && symbol == 'minus'){
-        				alert('모집인원은 음수가 될 수 없습니다.');
+        				Swal.fire({
+                            position: 'top-center',
+                            icon: 'error',
+                            title: '모집인원은 음수가 될 수 없습니다.',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
         				return false;
         			}
         		},
