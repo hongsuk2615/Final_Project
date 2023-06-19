@@ -238,7 +238,7 @@
 								<c:if test="${b.categoryUNo == 2 }">
 	                                <div class="card" >
 	                                	<img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
-	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:200px; height: 200px;" onclick="location.href='/thrifty/usedProduct/detail?bNo=${b.boardNo}'">
 	                                    <div class="container">
 	                                      <h4><b>${b.nickName} </b></h4>
 	                                      <p>${b.title}</p>
@@ -273,7 +273,7 @@
 								
 	                                <div class="card" >
 	                                <img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
-	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:200px; height: 200px;"  onclick="location.href='/thrifty/usedProduct/detail?bNo=${b.boardNo}'">
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:200px; height: 200px;"  onclick="location.href='/thrifty/sharehouse/detail?bNo=${b.boardNo}'">
 	                                    <div class="container" style="text-overflow: ellipsis; width: 200px; white-space: nowrap; ">
 	                                      <h4><b>${b.nickName} </b></h4>
 	                                      <p>${b.title}</p>
@@ -304,7 +304,7 @@
 								<c:if test="${b.categoryUNo == 7 }">
 	                                <div class="card" >
 	                                <img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
-	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:200px; height: 200px;" onclick="location.href='/thrifty/smallGroup/detail?bNo=${b.boardNo}'">
 	                                    <div class="container">
 	                                      <h4><b>${b.nickName} </b></h4>
 	                                      <p>${b.title}</p>
@@ -340,7 +340,7 @@
 								<c:if test="${b.categoryUNo == 3 }">
 	                                <div class="card" >
 	                                <img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
-	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:200px; height: 200px;" onclick="location.href='/thrifty/carPool/detail?bNo=${b.boardNo}'">
 	                                    <div class="container">
 	                                      <h4><b>${b.nickName} </b></h4>
 	                                      <p>${b.title}</p>
@@ -374,7 +374,7 @@
 								<c:if test="${b.categoryUNo == 6 }">
 	                                <div class="card" >
 	                                	<img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
-	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:200px; height: 200px;" onclick="location.href='/thrifty/co_purchase/detail?bNo=${b.boardNo}'">
 	                                    <div class="container">
 	                                      <h4><b>${b.nickName} </b></h4>
 	                                      <p>${b.title}</p>
@@ -406,7 +406,7 @@
 								<c:if test="${b.categoryUNo == 5 }">
 	                                <div class="card" >
 	                                	<img src="/thrifty/resources/images/myPage/cancel.png" bNo= "${b.boardNo}" onclick="deleteWishList(this)" style="width: 20px; height:20px;">
-	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:100%">
+	                                    <img src="${b.upperCategoryName=='K'? '': '/thrifty/resources/images/myPage/'}${b.content}" alt="Avatar" style="width:200px; height: 200px;" onclick="location.href='/thrifty/ptj/detail?bNo=${b.boardNo}'">
 	                                    <div class="container">
 	                                      <h4><b>${b.nickName} </b></h4>
 	                                      <p>${b.title}</p>

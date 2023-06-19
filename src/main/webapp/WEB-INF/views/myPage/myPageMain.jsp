@@ -173,6 +173,9 @@
     height: 40px;
    }
  
+   #member_retire{
+    margin-right: 41px;
+   }
   
  
 /*
@@ -286,7 +289,7 @@
                     
                     <div id="btncover">
                         <div id="btnself">
-                        <a href="/thrifty/mypage/selfban" class="btn btn-danger" >회원 탈퇴</a>
+                        <a href="/thrifty/mypage/selfban" class="btn btn-danger" id="member_retire">회원 탈퇴</a>
                         </div>
                     </div>
                 </div>
