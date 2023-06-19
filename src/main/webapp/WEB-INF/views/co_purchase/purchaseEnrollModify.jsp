@@ -102,7 +102,7 @@
                             <div id="fileUpload_1" class="write_case_head">첨부파일</div>
                             <div class="filebox">
                                 <label for="file">&nbsp;사진 등록&nbsp;</label> 
-                                <input type="file" name="image" id="file" required><br>
+                                <input type="file" name="image" id="file"><br>
                                 <input class="upload-name" value="${ imageList.originName }" placeholder="선택된 파일" name="uploadFile" readonly>
                             </div>
                         </div>
