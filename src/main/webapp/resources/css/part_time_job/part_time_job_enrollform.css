@@ -157,6 +157,10 @@
     box-shadow: 5px 5px 5px gray;
 }
 
+#enroll-btn:hover {
+	cursor: pointer;
+}
+
 select {
     height: 40px;
     width: 90px;

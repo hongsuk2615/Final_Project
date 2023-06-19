@@ -137,4 +137,22 @@ public class UsedProductController {
 			return usedProductService.soldOut(board);
 		}
 	}
+	
+	@ResponseBody
+	@GetMapping("/soldWaiting")
+	public int soldWaiting(HttpSession session, int bNo) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			return -1;
+		} else {
+			Board board = new Board();
+			if (loginUser.getAuthority() == 0) {
+				board.setBoardNo(bNo);
+			} else {
+				board.setBoardNo(bNo);
+				board.setUserNo(loginUser.getUserNo());
+			}
+			return usedProductService.soldWaiting(board);
+		}
+	}
 }

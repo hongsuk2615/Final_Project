@@ -24,7 +24,7 @@
 	border-radius: 5px;
 	flex-wrap: wrap;
 	background-color: rgb(181, 198, 215);
-	width: 100%;
+	width: 835px;
 	height: 1000px;
 }
 
@@ -74,7 +74,16 @@
 	border: solid #3f668f 7px;
     border-radius: 0 0 10px 10px;
     background : white;
+    width: 185px;
 }
+
+.item-info p {
+	width: 185px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
 .items{
 	margin : 0px 10px;
 	cursor: pointer;

@@ -49,4 +49,8 @@ public class UsedProductDao {
 	public int soldOut(Board board) {
 		return sqlSession.update("usedProductMapper.soldOut",board);
 	}
+	
+	public int soldWaiting(Board board) {
+		return sqlSession.update("usedProductMapper.soldWaiting",board);
+	}
 }

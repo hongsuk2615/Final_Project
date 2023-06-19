@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 </head>
 <body>
+ <jsp:include page="../common/rightside.jsp"/>
   <jsp:include page="../common/header.jsp"></jsp:include> 
     <div class="wrap">
     <div id="sharetitle">
@@ -27,7 +28,7 @@
     <div class="img-bx">
 		<c:forEach var="rimg" items="${h.roomList[0].imgList }">
       		<div>
-          	  <img src="/thrifty/resources/images/upfiles/house/${rimg.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
+          	  <img src="/thrifty/resources/upfiles/house/${rimg.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
         	</div>
        	</c:forEach>
     </div>
@@ -229,7 +230,7 @@
 					result.forEach(function(ri){
 						imgList += `
 							<div>
-				            <img src="/thrifty/resources/images/upfiles/house/\${ri.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
+				            <img src="/thrifty/resources/upfiles/house/\${ri.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" >
 				        	</div>
 				        `;
 					})
@@ -264,7 +265,13 @@
         		data : {roomNo, symbol },
         	 	beforeSend : function(){
         			if(recruitsNum.text() == 0 && symbol == 'minus'){
-        				alert('모집인원은 음수가 될 수 없습니다.');
+        				Swal.fire({
+                            position: 'top-center',
+                            icon: 'error',
+                            title: '모집인원은 음수가 될 수 없습니다.',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
         				return false;
         			}
         		},
@@ -343,17 +350,68 @@
                     })
                  }
         
-        function checkApply(){
+         function checkApply(){ // 모달창 여는거 따로 수락/거절했을 때 db접근 status n으로 변경
+        	
+        	document.getElementById('modal-applicationForm2').style.display = 'flex';
         	$.ajax({
         		url : '/thrifty/sharehouse/checkApply',
-        		data : { bNo },
-        		success : {
+        		data : { bNo : '${b.boardNo}' },
+        		dataType : 'json',
+        		success : function(result){
+        			let re = "";
+        			for(let i = 0; i < result[0].length; i++){
+        				tou = result[0][i];
+        				mem = result[1][i];
         			
+        				re += "<div class='applyDiv'  uNo='"+tou.userNo+"' rNo='"+tou.roomNo+"' onclick='openApplyForm(this);'><div class='titleDiv'>"+tou.title +" / "+ tou.roomName +" / "+ mem.userName+"</div></div>"; 
+        			}
+        			$("#checkApply").html(re);
         		}
         		
-        	})
-        	
-        }
+        	}) 
+        } 
+         
+         function openApplyForm(el){ // 모달창 여는거 따로 수락/거절했을 때 db접근 status n으로 변경
+        	 let uNo = $(el).attr('uNo');
+        	 let rNo = $(el).attr('rNo');
+         	$.ajax({
+         		url : '/thrifty/sharehouse/selectApply',
+         		data :  { rNo, uNo },
+         		dataType : 'json',
+         		success : function(result){
+         			let re = "";
+         				tou = result[0];
+         				mem = result[1];
+         				mem.gender = mem.gender == 'F' ? "여자" : "남자";
+         				re += " <div id='applyCheckDiv'><label for='name'>· 이름 : "+ mem.userName +"</label><br><br>"+
+                        "<label for='age' >· 성별 : "+ mem.gender +"</label><br><br>"+
+                        "<label for='phone' >· 연락처 : "+ mem.phone +"</label><br><br>"+
+                        "<label for='email' >· 이메일 : "+ mem.email +"</label><br><br>"+
+                        "· <span id='hName'>"+ tou.title +" </span> / <span id='rName'>"+ tou.roomName +"</span><br><br>"+
+                        "<label for='moveIn'>· 희망입주일 : "+ tou.moveIn +"</label><br><br>"+
+                        "<label for='enquiry'>· 문의사항</label><br>"+
+                        "<pre>"+tou.enquiry+"</pre><br><br><br><br>"+
+                        "<button id='accept' uNo='"+tou.userNo+"' rNo='"+tou.roomNo+"' onclick='checkStatus(this)'>수락</button> "+ 
+                        "<button id='decline' uNo='"+tou.userNo+"' rNo='"+tou.roomNo+"' onclick='checkStatus(this)'>거절</button></div>"; 
+         			
+         			$("#checkApply").html(re);
+         		}
+         		
+         	}) 
+         } 
+         
+         function checkStatus(el){
+        	 let uNo = $(el).attr('uNo');
+        	 let rNo = $(el).attr('rNo');
+        	 $.ajax({
+          		url : '/thrifty/sharehouse/checkStatus',
+          		data : { rNo, uNo },
+          		success : function(result){
+          			checkApply();
+          		}
+          		
+          	}) 
+         }
       </script>
       <jsp:include page="houseModal.jsp"></jsp:include>
 <script src="/thrifty/resources/js/house/houseModal.js"></script>
