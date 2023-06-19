@@ -12,13 +12,11 @@
     <style>
     	li:hover {
     		cursor: pointer;
-    		color: lightgray;
-    		background-color: gray;
     	}
     </style>
 </head>
 <body>
-            <div id="body-left">
+            <div id="body-left" style="height: 500px;">
                 <div id="upper-category">
                     <div>
                         <img src="/thrifty/resources/images/ptj/part-time.png" alt="상위 카테고리 이미지">
