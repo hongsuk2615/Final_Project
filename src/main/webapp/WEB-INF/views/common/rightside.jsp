@@ -12,10 +12,10 @@
 
 </head>
 <style>
-       /* *{
+        /* *{
         border: 1px solid blue !important;
         box-sizing: border-box;
-    }*        */
+    }*         */
 
 
    input[id="menuicon"] {display: none;}
@@ -25,13 +25,13 @@
    input[id="menuicon"] +label span:nth-child(2) {top: 50%; transform: translateY(-50%);}
    input[id="menuicon"] +label span:nth-child(3) {bottom: 0;}
 
-   input[id="menuicon"]:checked + label {z-index: 2; right: 200px;} 
+   input[id="menuicon"]:checked + label {z-index: 2; right: 100px;} 
    input[id="menuicon"]:checked + label span{background: black;}
    input[id="menuicon"]:checked + label span:nth-child(1){top: 50%; transform: translateY(-50%) rotate(45deg);}
    input[id="menuicon"]:checked + label span:nth-child(2){opacity: 0;}
    input[id="menuicon"]:checked + label span:nth-child(3){bottom: 50%; transform: translateY(50%) rotate(-45deg);}
 
-   div[class="sidebar"] {width: 200px; height: 50%; background-color: rgb(0, 60, 120); border-radius: 2rem; position: fixed;   display: flex; align-items: center;  justify-content: center; top: 30vh; right: -200px; z-index: 1; transition: all .35s;}
+   div[class="sidebar"] {width: 100px; height: 50%; background-color: rgb(0, 60, 120); border-radius: 2rem; position: fixed;   display: flex; flex-direction: column;  justify-content: center; align-items: center; top: 30vh; right: -200px; z-index: 1; transition: all .35s;}
    input[id="menuicon"]:checked + label + div {right: 0px;} 
 
 
@@ -106,12 +106,12 @@
     #message_content{
         height: 80%;
         display: flex;
-        border: solid black;
+       
     }
 
     #message_content_left{
         width: 30%;
-        border: solid black;
+        
         background-color: white;
         overflow: auto;
         overflow-x: hidden;
@@ -119,7 +119,7 @@
 
     #message_content_right{
         width: 70%;
-        border: solid black;
+        
         background-color: rgb(181 198 215);
         overflow: auto;
         overflow-x: hidden;
@@ -137,14 +137,23 @@
         width: 50px;
         height: 50px;
         border-radius: 3rem;
-        border: solid black;
+       
         
     }
     #member_profile{
         height: 60px;
-        border: solid black;
+        
+    }
+    .memberProfile{
+        
+        
+        border-bottom: 1px solid gray;
     }
    
+    .sidebarimg{
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
 
 </style>
 <body>
@@ -160,8 +169,8 @@
             <div id="message_content">
                 <div id="message_content_left"> 
                     <div id="member_profile">
-                        <img src="/thrifty/resources/images/myPage/2023060814540217132.jpeg" id="message-profile-img" > 
-                        <p>nemo0824<p>
+                        <img src="" id="message-profile-img" > 
+                        <p><p>
                     </div>
                 </div>
                 <div id="message_content_right"> right</div>
@@ -192,7 +201,10 @@
          <span></span>
     </label>
     <div class="sidebar">
-             <img src="/thrifty/resources/images/myPage/send-mail.png" id="modalmessage" style="width: 50px; height: 50px;">
+             
+             <img src="/thrifty/resources/images/myPage/send-mail.png" class="sidebarimg"    id="modalmessage" style="width: 50px; height: 50px;">
+            <a href="/thrifty//mypage/myPageMain"><img src="/thrifty/resources/images/myPage/avatarz.png" class="sidebarimg" style="width: 50px; height: 50px;"></a>
+             <a href="/thrifty/faq"><img src="/thrifty/resources/images/myPage/signpost.png" class="sidebarimg" style="width: 50px; height: 50px;"></a>
             
             
     </div>
@@ -235,9 +247,9 @@
                 $('#message_content_left').html('');
                 for(user of result){
                     console.log(user);
-                    if(user.loginMehod == 'K'){
+                    if(user.loginMethod == 'K'){
                         $('#message_content_left').append(`
-                        <div id="member_profile" userNo="\${user.userNo}" nickName = "\${user.nickName}" onclick="displayMessage(this);">
+                        <div  class ="memberProfile"id="member_profile" userNo="\${user.userNo}" nickName = "\${user.nickName}" onclick="displayMessage(this);">
                             <img src="\${user.changeName}" id="message-profile-img" > 
                             <p style=" width: 85px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">\${user.nickName}<p>
                         </div>
@@ -245,7 +257,7 @@
                         `) 
                     }else{
                         $('#message_content_left').append(`
-                        <div id="member_profile" userNo="\${user.userNo}"" nickName = "\${user.nickName}" onclick="displayMessage(this)">
+                        <div class ="memberProfile" id="member_profile" userNo="\${user.userNo}"" nickName = "\${user.nickName}" onclick="displayMessage(this)">
                             <img src="/thrifty/resources/upfiles/myPage/\${user.changeName}" id="message-profile-img" > 
                             <p style=" width: 85px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">\${user.nickName}<p>
                         </div>
@@ -261,6 +273,10 @@
 
 
     function displayMessage(element){
+        $('.memberProfile').each(function(index, item){
+            $(item).css('background','white');
+        })
+        $(element).css('background','#e2e2e2');
         let userNo = $(element).attr('userno');
         let receiver = $(element).attr('nickname');
         $('#send-btn').attr('receiver', userNo);

@@ -21,7 +21,7 @@
     </div>
     <div id="ask">
         <div>
-        <form method="post" action="/thrifty/sharehouse/enroll" enctype="multipart/form-data">
+        <form method="post" action="/thrifty/sharehouse/enroll" enctype="multipart/form-data" onsubmit="return Hvalidate();">
 
             <input type="text" placeholder=" *이름" name="userName" id="userName" required value="${loginUser.userName }" disabled> <br>
             <input  type="tel" placeholder=" *연락처" name="phone" id="phone" required value="${loginUser.phone }" disabled> <br>
@@ -62,7 +62,7 @@
                 <input type="checkbox" name="injung" id="injung" >
             <label for="injung">개인정보수집에 동의합니다.</label> <br><br>
 
-                <button id="apply" disabled >신청하기</button><br>
+                <button id="apply">신청하기</button><br>
         </form>
     </div>
     </div>
@@ -71,12 +71,16 @@
 <div id="map"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38255ab43d3ba70f10bb3d7ec82d75af&libraries=services"></script>
     <script>
+    
+    function Hvalidate(){
+    	return false;
+    	
+    }
 
         let count = -1;
         const dataTransfer = new DataTransfer();
         let fileArr = new Array();
         function addRoom(){ // 방 추가
-          	$('#apply').attr("disabled", true);
             count++;
             
             let a = `
@@ -143,7 +147,7 @@
                 $("#tb"+c).remove();
                 }
             });
-            inputCheck();
+            
         }addRoom();
         
         function deleteImg(e){
@@ -225,7 +229,7 @@
         	}
         }
         
-        function inputCheck(){
+       /*  function inputCheck(){
         	
         	document.getElementById('information').addEventListener('change',function(){
         		 let flag = 1;
@@ -258,7 +262,7 @@
 	            });
 	        })
         }
-        inputCheck();
+        */
         
     	document.getElementById('houseAddress').addEventListener('click', function(){
     		alert('주소 검색버튼을 통해 입력바랍니다.');
