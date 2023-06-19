@@ -19,16 +19,20 @@
 #ptj-allBody{
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 	border-radius: 10px;
 	flex-wrap: wrap;
 	padding: 10px;
 	background-color: rgb(181, 198, 215);
+	height: 1000px;
+	width: 700px;
 }
 
 #ptj-allBody > div {
 	border: solid #3f668f 7px;
 	border-radius: 10px;
 	background-color: white;
+	height: 300px;
 }
 
 #ptj-allBody > div:hover {
@@ -84,3 +88,55 @@
 	white-space: nowrap;
 	overflow: hidden;
 }
+
+.item-img {
+	border-bottom : none;
+    border-radius: 10px 10px 0 0;
+}
+
+.item-info {
+    border-radius: 0 0 10px 10px;
+    background : white;
+}
+.items{
+	margin : 0px 10px;
+	cursor: pointer;
+	height: 295px;
+    border-radius: 12px;
+}
+.items:hover{
+	box-shadow: 5px 5px 5px gray;
+}
+
+.item-info p {
+	width: 185px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+#search{
+    height: 40px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #3f668f;
+    border-radius: 3px;
+    background:white;
+    
+}
+
+#search>img{
+    margin: 10px;
+}
+#search>input{
+    border: 1px solid transparent;
+    height: 100%;
+    background : white;
+    border-left: 2px solid #3f668f;
+    width: 210px;
+    padding-left : 10px;
+}
+
+#search>input:focus { outline: none; }

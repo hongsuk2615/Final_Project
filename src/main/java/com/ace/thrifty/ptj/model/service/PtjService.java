@@ -11,7 +11,6 @@ import com.ace.thrifty.board.model.vo.Image;
 import com.ace.thrifty.ptj.model.vo.Ptj;
 
 public interface PtjService {
-   
    public List<Ptj> selectPtj();
    public Ptj selectPtjDetail(int bNo);
    public void selectPtjAll(Map<String, Object> queryString);
@@ -21,5 +20,4 @@ public interface PtjService {
    public int updatePtj(Ptj p , Board b, Image img , String webPath , String serverFolderPath) throws Exception;
    public int workEnd(Board b);
    public List<Ptj> advptjAll();
-   
 }

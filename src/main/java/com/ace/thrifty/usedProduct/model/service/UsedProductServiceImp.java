@@ -39,7 +39,6 @@ public class UsedProductServiceImp implements UsedProductService {
 		int result = 0;
 		if (boardNo > 0) {
 			uP.setBoardNo(boardNo);
-			System.out.println(uP);
 			result = usedProductDao.insertUsedProduct(uP);
 		}
 
@@ -99,7 +98,6 @@ public class UsedProductServiceImp implements UsedProductService {
 		result = boardDao.updateBoard(b);
 		if (result > 0) {
 			uP.setBoardNo(b.getBoardNo());
-			System.out.println(uP);
 			result = usedProductDao.modifyUsedProduct(uP);
 		}
 		
