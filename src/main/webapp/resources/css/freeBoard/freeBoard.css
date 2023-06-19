@@ -9,10 +9,19 @@ border: 1px solid black;
 .freeBoard_top{
     border-bottom: 1px solid black;
 }
+.freeBoard_bottom{
+    border: 1px solid #ccc;
+}
+
+.board_li{
+    padding: 10px 0px;
+    border-bottom: 1px solid black;
+}
 
 .board_mapper{
     display: flex;
     justify-content: space-between;
+    max-height: 60px;
 }
 
 .board_mapper_left{
@@ -20,17 +29,32 @@ border: 1px solid black;
 }
 .board_attr{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
 }
 .board_img>img{
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
+    margin: 0px 12px 0px 0px;
+}
+
+
+.read{
+    display: flex;
+    margin-left: 12px;
+}
+
+.readCount{
+    margin-left: 3px;
+    font-size: 14px;
+    color: #ccc;
 }
 
 .board_mapper_right{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 12px;
+    font-weight: 400;
+    color: #000;
 }
 
 .board_title{
@@ -46,4 +70,6 @@ border: 1px solid black;
     padding-top: 30px;
     margin: auto;
     font-size: 0.5cm;   
+    font-weight: 600;
+    font-size: 18px;
 }

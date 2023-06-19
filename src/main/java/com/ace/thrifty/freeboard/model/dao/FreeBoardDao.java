@@ -1,4 +1,5 @@
 package com.ace.thrifty.freeboard.model.dao;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,9 @@ public class FreeBoardDao {
 		return sqlSession.update("freeBoardMapper.updateFreeBoard", b);
 	}
 
+
+	public List<Board> freeBoardList() {
+		return sqlSession.selectList("freeBoardMapper.freeBoardList");
+	}
+	
 }

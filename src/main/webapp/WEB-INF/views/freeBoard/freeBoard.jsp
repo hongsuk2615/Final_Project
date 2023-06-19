@@ -41,34 +41,38 @@
 					<h2>자유 게시판</h2>
 					<a href="${contextPath}/freeBoard/enroll">글 작성</a>
 				</div>
-				<div>
+				<div class="freeBoard_bottom">
 					<ul>
-						<li>
-							<div class="board_mapper">
-								<div class="board_mapper_left">
-									<div class="board_img">
-										<img src="${contextPath}/resources/images/admin/adminProfile.jpg">
+						<c:forEach var="list" items="${list}">
+							<li class="board_li">
+								<div class="board_mapper">
+									<div class="board_mapper_left">
+										<div class="board_img">
+											<img src="${contextPath}/resources/images/admin/adminProfile.jpg">
+										</div>
+										<div class="board_attr">
+												<span class="board_title">
+													<a href="${contextPath}/freeBoard/${list.boardNo}">${list.title}</a>
+												</span>
+												<div class="read">
+													<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="16px" fill="#ccc"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+													<span class="readCount">${list.readCount}</span>
+												</div>
+												
+										</div>
 									</div>
-									<div class="board_attr">
-										<div>
-											<span class="board_title">제목제목제목 제목</span>
-										</div>
-										<div>
-											<span>꿀꾸루</span>
-										</div>
+									<div class="board_mapper_right">
+											<span class="nickName">${list.nickName}</span>
+											<span>&nbsp;|&nbsp;</span>
+											<span class="createDate">${list.createDate}</span>
 									</div>
 								</div>
-								<div class="board_mapper_right">
-									<div class="board_creatDate">
-										<span>2010.10.01</span>
-									</div>
-									<div class="board_reacCount">
-										<span>10</span> <!--눈 아이콘 넣을 예정-->
-									</div>
-								</div>
-							</div>
-						</li>
+							</li>
+						</c:forEach>
 					</ul>
+					<div>
+						<button><a href="${contextPath}/freeBoard/enrollForm">글 작성</a></button>
+					</div>
 				</div>
 			</div>
 			<div id="pagingbar">

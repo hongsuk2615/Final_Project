@@ -1,6 +1,7 @@
 package com.ace.thrifty.freeboard.controller;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,10 @@ public class FreeBoardController {
 	@GetMapping("")
 	public String freeBoard(@RequestParam(defaultValue = "0") int categorySNo,
 							@RequestParam(defaultValue = "1") int currentPage) {
+		
+		List<Board> list = freeBoardService.freeBoardList();
+		
+		model.addAttribute("list", list);
 		
 		return "freeBoard/freeBoard";
 	}

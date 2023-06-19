@@ -32,7 +32,7 @@ $('.table_search_btn').on('click', function(){
 
 
 
-//member 상태변경 ajax
+//상태변경 ajax
 $(".status-dropdown").on('click', function(){
     let reportType = urlParams.get('type');
     let dataParam = {};

@@ -1,5 +1,7 @@
 package com.ace.thrifty.freeboard.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,9 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 	@Override
 	public int updateFreeBoard(Board b) {
 		return freeBoardDao.updateFreeBoard(b);
+		
+	public List<Board> freeBoardList() {
+		return freeBoardDao.freeBoardList();
 	}
 
 }
