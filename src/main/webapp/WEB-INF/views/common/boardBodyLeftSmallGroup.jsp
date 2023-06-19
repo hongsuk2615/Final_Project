@@ -50,6 +50,18 @@
      
     },1000);
 
+    var count1 = 20;
+
+    setInterval(function(){
+     count1 -= 1;
+     if(count1>=0){
+         document.querySelector('#num1').innerHTML = count1;
+         
+     }else if(count1== -1){
+         $('.advall').hide();
+     }
+     
+    },1000);
 
     
     
