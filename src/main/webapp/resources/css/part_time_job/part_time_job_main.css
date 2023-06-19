@@ -77,4 +77,26 @@ swiper-slide img {
 	height: 100px;
 }
 
+#free-board img {
+	width: 200px;
+	height: 200px;
+	display: 
+}
+
+#ptj-new-board {
+	border: 8px solid gray;
+	border-radius: 18px;
+}
+
+#free-board > div {
+	border: 1px solid lightgray;
+	width: 250px;
+	height: 350px;
+	border-radius: 10px;
+}
+
+#ptj-new-board:hover {
+	cursor: pointer;
+	box-shadow: 5px 5px 5px gray;
+}
 

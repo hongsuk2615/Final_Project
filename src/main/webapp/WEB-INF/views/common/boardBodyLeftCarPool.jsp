@@ -16,7 +16,7 @@
     <title>Document</title>
 </head>
 <body>
-            <div id="body-left">
+            <div id="body-left" style="height: 500px;">
                 <div id="upper-category">
                     <div>
                         <div id="upper-category-name">지역별 카테고리</div>
