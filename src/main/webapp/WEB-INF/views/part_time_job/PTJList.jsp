@@ -80,23 +80,46 @@
                 </div>
                 <hr style="width: 100%;  margin-top: 15px;">
                 <div id="ptj-allBody" style="height: 1000px;">
-                	<c:forEach var="list" items="${list }" begin="0" end="8" step="1">
-               			<div style="width: 200px; height: 300px;" class="list-detail" onclick="location.href = '${contextPath}/ptj/detail?bNo=${list.boardNo }'">
-               				<c:choose>
-               					<c:when test="${list.isEnd eq 'N' }">
-		               				<img src="${contextPath }/${list.imgPath }" style="height: 170px; width: 100%; border-radius: 3px;"/>		               						
-               					</c:when>
-               					<c:otherwise>
-               						<img src="${contextPath }/resources/images/ptj/end.jpg" style="height: 170px; width: 100%; border-radius: 3px;"/>
-               					</c:otherwise>
-               				</c:choose>
-               				<div id="ptj-content">
-	       						<p>제목 :${list.board.title }</p>
-	       						<p id="board-content">내용 :${list.board.content }</p>
-	       						<p>지역 :${list.location.locationName }</p>
-               				</div>
-           				</div>
-       				</c:forEach>
+                	<c:choose>
+                	<c:when test="${list.size() eq 0 }">
+                	<img width="170" height="200" src="/thrifty/resources/images/usedProduct/not-found.png">
+                	</c:when>
+                	<c:otherwise>
+                		<c:forEach var="i"  begin="0" end="8" step="1">
+	                    <c:choose>
+	                    	<c:when test="${i lt list.size()}" >
+			                    <div class="items" onclick = "location.href = '${contextPath}/ptj/detail?bNo=${list.get(i).boardNo}'" >
+			                        <div class="item-img" style="width: 185px; height: 170px;">
+										<img style="width: 100%; height: 100%;" alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'" src='${contextPath }/${list.get(i).isEnd == 'Y'? 'resources/images/ptj/end.jpg': list.get(i).imgPath}'>
+			                        </div>
+			                        <div class="item-info">
+			                        	<p style="text-align: center;">${list.get(i).subCategory.categorySName }</p>
+				                        <p>제목 : ${list.get(i).board.title }</p>
+				                        <p>카풀비 : ${list.get(i).price }</p>
+			                        </div>     
+			                    </div>                	
+	                    	
+	                    	
+	                    	</c:when>
+							<c:otherwise>
+								<div class="items"  style="opacity:0; height: 200px; cursor:initial;">
+			                        <div class="item-img" style="width: 170px;  opacity:0;">
+										<img style="width: 100%; height: 100%;" alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'" src=''>
+			                        </div>
+			                        <div class="item-info">
+			                        	<p></p>
+				                        <p></p>
+				                        <p></p>
+			                        </div>     
+			                    </div>              
+							</c:otherwise>		                    
+	                    </c:choose>
+                    
+                	</c:forEach>
+                	
+                	
+                	</c:otherwise>
+                </c:choose>
                 </div>
                    <div id="paging-btns">
                    	<c:choose>

@@ -23,12 +23,15 @@
 	flex-wrap: wrap;
 	padding: 10px;
 	background-color: rgb(181, 198, 215);
+	height: 1000px;
+	width: 700px;
 }
 
 #ptj-allBody > div {
 	border: solid #3f668f 7px;
 	border-radius: 10px;
 	background-color: white;
+	height: 300px;
 }
 
 #ptj-allBody > div:hover {
@@ -80,6 +83,32 @@
 }
 
 #ptj-content {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.item-img {
+	border-bottom : none;
+    border-radius: 10px 10px 0 0;
+}
+
+.item-info {
+    border-radius: 0 0 10px 10px;
+    background : white;
+}
+.items{
+	margin : 0px 10px;
+	cursor: pointer;
+	height: 295px;
+    border-radius: 12px;
+}
+.items:hover{
+	box-shadow: 5px 5px 5px gray;
+}
+
+.item-info p {
+	width: 185px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;

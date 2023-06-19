@@ -91,10 +91,10 @@
             <div id="free-board">
             <c:forEach var="pList" items="${p}" begin="0" end="3" step="1">
            		<c:if test="${pList.board.categoryUNo eq 8 }">
-           			<div>
+           			<div id="free-board-div">
 	                    <h4 style="color: #B2B1B0;">카테고리 > 자유 게시판</h4>
 	                    <h3>${pList.board.title }</h3>
-	                    <p style="max-width:250px;">${pList.board.content }</p>
+	                    <p id="free-board-content" style="max-width:250px;">${pList.board.content }</p>
 	                </div>
            		</c:if>
             </c:forEach>
@@ -102,20 +102,19 @@
         </div>
         <div style="height: 450px">
             <h2 style="margin-left: 10%;">최신 심부름 / 알바 게시글</h2>
-            <div id="alba-board">
-            	<c:forEach var="p" items="${p }" begin="0" end="3" step="1">
-            	
-	                <div>
+            <div id="alba-board" style="padding: 30px;">
+            	<c:forEach var="pList" items="${p }" begin="0" end="3" step="1">
+	                <div id="ptj-new-board" onclick="location.href = '${contextPath}/ptj/detail?bNo=${pList.boardNo }'">
 	                	<c:choose>
-	                		<c:when test="${p.board.categoryUNo eq 5 }">
-			                    <img src="${contextPath }${webPath }${p.imgPath }" style="width: 230px; height: 180px;">	                		
-			                    <p>${p.isEnd == "N" ? "모집중" : "모집 완료" }</p>
-	                   			<p>${p.board.title }</p>
+	                		<c:when test="${pList.board.categoryUNo eq 5 }">
+			                    <img src="${contextPath }${webPath }${pList.imageList.get(0).changeName }" style="width: 200px; height: 160px;">	                		
+			                    <p>${pList.isEnd == "N" ? "모집중" : "모집 완료" }</p>
+	                   			<p>${pList.board.title }</p>
 	                		</c:when>
 	                		<c:otherwise>
-	                			<img src="">
-	                			<p></p>
-	                			<p></p>
+	                			<img src="${contextPath }/resources/images/ptj/end.jpg" style="width: 200px; height: 160px;">
+	                			<p>게시글이 삭제되거나</p>
+	                			<p>구인이 완료되었습니다.</p>
 	                		</c:otherwise>
 	                	</c:choose>
 	                    
