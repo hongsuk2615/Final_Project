@@ -306,6 +306,7 @@
                 })
         	}
         }
+        
     	document.getElementById('houseAddress').addEventListener('click', function(){
     		Swal.fire({
                 position: 'top-center',
@@ -335,7 +336,6 @@
                         extraRoadAddr = ' ('+extraRoadAddr+')';
                     }
                 
-                    // document.getElementById("postcodeInsert").value = data.zonecode;
                     document.getElementById("houseAddress").value = roadAddr + extraRoadAddr;
                     getLocation();
                 }
