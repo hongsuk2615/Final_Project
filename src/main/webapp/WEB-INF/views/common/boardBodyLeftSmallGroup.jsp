@@ -24,25 +24,11 @@
                 <div id="sub-category" >
                   <div id="shAdv">
                  </div>
+                
+                 
                 </div>
-                <div id="upAdv">
-                    <ul class="scrollbar">
-                        <div class="advall">
-                            <span id="num">20</span>초 후에 없어짐
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-
-                        </div>
-
-                    </ul>
-                    
+                 <div id="upAdv">
                 </div>
-
             </div>
           
            
@@ -50,7 +36,7 @@
 </body>
 
 <script>
-    var count = 20;
+  /*   var count = 20;
 
     setInterval(function(){
      count -= 1;
@@ -62,7 +48,7 @@
      }
      
     },1000);
-
+ */
 
     
     
@@ -79,11 +65,13 @@
 				console.log('ajax');
 				abc = "";
 				abc += `
-					<ul class="scrollbar">
-                 <div class="alert alert-warning">
+				<div>
+					<ul style="text-align: center; width: 250px; margin: 26px; padding: 0; height: 470px;">
+                 <div class="alert alert-warning" style="border-radius: 16px;">
                      <span id="num">20</span>초 후에 없어짐
                      <p>제목 :\${result.title}</p>
                      <img src="/thrifty/\${result.thumbNail}"onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="200px" height="120px">
+                     <p></p>
                      <p>상품 가격 :\${result.price}</p>
                      <p>거래 지역 :\${result.locationName}</p>
                      <p>거래 방법 :\${result.tradeMethod== 'D' ? '직거래': '택배'}</p>
@@ -93,7 +81,7 @@
                  </div>
                  
 
-             </ul>`
+             </ul>  </div>`
 			$('#upAdv').html(abc);
 			}
 		})
@@ -110,8 +98,8 @@
  				rent = result.roomList[0].rent.toLocaleString();
  				cost = result.roomList[0].cost.toLocaleString();
  				abc += `
- 					<ul class="scrollbar">
-                    <div class="alert alert-warning">
+ 					<ul style="text-align: center; width: 250px; margin: 15px; padding: 0;">
+                    <div class="alert alert-warning"  style="border-radius: 16px;">
                         <span id="num1">20</span>초 후에 없어짐
                         <img src="/thrifty/\${result.thumbnail}" onerror="this.src='/thrifty/resources/images/common/noImage.png'"width="180px" height="120px">
                         <p></p>
