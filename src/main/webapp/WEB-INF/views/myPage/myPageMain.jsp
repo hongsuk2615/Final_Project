@@ -217,7 +217,7 @@
                     </c:if>
                     
                     <c:if test="${loginUser.loginMethod == 'K'}">
-                    	<img src="${loginUser.changeName}" width="100%" height="100%">
+                    	<img src="${loginUser.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'"width="100%" height="100%">
                     </c:if>
                     </div>
 
@@ -235,7 +235,7 @@
                     
                         
                         <div class="classtitle">
-                            <img src="/thrifty/resources/images/myPage/team.png" id="message-profile-img" height="40px">  <h2> 회원정보</h2>
+                            <img src="/thrifty/resources/images/myPage/team.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" id="message-profile-img" height="40px">  <h2> 회원정보</h2>
                         </div>
                     <div class="personinfoborder" data-aos="fade-up-right" id="personinfoborder">
                         
