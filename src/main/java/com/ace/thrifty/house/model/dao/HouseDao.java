@@ -110,4 +110,8 @@ public class HouseDao {
 		return sqlSession.selectOne("houseMapper.selectApply", map);
 		}
 	
+	public House houseAd(){
+		return sqlSession.selectOne("houseMapper.houseAd");
+		}
+	
 }

@@ -44,4 +44,6 @@ public interface HouseService {
 	
 	List<Object> selectApply(int rNo, int uNo);
 	
+	House houseAd();
+	
 }

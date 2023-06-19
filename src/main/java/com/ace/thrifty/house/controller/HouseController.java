@@ -250,7 +250,6 @@ public class HouseController {
 	public String selectApply(@RequestParam(value="rNo", required=false) int rNo, @RequestParam(value="uNo", required=false) int uNo) {
 		return new Gson().toJson(houseService.selectApply(rNo, uNo));
 	}
-
 	
 	@ResponseBody
 	@GetMapping("/checkStatus")
@@ -259,6 +258,12 @@ public class HouseController {
 		map.put("rNo", rNo);
 		map.put("uNo", uNo);
 		return new Gson().toJson(houseService.checkStatus(map));
+	}
+	
+	@ResponseBody
+	@GetMapping("/ad") // 쉐어하우스 광고
+	public String houseAd() {
+		return new Gson().toJson(houseService.houseAd());
 	}
 
 

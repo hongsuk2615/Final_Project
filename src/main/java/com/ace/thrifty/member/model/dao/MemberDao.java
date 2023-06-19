@@ -54,7 +54,7 @@ public class MemberDao {
 	
 	public Member selectUser(int userNo) {
 		return sqlSession.selectOne("memberMapper.selectUser", userNo);
-
+	}
 	public int todayLogin(int userNo) {
 		return sqlSession.update("memberMapper.todayLogin",userNo);
 	}

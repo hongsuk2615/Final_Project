@@ -236,4 +236,9 @@ public class HouseServiceImpl implements HouseService{
 		return list;
 	}
 
+	@Override
+	public House houseAd() {
+		return houseDao.houseAd();
+	}
+
 }

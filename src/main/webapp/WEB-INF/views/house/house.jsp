@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/thrifty/resources/css/house/house.css">
 </head>
 <body>
+ 	<jsp:include page="../common/rightside.jsp"/>
    	<jsp:include page="../common/header.jsp"></jsp:include>
     <div class="wrap">
  	

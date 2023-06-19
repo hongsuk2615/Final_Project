@@ -255,5 +255,15 @@
 				AND T.USER_NO = #{uNo}
 	</select>
 	
+	<select id="houseAd" resultMap="houseResultSet">
+		SELECT *
+			FROM SHARE_HOUSE
+			JOIN BOARD B USING (BOARD_NO)
+			JOIN ROOM R USING (BOARD_NO)
+			WHERE B.STATUS = 'Y'
+				ORDER BY RAND()
+				LIMIT 1
+	</select>
+	
 	
 </mapper>

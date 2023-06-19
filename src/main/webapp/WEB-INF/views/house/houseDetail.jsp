@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 </head>
 <body>
+ <jsp:include page="../common/rightside.jsp"/>
   <jsp:include page="../common/header.jsp"></jsp:include> 
     <div class="wrap">
     <div id="sharetitle">

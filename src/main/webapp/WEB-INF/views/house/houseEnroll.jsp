@@ -13,6 +13,7 @@
     
 </head>
 <body>
+ <jsp:include page="../common/rightside.jsp"/>
      <jsp:include page="../common/header.jsp"></jsp:include> 
     <div class="wrap">
         <div id="homecontent">
