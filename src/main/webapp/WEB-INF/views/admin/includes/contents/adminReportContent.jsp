@@ -40,7 +40,7 @@
 						console.log(item.categoryName);
 						bodyHtml += `<tr>
 										<td>`+item.categoryName+`</td>
-										<td>`+item.count+`</td>
+										<td style="text-align: center;">`+item.count+`</td>
 									</tr>`
 					});
 

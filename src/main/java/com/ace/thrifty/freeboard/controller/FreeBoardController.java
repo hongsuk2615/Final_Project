@@ -1,7 +1,10 @@
 package com.ace.thrifty.freeboard.controller;
 
 import javax.servlet.http.HttpSession;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,12 +30,23 @@ public class FreeBoardController {
 	}
 	
 	@GetMapping("")
-	public String freeBoard(@RequestParam(defaultValue = "0") int categorySNo,
+	public String freeBoard(Model model,
+							@RequestParam(defaultValue = "0") int categorySNo,
 							@RequestParam(defaultValue = "1") int currentPage) {
 		
-		List<Board> list = freeBoardService.freeBoardList();
+		Map<String, Object> paramMap = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		
-		model.addAttribute("list", list);
+		map.put("categorySNo", categorySNo);
+		paramMap.put("categorySNo",categorySNo);
+		paramMap.put("currentPage",currentPage);
+		
+		
+		freeBoardService.freeBoardList(map, paramMap);
+		
+		System.out.println(map);
+		
+		model.addAttribute("map", map);
 		
 		return "freeBoard/freeBoard";
 	}

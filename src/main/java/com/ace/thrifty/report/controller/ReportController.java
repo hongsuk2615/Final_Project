@@ -17,45 +17,52 @@ import com.ace.thrifty.report.model.service.ReportService;
 import com.ace.thrifty.report.model.vo.ReportCategory;
 import com.google.gson.Gson;
 
-
 @Controller
 @RequestMapping("/report")
 public class ReportController {
-	
+
 	private ReportService reportService;
-	
+
 	@Autowired
 	public ReportController(ReportService reportService) {
 		this.reportService = reportService;
 	}
-	
+
 	@GetMapping(value = "/list", produces = "application/text; charset=UTF-8")
 	@ResponseBody
 	public String reportList() {
 		List<ReportCategory> list = reportService.reportList();
-		
+
 		return new Gson().toJson(list);
 	}
-	
+
 	@GetMapping(value = "/insert", produces = "application/text; charset=UTF-8")
 	@ResponseBody
-	public String reportInsert(
-				HttpSession session,
-				@RequestParam Map<String, Object> paramMap) {
+	public String reportInsert(HttpSession session, @RequestParam Map<String, Object> paramMap) {
+
+		String resultStr = "";
+		int result = 0;
+
+		if (session.getAttribute("loginUser") == null) {
+			resultStr = "-1";
+		} else if (!paramMap.containsKey("reportCategoryNo") || ((String)paramMap.get("reportCategoryNo")).equals("") || paramMap.get("reportCategoryNo")== null) {
 		
-		paramMap.put("userNo", ((Member)session.getAttribute("loginUser")).getUserNo());
-		int result = reportService.reportInsert(paramMap);
-		String returnVal = "";
-		
-		
-		if(result>0) {
-			returnVal = "신고 접수가 되었습니다.";
-		}else if(result == 0){
-			returnVal = "이미 신고한 게시물입니다.";
-		}else {
-			returnVal = "다시 선택해서 신고해주세요.";
+			resultStr ="3";
 		}
-		
-		return returnVal;
+
+		else {
+			paramMap.put("userNo", ((Member) session.getAttribute("loginUser")).getUserNo());
+
+			result = reportService.reportInsert(paramMap);
+
+			if (result > 0) {
+				resultStr = "1";
+			} else {
+				resultStr = "2";
+			}
+
+		}
+
+		return resultStr;
 	}
 }

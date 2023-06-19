@@ -1,20 +1,55 @@
-.freeBoard_mapper{
+/* .freeBoard_mapper{
 border: 1px solid black;
-}
+} */
 
 .freeBoard_mapper ul{
     margin: 0;
 }
 
 .freeBoard_top{
+    display: flex;
+    justify-content: space-between;
     border-bottom: 1px solid black;
+    padding: 0px 5px 8px 5px;
+}
+.board_enroll_btn{
+    background-color: #0085ff;
+    color: #fff;
+    border: 0px;
+    border-radius: 5px;
+    align-self: end;
+    padding: 6px 7px 2px 7px;
 }
 .freeBoard_bottom{
     border: 1px solid #ccc;
 }
 
+.freeBoard_category{
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 0px;
+    border-bottom: 1px solid black;
+}
+.freeBoard_category a{
+    background-color: #006fff;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 105px;
+    text-align: center;
+    color: white;
+}
+.freeBoard_category a:hover{
+    background-color: #003C78;
+}
+
+.active{
+    background-color: #003C78 !important;
+}
+
 .board_li{
-    padding: 10px 0px;
+    padding: 12px 5px;
     border-bottom: 1px solid black;
 }
 
@@ -70,6 +105,23 @@ border: 1px solid black;
     padding-top: 30px;
     margin: auto;
     font-size: 0.5cm;   
-    font-weight: 600;
-    font-size: 18px;
+}
+
+/* padding-top: 6px; */
+
+.pagingbar_count {
+   padding-top: 6px;
+}
+
+.tab{
+    font-size: 25px;
+     color: rgb(0, 60, 120);
+ }
+ 
+ .tab1{
+    padding-top: 4px;
+ }
+
+.freBoard_list_warpper{
+    padding: 20px;
 }
