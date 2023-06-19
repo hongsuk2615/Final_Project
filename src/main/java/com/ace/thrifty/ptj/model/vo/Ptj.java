@@ -29,7 +29,6 @@ public class Ptj {
 	private String imgPath;
 	private String locationCoordinate;
 	
-	
 	private Board board;
 	private Location location;
 	private SubCategory subCategory;

@@ -27,11 +27,6 @@ public class PtjDao {
       return sqlSession.selectList("ptjMapper.selectPtj");
    }
 
-   /*
-    * public List<Ptj> selectPtjAll() { return
-    * sqlSession.selectList("ptjMapper.selectPtjAll"); }
-    */
-
    public int insertPtj(Ptj p) {
       return sqlSession.insert("ptjMapper.insertPtj", p);
    }
@@ -66,7 +61,4 @@ public class PtjDao {
    public List<Ptj> advptjAll(){
 	   return sqlSession.selectList("ptjMapper.advptjAll");
    }
-   
-    
-
 }

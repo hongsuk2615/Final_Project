@@ -38,7 +38,6 @@ public class PtjController {
 	public String ptjMain(Model model) {
 		List<Ptj> p = ptjService.selectPtj();
 		model.addAttribute("p" , p);
-		System.out.println(p);
 		String webPath = "/resources/upfiles/ptj/";
 		model.addAttribute("webPath" , webPath);
 		return "part_time_job/PTJMain";

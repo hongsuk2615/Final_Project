@@ -90,12 +90,20 @@
 	                    	<c:when test="${i lt list.size()}" >
 			                    <div class="items" onclick = "location.href = '${contextPath}/carPool/detail?bNo=${list.get(i).boardNo}'" >
 			                        <div class="item-img" style="width: 185px; height: 170px;">
-										<img style="width: 100%; height: 100%;" alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'" src='${contextPath }/${list.get(i).isEnd == 'Y'? 'resources/images/ptj/end.jpg': list.get(i).imgPath}'>
+										<img style="width: 100%; height: 100%;" alt="" onerror="this.src='/thrifty/resources/images/common/noImage.png'" src='${contextPath }/${list.get(i).isEnd == 'Y'? 'resources/images/carpool/end.jpg': list.get(i).imgPath}'>
 			                        </div>
 			                        <div class="item-info">
+				                        
 			                        	<p>${list.get(i).subCategory.categorySName }</p>
 				                        <p>제목 : ${list.get(i).board.title }</p>
-				                        <p>카풀비 : ${list.get(i).price }</p>
+				                        <c:choose>
+				                        	<c:when test="${list.get(i).isEnd eq 'Y' }">
+				                        		<p style="color: red;"><b>모집인원이 마감 되었습니다.</b></p>
+				                        	</c:when>
+				                        	<c:otherwise>
+				                        		<p>카풀비 : ${list.get(i).price }</p>
+				                        	</c:otherwise>
+				                        </c:choose>
 			                        </div>     
 			                    </div>                	
 	                    	
