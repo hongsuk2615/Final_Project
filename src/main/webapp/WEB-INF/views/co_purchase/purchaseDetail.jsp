@@ -102,7 +102,7 @@
                         <div id="body_description_2">
                             <div id="body_description_content">
                                 <div id="body_description_title">
-                                    <div class="body_text">${ co_purchase.productName }</div>
+                                    <div class="body_text" style="font-size: 30px;">${ co_purchase.productName }</div>
                                     <div class="body_text">${ co_purchase.price }원</div>
                                 </div>
                                 <div class="flex">
