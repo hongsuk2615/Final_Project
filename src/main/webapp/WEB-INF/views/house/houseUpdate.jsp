@@ -105,7 +105,7 @@
             	<c:forEach items="${r.imgList}" var="i">
             		imgCount++;
 	        		 $('.rImg'+count).slick('slickAdd',
-	        		 `<div class="slickDiv" onclick='deleteOriginImg(this);' roomNo = ${i.roomNo} imgNo = ${i.roomImgNo} cnt=\${count} style='border-radius: 10px; background-image: url(/thrifty/resources/images/upfiles/house/${i.changeName}); background-size:cover; width:140px; height:140px;';>
+	        		 `<div class="slickDiv" onclick='deleteOriginImg(this);' roomNo = ${i.roomNo} imgNo = ${i.roomImgNo} cnt=\${count} style='border-radius: 10px; background-image: url(/thrifty/resources/upfiles/house/${i.changeName}); background-size:cover; width:140px; height:140px;';>
 	        		 <img class='deleteImg' id='oldImg\${count}' src='/thrifty/resources/images/house/deleteImg.png'></div>`);	        				 
 	        		 $('.rImg'+count).slick('refresh');
 	        	

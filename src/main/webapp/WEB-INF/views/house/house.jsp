@@ -103,7 +103,7 @@
 			 console.log(this);
 			 /* var position = this.getPosition();
 			    console.log(position); */
-			location.href="/thrifty/sharehouse/detail?boardNo="+this.id;
+			location.href="/thrifty/sharehouse/detail?bNo="+this.id;
 		}); 
 		 
 		// 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다

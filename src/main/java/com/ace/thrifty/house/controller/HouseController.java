@@ -25,6 +25,7 @@ import com.ace.thrifty.house.model.vo.House;
 import com.ace.thrifty.house.model.vo.Room;
 import com.ace.thrifty.house.model.vo.Tour;
 import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.usedProduct.model.vo.UsedProduct;
 import com.google.gson.Gson;
 
 @Controller
@@ -236,5 +237,8 @@ public class HouseController {
 		model.addAttribute("bNo", b.getBoardNo());
 		return result > 0 ?  "redirect:/sharehouse/detail" : "redirect:/";
 	}
+	
+	
+
 
 }
