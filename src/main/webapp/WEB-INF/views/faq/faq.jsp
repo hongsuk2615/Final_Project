@@ -69,6 +69,7 @@ body {
 				</div>
 			</div>
 			<div class="accordion" id="faq-accordion">
+				<p style="text-align: center;">선택해 주세요.</p>
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp" />

@@ -101,9 +101,9 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <input type="text" name="title" id="freeBoard_title" placeholder="제목을 입력하세요" value="${b.title}" required>
+                        <input type="text" name="title" id="freeBoard_title" placeholder="제목을 입력하세요" value="${b.title}">
                     </div>
-                    <textarea id="editor" name="content" required >${b.content}</textarea>
+                    <textarea id="editor" name="content" >${b.content}</textarea>
                     <div class="submit_wapper">
                         <c:if test="${b eq null}">
                             <button type="submit" class="submit_btn">글 등록</button>
