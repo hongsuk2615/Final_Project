@@ -212,10 +212,13 @@
                 <div id="body-right-header">
                   <div id="body-right-header-left">
                     
-                        <h4 class="body-right-title-h2" name="smallLocation">${sg.smallLocation}</h4>
-                        <h4 class="body-right-title-h2" name="recruitNo">${sg.recruitNo} 명</h4>
-                        <h4 class="body-right-title-h2" name="title">${sg.board.title}</h4>
+                        <h4 class="body-right-title-h2" name="smallLocation" value="${sg.smallLocation}">${sg.smallLocation}</h4>
+                        <h4 class="body-right-title-h2" name="recruitNo" value="${sg.recruitNo}">${sg.recruitNo} 명</h4>
+                        <h4 class="body-right-title-h2" name="title" value="${sg.board.title}">${sg.board.title}</h4>
                     	<input type="hidden" name="boardNo" value="${sg.board.boardNo }">
+                        <input type="hidden"  name="smallLocation" value="${sg.smallLocation}">
+                        <input type="hidden"  name="recruitNo" value="${sg.recruitNo}">
+                        <input type="hidden"  name="title" value="${sg.board.title}">
                    
                       
 
@@ -256,7 +259,7 @@
                     </textarea>
                  </div>
                  <div class="body-right-body-list"> 
-                    <button type="button" class="btn btn-success" id="listgo">목록으로</button>
+                    <button type="button" class="btn btn-success" id="listgo" onclick="location.href='/thrifty/smallGroup'">목록으로</button>
                 </div>
                 </div>
              
