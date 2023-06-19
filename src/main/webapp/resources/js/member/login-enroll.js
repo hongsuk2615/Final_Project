@@ -12,8 +12,9 @@ function insertMember(){
                 },
         success : function(result){
             if(result){
-                alert("성공");
-                location.href = "/thrifty/";
+                login();
+                customAlert_Success('회원가입성공');
+                
             }
         }
     })

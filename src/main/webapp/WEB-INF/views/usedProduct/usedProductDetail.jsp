@@ -156,13 +156,13 @@
             function soldOut(element){
             	let bNo = $(element).attr("bNo");
             	Swal.fire({
-                    title: '판매완료처리 하시겠습니까?',
-                    icon: 'warning',
+                    title: '판매완료/대기',
+                    icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: '네',
-                    cancelButtonText: '아니오',
+                    confirmButtonText: '판매완료',
+                    cancelButtonText: '판매대기',
                     }).then((result) => {
                         if (result.isConfirmed) {
                             let bNo = $(element).attr("bNo");
@@ -213,6 +213,56 @@
                                 }
 
                             })
+                        }else{
+                            let bNo = $(element).attr("bNo");
+                            $.ajax({
+                                url : "/thrifty/usedProduct/soldWaiting",
+                                data : {bNo},
+                                success : function(result){
+                                    console.log(result);
+                                    if(result == 1){
+                                        Swal.fire({
+                                            position: 'top-center',
+                                            icon: 'success',
+                                            title: '판매대기',
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        }).then(()=>{
+                                            location.href="/thrifty/usedProduct/detail?bNo="+bNo;
+                                        })
+                                    }else if(result == -1){
+                                        Swal.fire({
+                                            position: 'top-center',
+                                            icon: 'warning',
+                                            title: '비로그인 상태입니다.',
+                                            showConfirmButton: false,
+                                            timer: 1000
+                                        }).then(()=>{
+                                                login();
+                                        })
+                                    }else if(result == 0){
+                                        Swal.fire({
+                                                position: 'top-center',
+                                                icon: 'error',
+                                                title: '삭제실패',
+                                                text : '관리자/작성자가 아닙니다.',
+                                                showConfirmButton: false,
+                                                timer: 1000
+                                            })
+                                    }
+                                },
+                                error : function(){
+                                    Swal.fire({
+                                                position: 'top-center',
+                                                icon: 'error',
+                                                title: '실패',
+                                                showConfirmButton: false,
+                                                timer: 1000
+                                            })
+                                }
+
+                            })
+
                         }
                     })
             }

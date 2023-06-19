@@ -206,4 +206,11 @@
 		 WHERE BOARD_NO = ${boardNo}
 	
 	</update>
+	
+	<update id="soldWaiting" parameterType="board">
+		UPDATE USED_PRODUCT
+		   SET IS_SOLDOUT = 'N'
+		 WHERE BOARD_NO = ${boardNo}
+	
+	</update>
 </mapper>
