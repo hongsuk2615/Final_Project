@@ -15,4 +15,6 @@ public class Tour {
 	private int userNo;
 	private String moveIn;
 	private String enquiry;
+	private String title;
+	private String roomName;
 }

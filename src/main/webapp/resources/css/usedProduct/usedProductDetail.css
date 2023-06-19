@@ -175,6 +175,9 @@
 #modify-btn{
     background-color: rgb(52, 152, 219);
 }
+#soldOut-btn{
+	background-color : red;
+}
 
 
 

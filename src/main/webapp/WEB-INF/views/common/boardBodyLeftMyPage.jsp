@@ -30,38 +30,10 @@
                         <li><a href="/thrifty/mypage/myWrite" class="upper_a">내가 쓴 글</a></li>
                         
         		<div id="sgAdv">
-                    <ul class="scrollbar">
-                        <div class="alert alert-warning">
-                            <span id="num1">20</span>초 후에 없어짐
-                            <p></p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-
-                        </div>
-                   </ul>
                  </div>
                     </ul>
                 </div>
                 <div id="ptjAdv">
-                    <ul class="scrollbar">
-                        <div class="alert alert-warning">
-                            <span id="num">20</span>초 후에 없어짐
-                            <p></p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-
-                        </div>
-                        
-
-                    </ul>
                     
                 </div>
 
@@ -80,7 +52,7 @@
          document.querySelector('#num').innerHTML = count;
          
      }else if(count== -1){
-         $('.alert').hide();
+         $('.advall').hide();
      }
      
     },1000);
@@ -94,7 +66,7 @@
          document.querySelector('#num1').innerHTML = count1;
          
      }else if(count1== -1){
-         $('.alert').hide();
+         $('.advall').hide();
      }
      
     },1000);
@@ -113,7 +85,7 @@
  				abc = "";
  				abc += `
  					<ul class="scrollbar">
-                    <div class="alert alert-warning">
+                    <div class="advall">
                         <span id="num">20</span>초 후에 없어짐
                         <p>제목 :\${result.board.title}</p>
                         <img src="/thrifty/resources/upfiles/ptj/\${result.imgPath}" onerror="this.src='/thrifty/resources/images/common/noImage.png'"width="200px" height="120px">
@@ -145,7 +117,7 @@
 				console.log('ajax1');
 				def = "";
 				def += `
-					 <div class="alert alert-warning">
+					 <div class="advall">
                     <span id="num1">20</span>초 후에 없어짐
                     <img src="https:chart.apis.google.com/chart?cht=qr&chs=300x300&chl=\${result.kakaoLink}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="120px" height="120px">
                     

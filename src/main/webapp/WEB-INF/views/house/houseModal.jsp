@@ -107,6 +107,19 @@
 			</div>
 		</div>
 	</div>
+	
+	 <div id="modal-applicationForm2" class="modal-mainBox"> 
+		<div class="modal-background">
+			<div class="modal-container">
+			 <div class="closeModal"><div id="closebtn2">X</div></div>
+			<div class="formWrap">
+               
+                <h3 style="text-align: center;">투어 신청문의</h3>
+                <div id="checkApply"></div>
+			</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

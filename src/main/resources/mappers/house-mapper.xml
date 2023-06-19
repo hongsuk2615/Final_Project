@@ -60,6 +60,8 @@
 		<result column="USER_NO"  property="userNo"/>
 		<result column="MOVE_IN"  property="moveIn"/>
 		<result column="ENQUIRY"  property="enquiry"/>
+		<result column="TITLE"  property="title"/>
+		<result column="DIVISION"  property="roomName"/>
 	</resultMap>
 	
 	<insert id="insertHouse" parameterType="house">
@@ -90,7 +92,7 @@
 </insert>
 
 	<select id="selectHouse" parameterType="_int" resultMap="houseResultSet">
-		SELECT *, (SELECT COUNT(*) FROM TOUR WHERE BOARD_NO = #{boardNo}) AS APPLY_COUNT
+		SELECT *, (SELECT COUNT(*) FROM TOUR WHERE ROOM_NO IN ( SELECT ROOM_NO FROM ROOM WHERE BOARD_NO = #{boardNo}) AND STATUS = 'Y') AS APPLY_COUNT
 		FROM SHARE_HOUSE
 		WHERE BOARD_NO = #{boardNo}
 	</select>
@@ -152,12 +154,12 @@
 		    LEFT JOIN SHARE_HOUSE ON SHARE_HOUSE.BOARD_NO = BOARD.BOARD_NO
 		    WHERE CATEGORY_U_NO = '2'
 				AND STATUS = 'Y'
-			ORDER BY CREATE_DATE
+			ORDER BY CREATE_DATE DESC
 	</select>
 	
 	<insert id="tourApply" parameterType="tour">
-		INSERT IGNORE INTO TOUR (ROOM_NO, USER_NO, MOVE_IN, ENQUIRY)
-		VALUES (#{roomNo}, #{userNo},  #{moveIn}, #{enquiry})
+		INSERT IGNORE INTO TOUR (ROOM_NO, USER_NO, MOVE_IN, ENQUIRY, STATUS)
+		VALUES (#{roomNo}, #{userNo},  #{moveIn}, #{enquiry}, default)
 	</insert>
 	
 	<update id="changeRecruitment"  parameterType="room" useGeneratedKeys="true" keyProperty="recruitsNum">
@@ -227,4 +229,41 @@
                 ORDER BY FILE_LEVEL
                 LIMIT 1
 	</select>
+	
+	<select id="checkApply" resultMap="tourResultSet">
+		SELECT *
+			FROM TOUR T
+			JOIN ROOM R USING (ROOM_NO)
+			JOIN BOARD S USING (BOARD_NO)
+			WHERE BOARD_NO = #{boardNo}
+			AND T.STATUS = 'Y';
+	</select>
+	
+	<update id="checkStatus" >
+		UPDATE TOUR
+		SET STATUS = 'N'
+			WHERE ROOM_NO = #{rNo}
+				AND USER_NO = #{uNo}
+	</update>
+	
+	<select id="selectApply" resultMap="tourResultSet">
+		SELECT *
+			FROM TOUR T
+			JOIN ROOM R USING (ROOM_NO)
+			JOIN BOARD S USING (BOARD_NO)
+			WHERE T.ROOM_NO = #{rNo}
+				AND T.USER_NO = #{uNo}
+	</select>
+	
+	<select id="houseAd" resultMap="houseResultSet">
+		SELECT *
+			FROM SHARE_HOUSE
+			JOIN BOARD B USING (BOARD_NO)
+			JOIN ROOM R USING (BOARD_NO)
+			WHERE B.STATUS = 'Y'
+				ORDER BY RAND()
+				LIMIT 1
+	</select>
+	
+	
 </mapper>

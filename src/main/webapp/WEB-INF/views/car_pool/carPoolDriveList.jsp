@@ -170,4 +170,5 @@ document.getElementById('keyword').addEventListener('keyup',function(){
     }
 })
 </script>
+<jsp:include page="../common/rightside.jsp"/>
 </html>

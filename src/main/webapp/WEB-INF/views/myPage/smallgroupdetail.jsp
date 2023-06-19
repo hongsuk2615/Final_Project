@@ -13,10 +13,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
-         /* *{
+          /* *{
         border: 1px solid blue !important;
         box-sizing: border-box;
-    }       */
+    }        */
     body{
         margin: 0;
     }
@@ -108,14 +108,7 @@
     }
    
 
-    .body-right-title-h4{
-        margin: 10px 0px 30px 0px;
-        border-radius: 4rem;
-        background-color: #ffffff;
-        border: solid 2px;
-        text-align: center;
-    }
-  
+
     .body-right-body-content{
         width:100%;
         height:85%;
@@ -156,21 +149,15 @@
     
 
     .body-right-title-h2{
-    	margin: 10px 20px 20px 0px;
+    	margin-bottom: 30px;
         border-radius: 4rem;
         background-color: #ffffff;
         border: solid 2px;
         text-align: center;
     }
     
-    .body-right-title-h3{
-    	margin: 10px 10px 20px 20px;
-        border-radius: 4rem;
-        background-color: #ffffff;
-        border: solid 2px;
-        text-align: center;
-    }
-
+   
+  
 
 	#item-btns{
     display: flex;
@@ -203,7 +190,7 @@
 </head>
 
 <body>
- 
+    <jsp:include page="../common/rightside.jsp"/>
     <div id="wrapper">
         <div id="header">
 			<jsp:include page="../common/header.jsp"/>
@@ -225,10 +212,13 @@
                 <div id="body-right-header">
                   <div id="body-right-header-left">
                     
-                        <h4 class="body-right-title-h2" name="smallLocation">${sg.smallLocation}</h4>
-                        <h4 class="body-right-title-h3" name="recruitNo">${sg.recruitNo} 명</h4>
-                        <h4 class="body-right-title-h4" name="title">${sg.board.title}</h4>
+                        <h4 class="body-right-title-h2" name="smallLocation" value="${sg.smallLocation}">${sg.smallLocation}</h4>
+                        <h4 class="body-right-title-h2" name="recruitNo" value="${sg.recruitNo}">${sg.recruitNo} 명</h4>
+                        <h4 class="body-right-title-h2" name="title" value="${sg.board.title}">${sg.board.title}</h4>
                     	<input type="hidden" name="boardNo" value="${sg.board.boardNo }">
+                        <input type="hidden"  name="smallLocation" value="${sg.smallLocation}">
+                        <input type="hidden"  name="recruitNo" value="${sg.recruitNo}">
+                        <input type="hidden"  name="title" value="${sg.board.title}">
                    
                       
 
@@ -247,7 +237,7 @@
                    		<c:if test="${sg.member.userNo 	!= loginUser.userNo}">
                             <div id="item-btns">
                                 <div id="wish-btn" bNo ="${sg.board.boardNo}">찜</div>
-                                <div id="report-btn" bNo="${sg.board.boardNo}">신고</div>
+                                <div id="report-btn" onclick="reportBoard(this)" bNo="${sg.board.boardNo}">신고</div>
                             </div>
                     	</c:if> 
                         <div class="body-right-header-right-qr">
@@ -269,7 +259,7 @@
                     </textarea>
                  </div>
                  <div class="body-right-body-list"> 
-                    <button type="button" class="btn btn-success" id="listgo">목록으로</button>
+                    <button type="button" class="btn btn-success" id="listgo" onclick="location.href='/thrifty/smallGroup'">목록으로</button>
                 </div>
                 </div>
              
@@ -365,32 +355,80 @@ document.getElementById('delete_button').addEventListener('click', function(){
                     }
                 })
             })
+var catList = {};
+$.ajax({
+    url: "/thrifty/report/list",
+    dataType : 'json',
+    contentType: 'application/json; charset=utf-8',
+    success(data){
+        for(cat of data){
+            catList[cat.reportCategoryNo] = cat.reportCategoyName;
+        }
+    }
+});
 
-            document.getElementById('report-btn').addEventListener('click', function(){
-                let bNo=$(this).attr("bNo");
-                const { value: fruit } = Swal.fire({
-                    title: '신고항목을 고르세요',
-                    input: 'select',
-                    inputOptions: {
-                        
-                    },
-                    inputPlaceholder: '신고항목',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: '신고하기',
-                    cancelButtonText: '취소',
-                    inputValidator: (value) => {
-                        return new Promise((resolve) => {
-                        if (value === 'oranges') {
-                            resolve()
-                        } else {
-                            resolve('You need to select oranges :)')
-                        }
-                        })
-                    }
+function reportAjax(bNo, catNo){
+        $.ajax({
+        url : "/thrifty/report/insert",
+        data : {
+            reportCategoryNo : catNo,
+            bNo : bNo
+        },
+        contentType: 'application/json; charset=utf-8',
+        success(result){
+            console.log(result);
+            if(result == 1){
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: '신고완료',
+                    showConfirmButton: false,
+                    timer: 1000
                 })
-            })
+            }else if(result == -1){
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: '비로그인 상태입니다.',
+                    showConfirmButton: false,
+                    timer: 1000
+                }).then(()=>{
+                    login();
+                })
+
+
+            }else if(result == 2){
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'error',
+                    title: '이미 신고한 게시글입니다.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            }
+        }
+    });
+}
+
+
+function reportBoard(element){
+    let bNo=$(element).attr("bno");
+    const { value: fruit } = Swal.fire({
+        title: '신고항목을 고르세요',
+        input: 'select',
+        inputOptions: catList,
+        inputPlaceholder: '신고항목',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '신고하기',
+        cancelButtonText: '취소',
+        inputValidator: (value) => {
+            reportAjax(bNo, value);
+        }
+    })
+}
+
 </script>
 </body>
 </html>

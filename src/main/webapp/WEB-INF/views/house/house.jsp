@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/thrifty/resources/css/house/house.css">
 </head>
 <body>
+ 	<jsp:include page="../common/rightside.jsp"/>
    	<jsp:include page="../common/header.jsp"></jsp:include>
     <div class="wrap">
  	
@@ -34,7 +35,7 @@
 <div id="map"></div>
 
 <div id="enrolldiv">
-		<button><a href="/thrifty/sharehouse/enrollForm">쉐어하우스 등록하기</a></button>
+		<button><a onclick="${loginUser eq null ? 'login();':"location.href='/thrifty/sharehouse/enrollForm'"}">쉐어하우스 등록하기</a></button>
 </div>
 </div>
 
@@ -103,7 +104,7 @@
 			 console.log(this);
 			 /* var position = this.getPosition();
 			    console.log(position); */
-			location.href="/thrifty/sharehouse/detail?boardNo="+this.id;
+			location.href="/thrifty/sharehouse/detail?bNo="+this.id;
 		}); 
 		 
 		// 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
@@ -185,8 +186,19 @@
 					bNo
 				},
 				dataType : 'json',
+				error : function(){
+					Swal.fire({
+	                    position: 'top-center',
+	                    icon: 'error',
+	                    title: '비로그인 상태입니다.',
+	                    showConfirmButton: false,
+	                    timer: 1000
+	                }).then(()=>{
+	                	login();
+	                })
+				},
 				success: function(result){ 
-				
+					console.log(result);
 					$(e).attr('src', '/thrifty/resources/images/house/heart.png');
 					$(e).attr('scrap', 'x');
 				}
@@ -199,8 +211,19 @@
 					bNo
 				},
 				dataType : 'json',
+				error : function(){
+					Swal.fire({
+	                    position: 'top-center',
+	                    icon: 'error',
+	                    title: '비로그인 상태입니다.',
+	                    showConfirmButton: false,
+	                    timer: 1000
+	                }).then(()=>{
+	                	login();
+	                })
+				},
 				success: function(result){ 
-				
+					console.log(result);
 					$(e).attr('src', '/thrifty/resources/images/house/heart2.png');
 					$(e).attr('scrap', 'o');
 				}
@@ -226,7 +249,7 @@
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		mapOption = {
-			center : new kakao.maps.LatLng(37.413294, 126.734086), // 지도의 중심좌표
+			center : new kakao.maps.LatLng(37.513294, 126.934086), // 지도의 중심좌표
 			level : 6
 		// 지도의 확대 레벨
 		};

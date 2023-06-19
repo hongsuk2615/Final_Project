@@ -43,6 +43,7 @@
 
 #detail_header_1_title{
     font-size: 40px;
+    width: 80%;
 }
 
 #profile{
@@ -170,6 +171,13 @@
 
 #body_description_link{
     
+}
+
+.link_content{
+	width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #body_text{

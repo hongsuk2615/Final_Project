@@ -78,12 +78,16 @@ public class MemberController {
 			
 			if(loginUser.getAuthority() == 1) { //오늘 처음 로그인할 경우 LOGIN_TODAY 값 변경
 				memberService.todayLogin(loginUser.getUserNo());
+				return "redirect:" + referer;
+			}else {
+				return "redirect:/admin";
 			}
 			
 		}else {
 			ra.addFlashAttribute("alertMsg", "로그인 실패");
+			return "redirect:" + referer;
 		}
-		return "redirect:" + referer;
+		
 	}
 	
 	@GetMapping("/logout")

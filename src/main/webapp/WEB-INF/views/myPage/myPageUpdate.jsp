@@ -173,6 +173,19 @@
   z-index: 5;
 }
 
+.inputb{
+font-size: 15px;
+  color: #222222;
+  width: 420px;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  position: relative;
+  background: none;
+  z-index: 5;
+}
+
 input::placeholder { color: #aaaaaa; }
 input:focus { outline: none; }
 
@@ -223,23 +236,18 @@ input:focus { outline: none; }
   width: 100%;
 }
 
+.duplicate{
+    background-color: rgb(0, 60, 120);
+    color: white;
+    border-radius: 2rem;
+}
 
-#validatebt1{
-    position: absolute;
-    bottom: 300px;
-    left: 600px;
-}
-#validatebt2{
-    position: absolute;
-    bottom: 225px;
-    left: 600px;
-}
     
 
 </style>
 </head>
 <body>
-
+    <jsp:include page="../common/rightside.jsp"/>
     <div id="wrapper">
         <div id="header">
             <jsp:include page="../common/header.jsp"/>
@@ -258,11 +266,11 @@ input:focus { outline: none; }
               
                 <div id="body-right-header">
                     <div class="profile-pic">
-                        <img src="${contextPath}/resources/images/myPage/${loginUser.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="100%" height="100%" style="object-fit: cover;">
+                        <img src="${contextPath}/resources/upfiles/myPage/${loginUser.changeName}" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="100%" height="100%" style="object-fit: cover;">
                     </div>
                     <div class="profile-title">
                         <h4>프로필 변경</h4>
-                        <form  action ="${pageContext.request.contextPath}/mypage/insertProfile.do" enctype="multipart/form-data" method="post">
+                        <form action ="${pageContext.request.contextPath}/mypage/insertProfile.do" enctype="multipart/form-data" method="post">
                         <input type="file" name="images">
                         <button type="submit">제출</button>
                         </form>
@@ -322,19 +330,30 @@ input:focus { outline: none; }
 
                             
                         <div class="classa">
-                            <input type="text" required class="inputa" id="email" name="email" value="${loginUser.email}">
-                            <label class="labela">이메일</label>
-                            <span class="spana"></span>
+                            <div style="display: flex;">
+                                <div style="width: 422px;" >
+                                    <input type="text" required class="inputb" id="email" name="email" value="${loginUser.email}">
+                                    <label class="labela">이메일</label>
+                                    <span class="spana"></span>
+                                </div>
+                                <button type="button"  style="width: 105px;" class="duplicate" onclick="validateEmail('on')" id="validatebt1">중복확인</button>
+                            </div>
                         </div>
 
-                     
-                        <button type="button" onclick="validateEmail('on')" id="validatebt1">중복확인</button>
-                        <button type="button" onclick="validateNickName('on')" id="validatebt2">중복확인</button>
+                       
+                        
+                        
                         
                         <div class="classa">
-                            <input type="text" required class="inputa" id="nickName" name="nickName" value="${loginUser.nickName}">
-                            <label class="labela">닉네임</label>
-                            <span class="spana"></span>
+                         <div style="display: flex;">
+                            <div style="width: 422px;">
+                             <input type="text" required class="inputb" id="nickName" name="nickName" value="${loginUser.nickName}">
+                             <label class="labela">닉네임</label>
+                             <span class="spana"></span>
+                            </div>
+                            <button type="button" style="width: 105px;" class="duplicate" onclick="validateNickName('on')" id="validatebt2">중복확인</button>
+                         </div>
+
                        	 </div>
                         
 
