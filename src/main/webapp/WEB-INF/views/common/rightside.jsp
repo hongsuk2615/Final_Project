@@ -169,8 +169,8 @@
             <div id="message_content">
                 <div id="message_content_left"> 
                     <div id="member_profile">
-                        <img src="/thrifty/resources/images/myPage/2023060814540217132.jpeg" id="message-profile-img" > 
-                        <p>nemo0824<p>
+                        <img src="" id="message-profile-img" > 
+                        <p><p>
                     </div>
                 </div>
                 <div id="message_content_right"> right</div>

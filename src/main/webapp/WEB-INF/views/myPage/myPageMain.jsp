@@ -192,6 +192,7 @@
 </style>
 </head>
 <body>
+    <jsp:include page="../common/rightside.jsp"/>
     <div id="wrapper">
         <div id="header">
             <jsp:include page="../common/header.jsp"/>

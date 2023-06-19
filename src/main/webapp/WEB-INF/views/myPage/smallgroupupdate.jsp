@@ -178,6 +178,7 @@
 </style>
 </head>
 <body>
+    <jsp:include page="../common/rightside.jsp"/>
 	<form action="${pageContext.request.contextPath}/smallGroup/update/" method="post">
     <div id="wrapper">
         <div id="header">
