@@ -247,7 +247,7 @@
                     </textarea>
                  </div>
                  <div class="body-right-body-list"> 
-                    <button type="button" class="btn btn-success" id="listgo">목록으로</button>
+                    <button type="button" class="btn btn-success" id="listgo" onclick="location.href='/thrifty/smallGroup'">목록으로</button>
                 </div>
                 </div>
              
