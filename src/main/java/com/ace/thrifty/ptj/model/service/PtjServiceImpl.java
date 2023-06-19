@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ace.thrifty.admin.model.vo.Notice;
 import com.ace.thrifty.board.model.dao.BoardDao;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.board.model.vo.Image;
@@ -44,14 +43,11 @@ public class PtjServiceImpl implements PtjService {
       }
       return p;
    }
-   
 
    @Override
     public List<Ptj> selectPtj() {
        return ptjDao.selectPtj();
-    }
-    
-   
+    } 
    
     @Override 
     public void selectPtjAll(Map<String, Object> queryString) {
@@ -59,14 +55,11 @@ public class PtjServiceImpl implements PtjService {
       int pageLimit = 10;
       int boardLimit = 9;
       PageInfo pi = pagination.getPageInfo(listCount, Integer.parseInt((String)(queryString.get("currPage"))), pageLimit, boardLimit);
-      List<Ptj> list = ptjDao.selectPtjAll(pi, queryString);
-      
+      List<Ptj> list = ptjDao.selectPtjAll(pi, queryString);    
       queryString.put("pi", pi);
       queryString.put("list", list);
-     
       
-    }
-    
+   }
    
    @Transactional(rollbackFor = {Exception.class})
    @Override
@@ -78,7 +71,6 @@ public class PtjServiceImpl implements PtjService {
          p.setBoardNo(boardNo);
          result = ptjDao.insertPtj(p);
       }
-      
       if(result > 0 && image != null) {
 
                String changeName = Utils.saveFile(image , serverFolderPath);
@@ -95,9 +87,7 @@ public class PtjServiceImpl implements PtjService {
    
    @Override
    public int deleteBoard(Board b) {
-      
       return boardDao.deleteBoard(b);
-      
    }
    
    @Override
@@ -107,26 +97,19 @@ public class PtjServiceImpl implements PtjService {
    
    @Transactional(rollbackFor = {Exception.class})
    @Override
-   public int updatePtj(Ptj p , Board b , Image img, String webPath, String serverFolderPath) throws Exception{
-      
+   public int updatePtj(Ptj p , Board b , Image img, String webPath, String serverFolderPath) throws Exception {
       int result = ptjDao.updatePtj(p);
       int result2 = boardDao.updateBoard(b);
       p.getImgPath();
-
-      System.out.println(result);
-      System.out.println(result2);
       if(p.getImgPath() != null) {
          ptjDao.deleteImage(b);
       }
-      
       if(img != null) {
          boardDao.insertImage(img);
       }
       return 0;
    }
       
-      
-   
    @Override
    public int workEnd(Board b) {
       return ptjDao.workEnd(b);

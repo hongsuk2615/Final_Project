@@ -19,8 +19,20 @@
 #carpool-allBody{
 	display: flex;
 	justify-content: space-around;
-	margin-bottom: 100px;
+	padding: 10px;
+	border-radius: 5px;
 	flex-wrap: wrap;
+	background-color: rgb(181, 198, 215);
+}
+
+#carpool-allBody > div {
+	border: solid #3f668f 7px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+#carpool-allBody > div:hover {
+	box-shadow: 5px 5px 5px gray;
 }
 
 img {
@@ -28,8 +40,6 @@ img {
 }
 
 img:hover {
-    transition: all 0.15s linear;
-    transform: translateY(-10px);
     cursor: pointer;
 }
 
@@ -61,4 +71,10 @@ img:hover {
     background-color: rgb(244, 244, 244);
     border-radius: 4px;
     border: 1px solid transparent;
+}
+
+#drive-content {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }

@@ -19,9 +19,11 @@
     body{
         margin: 0;
     }
+    footer {
+        margin: 0;
+    }
     #wrapper{
         min-width: 1180px;
-        padding-bottom: 70px;
     }
 
     #header{
@@ -158,7 +160,7 @@
 		                  </c:otherwise>               
 		               </c:choose>
 		               <c:forEach var="item" begin="${pi.startPage }" end="${pi.endPage }">
-	                  	<div style="${item eq pi.currentPage? 'background:rgb(0, 60, 120);':''}"><a style="color:white; font-size: 15px; font-weight: bold;" href="/thrifty/usedProduct?currPage=${item}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}">${item}</a></div>
+	                  	<div onclick='location.href="/thrifty/usedProduct?currPage=${item}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}"' style="${item eq pi.currentPage? 'background:rgb(0, 60, 120);':''}"><a style="color:white; font-size: 15px; font-weight: bold;" href="/thrifty/usedProduct?currPage=${item}&scNo=${filter.scNo}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}&location=${filter.location}&tradeMethod=${filter.tradeMethod}&order=${filter.order}&keyword=${filter.keyword}">${item}</a></div>
 	               		</c:forEach>
 	               		<c:choose>
 		                  <c:when test="${ pi.currentPage eq pi.maxPage }">
@@ -186,12 +188,7 @@
             </div>
         </div>
 
-        <div id="footer">
-
-
-
-
-        </div>
+        <jsp:include page="../common/footer.jsp"/>
     </div>
     <script type="text/javascript">
     

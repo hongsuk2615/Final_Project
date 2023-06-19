@@ -33,13 +33,13 @@ public class CarPoolController {
 	}
 	
 	@RequestMapping("/drive")
-	public String driveList(Model model , @RequestParam Map<String, Object> queryString) {
+	public String selectDriveList(Model model , @RequestParam Map<String, Object> queryString) {
 		if(!queryString.containsKey("currPage")) {
 			queryString.put("currPage", "1");
 		}
-		carPoolService.driveList(queryString);
-		if(queryString.containsKey("lNo")) {
-			model.addAttribute("lNo", queryString.get("lNo"));			
+		carPoolService.selectDriveList(queryString);
+		if(queryString.containsKey("scNo")) {
+			model.addAttribute("scNo", queryString.get("scNo"));			
 		}
 		model.addAttribute("filter", queryString);
 		model.addAttribute("list", queryString.get("list"));
@@ -55,7 +55,7 @@ public class CarPoolController {
 			model.addAttribute("imageList", carpool.getImageList());
 			return "car_pool/carPoolDetail";	
 		} else {
-			return"redirect:/thrifty/carPool/drive";
+			return"car_pool/carPoolDetail";
 		}
 	}
 	
@@ -70,11 +70,11 @@ public class CarPoolController {
 								Board b ,
 								@RequestParam(value="images" , required = false) List<MultipartFile> imgList) throws Exception{
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		b.setCategoryUNo(3); b.setUserNo(loginUser.getUserNo()); 
+		b.setCategoryUNo(3); 
+		b.setUserNo(loginUser.getUserNo()); 
 		String webPath = "/resources/upfiles/carPool/"; 
 		String serverFolderPath = session.getServletContext().getRealPath(webPath);
 		carPoolService.insertCarPool(c, b, imgList, webPath, serverFolderPath);
-		 
 		return "redirect:/carPool/drive";
 	}
 	
@@ -97,11 +97,30 @@ public class CarPoolController {
 	}
 	
 	@GetMapping("/update")
-	public String carPoolUpdateForm(@RequestParam(value="bNo"  , required = false)int boardNo ,
-								Model model) {
-		CarPool carpool = carPoolService.carPoolUpdateForm(boardNo);
-		model.addAttribute("carpool" , carpool);
+	public String carPoolUpdateForm(int bNo ,
+									Model model) {
+		CarPool carpool = carPoolService.carPoolUpdateForm(bNo);
+		if(carpool != null) {
+			model.addAttribute("carpool" , carpool);
+			model.addAttribute("board", carpool.getBoard());
+			model.addAttribute("imageList", carpool.getImageList());
+		}
 		return "car_pool/carPoolUpdateForm";
 	}
 	
+	@PostMapping("/update")
+	public String carPoolUpdate(HttpSession session ,
+								Board b,
+								CarPool cP,
+								@RequestParam(value = "images", required = false ) List<MultipartFile> imgList,
+								String removeImgList) throws Exception {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		b.setCategoryUNo(3);
+		b.setUserNo(loginUser.getUserNo());
+		removeImgList = "(" +removeImgList+")";
+		String webPath = "/resources/upfiles/carPool/";
+		String serverFolderPath = session.getServletContext().getRealPath(webPath);
+		carPoolService.carPoolBoardUpdate(b, cP, imgList, webPath, serverFolderPath, removeImgList);
+		return "redirect:/carPool/drive";
+	}
 }

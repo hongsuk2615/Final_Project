@@ -12,8 +12,8 @@
 </head>
 <body>
 
-    <div onclick="khalert('tq')">tq</div>
-	<div onclick="appform()">ㅇㅇ</div>
+ <!--    <div onclick="khalert('tq')">tq</div>
+	<div onclick="appform()">ㅇㅇ</div> -->
 
     <div id="modal-alert" class="modal-mainBox"> 
 		<div class="modal-background">
@@ -88,31 +88,20 @@
 		<div class="modal-background">
 			<div class="modal-container">
 				<div class="closeModal"><div id="closebtn">X</div></div>
-                <p>투어 신청문의</p>
+                <h3>투어 신청문의</h3>
                 <form>
-                <label for="name" >* 이름</label><br>
-                 <div>${loginUser.userName }</div>
-                <label for="age" >* 성별</label><br>
-                <c:if test="${loginUser.gender == 'M'}">
-					 <div id="gender">남자</div>
-                </c:if>
-                <c:if test="${loginUser.gender == 'F'}">
-					 <div id="gender">여자</div>
-                </c:if>
-                <label for="phone" >* 연락처</label><br>
-                <div>${loginUser.phone }</div>
-                <label for="email" >* 이메일</label><br>
-                  <div>${loginUser.email }</div>
-                <label for="Hnumber" >* 쉐어하우스</label><br>
-                 <div id="hName"></div>
-                <div id="rName"></div>
+                <label for="name" >· 이름 : ${loginUser.userName }</label><br><br>
+                <label for="age" >· 성별 : <span id="gender"> </span></label><br><br>
+                <label for="phone" >· 연락처 : ${loginUser.phone }</label><br><br>
+                <label for="email" >· 이메일 : ${loginUser.email }</label><br><br>
+                · <span id="hName"> </span> / <span id="rName"></span><br><br>
                 <input type="hidden" name="roomNo" id="roomNo">
-                <label for="moveIn" >* 희망입주일</label><br>
-                <input type="date" placeholder="희망입주일" name="moveIn" id="moveIn"> <br>
+                <label for="moveIn" >· 희망입주일</label><br>
+                <input type="date" placeholder="희망입주일" name="moveIn" id="moveIn" required>  <br><br>
                 <label for="enquiry" >문의사항</label><br>
-                <textarea placeholder="문의사항을 입력해주세요." name="enquiry" id="enquiry"></textarea> <br>
+                <textarea wrap="hard" placeholder="문의사항을 입력해주세요." name="enquiry" id="enquiry" required></textarea> <br>
                 <input type="checkbox" name="injung" id="injung">
-                <label  for="injung">개인정보수집에 동의합니다.</label> <br><br>
+                <label for="injung">개인정보수집에 동의합니다.</label> <br><br>
                 <button id="apply" type="button">신청하기</button>
                 </form>
 			</div>
