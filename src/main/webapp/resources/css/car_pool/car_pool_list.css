@@ -74,6 +74,7 @@
 	border: solid #3f668f 7px;
     border-radius: 0 0 10px 10px;
     background : white;
+    width: 185px;
 }
 
 .item-info p {
