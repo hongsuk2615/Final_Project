@@ -81,6 +81,10 @@
 	 	<if test='location != null and location != ""'>
 	 		AND LOCATION_NO = #{location}
 	 	</if>
+	 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+ 		    AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+ 		    OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+	    </if>
 </select>
 
 <select id="selectDriveList" parameterType="map" resultMap="carPoolResultSet">
@@ -107,7 +111,11 @@
 	 	<if test='location != null and location!= ""'>
 	 		AND C.LOCATION_NO = #{location}
 	 	</if>
-    <!-- GROUP BY B.BOARD_NO -->
+	 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+ 		    AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+ 		    OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+	   	</if>
+    GROUP BY B.BOARD_NO
 </select>
 
 <insert id="insertCarPool" parameterType="carPool">

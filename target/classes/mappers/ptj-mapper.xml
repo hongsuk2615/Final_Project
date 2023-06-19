@@ -133,6 +133,11 @@
 		<if test='location != null and location!= ""'>
 	 		AND P.LOCATION_NO = #{location}
 	 	</if>
+	 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+	 		AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+	 		OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+		</if>
+	GROUP BY BOARD_NO
 </select>
 
 <insert id="insertPtj" parameterType="ptj">
@@ -202,6 +207,10 @@
        <if test='lNo != null and lNo != ""'>
           AND LOCATION_NO = #{lNo}
        </if>
+       <if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+ 		  AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+ 		  OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+	   </if>
 </select>
 
 <select id="advptjAll" parameterType="map" resultMap="ptjDetailResultSet">

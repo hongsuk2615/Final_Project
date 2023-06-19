@@ -19,6 +19,7 @@
 #ptj-allBody{
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 	border-radius: 10px;
 	flex-wrap: wrap;
 	padding: 10px;
@@ -113,3 +114,29 @@
 	white-space: nowrap;
 	overflow: hidden;
 }
+
+#search{
+    height: 40px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #3f668f;
+    border-radius: 3px;
+    background:white;
+    
+}
+
+#search>img{
+    margin: 10px;
+}
+#search>input{
+    border: 1px solid transparent;
+    height: 100%;
+    background : white;
+    border-left: 2px solid #3f668f;
+    width: 210px;
+    padding-left : 10px;
+}
+
+#search>input:focus { outline: none; }

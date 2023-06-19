@@ -68,11 +68,15 @@
                 </div>
                 <div style="width:100%; display: flex; align-items: center; justify-content: space-between;">
                 	<p><a href="/thrifty">메인</a> > <a href="/thrifty/carPool">카풀</a></p>
-                    <div>
-                    	<c:if test="${loginUser != null }">
-                        	<button id="write-btn">글 작성하기</button>
-                        </c:if>
+                	<div id="search">
+                        <img src="/thrifty/resources/images/main/icon/search-1.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" width="25px" height="25px">
+                        <input type="search" id="keyword">
                     </div>
+                    <c:if test="${loginUser != null }">
+                    	<div>
+                        	<button id="write-btn">글 작성하기</button>
+	                    </div>
+                    </c:if>
                 </div>
                 <hr style="width: 100%;">
                 <div id="carpool-allBody">
@@ -150,10 +154,17 @@
     </div>
     
 </body>
-<script>
+<script type="text/javascript">
 	document.getElementById("write-btn").addEventListener("click",function(){
     	location.href = "${contextPath}/carPool/enroll";
 	})
 </script>
-
+<script>
+document.getElementById('keyword').addEventListener('keyup',function(){
+    console.log(this.value);
+        if (window.event.keyCode == 13) {
+            location.href="/thrifty/carPool/drive?keyword="+this.value;
+    }
+})
+</script>
 </html>
