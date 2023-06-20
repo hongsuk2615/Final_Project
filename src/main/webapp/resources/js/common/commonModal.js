@@ -124,7 +124,7 @@ function reportAjax(param){
 function reportBoard(element){
     let bNo = $(element).attr("bno");
     let rNo = $(element).attr("rno");
-    console.log("rNo="+rNo+" | bNo="+bNo);
+    
     const { value: fruit } = Swal.fire({
         title: '신고항목을 고르세요',
         input: 'select',

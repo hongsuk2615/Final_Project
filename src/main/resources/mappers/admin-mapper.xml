@@ -286,7 +286,7 @@
 			JOIN UPPER_CATEGORY UC USING (CATEGORY_U_NO)
 		</if>
 		<if test="type == 'reply'">
-			SELECT RE.REPLY_NO, UC.CATEGORY_U_NAME, B.TITLE, RE.CONTENT, RE.REPORT_COUNT, M.NICK_NAME, RE.STATE
+			SELECT RE.REPLY_NO, REF_BNO AS BOARD_NO, UC.CATEGORY_U_NAME, B.TITLE, RE.CONTENT, RE.REPORT_COUNT, M.NICK_NAME, RE.STATE, CATEGORY_PATH
 			FROM REPORT R JOIN REPLY RE USING(REPLY_NO)
 			JOIN BOARD B ON RE.REF_BNO = B.BOARD_NO
 			JOIN MEMBER M ON R.REPORT_USER_NO = M.USER_NO
@@ -421,13 +421,18 @@
 		WHERE CURRENT_LOGIN = 'N';
 	</update>
 	
-	<select id="reportCountDetail" parameterType="int" resultType="map">
+	<select id="reportCountDetail" parameterType="map" resultType="map">
 		SELECT RC.R_CATEGORY_NO as categoryNo, RC.R_CATEGORY_NAME as categoryName, IFNULL(R.COUNT, 0) AS count
 		FROM REPORT_CATEGORY RC
 		LEFT JOIN (SELECT R_CATEGORY_NO, R_CATEGORY_NAME, COUNT(R_CATEGORY_NO) AS COUNT
 		   FROM REPORT R
 		   JOIN REPORT_CATEGORY RC USING(R_CATEGORY_NO)
-		   WHERE BOARD_NO = #{bNo}
+		   <if test="bNo != null">
+		   	WHERE BOARD_NO = #{bNo}
+		   </if>
+		   <if test="rNo != null">
+		   	WHERE REPLY_NO = #{rNo}
+		   </if>
 		   GROUP BY R_CATEGORY_NO) R 
   		ON RC.R_CATEGORY_NO = R.R_CATEGORY_NO;
 	</select>
