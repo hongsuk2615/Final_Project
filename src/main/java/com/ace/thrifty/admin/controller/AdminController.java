@@ -287,8 +287,9 @@ public class AdminController {
 	
 	@GetMapping("/reportCountDetail")
 	@ResponseBody
-	public String reportCountDetail(int bNo) {
-		List<Map<String, Object>> ReportCountList = adminService.reportCountDetail(bNo);
+	public String reportCountDetail(@RequestParam Map<String, Object> countDetail) {
+		System.out.println("머지"+countDetail);
+		List<Map<String, Object>> ReportCountList = adminService.reportCountDetail(countDetail);
 		
 		return new Gson().toJson(ReportCountList);
 	}
