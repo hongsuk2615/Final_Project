@@ -45,6 +45,7 @@
         </style>
 </head>
 <body>
+    <jsp:include page="../common/rightside.jsp"/>
     <div id="wrapper">
         <jsp:include page="../common/header.jsp"/>
         <div id="body">
