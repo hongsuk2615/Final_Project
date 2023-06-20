@@ -59,17 +59,18 @@
 								<div class="board_mapper">
 									<div class="board_mapper_left">
 										<div class="board_img">
-											<img src="${contextPath}/resources/images/admin/adminProfile.jpg">
 										</div>
 										<div class="board_attr">
-												<span class="board_title">
-														<a href="${contextPath}/freeBoard/detail?bNo=${list.boardNo}">[${list.subCategoryName}] ${list.title}</a>
-												</span>
-												<div class="read">
-													<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="16px" fill="#ccc"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-													<span class="readCount">${list.readCount}</span>
-												</div>
-												
+											<span class="board_title">
+												<a href="${contextPath}/freeBoard/detail?categorySNo=${categorySNo}&currentPage=${pi.currentPage}&bNo=${list.boardNo}">[${list.subCategoryName}] ${list.title}</a>
+											</span>
+											<div class="hidden_content">
+												${list.content}
+											</div>
+											<div class="read">
+												<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="16px" fill="#ccc"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+												<span class="readCount">${list.readCount}</span>
+											</div>
 										</div>
 									</div>
 									<div class="board_mapper_right">
@@ -109,6 +110,13 @@
 		</div>
 		<jsp:include page="../common/footer.jsp" />
 	</div>
+	<jsp:include page="../common/rightside.jsp"/>
+	<script>
+		//컨텐츠에 이미지를 꺼내오고 board_img 안에 넣기
+		$.each($('.hidden_content'), function(index, value){
+			$(".board_img")[index].append($(value).find("img")[0])
+		})
+	</script>
 	<script>
 		const urlParams = new URL(location.href).searchParams;
 		const categorySNo = urlParams.get('categorySNo');

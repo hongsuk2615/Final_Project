@@ -42,6 +42,6 @@ public interface AdminService {
 	
 	public void getData(Map<String,Object> dataMap);
 
-	List<Map<String, Object>> reportCountDetail(int bNo);
+	List<Map<String, Object>> reportCountDetail(Map<String, Object> paramMap);
 	
 }

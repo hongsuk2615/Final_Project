@@ -55,8 +55,6 @@ public class AdminController {
 		
 		Member loginUser = adminService.loginAdmin(m);
 		
-		
-		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 			model.addAttribute("loginUser", loginUser);
 			
@@ -80,6 +78,15 @@ public class AdminController {
 		Map<String, Integer> infoBoxMap = adminService.selectInfoBox();
 		model.addAttribute("contents", "home");
 		model.addAttribute("infoBox", infoBoxMap);
+		
+		return "admin/adminPage";
+	}
+	
+	@GetMapping("/adminInfo")
+	public String adminInfo(Model model) {
+		
+		model.addAttribute("contents", "adminInfo");
+
 		
 		return "admin/adminPage";
 	}
@@ -280,8 +287,9 @@ public class AdminController {
 	
 	@GetMapping("/reportCountDetail")
 	@ResponseBody
-	public String reportCountDetail(int bNo) {
-		List<Map<String, Object>> ReportCountList = adminService.reportCountDetail(bNo);
+	public String reportCountDetail(@RequestParam Map<String, Object> countDetail) {
+		System.out.println("머지"+countDetail);
+		List<Map<String, Object>> ReportCountList = adminService.reportCountDetail(countDetail);
 		
 		return new Gson().toJson(ReportCountList);
 	}

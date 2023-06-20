@@ -17,16 +17,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ace.thrifty.board.model.vo.Board;
 import com.ace.thrifty.freeboard.model.service.FreeBoardService;
 import com.ace.thrifty.member.model.vo.Member;
+import com.ace.thrifty.reply.model.service.ReplyService;
+import com.ace.thrifty.reply.model.vo.Reply;
 
 @Controller
 @RequestMapping("/freeBoard")
 public class FreeBoardController {
 
 	private FreeBoardService freeBoardService;
+	private ReplyService replyService;
 	
 	@Autowired
-	public FreeBoardController(FreeBoardService freeBoardService) {
+	public FreeBoardController(FreeBoardService freeBoardService, ReplyService replyService) {
 		this.freeBoardService = freeBoardService;
+		this.replyService = replyService;
 	}
 	
 	@GetMapping("")
@@ -43,8 +47,6 @@ public class FreeBoardController {
 		
 		
 		freeBoardService.freeBoardList(map, paramMap);
-		
-		System.out.println(map);
 		
 		model.addAttribute("map", map);
 		
@@ -107,12 +109,15 @@ public class FreeBoardController {
 	}
 	
 	@GetMapping("/detail") 
-	public String freeBoardDetail(Model model, int bNo) {
+	public String freeBoardDetail(Model model, int bNo,  @RequestParam Map<String, Object> paramMap) {
 		
 		Board b = freeBoardService.freeBoardDetail(bNo);
 		
-		model.addAttribute("b",b);
+		List<Reply> rList = replyService.BoardReplyList(bNo);
 		
+		model.addAttribute("map", paramMap);
+		model.addAttribute("b",b);
+		model.addAttribute("rList", rList);
 		
 		return "freeBoard/freeBoardDetail";
 	}

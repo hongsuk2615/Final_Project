@@ -160,8 +160,8 @@ public class AdminDao {
 		sqlSession.update("adminMapper.todayLoginReset");
 	}
 
-	public List<Map<String, Object>> reportCountDetail(int bNo) {
-		return sqlSession.selectList("adminMapper.reportCountDetail", bNo);
+	public List<Map<String, Object>> reportCountDetail(Map<String, Object> paramMap) {
+		return sqlSession.selectList("adminMapper.reportCountDetail", paramMap);
 	}
 
 
