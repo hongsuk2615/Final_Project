@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="replyMapper">
+
+	<resultMap type="reply" id="replyResultSet">
+		<id column="REPLY_NO" property="replyNo"/>
+		<result column="REF_BNO" property="refBno"/>
+		<result column="CONTENT" property="content"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="STATE" property="state"/>
+		<result column="PARENT_REPLY_NO" property="parentReplyNo"/>
+		<result column="REPORT_COUNT" property="reportCount"/>
+		<result column="NICK_NAME" property="nickName"/>
+		<result column="USER_NO" property="userNo"/>
+	</resultMap>
+
+	<insert id="replyInsert" parameterType="map">
+		INSERT INTO REPLY(REF_BNO, CONTENT, USER_NO)
+		VALUES(#{bNo}, #{replyContent}, #{userNo})
+	</insert>
+	
+	<select id="BoardReplyList" parameterType="int" resultMap="replyResultSet">
+        SELECT R.REPLY_NO, R.REF_BNO, R.CONTENT, R.CREATE_DATE, R.USER_NO, M.NICK_NAME
+        FROM REPLY R
+        JOIN MEMBER M ON R.USER_NO = M.USER_NO
+		WHERE R.REF_BNO = #{bNo} AND R.STATE = 'Y'
+	</select>
+	
+	<update id="replyDelete" parameterType="int">
+		UPDATE REPLY
+		SET STATE = 'N'
+		WHERE REPLY_NO = #{rNo}
+	</update>
+</mapper>

@@ -40,6 +40,9 @@
 			<c:when test="${contents eq '.btn-write'}">
 				<jsp:include page="./includes/contents/adminErollFormContents.jsp" />
 			</c:when>
+			<c:when test="${contents eq 'adminInfo'}">
+				<jsp:include page="./includes/contents/adminInfoContent.jsp" />
+			</c:when>
 		</c:choose>
 		<jsp:include page="./includes/adminControllSidebar.jsp" />
 		<jsp:include page="./includes/adminFooter.jsp" />
@@ -51,7 +54,7 @@
 			<!-- 홈 차트 생성 스크립트 -->
 			<script src="${contextPath}/resources/js/admin/Chart.min.js"></script>
 			<script src="${contextPath}/resources/js/admin/addHomeCharts.js"></script>
-		</c:when>
+		</c:when> 
 		<c:when test="${contents eq 'member'}">
 		
 		</c:when>

@@ -72,6 +72,9 @@ border: 1px solid black;
     margin: 0px 12px 0px 0px;
 }
 
+.hidden_content{
+    display: none;
+}
 
 .read{
     display: flex;
@@ -79,6 +82,7 @@ border: 1px solid black;
 }
 
 .readCount{
+    line-height: 1.8;
     margin-left: 3px;
     font-size: 14px;
     color: #ccc;

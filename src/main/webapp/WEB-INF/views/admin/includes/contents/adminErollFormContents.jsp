@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="${contextPath}/admin">Home</a></li>
                        	<c:if test="${enroll eq 'notice'}">
 	                        <li class="breadcrumb-item active">공지사항 작성</li>
                     	</c:if>

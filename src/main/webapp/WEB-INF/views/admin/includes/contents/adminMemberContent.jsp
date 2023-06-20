@@ -11,12 +11,12 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="row col-sm-6">
-					<i class="nav-icon fas fa-user fa-lg"></i>
+					<!-- <i class="nav-icon fas fa-user fa-lg"></i> -->
 					<h1>회원 관리</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item"><a href="${contextPath}/admin">Home</a></li>
 						<li class="breadcrumb-item active">회원 관리</li>
 					</ol>
 				</div>

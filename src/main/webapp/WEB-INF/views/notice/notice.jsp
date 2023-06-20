@@ -98,24 +98,25 @@
         </div>
         <jsp:include page="../common/footer.jsp" />
     </div>
+	<jsp:include page="../common/rightside.jsp"/>
+	<script>
+	    $('.noticeCategory').on('click', function(){
+	        let categorySNo = $(this).attr('cat');
+	        location.href = '${contextPath}/notice?categorySNo='+categorySNo+'&currentPage=1';
+	    });
+	
+	    const urlParams = new URL(location.href).searchParams;
+	    const categorySNo = urlParams.get('categorySNo');
+	
+	    $.each($('.noticeCategory'), function(index, item){
+	        if(categorySNo == $(item).attr('cat')){
+	            $(item).addClass('active');
+	            return false;
+	        }else if(categorySNo == null){
+	            $($(item)[0]).addClass('active');
+	            return false;
+	        }
+	    });
+	</script>
 </body>
-<script>
-    $('.noticeCategory').on('click', function(){
-        let categorySNo = $(this).attr('cat');
-        location.href = '${contextPath}/notice?categorySNo='+categorySNo+'&currentPage=1';
-    });
-
-    const urlParams = new URL(location.href).searchParams;
-    const categorySNo = urlParams.get('categorySNo');
-
-    $.each($('.noticeCategory'), function(index, item){
-        if(categorySNo == $(item).attr('cat')){
-            $(item).addClass('active');
-            return false;
-        }else if(categorySNo == null){
-            $($(item)[0]).addClass('active');
-            return false;
-        }
-    });
-</script>
 </html>
