@@ -11,7 +11,6 @@
     <link href="/thrifty/resources/css/part_time_job/part_time_job_enrollform.css" rel="stylesheet">
 <style>
     *{
-        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -97,20 +96,17 @@
 	                                </c:forEach>
                                 </select>
                             </div>
-
                             <hr>
-
                             <div id="enroll-map">
                                 <div>지역 : <input type="text" name="keyword" id="keyword" placeholder="지점 또는 관련 키워드를 검색 해 주세요!"></div><br>
                                 <input type="hidden" name="locationCoordinate" id="locationCoordinate">
                                 <div id="map" style="width:100%; height:350px;"></div>
-                                <div id="좌표"></div>
+                                <div style="visibility: hidden;"id="좌표"></div>
                             </div>
                         </div>
                         <div id="enroll-footer">
                             <button id="enroll-btn">게시글 등록하기</button>
                         </div>
-                    
                 </div>
             </div>
 		</form>
@@ -127,4 +123,5 @@
 	})
 </script>
 </body>
+<jsp:include page="../common/rightside.jsp"/>
 </html>

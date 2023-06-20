@@ -19,28 +19,13 @@
 #carpool-allBody{
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 	padding: 10px;
 	border-radius: 5px;
 	flex-wrap: wrap;
 	background-color: rgb(181, 198, 215);
-}
-
-#carpool-allBody > div {
-	border: solid #3f668f 7px;
-	border-radius: 10px;
-	background-color: white;
-}
-
-#carpool-allBody > div:hover {
-	box-shadow: 5px 5px 5px gray;
-}
-
-img {
-    border-radius: 10px;
-}
-
-img:hover {
-    cursor: pointer;
+	width: 835px;
+	height: 1000px;
 }
 
 #write-btn {
@@ -77,4 +62,61 @@ img:hover {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
+}
+
+.item-img {
+	border: solid #3f668f 7px;
+	border-bottom : none;
+    border-radius: 10px 10px 0 0;
+}
+
+.item-info {
+	border: solid #3f668f 7px;
+    border-radius: 0 0 10px 10px;
+    background : white;
+    width: 185px;
+}
+
+.item-info p {
+	width: 185px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.items{
+	margin : 0px 10px;
+	cursor: pointer;
+	height: 295px;
+    border-radius: 12px;
+}
+.items:hover{
+	box-shadow: 5px 5px 5px gray;
+}
+
+#search{
+    height: 40px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #3f668f;
+    border-radius: 3px;
+    background:white;
+}
+
+#search>img{
+    margin: 10px;
+}
+#search>input{
+    border: 1px solid transparent;
+    height: 100%;
+    background : white;
+    border-left: 2px solid #3f668f;
+    width: 210px;
+    padding-left : 10px;
+}
+
+#search>input:focus { 
+	outline: none; 
 }

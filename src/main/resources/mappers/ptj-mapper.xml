@@ -47,19 +47,6 @@
    <result column="CATEGORY_U_NO" property="categoryUNo" />
 </resultMap>
 
-<!-- <resultMap type="board" id="boardResultSet">
-      <id column="BOARD_NO" property="boardNo"/>
-      <result column="CATEGORY_S_NO"  property="categorySNo"/>
-      <result column="CONTENT"  property="content"/>
-      <result column="CREATE_DATE"  property="createDate"/>
-      <result column="READ_COUNT"  property="readCount"/>
-      <result column="REPORT_COUNT"  property="reportCount"/>
-      <result column="TITLE"  property="title"/>
-      <result column="USER_NO"  property="userNo"/>
-      <result column="WISH_COUNT"  property="wishCount"/>
-      <result column="STATUS" property="status" />
-</resultMap> -->
-
 <resultMap type="member" id="memberResultSet">
    <result column="PHONE" property="phone" />
    <result column="USER_ID" property="userId" />
@@ -98,6 +85,7 @@
 	SELECT *
 	FROM BOARD B
 	LEFT JOIN IMAGE I ON B.BOARD_NO = I.BOARD_NO
+	LEFT JOIN PART_TIME_JOB P ON P.BOARD_NO = B.BOARD_NO
 	WHERE B.STATUS = 'Y' AND B.CATEGORY_U_NO IN (5 , 8)
 	ORDER BY B.BOARD_NO DESC;
 </select>
@@ -111,6 +99,7 @@
 		P.END_TIME,
 		P.IS_END,
 		B.CATEGORY_S_NO,
+		SC.CATEGORY_S_NAME,
 		B.TITLE,
 		B.CONTENT,
 		B.WISH_COUNT,
@@ -121,6 +110,7 @@
 	FROM PART_TIME_JOB P
 	LEFT JOIN BOARD B ON B.BOARD_NO = P.BOARD_NO
 	LEFT JOIN LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
+	LEFT JOIN SUB_CATEGORY SC ON B.CATEGORY_S_NO = SC.CATEGORY_S_NO
 	LEFT JOIN IMAGE I ON B.BOARD_NO = I.BOARD_NO
 	LEFT JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
 	WHERE UC.CATEGORY_U_NO = 5 AND B.STATUS = 'Y' AND I.STATUS = 'Y'
@@ -130,6 +120,11 @@
 		<if test='location != null and location!= ""'>
 	 		AND P.LOCATION_NO = #{location}
 	 	</if>
+	 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+	 		AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+	 		OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+		</if>
+	GROUP BY BOARD_NO
 </select>
 
 <insert id="insertPtj" parameterType="ptj">
@@ -199,6 +194,10 @@
        <if test='lNo != null and lNo != ""'>
           AND LOCATION_NO = #{lNo}
        </if>
+       <if	test='keyword != null and keyword !="" and keyword != "undefined"'>
+ 		  AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+ 		  OR B.TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+	   </if>
 </select>
 
 <select id="advptjAll" parameterType="map" resultMap="ptjDetailResultSet">
@@ -222,7 +221,7 @@
    LEFT JOIN LOCATION L ON P.LOCATION_NO = L.LOCATION_NO
    LEFT JOIN IMAGE I ON B.BOARD_NO = I.BOARD_NO
    LEFT JOIN UPPER_CATEGORY UC ON B.CATEGORY_U_NO = UC.CATEGORY_U_NO
-   WHERE UC.CATEGORY_U_NO = 5 AND B.STATUS = 'Y' AND I.STATUS = 'Y'
+   WHERE UC.CATEGORY_U_NO = 5 AND B.STATUS = 'Y' AND I.STATUS = 'Y' AND P.IS_END = 'N'
 </select>
 
 </mapper>

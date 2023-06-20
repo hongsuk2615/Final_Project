@@ -51,6 +51,11 @@
     #footer{
         
     }
+    /* .markerInfo{
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+    } */
 
 </style>
 </head>
@@ -105,8 +110,8 @@
                             <h3>카풀비 : </h3><input type="number" id="enroll-price" name="price" required>&nbsp;원
                             <hr>
                             <h3>시간 : </h3>
-                            출발 시간 : <input type="time" name="startTime" class="enroll-date" value="09:00:00" required>&nbsp;&nbsp;
-                            도착 시간 : <input type="time" name="endTime" class="enroll-date" value="18:00:00" required>
+                            출발 시간 : <input type="time" name="startTime" class="enroll-date" value="09:00:00" step="2" required>&nbsp;&nbsp;
+                            도착 시간 : <input type="time" name="endTime" class="enroll-date" value="18:00:00" step="2" required>
                             <hr>
 
                             <div style="display: flex; align-items: center; " id="location-list">
@@ -216,4 +221,5 @@
         	}
 </script>
 </body>
+<jsp:include page="../common/rightside.jsp"/>
 </html>

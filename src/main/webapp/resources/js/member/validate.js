@@ -9,13 +9,7 @@ function validateId(arg){
             success : function(result){
                 if(result){
                     if(typeof arg != "undefined"){
-                        if(confirm("사용가능한 아이디 입니다. 사용하시겠습니까?")){
-                            document.getElementById('userId').setAttribute('disabled','true');
-                            return_value = true;
-                        }else{
-                            return_value = false;
-                        }
-
+                        customAlert_Success('사용가능한 아이디입니다.');
                     }else{
                         return_value = true;
                     }
@@ -51,12 +45,7 @@ function validateEmail(arg){
             success : function(result){
                 if(result){
                     if(typeof arg != "undefined"){
-                        if(confirm("사용가능한 이메일 입니다. 사용하시겠습니까?")){
-                            document.getElementById('email').setAttribute('disabled','true');
-                            return_value = true;
-                        }else{
-                            return_value = false;
-                        }        
+                        customAlert_Success('사용가능한 이메일입니다.');  
                     }else{
                         return_value = true;
                     }
@@ -92,12 +81,7 @@ function validateNickName(arg){
             success : function(result){
                 if(result){
                     if(typeof arg != "undefined"){
-                        if(confirm("사용가능한 닉네임 입니다. 사용하시겠습니까?")){
-                            document.getElementById('nickName').setAttribute('disabled','true');
-                            return_value = true;
-                        }else{
-                            return_value = false;
-                        }        
+                        customAlert_Success('사용가능한 닉네임입니다.');
                     }else{
                         document.getElementsByClassName("validate")[4].innerHTML = "중복확인 완료.";
                         makeGreen(document.getElementsByClassName("validate")[4]);
@@ -258,6 +242,18 @@ function makeRed(e){
 function customAlert(arg){
 	$('body').append(`<div id="customAlert" class="swal2-container swal2-center swal2-backdrop-show" style="overflow-y: auto;"><div aria-labelledby="swal2-title" aria-describedby="swal2-html-container" class="swal2-popup swal2-modal swal2-icon-warning swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: grid;"><button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button><ul class="swal2-progress-steps" style="display: none;"></ul><div class="swal2-icon swal2-warning swal2-icon-show" style="display: flex;"><span class="swal2-x-mark"><div style="margin-top : 10px"class="swal2-icon-content">!</div>
 </div><img class="swal2-image" style="display: none;"><h2 class="swal2-title" id="swal2-title" style="display: block;">`+arg+`</h2><div class="swal2-html-container" id="swal2-html-container" style="display: none;"></div><input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;"><div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select class="swal2-select" style="display: none;"></select><div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox" style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea class="swal2-textarea" style="display: none;"></textarea><div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div><div class="swal2-actions" style="display: none;"><div class="swal2-loader"></div><button type="button" class="swal2-confirm swal2-styled" aria-label="" style="display: none;">OK</button><button type="button" class="swal2-deny swal2-styled" aria-label="" style="display: none;">No</button><button type="button" class="swal2-cancel swal2-styled" aria-label="" style="display: none;">Cancel</button></div><div class="swal2-footer" style="display: none;"></div><div class="swal2-timer-progress-bar-container"><div class="swal2-timer-progress-bar" style="display: none;"></div></div></div></div>`);
+setTimeout(function(){
+	$('#customAlert').remove();
+},800)
+}
+
+
+function customAlert_Success(arg){
+	$('body').append(`<div id="customAlert" class="swal2-container swal2-center swal2-backdrop-show" style="overflow-y: auto;"><div aria-labelledby="swal2-title" aria-describedby="swal2-html-container" class="swal2-popup swal2-modal swal2-icon-success swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: grid;"><button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button><ul class="swal2-progress-steps" style="display: none;"></ul><div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+    <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+    <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+    <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+  </div><img class="swal2-image" style="display: none;"><h2 class="swal2-title" id="swal2-title" style="display: block;">`+arg+`</h2><div class="swal2-html-container" id="swal2-html-container" style="display: none;"></div><input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;"><div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select class="swal2-select" style="display: none;"></select><div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox" style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea class="swal2-textarea" style="display: none;"></textarea><div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div><div class="swal2-actions" style="display: flex;"><div class="swal2-loader"></div><button type="button" class="swal2-confirm swal2-styled" aria-label="" style="display: none;">OK</button><button type="button" class="swal2-deny swal2-styled" aria-label="" style="display: none;">No</button><button type="button" class="swal2-cancel swal2-styled" aria-label="" style="display: none;">Cancel</button></div><div class="swal2-footer" style="display: none;"></div><div class="swal2-timer-progress-bar-container"><div class="swal2-timer-progress-bar" style="display: none;"></div></div></div></div>`);
 setTimeout(function(){
 	$('#customAlert').remove();
 },800)

@@ -197,12 +197,19 @@
 		  JOIN LOCATION USING(LOCATION_NO)
 		  JOIN BOARD B USING(BOARD_NO)
 		  JOIN IMAGE USING(BOARD_NO)
-		 WHERE B.STATUS = 'Y'
+		 WHERE B.STATUS = 'Y' AND IS_SOLDOUT = 'N'
 	</select>
 
 	<update id="soldOut" parameterType="board">
 		UPDATE USED_PRODUCT
 		   SET IS_SOLDOUT = 'Y'
+		 WHERE BOARD_NO = ${boardNo}
+	
+	</update>
+	
+	<update id="soldWaiting" parameterType="board">
+		UPDATE USED_PRODUCT
+		   SET IS_SOLDOUT = 'N'
 		 WHERE BOARD_NO = ${boardNo}
 	
 	</update>

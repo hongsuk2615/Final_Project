@@ -67,7 +67,7 @@
                      <c:if test="${loginUser.userNo eq carpool.board.userNo or loginUser.authority eq 0}">
 	                    <div id="enroll-update">	
 	                        <button style="border: 0;" id="update-btn" url="carPool/update">수정하기</button>
-	                        <button style="border: 0;" id="delete-btn" bNo="${carpool.board.boardNo }" url="carPool/drive">삭제하기</button>
+	                        <button style="border: 0;" id="delete-btn" bNo="${carpool.board.boardNo }" url="carPool/drive" onclick="deleteBoard(this);">삭제하기</button>
 	                        <c:choose>
 	                        	<c:when test="${carpool.isEnd eq 'N' }">
 			                        <button style="border: 0;" id="dead-line-btn" bNo="${carpool.boardNo }" url="carPool/drive">구인완료</button>
@@ -96,10 +96,10 @@
                                 </c:forEach>
                                 <h2>제목 : &nbsp;${carpool.board.title }</h2>
                                 </div>
-                                <c:if test="${p.isEnd eq 'Y' }">
-                                    <p style="color: red;"><b>모집인원이 마감 되었습니다.</b></p>
-                                </c:if>
                             </div>
+                            <c:if test="${carpool.isEnd eq 'Y' }">
+                                <h2 style="color: red;"><b>모집인원이 마감 되었습니다.</b></h2>
+                            </c:if>
                             <br>
                             <div>
                                 <h3 id="enroll-content">내용 :  </h3><p>${carpool.board.content }</p>
@@ -327,4 +327,5 @@
 	})
 </script>
 </body>
+<jsp:include page="../common/rightside.jsp"/>
 </html>
