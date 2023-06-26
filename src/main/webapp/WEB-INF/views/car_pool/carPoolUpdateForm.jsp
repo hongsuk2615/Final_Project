@@ -13,7 +13,6 @@
     <link href="/thrifty/resources/css/car_pool/car_pool_enrollform.css" rel="stylesheet">
 <style>
     *{
-        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -65,10 +64,11 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../common/rightside.jsp"/>
     <div id="wrapper">
         <jsp:include page="../common/header.jsp"/>
         <div id="body">
-            <jsp:include page="../common/boardBodyLeftPTJ.jsp"/>
+            <jsp:include page="../common/boardBodyLeftCarPool.jsp"/>
             <div id="body-right">
                 <div id="enroll-category">
                     <h1 style="display: flex; align-items: center;">카테고리를 정해주세요.
@@ -324,5 +324,4 @@ function makeSlick(){
 }
 </script>
 </body>
-<jsp:include page="../common/rightside.jsp"/>
 </html>
