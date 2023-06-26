@@ -42,6 +42,10 @@
   
 ![회원가입1](https://github.com/hongsuk2615/Final_Project/assets/117423274/a66419b1-06a8-4fa7-9e82-652750f7c9c9)
 
+![회원가입2](https://github.com/hongsuk2615/Final_Project/assets/117423274/c9a7c196-826c-4521-8e71-bb2a72c5f56a)
+
+![회원가입3](https://github.com/hongsuk2615/Final_Project/assets/117423274/42f71b33-15d0-4aab-82ba-7fbaa1e4eee1)
+
 </div>
 </details>
 
