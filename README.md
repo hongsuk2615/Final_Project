@@ -159,6 +159,8 @@
 ![소모임 메인 페이지](https://github.com/hongsuk2615/Final_Project/assets/59534382/6507fba2-ca0b-453d-9ada-4bc68ea9330d)
 
 </div>
+</details>
+
 <details>
 <summary>소모임 상세페이지</summary>
 <div markdown="1">
@@ -178,8 +180,6 @@
 
 ![소모임 수정하기](https://github.com/hongsuk2615/Final_Project/assets/59534382/b71b36a9-83de-4176-aceb-7c25fbac4685)
 
-
-
 </div>
 </details>
 
@@ -189,12 +189,6 @@
 
 
 ![소모임 삭제하기](https://github.com/hongsuk2615/Final_Project/assets/59534382/4753c691-b1ac-47ef-8b6e-c83f02e1e5f1)
-
-
-
-</div>
-</details>
-
 
 
 
