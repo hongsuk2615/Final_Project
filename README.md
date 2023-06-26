@@ -54,6 +54,8 @@
 <summary>아이디/비밀번호찾기</summary>
 <div markdown="1">
 
+![아이디비밀번호찾기](https://github.com/hongsuk2615/Final_Project/assets/117423274/8aea85eb-8091-42ef-8814-5ee36f2264ff)
+
 </div>
 </details>
 
