@@ -25,6 +25,7 @@
 
 <h2>유사사이트 분석</h2>
 
+![유사사이트](https://github.com/hongsuk2615/Final_Project/assets/117423274/a13cd31b-0ad2-4894-b007-8cff243aa28a)
 
 
 <h2>유스케이스</h2>
