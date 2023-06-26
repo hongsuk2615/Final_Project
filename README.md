@@ -87,4 +87,16 @@
 </div>
 </details>
 
+<h4>[중고거래]</h4>
+
+<details>
+<summary>필터링/페이징처리</summary>
+<div markdown="1">
+
+![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+
+</div>
+</details>
+
+
 
