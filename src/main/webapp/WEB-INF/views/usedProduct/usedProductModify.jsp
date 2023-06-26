@@ -224,7 +224,6 @@
                 removeImgList.push($(e).attr('imgNo'));
                 $('[name="removeImgList"]').val(removeImgList);
                 originFileLength--;
-
             }
         	
             function deleteImg(e){
