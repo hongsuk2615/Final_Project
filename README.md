@@ -30,6 +30,7 @@
 
 <h2>유스케이스</h2>
 
+![유스케이스](https://github.com/hongsuk2615/Final_Project/assets/117423274/1e633c3e-a503-41bb-9ee9-262834186158)
 
 <h2>ERD</h2>
 
