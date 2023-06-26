@@ -30,40 +30,10 @@
                         <li><a href="/thrifty/mypage/myWrite" class="upper_a">내가 쓴 글</a></li>
                         
         		<div id="sgAdv">
-                    <ul class="scrollbar">
-                        
-                        <div class="advall">
-                            <span id="num1">20</span>초 후에 없어짐
-                            <p></p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-
-                        </div>
-                    
-                   </ul>
                  </div>
                     </ul>
                 </div>
                 <div id="ptjAdv">
-                    <ul class="scrollbar">
-                        <div class="advall">
-                            <span id="num">20</span>초 후에 없어짐
-                            <p></p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-                            <p>광고</p>
-
-                        </div>
-                        
-
-                    </ul>
                     
                 </div>
 

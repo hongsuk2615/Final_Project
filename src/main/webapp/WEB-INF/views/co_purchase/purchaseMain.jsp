@@ -50,6 +50,7 @@
 </style>
 </head>
 <body>
+    <jsp:include page="../common/rightside.jsp"/>
     <div id="wrapper">
         <jsp:include page="../common/header.jsp"/>
         <div id="body">
@@ -72,7 +73,7 @@
 				<table>
                     <tbody>        
                     	<c:if test="${ empty list }">
-							<td colspan="6"> 게시글이 없습니다.</td>
+							<td colspan="6" style="padding-top: 15px;"> 게시글이 없습니다.</td>
 						</c:if>
 						<c:forEach items="${ list }" var="b">
 							<tr>

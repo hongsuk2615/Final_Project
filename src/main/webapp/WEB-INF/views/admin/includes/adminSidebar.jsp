@@ -16,7 +16,7 @@
           <img src="/thrifty/resources/images/admin/adminProfile.jpg" width="160px" height="160px" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Administrator</a>
+          <a href="${contextPath}/admin/adminInfo" class="d-block">${loginUser.nickName}</a>
         </div>
       </div>
       

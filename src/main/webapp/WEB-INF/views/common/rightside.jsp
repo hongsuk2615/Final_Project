@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,6 +116,8 @@
         background-color: white;
         overflow: auto;
         overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
     }
 
     #message_content_right{
@@ -164,16 +167,16 @@
             <div id="message_header">
             <img src="/thrifty/resources/images/myPage/send-mail.png">
             <h3 style="margin-left: 20px; margin-right: 30px; line-height: 1.6;">쪽지함</h3>
-            <img src="/thrifty/resources/images/myPage/cancelz.png" id="close" style="margin-left: 250px; width:30px; height: 30px; margin-top: 12px;"> 
+            <img src="/thrifty/resources/images/myPage/cancelz.png" onerror="this.src='/thrifty/resources/images/common/noImage.png'" id="close" style="margin-left: 250px; width:30px; height: 30px; margin-top: 12px;"> 
             </div>
             <div id="message_content">
                 <div id="message_content_left"> 
                     <div id="member_profile">
-                        <img src="" id="message-profile-img" > 
+                         
                         <p><p>
                     </div>
                 </div>
-                <div id="message_content_right"> right</div>
+                <div id="message_content_right"></div>
             </div>
             <div id="message_footer">
                 <button id="send-btn" onclick="sendMsg(this);"style="display: flex;
@@ -203,7 +206,7 @@
     <div class="sidebar">
              
              <img src="/thrifty/resources/images/myPage/send-mail.png" class="sidebarimg"    id="modalmessage" style="width: 50px; height: 50px;">
-            <a href="/thrifty//mypage/myPageMain"><img src="/thrifty/resources/images/myPage/avatarz.png" class="sidebarimg" style="width: 50px; height: 50px;"></a>
+            <a onclick='${loginUser==null? 'login();':'location.href='+='"/thrifty/mypage/myPageMain";'}'><img src="/thrifty/resources/images/myPage/avatarz.png" class="sidebarimg" style="width: 50px; height: 50px;"></a>
              <a href="/thrifty/faq"><img src="/thrifty/resources/images/myPage/signpost.png" class="sidebarimg" style="width: 50px; height: 50px;"></a>
             
             
@@ -215,8 +218,13 @@
 
 <script>
     document.getElementById('modalmessage').addEventListener('click', function(){
+        <c:if test="${loginUser == null}">
+            login();
+        </c:if>
+        <c:if test="${loginUser != null}">
         document.querySelector('.black-bg').classList.add('show-modal');
         getMessageUsers();
+        </c:if>
     })
 
     document.getElementById('close').addEventListener('click', function(){
@@ -250,7 +258,7 @@
                     if(user.loginMethod == 'K'){
                         $('#message_content_left').append(`
                         <div  class ="memberProfile"id="member_profile" userNo="\${user.userNo}" nickName = "\${user.nickName}" onclick="displayMessage(this);">
-                            <img src="\${user.changeName}" id="message-profile-img" > 
+                            <img src="\${user.changeName}" id="message-profile-img"  onerror="this.src='/thrifty/resources/images/common/noImage.png'"> 
                             <p style=" width: 85px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">\${user.nickName}<p>
                         </div>
                         
@@ -258,7 +266,7 @@
                     }else{
                         $('#message_content_left').append(`
                         <div class ="memberProfile" id="member_profile" userNo="\${user.userNo}"" nickName = "\${user.nickName}" onclick="displayMessage(this)">
-                            <img src="/thrifty/resources/upfiles/myPage/\${user.changeName}" id="message-profile-img" > 
+                            <img src="/thrifty/resources/upfiles/myPage/\${user.changeName}" id="message-profile-img"  onerror="this.src='/thrifty/resources/images/common/noImage.png'"> 
                             <p style=" width: 85px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">\${user.nickName}<p>
                         </div>
                         

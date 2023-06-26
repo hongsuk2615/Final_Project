@@ -46,6 +46,7 @@
     </style>
 </head>
 <body>
+    <jsp:include page="../common/rightside.jsp"/>
     <div id="wrapper">
         <jsp:include page="../common/header.jsp"/>
         <div id="body">
@@ -111,7 +112,7 @@
                                 </div>
                                 <!-- id="body_description_chatting" -->
                                 <div id="body_description_link" class="flex">
-                                    <a href="${ co_purchase.link }">관련 링크 : ${ co_purchase.link }</a>
+                                    <a class="link_content" href="${ co_purchase.link }">관련 링크 : ${ co_purchase.link }</a>
                                 </div>
                             </div>
                         </div>

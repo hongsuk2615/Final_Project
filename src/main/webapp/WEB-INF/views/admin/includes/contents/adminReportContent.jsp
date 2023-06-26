@@ -26,11 +26,19 @@
 <script>
 	$(function(){
 		$('.reportCountDetail').on('click', function(){
-			let bNo = $(this).attr('bNo');
+			let countDetail = {};
+			let bNo = $(this).attr('bno');
+			let rNo = $(this).attr('rno');
 
+            if(typeof(bNo) == "undefined"){
+                countDetail["rNo"] = rNo;
+            }else{
+                countDetail["bNo"] = bNo;
+            }
+			console.log(countDetail);
 			$.ajax({
 				url: "/thrifty/admin/reportCountDetail",
-				data: {bNo: bNo},
+				data: countDetail,
 				dataType : 'json',
 				success(data){
 					console.log(data)
@@ -63,7 +71,7 @@
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item"><a href="${contextPath}/admin">Home</a></li>
 						<li class="breadcrumb-item active">신고 관리</li>
 					</ol>
 				</div>
@@ -166,6 +174,7 @@
 														</c:if>
 														<c:if test="${type eq 'reply'}">
 															<td>${list.reply.content}</td>
+															<td><a class="reportCountDetail" href="" data-toggle="modal" rNo="${list.reply.replyNo}" data-target="#boardReportDetail">${list.reply.reportCount}</a></td>
 															<td>${list.reply.reportCount}</td>
 															<td>${list.member.nickName}</td>
 															<td>${list.reply.state}</td>

@@ -53,6 +53,7 @@ public class ReportController {
 		else {
 			paramMap.put("userNo", ((Member) session.getAttribute("loginUser")).getUserNo());
 
+			System.out.println(paramMap);
 			result = reportService.reportInsert(paramMap);
 
 			if (result > 0) {

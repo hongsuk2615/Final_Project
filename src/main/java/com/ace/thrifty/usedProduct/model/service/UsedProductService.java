@@ -15,4 +15,5 @@ public interface UsedProductService {
 	public UsedProduct selectUsedProductByBno(int bNo);
 	public List<UsedProduct> selectUpAll();
 	public int soldOut(Board board);
+	public int soldWaiting(Board board);
 }
