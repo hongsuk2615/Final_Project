@@ -1,10 +1,13 @@
 # Final_Project
 
+
 <h1>알뜰살뜰프로젝트</h1>
+
 
 <div style="color : purple;">공유경제 / 중고물품 거래등을 할수있도록 하여 돈을 아낄수단을 제공하는 사이트</div>
 
 <div style="color: blue;">조원 : 장서영, 홍성빈, 김민재, 임재원, 황수환, 김홍석</div>
+
 
 <h2>목차</h2>
 
@@ -28,18 +31,24 @@
 ![유사사이트](https://github.com/hongsuk2615/Final_Project/assets/117423274/a13cd31b-0ad2-4894-b007-8cff243aa28a)
 
 
+
 <h2>유스케이스</h2>
 
 ![유스케이스](https://github.com/hongsuk2615/Final_Project/assets/117423274/1e633c3e-a503-41bb-9ee9-262834186158)
 
+
+
 <h2>ERD</h2>
 <a href="https://www.erdcloud.com/d/sNh7x8ruaMu2LcvZi">https://www.erdcloud.com/d/sNh7x8ruaMu2LcvZi</a>
+
 
 <h2>개발환경</h2>
 
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"><img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"><img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"><img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
 
 <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"><img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
+
+
 
 <h2>주요기능</h2>
 
