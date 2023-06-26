@@ -14,9 +14,16 @@
 
 <로그인>
 
-* 일반로그인
+<details>
+<summary>일반로그인</summary>
+<div markdown="1">
 
 ![일반로그인](https://github.com/hongsuk2615/Final_Project/assets/117423274/e30589af-9bcc-4032-b511-4fc9b4b4b2b4)
+
+</div>
+</details>
+
+
 
 * 카카오톡 로그인
 
