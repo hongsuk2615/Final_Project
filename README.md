@@ -35,13 +35,13 @@
 
 <h3>주요기능</h3>
 
-<h4><메인페이지></h4>
+<h4>[메인페이지]</h4>
 
 
 ![메인페이지](https://github.com/hongsuk2615/Final_Project/assets/117423274/bf709c21-e973-4ba9-bf0d-153518c93453)
 
 
-<h4><로그인></h4>
+<h4>[로그인]</h4>
 
 <details>
 <summary>일반로그인</summary>
