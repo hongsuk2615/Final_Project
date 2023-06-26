@@ -36,4 +36,13 @@
 </details>
 
 
-* 일반회원가입
+<details>
+<summary>일반회원가입</summary>
+<div markdown="1">
+  
+![회원가입1](https://github.com/hongsuk2615/Final_Project/assets/117423274/a66419b1-06a8-4fa7-9e82-652750f7c9c9)
+
+</div>
+</details>
+
+
