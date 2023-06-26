@@ -52,6 +52,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="../common/rightside.jsp"/>
     <div id="wrapper">
 		<jsp:include page="../common/header.jsp"/>
         <div id="body"  style="padding-top: 150px;">
@@ -162,5 +163,4 @@ document.getElementById('keyword').addEventListener('keyup',function(){
 })
 </script>
 </body>
-<jsp:include page="../common/rightside.jsp"/>
 </html>
