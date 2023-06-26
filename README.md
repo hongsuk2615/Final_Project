@@ -183,6 +183,19 @@
 </div>
 </details>
 
+<details>
+<summary>소모임 삭제하기</summary>
+<div markdown="1">
+
+
+![소모임 삭제하기](https://github.com/hongsuk2615/Final_Project/assets/59534382/4753c691-b1ac-47ef-8b6e-c83f02e1e5f1)
+
+
+
+</div>
+</details>
+
+
 
 
 </div>
@@ -198,10 +211,129 @@
 </details>
 <h4>[마이페이지]</h4>
 <details>
-<summary>기능</summary>
+<summary>마이페이지 메인</summary>
 <div markdown="1">
 
-움짤
+![마이페이 메인](https://github.com/hongsuk2615/Final_Project/assets/59534382/d9ecbde7-c9f4-4462-a3ad-d2226b6ec9cc)
+
 
 </div>
 </details>
+
+
+<details>
+<summary>프로필 이미지 변경</summary>
+<div markdown="1">
+
+ ![프로필 이미지 변경](https://github.com/hongsuk2615/Final_Project/assets/59534382/82eff180-6739-4fe5-8bcb-d5db8c6970b2)
+
+
+
+
+</div>
+</details>
+
+
+<details>
+<summary>찜목록 보기</summary>
+<div markdown="1">
+
+
+![찜목록 보기](https://github.com/hongsuk2615/Final_Project/assets/59534382/ac71806a-822d-413f-9cf3-d2b47e570af0)
+
+
+
+
+</div>
+</details>
+
+
+
+<details>
+<summary>찜목록 상세보기, 삭제</summary>
+<div markdown="1">
+
+
+
+![찜목록 상세보기, 삭제 ](https://github.com/hongsuk2615/Final_Project/assets/59534382/10e23df2-54aa-497b-9e7d-04c241680a8a)
+
+
+
+
+</div>
+</details>
+
+
+<details>
+<summary>내가쓴 글 메뉴 상세보기 </summary>
+<div markdown="1">
+
+
+![내가쓴글 메뉴 상세보기](https://github.com/hongsuk2615/Final_Project/assets/59534382/f4629f55-7569-447e-8c9b-7695e1532e16)
+
+
+
+
+
+
+</div>
+</details>
+
+
+<details>
+<summary> 쪽지함 </summary>
+<div markdown="1">
+
+
+
+
+![쪽지함](https://github.com/hongsuk2615/Final_Project/assets/59534382/cdf5b2f3-83ba-40d9-b958-522c4ec1a875)
+
+
+
+
+
+</div>
+</details>
+
+
+<details>
+<summary> 우측 사이드바 </summary>
+<div markdown="1">
+
+
+
+
+![우측 사이드바](https://github.com/hongsuk2615/Final_Project/assets/59534382/535c55be-7bb4-4c5c-9e7f-b3e413b7592c)
+
+
+
+
+
+
+</div>
+</details>
+
+
+<details>
+<summary> 메인 다크모드 </summary>
+<div markdown="1">
+
+
+
+![다크모드](https://github.com/hongsuk2615/Final_Project/assets/59534382/f1dd88c4-0c17-44c6-9dab-87a97782ecaa)
+
+
+
+
+
+
+
+
+</div>
+</details>
+
+
+
+
+
