@@ -1,4 +1,4 @@
-![소모임 상세보기](https://github.com/hongsuk2615/Final_Project/assets/59534382/3602c0bc-1835-448e-beba-2937e1e1e024)# Final_Project
+# Final_Project
 
 
 <h1>알뜰살뜰프로젝트</h1>
@@ -164,7 +164,7 @@
 <div markdown="1">
 
 
-![소모임 상세보기](https://github.com/hongsuk2615/Final_Project/assets/59534382/cbc7640f-0e2c-4805-b8f1-644672cc0de2)
+![소모임 상세보기](https://github.com/hongsuk2615/Final_Project/assets/59534382/3602c0bc-1835-448e-beba-2937e1e1e024)
 
 
 </div>
