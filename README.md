@@ -155,8 +155,10 @@
 <details>
 <summary>소모임 메인페이지, 광고(20초 후 사라지기)</summary>
 <div markdown="1">
+ 
 ![소모임 메인 페이지](https://github.com/hongsuk2615/Final_Project/assets/59534382/6507fba2-ca0b-453d-9ada-4bc68ea9330d)
 
+</div>
 <details>
 <summary>소모임 상세페이지</summary>
 <div markdown="1">
