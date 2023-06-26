@@ -7,6 +7,6 @@
 
 
 <메인페이지>
-\n
+
 
 ![메인페이지](https://github.com/hongsuk2615/Final_Project/assets/117423274/bf709c21-e973-4ba9-bf0d-153518c93453)
