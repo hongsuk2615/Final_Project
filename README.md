@@ -92,7 +92,23 @@
 </div>
 </details>
 <h4>[쉐어하우스]</h4>
+<details>
+<summary>기능</summary>
+<div markdown="1">
+
+움짤
+
+</div>
+</details>
 <h4>[카풀]</h4>
+<details>
+<summary>기능</summary>
+<div markdown="1">
+
+움짤
+
+</div>
+</details>
 <h4>[중고거래]</h4>
 
 <details>
