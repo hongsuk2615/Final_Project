@@ -61,7 +61,7 @@
 
 
 <h4>[로그인]</h4>
-<div style="color : skyblue; border : 1px solid skyblue; padding : 0px 20px; border-radius : 15px;" >
+<div style="color : skyblue;" >
 <hr/>
 
 <details>
