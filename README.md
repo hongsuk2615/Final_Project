@@ -105,6 +105,7 @@
 </div>
 </details>
 <h4>[쉐어하우스]</h4>
+</hr>
 <details>
 <summary>기능</summary>
 <div markdown="1">
