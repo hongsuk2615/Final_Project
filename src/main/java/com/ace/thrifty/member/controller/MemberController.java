@@ -79,7 +79,7 @@ public class MemberController implements HttpSessionListener{
 			ra.addFlashAttribute("alertMsg", "로그인 성공");
 			model.addAttribute("loginUser", loginUser);
 			
-			session.setMaxInactiveInterval(30);
+			session.setMaxInactiveInterval(10);
 			
 			if(loginUser.getAuthority() == 1) { //오늘 처음 로그인할 경우 LOGIsN_TODAY 값 변경
 				memberService.todayLogin(loginUser.getUserNo());
@@ -97,7 +97,7 @@ public class MemberController implements HttpSessionListener{
 	@GetMapping("/logout")
 	public String logOut(@SessionAttribute("loginUser") Member loginUser, SessionStatus status) {
 		
-		memberService.currentLogOut(loginUser.getUserNo());
+		memberService.currentLogout(loginUser.getUserNo());
 		status.setComplete();
 		return "redirect:/";
 	}

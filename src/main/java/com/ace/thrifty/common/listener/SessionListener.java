@@ -5,16 +5,21 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.ace.thrifty.admin.model.dao.AdminDao;
 import com.ace.thrifty.member.model.service.MemberService;
 import com.ace.thrifty.member.model.vo.Member;
 
-
+@Component
 public class SessionListener implements HttpSessionListener{
 
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private AdminDao adminDao;
 	
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se) {
@@ -23,10 +28,11 @@ public class SessionListener implements HttpSessionListener{
 		
 		HttpSession session = se.getSession();
 		
-		Member member = (Member)session.getAttribute("loginUser");
-		System.out.println(member);
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		System.out.println(userNo);
+		System.out.println(adminDao);
 		
-//		memberService.currentLogout(member.getUserNo());
+		System.out.println(memberService); 
 		
 		
 		HttpSessionListener.super.sessionDestroyed(se);
