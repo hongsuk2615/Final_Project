@@ -243,7 +243,7 @@
 </div>
 </details>
 <h4>[마이페이지]</h4>
-</hr>
+<hr/>
 <details>
 <summary>마이페이지 메인</summary>
 <div markdown="1">
