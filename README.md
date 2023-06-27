@@ -62,7 +62,7 @@
 
 ![메인페이지](https://github.com/hongsuk2615/Final_Project/assets/117423274/bf709c21-e973-4ba9-bf0d-153518c93453)
 
-
+<hr/>
 <h4>[로그인]</h4>
 <div style="color : skyblue;" >
 <hr/>
@@ -111,7 +111,6 @@
 </div>
 </details>
 <hr/>
-</div>
 <h4>[쉐어하우스]</h4>
 <hr/>
 <details>
@@ -122,6 +121,7 @@
 
 </div>
 </details>
+<hr/>
 <h4>[카풀]</h4>
 <hr/>
 <details>
@@ -132,6 +132,7 @@
 
 </div>
 </details>
+<hr/>
 <h4>[중고거래]</h4>
 <hr/>
 
@@ -175,7 +176,7 @@
 </details>
 
 
-
+<hr/>
 <h4>[심부름/알바]</h4>
 <hr/>
 <details>
@@ -240,7 +241,7 @@
 
 </div>
 </details>
-
+<hr/>
 <h4>[마이페이지]</h4>
 <hr/>
 <details>
@@ -365,7 +366,7 @@
 
 </div>
 </details>
-
+<hr/>
 
 
 
