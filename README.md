@@ -232,16 +232,7 @@
 
 </div>
 </details>
-<h4>[쉐어하우스]</h4>
-<hr/>
-<details>
-<summary>기능</summary>
-<div markdown="1">
 
-움짤
-
-</div>
-</details>
 <h4>[마이페이지]</h4>
 <hr/>
 <details>
