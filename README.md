@@ -1,4 +1,4 @@
-
+![글수정하기](https://github.com/hongsuk2615/Final_Project/assets/117423182/4eb2a49e-aeb8-4a86-8fcc-51b6b329e2d9)
 
 # Final_Project
 
@@ -123,8 +123,8 @@
 <details>
 <summary>지도로 쉐어하우스 조회</summary>
 <div markdown="1">
-
-![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+ 
+![지도조회](https://github.com/hongsuk2615/Final_Project/assets/117423182/2850836d-e8e4-44b5-8f89-6323154df48d)
 
 </div>
 </details>
@@ -132,7 +132,7 @@
 <summary>게시글 스크랩 및 검색</summary>
 <div markdown="1">
 
-![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+![스크랩및검색](https://github.com/hongsuk2615/Final_Project/assets/117423182/98782e15-9097-4983-8bc4-5530a8d3ba00)
 
 </div>
 </details>
@@ -140,7 +140,7 @@
 <summary>게시글 조회(사용자)</summary>
 <div markdown="1">
 
-![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+![사용자글조회](https://github.com/hongsuk2615/Final_Project/assets/117423182/e22d6b43-b7f6-486a-b9ee-d95db9eb5960)
 
 </div>
 </details>
@@ -148,7 +148,7 @@
 <summary>게시글 조회(작성자)</summary>
 <div markdown="1">
 
-![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+![글작성자글조회](https://github.com/hongsuk2615/Final_Project/assets/117423182/d79f3667-fa79-4b12-8bd9-992d78767767)
 
 </div>
 </details>
@@ -156,7 +156,7 @@
 <summary>게시글 작성</summary>
 <div markdown="1">
 
-![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+![글작성](https://github.com/hongsuk2615/Final_Project/assets/117423182/289a8c22-6b59-45cf-9acc-65cf786ee2df)
 
 </div>
 </details>
@@ -164,7 +164,7 @@
 <summary>게시글 수정</summary>
 <div markdown="1">
 
-![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+![글수정하기](https://github.com/hongsuk2615/Final_Project/assets/117423182/634266d0-72d0-4d97-98fd-5bcbaa05e692)
 
 </div>
 </details>
