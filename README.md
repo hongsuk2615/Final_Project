@@ -368,13 +368,36 @@
 <h4>공통모달창</h4>
 
 <details>
-<summary> 기능 </summary>
+<summary> 쪽지보내기 </summary>
 <div markdown="1">
 
-움짤
+![메세지보내기](https://github.com/hongsuk2615/Final_Project/assets/117423274/86bfa71c-3707-42a9-95d7-e1da223c15c4)
+
+![쪽지보내기2](https://github.com/hongsuk2615/Final_Project/assets/117423274/05b44335-425d-4ed8-8084-27890b5754c3)
 
 </div>
 </details>
+
+<details>
+<summary> 찜하기 </summary>
+<div markdown="1">
+
+![찜](https://github.com/hongsuk2615/Final_Project/assets/117423274/99e64906-c7a1-4bdf-88ed-d2c5a5ee95eb)
+
+
+</div>
+</details>
+
+<details>
+<summary> 신고하기 </summary>
+<div markdown="1">
+
+![신고](https://github.com/hongsuk2615/Final_Project/assets/117423274/18825918-fd36-499d-b9f9-44d2289b41dc)
+
+
+</div>
+</details>
+
 <hr/>
 
 <h4>관리자페이지</h4>
