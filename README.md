@@ -153,6 +153,16 @@
 </div>
 </details>
 
+<details>
+<summary>수정/삭제</summary>
+<div markdown="1">
+
+![중고거래 수정삭제](https://github.com/hongsuk2615/Final_Project/assets/117423274/442f548d-7dce-4e16-9446-6a5db7344a78)
+
+
+</div>
+</details>
+
 
 
 <h4>[심부름/알바]</h4>
