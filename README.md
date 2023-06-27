@@ -61,7 +61,7 @@
 
 <h4>[로그인]</h4>
 <hr/>
-<div style="background-color:#fccee2;">
+<div style="background-color:fccee2;">
 <details>
 <summary>일반로그인</summary>
 <div markdown="1">
