@@ -3,6 +3,9 @@ package com.ace.thrifty.member.controller;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -36,7 +39,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 @RequestMapping("/member")
 @SessionAttributes({"loginUser"})
-public class MemberController {
+public class MemberController implements HttpSessionListener{
 	
 	@Autowired
 	MemberService memberService;
@@ -68,7 +71,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login")
-	public String loginMember(Member m, Model model, HttpServletRequest request, RedirectAttributes ra) {
+	public String loginMember(Member m, Model model, HttpServletRequest request, RedirectAttributes ra, HttpSession session) {
 		System.out.println(m);
 		String referer = request.getHeader("Referer");
 		Member loginUser = memberService.loginMember(m);
@@ -76,7 +79,9 @@ public class MemberController {
 			ra.addFlashAttribute("alertMsg", "로그인 성공");
 			model.addAttribute("loginUser", loginUser);
 			
-			if(loginUser.getAuthority() == 1) { //오늘 처음 로그인할 경우 LOGIN_TODAY 값 변경
+			session.setMaxInactiveInterval(30);
+			
+			if(loginUser.getAuthority() == 1) { //오늘 처음 로그인할 경우 LOGIsN_TODAY 값 변경
 				memberService.todayLogin(loginUser.getUserNo());
 				return "redirect:" + referer;
 			}else {
@@ -87,7 +92,6 @@ public class MemberController {
 			ra.addFlashAttribute("alertMsg", "로그인 실패");
 			return "redirect:" + referer;
 		}
-		
 	}
 	
 	@GetMapping("/logout")
@@ -222,6 +226,5 @@ public class MemberController {
 		String result = memberService.findPwd(member);
 		return result;
 	}
-	
 
 }

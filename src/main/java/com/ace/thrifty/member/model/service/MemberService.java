@@ -23,5 +23,5 @@ public interface MemberService {
 
 	public int todayLogin(int userNo);
 
-	public int currentLogOut(int userNo);
+	public int currentLogout(int userNo);
 }
