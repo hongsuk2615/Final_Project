@@ -2,8 +2,11 @@
 
 <h1>알뜰살뜰프로젝트</h1>
 
-<a href="http://3.38.209.77/thrifty/">알뜰살뜰사이트</a>
 
+
+<a href="http://3.38.209.77/thrifty/"> <img src="https://github.com/hongsuk2615/Final_Project/assets/117423274/949fc1e9-ab94-4ae4-b1de-313c64074ed2" width="200" height="200"> </a>
+
+<a href="http://3.38.209.77/thrifty/">알뜰살뜰사이트(클릭시 사이트로 이동)</a>
 
 <b>공유경제 / 중고물품 거래등을 할수있도록 하여 돈을 아낄수단을 제공하는 사이트</b>
 
@@ -18,7 +21,7 @@
 
 * [유스케이스](#유스케이스)
 
-* [ERD](#ERD)
+* [ERD](#erd)
 
 * [개발환경](#개발환경)
 
@@ -28,7 +31,7 @@
   * [쉐어하우스](#쉐어하우스)
   * [카풀](#카풀)
   * [중고거래](#중고거래)
-  * [심부름/알바](#심부름/알바)
+  * [심부름/알바](#심부름알바)
   * [공동구매](#공동구매)
   * [소모임](#소모임)
   * [마이페이지](#마이페이지)
@@ -45,7 +48,7 @@
 <br><br>
 <h2>유스케이스</h2>
 
-<center><img src="https://github.com/hongsuk2615/Final_Project/assets/117423274/1e633c3e-a503-41bb-9ee9-262834186158" width="700" height="800"></center>
+![유스케이스](https://github.com/hongsuk2615/Final_Project/assets/117423274/1e633c3e-a503-41bb-9ee9-262834186158)
 
 
 <br><br>
@@ -371,17 +374,16 @@
 <summary> 쪽지보내기 </summary>
 <div markdown="1">
 
--비로그인상태
+움짤
 
+</div>
+</details>
 
-![메세지보내기](https://github.com/hongsuk2615/Final_Project/assets/117423274/86bfa71c-3707-42a9-95d7-e1da223c15c4)
+<details>
+<summary> 신고 </summary>
+<div markdown="1">
 
-
--로그인상태
-
-
-![쪽지보내기2](https://github.com/hongsuk2615/Final_Project/assets/117423274/05b44335-425d-4ed8-8084-27890b5754c3)
-
+움짤
 
 </div>
 </details>
@@ -390,22 +392,10 @@
 <summary> 찜하기 </summary>
 <div markdown="1">
 
-![찜](https://github.com/hongsuk2615/Final_Project/assets/117423274/99e64906-c7a1-4bdf-88ed-d2c5a5ee95eb)
-
-
-</div>
-</details>
-
-<details>
-<summary> 신고하기 </summary>
-<div markdown="1">
-
-![신고](https://github.com/hongsuk2615/Final_Project/assets/117423274/18825918-fd36-499d-b9f9-44d2289b41dc)
-
+움짤
 
 </div>
 </details>
-
 <hr/>
 
 <h4>관리자페이지</h4>
