@@ -239,12 +239,11 @@
 			AND T.STATUS = 'Y';
 	</select>
 	
-	<update id="checkStatus" >
-		UPDATE TOUR
-		SET STATUS = 'N'
+	<delete id="checkStatus" >
+		DELETE FROM TOUR
 			WHERE ROOM_NO = #{rNo}
 				AND USER_NO = #{uNo}
-	</update>
+	</delete>
 	
 	<select id="selectApply" resultMap="tourResultSet">
 		SELECT *

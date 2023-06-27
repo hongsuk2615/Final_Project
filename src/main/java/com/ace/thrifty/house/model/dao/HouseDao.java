@@ -100,7 +100,7 @@ public class HouseDao {
 	}
 	
 	public int checkStatus(Map map) {
-	return sqlSession.update("houseMapper.checkStatus", map);
+	return sqlSession.delete("houseMapper.checkStatus", map);
 	}
 	
 	public Tour selectApply(int rNo, int uNo) {
