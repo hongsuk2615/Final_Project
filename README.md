@@ -1,4 +1,4 @@
-# Final_Project
+![image](https://github.com/hongsuk2615/Final_Project/assets/117426079/0c0d19a5-5ebe-495d-9cd7-96783e529c43)![image](https://github.com/hongsuk2615/Final_Project/assets/117426079/e7074025-1722-4f7c-be84-969224584fbf)![image](https://github.com/hongsuk2615/Final_Project/assets/117426079/ef0cfa2c-1682-4ae1-a2ef-e8288fe08c6a)# Final_Project
 
 
 <h1>알뜰살뜰프로젝트</h1>
@@ -115,13 +115,65 @@
 </details>
 <h4>[카풀]</h4>
 <details>
-<summary>기능</summary>
+<summary>메인페이지 AOS library</summary>
 <div markdown="1">
 
-움짤
+![ezgif com-video-to-gif](https://github.com/hongsuk2615/Final_Project/assets/117426079/dfddbbab-3691-4a6b-ab2a-5f931750633f)
+
 
 </div>
 </details>
+
+<details>
+<summary>게시판 목록페이지 필터 적용 모습</summary>
+<div markdown="1">
+
+![ezgif com-video-to-gif (1)](https://github.com/hongsuk2615/Final_Project/assets/117426079/76c7ac7d-6afd-4bac-8ae1-fe85d46bcdcc)
+
+
+</div>
+</details>
+
+<details>
+<summary>게시판 상세페이지 기능</summary>
+<div markdown="1">
+
+![ezgif com-video-to-gif (2)](https://github.com/hongsuk2615/Final_Project/assets/117426079/7c144345-2a60-4d37-91e5-848de72f212c)
+
+
+</div>
+</details>
+<details>
+<summary>게시판 수정페이지 기능</summary>
+<div markdown="1">
+
+![ezgif com-video-to-gif (3)](https://github.com/hongsuk2615/Final_Project/assets/117426079/5e63bf89-76f4-45e9-aa0d-e5ca2162dc77)
+
+</div>
+</details>
+
+<details>
+<summary>게시판 등록페이지 기능</summary>
+<div markdown="1">
+
+![ezgif com-video-to-gif (4)](https://github.com/hongsuk2615/Final_Project/assets/117426079/680ff131-edcd-44c3-890e-4c58c8c0edd7)
+
+</div>
+<P>등록페이지 내 카카오 Map API 기능</P>
+
+![ezgif com-video-to-gif (7)](https://github.com/hongsuk2615/Final_Project/assets/117426079/1e46e833-46d0-4f08-a18f-06c2df5128dc)
+
+</details>
+
+<details>
+<summary>게시판 페이지 삭제기능</summary>
+<div markdown="1">
+
+![ezgif com-video-to-gif (5)](https://github.com/hongsuk2615/Final_Project/assets/117426079/2857dc7b-6dcb-48c2-9f8f-ee1c39bec2ec)
+
+</div>
+</details>
+
 <h4>[중고거래]</h4>
 
 <details>
@@ -155,15 +207,51 @@
 
 
 
-<h4>[심부름/알바]</h4>
+<h4>[심부름/대타]</h4>
 <details>
-<summary>기능</summary>
+<summary>심부름/대타 메인페이지</summary>
 <div markdown="1">
 
-움짤
+![ezgif com-video-to-gif (6)](https://github.com/hongsuk2615/Final_Project/assets/117426079/3de1a099-0376-4031-9cba-046030094aca)
 
 </div>
 </details>
+
+<details>
+<summary>심부름/대타 게시판 목록페이지 필터</summary>
+<div markdown="1">
+
+![ezgif com-video-to-gif (8)](https://github.com/hongsuk2615/Final_Project/assets/117426079/27d4cf3f-50ae-48da-a9cf-14e86d075c44)
+
+<p>게시판 목록페이지 검색필터</p>
+
+![ezgif com-video-to-gif (9)](https://github.com/hongsuk2615/Final_Project/assets/117426079/a9607bc0-2ec2-4ad3-9a4e-6f890992e3f0)
+
+</div>
+</details>
+
+<details>
+<summary>심부름/대타 게시글 입력페이지</summary>
+<div markdown="1">
+
+![ezgif com-video-to-gif (10)](https://github.com/hongsuk2615/Final_Project/assets/117426079/5ac74d57-3989-45de-905d-f7a3e82a13b2)
+
+<p>게시글 입력페이지 카카오 Map API 기능</p>
+
+![ezgif com-video-to-gif (11)](https://github.com/hongsuk2615/Final_Project/assets/117426079/eaef7547-ddef-4129-a5b8-419ba2e8c775)
+
+</div>
+</details>
+
+<details>
+<summary>심부름/대타 상세페이지</summary>
+<div markdown="1">
+
+![ezgif com-video-to-gif (12)](https://github.com/hongsuk2615/Final_Project/assets/117426079/0a977b79-a009-47c3-bd0a-2c7257d4e262)
+
+</div>
+</details>
+
 <h4>[공동구매]</h4>
 <details>
 <summary>기능</summary>
