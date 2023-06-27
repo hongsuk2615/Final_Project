@@ -58,6 +58,7 @@
 <h2>주요기능</h2>
 
 <h4>[메인페이지]</h4>
+
 <hr/>
 
 ![메인페이지](https://github.com/hongsuk2615/Final_Project/assets/117423274/bf709c21-e973-4ba9-bf0d-153518c93453)
@@ -65,13 +66,14 @@
 <hr/>
 <h4>[로그인]</h4>
 <div style="color : skyblue;" >
+
 <hr/>
 
 <details>
 <summary>일반로그인</summary>
 <div markdown="1">
   
-![일반로그인](https://github.com/hongsuk2615/Final_Project/assets/117423274/e30589af-9bcc-4032-b511-4fc9b4b4b2b4)
+ ![일반로그인](https://github.com/hongsuk2615/Final_Project/assets/117423274/e30589af-9bcc-4032-b511-4fc9b4b4b2b4)
 
 </div>
 </details>
