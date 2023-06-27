@@ -1,7 +1,6 @@
 
 
 # Final_Project
-<span style="color:red">붉은 색</span>
 
 <h1>알뜰살뜰프로젝트</h1>
 
