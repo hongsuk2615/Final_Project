@@ -124,6 +124,7 @@
 </div>
 </details>
 <h4>[중고거래]</h4>
+<hr/>
 
 <details>
 <summary>필터링/페이징처리</summary>
@@ -241,6 +242,7 @@
 </div>
 </details>
 <h4>[마이페이지]</h4>
+</hr>
 <details>
 <summary>마이페이지 메인</summary>
 <div markdown="1">
