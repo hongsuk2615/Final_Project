@@ -373,8 +373,15 @@
 <details>
 <summary> 쪽지보내기 </summary>
 <div markdown="1">
+-비로그인상태
 
-움짤
+ 
+![메세지보내기](https://github.com/hongsuk2615/Final_Project/assets/117423274/b9b130d4-c9e0-4536-b476-088a600ee641)
+
+-로그인상태
+
+
+![쪽지보내기2](https://github.com/hongsuk2615/Final_Project/assets/117423274/ae37e552-52c5-4307-8d4f-1209a0bfbc59)
 
 </div>
 </details>
@@ -383,7 +390,7 @@
 <summary> 신고 </summary>
 <div markdown="1">
 
-움짤
+![신고](https://github.com/hongsuk2615/Final_Project/assets/117423274/422fad58-2300-4da4-a5e8-06ebf6a4084e)
 
 </div>
 </details>
@@ -392,7 +399,7 @@
 <summary> 찜하기 </summary>
 <div markdown="1">
 
-움짤
+![찜](https://github.com/hongsuk2615/Final_Project/assets/117423274/6e3b84b5-e531-4301-b659-ee298cc7d851)
 
 </div>
 </details>
