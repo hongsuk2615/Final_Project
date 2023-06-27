@@ -371,10 +371,18 @@
 <summary> 쪽지보내기 </summary>
 <div markdown="1">
 
-![메세지보내기](https://github.com/hongsuk2615/Final_Project/assets/117423274/86bfa71c-3707-42a9-95d7-e1da223c15c4)
 -비로그인상태
-![쪽지보내기2](https://github.com/hongsuk2615/Final_Project/assets/117423274/05b44335-425d-4ed8-8084-27890b5754c3)
+
+
+![메세지보내기](https://github.com/hongsuk2615/Final_Project/assets/117423274/86bfa71c-3707-42a9-95d7-e1da223c15c4)
+
+
 -로그인상태
+
+
+![쪽지보내기2](https://github.com/hongsuk2615/Final_Project/assets/117423274/05b44335-425d-4ed8-8084-27890b5754c3)
+
+
 </div>
 </details>
 
