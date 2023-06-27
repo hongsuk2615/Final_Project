@@ -1,5 +1,3 @@
-![글수정하기](https://github.com/hongsuk2615/Final_Project/assets/117423182/4eb2a49e-aeb8-4a86-8fcc-51b6b329e2d9)
-
 # Final_Project
 
 <h1>알뜰살뜰프로젝트</h1>
