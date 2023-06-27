@@ -133,6 +133,28 @@
 </div>
 </details>
 
+<details>
+<summary>글작성</summary>
+<div markdown="1">
+
+![중고거래 글작성](https://github.com/hongsuk2615/Final_Project/assets/117423274/cfcf00fd-8bac-4c2f-88c0-914e63e661c3)
+
+
+</div>
+</details>
+
+<details>
+<summary>판매완료처리</summary>
+<div markdown="1">
+
+![중고거래 판매완료](https://github.com/hongsuk2615/Final_Project/assets/117423274/f3914d2a-d425-4a97-80c8-a682bcd9c6a1)
+
+
+</div>
+</details>
+
+
+
 <h4>[심부름/알바]</h4>
 <details>
 <summary>기능</summary>
