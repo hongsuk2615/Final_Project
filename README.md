@@ -1,10 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" 
-     xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink"
-     width="100" height="50"
->
-  
+
 
 # Final_Project
 
@@ -13,9 +7,9 @@
 
 <a href="http://3.38.209.77/thrifty/">알뜰살뜰사이트</a>
 
-<text font-size="16" x="10" y="20">
-    <tspan fill="purple">공유경제 / 중고물품 거래등을 할수있도록 하여 돈을 아낄수단을 제공하는 사이트</tspan>
-</text>
+
+공유경제 / 중고물품 거래등을 할수있도록 하여 돈을 아낄수단을 제공하는 사이트
+
 
 
 <div style="color: blue;">조원 : 장서영, 홍성빈, 김민재, 임재원, 황수환, 김홍석</div>
@@ -373,6 +367,16 @@
 </div>
 </details>
 
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="100" height="50"
+>
+  <text font-size="16" x="10" y="20">
+    <tspan fill="red">Hello</tspan>,
+    <tspan fill="green">world</tspan>!
+  </text>
 </svg>
 
 
