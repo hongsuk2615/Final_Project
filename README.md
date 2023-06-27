@@ -54,13 +54,13 @@
 <h2>주요기능</h2>
 
 <h4>[메인페이지]</h4>
-***
+<hr/>
 
 ![메인페이지](https://github.com/hongsuk2615/Final_Project/assets/117423274/bf709c21-e973-4ba9-bf0d-153518c93453)
 
 
 <h4>[로그인]</h4>
-***
+<hr/>
 <details>
 <summary>일반로그인</summary>
 <div markdown="1">
@@ -114,7 +114,7 @@
 </div>
 </details>
 <h4>[카풀]</h4>
-***
+<hr/>
 <details>
 <summary>기능</summary>
 <div markdown="1">
@@ -167,7 +167,7 @@
 
 
 <h4>[심부름/알바]</h4>
-***
+<hr/>
 <details>
 <summary>기능</summary>
 <div markdown="1">
@@ -177,7 +177,7 @@
 </div>
 </details>
 <h4>[공동구매]</h4>
-***
+<hr/>
 <details>
 <summary>기능</summary>
 <div markdown="1">
@@ -187,7 +187,7 @@
 </div>
 </details>
 <h4>[소모임]</h4>
-***
+<hr/>
 <details>
 <summary>소모임 메인페이지, 광고(20초 후 사라지기)</summary>
 <div markdown="1">
@@ -231,7 +231,7 @@
 </div>
 </details>
 <h4>[쉐어하우스]</h4>
-***
+<hr/>
 <details>
 <summary>기능</summary>
 <div markdown="1">
