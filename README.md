@@ -34,6 +34,8 @@
   * [공동구매](#공동구매)
   * [소모임](#소모임)
   * [마이페이지](#마이페이지)
+  * [공통모달창](#공통모달창)
+  * [관리자페이지](#관리자페이지)
 
 <br><br>
 
@@ -156,7 +158,6 @@
 
 ![중고거래 글작성](https://github.com/hongsuk2615/Final_Project/assets/117423274/cfcf00fd-8bac-4c2f-88c0-914e63e661c3)
 
-
 </div>
 </details>
 
@@ -166,7 +167,6 @@
 
 ![중고거래 판매완료](https://github.com/hongsuk2615/Final_Project/assets/117423274/f3914d2a-d425-4a97-80c8-a682bcd9c6a1)
 
-
 </div>
 </details>
 
@@ -175,7 +175,6 @@
 <div markdown="1">
 
 ![중고거래 수정삭제](https://github.com/hongsuk2615/Final_Project/assets/117423274/442f548d-7dce-4e16-9446-6a5db7344a78)
-
 
 </div>
 </details>
@@ -219,9 +218,7 @@
 <summary>소모임 상세페이지</summary>
 <div markdown="1">
 
-
 ![소모임 상세보기](https://github.com/hongsuk2615/Final_Project/assets/59534382/3602c0bc-1835-448e-beba-2937e1e1e024)
-
 
 </div>
 </details>
@@ -241,10 +238,7 @@
 <summary>소모임 삭제하기</summary>
 <div markdown="1">
 
-
 ![소모임 삭제하기](https://github.com/hongsuk2615/Final_Project/assets/59534382/4753c691-b1ac-47ef-8b6e-c83f02e1e5f1)
-
-
 
 </div>
 </details>
@@ -257,7 +251,6 @@
 
 ![마이페이 메인](https://github.com/hongsuk2615/Final_Project/assets/59534382/d9ecbde7-c9f4-4462-a3ad-d2226b6ec9cc)
 
-
 </div>
 </details>
 
@@ -268,9 +261,6 @@
 
  ![프로필 이미지 변경](https://github.com/hongsuk2615/Final_Project/assets/59534382/82eff180-6739-4fe5-8bcb-d5db8c6970b2)
 
-
-
-
 </div>
 </details>
 
@@ -279,11 +269,7 @@
 <summary>찜목록 보기</summary>
 <div markdown="1">
 
-
 ![찜목록 보기](https://github.com/hongsuk2615/Final_Project/assets/59534382/ac71806a-822d-413f-9cf3-d2b47e570af0)
-
-
-
 
 </div>
 </details>
@@ -294,12 +280,7 @@
 <summary>찜목록 상세보기, 삭제</summary>
 <div markdown="1">
 
-
-
 ![찜목록 상세보기, 삭제 ](https://github.com/hongsuk2615/Final_Project/assets/59534382/10e23df2-54aa-497b-9e7d-04c241680a8a)
-
-
-
 
 </div>
 </details>
@@ -309,13 +290,7 @@
 <summary>내가쓴 글 메뉴 상세보기 </summary>
 <div markdown="1">
 
-
 ![내가쓴글 메뉴 상세보기](https://github.com/hongsuk2615/Final_Project/assets/59534382/f4629f55-7569-447e-8c9b-7695e1532e16)
-
-
-
-
-
 
 </div>
 </details>
@@ -325,14 +300,7 @@
 <summary> 쪽지함 </summary>
 <div markdown="1">
 
-
-
-
 ![쪽지함](https://github.com/hongsuk2615/Final_Project/assets/59534382/cdf5b2f3-83ba-40d9-b958-522c4ec1a875)
-
-
-
-
 
 </div>
 </details>
@@ -342,15 +310,7 @@
 <summary> 우측 사이드바 </summary>
 <div markdown="1">
 
-
-
-
 ![우측 사이드바](https://github.com/hongsuk2615/Final_Project/assets/59534382/535c55be-7bb4-4c5c-9e7f-b3e413b7592c)
-
-
-
-
-
 
 </div>
 </details>
@@ -360,21 +320,35 @@
 <summary> 메인 다크모드 </summary>
 <div markdown="1">
 
-
-
 ![다크모드](https://github.com/hongsuk2615/Final_Project/assets/59534382/f1dd88c4-0c17-44c6-9dab-87a97782ecaa)
-
-
-
-
-
-
-
 
 </div>
 </details>
 <hr/>
 
+<h4>공통모달창</h4>
+
+<details>
+<summary> 기능 </summary>
+<div markdown="1">
+
+움짤
+
+</div>
+</details>
+<hr/>
+
+<h4>관리자페이지</h4>
+
+<details>
+<summary> 기능 </summary>
+<div markdown="1">
+
+움짤
+
+</div>
+</details>
+<hr/>
 
 
 
