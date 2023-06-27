@@ -117,8 +117,8 @@
 		<if test= 'scNo!= null and scNo !="" '>
 		 	AND B.CATEGORY_S_NO = #{scNo}
 		</if>
-		<if test='location != null and location!= ""'>
-	 		AND P.LOCATION_NO = #{location}
+		<if test='lNo != null and lNo!= ""'>
+	 		AND P.LOCATION_NO = #{lNo}
 	 	</if>
 	 	<if	test='keyword != null and keyword !="" and keyword != "undefined"'>
 	 		AND B.CONTENT LIKE CONCAT(CONCAT('%',#{keyword}),'%')
