@@ -61,6 +61,7 @@
 
 <h4>[로그인]</h4>
 <hr/>
+<div style="background:yellow;">
 <details>
 <summary>일반로그인</summary>
 <div markdown="1">
@@ -104,6 +105,7 @@
 
 </div>
 </details>
+</div>
 <h4>[쉐어하우스]</h4>
 <hr/>
 <details>
