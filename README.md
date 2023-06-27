@@ -187,6 +187,7 @@
 
 </div>
 </details>
+<hr/>
 <h4>[공동구매]</h4>
 <hr/>
 <details>
@@ -197,6 +198,7 @@
 
 </div>
 </details>
+<hr/>
 <h4>[소모임]</h4>
 <hr/>
 <details>
