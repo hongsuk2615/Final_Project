@@ -39,7 +39,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 @RequestMapping("/member")
 @SessionAttributes({"loginUser"})
-public class MemberController implements HttpSessionListener{
+public class MemberController{
 	
 	@Autowired
 	MemberService memberService;
