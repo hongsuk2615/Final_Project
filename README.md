@@ -4,7 +4,7 @@
 
 
 
-<a href="http://3.38.209.77/thrifty/"> <img src="https://github.com/hongsuk2615/Final_Project/assets/117423274/949fc1e9-ab94-4ae4-b1de-313c64074ed2" width="200" height="200"> </a>
+<a href="http://3.38.209.77/thrifty/"> ![logo2 2](https://github.com/hongsuk2615/Final_Project/assets/117423274/10a38829-d9a5-4cfc-87d8-f2c9bf5adbd8) </a>
 
 <a href="http://3.38.209.77/thrifty/">알뜰살뜰사이트(클릭시 사이트로 이동)</a>
 
