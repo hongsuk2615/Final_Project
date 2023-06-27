@@ -6,7 +6,7 @@
 
 <a href="http://3.38.209.77/thrifty/">알뜰살뜰사이트</a>
 
-<span style="color: red;">공유경제 / 중고물품 거래등을 할수있도록 하여 돈을 아낄수단을 제공하는 사이트</span>
+<span style="color:red">공유경제 / 중고물품 거래등을 할수있도록 하여 돈을 아낄수단을 제공하는 사이트</span>
 
 <div style="color: blue;">조원 : 장서영, 홍성빈, 김민재, 임재원, 황수환, 김홍석</div>
 
