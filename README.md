@@ -63,13 +63,13 @@
 <br><br>
 <h2>주요기능</h2>
 
-> <h4>[메인페이지]</h4>
+ <h4>[메인페이지]</h4>
 
 ![메인페이지](https://github.com/hongsuk2615/Final_Project/assets/117423274/bf709c21-e973-4ba9-bf0d-153518c93453)
 
 <hr/>
 
-> <h4>[로그인]</h4>
+ <h4>[로그인]</h4>
 <div style="color : skyblue;" >
 
 <details>
@@ -117,7 +117,7 @@
 </details>
 <hr/>
 
-> <h4>[쉐어하우스]</h4>
+ <h4>[쉐어하우스]</h4>
 <details>
 <summary>기능</summary>
 <div markdown="1">
@@ -128,7 +128,7 @@
 </details>
 <hr/>
 
-> <h4>[카풀]</h4>
+ <h4>[카풀]</h4>
 <details>
 <summary>기능</summary>
 <div markdown="1">
@@ -139,7 +139,7 @@
 </details>
 <hr/>
 
-> <h4>[중고거래]</h4>
+ <h4>[중고거래]</h4>
 
 <details>
 <summary>필터링/페이징처리</summary>
@@ -183,7 +183,7 @@
 
 <hr/>
 
-> <h4>[심부름/알바]</h4>
+ <h4>[심부름/알바]</h4>
 <details>
 <summary>기능</summary>
 <div markdown="1">
@@ -194,7 +194,7 @@
 </details>
 <hr/>
 
-> <h4>[공동구매]</h4>
+ <h4>[공동구매]</h4>
 <details>
 <summary>기능</summary>
 <div markdown="1">
@@ -205,7 +205,7 @@
 </details>
 <hr/>
 
-> <h4>[소모임]</h4>
+ <h4>[소모임]</h4>
 <details>
 <summary>소모임 메인페이지, 광고(20초 후 사라지기)</summary>
 <div markdown="1">
@@ -250,7 +250,7 @@
 </details>
 <hr/>
 
-> <h4>[마이페이지]</h4>
+ <h4>[마이페이지]</h4>
 <details>
 <summary>마이페이지 메인</summary>
 <div markdown="1">
