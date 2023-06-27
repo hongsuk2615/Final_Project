@@ -121,13 +121,54 @@
 
  <h4>[쉐어하우스]</h4>
 <details>
-<summary>기능</summary>
+<summary>지도로 쉐어하우스 조회</summary>
 <div markdown="1">
 
-움짤
+![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
 
 </div>
 </details>
+<details>
+<summary>게시글 스크랩 및 검색</summary>
+<div markdown="1">
+
+![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+
+</div>
+</details>
+<details>
+<summary>게시글 조회(사용자)</summary>
+<div markdown="1">
+
+![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+
+</div>
+</details>
+<details>
+<summary>게시글 조회(작성자)</summary>
+<div markdown="1">
+
+![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+
+</div>
+</details>
+<details>
+<summary>게시글 작성</summary>
+<div markdown="1">
+
+![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+
+</div>
+</details>
+<details>
+<summary>게시글 수정</summary>
+<div markdown="1">
+
+![중고거래](https://github.com/hongsuk2615/Final_Project/assets/117423274/939c46d0-26b2-462d-96a9-100916bf1a88)
+
+</div>
+</details>
+
 <hr/>
 
  <h4>[카풀]</h4>
