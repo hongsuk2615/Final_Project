@@ -1,3 +1,4 @@
+
 # Final_Project
 
 
@@ -60,8 +61,9 @@
 
 
 <h4>[로그인]</h4>
+<div style="color : skyblue; border : 1px solid skyblue; padding : 0px 20px; border-radius : 15px;" >
 <hr/>
-<div style="background-color:fccee2;">
+
 <details>
 <summary>일반로그인</summary>
 <div markdown="1">
@@ -105,6 +107,7 @@
 
 </div>
 </details>
+<hr/>
 </div>
 <h4>[쉐어하우스]</h4>
 <hr/>
