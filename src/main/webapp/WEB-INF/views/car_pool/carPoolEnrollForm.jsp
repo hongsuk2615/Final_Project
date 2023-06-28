@@ -11,7 +11,6 @@
     <link href="/thrifty/resources/css/car_pool/car_pool_enrollform.css" rel="stylesheet">
 <style>
     *{
-        /* border: 1px solid blue !important; */
         box-sizing: border-box;
     }
     body{
@@ -60,6 +59,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="../common/rightside.jsp"/>
     <div id="wrapper">
 		<jsp:include page="../common/header.jsp"/>
         <div id="body">
@@ -87,7 +87,7 @@
                             <h3>카테고리 : 
                             	<c:forEach var="categorySName" items="${subCategoryList }">
                             		<c:if test="${categorySName.categoryUNo eq 3 }">
-                            			<input type="radio" class="category" name="categorySNo" id="get-in-car" value="${categorySName.categorySNo }">${categorySName.categorySName }
+                            			<input type="radio" class="category" name="categorySNo" id="get-in-car" value="${categorySName.categorySNo }" required>${categorySName.categorySName }
                             		</c:if>
                             	</c:forEach>
                                 <table>
@@ -221,5 +221,4 @@
         	}
 </script>
 </body>
-<jsp:include page="../common/rightside.jsp"/>
 </html>

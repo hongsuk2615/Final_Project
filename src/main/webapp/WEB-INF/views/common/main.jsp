@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>알뜰살뜰</title>
     <link rel="stylesheet" href="/thrifty/resources/css/common/main.css">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="icon" href="${contextPath}/resources/favicon.ico" type="image/x-icon">
 <style>
     *{
         /* border: 1px solid blue !important; */

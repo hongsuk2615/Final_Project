@@ -54,4 +54,9 @@
 	 	<extension>ico</extension>
 	 	<mime-type>image/x-icon</mime-type>
 	 </mime-mapping>
+	 
+	 <listener>
+	 	<listener-class>com.ace.thrifty.common.listener.SessionListener</listener-class>
+	 </listener>
+	 
 </web-app>
