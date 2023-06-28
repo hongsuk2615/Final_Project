@@ -225,6 +225,7 @@ public class AdminController {
 		String returnVal = "";
 		String alert = "";
 		
+		
 		int result = adminService.enrollInsert(b);
 		
 		if(result > 0) {

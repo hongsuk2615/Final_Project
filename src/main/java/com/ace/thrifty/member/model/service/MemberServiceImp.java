@@ -79,7 +79,7 @@ public class MemberServiceImp implements MemberService{
 	}
 
 	@Override
-	public int currentLogOut(int userNo) {
+	public int currentLogout(int userNo) {
 		return memberDao.currentLogOut(userNo);
 	}
 	
