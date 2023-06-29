@@ -501,7 +501,25 @@
 <h4>관리자페이지</h4>
 
 <details>
-<summary> 기능 </summary>
+<summary> 메인페이지 </summary>
+<div markdown="1">
+
+움짤
+
+</div>
+</details>
+
+<details>
+<summary> 회원/게시물/신고 조회 및 관리 </summary>
+<div markdown="1">
+
+움짤
+
+</div>
+</details>
+
+<details>
+<summary> 공지사항/FAQ 작성, 수정, 삭제 </summary>
 <div markdown="1">
 
 움짤
