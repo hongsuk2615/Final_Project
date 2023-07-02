@@ -424,7 +424,8 @@ https://github.com/hongsuk2615/Final_Project/assets/117423208/2d5754e9-9b23-4a7c
  <details>
 <summary>자유게시판 댓글</summary>
 <div markdown="1">
-![자유게시판 댓글 등록, 삭제](https://github.com/hongsuk2615/Final_Project/assets/113297372/3e5da29e-100f-430f-bc6e-3e46e37def76)
+<img src="https://github.com/hongsuk2615/Final_Project/assets/113297372/57157b00-c90f-41e0-afa5-cd7bc0b115e4"/>
+
 
 </div>
 </details>
