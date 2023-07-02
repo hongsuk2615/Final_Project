@@ -330,13 +330,41 @@
  <h4>[공동구매]</h4>
 
 <details>
-<summary>기능</summary>
+<summary>필터링/페이징처리/검색</summary>
 <div markdown="1">
 
-움짤
+https://github.com/hongsuk2615/Final_Project/assets/117423208/9d6ad722-98cf-45af-bf78-be33dad08456
 
 </div>
 </details>
+
+<details>
+<summary>글작성</summary>
+<div markdown="1">
+
+https://github.com/hongsuk2615/Final_Project/assets/117423208/227bf77e-ec20-461e-996a-d614dff0ecd0
+
+</div>
+</details>
+
+<details>
+<summary>마감처리</summary>
+<div markdown="1">
+
+https://github.com/hongsuk2615/Final_Project/assets/117423208/b469c6fa-1dc5-4915-a3df-ec59fba304f9
+
+</div>
+</details>
+
+<details>
+<summary>수정/삭제</summary>
+<div markdown="1">
+
+https://github.com/hongsuk2615/Final_Project/assets/117423208/2d5754e9-9b23-4a7c-93ef-da0dd2300399
+
+</div>
+</details>
+
 <hr/>
 
  <h4>[소모임]</h4>
