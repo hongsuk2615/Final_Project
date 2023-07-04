@@ -3,7 +3,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-	    <a href="${contextPath}/admin/home" class="brand-link">
+	    <a href="${contextPath}/" class="brand-link">
 	      <img src="/thrifty/resources/images/main/icon/logo1.1.png" alt="AdminLTE Logo" class="brand-image">
 	      <span class="brand-text font-weight-light">알뜰살뜰</span>
 	    </a>

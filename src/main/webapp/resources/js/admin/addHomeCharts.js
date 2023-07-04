@@ -90,7 +90,8 @@ let userNumbers = [];
       labels: boardCategory,
       datasets: [
         {
-          data: boardDailyNumber,
+          // data: boardDailyNumber,
+          data: [1,3,2,2,1,2,1],
           backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de', '#000000'],
         }
       ]

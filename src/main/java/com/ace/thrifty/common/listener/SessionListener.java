@@ -26,16 +26,11 @@ public class SessionListener implements HttpSessionListener{
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se) {
 		
-		System.out.println("test");
-		
 		MemberService memberSerivce = getMemberService(se);
 		HttpSession session = se.getSession();
-		
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
-		System.out.println(userNo);
 		
 		memberSerivce.currentLogout(userNo);
-		
 		
 		HttpSessionListener.super.sessionDestroyed(se);
 	}

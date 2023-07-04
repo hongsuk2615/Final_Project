@@ -407,6 +407,30 @@ https://github.com/hongsuk2615/Final_Project/assets/117423208/2d5754e9-9b23-4a7c
 </details>
 <hr/>
 
+ <h4>[자유게시판]</h4>
+ <details>
+<summary>자유게시판 등록, 수정</summary>
+<div markdown="1">
+
+등록
+![자유게시판 글등록](https://github.com/hongsuk2615/Final_Project/assets/113297372/b6137692-8c86-4a61-b3d8-5ea56dc0b1f8)
+
+수정
+![자유게시판 글수정](https://github.com/hongsuk2615/Final_Project/assets/113297372/2e6e6c9b-8c88-449f-a905-007900b9dd09)
+
+</div>
+</details>
+
+ <details>
+<summary>자유게시판 댓글</summary>
+<div markdown="1">
+<img src="https://github.com/hongsuk2615/Final_Project/assets/113297372/57157b00-c90f-41e0-afa5-cd7bc0b115e4"/>
+
+
+</div>
+</details>
+<hr/>
+
  <h4>[마이페이지]</h4>
 <details>
 <summary>마이페이지 메인</summary>
@@ -529,13 +553,62 @@ https://github.com/hongsuk2615/Final_Project/assets/117423208/2d5754e9-9b23-4a7c
 <h4>관리자페이지</h4>
 
 <details>
-<summary> 기능 </summary>
+<summary> 메인페이지 </summary>
 <div markdown="1">
 
-움짤
+<img width="1440" alt="스크린샷 2023-06-29 오후 3 19 12" src="https://github.com/hongsuk2615/Final_Project/assets/113297372/0c3b1fe0-5cf5-4f2a-ab2b-6d784feca9ee">
+
 
 </div>
 </details>
+
+<details>
+<summary> 회원/게시물/신고 조회 및 관리 </summary>
+<div markdown="1">
+
+회원
+![회원관리](https://github.com/hongsuk2615/Final_Project/assets/113297372/927dbfb6-3f78-42e4-b937-6042cafd01f2)
+
+
+게시판 
+![게시판](https://github.com/hongsuk2615/Final_Project/assets/113297372/647dee7f-781a-471f-b7a2-108e31b2e6e8)
+
+
+신고
+![신고](https://github.com/hongsuk2615/Final_Project/assets/113297372/12586f70-4537-4b35-a55c-d0d2901236fb)
+
+
+</div>
+</details>
+
+<details>
+<summary> 공지사항/FAQ 등록, 수정 </summary>
+<div markdown="1">
+
+등록
+![공지사항, FAQ 글 등록](https://github.com/hongsuk2615/Final_Project/assets/113297372/da6084ad-2bdf-493e-a56a-0ba42dd055f4)
+
+
+수정
+![공지사항, FAQ 글 수정](https://github.com/hongsuk2615/Final_Project/assets/113297372/8f9d7fd2-7b35-47f3-b676-0296831edca7)
+
+</div>
+</details>
+
+<details>
+<summary> 공지사항/FAQ 페이지 </summary>
+<div markdown="1">
+
+공지사항
+![공지사항](https://github.com/hongsuk2615/Final_Project/assets/113297372/4814d142-483e-43fd-827b-97062662a5b1)
+
+FAQ
+![FAQ](https://github.com/hongsuk2615/Final_Project/assets/113297372/281201f4-2519-4d22-8583-1c8df0cd76c9)
+
+
+</div>
+</details>
+
 <hr/>
 
 

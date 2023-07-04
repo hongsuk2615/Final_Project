@@ -79,8 +79,6 @@ public class MemberController{
 			ra.addFlashAttribute("alertMsg", "로그인 성공");
 			model.addAttribute("loginUser", loginUser);
 			
-			session.setMaxInactiveInterval(10);
-			
 			if(loginUser.getAuthority() == 1) { //오늘 처음 로그인할 경우 LOGIsN_TODAY 값 변경
 				memberService.todayLogin(loginUser.getUserNo());
 				return "redirect:" + referer;
