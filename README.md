@@ -556,7 +556,8 @@ https://github.com/hongsuk2615/Final_Project/assets/117423208/2d5754e9-9b23-4a7c
 <summary> 메인페이지 </summary>
 <div markdown="1">
 
-움짤
+<img width="1440" alt="스크린샷 2023-06-29 오후 3 19 12" src="https://github.com/hongsuk2615/Final_Project/assets/113297372/0c3b1fe0-5cf5-4f2a-ab2b-6d784feca9ee">
+
 
 </div>
 </details>
