@@ -4,10 +4,9 @@
 
 
 
-<a href="http://3.38.209.77/thrifty/"> ![logo2 2](https://github.com/hongsuk2615/Final_Project/assets/117423274/10a38829-d9a5-4cfc-87d8-f2c9bf5adbd8) </a>
+<a href="https://www.thrifty-community.site/thrifty/"> ![logo2 2](https://github.com/hongsuk2615/Final_Project/assets/117423274/10a38829-d9a5-4cfc-87d8-f2c9bf5adbd8) </a>
 
-<a href="http://3.38.209.77/thrifty/">알뜰살뜰사이트(클릭시 사이트로 이동)</a>
-
+<a href="https://www.thrifty-community.site/thrifty/">알뜰살뜰사이트(클릭시 사이트로 이동)</a>
 <b>공유경제 / 중고물품 거래등을 할수있도록 하여 돈을 아낄수단을 제공하는 사이트</b>
 
 
